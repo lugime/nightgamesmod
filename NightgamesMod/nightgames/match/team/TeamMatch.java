@@ -196,6 +196,7 @@ public class TeamMatch extends Match {
     @Override
     protected void beforeAllTurns() {
         map.values().forEach(a -> a.env.clear());
+        teams.values().forEach(Team::tickMercy);
     }
 
     @Override
