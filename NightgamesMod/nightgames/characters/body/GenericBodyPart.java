@@ -399,8 +399,9 @@ public class GenericBodyPart implements BodyPart {
         return part;
     }
 
-    public List<? extends PartMod> getMods() {
-        return mods;
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public List<BodyPartMod> getMods() {
+        return (List<BodyPartMod>) (List)mods;
     }
 
     protected List<PartMod> getPartMods() {
@@ -409,7 +410,7 @@ public class GenericBodyPart implements BodyPart {
 
     @Override
     public void receiveCum(Combat c, Character self, Character donor, BodyPart sourcePart) {
-        getMods().stream().forEach(mod -> mod.receiveCum(c, self, this, donor, sourcePart));
+        getMods().stream().forEach(mod -> ((PartMod)mod).receiveCum(c, self, this, donor, sourcePart));
     }
     
     @Override

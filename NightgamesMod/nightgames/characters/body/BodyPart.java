@@ -145,7 +145,7 @@ public interface BodyPart {
         }
     }
 
-    public Collection<? extends BodyPartMod> getMods();
+    public Collection<BodyPartMod> getMods();
 
     public static boolean hasType(Collection<BodyPart> parts, String type) {
         return parts.stream().anyMatch(part -> part.isType(type));

@@ -24,7 +24,6 @@ import nightgames.characters.State;
 import nightgames.characters.Trait;
 import nightgames.characters.body.Body;
 import nightgames.characters.body.BodyPart;
-import nightgames.characters.body.BreastsPart;
 import nightgames.characters.body.mods.ArcaneMod;
 import nightgames.characters.body.mods.CyberneticMod;
 import nightgames.characters.body.mods.DemonicMod;
