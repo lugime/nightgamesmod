@@ -184,8 +184,9 @@ public class TeamMatch extends Match {
 
     @Override
     public boolean canFight(Character initiator, Character opponent) {
-        return isCaptain(initiator) && isCaptain(opponent) && !teamOf.get(initiator)
-                                                                     .hasMercy(teamOf.get(opponent));
+        return isCaptain(initiator) && isCaptain(opponent) 
+               && !teamOf.get(initiator).hasMercy(teamOf.get(opponent))
+               && !teamOf.get(opponent).hasMercy(teamOf.get(initiator));
     }
 
     @Override
