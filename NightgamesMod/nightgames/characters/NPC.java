@@ -561,6 +561,7 @@ public class NPC extends Character {
             }
         }
         available.removeIf(a -> a == null || !a.usable(this));
+        available.forEach(System.out::println);
         if (available.isEmpty()) {
             available.add(new Wait());
         }
