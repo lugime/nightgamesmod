@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -1472,6 +1473,35 @@ public class Global {
         } else {
             return Optional.of(list.get(random(list.size())));
         }
+    }
+    
+    
+    public static <T> Optional<T> pickWeighted(Map<T, Double> map) {
+        if (map.isEmpty()) {
+            return Optional.empty();
+        }
+    
+        // Normalize the weights so they sum to 1.0, sort them low->high,
+        // then partition the range [0, 1) such that values with greater
+        // weight get a larger 'section'. Finally, pick a random value in
+        // [0, 1) and see what partition it's in. Return the corresponding value.
+        
+        double totalWeight = map.values().stream().reduce(0.0, Double::sum);
+        Map<T, Double> normalized = new HashMap<>();
+        map.entrySet().forEach(e -> normalized.put(e.getKey(), e.getValue() / totalWeight));
+        List<Map.Entry<T, Double>> entries = new ArrayList<>(map.entrySet());
+        entries.sort(Comparator.comparing(Map.Entry::getValue));
+        
+        double threshold = rng.nextDouble();
+        double sumSoFar = 0.0;
+        for (Map.Entry<T, Double> ent : entries) {
+            if (ent.getValue() + sumSoFar >= threshold) {
+                return Optional.of(ent.getKey());
+            }
+            sumSoFar += ent.getValue();
+        }
+        
+        throw new RuntimeException("pickWeighted failed to pick a value");
     }
 
     public static int getDate() {
