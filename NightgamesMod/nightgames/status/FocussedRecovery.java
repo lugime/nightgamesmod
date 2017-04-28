@@ -17,12 +17,12 @@ public class FocussedRecovery extends FocussedBase {
 
     @Override
     public double sensitivity(double x, BodyPart withPart, BodyPart targetPart, Skill skill) {
-        return 1;
+        return 1.5;
     }
 
     @Override
     public double opponentSensitivity(double x, BodyPart withPart, BodyPart targetPart, Skill skill) {
-        return -1;
+        return -1.5;
     }
 
     @Override
