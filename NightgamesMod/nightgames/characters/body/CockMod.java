@@ -248,7 +248,7 @@ public class CockMod extends PartMod {
                     c.write(self, message);
                 }
             } else {
-                if (target.moddedPartCountsAs(opponent, CyberneticMod.INSTANCE)) {
+                if (!target.moddedPartCountsAs(opponent, CyberneticMod.INSTANCE)) {
                     c.write(self, String.format(
                                     "Sensing %s moment of passion, %s %s greedily draws upon the rampant flows of orgasmic energy within %s, transferring the power back into %s.",
                                     opponent.nameOrPossessivePronoun(), self.nameOrPossessivePronoun(),
