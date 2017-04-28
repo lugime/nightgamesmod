@@ -25,8 +25,9 @@ public class GiveClothing extends TeammateAction {
     @Override
     public String describe(Character doer) {
         boolean appropriate = isAppropriate(given, getCaptain());
+        String msg = doer.getName() + " use <b>Give Clothing<\b>.\n";
         if (getCaptain().getOutfit().slotEmpty(ClothingSlot.bottom) && given.getSlots().contains(ClothingSlot.bottom)) {
-            String msg = "Looking at {other:name-possessive} exposed {other:main-genitals} thoughtfully for"
+            msg += "Looking at {other:name-possessive} exposed {other:main-genitals} thoughtfully for"
                             + " a moment, {self:subject-action:say|says} <i>\"You know, {other:name}, with you"
                             + " being our leader and all, I think you should at least have some underwear on you.\"</i>"
                             + " Without waiting for a response, {self:action:strip|strips} {self:possessive} "
@@ -41,7 +42,7 @@ public class GiveClothing extends TeammateAction {
                                 + " it on.", self, getCaptain());
             }
         }
-        String msg = "{self:SUBJECT-ACTION:step|steps} in front of {other:name-do} and {self:action:stop|stops}"
+        msg += "{self:SUBJECT-ACTION:step|steps} in front of {other:name-do} and {self:action:stop|stops}"
                         + " {other:direct-object}. {self:PRONOUN} then {self:action:strip|strips} off"
                         + " {self:possessive} " + given.getName() + " and {self:action:hand|hands}"
                         + " it to {other:direct-object}. ";

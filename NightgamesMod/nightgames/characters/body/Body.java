@@ -691,7 +691,7 @@ public class Body implements Cloneable {
         if (character.has(Trait.Unsatisfied)
                         && (character.getArousal().percent() >= 50)
                         && (skill == null || !skill.getTags(c).contains(SkillTag.fucking))
-                        && !(with.isGenital() && target.isGenital() && c.getStance().havingSex(c))) {
+                        && !(with.isGenitalOrToy() && target.isGenitalOrToy() && c.getStance().havingSex(c))) {
             if (c != null && c.getOpponent(character).human()) {
                 pleasure -= 4;
             } else {

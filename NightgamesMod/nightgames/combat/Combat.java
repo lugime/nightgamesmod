@@ -977,7 +977,8 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
     }
 
     private boolean rollWorship(Character self, Character other) {
-        if ((other.has(Trait.objectOfWorship) || self.is(Stsflag.lovestruck)) && (other.breastsAvailable() || other.crotchAvailable())) {
+        if (!other.isPet() && (other.has(Trait.objectOfWorship) || self.is(Stsflag.lovestruck))
+                        && (other.breastsAvailable() || other.crotchAvailable())) {
             double chance = Math.min(20, Math.max(5, other.get(Attribute.Divinity) + 10 - self.getLevel()));
             if (other.has(Trait.revered)) {
                 chance += 10;
@@ -993,7 +994,7 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
 
     private boolean rollAssWorship(Character self, Character opponent) {
         int chance = 0;
-        if (opponent.has(Trait.temptingass)) {
+        if (opponent.has(Trait.temptingass) && !opponent.isPet()) {
             chance += Math.max(0, Math.min(15, opponent.get(Attribute.Seduction) - self.get(Attribute.Seduction)));
             if (self.is(Stsflag.feral))
                 chance += 10;

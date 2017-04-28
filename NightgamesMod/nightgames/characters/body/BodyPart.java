@@ -165,6 +165,10 @@ public interface BodyPart {
         return genitalTypes.contains(getType());
     }
     
+    public default boolean isGenitalOrToy() {
+        return isGenital() || isType("strapon");
+    }
+    
     public default double getFetishChance() {
         return 0.25;
     }
