@@ -2996,6 +2996,12 @@ public abstract class Character extends Observable implements Cloneable {
         if (is(Stsflag.disguised) || has(Trait.slime)) {
             purge(c);
         }
+        if (has(ClothingTrait.harpoonDildo)) {
+            outfit.unequip(Clothing.getByID("harpoondildo"));
+        }
+        if (has(ClothingTrait.harpoonOnahole)) {
+            outfit.unequip(Clothing.getByID("harpoononahole"));
+        }
     }
 
     public void setFlag(String string, int i) {
