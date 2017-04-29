@@ -125,7 +125,7 @@ public class Grind extends Thrust {
     }
 
     @Override
-    public boolean makesContact() {
+    public boolean makesContact(Combat c) {
         return true;
     }
     

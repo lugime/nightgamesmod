@@ -135,7 +135,7 @@ public class FondleBreasts extends Skill {
     }
 
     @Override
-    public boolean makesContact() {
+    public boolean makesContact(Combat c) {
         return true;
     }
     

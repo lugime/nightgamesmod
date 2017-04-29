@@ -1229,7 +1229,7 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
                 write(skill.user()
                            .subjectAction("use ", "uses ") + skill.getLabel(this) + ".");
             }
-            if (skill.makesContact() && !getStance().dom(target) && target.canAct()
+            if (skill.makesContact(this) && !getStance().dom(target) && target.canAct()
                             && checkCounter(skill.user(), target, skill)) {
                 write("Countered!");
                 if (!resolveCrossCounter(skill, target, 25)) {
@@ -1237,7 +1237,7 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
                 }
                 madeContact = true;
                 success = false;
-            } else if (target.is(Stsflag.counter) && skill.makesContact()) {
+            } else if (target.is(Stsflag.counter) && skill.makesContact(this)) {
                 write("Countered!");
                 if (!resolveCrossCounter(skill, target, 50)) {
                     CounterStatus s = (CounterStatus) target.getStatus(Stsflag.counter);
@@ -1253,7 +1253,7 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
                 success = false;
             } else {
                 success = Skill.resolve(skill, this, target);
-                madeContact |= success && skill.makesContact();
+                madeContact |= success && skill.makesContact(this);
             }
             if (success) {
                 if (skill.getTags(this).contains(SkillTag.thrusting) && skill.user().has(Trait.Jackhammer) && Global.random(2) == 0) {

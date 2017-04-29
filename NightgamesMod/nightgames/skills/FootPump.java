@@ -92,7 +92,7 @@ public class FootPump extends Skill {
         return "Pleasure your opponent with your feet";
     }
 
-    @Override public boolean makesContact() {
+    @Override public boolean makesContact(Combat c) {
         return true;
     }
 

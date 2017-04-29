@@ -419,7 +419,7 @@ public class Struggle extends Skill {
     }
 
     @Override
-    public boolean makesContact() {
-        return true;
+    public boolean makesContact(Combat c) {
+        return c == null || c.getStance().distance() < 2;
     }
 }

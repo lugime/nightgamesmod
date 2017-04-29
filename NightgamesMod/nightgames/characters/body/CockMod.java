@@ -264,7 +264,8 @@ public class CockMod extends PartMod {
         }
     }
 
-    public void tickHolding(Combat c, Character self, Character opponent, BodyPart otherOrgan, CockPart part) {
+    @Override
+    public void tickHolding(Combat c, Character self, Character opponent, BodyPart otherOrgan, BodyPart part) {
         if (this.equals(primal)) {
             c.write(self, String.format("Raw sexual energy flows from %s %s into %s %s, enflaming %s lust",
                             self.nameOrPossessivePronoun(), part.describe(self), opponent.nameOrPossessivePronoun(),

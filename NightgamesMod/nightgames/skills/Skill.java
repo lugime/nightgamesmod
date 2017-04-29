@@ -218,7 +218,7 @@ public abstract class Skill {
         return toString();
     }
 
-    public boolean makesContact() {
+    public boolean makesContact(Combat c) {
         return false;
     }
 
