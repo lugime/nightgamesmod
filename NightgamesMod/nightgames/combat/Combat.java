@@ -1805,8 +1805,9 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
         return Global.noneCharacter();
     }
 
-    public void writeSystemMessage(String battleString) {
-        if (Global.checkFlag(Flag.systemMessages)) {
+    public void writeSystemMessage(String battleString, boolean basic) {
+        if (Global.checkFlag(Flag.systemMessages) || basic 
+                        && Global.checkFlag(Flag.basicSystemMessages)) {
             write(battleString);
         }
     }

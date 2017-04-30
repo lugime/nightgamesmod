@@ -760,15 +760,24 @@ public class Body implements Cloneable {
             String stageString = skill == null ? "" : String.format(" + stage:%.2f", skill.multiplierForStage(character));
             String dominanceString = dominance < 0.01 ? "" : String.format(" + dominance:%.2f", dominance);
             String staleString = staleness < .99 ? String.format(" x staleness: %.2f", staleness) : "";
-            String battleString = String.format(
+            if (Global.checkFlag(Flag.basicSystemMessages)) {
+                String battleString = String.format("%s%s %s</font> was pleasured by %s%s</font> for"
+                                + " <font color='rgb(255,50,200)'>%d</font>.\n", firstColor, Global.capitalizeFirstLetter(character.nameOrPossessivePronoun()),
+                                target.describe(character), secondColor, pleasuredBy, result);
+                if (c != null) {
+                    c.writeSystemMessage(battleString, true);
+                }
+            } else {
+                String battleString = String.format(
                             "%s%s %s</font> was pleasured by %s%s</font> for <font color='rgb(255,50,200)'>%d</font> "
                                             + "base:%.1f (%.1f%s) x multiplier: %.2f (1 + sen:%.1f + ple:%.1f + per:%.1f %s %s)%s\n",
                             firstColor, Global.capitalizeFirstLetter(character.nameOrPossessivePronoun()),
                             target.describe(character), secondColor, pleasuredBy, result, base, magnitude, bonusString,
                             multiplier, sensitivity - 1, pleasure - 1, perceptionBonus - 1, stageString, dominanceString, 
                             staleString);
-            if (c != null) {
-                c.writeSystemMessage(battleString);
+                if (c != null) {
+                    c.writeSystemMessage(battleString, false);
+                }
             }
             Optional<BodyFetish> otherFetish = opponent.body.getFetish(target.getType());
             if (otherFetish.isPresent() && otherFetish.get().magnitude > .3 && perceptionlessDamage > 0 && skill != null && skill.getSelf().equals(character) && opponent != character && opponent.canRespond()) {
@@ -788,7 +797,7 @@ public class Body implements Cloneable {
                             target.describe(character), result, base, magnitude, bonusString, multiplier,
                             sensitivity - 1, pleasure - 1, perceptionBonus - 1);
             if (c != null) {
-                c.writeSystemMessage(battleString);
+                c.writeSystemMessage(battleString, false);
             }
         }
         if (unsatisfied) {

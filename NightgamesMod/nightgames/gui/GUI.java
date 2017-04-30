@@ -130,8 +130,9 @@ public class GUI extends JFrame implements Observer {
     private JRadioButton rddumb;
     private JRadioButton rdeasy;
     private JRadioButton rdhard;
-    private JRadioButton rdMsgOn;
+    private JRadioButton rdMsgFull;
     private JRadioButton rdMsgOff;
+    private JRadioButton rdMsgBasic;
     private JRadioButton rdAutoNextOn;
     private JRadioButton rdAutoNextOff;
     private JRadioButton rdautosaveon;
@@ -274,12 +275,18 @@ public class GUI extends JFrame implements Observer {
 
         JLabel systemMessageLabel = new JLabel("System Messages");
         ButtonGroup sysMsgG = new ButtonGroup();
-        rdMsgOn = new JRadioButton("On");
+        JPanel hackPanel = new JPanel();
+        hackPanel.setLayout(new GridLayout(1, 2, 0, 0));
+        rdMsgFull = new JRadioButton("Full");
+        rdMsgBasic = new JRadioButton("Basic");
         rdMsgOff = new JRadioButton("Off");
-        sysMsgG.add(rdMsgOn);
+        sysMsgG.add(rdMsgFull);
+        sysMsgG.add(rdMsgBasic);
         sysMsgG.add(rdMsgOff);
         optionsPanel.add(systemMessageLabel);
-        optionsPanel.add(rdMsgOn);
+        hackPanel.add(rdMsgFull);
+        hackPanel.add(rdMsgBasic);
+        optionsPanel.add(hackPanel);
         optionsPanel.add(rdMsgOff);
 
         JLabel autoNextLabel = new JLabel("Fast Combat Display");
@@ -404,7 +411,9 @@ public class GUI extends JFrame implements Observer {
         optionsPanel.add(malePrefSlider);
         mntmOptions.addActionListener(arg0 -> {
             if (Global.checkFlag(Flag.systemMessages)) {
-                rdMsgOn.setSelected(true);
+                rdMsgFull.setSelected(true);
+            } else if (Global.checkFlag(Flag.basicSystemMessages)) {
+                rdMsgBasic.setSelected(true);
             } else {
                 rdMsgOff.setSelected(true);
             }
@@ -462,7 +471,8 @@ public class GUI extends JFrame implements Observer {
             int result = JOptionPane.showConfirmDialog(GUI.this, optionsPanel, "Options", JOptionPane.OK_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE);
             if (result == JOptionPane.OK_OPTION) {
-                Global.setFlag(Flag.systemMessages, rdMsgOn.isSelected());
+                Global.setFlag(Flag.systemMessages, rdMsgFull.isSelected());
+                Global.setFlag(Flag.basicSystemMessages, rdMsgBasic.isSelected());
                 Global.setFlag(Flag.AutoNext, rdAutoNextOn.isSelected());
                 Global.setFlag(Flag.dumbmode, !rdnormal.isSelected());
                 Global.setFlag(Flag.hardmode, rdhard.isSelected());
