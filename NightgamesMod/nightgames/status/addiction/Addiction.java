@@ -53,7 +53,9 @@ public abstract class Addiction extends Status {
 
     @Override
     public void tick(Combat c) {
-        combatMagnitude += magnitude / 14.0;
+        if (c.getOpponent(affected).equals(cause)) {
+            combatMagnitude += magnitude / 14.0;
+        }
     }
     
     public final void clearDaytime() {
@@ -81,6 +83,10 @@ public abstract class Addiction extends Status {
     }
     
     public final Severity getCombatSeverity() {
+        if (combatMagnitude > magnitude) {
+            // Effectively cap combatMagnitude to the current regular magnitude
+            return getSeverity();
+        }
         if (combatMagnitude < LOW_THRESHOLD) {
             return Severity.NONE;
         } else if (combatMagnitude < MED_THRESHOLD) {
