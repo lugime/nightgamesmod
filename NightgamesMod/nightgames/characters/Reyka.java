@@ -382,11 +382,11 @@ public class Reyka extends BasePersonality {
         character.addLine(CharacterLine.DESCRIBE_LINER, (c, self, other) -> {
             
             if (self.get(Attribute.Divinity) > 15) { 
-               return "Reyka is no longer just a regular succubus – as if her being a succubus wasn't already scary enough: Standing before you is a dark goddess radiating a terrifying aura of unholy power. "
+               return "Reyka is no longer just a regular succubus - as if her being a succubus wasn't already scary enough: Standing before you is a dark goddess radiating a terrifying aura of unholy power. "
                                 + "Reyka remains tall in stature, but her alluring face and beautiful body now call to you to prostrate yourself before her and submit to her will. Her hands with their "
                                 + "red-polished nails now look as horribly cruel as they do enticing, gentle, and soft. Underneath, her long and perfectly formed legs and delicate feet stand in an "
-                                + "imposing posture. Behind her, you see a pair of magnificent looking bat-like wings, commanding you to submit to her embrace and worship her.\n\n"
-                                + "Her gaze both captivates you and terrifies you - it's a gaze of of indescribable pleasure and unknown power. She'll do worse than suck out your soul...far worse.";
+                                + "imposing posture. Behind her, you see a pair of magnificent looking bat-like wings, commanding you to submit to her embrace and worship her.<br/><br/>"
+                                + "Her gaze both captivates you and terrifies you - it's a gaze of indescribable pleasure and unknown power. She'll do worse than suck out your soul...far worse.";
             } else {
                  return "Reyka the succubus stands before you, six feet tall with"
                                 + " the most stunningly beautiful body you have ever seen."
