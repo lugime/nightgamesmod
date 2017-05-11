@@ -143,9 +143,9 @@ import nightgames.trap.Trap;
 import nightgames.trap.Tripline;
 
 public class Global {
-    private static Random rng;
+    private static Random rng;                                      //Isn't the convention for static variables at this level is to put them in all caps? -DSM
     private static GUI gui;
-    private static Set<Skill> skillPool = new HashSet<>();
+    private static Set<Skill> skillPool = new HashSet<>();          //These central peices of data are not going to change. so they should be gathered and separated for better management. - DSM 
     private static Map<String, NPC> characterPool;
     private static Set<Action> actionPool;
     private static Set<Trap> trapPool;
@@ -154,15 +154,15 @@ public class Global {
     private static Set<Character> players;
     private static Set<Character> debugChars;
     private static Set<Character> resting;
-    private static Set<String> flags;
+    private static Set<String> flags;                               //Global flags - 
     private static Map<String, Float> counters;
-    public static Player human;
-    private static Match match;
-    public static Daytime day;
+    public static Player human;                                     //Useful for many reasons, redundant in a game where all elements are stored equally. There's many ways to get the player. - DSM 
+    private static Match match;                                     //Only a completel program flow restructure would change this, but many matches are going on as the player may be fighting - DSM
+    public static Daytime day;                                    
     protected static int date;
     private static Time time;
     private static Date jdate;
-    private static TraitTree traitRequirements;
+    private static TraitTree traitRequirements;                     //Traits can and probably should carry their own requirements with them. -DSM
     public static Scene current;
     public static boolean debug[] = new boolean[DebugFlags.values().length];
     public static int debugSimulation = 0;
@@ -171,9 +171,9 @@ public class Global {
     public static ContextFactory factory;
     public static Context cx;
     public static MatchType currentMatchType = MatchType.NORMAL;
-    private static Character noneCharacter = new NPC("none", 1, null);
+    private static Character noneCharacter = new NPC("none", 1, null);      
     private static HashMap<String, MatchAction> matchActions;
-    private static final int LINEUP_SIZE = 5;
+    private static final int LINEUP_SIZE = 5;                       //Static Naming conventions -DSM
     private static List<Quest> quests = new ArrayList<Quest>();
 
     public static final Path COMBAT_LOG_DIR = new File("combatlogs").toPath();
@@ -259,6 +259,18 @@ public class Global {
         }
     }
 
+    /**Begins a new game, given the various conditions for start. Builds all required sets and members of the player and participating characters.
+     * 
+     * @param playerName
+     * The name of the player. More than likely grabbed from the new game screen GUI elements. 
+     * 
+     * @param config
+     * The starting configuration for the game. 
+     * 
+     * @param pickedTraits
+     * A list of traits that the player has picked at chargen.
+     * 
+     * */
     public static void newGame(String playerName, Optional<StartConfiguration> config, List<Trait> pickedTraits,
                     CharacterSex pickedGender, Map<Attribute, Integer> selectedAttributes) {
         Optional<PlayerConfiguration> playerConfig = config.map(c -> c.player);
@@ -345,12 +357,19 @@ public class Global {
     /**
      * WARNING DO NOT USE THIS IN ANY COMBAT RELATED CODE.
      * IT DOES NOT TAKE INTO ACCOUNT THAT THE PLAYER GETS CLONED. WARNING. WARNING.
+     * 
+     * NOTE: This is a "global accessor" to a private static, it's called across the project as a peice of vital data. 
+     * For this reason it's a piece that should be accessed more properly and without the danger originally posted. Very good example of something that can change. -DSM
+     * 
      * @return
      */
     public static Player getPlayer() {
         return human;
     }
 
+    /**Helper method that Builds the pool of skills. Called by newgame() and reserforLoad().
+     * 
+     * */
     public static void buildSkillPool(Character ch) {
         getSkillPool().clear();
         getSkillPool().add(new Slap(ch));
@@ -621,6 +640,8 @@ public class Global {
         }
     }
 
+    /**
+     * */
     public static void buildActionPool() {
         actionPool = new HashSet<>();
         actionPool.add(new Resupply());
@@ -976,6 +997,7 @@ public class Global {
         return getNPCByType(type);
     }
 
+    /**Builds the main map of the game. This method also draws the map. */
     public static HashMap<String, Area> buildMap() {
         Area quad = new Area("Quad",
                         "You are in the <b>Quad</b> that sits in the center of the Dorm, the Dining Hall, the Engineering Building, and the Liberal Arts Building. There's "
@@ -1215,6 +1237,13 @@ public class Global {
         return startConfig.isPresent() ? startConfig.get().findNpcConfig(type) : Optional.empty();
     }
 
+    /**Rebuilds the character pool using the starting configuration. 
+     * 
+     * TODO: Refactor into function and unify with CustomNPC handling.
+     * 
+     * 
+     * 
+     * */
     public static void rebuildCharacterPool(Optional<StartConfiguration> startConfig) {
         characterPool = new HashMap<>();
         debugChars.clear();
@@ -1403,6 +1432,10 @@ public class Global {
         });
     }
     
+    /**Returns the introductory text. 
+     * 
+     * NOTE: This should probably be moved into something more modular. -DSM
+     * */
     public static String getIntro() {
         return "You don't really know why you're going to the Student Union in the middle of the night."
                         + " You'd have to be insane to accept the invitation you received this afternoon."
@@ -1512,6 +1545,11 @@ public class Global {
         String replace(Character self, String first, String second, String third);
     }
 
+    /**Builds the parser responsible for taking special tags and forming them into the correct english word.
+     * 
+     * 
+     * 
+     * */
     public static void buildParser() {
         matchActions = new HashMap<>();
         matchActions.put("possessive", (self, first, second, third) -> {
@@ -1706,6 +1744,8 @@ public class Global {
         });
     }
 
+    /**Returns a formatted string for use with the tag parsing system. 
+     * */
     public static String format(String format, Character self, Character target, Object... strings) {
         // pattern to find stuff like {word:otherword:finalword} in strings
         Pattern p = Pattern.compile("\\{((?:self)|(?:other)|(?:master))(?::([^:}]+))?(?::([^:}]+))?\\}");
