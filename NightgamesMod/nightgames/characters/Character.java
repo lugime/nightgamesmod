@@ -1365,7 +1365,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public void tick(Combat c) {
         body.tick(c);
-        status.stream().collect(Collectors.toList()).forEach(s -> s.tick(c));
+        status.stream().collect(Collectors.toList()).forEach(s -> s.tick(c));       //FIXME: This tries t ocall 
         countdown(temporaryAddedTraits);
         countdown(temporaryRemovedTraits);
     }

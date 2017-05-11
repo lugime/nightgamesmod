@@ -53,7 +53,7 @@ public abstract class Addiction extends Status {
 
     @Override
     public void tick(Combat c) {
-        if (c.getOpponent(affected).equals(cause)) {
+        if (c.getOpponent(affected).equals(cause)) {                //FIXME: NPE here when Corruption ticks during map action from Character:1368.  - DSM
             combatMagnitude += magnitude / 14.0;
         }
     }
