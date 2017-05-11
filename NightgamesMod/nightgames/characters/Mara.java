@@ -136,10 +136,14 @@ public class Mara extends BasePersonality {
         });
 
         character.addLine(CharacterLine.DESCRIBE_LINER, (c, self, other) -> {
-            if (character.has(Trait.madscientist)) {
+            if (character.has(Trait.madscientist) && !self.isDemonic()) {
                 return "{self:SUBJECT} has gone high tech. {self:PRONOUN} has a rig of equipment on harnesses that seem carefully placed so as not to interfere with clothing removal. The glasses {self:pronoun}'s wearing appear to be "
                                 + "computerized rather than prescription. {self:PRONOUN} also has a device of unknown purpose strapped to {self:possessive} arm. Underneath all of that, {self:pronoun} has the same cute, mischievous expression {self:pronoun} "
                                 + "you're used to.";
+            } else if (character.has(Trait.madscientist) && self.isDemonic()) {
+                return "{self:SUBJECT} seems to have gotten too much of the demonic juju. Despite going high tech, {self:PRONOUN}'s rig of equipment – {self:possessive} fancy rig of various gadgets and computerized glasses seem to have "
+                                + "something newer and more sinister behind them. {self:POSSESSIVE} eyes seem cruel and evil, bent on serving darker, more demonic powers. {self:POSSESSIVE} body seems a little different, too.</br>"
+                                + "Underneath all of the equipment, {self:SUBJECT} the cyberdemon has the same cute, mischievous expression that you're used to...";
             } else {
                 return "{self:SUBJECT} is short and slender, with a small heart shaped face. {self:PRONOUN} has dark skin, and short, curly black hair. {self:POSSESSIVE} size and cute features make {self:possessive} look a few years "
                                 + "younger than {self:pronoun} actually is, and {self:pronoun} wears a near constant playful smile. {self:PRONOUN}'s far from physically intimidating, but {self:possessive} sharp eyes reveal {self:possessive} exceptional intellect.";
