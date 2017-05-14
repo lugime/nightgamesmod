@@ -21,7 +21,7 @@ public abstract class Addiction extends Status {
     public static final float MED_THRESHOLD = .4f;
     public static final float HIGH_THRESHOLD = .7f;
 
-    protected final transient Character cause;          //FIXME: Could Cause being Transient and thus nonSerializable be responsible for how this object is read as a stream at combat end? -DSM
+    protected final transient Character cause;          
     protected float magnitude;
     protected float combatMagnitude;
 
@@ -52,9 +52,9 @@ public abstract class Addiction extends Status {
     }
 
     @Override
-    public void tick(Combat c) {
-        if (c == null) { System.out.println("ERROR: COMBAT c is NUll in Addiction.tick()!!!!"); }
-        if (c.getOpponent(affected).equals(cause)) {                //FIXME: NPE here when Addictions out of battle tick during map action from Character:1368.  - DSM
+    public void tick(Combat c) {                    //FIXME:outside of combat, c becomes null and the game attempts to 
+        if (c == null) { System.out.println("ERROR: COMBAT c is NUll in Addiction.tick()!!!!"); }       
+        if (c.getOpponent(affected).equals(cause)) {               
             combatMagnitude += magnitude / 14.0;
         }
     }
