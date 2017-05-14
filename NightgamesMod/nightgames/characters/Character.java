@@ -1365,7 +1365,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public void tick(Combat c) {
         body.tick(c);
-        status.stream().collect(Collectors.toList()).forEach(s -> s.tick(c));       //FIXME: This tries t ocall 
+        status.stream().collect(Collectors.toList()).forEach(s -> s.tick(c));       //FIXME: This tries to call 
         countdown(temporaryAddedTraits);
         countdown(temporaryRemovedTraits);
     }
@@ -4349,11 +4349,11 @@ public abstract class Character extends Observable implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o)                      //If it has the same memory address - DSM
             return true;
-        if (o == null || !getClass().equals(o.getClass()))
-            return false;
-        if (o == Global.noneCharacter() || this == Global.noneCharacter())
+        if (o == null || !getClass().equals(o.getClass()))      //Becuse this is overridden at the character level this must be if it's a character... - DSM
+            return false;                   
+        if (o == Global.noneCharacter() || this == Global.noneCharacter())      
             return false;
         Character character = (Character) o;
         return getType().equals(character.getType()) && name.equals(character.name);
