@@ -167,7 +167,7 @@ public class Angel extends BasePersonality {
                                                             + "There's a bit of a dangerous tone in Angel's voice, and you motion to get back up. "
                                                             + "However, a shapely foot forces your head onto the ground again. "
                                                             + "<i>\"Stand down!\"</i> she demands. This started off as a joke, but something in Angel's voice demands your obedience. "
-                                                            + "Trembling, you do as she says and avert her eyes, looking only at the lower half of her perfect body. Angel chuckles as she inspects your prone form. "
+                                                            + "Trembling, you do as she says and avert your eyes, looking only at the lower half of her perfect body. Angel chuckles as she inspects your prone form. "
                                                             + "<i>\"You know {other:name}, I wasn't sure I was cut out for this deity business, but I have to admit, this feels pretty good right now. "
                                                             + "Well what are you waiting for? Show me your faith!\"</i> "
                                                             + "You scramble to your feet and start lapping at Angel's heavenly orfice. "
