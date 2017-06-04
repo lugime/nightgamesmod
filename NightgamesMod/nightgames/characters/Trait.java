@@ -572,6 +572,8 @@ public enum Trait {
         return OVERRIDES.containsKey(this) && OVERRIDES.get(this).stream().anyMatch(t -> ch.has(t));
     }
 
+    
+    //TODO: This data might as well be someplace in Global, as it's static, accessible from out side the class statically, and only changes upon data loading. - DSM
     public static Map<Trait, Resistance> resistances;
     public static Resistance nullResistance;
     public static final Map<Trait, Collection<Trait>> OVERRIDES;
