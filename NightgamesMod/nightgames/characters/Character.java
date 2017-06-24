@@ -143,6 +143,9 @@ public abstract class Character extends Observable implements Cloneable {
     private Growth growth;                          //FIXME: Growth, as well as a host of many variables in many classes, have many public variables. Move to protected or private and implement mutators. The compliler is your friend. - DSM
     private BodyPart lastOrgasmPart;                //Merge into tracker object for combat session. - DSM 
     
+    //TODO: Merge orgasms, cloned, pleasured, location, and lastorgasmpart in this CombatStats object.
+    //protected CombatStats combatstats;
+    
     /**Constructor for a character - creates a character off of a name and level. Base Attributes start at 5 and other stats are derived from that. 
      * @param name
      * The name of the character. 
