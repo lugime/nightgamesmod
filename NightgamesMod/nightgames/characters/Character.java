@@ -1363,7 +1363,7 @@ public abstract class Character extends Observable implements Cloneable {
         }
     }
 
-    public void tick(Combat c) {
+    public void tick(Combat c) {            
         body.tick(c);
         status.stream().collect(Collectors.toList()).forEach(s -> s.tick(c));
         countdown(temporaryAddedTraits);
@@ -2415,7 +2415,7 @@ public abstract class Character extends Observable implements Cloneable {
             } else {
                 c.write(opponent, String.format("<b>%s %s pulses, but fails to"
                                                 + " draw in %s experience.</b>", Global.capitalizeFirstLetter(opponent.nameOrPossessivePronoun()),
-                                opponent.body.getRandomPussy().describe(opponent),      //FIXME: NPE During Post-Orgasm phase.
+                                opponent.body.getRandomPussy().describe(opponent),      //FIXME: NPE During Post-Orgasm phase. (With Demonic/Succubus mod?)
                                 nameOrPossessivePronoun()));
             }
         }
@@ -2778,7 +2778,7 @@ public abstract class Character extends Observable implements Cloneable {
             }
         });
         regen();
-        tick(null);
+        tick(null);                     //FIXME: This is the culprit of the Addiction NPE outside of combat. Nulls are not handled by methods used within tick and Addiction.tick()
         if (has(Trait.Confident)) {
             willpower.restore(10);
             mojo.reduce(5);

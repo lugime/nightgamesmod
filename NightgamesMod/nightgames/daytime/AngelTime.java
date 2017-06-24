@@ -27,6 +27,7 @@ public class AngelTime extends BaseNPCTime {
         giftString = "\"A present mm? Alright let's see it.\"";
         transformationOptionString = "Sacraments";
         advTrait = Trait.demigoddess;
+        //TODO: Finish placeholders for Angel divinity transformations.
         transformationIntro =
                         "[Placeholder]<br/>Angel says she may be able to try a few things with her new divine powers.";
         loveIntro = "You meet Angel at her room, but for once, she doesn't seem eager to get to sex. You can tell she has something on her mind, so you let her lean "
