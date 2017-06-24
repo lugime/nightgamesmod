@@ -162,7 +162,7 @@ public class Global {
     private static Time time;
     private static Date jdate;
 
-    private static Character noneCharacter = new NPC("none", 1, null);      
+   
    
     //THE FOLLOWING ITEMS ARE CANDIDATES FOR EXTRACTION TO A GAMEDATA CLASS - DSM 
     public static MatchType currentMatchType = MatchType.NORMAL;
@@ -186,7 +186,8 @@ public class Global {
     private static HashMap<String, MatchAction> matchActions;           //Static Naming conventions -DSM
     private static List<Quest> quests = new ArrayList<Quest>();
     
-    
+     private static Character noneCharacter = new NPC("none", 1, null);     
+     
     static {
         hookLogwriter();rng = new Random();
         flags = new HashSet<>();
