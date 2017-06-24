@@ -193,130 +193,10 @@ public class Mara extends BasePersonality {
         character.getGrowth().bonusStamina = 1;
         character.getGrowth().bonusArousal = 2;
 
-        character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 10 && !Global.checkFlag(MARA_GENERAL_TECH_FOCUS)
-                                        && !Global.checkFlag(MARA_HARPOON_FOCUS),
-                        (c, self, other) -> Global.format(
-                                        "You see {self:name} fiddling with the device on her arm"
-                                                        + " as you both recover from your match. <i>\"Damn thing is on the fritz"
-                                                        + " again... Let me just...\"</i> A shrill beep sounds, and something"
-                                                        + " whirrs to life inside. <i>\"There we go. I really should work on the"
-                                                        + " reliability. That will leave me with plenty of time to add new goodies."
-                                                        + " Mmm... What do you think, {other:name}? Should I invest resources into"
-                                                        + " one really fancy toy, or should I divide my time over several simpeler ones?",
-                                        self, other),
-                        Arrays.asList(new CombatSceneChoice("Quality", (c, self, other) -> {
-                            c.write(Global.format(
-                                            "You tell {self:direct-object} there would be no point to slavering"
-                                                            + " away on mediocre devices. Instead, {self:pronoun} should devote {self:reflective}"
-                                                            + " to one, truly inspired invention to show {self:possessive} true prowess."
-                                                            + " <i>\"Yes... You're right!\"</i> %s You yelp and stumble backward, asking {self:possessive}"
-                                                            + " what she's doing. <i>\"I'm going to create the best sex toy this world will"
-                                                            + " ever see, of course! And since you convinced me to do so, it's only fair"
-                                                            + " that I get it tailored to suit you </i>just<i> right. Trust me, {other:name},"
-                                                            + " you're going to enjoy this!\"</i>",
-                                            self, other,
-                                            other.hasDick() ? "{self:PRONOUN} whips out a tape measure from... somewhere..."
-                                                            + " and starts measuring up your {other:body-part:cock}."
-                                                            : "{self:PRONOUN} reaches down and sticks a finger into"
-                                                                            + " your still-bare, still-wet {other:body-part:pussy},"
-                                                                            + " wriggling it around a bit inside."));
-                            useHarpoon();
-                            return true;
-                        }), new CombatSceneChoice("Quantity", (c, self, other) -> {
-                            c.write(Global.format(
-                                            "You weigh in that one toy, no matter how good it is,"
-                                                            + " is bound to get boring eventually. Instead, {self:pronoun}"
-                                                            + " should create a more diverse arsenal. \"<i>Interesting... I"
-                                                            + " do have plenty of ideas to keep things fresh, that's for sure.</i>\""
-                                                            + " {self:PRONOUN} grins at you mischievously. <i>\"All of them are"
-                                                            + " delightfully naughty. You'll help me beta-test, right? Ah,"
-                                                            + " who am I kidding. Like you have any choice in the matter!</i>\"",
-                                            self, other));
-                            useGeneralTech();
-                            return true;
-                        }), new CombatSceneChoice("You have faith she can do both [Hard Mode]", (c, self, other) -> {
-                            c.write(Global.format(
-                                            "{self:name} is a genius. Surely, if anyone"
-                                                            + " could create a true masterpiece and still have time"
-                                                            + " left for side projects, it would be {self:possessive}. <i>\"Aww, flatterer!"
-                                                            + " If you hadn't already gotten in my pants just now, I'd think"
-                                                            + " you were trying really hard to get there. I'll just have "
-                                                            + "to work extra hard to live up to your expectations, then. It's"
-                                                            + " unhealthy to work on one thing all the time anyway. Just make"
-                                                            + " sure you do your part, {other:name}. I will expect a good, driven"
-                                                            + " test subject for my creations, and you just volunteered yourself.\"</i>"
-                                                            + " As she turns and walks away, mumbling ideas to herself, you say that"
-                                                            + " you did no such thing. Your words fall on deaf ears, though. Have"
-                                                            + " you perhaps shot yourself in the foot there?",
-                                            self, other));
-                            useGeneralTech();
-                            useHarpoon();
-                            character.getGrowth().extraAttributes += 1;
-                            Global.getPlayer()
-                                  .getGrowth().addTraitPoints(new int[] {12, 39}, Global.getPlayer());
-                            return true;
-                        }))));
-
-        character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 20 && !Global.checkFlag(MARA_OCTO_FOCUS)
-                                        && !Global.checkFlag(MARA_MIND_CONTROL_FOCUS),
-                        (c, self, other) -> Global.format(
-                                        "You and {self:name} are both getting back up after your match,"
-                                                        + " cleaning yourselves as much as possible before moving on. <i>\"Hey, {other:name}."
-                                                        + " Perhaps you can help settle a little dispute I've been having with a friend."
-                                                        + " Who's better: Mesmero, or Doctor Octopus?\"</i>",
-                                        self, other),
-                        Arrays.asList(new CombatSceneChoice("Mesmero", (c, self, other) -> {
-                            c.write(Global.format(
-                                            "You don't know why, but the idea of mind control has always"
-                                                            + " turned you on. You answer {self:name} confidently, and are met"
-                                                            + " with a wide grin. <i>\"Ohhh, just what I thought. You want someone"
-                                                            + " pulling your strings, don't you. Among other parts of your anatomy,"
-                                                            + " of course... Well, I'll make sure to be ready to oblige next time we"
-                                                            + " meet. Maybe I'll even let you remember the occasion! Then again, I'm"
-                                                            + " sure your surprised look will be something I want to see more than once..."
-                                                            + " Decisions, decisions.\"</i> What... exactly did you just sign up for?",
-                                            self, other));
-                            useMindControl();
-                            return true;
-                        }), new CombatSceneChoice("Doctor Octopus", (c, self, other) -> {
-                            c.write(Global.format(
-                                            "Oh, that's no contest! The good doctor could probably engineer"
-                                                            + " one of his arms to block mind control, and then still have more"
-                                                            + " left to deal with his enemies. <i>\"Interesting. Yes, I can see"
-                                                            + " your point. Extra arms to hold you in place. Extra arms to"
-                                                            + " remove your clothes. Extra arms with sex toys mounted at the end."
-                                                            + " The possibilities are limitless! You've been a good test subject"
-                                                            + " so far, {other:name}, so I'll let you test all my new arm designs"
-                                                            + " as well! See you soon!</i>\" Well, shit. As if the two hands she"
-                                                            + " has right now weren't dangerous enough...",
-                                            self, other));
-                            useOcto();
-                            return true;
-                        }), new CombatSceneChoice("What are these strange things you speak of? [Hard Mode]",
-                                        (c, self, other) -> {
-                                            c.write(Global.format(
-                                                            "<i>\"{other:name}. Seriously. You are going to need a crash course"
-                                                                            + " in comic books, my friend. This cannot stand. But since your feeble"
-                                                                            + " mind obviously cannot comprehend this most fascinating art form, I'm"
-                                                                            + " going to have to give practical demonstrations if I am to have any"
-                                                                            + " hope of properly educating you. Maybe once the Games are over, I'll"
-                                                                            + " ask Cassie to draw a comic about me. This moment will be forever recorded"
-                                                                            + " as the moment when I transformed from {self:name}, the brilliant scientist,"
-                                                                            + " into {self:name} the supervillain%s! Bask in my presence and weep!</i>\""
-                                                                            + " Uhhh. Ok. That was weird. {self:name} walks away, arms raised over"
-                                                                            + " {self:possessive} head and laughing maniacally. This is going to"
-                                                                            + " be interesting, that's for sure.",
-                                                            self, other, character.useFemalePronouns() ? "ess" : ""));
-                                            useMindControl();
-                                            useOcto();
-                                            character.getGrowth().extraAttributes += 1;
-                                            Global.getPlayer()
-                                                  .getGrowth().addTraitPoints(new int[] {21, 48}, Global.getPlayer());
-                                            return true;
-                                        }))));
-
+        this.addFirstFocusScene();     
+       
+        this.addSecondFocusScene();     
+     
         preferredAttributes.add(c -> c.getRank() >= 4 && c.get(Attribute.Temporal) < 20
                         ? Optional.of(Attribute.Temporal) : Optional.empty());
         preferredAttributes.add(c -> c.get(Attribute.Science) < 15 ? Optional.of(Attribute.Science) : Optional.empty());
@@ -802,4 +682,142 @@ public class Mara extends BasePersonality {
                 return value >= 100;
         }
     }
+    
+    /**Helper method to Add this character's first Combat focus scene 
+     * MARA: General or Harpoon
+     * 
+     * */
+    private void addFirstFocusScene(){
+        character.addCombatScene(new CombatScene(
+                        (c, self, other) -> self.getLevel() >= 10 && !Global.checkFlag(MARA_GENERAL_TECH_FOCUS)
+                                        && !Global.checkFlag(MARA_HARPOON_FOCUS),
+                        (c, self, other) -> Global.format(
+                                        "You see {self:name} fiddling with the device on her arm"
+                                                        + " as you both recover from your match. <i>\"Damn thing is on the fritz"
+                                                        + " again... Let me just...\"</i> A shrill beep sounds, and something"
+                                                        + " whirrs to life inside. <i>\"There we go. I really should work on the"
+                                                        + " reliability. That will leave me with plenty of time to add new goodies."
+                                                        + " Mmm... What do you think, {other:name}? Should I invest resources into"
+                                                        + " one really fancy toy, or should I divide my time over several simpeler ones?",
+                                        self, other),
+                        Arrays.asList(new CombatSceneChoice("Quality", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "You tell {self:direct-object} there would be no point to slavering"
+                                                            + " away on mediocre devices. Instead, {self:pronoun} should devote {self:reflective}"
+                                                            + " to one, truly inspired invention to show {self:possessive} true prowess."
+                                                            + " <i>\"Yes... You're right!\"</i> %s You yelp and stumble backward, asking {self:possessive}"
+                                                            + " what she's doing. <i>\"I'm going to create the best sex toy this world will"
+                                                            + " ever see, of course! And since you convinced me to do so, it's only fair"
+                                                            + " that I get it tailored to suit you </i>just<i> right. Trust me, {other:name},"
+                                                            + " you're going to enjoy this!\"</i>",
+                                            self, other,
+                                            other.hasDick() ? "{self:PRONOUN} whips out a tape measure from... somewhere..."
+                                                            + " and starts measuring up your {other:body-part:cock}."
+                                                            : "{self:PRONOUN} reaches down and sticks a finger into"
+                                                                            + " your still-bare, still-wet {other:body-part:pussy},"
+                                                                            + " wriggling it around a bit inside."));
+                            useHarpoon();
+                            return true;
+                        }), new CombatSceneChoice("Quantity", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "You weigh in that one toy, no matter how good it is,"
+                                                            + " is bound to get boring eventually. Instead, {self:pronoun}"
+                                                            + " should create a more diverse arsenal. \"<i>Interesting... I"
+                                                            + " do have plenty of ideas to keep things fresh, that's for sure.</i>\""
+                                                            + " {self:PRONOUN} grins at you mischievously. <i>\"All of them are"
+                                                            + " delightfully naughty. You'll help me beta-test, right? Ah,"
+                                                            + " who am I kidding. Like you have any choice in the matter!</i>\"",
+                                            self, other));
+                            useGeneralTech();
+                            return true;
+                        }), new CombatSceneChoice("You have faith she can do both [Hard Mode]", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "{self:name} is a genius. Surely, if anyone"
+                                                            + " could create a true masterpiece and still have time"
+                                                            + " left for side projects, it would be {self:possessive}. <i>\"Aww, flatterer!"
+                                                            + " If you hadn't already gotten in my pants just now, I'd think"
+                                                            + " you were trying really hard to get there. I'll just have "
+                                                            + "to work extra hard to live up to your expectations, then. It's"
+                                                            + " unhealthy to work on one thing all the time anyway. Just make"
+                                                            + " sure you do your part, {other:name}. I will expect a good, driven"
+                                                            + " test subject for my creations, and you just volunteered yourself.\"</i>"
+                                                            + " As she turns and walks away, mumbling ideas to herself, you say that"
+                                                            + " you did no such thing. Your words fall on deaf ears, though. Have"
+                                                            + " you perhaps shot yourself in the foot there?",
+                                            self, other));
+                            useGeneralTech();
+                            useHarpoon();
+                            character.getGrowth().extraAttributes += 1;
+                            Global.getPlayer()
+                                  .getGrowth().addTraitPoints(new int[] {12, 39}, Global.getPlayer());
+                            return true;
+                        }))));
+
+    }
+    
+    /**Helper method to Add this character's second Combat focus scene 
+     * MARA: Octo or Mind Control. 
+     * 
+     * */
+    private void addSecondFocusScene(){
+        character.addCombatScene(new CombatScene(
+                        (c, self, other) -> self.getLevel() >= 20 && !Global.checkFlag(MARA_OCTO_FOCUS)
+                                        && !Global.checkFlag(MARA_MIND_CONTROL_FOCUS),
+                        (c, self, other) -> Global.format(
+                                        "You and {self:name} are both getting back up after your match,"
+                                                        + " cleaning yourselves as much as possible before moving on. <i>\"Hey, {other:name}."
+                                                        + " Perhaps you can help settle a little dispute I've been having with a friend."
+                                                        + " Who's better: Mesmero, or Doctor Octopus?\"</i>",
+                                        self, other),
+                        Arrays.asList(new CombatSceneChoice("Mesmero", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "You don't know why, but the idea of mind control has always"
+                                                            + " turned you on. You answer {self:name} confidently, and are met"
+                                                            + " with a wide grin. <i>\"Ohhh, just what I thought. You want someone"
+                                                            + " pulling your strings, don't you. Among other parts of your anatomy,"
+                                                            + " of course... Well, I'll make sure to be ready to oblige next time we"
+                                                            + " meet. Maybe I'll even let you remember the occasion! Then again, I'm"
+                                                            + " sure your surprised look will be something I want to see more than once..."
+                                                            + " Decisions, decisions.\"</i> What... exactly did you just sign up for?",
+                                            self, other));
+                            useMindControl();
+                            return true;
+                        }), new CombatSceneChoice("Doctor Octopus", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "Oh, that's no contest! The good doctor could probably engineer"
+                                                            + " one of his arms to block mind control, and then still have more"
+                                                            + " left to deal with his enemies. <i>\"Interesting. Yes, I can see"
+                                                            + " your point. Extra arms to hold you in place. Extra arms to"
+                                                            + " remove your clothes. Extra arms with sex toys mounted at the end."
+                                                            + " The possibilities are limitless! You've been a good test subject"
+                                                            + " so far, {other:name}, so I'll let you test all my new arm designs"
+                                                            + " as well! See you soon!</i>\" Well, shit. As if the two hands she"
+                                                            + " has right now weren't dangerous enough...",
+                                            self, other));
+                            useOcto();
+                            return true;
+                        }), new CombatSceneChoice("What are these strange things you speak of? [Hard Mode]",
+                                        (c, self, other) -> {
+                                            c.write(Global.format(
+                                                            "<i>\"{other:name}. Seriously. You are going to need a crash course"
+                                                                            + " in comic books, my friend. This cannot stand. But since your feeble"
+                                                                            + " mind obviously cannot comprehend this most fascinating art form, I'm"
+                                                                            + " going to have to give practical demonstrations if I am to have any"
+                                                                            + " hope of properly educating you. Maybe once the Games are over, I'll"
+                                                                            + " ask Cassie to draw a comic about me. This moment will be forever recorded"
+                                                                            + " as the moment when I transformed from {self:name}, the brilliant scientist,"
+                                                                            + " into {self:name} the supervillain%s! Bask in my presence and weep!</i>\""
+                                                                            + " Uhhh. Ok. That was weird. {self:name} walks away, arms raised over"
+                                                                            + " {self:possessive} head and laughing maniacally. This is going to"
+                                                                            + " be interesting, that's for sure.",
+                                                            self, other, character.useFemalePronouns() ? "ess" : ""));
+                                            useMindControl();
+                                            useOcto();
+                                            character.getGrowth().extraAttributes += 1;
+                                            Global.getPlayer()
+                                                  .getGrowth().addTraitPoints(new int[] {21, 48}, Global.getPlayer());
+                                            return true;
+                                        }))));
+    }
+    
 }

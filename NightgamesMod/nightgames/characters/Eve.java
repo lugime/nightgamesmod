@@ -415,4 +415,20 @@ public class Eve extends BasePersonality {
                 return value >= 100;
         }
     }
+    
+    /**Helper method to Add this character's first Combat focus scene 
+     * EVE: 
+     * 
+     * */
+    private void addFirstFocusScene(){
+        
+    }
+    /**Helper method to Add this character's second Combat focus scene 
+     * EVE: 
+     * 
+     * */
+    private void addSecondFocusScene(){
+        
+    }
+    
 }

@@ -387,5 +387,22 @@ public class Maya extends BasePersonality {
                         + "'s face to bring her out of the trance and the girl looks down at your defeated form in confusion. <i>\"Thank you for your cooperation. Now we can "
                         + "continue our fight without interruption.\"</i>";
     }
+    
+    
+    /**Helper method to Add this character's first Combat focus scene 
+     * MAYA: 
+     * 
+     * */
+    private void addFirstFocusScene(){
+        
+    }
+    
+    /**Helper method to Add this character's second Combat focus scene 
+     * MAYA:  
+     * 
+     * */
+    private void addSecondFocusScene(){
+        
+    }
 
 }

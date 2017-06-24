@@ -477,7 +477,7 @@ public class NPC extends Character {
     
     /**This method determines what happens when a character moves.
      * 
-     * FIXME: Currently, characters may repeat encounters. THis method, as well as Area.encounter() and NPC.Move and player.Move() might be mixing or looping.
+     * FIXME: Currently, characters may repeat encaounters. THis method, as well as Area.encounter() and NPC.Move and player.Move() might be mixing or looping.
      * */
     @Override
     public void move() {
