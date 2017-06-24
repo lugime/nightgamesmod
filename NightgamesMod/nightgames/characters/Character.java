@@ -2415,7 +2415,7 @@ public abstract class Character extends Observable implements Cloneable {
             } else {
                 c.write(opponent, String.format("<b>%s %s pulses, but fails to"
                                                 + " draw in %s experience.</b>", Global.capitalizeFirstLetter(opponent.nameOrPossessivePronoun()),
-                                opponent.body.getRandomPussy().describe(opponent),
+                                opponent.body.getRandomPussy().describe(opponent),      //FIXME: NPE During Post-Orgasm phase.
                                 nameOrPossessivePronoun()));
             }
         }
