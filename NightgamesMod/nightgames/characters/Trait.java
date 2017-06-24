@@ -17,6 +17,9 @@ import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
 
+
+//TODO: Consider movine towards characters.CharTrait, which provides better handling and customization for traits. - DSM
+
 public enum Trait {
     sadist("Sadist", "Skilled at providing pleasure alongside pain",
                     (b, c, t) -> b.append(Global.capitalizeFirstLetter(

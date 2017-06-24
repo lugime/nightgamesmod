@@ -1775,6 +1775,7 @@ public abstract class Character extends Observable implements Cloneable {
         }
     }
 
+    /**Returns the chance of escape for this character based upon a total of bonuses from traits and stances.*/
     public int getEscape(Combat c, Character from) {
         int total = 0;
         for (Status s : getStatuses()) {
@@ -3332,6 +3333,8 @@ public abstract class Character extends Observable implements Cloneable {
         return getStatusOfClass(InsertedStatus.class);
     }
 
+    
+    /**Returns an Integer representing the value of prize for --defeating?-- this character. The prize depends on the rank of the characcter.*/
     public Integer prize() {
         if (getRank() >= 2) {
             return 500;
@@ -3387,6 +3390,26 @@ public abstract class Character extends Observable implements Cloneable {
             }
         }
         return false;
+    }
+    
+    /**Returns true if the character can afford the given value.
+     * @param val
+     * The value that is tested against the character's current money.
+     * */
+    public boolean canAfford(int val){
+        if (this.money >= val) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**Spends the amount of money given. Works best with canAfford().
+     * @param val
+     * The value of money to spend.
+     * */
+    public void spendMoney(int val){
+        this.money -= val;
     }
 
     /**Processes teh end of the battle for this character. */
@@ -4560,6 +4583,7 @@ public abstract class Character extends Observable implements Cloneable {
         }
     }
 
+    /**Removes the given status from this character. Used by Addiction removal.*/
     public void removeStatusImmediately(Status status) {
         this.status.remove(status);
     }

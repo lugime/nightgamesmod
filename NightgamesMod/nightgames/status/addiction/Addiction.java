@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.google.gson.JsonObject;
 
 import nightgames.characters.Character;
+import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Global;
@@ -24,12 +25,19 @@ public abstract class Addiction extends Status {
     protected final transient Character cause;          
     protected float magnitude;
     protected float combatMagnitude;
-
+    
+    
+    //TODO: Suggestion: Since all of the current addictions in the game are governed or enabled by a trait - Addictions should have a governing Trait and Addictions should manage their own effects. - DSM 
+    protected Trait governingTrait;
+    
+    
     // should be saved
     private boolean didDaytime;
     private boolean overloading;
-
     protected boolean inWithdrawal;
+    
+    public Trait getGoverningTrait() { return governingTrait;  }  
+    public void setGoverningTrait(Trait governingTrait) { this.governingTrait = governingTrait;  }
 
     protected Addiction(Character affected, String name, Character cause, float magnitude) {
         super(name, affected);
@@ -121,6 +129,11 @@ public abstract class Addiction extends Status {
     protected abstract Optional<Status> withdrawalEffects();
 
     protected abstract Optional<Status> addictionEffects();
+    
+    //TODO:Added these for future revamp of Addiction system, where addictions manage their own effects.
+    //protected abstract void applyEffects(Character self);
+    //protected abstract void removeEffects(Character self);
+    //protected abstract void cleanseAddiction(Character self);
 
     protected abstract String describeIncrease();
 
@@ -245,6 +258,7 @@ public abstract class Addiction extends Status {
         return amt;
     }
     
+    //TODO: This is currently not called by anything, and despite being a subclass of Status, it shouldn't be needed. This should be deprecated. - DSM.
     public final boolean isAddiction() {
         return true;
     }

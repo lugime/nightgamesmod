@@ -61,6 +61,7 @@ public class AddictionRemoval extends Activity {
             player.money -= 15000;
             Global.gui().message("You dole out the mountain of cash and are taken to the back for your treatment."
                             + " When you emerge, you are completely free of your addiction.");
+            //FIXME: While this removes the status from a character, it does not remove the trait that also activates effects. This is effectively false advertising until this option removes the trait that governs the addiction. - DSM 
             Global.getPlayer().removeStatusImmediately(Global.getPlayer().getStrongestAddiction().get());
         } else if (choice.equals("Leave")) {
             done(true);
