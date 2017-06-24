@@ -31,17 +31,17 @@ public class AngelTime extends BaseNPCTime {
                         "[Placeholder]<br/>Angel says she may be able to try a few things with her new divine powers.";
         loveIntro = "You meet Angel at her room, but for once, she doesn't seem eager to get to sex. You can tell she has something on her mind, so you let her lean "
                         + "against you on the futon while she thinks. It's quiet. You aren't used to your time with Angel being quiet, mostly because you so rarely meet her alone. You "
-                        + "lose track of time sitting there before she breaks the silence. <i>\"" + player.getTrueName()
-                        + ", what do you think about my friends?\"</i> That's not the question you expected. "
-                        + "You've gotten along with her friends quite well so far. Angel shifts her position so you can't see her face. <i>\"I've had several lovers who couldn't get along with "
-                        + "my friends. Some of them pretended they did for awhile, some of them wanted me to spend less time with them.\"</i> Her friends are very socially and sexually aggressive. "
+                        + "lose track of time sitting there before she breaks the silence. <br/><i>\"" + player.getTrueName()
+                        + ", what do you think about my friends?\"</i><br/>That's not the question you expected. "
+                        + "You've gotten along with her friends quite well so far. Angel shifts her position so you can't see her face.<br/><i>\"I've had several lovers who couldn't get along with "
+                        + "my friends. Some of them pretended they did for awhile, some of them wanted me to spend less time with them.\"</i><br/>Her friends are very socially and sexually aggressive. "
                         + "You can see how that might make some " + Global.getPlayer().guyOrGirl() + "s uncomfortable. The fact that Angel and Mei occasionally have sex could probably also be a point of contention. It's probably "
-                        + "fortunate that the night games got you used to casual and group sex before you met them. <i>\"A lot of people are superficially interested in me, but "
+                        + "fortunate that the night games got you used to casual and group sex before you met them.<br/><i>\"A lot of people are superficially interested in me, but "
                         + "most lose interest when they find out what I'm really like. Sarah, Mei and Caroline know me better than anyone, but they don't think any less of me. Mei and Sarah "
                         + "need me as much as I need them. Caroline is good at making friends, but she chooses to stick with us anyway. If I have to choose between them or a " + Global.getPlayer().boyOrGirl() + "friend, "
-                        + "I choose them without a second thought.\"</i> Angel looks you in the eye. You've never seen her this worried and vulnerable. <i>\"Do you really like them?\"</i> You can "
-                        + "reply with confidence that you've grown quite fond of Sarah, Mei and Caroline, personalities, quirks and all. <i>\"Good, because I don't kno-... No one's going to make "
-                        + "me choose between you and them, got it? That's just not going to happen.\"</i> Angel stands up, back to her normal self. <i>\"So should we meet up with them or spend a "
+                        + "I choose them without a second thought.\"</i><br/>Angel looks you in the eye. You've never seen her this worried and vulnerable.<br/><i>\"Do you really like them?\"</i><br>You can "
+                        + "reply with confidence that you've grown quite fond of Sarah, Mei and Caroline, personalities, quirks and all.<br/><i>\"Good, because I don't kno-... No one's going to make "
+                        + "me choose between you and them, got it? That's just not going to happen.\"</i><br/>Angel stands up, back to her normal self.<br/><i>\"So should we meet up with them or spend a "
                         + "little more time with just the two of us?\"</i>";
         transformationFlag = "";
     }
@@ -141,8 +141,8 @@ public class AngelTime extends BaseNPCTime {
         if (npc.getAffection(player) > 0) {
             Global.gui()
                   .message("You text Angel, suggesting to meet up. She responds with a location where to meet her. When you arrive however, you find her friends waiting "
-                                  + "for you instead. One of the girls, Caroline, waves you over to where they're sitting. <i>\"Angel stepped away for a minute. Sit down and talk with us until "
-                                  + "she gets back.\"</i> You spend some time chatting with the girls about their hobbies (Caroline plays a lot of video games and Sarah is fond of romance novels) "
+                                  + "for you instead. One of the girls, Caroline, waves you over to where they're sitting.<br/><i>\"Angel stepped away for a minute. Sit down and talk with us until "
+                                  + "she gets back.\"</i><br/><br/>You spend some time chatting with the girls about their hobbies (Caroline plays a lot of video games and Sarah is fond of romance novels) "
                                   + "and about how you met Angel (you make up something plausible). Mei is sitting right next to you and makes a habit of resting her hand on your leg while "
                                   + "you're talking. Her whole body language suggests she'd be interested in getting to know you better. After a few minutes however, she has to excuse herself "
                                   + "to make a quick phone call. On her way out, she slips a small piece of paper into your hand with a flirtatious smile. It turns out to contain her phone number.<br/><br/><i>\"Be "
@@ -238,10 +238,10 @@ public class AngelTime extends BaseNPCTime {
                       .message("You feel very nervous approaching Angel like this. A growing part of you feels a need to "
                                       + "pay respect to this... Angel? Goddess? The other part finds the idea ridiculous. "
                                       + "But perhaps it can't hurt to try? You sheepishly ask Angel if there is anything "
-                                      + "you can do for her. <i>\"Do for me? Well, there's always some chores to be done, "
-                                      + "but... Why do you ask? You know you don't have to bribe me into sex.\"</i> She's not"
+                                      + "you can do for her.<br/><br/><i>\"Do for me? Well, there's always some chores to be done, "
+                                      + "but... Why do you ask? You know you don't have to bribe me into sex.\"</i><br/>She's not"
                                       + " going to make this easy on you, is she? You try to explain your predicament "
-                                      + "as best you can, trying not to appear too needy about the whole thing. "
+                                      + "as best you can, trying not to appear too needy about the whole thing.<br/>"
                                       + "<i>\"Oh... Oh! I mean... Well... Sure, I guess. Whatever is a girl to do when a cute "
                                       + "" + Global.getPlayer().guyOrGirl() + " comes along, asking to worship her?\"</i> You give a start at the word 'worship',"
                                       + " but then, it does ring kind of true... <i>\"Oh, yes I am sure I can think of some nice"
@@ -265,7 +265,7 @@ public class AngelTime extends BaseNPCTime {
                                       + "unable to even think of defying her. You lap away at her, doing the best job you can. "
                                       + "The air trapped underneath the skirt grows hot and moist, and you struggle to breathe "
                                       + "enough as you lick. Your efforts do seem to be effective, though, as Angel's knees "
-                                      + "tremble against your shoulders. <i>\"Keep going! Eat your Goddess!\"</i> The rod in your"
+                                      + "tremble against your shoulders.<br/><i>\"Keep going! Eat your Goddess!\"</i><br/>The rod in your"
                                       + " pants had grown rock-solid, and it's getting really uncomfortable. Still, you keep"
                                       + " up your licking, launching Angel into a series of orgasms. She pulls your head against"
                                       + " her tightly, nearly smothering you. You need to gasp for breath by the time she "
@@ -276,7 +276,7 @@ public class AngelTime extends BaseNPCTime {
                                       + "help but feel a twitch at her praise. <i>\"But we're not here for you, are we? Aw, I "
                                       + "almost feel bad for you, leaving you like this. Okay, I do feel bad, but it's so much"
                                       + " fun to be a little bad sometimes. I'll help you out next time. Was there anything "
-                                      + "else you wanted?\"</i> No. The itch that drove you here is gone, and you feel more at "
+                                      + "else you wanted?\"</i><br/><br/>No. The itch that drove you here is gone, and you feel more at "
                                       + "ease than before despite the raging boner in your pants. You manage to feel a little"
                                       + " annoyance this time at being left blue-balled. Not enough to do something about it,"
                                       + " though, so you leave Angel and hurry home to fix it yourself. ");
