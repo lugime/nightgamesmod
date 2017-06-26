@@ -51,6 +51,9 @@ public class Corruption extends Addiction {
             amt *= 1.5;
         }
         Map<Attribute, Integer> buffs = new HashMap<>();
+        
+        //TODO: Expand Corruption dialogue to be more descriptive. This requires two possible lines - one for the player, and one for observing it on everyone else. - DSM
+        
         if (noMoreAttrs() || (atLeast(Severity.MED) && Global.random(100) < 5)) {
             if (!atLeast(Severity.MED)) {
                 Global.writeIfCombat(c, affected, Global.format(

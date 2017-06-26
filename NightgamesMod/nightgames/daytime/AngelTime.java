@@ -32,17 +32,17 @@ public class AngelTime extends BaseNPCTime {
                         "[Placeholder]<br/>Angel says she may be able to try a few things with her new divine powers.";
         loveIntro = "You meet Angel at her room, but for once, she doesn't seem eager to get to sex. You can tell she has something on her mind, so you let her lean "
                         + "against you on the futon while she thinks. It's quiet. You aren't used to your time with Angel being quiet, mostly because you so rarely meet her alone. You "
-                        + "lose track of time sitting there before she breaks the silence. <br/><i>\"" + player.getTrueName()
+                        + "lose track of time sitting there before she breaks the silence.<br/><br/><i>\"" + player.getTrueName()
                         + ", what do you think about my friends?\"</i><br/>That's not the question you expected. "
-                        + "You've gotten along with her friends quite well so far. Angel shifts her position so you can't see her face.<br/><i>\"I've had several lovers who couldn't get along with "
-                        + "my friends. Some of them pretended they did for awhile, some of them wanted me to spend less time with them.\"</i><br/>Her friends are very socially and sexually aggressive. "
+                        + "You've gotten along with her friends quite well so far. Angel shifts her position so you can't see her face.<br/><br/><i>\"I've had several lovers who couldn't get along with "
+                        + "my friends. Some of them pretended they did for awhile, some of them wanted me to spend less time with them.\"</i><br/><br/>Her friends are very socially and sexually aggressive. "
                         + "You can see how that might make some " + Global.getPlayer().guyOrGirl() + "s uncomfortable. The fact that Angel and Mei occasionally have sex could probably also be a point of contention. It's probably "
-                        + "fortunate that the night games got you used to casual and group sex before you met them.<br/><i>\"A lot of people are superficially interested in me, but "
+                        + "fortunate that the night games got you used to casual and group sex before you met them.<br/><br/><i>\"A lot of people are superficially interested in me, but "
                         + "most lose interest when they find out what I'm really like. Sarah, Mei and Caroline know me better than anyone, but they don't think any less of me. Mei and Sarah "
                         + "need me as much as I need them. Caroline is good at making friends, but she chooses to stick with us anyway. If I have to choose between them or a " + Global.getPlayer().boyOrGirl() + "friend, "
-                        + "I choose them without a second thought.\"</i><br/>Angel looks you in the eye. You've never seen her this worried and vulnerable.<br/><i>\"Do you really like them?\"</i><br>You can "
+                        + "I choose them without a second thought.\"</i><br/><br/>Angel looks you in the eye. You've never seen her this worried and vulnerable.<br/><br/><i>\"Do you really like them?\"</i><br>You can "
                         + "reply with confidence that you've grown quite fond of Sarah, Mei and Caroline, personalities, quirks and all.<br/><i>\"Good, because I don't kno-... No one's going to make "
-                        + "me choose between you and them, got it? That's just not going to happen.\"</i><br/>Angel stands up, back to her normal self.<br/><i>\"So should we meet up with them or spend a "
+                        + "me choose between you and them, got it? That's just not going to happen.\"</i><br/>Angel stands up, back to her normal self.<br/><br/><i>\"So should we meet up with them or spend a "
                         + "little more time with just the two of us?\"</i>";
         transformationFlag = "";
     }

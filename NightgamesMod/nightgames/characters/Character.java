@@ -97,7 +97,7 @@ import nightgames.utilities.ProseUtils;
 
 @SuppressWarnings("unused")
 public abstract class Character extends Observable implements Cloneable {
-    private static final String APOSTLES_COUNT = "APOSTLES_COUNT";              //FIXME: Divinity and associated Trait mechanics should all be turned into classes from abstract Trait. - DSM
+    private static final String APOSTLES_COUNT = "APOSTLES_COUNT";              //TODO: Divinity and associated Trait mechanics should all be turned into classes from abstract Trait. - DSM
 
     private String name;
     public CharacterSex initialGender;
@@ -119,14 +119,14 @@ public abstract class Character extends Observable implements Cloneable {
     private CopyOnWriteArrayList<Trait> traits;     //If traits are implemented like all the skills are, then this can just be an ArrayList. - DSM
     protected Map<Trait, Integer> temporaryAddedTraits;
     protected Map<Trait, Integer> temporaryRemovedTraits;
-    public Set<Status> removelist;                  //Rename for clarity.  - DSM 
-    public Set<Status> addlist;                     //Rename for clarity.   -DSM
-    public Map<String, Integer> cooldowns;          //SKills can carry their own cooldowns with them. Merge into Skill. -DSM
+    public Set<Status> removelist;                  //Rename for clarity? - DSM 
+    public Set<Status> addlist;                     //Rename for clarity?   -DSM
+    public Map<String, Integer> cooldowns;          //May not require this if we add new Skills to characters and they may track their own requirements and cooldowns. - DSM
     private CopyOnWriteArrayList<String> mercy;     //Can be changed into a flag that is stored in flags. -DSM
     protected Map<Item, Integer> inventory;         
     private Map<String, Integer> flags;             //Needs to be more strongly leveraged in mechanics.  -DSM
     protected Item trophy;                          
-    public State state;                             //State of what? - DSM
+    public State state;                             //State of character - tracked between in combat and out of combat. - DSM
     protected int busy;                             //Merge into some object tracking the character on the logical game map. - DSM
     protected Map<String, Integer> attractions;     
     protected Map<String, Integer> affections;
@@ -144,7 +144,12 @@ public abstract class Character extends Observable implements Cloneable {
     private BodyPart lastOrgasmPart;                //Merge into tracker object for combat session. - DSM 
     
     //TODO: Merge orgasms, cloned, pleasured, location, and lastorgasmpart in this CombatStats object.
-    //protected CombatStats combatstats;
+    protected CombatStats combatStats;          //TODO: Finish class and implement - Constructors, clones, and being able to serialize members. - DSM
+    
+    
+    //TODO: Merge various pieces of data into a MatchStats object. busy, state, location, challenges, mercy, victories, etc.
+    //protected MatchStats matchStats;
+    
     
     /**Constructor for a character - creates a character off of a name and level. Base Attributes start at 5 and other stats are derived from that. 
      * @param name
@@ -1857,6 +1862,8 @@ public abstract class Character extends Observable implements Cloneable {
 
     public abstract void draw(Combat c, Result flag);
 
+    /**abstract method for determining if this character is human - meaning the player. 
+     * TODO: Reccomend renaming to isHuman(), to make more meaningful name and easier to find.*/
     public abstract boolean human();
 
     public abstract String bbLiner(Combat c, Character target);
