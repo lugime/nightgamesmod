@@ -61,9 +61,9 @@ public class AddictionRemoval extends Activity {
             player.money -= 15000;
             Global.gui().message("You dole out the mountain of cash and are taken to the back for your treatment."
                             + " When you emerge, you are completely free of your addiction.");
-            //FIXME: While this removes the status from a character, it does not remove the trait that also activates effects. This is effectively false advertising until this option removes the trait that governs the addiction. - DSM 
+            //FIXME: Currently doesn't work 100%. Many addiction features still stick after this is used. - DSM
             Global.getPlayer().removeStatusImmediately(Global.getPlayer().getStrongestAddiction().get());
-            //If the strongest Addiction Trait is 
+            //FIXME: If the strongest Addiction is 0 and from Airi - does it still return from the above line?
         } else if (choice.equals("Leave")) {
             done(true);
             return;
