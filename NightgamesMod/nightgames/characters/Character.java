@@ -151,6 +151,10 @@ public abstract class Character extends Observable implements Cloneable {
     //protected MatchStats matchStats;
     
     
+    
+    
+    
+    
     /**Constructor for a character - creates a character off of a name and level. Base Attributes start at 5 and other stats are derived from that. 
      * @param name
      * The name of the character. 
@@ -202,10 +206,14 @@ public abstract class Character extends Observable implements Cloneable {
         location = new Area("", "", null);
         state = State.ready;
         busy = 0;
+        this.combatStats = new CombatStats();       //TODO: Reading, writing, cloning?
+        
         setRank(0);
 
         Global.learnSkills(this);
     }
+
+    public CombatStats getCombatStats() {  return combatStats;  }  public void setCombatStats(CombatStats combatStats) {  this.combatStats = combatStats; }
 
     /**Overridden clone() method for Character. Returns a character with values the same as this one.
      * 

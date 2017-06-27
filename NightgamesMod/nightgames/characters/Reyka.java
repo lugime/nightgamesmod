@@ -119,7 +119,7 @@ public class Reyka extends BasePersonality {
         
         this.addFirstFocusScene();      
 
-        this.addFirstFocusScene();     
+        this.addSecondFocusScene();     
         
      
     }
