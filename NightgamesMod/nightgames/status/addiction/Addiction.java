@@ -27,8 +27,8 @@ public abstract class Addiction extends Status {
     protected float combatMagnitude;
     
     
-    //TODO: Suggestion: Since all of the current addictions in the game are governed or enabled by a trait - Addictions should have a governing Trait and Addictions should manage their own effects. - DSM 
-    protected Trait governingTrait;
+    //TODO: Suggestion: Since all of the current addictions in the game are given by a character having a trait - Addictions should have a governing Trait and Addictions should manage their own effects. - DSM 
+    protected Trait governingTrait; 
     
     
     // should be saved
@@ -59,9 +59,9 @@ public abstract class Addiction extends Status {
     }
 
     @Override
-    public void tick(Combat c) {                    //FIXME:outside of combat, c becomes null. Perhaps separate this method into an in and out of combat version? 
+    public void tick(Combat c) {                    //FIXME: Outside of combat, c becomes null. Perhaps separate this method into an in and out of combat version? 
         if (c == null) {                            //A patient comes into the doctor's office and says it hurts when I do this; the doctor says "Well, don't do that..." - DSM
-            System.out.println("ERROR: Tried to process " + this.name + " from " + this.cause + ", but Combat c is null in Addiction.tick()");        
+            System.out.println("ERROR: Tried to process " + affected.getName() + "'s " + this.name + " from " + this.cause + " (Actually: " + this.cause.getTrueName() +  "), but Combat c is null in Addiction.tick()");        
         } else  {
              if (c.getOpponent(affected).equals(cause)) {           
                  combatMagnitude += magnitude / 14.0;

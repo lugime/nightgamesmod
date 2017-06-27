@@ -251,8 +251,14 @@ public class Mara extends BasePersonality {
         Global.flag(MARA_MIND_CONTROL_FOCUS);
         character.getGrowth().addTrait(20, Trait.mindcontroller);
         character.getGrowth().addTrait(29, Trait.infrasound);
-        character.getGrowth()
-                 .addClothing(29, Clothing.getByID("infrasoundnecklace"));
+        
+        //IF she DOESN'T already have one, add one? or just keep adding them every time she uses it?
+        if (character.has(Clothing.getByID("infrasoundnecklace")) == false) {
+            
+        } else {
+            
+        }
+        character.getGrowth().addClothing(29, Clothing.getByID("infrasoundnecklace"));      //FIXME: Mara keeps getting infrasound necklaces?
         character.getGrowth().addTrait(40, Trait.ControlledRelease);
         if (Global.checkFlag(MARA_GENERAL_TECH_FOCUS)) {
             character.getGrowth().addTrait(53, Trait.RemoteControl);
