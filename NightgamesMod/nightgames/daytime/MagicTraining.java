@@ -345,7 +345,7 @@ public class MagicTraining extends Activity {
                             + "wet. You gently rub your fingers up and down her lips, making gentle circles around her clit every so often. Aisha mewls above you, clearly enjoy the ministrations you're "
                             + "giving her but wanting more.<br/><br/>She sits upright, forcing you to take your fingers away as she lines her pussy up with your cock. She grins at you and slowly eases herself "
                             + "down your shaft making both of you groan at the sensation. A happy gasp escapes her mouth as she sheaths you inside her fully. <i>\"God, that feels good.\"</i> She murmurs to herself "
-                            + "sounding almost awed. Slowly she begins to move, grinding her hips in small circles initially before beginning to rock back and forth. No longer content to simply lie "
+                            + "sounding almost in awe of your cock. Slowly she begins to move, grinding her hips in small circles initially before beginning to rock back and forth. No longer content to simply lie "
                             + "there, you start to thrust upwards towards her. She grins down at you, her smile haloed by her slightly messed up chestnut hair. Her eyes almost seem to be glowing "
                             + "as she looks down at you. You both continue, slowly increasing the pace and Aisha's moans slowly grow in volume. Alongside your rapidly approaching orgasm, you feel something "
                             + "else shifting inside in a similar fashion to when you cast a spell. Looking up to Aisha you notice that it wasn't a trick of the light, her eyes really are glowing! "

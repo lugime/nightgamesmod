@@ -108,7 +108,7 @@ public class Corruption extends Addiction {
             } else if (!affected.hasDick()) {
                 if (affected.human() == true) { 
                     Global.writeIfCombat(c, affected, Global.format(
-                                "<b>The dark taint changes {self:name-do} even further, and an incubus's cock forms between {self:possessive} legs!</b>", affected, cause));
+                                "<b>The dark taint changes {self:name-do} even further, and an incubus's cock swells forth from between {self:possessive} legs!</b>", affected, cause));
                 } else {
                     Global.writeIfCombat(c, affected, Global.format(
                                     "<b>The dark taint changes {self:name-do} even further, and an incubus's cock forms between {self:possessive} legs!</b>", affected, cause));

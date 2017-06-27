@@ -1134,10 +1134,10 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
         }
 
         Character other = getStance().getPartner(this, self);
-        Addiction add = other.getAddiction(AddictionType.DOMINANCE).orElse(null);
+        Addiction add = other.getAddiction(AddictionType.DOMINANCE).orElse(null);       //FIXME: Causes trigger even though addiction has 0 magnitude.
         if (add != null && add.atLeast(Severity.MED) && !add.wasCausedBy(self)) {
             write(self, Global.format("{self:name} does {self:possessive} best to be dominant, but with the "
-                        + "way Jewel has been working {self:direct-object} over {self:pronoun-action:are} completely desensitized." , self, other));
+                        + "way "+ add.getCause().getName() + " has been working {self:direct-object} over {self:pronoun-action:are} completely desensitized." , self, other));
             return;
         }
 

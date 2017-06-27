@@ -28,8 +28,9 @@ public class AngelTime extends BaseNPCTime {
         transformationOptionString = "Sacraments";
         advTrait = Trait.demigoddess;
         //TODO: Finish placeholders for Angel divinity transformations.
-        transformationIntro =
-                        "[Placeholder]<br/>Angel says she may be able to try a few things with her new divine powers.";
+        transformationIntro = "[Placeholder]<br/>Angel says she may be able to try a few things with her new divine powers.";
+        
+        
         loveIntro = "You meet Angel at her room, but for once, she doesn't seem eager to get to sex. You can tell she has something on her mind, so you let her lean "
                         + "against you on the futon while she thinks. It's quiet. You aren't used to your time with Angel being quiet, mostly because you so rarely meet her alone. You "
                         + "lose track of time sitting there before she breaks the silence.<br/><br/><i>\"" + player.getTrueName()

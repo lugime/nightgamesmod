@@ -63,6 +63,7 @@ public class AddictionRemoval extends Activity {
                             + " When you emerge, you are completely free of your addiction.");
             //FIXME: While this removes the status from a character, it does not remove the trait that also activates effects. This is effectively false advertising until this option removes the trait that governs the addiction. - DSM 
             Global.getPlayer().removeStatusImmediately(Global.getPlayer().getStrongestAddiction().get());
+            //If the strongest Addiction Trait is 
         } else if (choice.equals("Leave")) {
             done(true);
             return;
