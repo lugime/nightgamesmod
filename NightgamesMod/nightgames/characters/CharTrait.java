@@ -3,7 +3,11 @@ package nightgames.characters;
 import java.util.ArrayList;
 import nightgames.status.Resistance;
 
-/**By DSM - new implementation of Trait that makes it in line with other complex and widely-deployed and often-checked game mechanics. It carries its own equipment with it.*/
+/**By DSM - new implementation of Trait that makes it in line with other complex and widely-deployed and often-checked game mechanics. It carries its own equipment with it.
+ * 
+ * TODO: Move Trait to CharTrait, Convert all traits into Classes extended from CharTrait 
+ * 
+ * */
 public abstract class CharTrait {
     
     protected String name;
@@ -28,13 +32,23 @@ public abstract class CharTrait {
 
     
     //Traits should carry their own shit with them.
+    
+    /**Returns true if the character meets the requiresments to take this Trait.*/
     abstract public boolean checkRequirements(Character user);
+    
+    /**Describes this trait - useful for the stringbuilder.*/
     abstract public void describe(Character c, StringBuilder b);
     
     
     //Many abstract classes should distinguish like this. They are checked, they spit out text, they do what the text says.
+    
+    /**Check if this trait activates its effect. Useful for some traits that trigger effect in combat.*/
     abstract public boolean checkIfActivates(Character user, Character opponent);
+    
+    /**displays any text relevant to the activation of this Trait.*/
     abstract public void sayActivation(Character user, Character opponent);
+    
+    /**Executes this trait's effects upon activation.*/
     abstract public void doActivation(Character user, Character opponent);
 
 
