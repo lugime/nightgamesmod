@@ -481,4 +481,22 @@ public class MindControl extends Addiction {
         }
 
     }
+
+    @Override
+    protected void applyEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void removeEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void cleanseAddiction(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
 }

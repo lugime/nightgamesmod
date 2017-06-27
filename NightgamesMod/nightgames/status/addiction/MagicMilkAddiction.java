@@ -291,4 +291,22 @@ public class MagicMilkAddiction extends Addiction {
                         + " got that going for you.";
     }
 
+    @Override
+    protected void applyEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void removeEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void cleanseAddiction(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

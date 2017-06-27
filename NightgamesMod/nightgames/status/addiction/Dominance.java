@@ -224,4 +224,22 @@ public class Dominance extends Addiction {
                         (float) obj.get("magnitude")
                                    .getAsInt());
     }
+
+    @Override
+    protected void applyEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void removeEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void cleanseAddiction(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
 }

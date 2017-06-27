@@ -280,4 +280,22 @@ public class ZealAddiction extends Addiction {
                         + " seem to do so, but is that worth it?";
     }
 
+    @Override
+    protected void applyEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void removeEffects(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void cleanseAddiction(Character self) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

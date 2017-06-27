@@ -36,8 +36,7 @@ public abstract class Addiction extends Status {
     private boolean overloading;
     protected boolean inWithdrawal;
     
-    public Trait getGoverningTrait() { return governingTrait;  }  
-    public void setGoverningTrait(Trait governingTrait) { this.governingTrait = governingTrait;  }
+    public Trait getGoverningTrait() { return governingTrait;  }  public void setGoverningTrait(Trait governingTrait) { this.governingTrait = governingTrait;  }
 
     protected Addiction(Character affected, String name, Character cause, float magnitude) {
         super(name, affected);
@@ -131,9 +130,9 @@ public abstract class Addiction extends Status {
     protected abstract Optional<Status> addictionEffects();
     
     //TODO:Added these for future revamp of Addiction system, where addictions manage their own effects.
-    //protected abstract void applyEffects(Character self);
-    //protected abstract void removeEffects(Character self);
-    //protected abstract void cleanseAddiction(Character self);
+    protected abstract void applyEffects(Character self);
+    protected abstract void removeEffects(Character self);
+    protected abstract void cleanseAddiction(Character self);
 
     protected abstract String describeIncrease();
 
