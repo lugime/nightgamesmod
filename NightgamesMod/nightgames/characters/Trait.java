@@ -280,6 +280,7 @@ public enum Trait {
     madscientist("Mad Scientist", "May have gone overboard with her projects"),
     witch("Witch", "Learned to wield traditional arcane magic"),
     succubus("Succubus", "Embraced the dark powers that feed on mortal lust"),
+    incubus("Incubus", "Embraced the dark powers that feed on mortal lust"),
     demigoddess("Demigoddess", "Blessed by a deity of sexual pleasure, and on the road to ascension herself."),
     fighter("Fighter", "A combination of martial arts and ki"),
     slime("Slime", "An accident in the biology labs made her body a bit more... malleable."),

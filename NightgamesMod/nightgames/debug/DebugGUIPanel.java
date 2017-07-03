@@ -40,7 +40,7 @@ public class DebugGUIPanel extends JPanel {
                             + "(Charactername).addItem\n(Charactername).addAtt\n(Charactername).addAffection\n(Charactername).addAttraction\n(Charactername).ding\n(Charactername).list\n");
         }));
         
-        //TODO: What is the correct usage of this?
+        //TODO: What is the correct usage of this with a modifier?
         consoleCommands.add(new DebugCommand("all\\.(.*)", (output, list) -> {
             Global.getParticipants().stream().forEach(participant -> {
                 consoleCommands.stream().filter(cc -> cc.checkAndExecute(output, participant.getType() + "." + list.get(1))).findFirst();

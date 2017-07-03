@@ -260,7 +260,6 @@ public abstract class Addiction extends Status {
         return amt;
     }
     
-    //TODO: This is currently not called by anything, and despite being a subclass of Status, it shouldn't be needed. This should be deprecated. - DSM.
     public final boolean isAddiction() {
         return true;
     }
