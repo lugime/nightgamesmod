@@ -94,16 +94,16 @@ public class MayaTime extends BaseNPCTime {
                                   + player.getTrueName() + ".\"</i> She doesn't bother looking at you, but continues typing "
                                   + "while going through some kind of book. <i>\"What brings you here?\"</i>\nYou ask her if she'd like to take a break and hang out for a while.\n<i>\"No thanks. I have important work to do here, and I'm not leaving until it's done.\"</i> "
                                   + "She picks up what looks like a piping hot cup of creamed coffee and sips it.\n<i>\"I'm sorry, but if you want me to play with you tonight, the answer is no. Go play with the others - that's why they are there. I am in here, working and helping to run the games.\"</i>"
-                                  + "<br/><br/>She doesn't say much more and you leave the room, wondering if it was something you said or if you overstepped your bounds. You worry that she's pushing herself too hard.");
+                                  + "<br/><br/>She doesn't say much more and you leave the room, wondering if it was something you said or if you overstepped your bounds.");
             npc.gainAttraction(player, 1);
             player.gainAttraction(npc, 1);
         } else {
             Global.gui().message("You find Maya in one of the post-doctoral research offices, engrossed with work. "
-                            + "<i>\"Hello, " + player.getTrueName() + ". I'm working on games-related stuff, so if you sit down and stay quiet you can stay.\"</i>, says Maya while motioning to a nearby chair.\n\n"
-                            + " You grab a chair and sit down, occasionally chatting with Maya about various administrative tasks she handles while recruiting. Observing her work, you notice that Maya is very smart and seems very committed "
+                            + "<i>\"Hello, " + player.getTrueName() + ". I'm working on something games-related, so if you sit down and stay quiet you can stay.\"</i>, says Maya while motioning to a nearby chair.\n\n"
+                            + " You grab a chair and sit down, occasionally chatting with Maya about various administrative tasks that she handles while recruiting. Observing her work, you notice that Maya is very smart and seems very committed "
                             + "to doing a good job.<br/><br/>Eventually curiosity gets the better of you and you have to ask why she seems so dedicated to the games. <i>\"The games mean a lot to me. I owe everything to the games.\"</i> Well, considering there's all sorts of strange supernatural stuff going on, that makes sense, but you press her for more details: "
                             + "<i>\"I used to compete, just like you. I almost died once, but I was thankfully saved.\"</i> "
-                            + "She glances over at you, her sharp eyes softening a bit before re-hardening as her face returns to her work. <i>\"So...no matter how good you are, you're not perfect. Our abilities are real - take the games seriously or someone will get hurt.\"</i>"
+                            + "She glances over at you, her sharp eyes softening a bit before re-hardening before her face returns to her work. <i>\"So...no matter how good you are, you're not perfect. Our abilities are real - take the games seriously or someone will get hurt.\"</i>"
                             + "\n\nYou get the feeling there's more to this story, but you're pretty sure pressing further is a mistake. You assure Maya that you won't do anything dangerous. <i>\"Good. I care a lot about the games, so don't make me have to discipline you myself for screwing up.\"</i>"
                             + "\n\nIt seems Maya's harder to get to open up than the other girls, but she's definitely very interesting.");
             npc.gainAffection(player, 1);
