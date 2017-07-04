@@ -51,8 +51,16 @@ public abstract class BaseNPCTime extends Activity {
     }
 
     public abstract void subVisit(String choice);
-
     public abstract void subVisitIntro(String choice);
+    
+    public abstract void doPlayGamesWith();
+    public abstract void doHaveSex();
+    public abstract void doSparring();
+    public abstract void doAddictionScene();
+    public abstract void doGivePresent();
+    
+    public abstract void doSpecialFunction1();
+    public abstract void doSpecialFunction2();
 
     public Optional<String> getAddictionOption() {
         return Optional.empty();

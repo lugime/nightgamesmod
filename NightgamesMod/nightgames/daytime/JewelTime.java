@@ -404,4 +404,46 @@ public class JewelTime extends BaseNPCTime {
         return Global.getPlayer()
                      .checkAddiction(AddictionType.DOMINANCE) ? Optional.of("Ask about Dominance") : Optional.empty();
     }
+
+    @Override
+    public void doPlayGamesWith() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void doHaveSex() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void doSparring() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void doAddictionScene() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void doGivePresent() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void doSpecialFunction1() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void doSpecialFunction2() {
+        // TODO Auto-generated method stub
+        
+    }
 }
