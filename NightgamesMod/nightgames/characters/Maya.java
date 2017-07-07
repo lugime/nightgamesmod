@@ -134,7 +134,10 @@ public class Maya extends BasePersonality {
             return "Maya gives you a look of gentle disapproval. <i>\"You aren't putting up much of a fight, are you? Aren't you a little overeager to cum?\"</i>";
         });
         character.addLine(CharacterLine.NIGHT_LINER, (c, self, other) -> {
-            return "";
+            //TODO: Maya might someday be able to play regularly, so this line will need multiple versions once that happens. For now, she plays monthly and is out of the player's league as an alumni. - DSM
+            return "Maya approaches you after the night is over and puts her hand on your shoulder to get your attention. She sighs in a satisfied manner and gives you a subtle smile and a farewell. "
+                            + "\"<i>Well, I'll see you next month. You're doing okay. Keep it up.</i>\" Maya fixes her glasses and puts out her hand for a handshake. You awkwardly shake her hand and she departs. "
+                            + "You're left wondering what the hell that was about.";
         });
 
         character.addLine(CharacterLine.TEMPT_LINER, (c, self, other) -> {
