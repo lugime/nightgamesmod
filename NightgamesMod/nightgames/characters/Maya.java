@@ -19,6 +19,16 @@ public class Maya extends BasePersonality {
 
     private static final long serialVersionUID = 447375506153223682L;
 
+    /* FIXME: Maya's image maya_dom is not named correctly. It should be maya_dominant
+     * 
+     * */
+    
+    public static final String MAYA_FIRSTTYPE1_FOCUS = "MayaFirst1Focus";
+    public static final String MAYA_FIRSTTYPE2_FOCUS = "MayaFirst2Focus";
+    public static final String MAYA_SECONDTYPE1_FOCUS = "MayaSecond1Focus";
+    public static final String MAYA_SECONDTYPE2_FOCUS = "MayaSecond2Focus";
+    
+    
     public Maya(int playerLevel) {
         this(playerLevel, Optional.empty(), Optional.empty());
     }
