@@ -1,11 +1,14 @@
 package nightgames.characters;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import nightgames.characters.body.BreastsPart;
 import nightgames.characters.body.CockMod;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
+import nightgames.combat.CombatScene;
+import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
 import nightgames.global.Flag;
 import nightgames.global.Global;
@@ -82,6 +85,10 @@ public class Maya extends BasePersonality {
         character.getGrowth().willpower = 2.0f;
         character.getGrowth().bonusStamina = 2;
         character.getGrowth().bonusArousal = 5;
+        
+        //this.addFirstFocusScene();     
+       //this.addSecondFocusScene();   
+        
         character.getGrowth().addTrait(0, Trait.darkpromises);
         character.getGrowth().addTrait(0, Trait.tongueTraining1);
         character.getGrowth().addTrait(0, Trait.tongueTraining2);
@@ -407,15 +414,88 @@ public class Maya extends BasePersonality {
      * 
      * */
     private void addFirstFocusScene(){
-        
+        character.addCombatScene(new CombatScene(
+                        (c, self, other) -> self.getLevel() >= 40 && !Global.checkFlag(MAYA_FIRSTTYPE1_FOCUS) && !Global.checkFlag(MAYA_FIRSTTYPE2_FOCUS),
+                        (c, self, other) -> Global.format(
+                                        "[Placeholder] You see {self:name} in some sort of setup scenario. She asks you a question relevant to her advancement."
+                                        + "\n\n \"<i>You know what? I was thinking - Now that I'm playing again, I could focus on THIS or THAT. What do you think?</i>\"",
+                                        self, other),
+                        Arrays.asList(new CombatSceneChoice("TYPE1", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "[Placeholder] You tell {self:direct-object} that you'd prefer the first thing. She responds in a manner befitting such a choice.",
+                                            self, other,
+                                            other.hasDick() ? "[Placeholder] {self:PRONOUN} does something tease-y to your {other:body-part:cock} in response to choosing the first choice."
+                                                            : "[Placeholder] {self:PRONOUN} does something tease-y to your {other:body-part:pussy}"
+                                                                            + " in response to choosing the first choice."));
+                            useFirstType1();
+                            return true;
+                        }), new CombatSceneChoice("TYPE2", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "[Placeholder] You tell {self:direct-object} that you'd prefer the second thing. She responds in a manner befitting such a choice.", self, other));
+                            useFirstType2();
+                            return true;
+                        }), new CombatSceneChoice("Why not do both? [Hard Mode]", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "[Placeholder] You tell {self:name} not to hold back on account of her experience. Her response suggest she's about to get much tougher.", self, other));
+                            useFirstType2();
+                            useFirstType1();
+                            character.getGrowth().extraAttributes += 1;
+                            Global.getPlayer()
+                                  .getGrowth().addTraitPoints(new int[] {12, 39}, Global.getPlayer());
+                            return true;
+                        }))));
+
     }
+    
+  
     
     /**Helper method to Add this character's second Combat focus scene 
      * MAYA:  
      * 
      * */
     private void addSecondFocusScene(){
+        character.addCombatScene(new CombatScene(
+                        (c, self, other) -> self.getLevel() >= 50 && !Global.checkFlag(MAYA_FIRSTTYPE1_FOCUS) && !Global.checkFlag(MAYA_FIRSTTYPE2_FOCUS),
+                        (c, self, other) -> Global.format(
+                                        "[Placeholder] You see {self:name} consider how strong the competition is now. She wonders if she should really cut loose and go full power, but how?",
+                                        self, other),
+                        Arrays.asList(new CombatSceneChoice("TYPE1", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "[Placeholder] You tell {self:name} that she should make full use of her WHATEVER. She agrees, and shows off a little.",
+                                            self, other));
+                            useSecondType1();
+                            return true;
+                        }), new CombatSceneChoice("TYPE2", (c, self, other) -> {
+                            c.write(Global.format(
+                                            "[Placeholder] You tell {self:name} that she should make full use of her YEAHTHAT. She agrees, and shows off a little.",
+                                            self, other));
+                            useSecondType2();
+                            return true;
+                        }), new CombatSceneChoice("Tell her she's washed up. [Hard Mode]",
+                                        (c, self, other) -> {
+                                            c.write(Global.format(
+                                                            "You joke at {self:name}, tell her she's washed up. Her face and eyes and narrow into a dangerous look that can kill a thousand soliders. You're defintiely crossed some kind of line. "
+                                                            + "<i>\"Washed up, you say? {other:name}, You're about to find out what happens when a alumni gets serious. Thankfully, The Benefactor will protect you. You're going to need it.",
+                                                            self, other, character.useFemalePronouns() ? "ess" : ""));
+                                            useSecondType1();
+                                            useSecondType2();
+                                            character.getGrowth().extraAttributes += 1;
+                                            Global.getPlayer().getGrowth().addTraitPoints(new int[] {21, 48}, Global.getPlayer());
+                                            return true;
+                                        }))));
+    }
+    
+    private void useFirstType1(){
         
     }
-
+    private void useFirstType2(){
+        
+    }
+    
+    private void useSecondType1(){
+        
+    }
+    private void useSecondType2(){
+        
+    }
 }
