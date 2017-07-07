@@ -474,8 +474,8 @@ public class Maya extends BasePersonality {
                         }), new CombatSceneChoice("Tell her she's washed up. [Hard Mode]",
                                         (c, self, other) -> {
                                             c.write(Global.format(
-                                                            "You joke at {self:name}, tell her she's washed up. Her face and eyes and narrow into a dangerous look that can kill a thousand soliders. You're defintiely crossed some kind of line. "
-                                                            + "<i>\"Washed up, you say? {other:name}, You're about to find out what happens when a alumni gets serious. Thankfully, The Benefactor will protect you. You're going to need it.",
+                                                            "You joke at {self:name}, telling her that she's washed up. Her face and eyes and narrow into a dangerous look that can kill a thousand soldiers. You've defintiely crossed some kind of line. "
+                                                            + "<i>\"Washed up, you say? {other:name}, You're about to find out what happens when an alumni gets serious. Thankfully, The Benefactor will protect you. You're going to need it.",
                                                             self, other, character.useFemalePronouns() ? "ess" : ""));
                                             useSecondType1();
                                             useSecondType2();
