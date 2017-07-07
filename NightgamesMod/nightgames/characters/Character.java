@@ -2432,10 +2432,21 @@ public abstract class Character extends Observable implements Cloneable {
                 opponent.gainXPPure(gained);
                 opponent.levelUpIfPossible(c);
             } else {
-                c.write(opponent, String.format("<b>%s %s pulses, but fails to"
+                
+                if (opponent.has(Trait.succubus) || opponent.body.getRandomPussy() != null) {
+                     c.write(opponent, String.format("<b>%s %s pulses, but fails to"
                                                 + " draw in %s experience.</b>", Global.capitalizeFirstLetter(opponent.nameOrPossessivePronoun()),
-                                opponent.body.getRandomPussy().describe(opponent),      //FIXME: NPE During Post-Orgasm phase. (With Demonic/Succubus mod?)
+                                opponent.body.getRandomPussy().describe(opponent),      //FIXME: If the player has a penis and Succubus trait this creates a NPE since it's looking for a pussy that isn't there.
                                 nameOrPossessivePronoun()));
+                } else if (opponent.has(Trait.incubus) || opponent.body.getRandomPussy() == null) {
+                    
+                    c.write(opponent, String.format("<b>%s %s pulses, but fails to"
+                                    + " draw in %s experience.</b>", Global.capitalizeFirstLetter(opponent.nameOrPossessivePronoun()),
+                    opponent.body.getLargestCock().describe(opponent),     
+                    nameOrPossessivePronoun()));
+                }
+                
+               
             }
         }
     }
