@@ -191,10 +191,11 @@ public class Match {
         }
     }
     
-    public boolean canFight(Character initiator, Character opponent) {
+    public boolean canFight(Character initiator, Character opponent) {      //FIXME: This method has same name as Area.canFight() and they are used in the same method. Change both - DSM
         return !mercy.get(initiator).contains(opponent);
     }
     
+    /**FIXME: Is this supposed to be always true?*/
     public boolean canEngage(Character initiator, Character opponent) {
         return true;
     }

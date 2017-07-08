@@ -402,6 +402,9 @@ public class Angel extends BasePersonality {
             // your ass the next time you see a cock. Being fucked in the ass by anyone also slowly increases you progress, and it slowly decreases over time.
             // If you are trained to max sluttiness in any attribute (more are planned) then you get the trained slut trait, which causes any of your trainings being activated to convert some of your
             // stats into submissive.
+           
+            //TODO: Move this into its own method to save space? - DSM
+            
             dominance += 1;
             String cockdesc = (character.hasDick() ? character.body.getRandomCock()
                                                                    .describe(character)
