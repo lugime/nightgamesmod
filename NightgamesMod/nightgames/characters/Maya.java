@@ -85,10 +85,10 @@ public class Maya extends BasePersonality {
         character.getGrowth().willpower = 2.0f;
         character.getGrowth().bonusStamina = 2;
         character.getGrowth().bonusArousal = 5;
-        
-        //this.addFirstFocusScene();     
-       //this.addSecondFocusScene();   
-        
+
+        this.addFirstFocusScene();     
+        this.addSecondFocusScene();   
+
         character.getGrowth().addTrait(0, Trait.darkpromises);
         character.getGrowth().addTrait(0, Trait.tongueTraining1);
         character.getGrowth().addTrait(0, Trait.tongueTraining2);
@@ -169,6 +169,35 @@ public class Maya extends BasePersonality {
                             + "light catches them in a way that makes you think there might "
                             + "be something dangerous inside.";
         });
+        
+        
+        character.addLine(CharacterLine.LEVEL_DRAIN_LINER, (c, self, other) -> {
+            String part = Global.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
+            if (other.getLevel() < self.getLevel() - 5) {
+                if (c.getStance().vaginallyPenetratedBy(c, other, self)) {
+                    return "Maya works you with a wide smile on her face while you cum uncontrollably into her pussy; your experience and training leaving you yet again while she softly chuckles at you. "
+                                    + "\"<i>Oh, {other:name}...You're such a small fry at this point that it's just too easy, but taking your strength and experience really scratches my itch!</i>\"";
+                } else if (c.getStance().anallyPenetratedBy(c, other, self)) {
+                    return "Maya works you with a wide smile on her face while you cum uncontrollably into her nightmarish backdoor; you feel it drawing you experience and training right out of you while she softly chuckles at you. "
+                                    + "\"<i>Oh, {other:name}...You're such a small fry at this point that it's just too easy, but taking your strength and experience really scratches my itch!</i>\"";
+                } else {
+                    return "Maya presses her demonic cock deep into you while you cum uncontrollably around it. You feel it drawing more of your experience and training out of your very soul while she softly chuckles at you. "
+                                    + "\"<i>Oh, {other:name}...You're such a small fry at this point that it's just too easy, but taking your strength and experience really scratches my itch!</i>\"";
+                }
+            } else if (other.getLevel() >= self.getLevel()) {
+                if (c.getStance().inserted(other)) {
+                    return "Maya tenses up and yelps on top of you as your power and experience snap off and flow into her. She turns her face to your cumming visage and cracks a cruel and smug-looking smile before giving you three more good squeezes. "
+                                    + "\"<i>You like giving it up to us, don't you? I knew you'd be a good addition. You can keep thanking me Just. Like. This!</i>\"";
+                } else {
+                    return "Maya tenses up and yelps on top of you as your power and experience snap off and flow into her. She turns her face to your cumming visage and cracks a cruel and smug-looking smile before giving you three more good squeezes. "
+                                    + "\"<i>You like giving it up to us, don't you? I knew you'd be a good addition. You can keep thanking me Just. Like. This!</i>\"";
+                }
+            } else {
+                return "Maya stiffens up in rapture as bits and pieces of your soul break off from you and are absorbed by her demonic " + part + " "
+                                + "\"<i>Ohhh-yeah, {other:name}, that's good. Shakes the rust right off. Want to do that again, stud?</i>\"";
+            }
+        });
+        
     }
 
     @Override
@@ -420,7 +449,7 @@ public class Maya extends BasePersonality {
                                         "[Placeholder] You see {self:name} in some sort of setup scenario. She asks you a question relevant to her advancement."
                                         + "\n\n \"<i>You know what? I was thinking - Now that I'm playing again, I could focus on THIS or THAT. What do you think?</i>\"",
                                         self, other),
-                        Arrays.asList(new CombatSceneChoice("TYPE1", (c, self, other) -> {
+                        Arrays.asList(new CombatSceneChoice("Hypnotic Powers", (c, self, other) -> {
                             c.write(Global.format(
                                             "[Placeholder] You tell {self:direct-object} that you'd prefer the first thing. She responds in a manner befitting such a choice.",
                                             self, other,
@@ -465,17 +494,17 @@ public class Maya extends BasePersonality {
                                             self, other));
                             useSecondType1();
                             return true;
-                        }), new CombatSceneChoice("TYPE2", (c, self, other) -> {
+                        }), new CombatSceneChoice("Embrace the Curse", (c, self, other) -> {
                             c.write(Global.format(
-                                            "[Placeholder] You tell {self:name} that she should make full use of her YEAHTHAT. She agrees, and shows off a little.",
+                                            "[Placeholder] You tell {self:name} that she should make full use of her Cursed nature. She agrees, and shows off a little.",
                                             self, other));
                             useSecondType2();
                             return true;
                         }), new CombatSceneChoice("Tell her she's washed up. [Hard Mode]",
                                         (c, self, other) -> {
                                             c.write(Global.format(
-                                                            "You joke at {self:name}, telling her that she's washed up. Her face and eyes and narrow into a dangerous look that can kill a thousand soldiers. You've defintiely crossed some kind of line. "
-                                                            + "<i>\"Washed up, you say? {other:name}, You're about to find out what happens when an alumni gets serious. Thankfully, The Benefactor will protect you. You're going to need it.",
+                                                            "You joke at {self:name}, telling her that she's washed up. You have a laugh, but her face and eyes and narrow into a dangerous look that could kill a thousand soldiers. You've definitely crossed some kind of line. "
+                                                            + "<i>\"Washed up, you say? I've had enough of your mouth {other:name}; you're about to find out what happens when an alumni gets <b>serious</b>. Thankfully, The Benefactor will protect you. <b>You're going to need it.</b>",
                                                             self, other, character.useFemalePronouns() ? "ess" : ""));
                                             useSecondType1();
                                             useSecondType2();
