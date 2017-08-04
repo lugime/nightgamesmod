@@ -98,6 +98,8 @@ import nightgames.status.addiction.AddictionType;
 public class Combat extends Observable implements Cloneable {
     private static final int NPC_TURN_LIMIT = 75;
     private static final double NPC_DRAW_ERROR_MARGIN = .15;
+    
+    /**Combat phases.*/
     private enum CombatPhase {
         START,
         PRETURN,
@@ -1288,7 +1290,7 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
         }
         wroteMessage = true;
     }
-
+    
     public String getMessage() {
         return message;
     }
