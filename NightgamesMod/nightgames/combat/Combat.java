@@ -1508,6 +1508,10 @@ public class Combat extends Observable implements Cloneable {
 
     public void offerImage(String path, String artist) {
         imagePath = path;
+        // TODO: Band-aid for NPE in tests. Refactor so this check is unnecessary.
+        if (imagePath == null) {
+            return;
+        }
         if (!imagePath.isEmpty() && !cloned && isBeingObserved()) {
             Global.gui()
                   .displayImage(imagePath, images.get(imagePath));
