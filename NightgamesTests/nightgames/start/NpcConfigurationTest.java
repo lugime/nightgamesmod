@@ -2,6 +2,7 @@ package nightgames.start;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.CharacterSex;
+import nightgames.global.TestGlobal;
 import nightgames.json.JsonUtils;
 import nightgames.items.clothing.Clothing;
 import org.hamcrest.collection.IsMapContaining;
@@ -36,7 +37,7 @@ public class NpcConfigurationTest {
         startConfig = StartConfiguration.parse(JsonUtils.rootJson(file).getAsJsonObject());
         angelConfig = startConfig.findNpcConfig("TestAngel")
                         .orElseThrow(() -> new NoSuchElementException("TestAngel not found in test config."));
-        new Global(true);
+        new TestGlobal();
         Global.newGame("Dummy", Optional.empty(), Collections.emptyList(), CharacterSex.asexual, Collections.emptyMap());
     }
 
