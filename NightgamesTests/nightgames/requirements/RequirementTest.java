@@ -279,15 +279,25 @@ public class RequirementTest {
         assertThat(dtf.meets(combat, other, self), is(false));
     }
 
-    @Test public void winningTest() throws Exception {
+    @Test public void winningEvenFootingTest() throws Exception {
         assertThat(winning().meets(combat, self, other), is(false));
         assertThat(winning().meets(combat, other, self), is(false));
-        self.getWillpower().setTemporaryMax(500);
-        self.getWillpower().set(500);
+    }
+
+    @Test public void winningSelfAheadTest() throws Exception {
+        self.getWillpower().setMax(100);
+        self.getWillpower().set(100);
+        other.getWillpower().setMax(200);
+        other.getWillpower().set(100);
         assertThat(winning().meets(combat, self, other), is(true));
         assertThat(winning().meets(combat, other, self), is(false));
-        other.getWillpower().setTemporaryMax(1000);
-        other.getWillpower().set(1000);
+    }
+
+    @Test public void winningOtherAheadTest() throws Exception {
+        self.getWillpower().setMax(100);
+        self.getWillpower().set(50);
+        other.getWillpower().setMax(50);
+        other.getWillpower().set(50);
         assertThat(winning().meets(combat, self, other), is(false));
         assertThat(winning().meets(combat, other, self), is(true));
     }
