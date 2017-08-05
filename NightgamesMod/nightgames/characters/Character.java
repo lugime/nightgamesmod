@@ -1716,7 +1716,7 @@ public abstract class Character extends Observable implements Cloneable {
             levelPlan = new HashMap<>();
         }
         status = new ArrayList<>();
-        for (JsonElement element : Optional.of(object.getAsJsonArray("status")).orElse(new JsonArray())) {
+        for (JsonElement element : Optional.ofNullable(object.getAsJsonArray("status")).orElse(new JsonArray())) {
             try {
                 Addiction addiction = Addiction.load(this, element.getAsJsonObject());
                 if (addiction != null) {
