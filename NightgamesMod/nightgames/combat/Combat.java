@@ -35,6 +35,8 @@ import nightgames.characters.body.mods.DemonicMod;
 import nightgames.global.DebugFlags;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.gui.GUI;
+import nightgames.gui.RunnableButton;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -1328,7 +1330,7 @@ public class Combat extends Observable implements Cloneable {
                 return false;
             } else {
                 if (!paused) {
-                    Global.gui().next(this);
+                    this.next(Global.gui());
                 }
                 return true;
             }
@@ -1367,7 +1369,7 @@ public class Combat extends Observable implements Cloneable {
         if (!(p1.human() || p2.human() || intruder.human())) {
             end();
         } else {
-            Global.gui().watchCombat(this);
+            watchCombat(Global.gui());
             resumeNoClearFlag();
         }
     }
@@ -1382,7 +1384,7 @@ public class Combat extends Observable implements Cloneable {
             p1.state = State.ready;
             p2.state = State.ready;
             if (beingObserved) {
-                Global.gui().endCombat();
+                endCombat(Global.gui());
             }
             return;
         }
@@ -1399,7 +1401,7 @@ public class Combat extends Observable implements Cloneable {
                     return;
                 }
             } else {
-                Global.gui().next(this);
+                this.next(Global.gui());
             }
         }
         processedEnding = true;
@@ -1421,7 +1423,7 @@ public class Combat extends Observable implements Cloneable {
             Global.getMatch().getMatchData().getDataFor(p2).setArmManager(getCombatantData(p2).getManager());
         }
         if (!ding && beingObserved) {
-            Global.gui().endCombat();
+            endCombat(Global.gui());
         }
     }
 
@@ -1769,5 +1771,68 @@ public class Combat extends Observable implements Cloneable {
 
     public void pause() {
         this.paused = true;
+    }
+
+    public void next(GUI gui) {
+        gui.clearCommand();
+        gui.addButtonWithPause(new RunnableButton("Next", () -> {
+            gui.clearCommand();
+            resume();
+        }));
+    }
+
+    public void endCombat(GUI gui) {
+        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+            System.out.println("End Combat");
+        }
+        gui.combat = null;
+        gui.clearText();
+        gui.clearImage();
+        gui.showMap();
+        Global.getMatch().resume();
+    }
+
+    public void choose(Character npc, String message, CombatSceneChoice choice, GUI gui) {
+        RunnableButton button = new RunnableButton(message, () -> {
+            write("<br/>");
+            choice.choose(this, npc);
+            updateMessage();
+            this.next(Global.gui());
+        });
+        gui.commandPanel.add(button);
+        gui.commandPanel.refresh();
+    }
+
+    // Combat spectate ???
+    public void watchCombat(GUI gui) {
+        gui.showPortrait();
+        gui.combat = this;
+        addObserver(gui);
+        setBeingObserved(true);
+        gui.loadPortrait(this, p1, p2);
+        gui.showPortrait();
+    }
+
+    // Combat GUI
+    public static Combat beginCombat(Character player, Character enemy, Initiation init, GUI gui) {
+        gui.showPortrait();
+        Combat combat = new Combat(player, enemy, player.location(), init);
+        combat.beginCombat(gui);
+        return combat;
+    }
+
+    // Combat GUI
+    public static Combat beginCombat(Character player, Character enemy, GUI gui) {
+        gui.showPortrait();
+        Combat combat = new Combat(player, enemy, player.location());
+        combat.beginCombat(gui);
+        return combat;
+    }
+
+    private void beginCombat(GUI gui) {
+        addObserver(gui);
+        setBeingObserved(true);
+        gui.loadPortrait(this, this.p1, this.p2);
+        gui.showPortrait();
     }
 }

@@ -101,7 +101,7 @@ public class GUI extends JFrame implements Observer {
     public Combat combat;
     private Map<TacticGroup, List<SkillButton>> skills;
     private TacticGroup currentTactics;
-    CommandPanel commandPanel;
+    public CommandPanel commandPanel;
     private JTextPane textPane;
     private JLabel stamina;
     private JLabel arousal;
@@ -152,8 +152,8 @@ public class GUI extends JFrame implements Observer {
     private int width;
     private int height;
     public int fontsize;
-    private JMenuItem mntmQuitMatch;
-    private boolean skippedFeat;
+    public JMenuItem mntmQuitMatch;
+    public boolean skippedFeat;
     public NgsChooser saveFileChooser;
     private Box groupBox;
 	private JFrame inventoryFrame;
@@ -678,18 +678,6 @@ public class GUI extends JFrame implements Observer {
         return saveFileChooser.askForSaveFile();
     }
 
-    // combat GUI
-
-    public Combat beginCombat(Character player, Character enemy) {
-        showPortrait();
-        combat = new Combat(player, enemy, player.location());
-        combat.addObserver(this);
-        combat.setBeingObserved(true);
-        loadPortrait(combat, player, enemy);
-        showPortrait();
-        return combat;
-    }
-
     // image loader
     public static void setUIFont (javax.swing.plaf.FontUIResource f){
         Enumeration<Object> keys = UIManager.getDefaults().keys();
@@ -726,7 +714,6 @@ public class GUI extends JFrame implements Observer {
     }
 
     // image unloader
-
     public void clearImage() {
         if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Reset image");
@@ -809,31 +796,7 @@ public class GUI extends JFrame implements Observer {
         portraitLayout.show(portraitPanel, USE_NONE);
     }
 
-    // Combat GUI
-
-    public Combat beginCombat(Character player, Character enemy, int code) {
-        showPortrait();
-        combat = new Combat(player, enemy, player.location(), code);
-        combat.addObserver(this);
-        combat.setBeingObserved(true);
-        message(combat.getMessage());
-        loadPortrait(combat, player, enemy);
-        showPortrait();
-        return combat;
-    }
-
-    // Combat spectate ???
-    public void watchCombat(Combat c) {
-        showPortrait();
-        combat = c;
-        combat.addObserver(this);
-        c.setBeingObserved(true);
-        loadPortrait(c, c.p1, c.p2);
-        showPortrait();
-    }
-
     // getLabelString - handles all the meters (bars)
-
     public String getLabelString(Meter meter) {
         if (meter.getOverflow() > 0) {
             return "(" + Integer.toString(meter.get() + meter.getOverflow()) + ")/" + meter.max();
@@ -1020,7 +983,7 @@ public class GUI extends JFrame implements Observer {
         textPane.setText("");
     }
 
-    protected void clearTextIfNeeded() {
+    public void clearTextIfNeeded() {
         textPane.getCaretPosition();
         textPane.setCaretPosition(textPane.getDocument().getLength());
         textPane.selectAll();
@@ -1097,20 +1060,18 @@ public class GUI extends JFrame implements Observer {
             skills.get(group).forEach(flatList::add);
         }
         if (currentTactics == TacticGroup.all || flatList.size() <= 6 || skills.get(currentTactics).size() == 0) {
-            flatList.forEach(this::addToCommandPanel);
+            flatList.forEach(commandPanel::add);
         } else {
             for (SkillButton button : skills.get(currentTactics)) {
-                addToCommandPanel(button);
+                commandPanel.add(button);
             }
         }
         Global.getMatch().pause();
         commandPanel.refresh();
     }
 
-    private void addToCommandPanel(KeyableButton button) {
+    public void addButtonWithPause(KeyableButton button) {
         commandPanel.add(button);
-    }
-
     public void addAction(Action action, Character user) {
         commandPanel.add(new ActionButton(action, user));
         Global.getMatch().pause();
@@ -1122,23 +1083,8 @@ public class GUI extends JFrame implements Observer {
         commandPanel.refresh();
     }
 
-    public void next(Combat combat) {
-        refresh();
-        clearCommand();
-        commandPanel.add(nextButton(combat));
-        Global.getMatch().pause();
-        commandPanel.refresh();
-    }
-
-    public void next(Activity event) {
-        event.next();
-        clearCommand();
-        commandPanel.add(eventButton(event, "Next", null));
-        commandPanel.refresh();
-    }
-
-    public void choose(Combat c, Character npc, String message, CombatSceneChoice choice) {
-        commandPanel.add(combatSceneButton(message, c, npc, choice));
+    public void addButtonWithoutPause(KeyableButton button) {
+        commandPanel.add(button);
         commandPanel.refresh();
     }
 
@@ -1279,11 +1225,6 @@ public class GUI extends JFrame implements Observer {
         }
     }
 
-    public void endCombat() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
-            System.out.println("End Combat");
-        }
-        combat = null;
         clearText();
         clearImage();
         showMap();
@@ -1505,13 +1446,6 @@ public class GUI extends JFrame implements Observer {
         }
     }
 
-    private KeyableButton nextButton(Combat combat) {
-        return new RunnableButton("Next", () -> {
-            clearCommand();
-            combat.resume();
-        });
-    }
-
     private KeyableButton eventButton(Activity event, String choice, String tooltip) {
         RunnableButton button = new RunnableButton(choice, () -> {
             event.visit(choice);
@@ -1619,16 +1553,6 @@ public class GUI extends JFrame implements Observer {
     private KeyableButton locatorButton(final Action event, final String choice, final Character self) {
         RunnableButton button = new RunnableButton(choice, () -> {
             ((Locate) event).handleEvent(self, choice);
-        });
-        return button;
-    }
-
-    private KeyableButton combatSceneButton(String label, Combat c, nightgames.characters.Character npc, CombatSceneChoice choice) {
-        RunnableButton button = new RunnableButton(label, () -> {
-            c.write("<br/>");
-            choice.choose(c, npc);
-            c.updateMessage();
-            Global.gui().next(c);
         });
         return button;
     }

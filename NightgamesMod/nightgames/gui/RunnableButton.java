@@ -4,7 +4,7 @@ import java.awt.Font;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-class RunnableButton extends KeyableButton {
+public class RunnableButton extends KeyableButton {
     private static final long serialVersionUID = 5435929681634872672L;
     private String text;
     public RunnableButton(String text, Runnable runnable) {
