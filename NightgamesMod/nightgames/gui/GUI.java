@@ -70,8 +70,6 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import nightgames.Resources.ResourceLoader;
-import nightgames.actions.Action;
-import nightgames.actions.Locate;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Meter;
@@ -79,8 +77,6 @@ import nightgames.characters.Player;
 import nightgames.characters.Trait;
 import nightgames.characters.TraitTree;
 import nightgames.combat.Combat;
-import nightgames.combat.CombatSceneChoice;
-import nightgames.combat.IEncounter;
 import nightgames.daytime.Activity;
 import nightgames.daytime.Store;
 import nightgames.debug.DebugGUIPanel;
@@ -1072,8 +1068,6 @@ public class GUI extends JFrame implements Observer {
 
     public void addButtonWithPause(KeyableButton button) {
         commandPanel.add(button);
-    public void addAction(Action action, Character user) {
-        commandPanel.add(new ActionButton(action, user));
         Global.getMatch().pause();
         commandPanel.refresh();
     }
@@ -1100,11 +1094,6 @@ public class GUI extends JFrame implements Observer {
 
     public void choose(Activity event, String choice, String tooltip) {
         commandPanel.add(eventButton(event, choice, tooltip));
-        commandPanel.refresh();
-    }
-
-    public void choose(Action event, String choice, Character self) {
-        commandPanel.add(locatorButton(event, choice, self));
         commandPanel.refresh();
     }
 

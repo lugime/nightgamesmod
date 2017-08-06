@@ -25,7 +25,10 @@ import nightgames.combat.Result;
 import nightgames.ftc.FTCMatch;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Prematch;
+import nightgames.gui.ActionButton;
 import nightgames.gui.GUI;
+import nightgames.gui.RunnableButton;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.skills.Stage;
@@ -295,6 +298,14 @@ public class Player extends Character {
         gui.promptAmbush(enc, opponent);
     }
 
+    /**
+     * Adds action button to GUI.
+     * @param action The action performed by the player on click.
+     */
+    private void addAction(Action action) {
+        gui.addButtonWithPause(new ActionButton(action, this));
+    }
+
     @Override
     public void move() {
         gui.clearCommand();
@@ -313,7 +324,7 @@ public class Player extends Character {
                 Move compelled = findPath(master.location());
                 gui.message("You feel an irresistible compulsion to head to the <b>" + master.location().name + "</b>");
                 if (compelled != null) {
-                    gui.addAction(compelled, this);
+                    addAction(compelled);
                 }
             }
         } else if (state == State.shower || state == State.lostclothes) {
@@ -353,7 +364,7 @@ public class Player extends Character {
             detect();
             if (!location.encounter(this)) {
                 if (!allowedActions().isEmpty()) {
-                    allowedActions().forEach(a -> gui.addAction(a, this));
+                    allowedActions().forEach(a -> addAction(a));
                 } else {
                     List<Action> possibleActions = new ArrayList<>();
                     for (Area path : location.adjacent) {
@@ -374,7 +385,7 @@ public class Player extends Character {
                     for (Action act : possibleActions) {
                         if (act.usable(this) 
                                         && Global.getMatch().condition.allowAction(act, this, Global.getMatch())) {
-                            gui.addAction(act, this);
+                            addAction(act);
                         }
                     }
                 }

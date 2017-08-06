@@ -51,9 +51,9 @@ public class Locate extends Action {
         if (choice.equals("Start")) {
             Global.getMatch().combatants.stream().filter(c -> self.getAffection(c) >= MINIMUM_SCRYING_REQUIREMENT)
                             .forEach((character) -> {
-                                gui.choose(this, character.getTrueName(), self);
+                                choose(character.getTrueName(), self, gui);
                             });
-            gui.choose(this, "Leave", self);
+            choose("Leave", self, gui);
         } else if (choice.equals("Leave")) {
             gui.clearText();
             gui.clearCommand();
@@ -78,7 +78,7 @@ public class Locate extends Action {
             }
             self.addNonCombat(new Horny(self, self.getArousal().max() / 10, 10, "Scrying Ritual"));
             gui.clearCommand();
-            gui.choose(this, "Leave", self);
+            choose("Leave", self, gui);
         } else {
             StringWriter writer = new StringWriter();
             new UnsupportedOperationException().printStackTrace(new PrintWriter(writer));
@@ -89,7 +89,7 @@ public class Locate extends Action {
                             + self.getTrueName() + "(" + self.human() + ")\n" + "Choice: " + choice + "\nStacktrace:\n"
                             + writer.toString());
             gui.clearCommand();
-            gui.choose(this, "Leave", self);
+            choose("Leave", self, gui);
         }
     }
 
