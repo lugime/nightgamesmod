@@ -1328,7 +1328,7 @@ public class Combat extends Observable implements Cloneable {
                 return false;
             } else {
                 if (!paused) {
-                    this.next(Global.gui());
+                    this.promptNext(Global.gui());
                 }
                 return true;
             }
@@ -1399,7 +1399,7 @@ public class Combat extends Observable implements Cloneable {
                     return;
                 }
             } else {
-                this.next(Global.gui());
+                this.promptNext(Global.gui());
             }
         }
         processedEnding = true;
@@ -1771,7 +1771,7 @@ public class Combat extends Observable implements Cloneable {
         this.paused = true;
     }
 
-    public void next(GUI gui) {
+    public void promptNext(GUI gui) {
         gui.clearCommand();
         gui.addButtonWithPause(new RunnableButton("Next", () -> {
             gui.clearCommand();
@@ -1795,7 +1795,7 @@ public class Combat extends Observable implements Cloneable {
             write("<br/>");
             choice.choose(this, npc);
             updateMessage();
-            this.next(Global.gui());
+            this.promptNext(Global.gui());
         });
         gui.commandPanel.add(button);
         gui.commandPanel.refresh();
@@ -1813,15 +1813,12 @@ public class Combat extends Observable implements Cloneable {
 
     // Combat GUI
     public static Combat beginCombat(Character player, Character enemy, Initiation init, GUI gui) {
-        gui.showPortrait();
         Combat combat = new Combat(player, enemy, player.location(), init);
         combat.beginCombat(gui);
         return combat;
     }
 
-    // Combat GUI
     public static Combat beginCombat(Character player, Character enemy, GUI gui) {
-        gui.showPortrait();
         Combat combat = new Combat(player, enemy, player.location());
         combat.beginCombat(gui);
         return combat;
