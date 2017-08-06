@@ -135,6 +135,11 @@ public class Combat extends Observable implements Cloneable {
     String imagePath = "";
 
     public Combat(Character p1, Character p2, Area loc) {
+        this(p1, p2, loc, new Neutral(p1, p2));
+    }
+
+    public Combat(Character p1, Character p2, Area loc, Position starting) {
+        stance = starting;
         this.p1 = p1;
         combatantData = new HashMap<>();
         this.p2 = p2;
@@ -143,7 +148,6 @@ public class Combat extends Observable implements Cloneable {
         getCombatantData(p1).setManager(Global.getMatch().getMatchData().getDataFor(p1).getArmManager());
         getCombatantData(p2).setManager(Global.getMatch().getMatchData().getDataFor(p2).getArmManager());
         location = loc;
-        stance = new Neutral(p1, p2);
         message = "";
         paused = false;
         processedEnding = false;
@@ -162,25 +166,21 @@ public class Combat extends Observable implements Cloneable {
         }
     }
 
-    public Combat(Character p1, Character p2, Area loc, Position starting) {
-        this(p1, p2, loc);
-        stance = starting;
+    public enum Initiation {
+        ambushStrip,
+        ambushRegular
     }
-
-    public Combat(Character p1, Character p2, Area loc, int code) {
+    public Combat(Character p1, Character p2, Area loc, Initiation init) {
         this(p1, p2, loc);
-        stance = new Neutral(p1, p2);
         message = "";
         timer = 0;
-        switch (code) {
-            case 1:
+        switch (init) {
+            case ambushStrip:
                 p2.undress(this);
                 p1.emote(Emotion.dominant, 50);
                 p2.emote(Emotion.nervous, 50);
             default:
         }
-        p1.state = State.combat;
-        p2.state = State.combat;
     }
 
     private void applyCombatStatuses(Character self, Character other) {
