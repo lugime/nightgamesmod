@@ -26,17 +26,4 @@ public class TestGUI extends GUI {
     @Override public Optional<File> askForSaveFile() {
         return Optional.empty();
     }
-
-    @Override
-    public void clearText() {}
-
-    @Override
-    public void message(String text) {}
-
-    @Override
-    public void clearCommand() {}
-
-    @Override
-    public void promptAmbush(IEncounter enc, Character target) {}
-
 }

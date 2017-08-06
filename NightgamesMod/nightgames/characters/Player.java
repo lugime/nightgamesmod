@@ -245,7 +245,7 @@ public class Player extends Character {
                         + "</b> and you both hesitate for a moment, deciding whether to attack or retreat.");
         assessOpponent(opponent);
         gui.message("<br/>");
-        gui.promptFF(enc, opponent);
+        enc.promptFF(opponent, gui);
     }
 
     private void assessOpponent(Character opponent) {
@@ -295,7 +295,7 @@ public class Player extends Character {
         assessOpponent(opponent);
         gui.message("<br/>");
 
-        gui.promptAmbush(enc, opponent);
+        enc.promptAmbush(opponent, gui);
     }
 
     /**
@@ -545,7 +545,7 @@ public class Player extends Character {
         assessOpponent(target);
         gui.message("<br/>");
 
-        gui.promptShower(encounter, target);
+        encounter.promptShower(target, gui);
     }
 
     @Override
@@ -554,7 +554,7 @@ public class Player extends Character {
                         + "</b> fighting too intensely to notice your arrival. If you intervene now, it'll essentially decide the winner.");
         gui.message("Then again, you could just wait and see which one of them comes out on top. It'd be entertaining,"
                         + " at the very least.");
-        gui.promptIntervene(enc, p1, p2);
+        enc.promptIntervene(p1, p2, gui);
     }
 
     @Override
@@ -630,7 +630,7 @@ public class Player extends Character {
         assessOpponent(target);
         gui.message("<br/>");
 
-        gui.promptOpportunity(enc, target, trap);
+        enc.promptOpportunity(target, trap, gui);
     }
 
     @Override

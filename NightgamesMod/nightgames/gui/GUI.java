@@ -1101,124 +1101,16 @@ public class GUI extends JFrame implements Observer {
         commandPanel.add(itemButton(shop, i));
         commandPanel.refresh();
     }
-
-    public void promptFF(IEncounter enc, Character target) {
+    public void prompt(List<KeyableButton> choices) {
         clearCommand();
-        commandPanel.add(encounterButton("Fight", enc, target, Encs.fight));
-        commandPanel.add(encounterButton("Flee", enc, target, Encs.flee));
-        if (item(Item.SmokeBomb, 1).meets(null, Global.human, null)) {
-            commandPanel.add(encounterButton("Smoke Bomb", enc, target, Encs.smoke));
-        }
-        Global.getMatch().pause();
-        commandPanel.refresh();
-    }
-
-    public void promptAmbush(IEncounter enc, Character target) {
-        clearCommand();
-        commandPanel.add(encounterButton("Attack " + target.getName(), enc, target, Encs.ambush));
-        commandPanel.add(encounterButton("Wait", enc, target, Encs.wait));
-        commandPanel.add(encounterButton("Flee", enc, target, Encs.fleehidden));
-        Global.getMatch().pause();
-        commandPanel.refresh();
-    }
-
-    public void promptOpportunity(IEncounter enc, Character target, Trap trap) {
-        clearCommand();
-        commandPanel.add(encounterButton("Attack " + target.getName(), enc, target, Encs.capitalize, trap));
-        commandPanel.add(encounterButton("Wait", enc, target, Encs.wait));
-        Global.getMatch().pause();
-        commandPanel.refresh();
-    }
-
-    public void promptShower(IEncounter encounter, Character target) {
-        clearCommand();
-        commandPanel.add(encounterButton("Suprise Her", encounter, target, Encs.showerattack));
-        if (!target.mostlyNude()) {
-            commandPanel.add(encounterButton("Steal Clothes", encounter, target, Encs.stealclothes));
-        }
-        if (Global.human.has(Item.Aphrodisiac)) {
-            commandPanel.add(encounterButton("Use Aphrodisiac", encounter, target, Encs.aphrodisiactrick));
-        }
-        commandPanel.add(encounterButton("Do Nothing", encounter, target, Encs.wait));
-        Global.getMatch().pause();
-        commandPanel.refresh();
-    }
-
-    public void promptIntervene(IEncounter enc, Character p1, Character p2) {
-        clearCommand();
-        commandPanel.add(interveneButton(enc, p1));
-        commandPanel.add(interveneButton(enc, p2));
-        commandPanel.add(watchButton(enc));
-        Global.getMatch().pause();
-        commandPanel.refresh();
-    }
-
-    public void prompt(String message, List<KeyableButton> choices) {
-        clearText();
-        clearCommand();
-        message(message);
         for (KeyableButton button : choices) {
             commandPanel.add(button);
         }
         commandPanel.refresh();
     }
 
-    public void ding() {
-        if (combat != null) {
-            combat.pause();
-        }
-        Player player = Global.human;
-        if (player.availableAttributePoints > 0) {
-            Global.writeIfCombatUpdateImmediately(combat, player, player.availableAttributePoints + " Attribute Points remain.\n");
-            clearCommand();
-            for (Attribute att : player.att.keySet()) {
-                if (Attribute.isTrainable(player, att) && player.getPure(att) > 0) {
-                    commandPanel.add(attributeButton(att));
-                }
-            }
-            commandPanel.add(attributeButton(Attribute.Willpower));
-            if (Global.getMatch() != null) {
-                Global.getMatch().pause();
-            }
-            commandPanel.refresh();
-        } else if (player.traitPoints > 0 && !skippedFeat) {
-            clearCommand();
-            Global.writeIfCombatUpdateImmediately(combat, player, "You've earned a new perk. Select one below.");
-            for (Trait feat : Global.getFeats(player)) {
-                if (!player.has(feat)) {
-                    commandPanel.add(featButton(feat));
-                }
-                commandPanel.refresh();
-            }
-            commandPanel.add(skipFeatButton());
-            commandPanel.refresh();
-        } else {
-            skippedFeat = false;
-            clearCommand();
-            Global.writeIfCombatUpdateImmediately(combat, player, Global.gainSkills(player));
-            player.finishDing();
-            if (player.getLevelsToGain() > 0) {
-                player.actuallyDing(combat);
-                ding();
-            } else {
-                if (combat != null) {
-                    combat.resume();
-                } else if (Global.getMatch() != null) {
-                    Global.getMatch().resume();
-                } else if (Global.day != null) {
-                    Global.getDay().plan();
-                } else {
-                    new Prematch(Global.human);
-                }
-            }
-        }
-    }
-
+    public void prompt(String message, List<KeyableButton> choices) {
         clearText();
-        clearImage();
-        showMap();
-        Global.getMatch().resume();
-    }
 
     // Night match initializer
 
@@ -1486,36 +1378,6 @@ public class GUI extends JFrame implements Observer {
             ding();
         });
         button.getButton().setToolTipText("Save the trait point for later.");
-        return button;
-    }
-
-    private KeyableButton interveneButton(IEncounter enc, Character assist) {
-        RunnableButton button = new RunnableButton("Help " + assist.getName(), () -> {
-            enc.intrude(Global.getPlayer(), assist);
-        });
-        return button;
-    }
-
-    private KeyableButton encounterButton(String label, IEncounter enc, Character target, Encs choice) {
-        RunnableButton button = new RunnableButton(label, () -> {
-            enc.parse(choice, Global.getPlayer(), target);
-            Global.getMatch().resume();
-        });
-        return button;
-    }
-
-    private KeyableButton encounterButton(String label, IEncounter enc, Character target, Encs choice, Trap trap) {
-        RunnableButton button = new RunnableButton(label, () -> {
-            enc.parse(choice, Global.getPlayer(), target, trap);
-            Global.getMatch().resume();
-        });
-        return button;
-    }
-
-    private KeyableButton watchButton(IEncounter enc) {
-        RunnableButton button = new RunnableButton("Watch them fight", () -> {
-            enc.watch();
-        });
         return button;
     }
 

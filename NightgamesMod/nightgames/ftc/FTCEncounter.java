@@ -15,6 +15,8 @@ import nightgames.status.Bound;
 import nightgames.status.Flatfooted;
 import nightgames.trap.Trap;
 
+import static nightgames.combat.Combat.Initiation.ambushRegular;
+
 public class FTCEncounter extends Encounter {
 
     private static final long serialVersionUID = 5190164935968044626L;
@@ -53,7 +55,7 @@ public class FTCEncounter extends Encounter {
         else
             victim.addNonCombat(new Bound(victim, 50, "zip-tie"));
         if (p1.human() || p2.human()) {
-            fight = Global.gui().beginCombat(attacker, victim, 0);
+            fight = Combat.beginCombat(attacker, victim, ambushRegular, Global.gui());
             fight.setStance(new Pin(attacker, victim));
             String message = "";
             if (victim.human()) {
@@ -84,7 +86,7 @@ public class FTCEncounter extends Encounter {
             Global.gui().message(Global.format(message, attacker, victim));
         } else {
             Global.gui().refresh();
-            fight = new Combat(attacker, victim, location, 0);
+            fight = new Combat(attacker, victim, location, ambushRegular);
             fight.setStance(new Pin(attacker, victim));
         }
     }
@@ -97,7 +99,7 @@ public class FTCEncounter extends Encounter {
         else
             victim.addNonCombat(new Bound(victim, 50, "zip-tie"));
         if (p1.human() || p2.human()) {
-            fight = Global.gui().beginCombat(attacker, victim, 0);
+            fight = Combat.beginCombat(attacker, victim, ambushRegular, Global.gui());
             fight.setStance(new Mount(attacker, victim));
             String message = "";
             if (victim.human()) {
@@ -120,7 +122,7 @@ public class FTCEncounter extends Encounter {
             Global.gui().message(Global.format(message, attacker, victim));
         } else {
             Global.gui().refresh();
-            fight = new Combat(attacker, victim, location, 0);
+            fight = new Combat(attacker, victim, location, ambushRegular);
             fight.setStance(new Pin(attacker, victim));
         }
     }
@@ -144,7 +146,7 @@ public class FTCEncounter extends Encounter {
                                 + " other side. The impact knocks the wind out of you, putting you"
                                 + " at a disadvantage.";
             }
-            fight = Global.gui().beginCombat(attacker, victim);
+            fight = Combat.beginCombat(attacker, victim, Global.gui());
             victim.addNonCombat(new Flatfooted(victim, 3));
         } else {
             if (attacker.human()) {
@@ -164,7 +166,7 @@ public class FTCEncounter extends Encounter {
                                 + " Then, you throw {self:direct-object} to the side, causing"
                                 + " {self:direct-object} to fall to the ground.";
             }
-            fight = Global.gui().beginCombat(attacker, victim);
+            fight = Combat.beginCombat(attacker, victim, Global.gui());
             attacker.addNonCombat(new Flatfooted(attacker, 3));
         }
         if (attacker.human() || victim.human()) {

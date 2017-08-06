@@ -21,6 +21,8 @@ import nightgames.status.Stsflag;
 import nightgames.trap.Spiderweb;
 import nightgames.trap.Trap;
 
+import static nightgames.combat.Combat.Initiation.*;
+
 public class Encounter implements Serializable, IEncounter {
 
     private static final long serialVersionUID = 3122246133619156539L;
@@ -173,7 +175,7 @@ public class Encounter implements Serializable, IEncounter {
             if (p1ff && p2ff) {
                 startFightTimer();
                 if (p1.human() || p2.human()) {
-                    this.fight = Global.gui().beginCombat(p1, p2);
+                    this.fight = Combat.beginCombat(p1, p2, Global.gui());
                 } else {
                     this.fight = new Combat(p1, p2, location);
                 }
@@ -182,7 +184,7 @@ public class Encounter implements Serializable, IEncounter {
                     if (p1.human() || p2.human())
                         Global.gui().message(p1Guaranteed.get());
                     startFightTimer();
-                    this.fight = Global.gui().beginCombat(p1, p2);
+                    this.fight = Combat.beginCombat(p1, p2, Global.gui());
                 } else if (p2Guaranteed.isPresent()) {
                     if (p1.human() || p2.human())
                         Global.gui().message(p2Guaranteed.get());
@@ -205,8 +207,7 @@ public class Encounter implements Serializable, IEncounter {
                                   .message("You quickly try to escape, but " + p1.getName()
                                                   + " is quicker. She corners you and attacks.");
                         }
-                        this.fight = Global.gui()
-                                           .beginCombat(p1, p2);
+                        this.fight = Combat.beginCombat(p1, p2, Global.gui());
                     } else {
 
                         // this.fight=new NullGUI().beginCombat(p1,p2);
@@ -218,7 +219,7 @@ public class Encounter implements Serializable, IEncounter {
                     if (p1.human() || p2.human())
                         Global.gui().message(p2Guaranteed.get());
                     startFightTimer();
-                    this.fight = Global.gui().beginCombat(p1, p2);
+                    this.fight = Combat.beginCombat(p1, p2, Global.gui());
                 } else if (p1Guaranteed.isPresent()) {
                     if (p1.human() || p2.human())
                         Global.gui().message(p1Guaranteed.get());
@@ -241,8 +242,7 @@ public class Encounter implements Serializable, IEncounter {
                                   .message("You quickly try to escape, but " + p2.getName()
                                                   + " is quicker. She corners you and attacks.");
                         }
-                        this.fight = Global.gui()
-                                           .beginCombat(p1, p2);
+                        this.fight = Combat.beginCombat(p1, p2, Global.gui());
                     } else {
                         // this.fight=new NullGUI().beginCombat(p1,p2);
                         this.fight = new Combat(p1, p2, location);
@@ -285,10 +285,10 @@ public class Encounter implements Serializable, IEncounter {
         startFightTimer();
         target.addNonCombat(new Flatfooted(target, 3));
         if (p1.human() || p2.human()) {
-            fight = Global.gui().beginCombat(attacker, target, 0);
+            fight = Combat.beginCombat(attacker, target, ambushRegular, Global.gui());
             Global.gui().message(Global.format("{self:SUBJECT-ACTION:catch|catches} {other:name-do} by surprise and {self:action:attack|attacks}!", attacker, target));
         } else {
-            fight = new Combat(attacker, target, location, 0);
+            fight = new Combat(attacker, target, location, ambushRegular);
         }
     }
 
@@ -321,11 +321,10 @@ public class Encounter implements Serializable, IEncounter {
             }
         }
         if (p1.human() || p2.human()) {
-            fight = Global.gui()
-                          .beginCombat(p1, p2, 1);
+            fight = Combat.beginCombat(p1, p2, ambushStrip, Global.gui());
         } else {
             // this.fight=new NullGUI().beginCombat(p1,p2);
-            fight = new Combat(p1, p2, location, 0);
+            fight = new Combat(p1, p2, location, ambushStrip);
         }
     }
 
@@ -519,7 +518,7 @@ public class Encounter implements Serializable, IEncounter {
     public void engage(Combat fight) {
         this.fight = fight;
         if (fight.p1.human() || fight.p2.human()) {
-            Global.gui().watchCombat(fight);
+            fight.watchCombat(Global.gui());
         }
     }
 
@@ -583,7 +582,7 @@ public class Encounter implements Serializable, IEncounter {
 
     @Override
     public void watch() {
-        Global.gui().watchCombat(fight);
+        fight.watchCombat(Global.gui());
         fight.go();
     }
 }
