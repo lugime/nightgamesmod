@@ -70,6 +70,73 @@ public class Player extends Character {
         finishCharacter(pickedTraits, selectedAttributes);
     }
 
+    public static void ding(GUI gui) {
+        if (gui.combat != null) {
+            gui.combat.pause();
+        }
+        Player player = Global.human;
+        if (player.availableAttributePoints > 0) {
+            Global.writeIfCombatUpdateImmediately(gui.combat, player, player.availableAttributePoints + " Attribute Points remain.\n");
+            gui.clearCommand();
+            for (Attribute att : player.att.keySet()) {
+                if (Attribute.isTrainable(player, att) && player.getPure(att) > 0) {
+                    gui.commandPanel.add(AttributeButton.attributeButton(gui, att));
+                }
+            }
+            gui.commandPanel.add(AttributeButton.attributeButton(gui, Attribute.Willpower));
+            if (Global.getMatch() != null) {
+                Global.getMatch().pause();
+            }
+            gui.commandPanel.refresh();
+        } else if (player.traitPoints > 0 && !gui.skippedFeat) {
+            gui.clearCommand();
+            Global.writeIfCombatUpdateImmediately(gui.combat, player, "You've earned a new perk. Select one below.");
+            for (Trait feat : Global.getFeats(player)) {
+                if (!player.has(feat)) {
+                    RunnableButton button = new RunnableButton(feat.toString(), () -> {
+                        gui.clearTextIfNeeded();
+                        Global.gui().message("Gained feat: " + feat.toString());
+                        Global.getPlayer().add(feat);
+                        Global.gui().message(Global.gainSkills(Global.getPlayer()));
+                        Global.getPlayer().traitPoints -= 1;
+                        gui.refresh();
+                        ding(gui);
+                    });
+                    button.getButton().setToolTipText(feat.getDesc());
+                    gui.commandPanel.add(button);
+                }
+                gui.commandPanel.refresh();
+            }
+            RunnableButton button = new RunnableButton("Skip", () -> {
+                gui.skippedFeat = true;
+                gui.clearTextIfNeeded();
+                ding(gui);
+            });
+            button.getButton().setToolTipText("Save the trait point for later.");
+            gui.commandPanel.add(button);
+            gui.commandPanel.refresh();
+        } else {
+            gui.skippedFeat = false;
+            gui.clearCommand();
+            Global.writeIfCombatUpdateImmediately(gui.combat, player, Global.gainSkills(player));
+            player.finishDing();
+            if (player.getLevelsToGain() > 0) {
+                player.actuallyDing(gui.combat);
+                ding(gui);
+            } else {
+                if (gui.combat != null) {
+                    gui.combat.resume();
+                } else if (Global.getMatch() != null) {
+                    Global.getMatch().resume();
+                } else if (Global.day != null) {
+                    Global.getDay().plan();
+                } else {
+                    new Prematch(Global.human);
+                }
+            }
+        }
+    }
+
     @Override
     public void finishClone(Character other) {
         super.finishClone(other);
@@ -399,7 +466,7 @@ public class Player extends Character {
         if (levelsToGain == 1) {
             actuallyDing(c);
             if (cloned == 0) {
-                gui.ding();
+                ding(gui);
             }
         }
     }

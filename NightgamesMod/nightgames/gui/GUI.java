@@ -70,12 +70,8 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import nightgames.Resources.ResourceLoader;
-import nightgames.characters.Attribute;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.Meter;
-import nightgames.characters.Player;
-import nightgames.characters.Trait;
-import nightgames.characters.TraitTree;
 import nightgames.combat.Combat;
 import nightgames.daytime.Activity;
 import nightgames.daytime.Store;
@@ -1346,40 +1342,6 @@ public class GUI extends JFrame implements Observer {
         return button;
     }
 
-    private KeyableButton attributeButton(Attribute att) {
-        RunnableButton button = new RunnableButton(att.name(), () -> {
-            clearTextIfNeeded();
-            Global.getPlayer().mod(att, 1);
-            Global.getPlayer().availableAttributePoints -= 1;
-            refresh();
-            ding();
-        });
-        return button;
-    }
-
-    private KeyableButton featButton(Trait trait) {
-        RunnableButton button = new RunnableButton(trait.toString(), () -> {
-            clearTextIfNeeded();
-            Global.gui().message("Gained feat: " + trait.toString());
-            Global.getPlayer().add(trait);
-            Global.gui().message(Global.gainSkills(Global.getPlayer()));
-            Global.getPlayer().traitPoints -= 1;
-            refresh();
-            ding();
-        });
-        button.getButton().setToolTipText(trait.getDesc());
-        return button;
-    }
-
-    private KeyableButton skipFeatButton() {
-        RunnableButton button = new RunnableButton("Skip", () -> {
-            skippedFeat = true;
-            clearTextIfNeeded();
-            ding();
-        });
-        button.getButton().setToolTipText("Save the trait point for later.");
-        return button;
-    }
 
     private KeyableButton activityButton(Activity act) {
         RunnableButton button = new RunnableButton(act.toString(), () -> {
