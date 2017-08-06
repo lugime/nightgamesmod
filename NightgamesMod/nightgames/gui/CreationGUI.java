@@ -530,7 +530,6 @@ public class CreationGUI extends JPanel {
             selectedAttributes.put(Attribute.Seduction, seduction);
             selectedAttributes.put(Attribute.Cunning, cunning);
             Global.newGame(name, startConfig, traits, sex, selectedAttributes);
-            Global.startMatch();
         }
     }
 
