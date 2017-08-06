@@ -1438,7 +1438,8 @@ public class GUI extends JFrame implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
         refresh();
-        if (combat != null) {
+        if (arg0 instanceof Combat) {
+            Combat combat = (Combat) arg0;
             if (combat.combatMessageChanged) {
                 combatMessage(combat.getMessage());
                 combat.combatMessageChanged = false;

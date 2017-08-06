@@ -1232,9 +1232,7 @@ public class Combat extends Observable implements Cloneable {
 
     public void updateAndClearMessage() {
         Global.gui().clearText();
-        combatMessageChanged = true;
-        setChanged();
-        this.notifyObservers();
+        updateMessage();
     }
 
     public void write(Character user, String text) {
