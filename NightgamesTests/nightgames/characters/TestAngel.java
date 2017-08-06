@@ -100,6 +100,10 @@ public class TestAngel extends BasePersonality {
     }
 
     @Override public void setGrowth() {
+        // Design consideration: Does it make sense for characters modified by a StartConfig to gain attribute
+        // points from their initial levels? It will lead to higher stats than specified in the config.
+        // TODO: Answer the above question, then adjust tests as needed.
+        character.getGrowth().attributes = new int[]{0};  // Turn stat growth off
         character.getGrowth().stamina = 1;
         character.getGrowth().arousal = 5;
         character.getGrowth().bonusStamina = 1;

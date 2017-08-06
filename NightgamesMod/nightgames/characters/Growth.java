@@ -34,9 +34,9 @@ public class Growth implements Cloneable {
     public float stamina;
     public float bonusArousal;
     public float bonusStamina;
-    public int attributes[];
-    public int bonusAttributes;
-    public int extraAttributes;
+    public int attributes[];    // attributes[i] is the number of points gained per level-up at rank i.
+    public int bonusAttributes; // extra points gained on hardmode.
+    public int extraAttributes; // extra points gained from other sources: non-default start configs, NPC specialization, etc.
     public float willpower;
     public float bonusWillpower;
     private Map<Integer, List<Trait>> traits;
@@ -156,7 +156,9 @@ public class Growth implements Cloneable {
         character.getStamina().gain(stamina);
         character.getArousal().gain(arousal);
         character.getWillpower().gain(willpower);
-        if (traitPoints.containsKey(character.level) && character instanceof Player) ((Player)character).traitPoints+=traitPoints.get(character.level);
+        if (traitPoints.containsKey(character.level) && character instanceof Player) {
+            ((Player) character).traitPoints += traitPoints.get(character.level);
+        }
 
         character.availableAttributePoints += attributes[Math.min(character.rank, attributes.length-1)] + extraAttributes;
 
