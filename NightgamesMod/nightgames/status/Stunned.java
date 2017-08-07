@@ -7,10 +7,10 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Emotion;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 /**
  * Kind of like a mini-winded.
@@ -154,6 +154,6 @@ public class Stunned extends DurationStatus {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        return new Stunned(Global.noneCharacter(), obj.get("duration").getAsInt(), obj.get("makesBraced").getAsBoolean());
+        return new Stunned(NPC.noneCharacter(), obj.get("duration").getAsInt(), obj.get("makesBraced").getAsBoolean());
     }
 }

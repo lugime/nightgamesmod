@@ -5,20 +5,20 @@ import java.util.List;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.status.Stsflag;
 
 public class SlimeMimicry extends Skill {
     private final static List<Skill> MIMICRY_SKILLS = Arrays.asList(
-                    new MimicAngel(Global.noneCharacter()),
-                    new MimicCat(Global.noneCharacter()),
-                    new MimicDryad(Global.noneCharacter()),
-                    new MimicSuccubus(Global.noneCharacter()),
-                    new MimicWitch(Global.noneCharacter())
+                    new MimicAngel(NPC.noneCharacter()),
+                    new MimicCat(NPC.noneCharacter()),
+                    new MimicDryad(NPC.noneCharacter()),
+                    new MimicSuccubus(NPC.noneCharacter()),
+                    new MimicWitch(NPC.noneCharacter())
                     );
     
     public SlimeMimicry(Character self) {

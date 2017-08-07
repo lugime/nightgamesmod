@@ -4,14 +4,14 @@ import java.util.Collections;
 import java.util.Set;
 
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.skills.Skill;
 import nightgames.skills.WindUp;
 import nightgames.status.Primed;
 
 public class WindUpStrategy extends AbstractStrategy {
-    private static final WindUp WINDUP = new WindUp(Global.noneCharacter());
+    private static final WindUp WINDUP = new WindUp(NPC.noneCharacter());
     
     @Override
     public double weight(Combat c, Character self) {

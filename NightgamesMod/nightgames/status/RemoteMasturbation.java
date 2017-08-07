@@ -10,9 +10,9 @@ import nightgames.actions.Action;
 import nightgames.actions.ControlledMasturbation;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.skills.Masturbate;
 import nightgames.skills.Skill;
 
@@ -121,7 +121,7 @@ public class RemoteMasturbation extends DurationStatus {
     @Override
     public Status loadFromJson(JsonObject obj) {
         int duration = obj.get("duration").getAsInt();
-        RemoteMasturbation instance = new RemoteMasturbation(Global.noneCharacter(), Global.noneCharacter());
+        RemoteMasturbation instance = new RemoteMasturbation(NPC.noneCharacter(), NPC.noneCharacter());
         instance.setDuration(duration);
         return instance;
     }

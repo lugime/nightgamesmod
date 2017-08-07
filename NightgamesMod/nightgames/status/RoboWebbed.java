@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.google.gson.JsonObject;
 
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
@@ -24,7 +25,7 @@ public class RoboWebbed extends Bound {
     public String describe(Combat c) {
         return Formatter.format("{self:SUBJECT-ACTION:are|is} hopelessly tangled up in"
                         + " synthetic webbing, which is sending pleasurable sensations"
-                        + " through {self:possessive} entire body.", affected, Global.noneCharacter());
+                        + " through {self:possessive} entire body.", affected, NPC.noneCharacter());
     }
 
     @Override
@@ -35,7 +36,7 @@ public class RoboWebbed extends Bound {
             if (affected.human()) {
                 Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:are|is} hopelessly tangled up in"
                                 + " synthetic webbing, which is sending pleasurable sensations"
-                                + " through {self:possessive} entire body.", affected, Global.noneCharacter()));
+                                + " through {self:possessive} entire body.", affected, NPC.noneCharacter()));
             }
             affected.tempt(dmg);
             affected.location().opportunity(affected, trap.get());

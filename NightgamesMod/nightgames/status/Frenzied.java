@@ -7,14 +7,11 @@ import java.util.stream.Collectors;
 
 import com.google.gson.JsonObject;
 
-import nightgames.characters.Attribute;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.Emotion;
-import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.skills.AssFuck;
 import nightgames.skills.Carry;
 import nightgames.skills.Fly;
@@ -40,7 +37,7 @@ public class Frenzied extends DurationStatus {
 
     static {
         // Skills that either lead to penetration, or can be used during it.
-        Character p = Global.noneCharacter();
+        Character p = NPC.noneCharacter();
         FUCK_SKILLS.add(new AssFuck(p));
         FUCK_SKILLS.add(new Carry(p));
         FUCK_SKILLS.add(new Shove(p));

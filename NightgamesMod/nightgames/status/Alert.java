@@ -7,9 +7,9 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Emotion;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 
 public class Alert extends DurationStatus {
 
@@ -17,7 +17,7 @@ public class Alert extends DurationStatus {
      * Default constructor for loading
      */
     public Alert() {
-        this(Global.noneCharacter());
+        this(NPC.noneCharacter());
     }
     public Alert(Character affected) {
         super("Alert", affected, 3);

@@ -6,10 +6,10 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 public class PressurePointed extends DurationStatus {
     public PressurePointed(Character affected) {
@@ -121,7 +121,7 @@ public class PressurePointed extends DurationStatus {
 
     @Override
     public Status loadFromJson(JsonObject obj) {
-        return new PressurePointed(Global.noneCharacter());
+        return new PressurePointed(NPC.noneCharacter());
     }
 
 }

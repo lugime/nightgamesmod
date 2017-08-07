@@ -7,10 +7,8 @@ import java.util.stream.Collectors;
 
 import com.google.gson.JsonObject;
 
-import nightgames.characters.Attribute;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.Emotion;
-import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
@@ -130,7 +128,7 @@ public class Pheromones extends Horny {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        Pheromones status = new Pheromones(null, Global.noneCharacter(), obj.get("magnitude").getAsFloat(), obj.get("duration").getAsInt(), obj.get("source").getAsString());
+        Pheromones status = new Pheromones(null, NPC.noneCharacter(), obj.get("magnitude").getAsFloat(), obj.get("duration").getAsInt(), obj.get("source").getAsString());
         status.stacks = obj.get("stacks").getAsInt();
         return status;
     }

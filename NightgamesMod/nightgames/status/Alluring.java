@@ -6,10 +6,10 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 public class Alluring extends DurationStatus {
 
@@ -17,7 +17,7 @@ public class Alluring extends DurationStatus {
      * Default constructor for loading
      */
     public Alluring() {
-        this(Global.noneCharacter());
+        this(NPC.noneCharacter());
     }
 
     public Alluring(Character affected, int duration) {

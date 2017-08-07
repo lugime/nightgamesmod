@@ -6,10 +6,10 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.json.JsonUtils;
 
 public class Sensitized extends DurationStatus {
@@ -135,7 +135,7 @@ public class Sensitized extends DurationStatus {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        return new Sensitized(Global.noneCharacter(), JsonUtils.getGson().fromJson(obj.get("part"), BodyPart.class), obj.get("magnitude").getAsFloat(),
+        return new Sensitized(NPC.noneCharacter(), JsonUtils.getGson().fromJson(obj.get("part"), BodyPart.class), obj.get("magnitude").getAsFloat(),
                         obj.get("maximum").getAsFloat(), obj.get("duration").getAsInt());
     }
 

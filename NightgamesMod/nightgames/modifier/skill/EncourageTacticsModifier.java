@@ -5,8 +5,8 @@ import java.util.function.BiFunction;
 import com.google.gson.JsonObject;
 
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.modifier.ModifierComponentLoader;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
@@ -60,6 +60,6 @@ public class EncourageTacticsModifier extends SkillModifier implements ModifierC
     @Override
     public String toString() {
         assert modified != null;
-        return "Encouraged:{" + modified.toString() + " " + weight.apply(Global.noneCharacter(), null) + "}";
+        return "Encouraged:{" + modified.toString() + " " + weight.apply(NPC.noneCharacter(), null) + "}";
     }
 }

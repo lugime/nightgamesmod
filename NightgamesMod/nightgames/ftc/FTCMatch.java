@@ -10,6 +10,7 @@ import java.util.Map;
 import nightgames.actions.Movement;
 import nightgames.areas.Area;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.modifier.standard.FTCModifier;
@@ -22,7 +23,7 @@ public class FTCMatch extends Match {
     private int flagCounter;
 
     { // To prevent uninitalized comparison in manageConditions
-        prey = Global.noneCharacter();
+        prey = NPC.noneCharacter();
         gracePeriod = -1;
     }
     
@@ -217,7 +218,7 @@ public class FTCMatch extends Match {
         flagInCenter = true;
         score(ch, 5);
         Global.gui().message(Formatter.format("<b>{self:SUBJECT-ACTION:turn|turns} in the flag and "
-                        + "{self:action:gain|gains} five points.</b>", ch, Global.noneCharacter()));
+                        + "{self:action:gain|gains} five points.</b>", ch, NPC.noneCharacter()));
         ch.remove(Item.Flag);
     }
 
@@ -231,7 +232,7 @@ public class FTCMatch extends Match {
         flagCounter = 0;
         Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:grab|grabs} a new flag from the stash. That means"
                         + " {self:pronoun} cannot be attacked for two turns, so {self:pronoun}"
-                        + " {self:action:have|has} a chance to hide.", prey, Global.noneCharacter()));
+                        + " {self:action:have|has} a chance to hide.", prey, NPC.noneCharacter()));
         prey.gain(Item.Flag);
     }
 

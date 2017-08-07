@@ -7,10 +7,10 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Emotion;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.requirements.RequirementShortcuts;
 
 public class ArmLocked extends Status {
@@ -20,7 +20,7 @@ public class ArmLocked extends Status {
      * Default constructor for loading
      */
     public ArmLocked() {
-        this(Global.noneCharacter(), 0);
+        this(NPC.noneCharacter(), 0);
     }
 
     public ArmLocked(Character affected, float dc) {

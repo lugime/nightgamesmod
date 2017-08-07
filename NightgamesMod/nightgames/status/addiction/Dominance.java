@@ -7,9 +7,9 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.status.Masochistic;
 import nightgames.status.Status;
 import nightgames.status.Stsflag;
@@ -220,7 +220,7 @@ public class Dominance extends Addiction {
 
     @Override
     public Status loadFromJson(JsonObject obj) {
-        return new Dominance(Global.noneCharacter(), CharacterPool.getCharacterByType(obj.get("cause")
+        return new Dominance(NPC.noneCharacter(), CharacterPool.getCharacterByType(obj.get("cause")
                                                           .getAsString()),
                         (float) obj.get("magnitude")
                                    .getAsInt());

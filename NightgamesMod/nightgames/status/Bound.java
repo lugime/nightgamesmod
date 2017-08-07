@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Emotion;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
@@ -143,7 +144,8 @@ public class Bound extends Status {
     public void tick(Combat c) {
         if (c == null && trap.isPresent()) {
             if (affected.human()) {
-                Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:are|is} still trapped by the %s.", affected, Global.noneCharacter(), trap.get().getName().toLowerCase()));
+                Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:are|is} still trapped by the %s.", affected, NPC
+                                .noneCharacter(), trap.get().getName().toLowerCase()));
             }
             affected.location().opportunity(affected, trap.get());
         }

@@ -378,7 +378,7 @@ public class Combat extends Observable implements Cloneable {
         p1.evalChallenges(this, null);
         p2.evalChallenges(this, null);
         p2.draw(this, state);
-        winner = Optional.of(Global.noneCharacter());
+        winner = Optional.of(NPC.noneCharacter());
     }
 
     private void victory(Character won) {
@@ -1656,7 +1656,7 @@ public class Combat extends Observable implements Cloneable {
         }
         System.err.println("Tried to get an opponent for " + self.getTrueName() + " which does not exist in combat.");
         Thread.dumpStack();
-        return Global.noneCharacter();
+        return NPC.noneCharacter();
     }
 
     public void writeSystemMessage(String battleString) {

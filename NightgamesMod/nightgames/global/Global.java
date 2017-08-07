@@ -81,7 +81,7 @@ public class Global {
         Formatter.buildParser();
         Action.buildActionPool();
         Trait.buildFeatPool();
-        Skill.buildSkillPool(noneCharacter);
+        Skill.buildSkillPool(NPC.noneCharacter);
         Modifier.buildModifierPool();
         gui = makeGUI(headless);
     }
@@ -367,12 +367,6 @@ public class Global {
         return date;
     }
 
-
-    private static Character noneCharacter = new NPC("none", 1, null);
-
-    public static Character noneCharacter() {
-        return noneCharacter;
-    }
 
     public static String prependPrefix(String prefix, String fullDescribe) {
         if (prefix.equals("a ") && "aeiou".contains(fullDescribe.substring(0, 1).toLowerCase())) {

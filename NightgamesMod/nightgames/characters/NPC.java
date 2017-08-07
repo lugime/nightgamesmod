@@ -50,6 +50,7 @@ import nightgames.status.Stsflag;
 import nightgames.trap.Trap;
 
 public class NPC extends Character {
+    public static final NPC noneCharacter = new NPC("none", 1, null);
     public Personality ai;
     public HashMap<Emotion, Integer> emotes;
     public Emotion mood;
@@ -73,6 +74,10 @@ public class NPC extends Character {
         initialGender = CharacterSex.female;
         personalStrategies = new ArrayList<>();
         postCombatScenes = new ArrayList<>();
+    }
+
+    public static Character noneCharacter() {
+        return noneCharacter;
     }
 
     protected void addPersonalStrategy(CombatStrategy strategy) {

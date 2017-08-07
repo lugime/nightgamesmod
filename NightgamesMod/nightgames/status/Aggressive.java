@@ -9,9 +9,9 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.skills.Skill;
 
 public class Aggressive extends DurationStatus {
@@ -25,7 +25,7 @@ public class Aggressive extends DurationStatus {
      * Default constructor for loading
      */
     public Aggressive() {
-        this(Global.noneCharacter(), "none", 0);
+        this(NPC.noneCharacter(), "none", 0);
     }
 
     public Aggressive(Character affected, String cause, int duration) {

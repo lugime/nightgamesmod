@@ -4,15 +4,15 @@ import java.util.Collections;
 import java.util.Set;
 
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.skills.Barrier;
 import nightgames.skills.Skill;
 import nightgames.status.Stsflag;
 
 public class BarrierStrategy extends AbstractStrategy {
-    private static final Barrier BARRIER = new Barrier(Global.noneCharacter());
+    private static final Barrier BARRIER = new Barrier(NPC.noneCharacter());
     
     @Override
     public double weight(Combat c, Character self) {

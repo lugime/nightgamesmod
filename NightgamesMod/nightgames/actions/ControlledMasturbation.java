@@ -1,6 +1,7 @@
 package nightgames.actions;
 
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
@@ -32,11 +33,11 @@ public class ControlledMasturbation extends Action {
          
         if (user.human()) {
             Global.gui().message(Formatter.format("Your limbs are still not your own, and your hand"
-                            + " continues %s against your will.", user, Global.noneCharacter(), mast));
+                            + " continues %s against your will.", user, NPC.noneCharacter(), mast));
         } else {
             Global.gui().message(Formatter.format("You see {self:name} furiously %s. This would normally be"
                             + " very exciting to watch, but the glazed look in {self:possessive} eyes give"
-                            + " you pause. Just what is going on here?", user, Global.noneCharacter(), mast));
+                            + " you pause. Just what is going on here?", user, NPC.noneCharacter(), mast));
         }
         
         user.tempt(40 + Random.random(20));

@@ -9,10 +9,8 @@ import java.util.Set;
 
 import com.google.gson.JsonObject;
 
-import nightgames.characters.Attribute;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.CharacterPool;
-import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
 import nightgames.characters.body.CockPart;
@@ -23,7 +21,6 @@ import nightgames.characters.body.mods.DemonicMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.status.Abuff;
 import nightgames.status.Compulsion;
@@ -361,7 +358,7 @@ public class Corruption extends Addiction {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        return new Corruption(Global.noneCharacter(), CharacterPool.getCharacterByType(obj.get("cause").getAsString()),
+        return new Corruption(NPC.noneCharacter(), CharacterPool.getCharacterByType(obj.get("cause").getAsString()),
                         (float) obj.get("magnitude").getAsInt());
     }
 

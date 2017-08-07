@@ -7,10 +7,10 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Emotion;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 /**
  * A special stun
@@ -137,6 +137,6 @@ public class Plasticized extends DurationStatus {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        return new Plasticized(Global.noneCharacter(), obj.get("duration").getAsInt());
+        return new Plasticized(NPC.noneCharacter(), obj.get("duration").getAsInt());
     }
 }

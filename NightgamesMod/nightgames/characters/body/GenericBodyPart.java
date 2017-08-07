@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.Trait;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.characters.body.mods.SizeMod;
@@ -137,7 +138,7 @@ public class GenericBodyPart implements BodyPart {
 
     @Override
     public String toString() {
-        return fullDescribe(Global.noneCharacter());
+        return fullDescribe(NPC.noneCharacter());
     }
 
     @Override

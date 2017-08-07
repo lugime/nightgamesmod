@@ -6,10 +6,10 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
 
@@ -121,7 +121,7 @@ public class HypnoVisor extends Status {
 
     @Override
     public Status loadFromJson(JsonObject obj) {
-        return new HypnoVisor(Global.noneCharacter(), Global.noneCharacter());
+        return new HypnoVisor(NPC.noneCharacter(), NPC.noneCharacter());
     }
 
 }

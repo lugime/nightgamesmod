@@ -6,17 +6,17 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 public class Abuff extends DurationStatus {
     protected Attribute modded;
     protected int value;
 
     public Abuff() {
-        this(Global.noneCharacter(), Attribute.Hypnosis, 1, 0);
+        this(NPC.noneCharacter(), Attribute.Hypnosis, 1, 0);
     }
 
     public Abuff(Character affected, Attribute att, int value, int duration) {
