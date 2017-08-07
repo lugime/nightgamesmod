@@ -17,6 +17,7 @@ import nightgames.items.Item;
 import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.FTCModifier;
 import nightgames.modifier.standard.NoModifier;
+import nightgames.skills.Skill;
 import nightgames.status.Status;
 import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
@@ -43,8 +44,8 @@ public class Match {
         map = MapSchool.buildMap();
         for (Character combatant : combatants) {
             score.put(combatant, 0);
-            Global.gui().message(Global.gainSkills(combatant));
-            Global.learnSkills(combatant);
+            Global.gui().message(Skill.gainSkills(combatant));
+            Skill.learnSkills(combatant);
             combatant.matchPrep(this);
         }
         time = 0;

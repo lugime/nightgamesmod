@@ -19,6 +19,7 @@ import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
 
 public class Angel extends BasePersonality {
@@ -46,7 +47,7 @@ public class Angel extends BasePersonality {
         self.change();
         self.modAttributeDontSaveData(Attribute.Seduction, 2);
         self.modAttributeDontSaveData(Attribute.Perception, 1);
-        Global.gainSkills(self);
+        Skill.gainSkills(self);
 
         self.getStamina().setMax(60);
         self.getArousal().setMax(110);

@@ -8,7 +8,6 @@ import java.util.Set;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.modifier.ModifierCategory;
 import nightgames.modifier.ModifierComponent;
 import nightgames.skills.Skill;
@@ -35,7 +34,7 @@ public abstract class SkillModifier implements ModifierCategory<SkillModifier>, 
     }
 
     public Set<Skill> allowedSkills(Combat c) {
-        Set<Skill> skills = new HashSet<>(Global.getSkillPool());
+        Set<Skill> skills = new HashSet<>(Skill.getSkillPool());
         skills.removeIf(s -> bannedSkills().contains(s));
         skills.removeIf(s -> bannedTactics().contains(s.type(c)));
         return skills;

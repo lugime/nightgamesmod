@@ -15,9 +15,9 @@ import nightgames.characters.body.mods.DemonicMod;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
 
 public class Mei extends BasePersonality {
@@ -51,7 +51,7 @@ public class Mei extends BasePersonality {
         character.getStamina().setMax(100);
         character.getArousal().setMax(150);
         character.rank = 1;
-        Global.gainSkills(character);
+        Skill.gainSkills(character);
 
         character.getMojo().setMax(110);
 

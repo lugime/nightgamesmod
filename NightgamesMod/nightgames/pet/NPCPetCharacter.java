@@ -9,9 +9,9 @@ import nightgames.characters.NPC;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.clothing.Outfit;
+import nightgames.skills.Skill;
 import nightgames.status.Disguised;
 import nightgames.status.Stsflag;
 
@@ -35,7 +35,7 @@ public class NPCPetCharacter extends PetCharacter {
         this.arousal.empty();
         this.stamina.fill();
         this.lines = Collections.unmodifiableMap(prototype.getLines());
-        Global.learnSkills(this);
+        Skill.learnSkills(this);
     }
 
     @Override

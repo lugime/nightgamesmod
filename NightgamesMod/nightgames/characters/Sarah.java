@@ -13,9 +13,9 @@ import nightgames.characters.body.mods.FieryMod;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
 
 public class Sarah extends BasePersonality {
@@ -47,7 +47,7 @@ public class Sarah extends BasePersonality {
         character.getStamina().setMax(150);
         character.getArousal().setMax(100);
         character.rank = 1;
-        Global.gainSkills(character);
+        Skill.gainSkills(character);
 
         character.getMojo().setMax(90);
 

@@ -22,6 +22,7 @@ import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import nightgames.skills.Skill;
 import nightgames.skills.strategy.FacesitStrategy;
 import nightgames.skills.strategy.FootjobStrategy;
 import nightgames.skills.strategy.KnockdownStrategy;
@@ -73,7 +74,7 @@ public class Jewel extends BasePersonality {
         self.change();
         self.modAttributeDontSaveData(Attribute.Power, 2);
         self.modAttributeDontSaveData(Attribute.Speed, 1);
-        Global.gainSkills(self);
+        Skill.gainSkills(self);
         self.getMojo()
             .setMax(80);
 

@@ -22,6 +22,7 @@ import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import nightgames.skills.Skill;
 import nightgames.skills.strategy.BreastStrategy;
 import nightgames.skills.strategy.NurseStrategy;
 import nightgames.skills.strategy.OralStrategy;
@@ -185,7 +186,7 @@ public class Cassie extends BasePersonality {
 
         self.getStamina().setMax(70);
         self.getArousal().setMax(100);
-        Global.gainSkills(self);
+        Skill.gainSkills(self);
         self.setTrophy(Item.CassieTrophy);
         self.body.add(BreastsPart.c);
         self.body.add(AssPart.generateGeneric().upgrade().upgrade().upgrade());

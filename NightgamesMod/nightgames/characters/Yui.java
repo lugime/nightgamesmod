@@ -15,6 +15,7 @@ import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
 
 public class Yui extends BasePersonality {
@@ -58,7 +59,7 @@ public class Yui extends BasePersonality {
         character.getStamina().setMax(100);
         character.getArousal().setMax(90);
         character.rank = 1;
-        Global.gainSkills(character);
+        Skill.gainSkills(character);
 
         character.getMojo().setMax(130);
 

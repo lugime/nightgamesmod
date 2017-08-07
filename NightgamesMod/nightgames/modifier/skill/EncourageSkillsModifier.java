@@ -10,7 +10,6 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.modifier.ModifierComponentLoader;
 import nightgames.skills.Skill;
 
@@ -77,7 +76,7 @@ public class EncourageSkillsModifier extends SkillModifier implements ModifierCo
                     throw new IllegalArgumentException("All encouraged skills need a 'skill' and a 'weight'");
                 }
                 String name = jobj.get("skill").getAsString();
-                Skill skill = Global.getSkillPool().stream().filter(s -> s.getName().equals(name)).findAny()
+                Skill skill = Skill.getSkillPool().stream().filter(s -> s.getName().equals(name)).findAny()
                                 .orElseThrow(() -> new IllegalArgumentException("No such skill: " + name));
                 double weight = jobj.get("weight").getAsFloat();
                 encs.put(skill, weight);
@@ -85,7 +84,7 @@ public class EncourageSkillsModifier extends SkillModifier implements ModifierCo
             return new EncourageSkillsModifier(encs);
         } else if (object.has("skill") && object.has("weight")) {
             String name = object.get("skill").getAsString();
-            Skill skill = Global.getSkillPool().stream().filter(s -> s.getName().equals(name)).findAny()
+            Skill skill = Skill.getSkillPool().stream().filter(s -> s.getName().equals(name)).findAny()
                             .orElseThrow(() -> new IllegalArgumentException("No such skill: " + name));
             double weight = object.get("weight").getAsFloat();
             return new EncourageSkillsModifier(skill, weight);

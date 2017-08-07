@@ -4,8 +4,8 @@ import java.util.HashMap;
 import nightgames.characters.Character;
 import nightgames.characters.Player;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
 import nightgames.items.clothing.Outfit;
+import nightgames.skills.Skill;
 
 public class PlayerPetCharacter extends PetCharacter {
     private Player prototype;
@@ -28,7 +28,7 @@ public class PlayerPetCharacter extends PetCharacter {
         this.mojo.empty();
         this.arousal.empty();
         this.stamina.fill();
-        Global.learnSkills(this);
+        Skill.learnSkills(this);
     }
 
     @Override

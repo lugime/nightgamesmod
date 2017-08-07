@@ -72,7 +72,7 @@ import nightgames.trap.Trap;
 public class Global {
     private static GUI gui;
     static HashMap<String, Match.MatchAction> matchActions = null;
-    private static Set<Skill> skillPool = new HashSet<>();
+    public static Set<Skill> skillPool = new HashSet<>();
     private static Map<String, NPC> characterPool;
     public static Set<Action> actionPool;
     public static Set<Trap> trapPool;
@@ -135,7 +135,7 @@ public class Global {
         }
         Skill.buildSkillPool(human);
         Clothing.buildClothingTable();
-        learnSkills(human);
+        Skill.learnSkills(human);
         rebuildCharacterPool(config);
         // Add starting characters to players
         players.addAll(characterPool.values().stream().filter(npc -> npc.isStartCharacter).collect(Collectors.toList()));
@@ -251,28 +251,6 @@ public class Global {
         List<Character> results = new ArrayList<>(viableList);
         results.sort((a, b) -> a.getAffection(getPlayer()) - b.getAffection(getPlayer()));
         return results;
-    }
-
-    public static String gainSkills(Character c) {
-        String message = "";
-        if (c.getPure(Attribute.Dark) >= 6 && !c.has(Trait.darkpromises)) {
-            c.add(Trait.darkpromises);
-        } else if (!(c.getPure(Attribute.Dark) >= 6) && c.has(Trait.darkpromises)) {
-            c.remove(Trait.darkpromises);
-        }
-        boolean pheromonesRequirements = c.getPure(Attribute.Animism) >= 2 || c.has(Trait.augmentedPheromones);
-        if (pheromonesRequirements && !c.has(Trait.pheromones)) {
-            c.add(Trait.pheromones);
-        } else if (!pheromonesRequirements && c.has(Trait.pheromones)) {
-            c.remove(Trait.pheromones);
-        }
-        return message;
-    }
-
-    public static void learnSkills(Character c) {
-        for (Skill skill : getSkillPool()) {
-            c.learn(skill);
-        }
     }
 
     public static NPC getNPCByType(String type) {
@@ -553,10 +531,6 @@ public class Global {
 
     public static Collection<NPC> allNPCs() {
         return characterPool.values();
-    }
-
-    public static Set<Skill> getSkillPool() {
-        return skillPool;
     }
 
     public static Set<Modifier> getModifierPool() {

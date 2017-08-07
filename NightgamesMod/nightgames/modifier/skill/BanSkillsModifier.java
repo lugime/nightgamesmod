@@ -11,7 +11,6 @@ import java.util.function.Predicate;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import nightgames.global.Global;
 import nightgames.json.JsonUtils;
 import nightgames.modifier.ModifierComponentLoader;
 import nightgames.skills.Skill;
@@ -40,7 +39,7 @@ public class BanSkillsModifier extends SkillModifier implements ModifierComponen
     }
 
     @Override public BanSkillsModifier instance(JsonObject object) {
-        Collection<Skill> skillPool = Global.getSkillPool();
+        Collection<Skill> skillPool = Skill.getSkillPool();
         Optional<String> maybeName = JsonUtils.getOptional(object, "skill").map(JsonElement::getAsString);
         if (maybeName.isPresent()) {
             String name = maybeName.get();

@@ -185,7 +185,7 @@ public abstract class Character extends Observable implements Cloneable {
         busy = 0;
         setRank(0);
 
-        Global.learnSkills(this);
+        Skill.learnSkills(this);
     }
 
     @Override
@@ -429,7 +429,7 @@ public abstract class Character extends Observable implements Cloneable {
         getGrowth().levelDown(this);
         levelPlan.remove(getLevel());
         level--;
-        return Formatter.capitalizeFirstLetter(subject()) + " lost a level! <br/>" + Global.gainSkills(this);
+        return Formatter.capitalizeFirstLetter(subject()) + " lost a level! <br/>" + Skill.gainSkills(this);
     }
 
     public int getXP() {
@@ -1714,8 +1714,8 @@ public abstract class Character extends Observable implements Cloneable {
             }
         }
         change();
-        Global.gainSkills(this);
-        Global.learnSkills(this);
+        Skill.gainSkills(this);
+        Skill.learnSkills(this);
     }
 
     private void addClothes(JsonArray array) {
@@ -3728,7 +3728,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public void matchPrep(Match m) {
         if(getPure(Attribute.Ninjutsu)>=9){
-            Global.gainSkills(this);
+            Skill.gainSkills(this);
             placeNinjaStash(m);
         }
         ArmManager manager = m.getMatchData().getDataFor(this).getArmManager();

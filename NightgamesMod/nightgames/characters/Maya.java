@@ -8,9 +8,9 @@ import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Flag;
-import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
 import nightgames.status.Drowsy;
 import nightgames.status.Energized;
@@ -57,7 +57,7 @@ public class Maya extends BasePersonality {
         self.getMojo().setMax(150);
         self.getWillpower().setMax(100);
 
-        Global.gainSkills(self);
+        Skill.gainSkills(self);
         self.setTrophy(Item.MayaTrophy);
 
         self.body.add(BreastsPart.d);
