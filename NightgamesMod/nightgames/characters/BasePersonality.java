@@ -105,7 +105,7 @@ public abstract class BasePersonality implements Personality {
                     addiction.aggravate(null, Addiction.MED_INCREASE);
                     addiction.flagDaytime();
                     character.gainAffection(cause, 1);
-                    if (Global.isDebugOn(DebugFlags.DEBUG_ADDICTION)) {
+                    if (DebugFlags.isDebugOn(DebugFlags.DEBUG_ADDICTION)) {
                         System.out.printf("%s did daytime for %s (%s), chance = %f\n", character.getTrueName(), addiction.getType().name(), cause.getTrueName(), chanceToDoDaytime);
                     }
                 }

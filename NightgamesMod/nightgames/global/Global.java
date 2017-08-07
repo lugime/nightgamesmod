@@ -32,8 +32,6 @@ import nightgames.start.StartConfiguration;
 public class Global {
     private static GUI gui;
     public static Scene current;
-    public static boolean debug[] = new boolean[DebugFlags.values().length];
-    public static int debugSimulation = 0;
     public static double moneyRate = 1.0;
     public static double xpRate = 1.0;
 
@@ -59,10 +57,6 @@ public class Global {
 
     protected GUI makeGUI(boolean headless) {
         return headless ? new HeadlessGui() : new GUI();
-    }
-
-    public static boolean isDebugOn(DebugFlags flag) {
-        return debug[flag.ordinal()] && debugSimulation == 0;
     }
 
     public static void newGame(String playerName, Optional<StartConfiguration> config, List<Trait> pickedTraits,
@@ -189,8 +183,7 @@ public class Global {
         Daytime.day = null;
     }
 
-
-
+    // TODO: Make this its own scene.
     public static String getIntro() {
         return "You don't really know why you're going to the Student Union in the middle of the night."
                         + " You'd have to be insane to accept the invitation you received this afternoon."
@@ -239,7 +232,7 @@ public class Global {
         for (String arg : args) {
             try {
                 DebugFlags flag = DebugFlags.valueOf(arg);
-                debug[flag.ordinal()] = true;
+                DebugFlags.debug[flag.ordinal()] = true;
             } catch (IllegalArgumentException e) {
                 // pass
             }

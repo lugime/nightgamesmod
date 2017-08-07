@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 
 import nightgames.global.DebugFlags;
-import nightgames.global.Global;
 
 public class ResourceLoader {
     public static List<InputStream> getFileResourcesFromDirectory(String path) {
@@ -23,7 +22,7 @@ public class ResourceLoader {
                     for (File f : files) {
                         if (!f.isDirectory()) {
                             streams.add(new FileInputStream(f));
-                            if (Global.isDebugOn(DebugFlags.DEBUG_LOADING)) {
+                            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_LOADING)) {
                                 System.out.println("Using " + f.getAbsolutePath());
                             }
                         }

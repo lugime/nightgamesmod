@@ -303,7 +303,7 @@ public abstract class Skill {
         getSkillPool().add(new PressurePoint(ch));
         getSkillPool().add(new Deepen(ch));
 
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
             getSkillPool().add(new SelfStun(ch));
         }
     }

@@ -673,7 +673,7 @@ public class GUI extends JFrame implements Observer {
         if (Flag.checkFlag(Flag.noimage)){
             return;
         }
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Display image: " + path);
         }
         if (!(new File("assets/"+path).canRead())) {
@@ -695,7 +695,7 @@ public class GUI extends JFrame implements Observer {
 
     // image unloader
     public void clearImage() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Reset image");
         }
         imgLabel.setIcon(null);
@@ -712,7 +712,7 @@ public class GUI extends JFrame implements Observer {
                 e.printStackTrace();
             }
             if (face != null) {
-                if (Global.isDebugOn(DebugFlags.DEBUG_IMAGES)) {
+                if (DebugFlags.isDebugOn(DebugFlags.DEBUG_IMAGES)) {
                     System.out.println("Loading Portrait " + imagepath + " \n");
                 }
                 portrait.setIcon(null);
@@ -733,7 +733,7 @@ public class GUI extends JFrame implements Observer {
     // portrait loader
     public void loadPortrait(Combat c, Character player, Character enemy) {
         if (!Flag.checkFlag(Flag.noportraits) && c != null && c.isBeingObserved()) {
-            if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
                 System.out.println("Load portraits");
             }
             String imagepath = null;
@@ -745,14 +745,14 @@ public class GUI extends JFrame implements Observer {
             loadPortrait(imagepath);
         } else {
             clearPortrait();
-            if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
                 System.out.println("No portraits");
             }
         }
     }
 
     public void showMap() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Show map");
         }
         map.setPreferredSize(new Dimension(300, 385));
@@ -761,7 +761,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public void showPortrait() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Show portrait");
         }
         CardLayout portraitLayout = (CardLayout) (portraitPanel.getLayout());
@@ -769,7 +769,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public void showNone() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Show none");
         }
         CardLayout portraitLayout = (CardLayout) (portraitPanel.getLayout());
@@ -956,7 +956,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public void clearText() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Clearing messages");
             DebugHelper.printStackFrame(5, 1);
         }
@@ -1283,7 +1283,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public void removeClosetGUI() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("remove closet gui");
         }
         clothesPanel.removeAll();

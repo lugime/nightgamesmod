@@ -20,7 +20,6 @@ import nightgames.combat.IEncounter;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
@@ -207,7 +206,7 @@ public class PetCharacter extends Character {
         WeightedSkill bestEnemySkill = Decider.prioritizePet(this, target, allowedEnemySkills, c);
         WeightedSkill bestMasterSkill = Decider.prioritizePet(this, getSelf().owner, allowedMasterSkills, c);
 
-        if (Global.isDebugOn(DebugFlags.DEBUG_PET)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_PET)) {
             System.out.println("Available Enemy Skills " + allowedEnemySkills);
             System.out.println("Available Master Skills " + allowedMasterSkills);
         }
@@ -217,16 +216,16 @@ public class PetCharacter extends Character {
         double enemySkillRating = Math.max(.001, bestEnemySkill.rating);
 
         double roll = Random.randomdouble(masterSkillRating + enemySkillRating) - masterSkillRating;
-        if (Global.isDebugOn(DebugFlags.DEBUG_PET)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_PET)) {
             System.out.printf("Rolled %s for master skill: %s [%.2f] and %s [%.2f]\n", roll, bestMasterSkill.skill.getLabel(c), -masterSkillRating, bestEnemySkill.skill.getLabel(c), enemySkillRating);
         }
         if (roll >= 0) {
-            if (Global.isDebugOn(DebugFlags.DEBUG_PET)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_PET)) {
                 System.out.println("Using enemy skill " + bestEnemySkill.skill.getLabel(c));
             }
             Skill.resolve(bestEnemySkill.skill, c, target);
         } else {
-            if (Global.isDebugOn(DebugFlags.DEBUG_PET)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_PET)) {
                 System.out.println("Using master skill " + bestMasterSkill.skill.getLabel(c));
             }
             Skill.resolve(bestMasterSkill.skill, c, self.owner());

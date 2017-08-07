@@ -777,7 +777,7 @@ public class Combat extends Observable implements Cloneable {
         if (!cloned && isBeingObserved()) {
             Global.gui().loadPortrait(this, p1, p2);
         }
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println("Current phase = " + phase);
         }
         if (phase != CombatPhase.FINISHED_SCENE && phase != CombatPhase.RESULTS_SCENE && checkLosses(false)) {
@@ -975,7 +975,7 @@ public class Combat extends Observable implements Cloneable {
 
     public boolean doAction(Character self, Character target, Skill action) {
         action = checkWorship(self, target, action);
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println(self.getTrueName() + " uses " + action.getLabel(this));
         }
         boolean results = resolveSkill(action, target);
@@ -1562,7 +1562,7 @@ public class Combat extends Observable implements Cloneable {
                     newStance.bottom.add(this, new Falling(newStance.bottom));
                 }
             } else {
-                if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+                if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
                     System.out.printf("Tried to change stance without both players, stopping: %s -> %s\n",
                                     stance.getClass().getName(),
                                     newStance.getClass().getName());
@@ -1571,7 +1571,7 @@ public class Combat extends Observable implements Cloneable {
             }
             return;
         }
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("Stance Change: %s -> %s\n", stance.getClass()
                                                                  .getName(),
                             newStance.getClass()
@@ -1612,7 +1612,7 @@ public class Combat extends Observable implements Cloneable {
                     getCombatantData(initiator).setIntegerFlag("ChoseToFuck", 1);
                     getCombatantData(getOpponent(initiator)).setIntegerFlag("ChoseToFuck", -1);
                 }
-                if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+                if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
                     System.out.println(initiator + " initiated penetration, voluntary=" + voluntary);
                 }
             }
@@ -1685,7 +1685,7 @@ public class Combat extends Observable implements Cloneable {
 
     public void setBeingObserved(boolean beingObserved) {
         this.beingObserved = beingObserved;
-        if (beingObserved && log == null && Global.isDebugOn(DebugFlags.DEBUG_SPECTATE)) {
+        if (beingObserved && log == null && DebugFlags.isDebugOn(DebugFlags.DEBUG_SPECTATE)) {
             log = new CombatLog(this);
         }
     }
@@ -1776,7 +1776,7 @@ public class Combat extends Observable implements Cloneable {
     }
 
     public void endCombat(GUI gui) {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("End Combat");
         }
         gui.combat = null;

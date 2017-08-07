@@ -200,9 +200,9 @@ public class DebugGUIPanel extends JPanel {
         IntStream.range(0, flags.length).forEach(i -> {
             DebugFlags flag = flags[i];
             JCheckBox box = new JCheckBox(flag.name());
-            box.setSelected(Global.debug[i]);
+            box.setSelected(DebugFlags.debug[i]);
             box.addActionListener(event -> {
-                Global.debug[i] = box.isSelected();
+                DebugFlags.debug[i] = box.isSelected();
             });
             debugOptions.add(box);
         });

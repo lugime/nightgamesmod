@@ -87,7 +87,7 @@ public class Match {
     }
 
     public static void endMatch(GUI gui) {
-        if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
             System.out.println("Match end");
         }
         gui.combat = null;
@@ -276,7 +276,7 @@ public class Match {
                     self.upkeep();
                     manageConditions(self);
                     self.move();
-                    if (Global.isDebugOn(DebugFlags.DEBUG_SCENE) && index < combatants.size()) {
+                    if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE) && index < combatants.size()) {
                         System.out.println(self.getTrueName() + (self.is(Stsflag.disguised) ? "(Disguised)" : "") + " is in "
                                         + self.location().name);
                     }

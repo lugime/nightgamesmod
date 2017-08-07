@@ -9,7 +9,6 @@ import nightgames.actions.Movement;
 import nightgames.characters.Character;
 import nightgames.combat.IEncounter;
 import nightgames.global.DebugFlags;
-import nightgames.global.Global;
 import nightgames.global.Match;
 import nightgames.status.Stsflag;
 import nightgames.trap.Trap;
@@ -136,7 +135,7 @@ public class Area implements Serializable {
     }
 
     private boolean canFight(Character c) {
-        return !c.human() || !Global.isDebugOn(DebugFlags.DEBUG_SPECTATE);
+        return !c.human() || !DebugFlags.isDebugOn(DebugFlags.DEBUG_SPECTATE);
     }
     
     public boolean opportunity(Character target, Trap trap) {

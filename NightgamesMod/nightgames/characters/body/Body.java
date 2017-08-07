@@ -843,7 +843,7 @@ public class Body implements Cloneable {
             }
             double hotness = (getHotness(opponent) - 1) / 2 + 1;
             double perception = (1.0 + (opponent.get(Attribute.Perception) - 5) / 10.0);
-            if (Global.isDebugOn(DebugFlags.DEBUG_DAMAGE) && Global.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_DAMAGE) && DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING)) {
                 System.out.println(String.format("Seduction Bonus: %.1f, hotness: %.1f, perception: %.1f", seductionBonus, hotness, perception));
             }
             double perceptionBonus = (hotness + seductionBonus) * perception;

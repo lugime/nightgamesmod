@@ -11,7 +11,6 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
-import nightgames.global.Global;
 
 public interface BodyPart {
     public void describeLong(StringBuilder b, Character c);
@@ -108,7 +107,7 @@ public interface BodyPart {
     // Should be called whenever a combatant is penetrated in any way
     public default void onStartPenetration(Combat c, Character self, Character opponent, BodyPart target) {
         // Do nothing, may be overridden in implementing classes.
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("Starting Penetration for %s -> (%s, %s, %s)\n", describe(self), self, opponent,
                             target.describe(opponent));
         }
@@ -117,7 +116,7 @@ public interface BodyPart {
     // Should be called when penetration ends
     public default void onEndPenetration(Combat c, Character self, Character opponent, BodyPart target) {
         // Do nothing, may be overridden in implementing classes.
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("Ending Penetration for %s -> (%s, %s, %s)\n", describe(self), self, opponent,
                             target.describe(opponent));
         }
@@ -128,7 +127,7 @@ public interface BodyPart {
 
     // Should be called when either combatant orgasms in/with body parts
     public default void onOrgasmWith(Combat c, Character self, Character opponent, BodyPart other, boolean selfCame) {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("Processing OrgasmWith for %s -> (%s, %s, %s, %s)\n", describe(self), self, opponent,
                             other.describe(opponent), Boolean.toString(selfCame));
         }
@@ -140,7 +139,7 @@ public interface BodyPart {
     }
 
     public default void receiveCum(Combat c, Character self, Character donor, BodyPart sourcePart) {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("Processing receive cum for %s -> (%s, %s, %s)\n", describe(self), self, donor, sourcePart.describe(donor));
         }
     }

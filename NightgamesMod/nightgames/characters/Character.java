@@ -368,7 +368,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public boolean check(Attribute a, int dc) {
         int rand = Random.random(20);
-        if (Global.isDebugOn(DebugFlags.DEBUG_DAMAGE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_DAMAGE)) {
             System.out.println("Checked " + a + " = " + get(a) + " against " + dc + ", rolled " + rand);
         }
         if (rand == 0) {
@@ -444,7 +444,7 @@ public abstract class Character extends Observable implements Cloneable {
         double maxDamage = baseDamage * 2 * (1 + .015 * getLevel());
         double minDamage = baseDamage * .5 * (1 + .015 * getLevel());
         double multiplier = (1 + .03 * getOffensivePower(type) - .015 * other.getDefensivePower(type));
-        if (Global.isDebugOn(DebugFlags.DEBUG_DAMAGE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_DAMAGE)) {
             System.out.println(baseDamage + " from " + getTrueName() + " has multiplier " + multiplier + " against " + other.getTrueName() + " ["+ getOffensivePower(type) +", " + other.getDefensivePower(type) + "].");
         }
         double damage = baseDamage * multiplier;
@@ -777,7 +777,7 @@ public abstract class Character extends Observable implements Cloneable {
                                 tempter == this ? reflectivePronoun() : nameDirectObject(), dmg, i, bonusString, temptMultiplier, stalenessString, extraMsg);
             }
 
-            if (Global.isDebugOn(DebugFlags.DEBUG_DAMAGE)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_DAMAGE)) {
                 System.out.printf(message);
             }
             if (c != null) {
@@ -1384,7 +1384,7 @@ public abstract class Character extends Observable implements Cloneable {
                     effectiveStatus.onApply(null, null);
                 }
             }
-            if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
                 System.out.println(message);
             }
         }
@@ -1414,7 +1414,7 @@ public abstract class Character extends Observable implements Cloneable {
                         .collect(Collectors.toSet());
         removedStatuses.addAll(removelist);
         removedStatuses.forEach(s -> {
-            if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
                 System.out.println(s.name + " removed from " + getTrueName());
             }
             s.onRemove(c, opponent);
@@ -1428,7 +1428,7 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     public void removeStatusNoSideEffects() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println("Purging (remove no sideeffects) " + getTrueName());
         }
         status.removeAll(removelist);
@@ -1605,7 +1605,7 @@ public abstract class Character extends Observable implements Cloneable {
     public abstract void showerScene(Character target, IEncounter encounter);
 
     public boolean humanControlled(Combat c) {
-        return human() || Global.isDebugOn(DebugFlags.DEBUG_SKILL_CHOICES) && c.getOpponent(this).human();
+        return human() || DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILL_CHOICES) && c.getOpponent(this).human();
     }
 
     public JsonObject save() {
@@ -1986,7 +1986,7 @@ public abstract class Character extends Observable implements Cloneable {
         if (selfPart != null && opponentPart != null) {
             selfPart.onOrgasmWith(c, this, opponent, opponentPart, true);
             opponentPart.onOrgasmWith(c, opponent, this, selfPart, false);
-        } else if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        } else if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("Could not process %s's orgasm against %s: self=%s, opp=%s, pos=%s", this, opponent,
                             selfPart, opponentPart, c.getStance());
         }
@@ -2090,7 +2090,7 @@ public abstract class Character extends Observable implements Cloneable {
                             .format("%s lost <font color='rgb(220,130,40)'>%d<font color='white'> willpower" + reduced
                                             + "%s.", subject(), amt, source));
         }
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("will power reduced from %d to %d\n", old, willpower.get());
         }
     }
@@ -2570,7 +2570,7 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     public void bathe() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println("(Bathing) Purging " + getTrueName());
         }
         status.removeIf(s -> s.flags().contains(Stsflag.purgable));
@@ -2705,7 +2705,7 @@ public abstract class Character extends Observable implements Cloneable {
             Thread.dumpStack();
             return;
         }
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("%s gained attraction for %s\n", getTrueName(), other.getTrueName());
         }
         if (attractions.containsKey(other.getType())) {
@@ -2748,7 +2748,7 @@ public abstract class Character extends Observable implements Cloneable {
             x += 1;
         }
 
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("%s gained %d affection for %s\n", getTrueName(), x, other.getTrueName());
         }
         if (affections.containsKey(other.getType())) {
@@ -2835,7 +2835,7 @@ public abstract class Character extends Observable implements Cloneable {
     public boolean roll(Character attacker, Combat c, int accuracy) {
         int attackroll = Random.random(100);
         int chanceToHit = getChanceToHit(attacker, c, accuracy);
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.printf("Rolled %s against %s\n",
                             attackroll, chanceToHit);
         }
@@ -2866,7 +2866,7 @@ public abstract class Character extends Observable implements Cloneable {
     public abstract void counterattack(Character target, Tactics type, Combat c);
 
     public void clearStatus() {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println("Clearing " + getTrueName());
         }
         status.removeIf(status -> !status.flags().contains(Stsflag.permanent));
@@ -3040,7 +3040,7 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     protected void pickSkillsWithGUI(Combat c, Character target) {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILL_CHOICES)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILL_CHOICES)) {
             c.write(this, nameOrPossessivePronoun() + " turn...");
             c.updateAndClearMessage();
         }
@@ -3648,7 +3648,7 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     public void purge(Combat c) {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println("Purging " + getTrueName());
         }
         temporaryAddedTraits.clear();
@@ -3971,7 +3971,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     private static final Set<AddictionType> NPC_ADDICTABLES = EnumSet.of(AddictionType.CORRUPTION);
     public void addict(Combat c, AddictionType type, Character cause, float mag) {
-        boolean dbg = Global.isDebugOn(DebugFlags.DEBUG_ADDICTION);
+        boolean dbg = DebugFlags.isDebugOn(DebugFlags.DEBUG_ADDICTION);
         if (!human() && !NPC_ADDICTABLES.contains(type)) {
             if (dbg) {
                 System.out.printf("Skipping %s addiction on %s because it's not supported for NPCs", type.name(), getType());
@@ -4000,7 +4000,7 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     public void unaddict(Combat c, AddictionType type, float mag) {
-        boolean dbg = Global.isDebugOn(DebugFlags.DEBUG_ADDICTION);
+        boolean dbg = DebugFlags.isDebugOn(DebugFlags.DEBUG_ADDICTION);
         if (dbg) {
             System.out.printf("Alleviating %s on player by %.3f\n", type.name(), mag);
         }
@@ -4023,7 +4023,7 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     public void addictCombat(AddictionType type, Character cause, float mag, Combat c) {
-        boolean dbg = Global.isDebugOn(DebugFlags.DEBUG_ADDICTION);
+        boolean dbg = DebugFlags.isDebugOn(DebugFlags.DEBUG_ADDICTION);
         Optional<Addiction> addiction = getAddiction(type);
         if (addiction.isPresent()) {
             if (dbg) {
@@ -4049,7 +4049,7 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     public void unaddictCombat(AddictionType type, Character cause, float mag, Combat c) {
-        boolean dbg = Global.isDebugOn(DebugFlags.DEBUG_ADDICTION);
+        boolean dbg = DebugFlags.isDebugOn(DebugFlags.DEBUG_ADDICTION);
         Optional<Addiction> addict = getAddiction(type);
         if (addict.isPresent()) {
             if (dbg) {

@@ -12,7 +12,6 @@ import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.ItemEffect;
 import nightgames.status.Stsflag;
@@ -57,7 +56,7 @@ public class UseDraft extends Skill {
             });
             checks.put(item, rating);
         });
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
             checks.entrySet().stream().forEach(entry -> {
                 System.out.println("Item " + entry.getKey() + ": " + entry.getValue());
             });

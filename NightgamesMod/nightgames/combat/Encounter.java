@@ -523,7 +523,7 @@ public class Encounter implements Serializable, IEncounter {
     }
 
     public void parse(Encs choice, Character self, Character target, Trap trap) {
-        if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println(
                             Formatter.format("{self:true-name} uses %s (%s) on {other:true-name}", self, target, choice, trap));
         }

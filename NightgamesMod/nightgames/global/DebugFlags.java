@@ -16,5 +16,11 @@ public enum DebugFlags {
     DEBUG_FTC,
     DEBUG_GUI,
     DEBUG_ADDICTION,
-    DEBUG_SPECTATE
+    DEBUG_SPECTATE;
+    public static boolean[] debug = new boolean[values().length];
+    public static int debugSimulation = 0;
+
+    public static boolean isDebugOn(DebugFlags flag) {
+        return debug[flag.ordinal()] && debugSimulation == 0;
+    }
 }

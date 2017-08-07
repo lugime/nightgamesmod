@@ -282,7 +282,7 @@ public class Decider {
             return null;
         }
         // Debug
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
             String s = "Pet choices: ";
             for (WeightedSkill entry : moveList) {
                 s += String.format("\n(%.1f\t\t%.1f\t\tculm: %.1f\t\t/ %.1f)\t\t-> %s", entry.raw_rating, entry.rating,
@@ -293,7 +293,7 @@ public class Decider {
         // Select
         double s = Random.randomdouble() * sum;
         for (WeightedSkill entry : moveList) {
-            if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
                 System.out.printf("%.1f/%.1f %s\n", entry.weight, s, entry.skill.toString());
             }
             if (entry.weight > s) {
@@ -346,7 +346,7 @@ public class Decider {
             return null;
         }
         // Debug
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
             String s = "AI choices: ";
             for (WeightedSkill entry : moveList) {
                 s += String.format("\n(%.1f\t\t%.1f\t\tculm: %.1f\t\t/ %.1f)\t\t-> %s", entry.raw_rating, entry.rating,
@@ -357,7 +357,7 @@ public class Decider {
         // Select
         double s = Random.randomdouble() * sum;
         for (WeightedSkill entry : moveList) {
-            if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
                 System.out.printf("%.1f/%.1f %s\n", entry.weight, s, entry.skill.toString());
             }
             if (entry.weight > s) {
@@ -369,7 +369,7 @@ public class Decider {
 
     private static double ratePetMove(PetCharacter self, Skill skill, Character target, Combat c, double masterFit, double otherFit) {
         // Clone ourselves a new combat... This should clone our characters, too
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING) && (c.p1.human() || c.p2.human())) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING) && (c.p1.human() || c.p2.human())) {
             System.out.println("===> Rating " + skill);
             System.out.println("Before:\n" + c.debugMessage());
         }
@@ -383,7 +383,7 @@ public class Decider {
 
     private static double rateMove(Character self, Skill skill, Combat c, double selfFit, double otherFit) {
         // Clone ourselves a new combat... This should clone our characters, too
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING) && (c.p1.human() || c.p2.human())) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING) && (c.p1.human() || c.p2.human())) {
             System.out.println("===> Rating " + skill);
             System.out.println("Before:\n" + c.debugMessage());
         }
@@ -421,17 +421,17 @@ public class Decider {
             return 0;
         }
 
-        Global.debugSimulation += 1;
+        DebugFlags.debugSimulation += 1;
         Character newSkillUser = getCopyFromCombat(c, c2, skillUser);
         Character newObserver = getCopyFromCombat(c, c2, fitnessObserver);
         Character newOpponent = c2.getOpponent(newSkillUser);
         Character newTarget = getCopyFromCombat(c, c2, target);
 
         effect.execute(c2, newSkillUser, newTarget);
-        Global.debugSimulation -= 1;
+        DebugFlags.debugSimulation -= 1;
         double selfFitnessDelta = newObserver.getFitness(c) - selfFit;
         double otherFitnessDelta = newObserver.getOtherFitness(c, newOpponent) - otherFit;
-        if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING) && (c2.p1.human() || c2.p2.human())) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS_RATING) && (c2.p1.human() || c2.p2.human())) {
             System.out.println("After:\n" + c2.debugMessage());
         }
         return selfFitnessDelta - otherFitnessDelta;

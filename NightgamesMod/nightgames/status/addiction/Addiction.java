@@ -143,7 +143,7 @@ public abstract class Addiction extends Status {
         if (!didDaytime || overloading) {
             if (!overloading) {
                 float amount = Random.randomfloat() / 4.f;
-                if (Global.isDebugOn(DebugFlags.DEBUG_ADDICTION)) {
+                if (DebugFlags.isDebugOn(DebugFlags.DEBUG_ADDICTION)) {
                     System.out.println("Alleviating addiction " + this.getType() + " by " + amount);
                 }
                 alleviate(null, amount);

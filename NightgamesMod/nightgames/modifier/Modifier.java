@@ -12,7 +12,6 @@ import com.google.gson.JsonObject;
 import nightgames.actions.Action;
 import nightgames.characters.Character;
 import nightgames.global.DebugFlags;
-import nightgames.global.Global;
 import nightgames.global.Match;
 import nightgames.json.JsonUtils;
 import nightgames.modifier.skill.SkillModifier;
@@ -51,7 +50,7 @@ public interface Modifier {
                     Modifier mod = CustomModifierLoader.readModifier(object);
                     if (!mod.name().equals("DEMO"))
                         modifierPool.add(mod);
-                    if (Global.isDebugOn(DebugFlags.DEBUG_LOADING))
+                    if (DebugFlags.isDebugOn(DebugFlags.DEBUG_LOADING))
                         System.out.println("Loaded custom modifier: " + mod.name());
                 }
             } catch (IOException e) {
@@ -59,7 +58,7 @@ public interface Modifier {
                 e.printStackTrace();
             }
         }
-        if (Global.isDebugOn(DebugFlags.DEBUG_LOADING))
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_LOADING))
             System.out.println("Done loading modifiers");
     }
 

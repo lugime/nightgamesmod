@@ -18,7 +18,6 @@ import nightgames.characters.Character;
 import nightgames.characters.CharacterSex;
 import nightgames.characters.Trait;
 import nightgames.global.DebugFlags;
-import nightgames.global.Global;
 import nightgames.items.Loot;
 import nightgames.json.JsonUtils;
 
@@ -33,7 +32,7 @@ public class Clothing implements Loot {
             JsonArray defaultClothesJson = JsonUtils.rootJson(inputstreamreader).getAsJsonArray();
             JsonClothingLoader.loadClothingListFromJson(defaultClothesJson).forEach(article -> {
                 clothingTable.put(article.id, article);
-                if (Global.isDebugOn(DebugFlags.DEBUG_LOADING)) {
+                if (DebugFlags.isDebugOn(DebugFlags.DEBUG_LOADING)) {
                     System.out.println("Loaded " + article.id);
                 }
             });
@@ -46,7 +45,7 @@ public class Clothing implements Loot {
                               JsonArray clothesJson = new JsonParser().parse(inputstreamreader).getAsJsonArray();
                               JsonClothingLoader.loadClothingListFromJson(clothesJson).forEach(article -> {
                                   clothingTable.put(article.id, article);
-                                  if (Global.isDebugOn(DebugFlags.DEBUG_LOADING)) {
+                                  if (DebugFlags.isDebugOn(DebugFlags.DEBUG_LOADING)) {
                                       System.out.println("Loaded " + article.id);
                                   }
                               });

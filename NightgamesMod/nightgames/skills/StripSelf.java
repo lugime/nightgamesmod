@@ -13,7 +13,6 @@ import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.nskills.tags.SkillTag;
@@ -75,7 +74,7 @@ public class StripSelf extends Skill {
                 });
                 checks.put(article, rating);
             });
-            if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
                 checks.entrySet().stream().forEach(entry -> {
                     System.out.println("Stripping " + entry.getKey() + ": " + entry.getValue());
                 });

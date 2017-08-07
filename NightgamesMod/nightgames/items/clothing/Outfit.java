@@ -22,7 +22,6 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 public class Outfit {
     private Map<ClothingSlot, List<Clothing>> outfit;
@@ -311,7 +310,7 @@ public class Outfit {
             }
         }
         sb.append("<br/>");
-        if (Global.isDebugOn(DebugFlags.DEBUG_CLOTHING)) {
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_CLOTHING)) {
             for (Clothing article : equipped) {
                 sb.append(article);
                 sb.append("<br/>");

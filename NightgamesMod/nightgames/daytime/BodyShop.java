@@ -622,7 +622,7 @@ public class BodyShop extends Activity {
             npc.money -= choice.price;
             budget -= choice.price;
             choice.buy(npc);
-            if (Global.isDebugOn(DebugFlags.DEBUG_PLANNING) && !choice.choice.contains("none")) {
+            if (DebugFlags.isDebugOn(DebugFlags.DEBUG_PLANNING) && !choice.choice.contains("none")) {
                 System.out.println(npc.getTrueName() + " purchased " + choice.choice);
             }
         }
