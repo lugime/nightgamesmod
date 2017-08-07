@@ -10,6 +10,7 @@ import java.util.HashMap;
 import nightgames.actions.Movement;
 import nightgames.areas.Area;
 import nightgames.areas.Cache;
+import nightgames.areas.MapSchool;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.State;
@@ -40,7 +41,7 @@ public class Match {
         matchData = new MatchData();
         score = new HashMap<Character, Integer>();
         this.condition = condition;
-        map = Global.buildMap();
+        map = MapSchool.buildMap();
         for (Character combatant : combatants) {
             score.put(combatant, 0);
             Global.gui().message(Global.gainSkills(combatant));
