@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -50,7 +51,7 @@ public class Dissolve extends Skill {
                             + ". Slowly, it dissolves away beneath {self:possessive} touch.";
             c.write(getSelf(), Global.format(msg, getSelf(), target));
             if (getSelf().has(Trait.VolatileSubstrate)) {
-                target.add(c, new Slimed(target, getSelf(), Global.random(2, 4)));
+                target.add(c, new Slimed(target, getSelf(), Random.random(2, 4)));
             }
         } else {
             getSelf().consume(Item.DisSol, 1);

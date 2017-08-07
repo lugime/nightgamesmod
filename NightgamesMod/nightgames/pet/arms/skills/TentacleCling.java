@@ -4,6 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.Arm;
 import nightgames.status.Stsflag;
@@ -26,7 +27,7 @@ public class TentacleCling extends TentacleArmSkill {
         if (sub) {
             chance += 30;
         }
-        boolean success = Global.random(100) < chance;
+        boolean success = Random.random(100) < chance;
 
         if (success) {
             c.write(PetCharacter.DUMMY, Global.format("A %s shoots out from behind {self:name-do}"

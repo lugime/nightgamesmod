@@ -15,6 +15,7 @@ import nightgames.daytime.Daytime;
 import nightgames.global.DebugFlags;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.Skill;
@@ -204,11 +205,11 @@ public class Decider {
             tactic.addAll(available);
         }
         // give disguise some priority when just picking something random
-        if (tactic.stream().anyMatch(a -> a.consider() == Movement.disguise) && Global.random(5) == 0) {
+        if (tactic.stream().anyMatch(a -> a.consider() == Movement.disguise) && Random.random(5) == 0) {
             return tactic.stream().filter(a -> a.consider() == Movement.disguise).findFirst().get();
         }
         Action[] actions = tactic.toArray(new Action[tactic.size()]);
-        return actions[Global.random(actions.length)];
+        return actions[Random.random(actions.length)];
     }
 
     public static void visit(Character self) {
@@ -226,9 +227,9 @@ public class Decider {
                 }
             }
             if (bff != null) {
-                self.gainAffection(bff, Global.random(3) + 1);
-                bff.gainAffection(self, Global.random(3) + 1);
-                switch (Global.random(3)) {
+                self.gainAffection(bff, Random.random(3) + 1);
+                bff.gainAffection(self, Random.random(3) + 1);
+                switch (Random.random(3)) {
                     case 0:
                         Daytime.train(self, bff, Attribute.Power);
                     case 1:
@@ -293,7 +294,7 @@ public class Decider {
             System.out.println(s);
         }
         // Select
-        double s = Global.randomdouble() * sum;
+        double s = Random.randomdouble() * sum;
         for (WeightedSkill entry : moveList) {
             if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
                 System.out.printf("%.1f/%.1f %s\n", entry.weight, s, entry.skill.toString());
@@ -357,7 +358,7 @@ public class Decider {
             System.out.println(s);
         }
         // Select
-        double s = Global.randomdouble() * sum;
+        double s = Random.randomdouble() * sum;
         for (WeightedSkill entry : moveList) {
             if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
                 System.out.printf("%.1f/%.1f %s\n", entry.weight, s, entry.skill.toString());

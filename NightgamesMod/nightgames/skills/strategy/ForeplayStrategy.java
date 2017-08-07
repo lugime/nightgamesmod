@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
@@ -35,6 +35,6 @@ public class ForeplayStrategy extends KnockdownThenActionStrategy {
     
     @Override
     public int initialDuration(Combat c, Character self) {
-        return Global.random(2, 6);
+        return Random.random(2, 6);
     }
 }

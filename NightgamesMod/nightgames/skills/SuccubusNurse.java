@@ -7,6 +7,7 @@ import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
 import nightgames.status.Abuff;
@@ -76,7 +77,7 @@ public class SuccubusNurse extends Skill {
             target.add(c, new Abuff(target, Attribute.Power, -2, 5));
         }
         new Suckle(target).resolve(c, getSelf(), true);
-        if (Global.random(100) < 5 + 2 * getSelf().get(Attribute.Fetish)) {
+        if (Random.random(100) < 5 + 2 * getSelf().get(Attribute.Fetish)) {
             target.add(c, new BodyFetish(target, getSelf(), BreastsPart.a.getType(), .25));
         }
         return true;

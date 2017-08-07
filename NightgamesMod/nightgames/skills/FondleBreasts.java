@@ -6,6 +6,7 @@ import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.stance.Stance;
 
@@ -27,7 +28,7 @@ public class FondleBreasts extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int m = 6 + Global.random(4);
+        int m = 6 + Random.random(4);
         Result result = Result.normal;
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             if (target.breastsAvailable()) {

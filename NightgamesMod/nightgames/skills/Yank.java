@@ -5,6 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.nskills.tags.SkillTag;
@@ -47,7 +48,7 @@ public class Yank extends Skill {
                             + " forward by the toy still connecting them, and "
                             + " {other:pronoun-action} stumbles and falls.", getSelf(), target));
             target.add(c, new Falling(target));
-            if (Global.random(100) < removeChance) {
+            if (Random.random(100) < removeChance) {
                 c.write("The powerful tug dislodges the toy, causing it to retract back where it was launched from.");
                 target.outfit.unequip(target.outfit.getBottomOfSlot(ClothingSlot.bottom));
             }

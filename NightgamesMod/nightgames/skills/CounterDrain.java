@@ -5,6 +5,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Cowgirl;
 import nightgames.stance.Missionary;
@@ -22,7 +23,7 @@ public class CounterDrain extends CounterBase {
 
     @Override
     public float priorityMod(Combat c) {
-        return Global.randomfloat() * 3;
+        return Random.randomfloat() * 3;
     }
 
     @Override

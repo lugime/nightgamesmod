@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class Feral extends Status {
     public Feral(Character affected) {
@@ -58,7 +59,7 @@ public class Feral extends Status {
             affected.removelist.add(this);
         }
         int ignoreOrgasmChance = Math.max(3, 8 - affected.get(Attribute.Animism) / 20);
-        if (Global.random(ignoreOrgasmChance) == 0) {
+        if (Random.random(ignoreOrgasmChance) == 0) {
             affected.addlist.add(new IgnoreOrgasm(affected, 0));
         }
         return 0;

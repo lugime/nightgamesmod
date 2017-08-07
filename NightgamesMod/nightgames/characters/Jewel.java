@@ -18,6 +18,7 @@ import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.skills.strategy.FacesitStrategy;
@@ -286,36 +287,36 @@ public class Jewel extends BasePersonality {
         if (character.rank >= 1) {
             if (character.money > 0) {
                 Global.getDay()
-                      .visit("Dojo", character, Global.random(character.money));
+                      .visit("Dojo", character, Random.random(character.money));
                 Global.getDay()
-                      .visit("Meditation", character, Global.random(character.money));
+                      .visit("Meditation", character, Random.random(character.money));
             }
             if (character.money > 0) {
                 Global.getDay()
-                      .visit("Body Shop", character, Global.random(character.money));
+                      .visit("Body Shop", character, Random.random(character.money));
             }
             if (character.money > 0) {
                 Global.getDay()
-                      .visit("Workshop", character, Global.random(character.money));
+                      .visit("Workshop", character, Random.random(character.money));
             }
         }
 
         if (character.money > 0) {
             Global.getDay()
-                  .visit("Bookstore", character, Global.random(character.money));
+                  .visit("Bookstore", character, Random.random(character.money));
         }
         if (character.money > 0) {
             Global.getDay()
-                  .visit("XXX Store", character, Global.random(character.money));
+                  .visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
             Global.getDay()
-                  .visit("Black Market", character, Global.random(character.money));
+                  .visit("Black Market", character, Random.random(character.money));
         }
         int r;
 
         for (int i = 0; i < time; i++) {
-            r = Global.random(8);
+            r = Random.random(8);
             if (r == 1) {
                 Global.getDay()
                       .visit("Exercise", this.character, 0);
@@ -358,7 +359,7 @@ public class Jewel extends BasePersonality {
                                     + other.boyOrGirl()
                                     + "s like you should just give up. Why even try when you end up as my seat every time?\"</i>");
                 }
-                return possible.get(Global.random(possible.size()));
+                return possible.get(Random.random(possible.size()));
             }
             if (other.hasDick()) {
                 return "Jewel glares at you and squeezes your dick tightly. <i>\"No matter how horny you are, you better give me your best fight. I don't like fucking weaklings.\"</i>";
@@ -396,7 +397,7 @@ public class Jewel extends BasePersonality {
                 case 2:
                     return "<i>\"Shit shit, I won't let you win!\"</i>";
                 default:
-                    return Global.pickRandom(Arrays.asList(finalLines))
+                    return Random.pickRandom(Arrays.asList(finalLines))
                                  .get();
             }
         });
@@ -416,13 +417,13 @@ public class Jewel extends BasePersonality {
                 case 2:
                     return "<i>\"Mmmm not done yet are we? Let's try for a fourth!\"</i>";
                 default:
-                    return Global.pickRandom(Arrays.asList(finalLines))
+                    return Random.pickRandom(Arrays.asList(finalLines))
                                  .get();
             }
         });
 
         character.addLine(CharacterLine.LEVEL_DRAIN_LINER, (c, self, other) -> {
-            String part = Global.pickRandom(c.getStance()
+            String part = Random.pickRandom(c.getStance()
                                              .getPartsFor(c, self, other))
                                 .map(bp -> bp.getType())
                                 .orElse("pussy");

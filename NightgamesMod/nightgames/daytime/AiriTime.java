@@ -9,6 +9,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.CockPart;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.requirements.BodyPartRequirement;
 import nightgames.requirements.NotRequirement;
 import nightgames.requirements.RequirementShortcuts;
@@ -222,7 +223,7 @@ public class AiriTime extends BaseNPCTime {
             Daytime.train(player, npc, Attribute.Seduction);
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);
-            if (Global.random(5) == 0 && (!player.has(Trait.Clingy) || !npc.has(Trait.Clingy))) {
+            if (Random.random(5) == 0 && (!player.has(Trait.Clingy) || !npc.has(Trait.Clingy))) {
                 Global.gui().message("You feel like you learned a lot about holding on to someone. Maybe you can apply this in the games?");
                 player.add(Trait.Clingy);
                 npc.getGrowth().addTrait(0, Trait.Clingy);
@@ -250,7 +251,7 @@ public class AiriTime extends BaseNPCTime {
             Daytime.train(player, npc, Attribute.Power);
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);
-            if (Global.random(5) == 0 && (!player.has(Trait.fakeout) || !npc.has(Trait.fakeout))) {
+            if (Random.random(5) == 0 && (!player.has(Trait.fakeout) || !npc.has(Trait.fakeout))) {
                 Global.gui().message("You learn some real-world lessons on misleading people.");
                 player.add(Trait.fakeout);
                 npc.getGrowth().addTrait(0, Trait.fakeout);
@@ -263,7 +264,7 @@ public class AiriTime extends BaseNPCTime {
             Daytime.train(player, npc, Attribute.Cunning);
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);
-            if (Global.random(5) == 0 && (!player.has(Trait.fakeout) || !npc.has(Trait.fakeout))) {
+            if (Random.random(5) == 0 && (!player.has(Trait.fakeout) || !npc.has(Trait.fakeout))) {
                 Global.gui().message("You feel like you learned a lot about holding on to someone. Maybe you can apply this in the games?");
                 player.add(Trait.fakeout);
                 npc.getGrowth().addTrait(0, Trait.fakeout);

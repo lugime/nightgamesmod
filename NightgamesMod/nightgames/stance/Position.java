@@ -12,7 +12,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.Body;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.Skill;
 import nightgames.skills.damage.DamageType;
 import nightgames.status.InsertedStatus;
@@ -420,7 +420,7 @@ public abstract class Position implements Cloneable {
     public void struggle(Combat c, Character struggler) {
         time += 2;
         Character partner = getPartner(c, struggler);
-        partner.weaken(c, (int) struggler.modifyDamage(DamageType.stance, partner, Global.random(6, 11)));
+        partner.weaken(c, (int) struggler.modifyDamage(DamageType.stance, partner, Random.random(6, 11)));
     }
 
     public void escape(Combat c, Character escapee) {

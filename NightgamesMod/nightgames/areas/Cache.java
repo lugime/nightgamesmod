@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.State;
 import nightgames.characters.Trait;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.Loot;
 import nightgames.items.clothing.Clothing;
@@ -22,7 +23,7 @@ public class Cache implements Deployable {
         reward = new ArrayList<Loot>();
         dc = 10 + level;
         this.level = level;
-        switch (Global.random(4)) {
+        switch (Random.random(4)) {
             case 3:
                 test = Attribute.Seduction;
                 secondary = Attribute.Dark;
@@ -91,7 +92,7 @@ public class Cache implements Deployable {
                 for (Loot i : reward) {
                     i.pickup(active);
                 }
-                active.modMoney(Global.random(500) + 500);
+                active.modMoney(Random.random(500) + 500);
             } else if (active.check(secondary, dc - 5)) {
                 if (active.human()) {
                     switch (test) {
@@ -126,7 +127,7 @@ public class Cache implements Deployable {
                 for (Loot i : reward) {
                     i.pickup(active);
                 }
-                active.modMoney(Global.random(500) + 500);
+                active.modMoney(Random.random(500) + 500);
             } else {
                 switch (test) {
                     case Cunning:
@@ -162,7 +163,7 @@ public class Cache implements Deployable {
     }
 
     public void calcReward(int level) {
-        int value = level + Global.random(10);
+        int value = level + Random.random(10);
         switch (value) {
             case 23:
                 reward.add(Item.Sprayer);

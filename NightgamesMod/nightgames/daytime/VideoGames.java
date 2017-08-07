@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import nightgames.characters.Character;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class VideoGames extends Activity {
     private boolean paid;
@@ -43,7 +44,7 @@ public class VideoGames extends Activity {
             }
             showScene(pickScene());
             if (paid) {
-                if (Global.random(3) == 0) {
+                if (Random.random(3) == 0) {
                     Global.gui().message("<br/><br/><b>You feel like your experiences have grown from playing the game.</b>");
                     player.gainXPPure(50);
                     player.levelUpIfPossible(null);
@@ -54,7 +55,7 @@ public class VideoGames extends Activity {
 
     @Override
     public void shop(Character npc, int budget) {
-        if (Global.random(5) == 0) {
+        if (Random.random(5) == 0) {
             npc.availableAttributePoints += 1;
         }
     }
@@ -173,7 +174,7 @@ public class VideoGames extends Activity {
         if (Global.getValue(Flag.CarolineAffection) >= 10.0F) {
             available.add(Scene.caroline3);
         }
-        return available.get(Global.random(available.size()));
+        return available.get(Random.random(available.size()));
     }
 
     private static enum Scene {

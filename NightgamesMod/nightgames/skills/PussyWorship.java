@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.BodyFetish;
 
@@ -38,7 +39,7 @@ public class PussyWorship extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int m = 10 + Global.random(8);
+        int m = 10 + Random.random(8);
         if (getSelf().has(Trait.silvertongue)) {
             m += 4;
         }
@@ -48,7 +49,7 @@ public class PussyWorship extends Skill {
             c.write(getSelf(), deal(c, m, Result.normal, target));
         }
         target.body.pleasure(getSelf(), getSelf().body.getRandom("mouth"), target.body.getRandom("pussy"), m, c, this);
-        if (getSelf().hasDick() && (!getSelf().hasPussy() || Global.random(2) == 0)) {
+        if (getSelf().hasDick() && (!getSelf().hasPussy() || Random.random(2) == 0)) {
             getSelf().body.pleasure(getSelf(), getSelf().body.getRandom("hands"), getSelf().body.getRandomCock(), m, c, this);
         } else if (getSelf().hasPussy()) {
             getSelf().body.pleasure(getSelf(), getSelf().body.getRandom("hands"), getSelf().body.getRandomPussy(), m,

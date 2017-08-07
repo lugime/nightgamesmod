@@ -6,13 +6,14 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.TentaclePart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 
 public abstract class TentacleArm extends Arm {
     private String descriptionVariant;
     TentacleArm(ArmManager manager, ArmType type) {
         super(manager, type);
-        descriptionVariant = Global.pickRandom(Arrays.asList("One has %s.", "A thin arm has %s.", "A fat tentacle has %s.", "A pair of entwined feelers with %s waves in the air.")).get();
+        descriptionVariant = Random
+                        .pickRandom(Arrays.asList("One has %s.", "A thin arm has %s.", "A fat tentacle has %s.", "A pair of entwined feelers with %s waves in the air.")).get();
     }
 
     @Override

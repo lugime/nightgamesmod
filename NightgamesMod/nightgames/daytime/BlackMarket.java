@@ -6,6 +6,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 
 public class BlackMarket extends Store {
@@ -181,14 +182,14 @@ public class BlackMarket extends Store {
             for (Item i : stock.keySet()) {
                 int max = 10;
                 if (i.equals(Item.PriapusDraft)) {
-                    if (Global.random(10) > Global.getValue(Flag.malePref)) {
+                    if (Random.random(10) > Global.getValue(Flag.malePref)) {
                         bored++;
                         continue;
                     }
                     max = 1;
                 }
                 if (i.equals(Item.FemDraft)) {
-                    if (Global.random(10) < Global.getValue(Flag.malePref)) {
+                    if (Random.random(10) < Global.getValue(Flag.malePref)) {
                         bored++;
                         continue;
                     }

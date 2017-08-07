@@ -8,6 +8,7 @@ import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Hypersensitive;
 
 public class CockGrowth extends Skill {
@@ -52,7 +53,7 @@ public class CockGrowth extends Skill {
             res = Result.special;
         }
 
-        boolean permanent = Global.random(20) == 0 && (getSelf().human() || c.shouldPrintReceive(target, c))
+        boolean permanent = Random.random(20) == 0 && (getSelf().human() || c.shouldPrintReceive(target, c))
                         && !target.has(Trait.stableform);
 
         if (res != Result.miss) {

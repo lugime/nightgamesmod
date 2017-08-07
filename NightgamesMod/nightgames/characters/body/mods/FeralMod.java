@@ -5,6 +5,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Frenzied;
 import nightgames.status.IgnoreOrgasm;
 import nightgames.status.Pheromones;
@@ -21,7 +22,7 @@ public class FeralMod extends PartMod {
             int chance = Math.max(5, 10 - self.getArousal()
                             .getReal() / 50);
             if (!self.is(Stsflag.frenzied) && !self.is(Stsflag.cynical) && target.isType("cock")
-                      && Global.random(chance) == 0) {
+                      && Random.random(chance) == 0) {
                 c.write(self, String.format(
                               "A cloud of lust descends over %s and %s, clearing both of your thoughts of all matters except to fuck. Hard.",
                               opponent.subject(), self.subject()));

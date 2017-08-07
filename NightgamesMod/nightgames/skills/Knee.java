@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -40,7 +41,7 @@ public class Knee extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
-            double m = Global.random(40, 60);
+            double m = Random.random(40, 60);
             if (getSelf().human()) {
                 c.write(getSelf(), deal(c, 0, Result.normal, target));
             } else if (c.shouldPrintReceive(target, c)) {
@@ -49,12 +50,12 @@ public class Knee extends Skill {
                 } else {
                     c.write(getSelf(), receive(c, 0, Result.normal, target));
                 }
-                if (target.hasBalls() && Global.random(5) >= 3) {
+                if (target.hasBalls() && Random.random(5) >= 3) {
                     c.write(getSelf(), getSelf().bbLiner(c, target));
                 }
             }
             if (target.has(Trait.achilles) && !target.has(ClothingTrait.armored)) {
-                m += Global.random(16,20);
+                m += Random.random(16,20);
             }
             if (target.has(ClothingTrait.armored) || target.has(Trait.brassballs)) {
                 m *= .75;

@@ -9,6 +9,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Stsflag;
 
 public abstract class MaledomSexStance extends Position {
@@ -97,8 +98,8 @@ public abstract class MaledomSexStance extends Position {
         Character opponent = getPartner(c, struggler);
         boolean knotted = opponent.is(Stsflag.knotted);
 
-        int selfM = Global.random(6, 11);
-        int targM = Global.random(6, 11);
+        int selfM = Random.random(6, 11);
+        int targM = Random.random(6, 11);
         if (knotted) {
             c.write(struggler,
                             Global.format("{self:SUBJECT-ACTION:struggle} fruitlessly against the lump of {other:name-possessive} knotted cock, "
@@ -123,8 +124,8 @@ public abstract class MaledomSexStance extends Position {
         Character opponent = getPartner(c, escapee);
         boolean knotted = opponent.is(Stsflag.knotted);
 
-        int selfM = Global.random(6, 11);
-        int targM = Global.random(6, 11);
+        int selfM = Random.random(6, 11);
+        int targM = Random.random(6, 11);
         if (knotted) {
             c.write(escapee,
                             Global.format("{self:SUBJECT-ACTION:tickle} {other:name-do} and {self:action:try} to escape with {other:direct-object} distracted. "

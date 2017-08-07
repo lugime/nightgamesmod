@@ -6,6 +6,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.DivineCharge;
 import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
@@ -59,7 +60,7 @@ public class DivineMod extends PartMod {
 
     @Override
     public void receiveCum(Combat c, Character self, BodyPart part, Character opponent, BodyPart target) {
-        if (self.has(Trait.zealinspiring) && Global.random(4) > -10) {
+        if (self.has(Trait.zealinspiring) && Random.random(4) > -10) {
             if (c.getStance().partsForStanceOnly(c, self, opponent).contains(part) && c.getStance().partsForStanceOnly(c, opponent, self).stream().anyMatch(otherPart -> otherPart.isType("cock"))) {
                 c.write(self, Global.format(
                                 "As {other:possessive} cum floods {self:name-possessive} "

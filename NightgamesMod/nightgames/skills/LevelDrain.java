@@ -7,6 +7,7 @@ import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Satiated;
 
@@ -61,7 +62,7 @@ public class LevelDrain extends Drain {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int type = Global.centeredrandom(2, getSelf().get(Attribute.Dark) / 20.0f, 2);
+        int type = Random.centeredrandom(2, getSelf().get(Attribute.Dark) / 20.0f, 2);
         writeOutput(c, type, Result.normal, target);
         switch (type) {
             case 0:

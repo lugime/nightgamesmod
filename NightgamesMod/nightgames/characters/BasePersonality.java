@@ -21,6 +21,7 @@ import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
@@ -101,7 +102,7 @@ public abstract class BasePersonality implements Personality {
                 // day 10, this would be (10 + sqrt(10) * 5) * .7 = 18 affection lead to max
                 // day 60, this would be (10 + sqrt(70) * 5) * .7 = 36 affection lead to max
                 double chanceToDoDaytime = .25 + (addiction.getMagnitude() / 2) + Global.clamp((affectionDelta / (10 + Math.sqrt(Global.getDate()) * 5)), -.7, .7);
-                if (Global.randomdouble() < chanceToDoDaytime) {
+                if (Random.randomdouble() < chanceToDoDaytime) {
                     addiction.aggravate(null, Addiction.MED_INCREASE);
                     addiction.flagDaytime();
                     character.gainAffection(cause, 1);
@@ -138,7 +139,7 @@ public abstract class BasePersonality implements Personality {
         if (chosen == null) {
             tactic = available;
             Skill[] actions = tactic.toArray(new Skill[tactic.size()]);
-            return actions[Global.random(actions.length)];
+            return actions[Random.random(actions.length)];
         } else {
             return chosen;
         }
@@ -161,7 +162,7 @@ public abstract class BasePersonality implements Personality {
         if (available.size() == 0) {
             return;
         }
-        character.add((Trait) available.toArray()[Global.random(available.size())]);
+        character.add((Trait) available.toArray()[Random.random(available.size())]);
     }
 
     @Override

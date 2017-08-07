@@ -20,6 +20,7 @@ import nightgames.characters.body.mods.SizeMod;
 import nightgames.global.DebugFlags;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class BodyShop extends Activity {
     List<ShopSelection> selection;
@@ -587,7 +588,7 @@ public class BodyShop extends Activity {
     public void shop(Character npc, int budget) {
         int chance = 100;
         while (budget > 0) {
-            if (Global.random(100) > chance) {
+            if (Random.random(100) > chance) {
                 break;
             }
             chance /= 3;
@@ -616,7 +617,7 @@ public class BodyShop extends Activity {
             if (avail.size() == 0) {
                 return;
             }
-            int randomindex = Global.random(avail.size());
+            int randomindex = Random.random(avail.size());
             ShopSelection choice = avail.get(randomindex);
             npc.money -= choice.price;
             budget -= choice.price;

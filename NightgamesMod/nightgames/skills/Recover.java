@@ -3,7 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Neutral;
 import nightgames.status.Stsflag;
@@ -37,7 +37,7 @@ public class Recover extends Skill {
                 c.write(getSelf(), receive(c, 0, Result.normal, target));
         }
         c.setStance(new Neutral(getSelf(), target), getSelf(), true);
-        getSelf().heal(c, Global.random(3));
+        getSelf().heal(c, Random.random(3));
         return true;
     }
 

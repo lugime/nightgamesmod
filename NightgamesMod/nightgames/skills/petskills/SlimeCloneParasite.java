@@ -11,6 +11,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.mods.ParasitedMod;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.Skill;
@@ -46,7 +47,7 @@ public class SlimeCloneParasite extends SimpleEnemySkill {
                     possibleTargets.add(target.body.getRandom(type));
                 }
             }
-            Optional<BodyPart> result = Global.pickRandom(possibleTargets);
+            Optional<BodyPart> result = Random.pickRandom(possibleTargets);
             if (result.isPresent()) {
                 BodyPart targetPart = result.get();
                 c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:launch} {self:reflective} at {other:name-possessive} %s. "

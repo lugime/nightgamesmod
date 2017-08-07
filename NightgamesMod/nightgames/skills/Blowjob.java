@@ -8,6 +8,7 @@ import nightgames.characters.body.mods.ExtendedTonguedMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.ReverseMount;
 import nightgames.stance.SixNine;
@@ -69,7 +70,7 @@ public class Blowjob extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int m = 10 + Global.random(8);
+        int m = 10 + Random.random(8);
         boolean facesitting = isFacesitting(c, target);
         if (getSelf().has(Trait.silvertongue)) {
             m += 4;
@@ -190,7 +191,7 @@ public class Blowjob extends Skill {
                             getSelf().subjectAction("lap"), target.nameOrPossessivePronoun(), getSelf().action("take"),
                             getSelf().possessiveAdjective());
         } else {
-            int r = Global.random(4);
+            int r = Random.random(4);
             if (r == 0) {
                 m += String.format("%s %s tongue up the length of %s dick, sending a jolt of pleasure up %s spine. "
                                 + "%s slowly wraps %s lips around %s dick and sucks.",

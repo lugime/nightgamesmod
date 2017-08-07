@@ -11,6 +11,7 @@ import nightgames.characters.body.mods.PartMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.status.Sensitized;
@@ -61,7 +62,7 @@ public class CockPart extends GenericBodyPart {
 
     @Override
     protected String modlessDescription(Character c) {
-        String syn = Global.pickRandom(synonyms).get();
+        String syn = Random.pickRandom(synonyms).get();
         return (c.hasPussy() && !moddedPartCountsAs(c, CockMod.incubus) ? "girl-" : "") + syn;
     }
 

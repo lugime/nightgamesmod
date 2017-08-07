@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import nightgames.characters.Character;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 
 public class NinjaStash implements Deployable {
@@ -15,7 +16,7 @@ public class NinjaStash implements Deployable {
         this.owner = owner;
         contents = new ArrayList<Item>();
         for(int i=0; i<4; i++){
-            switch(Global.random(3)){
+            switch(Random.random(3)){
             case 0:
                 contents.add(Item.Needle);
                 contents.add(Item.Needle);

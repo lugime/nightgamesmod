@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
 import nightgames.status.Falling;
@@ -42,7 +42,7 @@ public class HipThrow extends Skill {
     public boolean resolve(Combat c, Character target) {
         if (getSelf().check(Attribute.Power, target.knockdownDC() - target.get(Attribute.Cunning) / 2)) {
             writeOutput(c, Result.normal, target);
-            target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Global.random(10, 16)));
+            target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Random.random(10, 16)));
             target.add(c, new Falling(target));
             target.emote(Emotion.angry, 5);
         } else {

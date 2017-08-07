@@ -11,6 +11,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 
 public class Engulfed extends Position {
@@ -189,7 +190,7 @@ public class Engulfed extends Position {
             return false;
         if (!bottom.hasDick())
             return true;
-        return Global.random(2) == 0;
+        return Random.random(2) == 0;
     }
     
     @Override
@@ -203,8 +204,8 @@ public class Engulfed extends Position {
     }
 
     private void pleasureRandomCombination(Combat c, Character self, Character opponent) {
-        int selfM = Global.random(6, 11);
-        int targM = Global.random(6, 11);
+        int selfM = Random.random(6, 11);
+        int targM = Random.random(6, 11);
         List<Runnable> possibleActions = new ArrayList<>();
         if (opponent.hasDick()) {
             if (self.hasPussy()) {
@@ -230,7 +231,7 @@ public class Engulfed extends Position {
                 self.body.pleasure(opponent, opponent.body.getRandomAss(), self.body.getRandomCock(), targM, c);
             });
         }
-        Optional<Runnable> action = Global.pickRandom(possibleActions);
+        Optional<Runnable> action = Random.pickRandom(possibleActions);
         if (action.isPresent()) {
             action.get().run();
         }

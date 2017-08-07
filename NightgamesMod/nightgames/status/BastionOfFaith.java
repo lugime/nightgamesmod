@@ -11,6 +11,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class BastionOfFaith extends DurationStatus {
 
@@ -50,7 +51,7 @@ public class BastionOfFaith extends DurationStatus {
                         "{self:NAME-POSSESSIVE} holy barrier is making it impossible to damage {self:direct-object}.",
                         "A golden barrier surrounding {self:name-do} is making it impossible to damage {self:direct-object}."
                         );
-        Global.writeIfCombat(c, affected, Global.format(Global.pickRandom(possibleStrings).get(), affected, affected));
+        Global.writeIfCombat(c, affected, Global.format(Random.pickRandom(possibleStrings).get(), affected, affected));
         return -x;
     }
 
@@ -65,7 +66,7 @@ public class BastionOfFaith extends DurationStatus {
                         "{self:NAME-POSSESSIVE} holy barrier is reenergizing {self:direct-object}.",
                         "{self:NAME-POSSESSIVE} holy barrier is buoying up {self:possessive} stamina."
                         );
-        Global.writeIfCombat(c, affected, Global.format(Global.pickRandom(possibleStrings).get(), affected, affected));
+        Global.writeIfCombat(c, affected, Global.format(Random.pickRandom(possibleStrings).get(), affected, affected));
         return -x;
     }
 
@@ -76,7 +77,7 @@ public class BastionOfFaith extends DurationStatus {
                         "{self:NAME-POSSESSIVE} holy barrier prevents {self:direct-object} draining effects.",
                         "A golden barrier surrounding {self:name-do} stops the theft of {self:possessive} stamina."
                         );
-        Global.writeIfCombat(c, affected, Global.format(Global.pickRandom(possibleStrings).get(), affected, affected));
+        Global.writeIfCombat(c, affected, Global.format(Random.pickRandom(possibleStrings).get(), affected, affected));
         return -x;
     }
 

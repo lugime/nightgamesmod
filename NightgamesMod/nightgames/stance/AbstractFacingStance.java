@@ -5,7 +5,7 @@ import java.util.List;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 
 public abstract class AbstractFacingStance extends Position {
     public AbstractFacingStance(Character top, Character bottom, Stance stance) {
@@ -31,7 +31,7 @@ public abstract class AbstractFacingStance extends Position {
         if (possibleResults.isEmpty()) {
             return this;
         } else {
-            return possibleResults.get(Global.random(possibleResults.size()));
+            return possibleResults.get(Random.random(possibleResults.size()));
         }
     }
 

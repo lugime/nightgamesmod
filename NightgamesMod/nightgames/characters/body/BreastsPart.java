@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.status.Abuff;
@@ -96,13 +97,13 @@ public class BreastsPart extends GenericBodyPart {
     }
 
     protected String modlessDescription(Character c) {
-        return Global.pickRandom(synonyms).get();
+        return Random.pickRandom(synonyms).get();
     }
 
     @Override
     public double applyBonuses(Character self, Character opponent, BodyPart target, double damage, Combat c) {
         double bonus = super.applyBonuses(self, opponent, target, damage, c);
-        bonus += Math.max(5, getSize()) + Global.random(Math.min(0, getSize() - 4));
+        bonus += Math.max(5, getSize()) + Random.random(Math.min(0, getSize() - 4));
         return bonus;
     }
 
@@ -174,7 +175,7 @@ public class BreastsPart extends GenericBodyPart {
                                 Global.format("The power seems to leave {other:name-possessive} body as {other:pronoun-action:sip|sips} {self:possessive} cloying cream.",
                                                 self, opponent));
                 opponent.weaken(c, opponent.getStamina().max() / 10);
-                opponent.add(c, new Abuff(opponent, Attribute.Power, -Global.random(1, 3), 20));
+                opponent.add(c, new Abuff(opponent, Attribute.Power, -Random.random(1, 3), 20));
             }
             if (self.has(Trait.Pacification)) {
                 c.write(opponent,

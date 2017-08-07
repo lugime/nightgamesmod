@@ -4,7 +4,7 @@ import java.util.Set;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.Skill;
 
 public class DefaultStrategy extends AbstractStrategy {
@@ -26,6 +26,6 @@ public class DefaultStrategy extends AbstractStrategy {
 
     @Override
     public int initialDuration(Combat c, Character self) {
-        return Global.random(1, 3);
+        return Random.random(1, 3);
     }
 }

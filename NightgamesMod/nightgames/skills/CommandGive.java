@@ -6,7 +6,7 @@ import java.util.List;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 
 public class CommandGive extends PlayerCommand {
@@ -42,7 +42,7 @@ public class CommandGive extends PlayerCommand {
     @Override
     public boolean resolve(Combat c, Character target) {
         do {
-            transfer = Item.values()[Global.random(Item.values().length)];
+            transfer = Item.values()[Random.random(Item.values().length)];
             if (!(target.has(transfer) && TRANSFERABLES.contains(transfer))) {
                 transfer = null;
             }

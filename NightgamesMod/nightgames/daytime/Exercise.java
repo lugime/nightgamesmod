@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.global.Configuration;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class Exercise extends Activity {
 
@@ -36,9 +37,9 @@ public class Exercise extends Activity {
     
     private int gainStamina(Character self) {
         int maximumStaminaForLevel = Configuration.getMaximumStaminaPossible(self);
-        int gain = 1 + Global.random(2);
+        int gain = 1 + Random.random(2);
         if (player.has(Trait.fitnessNut)) {
-            gain = gain + Global.random(2);
+            gain = gain + Random.random(2);
         }
         gain = Math.max(0, (int) (Math.min(maximumStaminaForLevel, self.getStamina().trueMax() + gain) - self.getStamina().trueMax()));
         self.getStamina().gain(gain);
@@ -207,7 +208,7 @@ public class Exercise extends Activity {
                 available.add(Scene.jewel1);
             }
         }
-        return available.get(Global.random(available.size()));
+        return available.get(Random.random(available.size()));
     }
 
     private static enum Scene {

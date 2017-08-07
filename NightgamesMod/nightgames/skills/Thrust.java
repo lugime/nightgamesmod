@@ -7,6 +7,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.Staleness;
 import nightgames.stance.Stance;
@@ -72,7 +73,7 @@ public class Thrust extends Skill {
     public int[] getDamage(Combat c, Character target) {
         int results[] = new int[2];
 
-        int m = 8 + Global.random(11);
+        int m = 8 + Random.random(11);
         if (c.getStance().anallyPenetrated(c, target) && getSelf().has(Trait.assmaster)) {
             m *= 1.5;
         }
@@ -131,7 +132,7 @@ public class Thrust extends Skill {
         if (m[1] != 0) {
             getSelf().body.pleasure(target, targetO, selfO, m[1], c, this);
         }
-        if (selfO.isType("ass") && Global.random(100) < 2 + getSelf().get(Attribute.Fetish)) {
+        if (selfO.isType("ass") && Random.random(100) < 2 + getSelf().get(Attribute.Fetish)) {
             target.add(c, new BodyFetish(target, getSelf(), "ass", .25));
         }
         return true;

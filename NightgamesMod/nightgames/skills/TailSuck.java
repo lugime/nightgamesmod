@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 import nightgames.status.Drained;
 import nightgames.status.TailSucked;
@@ -45,20 +46,20 @@ public class TailSuck extends Skill {
         if (c.getStance().isPartFuckingPartInserted(c, target, target.body.getRandomCock(), getSelf(), getSelf().body.getRandom("tail"))) {
             writeOutput(c, Result.special, target);
             target.body.pleasure(getSelf(), getSelf().body.getRandom("tail"), target.body.getRandomCock(),
-                            Global.random(10) + 10, c, this);
+                            Random.random(10) + 10, c, this);
             drain(c, target);
         } else if (getSelf().roll(getSelf(), c, accuracy(c, target))) {
             Result res = c.getStance().isBeingFaceSatBy(c, target, getSelf()) ? Result.critical
                             : Result.normal;
             writeOutput(c, res, target);
             target.body.pleasure(getSelf(), getSelf().body.getRandom("tail"), target.body.getRandomCock(),
-                            Global.random(10) + 10, c, this);
+                            Random.random(10) + 10, c, this);
             drain(c, target);
             target.add(c, new TailSucked(target, getSelf(), power()));
         } else if (target.hasBalls()) {
             writeOutput(c, Result.weak, target);
             target.body.pleasure(getSelf(), getSelf().body.getRandom("tail"), target.body.getRandom("balls"),
-                            Global.random(5) + 5, c, this);
+                            Random.random(5) + 5, c, this);
             return true;
         } else {
             writeOutput(c, Result.miss, target);
@@ -181,11 +182,11 @@ public class TailSuck extends Skill {
     }
 
     private void drain(Combat c, Character target) {
-        Attribute toDrain = Global.pickRandom(target.att.entrySet().stream().filter(e -> e.getValue() != 0)
+        Attribute toDrain = Random.pickRandom(target.att.entrySet().stream().filter(e -> e.getValue() != 0)
                         .map(e -> e.getKey()).toArray(Attribute[]::new)).get();
         Drained.drain(c, getSelf(), target, toDrain, power(), 20, true);
         target.drain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.drain, target, 10));
-        target.drainMojo(c, getSelf(), 1 + Global.random(power() * 3));
+        target.drainMojo(c, getSelf(), 1 + Random.random(power() * 3));
         target.emote(Emotion.desperate, 5);
         getSelf().emote(Emotion.confident, 5);
     }

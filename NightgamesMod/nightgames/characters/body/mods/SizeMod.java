@@ -12,6 +12,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class SizeMod extends PartMod {
     public static int COCK_SIZE_TINY = 3;
@@ -106,7 +107,7 @@ public class SizeMod extends PartMod {
             return ASS_SIZE_DESCRIPTIONS.get(size);
         }
         if (part.getType().equals("breasts")) {
-            if (Global.random(2) == 0) {
+            if (Random.random(2) == 0) {
                 return BREAST_SIZE_DESCRIPTIONS.get(size);
             } else {
                 return BREAST_SIZE_CUPS.get(size);

@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 
 public class TakeOffShoes extends Skill {
@@ -39,7 +40,7 @@ public class TakeOffShoes extends Skill {
         getSelf().strip(ClothingSlot.feet, c);
         if (target.body.getFetish("feet").isPresent() && target.body.getFetish("feet").get().magnitude > .25) {
             writeOutput(c, Result.special, target);
-            target.temptWithSkill(c, getSelf(), getSelf().body.getRandom("feet"), Global.random(17, 26), this);
+            target.temptWithSkill(c, getSelf(), getSelf().body.getRandom("feet"), Random.random(17, 26), this);
         } else {
             writeOutput(c, Result.normal, target);
         }

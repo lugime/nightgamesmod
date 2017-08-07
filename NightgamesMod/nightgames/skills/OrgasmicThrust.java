@@ -6,6 +6,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 
 public class OrgasmicThrust extends Thrust {
@@ -34,7 +35,7 @@ public class OrgasmicThrust extends Thrust {
     public int[] getDamage(Combat c, Character target) {
         int results[] = new int[2];
 
-        int m = Global.random(25, 40);
+        int m = Random.random(25, 40);
         if (c.getStance().anallyPenetrated(c, target) && getSelf().has(Trait.assmaster)) {
             m *= 1.5;
         }

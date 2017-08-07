@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.nskills.tags.SkillTag;
@@ -37,19 +38,19 @@ public class Stomp extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int pain = Global.random(1, 10);
+        int pain = Random.random(1, 10);
         if (target.has(Trait.brassballs)) {
             if (getSelf().has(Trait.heeldrop) && target.crotchAvailable() && target.hasBalls()) {
                 if (getSelf().human()) {
                     c.write(getSelf(), deal(c, 0, Result.strong, target));
                 } else if (c.shouldPrintReceive(target, c)) {
                     c.write(getSelf(), receive(c, 0, Result.strong, target));
-                    if (target.hasBalls() && Global.random(5) >= 1) {
+                    if (target.hasBalls() && Random.random(5) >= 1) {
                         c.write(getSelf(), getSelf().bbLiner(c, target));
                     }
                 }
                 pain = 15 - (int) Math
-                                .round((5 + Global.random(5)) * target.getOutfit().getExposure(ClothingSlot.bottom));
+                                .round((5 + Random.random(5)) * target.getOutfit().getExposure(ClothingSlot.bottom));
             } else {
                 writeOutput(c, Result.weak2, target);
             }
@@ -58,29 +59,29 @@ public class Stomp extends Skill {
                 c.write(getSelf(), deal(c, 0, Result.special, target));
             } else if (c.shouldPrintReceive(target, c)) {
                 c.write(getSelf(), receive(c, 0, Result.special, target));
-                if (target.hasBalls() && Global.random(5) >= 1) {
+                if (target.hasBalls() && Random.random(5) >= 1) {
                     c.write(getSelf(), getSelf().bbLiner(c, target));
                 }
             }
             if (target.has(Trait.achilles)) {
                 pain += 20;
             }
-            pain += 40 - (int) Math.round((5 + Global.random(5)) * target.getOutfit().getExposure(ClothingSlot.bottom));
+            pain += 40 - (int) Math.round((5 + Random.random(5)) * target.getOutfit().getExposure(ClothingSlot.bottom));
         } else if (target.has(ClothingTrait.armored)) {
             writeOutput(c, Result.weak, target);
-            pain += 15 - (int) Math.round((2 + Global.random(3)) * target.getOutfit().getExposure(ClothingSlot.bottom));
+            pain += 15 - (int) Math.round((2 + Random.random(3)) * target.getOutfit().getExposure(ClothingSlot.bottom));
         } else {
             if (getSelf().human()) {
                 c.write(getSelf(), deal(c, 0, Result.normal, target));
             } else if (c.shouldPrintReceive(target, c)) {
                 c.write(getSelf(), receive(c, 0, Result.normal, target));
-                if (target.hasBalls() && Global.random(5) >= 1) {
+                if (target.hasBalls() && Random.random(5) >= 1) {
                     c.write(getSelf(), getSelf().bbLiner(c, target));
                 }
             }
             pain += 20;
             pain += 20 - (int) Math
-                            .round((10 + Global.random(10)) * target.getOutfit().getExposure(ClothingSlot.bottom));
+                            .round((10 + Random.random(10)) * target.getOutfit().getExposure(ClothingSlot.bottom));
         }
         target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, pain));
         target.emote(Emotion.angry, 25);

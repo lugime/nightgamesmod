@@ -11,6 +11,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class PussyPart extends GenericBodyPart {
     public static PussyPart generic = generateGeneric();
@@ -43,7 +44,7 @@ public class PussyPart extends GenericBodyPart {
             b.append("drenched ");
         }
         if (this.isGeneric(c)) {
-            b.append(Global.pickRandom(Arrays.asList("perfectly ordinary ", "normal ", "ordinary ")).get());
+            b.append(Random.pickRandom(Arrays.asList("perfectly ordinary ", "normal ", "ordinary ")).get());
         }
         b.append(describe(c));
         b.append(' ');
@@ -63,7 +64,7 @@ public class PussyPart extends GenericBodyPart {
 
     @Override
     public String describe(Character c) {
-        String syn = Global.pickRandom(synonyms).get();
+        String syn = Random.pickRandom(synonyms).get();
         String origString = super.describe(c);
         return origString.replace("pussy", syn);
     }
@@ -71,7 +72,7 @@ public class PussyPart extends GenericBodyPart {
     @Override
     public String fullDescribe(Character c) {
         if (isGeneric(c)) {            
-            return Global.pickRandom(Arrays.asList("normal ", "ordinary ")).get() + this.describe(c);
+            return Random.pickRandom(Arrays.asList("normal ", "ordinary ")).get() + this.describe(c);
         } else {
             return describe(c);
         }

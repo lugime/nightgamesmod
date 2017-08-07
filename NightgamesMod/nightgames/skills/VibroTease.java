@@ -5,6 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -43,7 +44,7 @@ public class VibroTease extends Skill {
                 c.write(getSelf(), receive(c, 0, Result.normal, target));
             }
         }
-        int m = 10 + Global.random(5);
+        int m = 10 + Random.random(5);
         target.body.pleasure(getSelf(), null, target.body.getRandom("ass"), getSelf().modifyDamage(DamageType.gadgets, target, m), c, this);
         getSelf().arouse(2, c);
         return true;

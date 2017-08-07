@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.stance.Mount;
 import nightgames.status.Stsflag;
@@ -39,7 +40,7 @@ public class ComeHither extends Skill {
     public boolean resolve(Combat c, Character target) {
 
         boolean selfMounts = (!getSelf().hasPussy() && getSelf().hasDick())
-                             || target.get(Attribute.Submissive) > Global.random(30);
+                             || target.get(Attribute.Submissive) > Random.random(30);
         
         writeOutput(c, selfMounts ? Result.special : Result.normal, target);                   
                             

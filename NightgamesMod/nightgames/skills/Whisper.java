@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Enthralled;
 
 public class Whisper extends Skill {
@@ -32,8 +33,8 @@ public class Whisper extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int roll = Global.centeredrandom(4, getSelf().get(Attribute.Dark) / 5.0, 2);
-        int m = 4 + Global.random(6);
+        int roll = Random.centeredrandom(4, getSelf().get(Attribute.Dark) / 5.0, 2);
+        int m = 4 + Random.random(6);
 
         if (target.has(Trait.imagination)) {
             m += 4;

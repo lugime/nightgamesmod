@@ -17,6 +17,7 @@ import nightgames.characters.body.WingsPart;
 import nightgames.characters.body.mods.DemonicMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.requirements.BodyPartRequirement;
 import nightgames.requirements.NotRequirement;
@@ -366,7 +367,7 @@ public class ReykaTime extends BaseNPCTime {
                   .addict(null, AddictionType.CORRUPTION, npc, Addiction.MED_INCREASE);
             Global.getPlayer().getAddiction(AddictionType.CORRUPTION).ifPresent(Addiction::flagDaytime);
         } else if (choice.equals("Sex")) {
-            if (npc.getAffection(player) >= 8 && (!player.has(Trait.desensitized) || Global.random(2) == 1)) {
+            if (npc.getAffection(player) >= 8 && (!player.has(Trait.desensitized) || Random.random(2) == 1)) {
                 Global.gui()
                       .message("You hesitated for a bit too long, and again Reyka's eyes flash red. Again, your mind fogs over, "
                                       + "ready to do whatever your mistress wants. Again, Reyka, hauls you off. You don't seem to "
@@ -477,7 +478,7 @@ public class ReykaTime extends BaseNPCTime {
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);
         } else if (choice.equals("Sparring")) {
-            if (npc.getAffection(player) >= 12 && (!player.has(Trait.clairvoyance) || Global.random(2) == 1)) {
+            if (npc.getAffection(player) >= 12 && (!player.has(Trait.clairvoyance) || Random.random(2) == 1)) {
                 if (!player.has(Trait.clairvoyance)) {
                     Global.gui()
                           .message("<i>\"Are you that eager to get your ass... kicked, shall we say... again? I must "
@@ -607,7 +608,7 @@ public class ReykaTime extends BaseNPCTime {
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);
         } else if (choice.equals("Games")) {
-            if (npc.getAffection(player) >= 16 && (!player.has(Trait.locator) || Global.random(2) == 1)) {
+            if (npc.getAffection(player) >= 16 && (!player.has(Trait.locator) || Random.random(2) == 1)) {
 
                 if (!player.has(Trait.locator)) {
                     Global.gui()

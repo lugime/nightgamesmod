@@ -4,6 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.Arm;
 import nightgames.status.Abuff;
@@ -26,7 +27,7 @@ public class TentacleInjectVenom extends TentacleArmSkill {
     @Override
     public boolean resolve(Combat c, Arm arm, Character owner, Character target) {
         boolean sub = target.bound() || !c.getStance().mobile(target);
-        boolean success = sub || Global.random(100) < 10 + owner.get(Attribute.Slime);
+        boolean success = sub || Random.random(100) < 10 + owner.get(Attribute.Slime);
 
         if (success) {
             c.write(PetCharacter.DUMMY, Global.format("{self:NAME-POSSESSIVE} injector tentacle shoots forward and embeds itself in {other:name-possessive} arm. "

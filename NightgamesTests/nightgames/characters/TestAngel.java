@@ -5,6 +5,7 @@ import nightgames.characters.body.mods.DivineMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.start.NpcConfiguration;
@@ -172,31 +173,31 @@ public class TestAngel extends BasePersonality {
                 character.add(Trait.lacedjuices);
             }
             if (character.money > 0) {
-                Global.getDay().visit("Body Shop", character, Global.random(character.money));
+                Global.getDay().visit("Body Shop", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay().visit("Black Market", character, Global.random(character.money));
+                Global.getDay().visit("Black Market", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay().visit("Workshop", character, Global.random(character.money));
+                Global.getDay().visit("Workshop", character, Random.random(character.money));
             }
         }
         if (character.money > 0) {
-            Global.getDay().visit("XXX Store", character, Global.random(character.money));
+            Global.getDay().visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Black Market", character, Global.random(character.money));
+            Global.getDay().visit("Black Market", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Bookstore", character, Global.random(character.money));
+            Global.getDay().visit("Bookstore", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Hardware Store", character, Global.random(character.money));
+            Global.getDay().visit("Hardware Store", character, Random.random(character.money));
         }
         Decider.visit(character);
         int r;
         for (int i = 0; i < time; i++) {
-            r = Global.random(4);
+            r = Random.random(4);
             if (r == 1) {
                 if (character.has(Trait.fitnessNut)) {
                     character.getStamina().gain(1);

@@ -4,6 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.CockBound;
 import nightgames.status.Stsflag;
 
@@ -44,7 +45,7 @@ public class TentacledMod extends PartMod {
                                                     + "squeezing and milking it constantly.",
                                     self, opponent, part.adjective()));
                 }
-                return 5 + Global.random(4);
+                return 5 + Random.random(4);
             }
         }
         return 0;

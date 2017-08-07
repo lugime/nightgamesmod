@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.DummyCharacter;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class TentaclePart extends GenericBodyPart {
     public static final GenericBodyPart DUMMY_PART = new GenericBodyPart("tentacles", 1.0, 1.0, 0.0, "tentacles", "");
@@ -37,7 +38,7 @@ public class TentaclePart extends GenericBodyPart {
         String type;
         ArrayList<String> availList = new ArrayList<String>(avail);
         if (avail.size() > 0) {
-            type = availList.get(Global.random(availList.size()));
+            type = availList.get(Random.random(availList.size()));
         } else {
             type = "back";
         }
@@ -67,7 +68,7 @@ public class TentaclePart extends GenericBodyPart {
     @Override
     public void describeLong(StringBuilder b, Character c) {
         if (printSynonym)
-            b.append("A " + Global.pickRandom(synonyms).get() + " of ");
+            b.append("A " + Random.pickRandom(synonyms).get() + " of ");
         else
             b.append("A ");
         b.append(describe(c));
@@ -91,7 +92,7 @@ public class TentaclePart extends GenericBodyPart {
     @Override
     public double applySubBonuses(Character self, Character opponent, BodyPart with, BodyPart target, double damage,
                     Combat c) {
-        if (with.isType(attachpoint) && Global.random(3) > -1) {
+        if (with.isType(attachpoint) && Random.random(3) > -1) {
             c.write(self, Global.format("Additionally, {self:name-possessive} " + fullDescribe(self)
                             + " take the opportunity to squirm against {other:name-possessive} "
                             + target.fullDescribe(opponent) + ".", self, opponent));

@@ -3,10 +3,10 @@ package nightgames.skills;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
-import nightgames.characters.body.Body;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.ReverseMount;
 import nightgames.stance.SixNine;
@@ -50,7 +50,7 @@ public class Cunnilingus extends Skill {
     public boolean resolve(Combat c, Character target) {
         Result results = Result.normal;
         boolean facesitting = c.getStance().isBeingFaceSatBy(c, getSelf(), target);
-        int m = 10 + Global.random(8);
+        int m = 10 + Random.random(8);
         if (getSelf().has(Trait.silvertongue)) {
             m += 4;
         }
@@ -58,7 +58,7 @@ public class Cunnilingus extends Skill {
         if (!facesitting && c.getStance().mobile(target) && !target.roll(getSelf(), c, accuracy(c, target))) {
             results = Result.miss;
         } else {
-            if (target.has(Trait.enthrallingjuices) && Global.random(4) == 0 && !target.wary()) {
+            if (target.has(Trait.enthrallingjuices) && Random.random(4) == 0 && !target.wary()) {
                 i = -2;
             } else if (target.has(Trait.lacedjuices)) {
                 i = -1;
@@ -146,7 +146,7 @@ public class Cunnilingus extends Skill {
                             + (damage == -2 ? " You feel a strange pull on you mind,"
                                             + " somehow she has managed to enthrall you with her juices." : "");
         }
-        int r = Global.random(3);
+        int r = Random.random(3);
         if (r == 0) {
             return "You gently lick " + target.getName() + "'s pussy and sensitive clit."
                             + (damage == -1 ? " As you drink down her juices, they seem to flow "

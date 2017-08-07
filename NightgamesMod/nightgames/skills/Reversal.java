@@ -7,7 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Pin;
 import nightgames.status.Compulsive;
@@ -41,7 +41,7 @@ public class Reversal extends Skill {
         Optional<String> compulsion = Compulsive.describe(c, getSelf(), Situation.PREVENT_REVERSAL);
         if (compulsion.isPresent()) {
             c.write(getSelf(), compulsion.get());
-            getSelf().pain(c, null, Global.random(20, 50));
+            getSelf().pain(c, null, Random.random(20, 50));
             Compulsive.doPostCompulsion(c, getSelf(), Situation.PREVENT_REVERSAL);
             return false;
         }

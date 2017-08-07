@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Charmed;
 import nightgames.status.Stsflag;
 
@@ -39,7 +40,7 @@ public class Charm extends Skill {
         }
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             writeOutput(c, Result.normal, target);
-            double mag = 2 + Global.random(4) + getSelf().body.getHotness(target);
+            double mag = 2 + Random.random(4) + getSelf().body.getHotness(target);
             if (target.has(Trait.imagination)) {
                 mag += 4;
             }
@@ -56,7 +57,7 @@ public class Charm extends Skill {
     }
 
     private boolean resolvePurr(Combat c, Character target) {
-        if (Global.random(target.getLevel()) <= getSelf().get(Attribute.Animism) * getSelf().getArousal().percent()
+        if (Random.random(target.getLevel()) <= getSelf().get(Attribute.Animism) * getSelf().getArousal().percent()
                         / 100 && !target.wary()) {
             int damage = getSelf().getArousal().getReal() / 10;
             if (damage < 10) {

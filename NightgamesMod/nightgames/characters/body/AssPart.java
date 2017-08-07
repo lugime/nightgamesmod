@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.status.Drained;
@@ -99,7 +100,7 @@ public class AssPart extends GenericBodyPart {
             }
         }
         if (self.has(Trait.drainingass) && !target.isType("strapon")) {
-            if (Global.random(3) == 0) {
+            if (Random.random(3) == 0) {
                 c.write(self, Global.format("{self:name-possessive} ass seems to <i>inhale</i>, drawing"
                                 + " great gouts of {other:name-possessive} strength from {other:possessive}"
                                 + " body.", self, opponent));
@@ -144,7 +145,7 @@ public class AssPart extends GenericBodyPart {
         }
         if (self.has(Trait.buttslut)) {
             bonus += 10;
-            if (Global.random(4) == 0 && self.is(Stsflag.trance)) {
+            if (Random.random(4) == 0 && self.is(Stsflag.trance)) {
                 c.write(opponent, Global.format(
                                 "The foreign object rummaging around inside {self:name-possessive} ass <i><b>just feels so right</b></i>. {self:SUBJECT-ACTION:feel|feels} {self:reflective} slipping into a trance!",
                                                 self, opponent));

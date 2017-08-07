@@ -5,6 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Hypersensitive;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
@@ -35,7 +36,7 @@ public class DemandArousal extends Skill {
     public boolean resolve(Combat c, Character target) {
         Addiction addict = target.getAddiction(AddictionType.MIND_CONTROL)
                             .get();
-        int dmg = (int) ((20 + Global.randomdouble() * 20) * addict.getMagnitude());
+        int dmg = (int) ((20 + Random.randomdouble() * 20) * addict.getMagnitude());
         float alleviation;
 
         String msg = Global.format("\"<i><b>{other:name}. Listen to me.</b></i>\" {self:NAME-POSSESSIVE}"

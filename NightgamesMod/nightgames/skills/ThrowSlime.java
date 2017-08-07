@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
 import nightgames.status.Bound;
@@ -66,7 +67,7 @@ public class ThrowSlime extends Skill {
             if (type != HitType.NONE) {
                 target.add(c, type.build(getSelf(), target));
                 if (getSelf().has(Trait.VolatileSubstrate)) {
-                    target.add(c, new Slimed(target, getSelf(), Global.random(1, 11)));
+                    target.add(c, new Slimed(target, getSelf(), Random.random(1, 11)));
                 }
                 return true;
             } else {
@@ -227,7 +228,7 @@ public class ThrowSlime extends Skill {
     }
 
     private int random(Combat c, Character target, int skill, int diff) {
-        int r = Global.random(150);
+        int r = Random.random(150);
         if (!c.getStance()
               .mobile(target) || !target.canRespond()) {
             r -= 50;
@@ -252,7 +253,7 @@ public class ThrowSlime extends Skill {
             return HitType.PARASITED;
         }
         if (slime >= 20 && random(c, target, slime, 20) <= 15 + bonus) {
-            return Global.random(2) == 0 ? HitType.TRANCE : HitType.FRENZIED;
+            return Random.random(2) == 0 ? HitType.TRANCE : HitType.FRENZIED;
         }
         if (slime >= 16 && random(c, target, slime, 16) <= 20 + bonus) {
             return HitType.BOUND_S;

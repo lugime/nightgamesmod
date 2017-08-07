@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Charmed;
 import nightgames.status.Enthralled;
 import nightgames.status.Stsflag;
@@ -26,7 +27,7 @@ public class Tempt extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         writeOutput(c, Result.normal, target);
-        double m = 4 + Global.random(4);
+        double m = 4 + Random.random(4);
 
         if (c.getStance().front(getSelf())) {
             // opponent can see self
@@ -39,19 +40,19 @@ public class Tempt extends Skill {
 
         int n = (int) Math.round(m);
 
-        boolean tempted = Global.random(5) == 0;
+        boolean tempted = Random.random(5) == 0;
         if (getSelf().has(Trait.darkpromises) && tempted && !target.wary() && getSelf().canSpend(15)) {
             getSelf().spendMojo(c, 15);
             c.write(getSelf(),
                             Global.format("{self:NAME-POSSESSIVE} words fall on fertile grounds. {other:NAME-POSSESSIVE} will to resist crumbles in light of {self:possessive} temptation.",
                                             getSelf(), target));
             target.add(c, new Enthralled(target, getSelf(), 3));
-        } else if (getSelf().has(Trait.commandingvoice) && Global.random(3) == 0) {
+        } else if (getSelf().has(Trait.commandingvoice) && Random.random(3) == 0) {
             c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:speak|speaks} with such unquestionable"
                             + " authority that {other:subject-action:don't|doesn't} even consider disobeying."
                             , getSelf(), target));
             target.add(c, new Trance(target, 1, false));
-        } else if (getSelf().has(Trait.MelodiousInflection) && !target.is(Stsflag.charmed) && Global.random(3) == 0) {
+        } else if (getSelf().has(Trait.MelodiousInflection) && !target.is(Stsflag.charmed) && Random.random(3) == 0) {
             c.write(getSelf(), Global.format("Something about {self:name-possessive} words, the"
                             + " way {self:possessive} voice rises and falls, {self:possessive}"
                             + " pauses and pitch... {other:SUBJECT} soon {other:action:find|finds}"

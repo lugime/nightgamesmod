@@ -87,7 +87,7 @@ import nightgames.status.Status;
 import nightgames.trap.Trap;
 
 public class Global {
-    private static Random rng;
+    public static Random rng;
     private static GUI gui;
     static HashMap<String, MatchAction> matchActions = null;
     private static Set<Skill> skillPool = new HashSet<>();
@@ -177,31 +177,6 @@ public class Global {
         setCharacterDisabledFlag(getNPCByType("Yui"));
         setFlag(Flag.systemMessages, true);
         setUpMatch(new NoModifier());
-    }
-
-    public static int random(int start, int end) {
-        return rng.nextInt(end - start) + start;
-    }
-
-    public static int random(int d) {
-        if (d <= 0) {
-            return 0;
-        }
-        return rng.nextInt(d);
-    }
-
-    // finds a centered random number from [0, d] (inclusive)
-    public static int centeredrandom(int d, double center, double sigma) {
-        int val = 0;
-        center = Math.max(0, Math.min(d, center));
-        for (int i = 0; i < 10; i++) {
-            double f = rng.nextGaussian() * sigma + center;
-            val = (int) Math.round(f);
-            if (val >= 0 && val <= d) {
-                return val;
-            }
-        }
-        return Math.max(0, Math.min(d, val));
     }
 
     public static GUI gui() {
@@ -926,29 +901,11 @@ public class Global {
         return players.stream().anyMatch(c -> type.equals(c.getType()));
     }
 
-    public static float randomfloat() {
-        return (float) rng.nextDouble();
-    }
-
     public static String maybeString(String string) {
-        if (Global.random(2) == 0) {
+        if (nightgames.global.Random.random(2) == 0) {
             return string;
         } else {
             return "";
-        }
-    }
-
-    @SafeVarargs
-    public static <T> Optional<T> pickRandom(T ... arr) {
-        if (arr == null || arr.length == 0) return Optional.empty();
-        return Optional.of(arr[Global.random(arr.length)]);
-    }
-
-    public static <T> Optional<T> pickRandom(List<T> list) {
-        if (list == null || list.size() == 0) {
-            return Optional.empty();
-        } else {
-            return Optional.of(list.get(random(list.size())));
         }
     }
 
@@ -1010,14 +967,6 @@ public class Global {
 
     public static Character noneCharacter() {
         return noneCharacter;
-    }
-
-    public static double randomdouble() {
-        return rng.nextDouble();
-    }
-
-    public static double randomdouble(double to) {
-        return rng.nextDouble() * to;
     }
 
     public static String prependPrefix(String prefix, String fullDescribe) {
@@ -1091,16 +1040,12 @@ public class Global {
         return Math.min(Math.max(number, min), max);
     }
 
-    public static long randomlong() {
-        return rng.nextLong();
-    }
-
     public static Character getParticipantsByName(String name) {
         return players.stream().filter(c -> c.getTrueName().equals(name)).findAny().get();
     }
 
     private static String DISABLED_FORMAT = "%sDisabled";
-    private static Random FROZEN_RNG = new Random();
+    public static Random FROZEN_RNG = new Random();
     public static boolean checkCharacterDisabledFlag(Character self) {
         return checkFlag(String.format(DISABLED_FORMAT, self.getTrueName()));
     }
@@ -1140,19 +1085,4 @@ public class Global {
 		}
 	}
 
-	/**
-	 * TODO Huge hack to freeze status descriptions.
-	 */
-    public static void freezeRNG() {
-        FROZEN_RNG = rng;
-        rng = new Random(0);
-    }
-
-    /**
-     * TODO Huge hack to freeze status descriptions.
-     */
-    public static void unfreezeRNG() {
-        FROZEN_RNG = new Random();
-        rng = FROZEN_RNG;
-    }
 }

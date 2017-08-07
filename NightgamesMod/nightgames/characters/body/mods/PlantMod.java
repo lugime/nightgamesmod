@@ -4,6 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Trance;
 
 public class PlantMod extends PartMod {
@@ -14,7 +15,7 @@ public class PlantMod extends PartMod {
     }
 
     public double applyReceiveBonuses(Combat c, Character self, Character opponent, BodyPart part, BodyPart target, double damage) {
-        if (damage > self.getArousal().max()/ 5 && Global.random(4) == 0) {
+        if (damage > self.getArousal().max()/ 5 && Random.random(4) == 0) {
             c.write(self, String.format("An intoxicating scent emanating from %s %s leaves %s in a trance!",
             self.possessiveAdjective(), part.describe(self), opponent.directObject()));
             opponent.add(c, new Trance(opponent));

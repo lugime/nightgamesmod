@@ -29,6 +29,7 @@ import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.json.JsonUtils;
@@ -407,7 +408,7 @@ public class Body implements Cloneable {
             return null;
         }
 
-        return upgradable.get(Global.random(upgradable.size()));
+        return upgradable.get(Random.random(upgradable.size()));
     }
 
     public CockPart getCockAbove(double size) {
@@ -423,7 +424,7 @@ public class Body implements Cloneable {
             return null;
         }
 
-        return upgradable.get(Global.random(upgradable.size()));
+        return upgradable.get(Random.random(upgradable.size()));
     }
 
     public BreastsPart getBreastsBelow(double size) {
@@ -439,7 +440,7 @@ public class Body implements Cloneable {
             return null;
         }
 
-        return upgradable.get(Global.random(upgradable.size()));
+        return upgradable.get(Random.random(upgradable.size()));
     }
 
     public BreastsPart getBreastsAbove(double size) {
@@ -455,7 +456,7 @@ public class Body implements Cloneable {
             return null;
         }
 
-        return upgradable.get(Global.random(upgradable.size()));
+        return upgradable.get(Random.random(upgradable.size()));
     }
 
     public Optional<BodyFetish> getFetish(String part) {
@@ -579,7 +580,7 @@ public class Body implements Cloneable {
         List<BodyPart> parts = get(type);
         BodyPart part = null;
         if (parts.size() > 0) {
-            part = parts.get(Global.random(parts.size()));
+            part = parts.get(Random.random(parts.size()));
         }
         return part;
     }
@@ -780,7 +781,7 @@ public class Body implements Cloneable {
             c.write(opponent, Global.format("This seems to be a getting bit boring for {other:direct-object}... Maybe it's time to switch it up?", opponent, character));
         }
         double percentPleasure = 100.0 * result / character.getArousal().max();
-        if (character.has(Trait.sexualDynamo) && percentPleasure >= 5 && Global.random(4) == 0) {
+        if (character.has(Trait.sexualDynamo) && percentPleasure >= 5 && Random.random(4) == 0) {
             c.write(character, Global.format("Sexual pleasure seems only to feed {self:name-possessive} ", character, opponent));
             character.buildMojo(c, (int)Math.floor(percentPleasure));
         }
@@ -788,7 +789,7 @@ public class Body implements Cloneable {
             Character voyeur = c.getOpponent(character);
             c.write(character, Global.format("{self:NAME-POSSESSIVE} moans as {other:subject-action:make|makes} a show of pleasing {other:possessive} {self:master} "
                             + "turns %s on immensely.", character, opponent, voyeur.nameDirectObject()));
-            voyeur.temptWithSkill(c, character, null, Math.max(Global.random(14, 20), result / 3), skill);
+            voyeur.temptWithSkill(c, character, null, Math.max(Random.random(14, 20), result / 3), skill);
         }
 
         character.resolvePleasure(result, c, opponent, target, with);
@@ -796,7 +797,7 @@ public class Body implements Cloneable {
         if (opponent != null && Arrays.asList(fetishParts)
                                       .contains(with.getType())) {
             if (opponent.has(Trait.fetishTrainer)
-                            && Global.random(100) < Math.min(opponent.get(Attribute.Fetish), 25)) {
+                            && Random.random(100) < Math.min(opponent.get(Attribute.Fetish), 25)) {
                 c.write(character, character.subjectAction("now have", "now has") + " a new fetish, courtesy of "
                                 + opponent.directObject() + ".");
                 character.add(c, new BodyFetish(character, opponent, with.getType(), .25));
@@ -1285,7 +1286,7 @@ public class Body implements Cloneable {
             c.write(character, Global.format(
                             "<br/><b>{other:NAME-POSSESSIVE} hypnotic semen takes its toll on {self:name-possessive} willpower, rendering {self:direct-object} doe-eyed and compliant.</b>",
                             character, opponent));
-            character.loseWillpower(c, 10 + Global.random(10));
+            character.loseWillpower(c, 10 + Random.random(10));
         }
         if (part.getType().equals("ass") || part.getType().equals("pussy")) {
             if (character.has(Trait.RapidMeiosis) && character.has(Trait.slime)) {
@@ -1441,7 +1442,7 @@ public class Body implements Cloneable {
         if (upgradable.size() == 0) {
             return null;
         }
-        return Global.pickRandom(upgradable).get();
+        return Random.pickRandom(upgradable).get();
     }
 
     public AssPart getAssAbove(int size) {
@@ -1456,7 +1457,7 @@ public class Body implements Cloneable {
         if (downgradable.size() == 0) {
             return null;
         }
-        return Global.pickRandom(downgradable).get();
+        return Random.pickRandom(downgradable).get();
     }
 
     public static String partPronoun(String type) {
@@ -1479,7 +1480,7 @@ public class Body implements Cloneable {
     }
 
     public void applyMod(String partType, PartMod mod) {
-        BodyPart part = Global.pickRandom(getPure(partType)).orElse(null);
+        BodyPart part = Random.pickRandom(getPure(partType)).orElse(null);
         if (part != null && part instanceof GenericBodyPart) {
             GenericBodyPart genericPart = (GenericBodyPart) part;
             addReplace(genericPart.applyMod(mod), 1);

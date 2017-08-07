@@ -8,6 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Stsflag;
 
 public abstract class AnalSexStance extends Position {
@@ -97,8 +98,10 @@ public abstract class AnalSexStance extends Position {
                             struggler.pronoun() + struggler.action(" attempt"), opponent.possessiveAdjective(), 
                             c.bothDirectObject(opponent)));
         }
-        bottom.body.pleasure(top, Global.pickRandom(topParts(c)).orElse(null), Global.pickRandom(bottomParts()).orElse(null), Global.random(6, 10), c);
-        top.body.pleasure(bottom, Global.pickRandom(bottomParts()).orElse(null), Global.pickRandom(topParts(c)).orElse(null), Global.random(6, 10), c);
+        bottom.body.pleasure(top, Random.pickRandom(topParts(c)).orElse(null), Random.pickRandom(bottomParts()).orElse(null),
+                        Random.random(6, 10), c);
+        top.body.pleasure(bottom, Random.pickRandom(bottomParts()).orElse(null), Random.pickRandom(topParts(c)).orElse(null),
+                        Random.random(6, 10), c);
         super.struggle(c, struggler);
     }
 
@@ -119,8 +122,10 @@ public abstract class AnalSexStance extends Position {
             c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to take advantage of an opening in {other:name-possessive} stance to slip away, "
                             + "but {other:pronoun-action:pounds} {other:possessive} cock into {self:possessive} ass, forcing {self:direct-object} to give up.", escapee, opponent));
         }
-        bottom.body.pleasure(top, Global.pickRandom(topParts(c)).orElse(null), Global.pickRandom(bottomParts()).orElse(null), Global.random(6, 10), c);
-        top.body.pleasure(bottom, Global.pickRandom(bottomParts()).orElse(null), Global.pickRandom(topParts(c)).orElse(null), Global.random(6, 10), c);
+        bottom.body.pleasure(top, Random.pickRandom(topParts(c)).orElse(null), Random.pickRandom(bottomParts()).orElse(null),
+                        Random.random(6, 10), c);
+        top.body.pleasure(bottom, Random.pickRandom(bottomParts()).orElse(null), Random.pickRandom(topParts(c)).orElse(null),
+                        Random.random(6, 10), c);
         super.escape(c, escapee);
     }
 }

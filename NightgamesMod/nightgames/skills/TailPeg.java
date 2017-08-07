@@ -11,6 +11,7 @@ import nightgames.characters.body.TailPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 import nightgames.stance.Stance;
 import nightgames.status.BodyFetish;
@@ -70,7 +71,7 @@ public class TailPeg extends Skill {
             int strength = Math.min(20, 10 + getSelf().get(Attribute.Dark) / 4);
             boolean intercourse = !c.getStance().getPartsFor(c, getSelf(), target).isEmpty() && c.getStance().penisInserted(target);
             boolean shamed = false;
-            if (!intercourse && Global.random(4) == 2) {
+            if (!intercourse && Random.random(4) == 2) {
                 target.add(c, new Shamed(target));
                 shamed = true;
             }
@@ -124,7 +125,7 @@ public class TailPeg extends Skill {
             target.emote(Emotion.desperate, 10);
             getSelf().emote(Emotion.confident, 15);
             getSelf().emote(Emotion.dominant, 25);
-            if (Global.random(100) < 5 + 2 * getSelf().get(Attribute.Fetish)) {
+            if (Random.random(100) < 5 + 2 * getSelf().get(Attribute.Fetish)) {
                 target.add(c, new BodyFetish(target, getSelf(), "tail", .25));
             }
         } else {
@@ -234,7 +235,7 @@ public class TailPeg extends Skill {
                 List<BodyPart> parts = c.getStance().getPartsFor(c, getSelf(), target);
                 String part = "hands";
                 if (!parts.isEmpty()) {
-                    part = Global.pickRandom(parts).get().describe(getSelf());
+                    part = Random.pickRandom(parts).get().describe(getSelf());
                 }
                 return String.format("%s smirks and coils %s tail around in front of %s. %s briefly %s "
                                 + "at it and %s the appendage move under %s and %s. %s to keep it"

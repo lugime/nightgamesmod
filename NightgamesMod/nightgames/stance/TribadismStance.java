@@ -8,6 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class TribadismStance extends Position {
     public TribadismStance(Character top, Character bottom) {
@@ -128,8 +129,8 @@ public class TribadismStance extends Position {
     }
 
     private void strugglePleasure(Combat c, Character self, Character opponent) {
-        int selfM = Global.random(6, 11);
-        int targM = Global.random(6, 11);
+        int selfM = Random.random(6, 11);
+        int targM = Random.random(6, 11);
         self.body.pleasure(opponent, opponent.body.getRandomPussy(), self.body.getRandomPussy(), selfM, c);
         opponent.body.pleasure(self, self.body.getRandomPussy(), opponent.body.getRandomPussy(), targM, c);
     }

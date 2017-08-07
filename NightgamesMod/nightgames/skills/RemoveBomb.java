@@ -6,6 +6,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Compulsive;
 import nightgames.status.Compulsive.Situation;
 import nightgames.status.Stsflag;
@@ -34,27 +35,27 @@ public class RemoveBomb extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         Optional<String> compulsion = Compulsive.describe(c, getSelf(), Situation.PREVENT_REMOVE_BOMB);
-        if (compulsion.isPresent() && Global.random(100) < 40) {
+        if (compulsion.isPresent() && Random.random(100) < 40) {
             c.write(getSelf(), compulsion.get());
-            getSelf().pain(c, null, 20 + Global.random(40));
+            getSelf().pain(c, null, 20 + Random.random(40));
             Compulsive.doPostCompulsion(c, getSelf(), Situation.PREVENT_REMOVE_BOMB);
             return false;
         }
         if (c.getStance().dom(target)) {
-            if (Global.random(100) < 75) {
+            if (Random.random(100) < 75) {
                 writeOutput(c, Result.miss, target);
                 return false;
             } else {
                 writeOutput(c, Result.normal, target);
                 getSelf().removeStatus(Stsflag.bombed);
             }
-        } else if (Global.random(100) < getSelf().getStamina().percent()) {
+        } else if (Random.random(100) < getSelf().getStamina().percent()) {
             writeOutput(c, Result.normal, target);
             getSelf().removeStatus(Stsflag.bombed);
         } else {
             writeOutput(c, Result.miss, target);
         }
-        getSelf().pain(c, null, 10 + Global.random(40));
+        getSelf().pain(c, null, 10 + Random.random(40));
         return true;
     }
 

@@ -12,6 +12,7 @@ import nightgames.characters.Trait;
 import nightgames.global.DebugFlags;
 import nightgames.global.Encs;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.status.Enthralled;
 import nightgames.status.Flatfooted;
@@ -260,7 +261,7 @@ public class Encounter implements Serializable, IEncounter {
                         Global.gui().message(p2Guaranteed.get());
                     }
                     p2.flee(location);
-                } else if (p1.get(Attribute.Speed) + Global.random(10) >= p2.get(Attribute.Speed) + Global.random(10)) {
+                } else if (p1.get(Attribute.Speed) + Random.random(10) >= p2.get(Attribute.Speed) + Random.random(10)) {
                     if (p2.human()) {
                         Global.gui()
                               .message(p1.getName() + " dashes away before you can move.");

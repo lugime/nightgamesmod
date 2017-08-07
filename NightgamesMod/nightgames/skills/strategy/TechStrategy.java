@@ -7,7 +7,7 @@ import java.util.Set;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.Collar;
 import nightgames.skills.LaunchHarpoon;
 import nightgames.skills.MagLock;
@@ -43,7 +43,7 @@ public class TechStrategy extends AbstractStrategy {
 
     @Override
     public int initialDuration(Combat c, Character self) {
-        return Global.random(5, 10);
+        return Random.random(5, 10);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class TechStrategy extends AbstractStrategy {
             return preferred;
         }
         
-        if (!secondary.isEmpty() && Global.randomfloat() < .7) {
+        if (!secondary.isEmpty() && Random.randomfloat() < .7) {
             return secondary;
         }
         

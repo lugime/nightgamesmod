@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import nightgames.characters.Character;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.global.Scene;
 
 abstract class DaytimeEvent implements Scene {
@@ -43,7 +44,7 @@ abstract class DaytimeEvent implements Scene {
     
     public boolean playAny() {
         for (EventVariation scene : scenes) {
-            if (Global.random(100) < scene.priority) {
+            if (Random.random(100) < scene.priority) {
                 runScene(scene.getName());
                 return true;
             }

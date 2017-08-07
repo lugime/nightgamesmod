@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -43,7 +44,7 @@ public class ImpStrip extends SimpleEnemySkill {
     }
     @Override
     public boolean resolve(Combat c, Character target) {        
-        Optional<ClothingSlot> targetSlot = Global.pickRandom(getStrippableSlots(c, target));
+        Optional<ClothingSlot> targetSlot = Random.pickRandom(getStrippableSlots(c, target));
         int difficulty = !targetSlot.isPresent() ? 999999 : target.getOutfit().getTopOfSlot(targetSlot.get()).dc() + target.getLevel()
                 + (target.getStamina().percent() / 5 - target.getArousal().percent()) / 4
                 - (!target.canAct() || c.getStance().sub(target) ? 20 : 0);

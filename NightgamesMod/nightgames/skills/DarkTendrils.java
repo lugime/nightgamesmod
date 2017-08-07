@@ -5,6 +5,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Bound;
 import nightgames.status.Falling;
@@ -38,7 +39,7 @@ public class DarkTendrils extends Skill {
     public boolean resolve(Combat c, Character target) {
         getSelf().arouse((int) (getSelf().getArousal().max() * .20), c);
         if (target.roll(getSelf(), c, accuracy(c, target))) {
-            if (Global.random(2) == 1) {
+            if (Random.random(2) == 1) {
                 writeOutput(c, Result.normal, target);
                 target.add(c, new Bound(target, 35 + 2 * Math.sqrt(getSelf().get(Attribute.Dark)), "shadows"));
                 target.add(c, new Falling(target));

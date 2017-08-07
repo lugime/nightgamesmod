@@ -14,6 +14,7 @@ import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.start.NpcConfiguration;
@@ -298,31 +299,31 @@ public class Angel extends BasePersonality {
                 character.getGrowth().addTrait(Math.min(20, character.getLevel()), Trait.lacedjuices);
             }
             if (character.money > 0) {
-                Global.getDay().visit("Body Shop", character, Global.random(character.money));
+                Global.getDay().visit("Body Shop", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay().visit("Black Market", character, Global.random(character.money));
+                Global.getDay().visit("Black Market", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay().visit("Workshop", character, Global.random(character.money));
+                Global.getDay().visit("Workshop", character, Random.random(character.money));
             }
         }
         if (character.money > 0) {
-            Global.getDay().visit("XXX Store", character, Global.random(character.money));
+            Global.getDay().visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Black Market", character, Global.random(character.money));
+            Global.getDay().visit("Black Market", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Bookstore", character, Global.random(character.money));
+            Global.getDay().visit("Bookstore", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Hardware Store", character, Global.random(character.money));
+            Global.getDay().visit("Hardware Store", character, Random.random(character.money));
         }
         Decider.visit(character);
         int r;
         for (int i = 0; i < time; i++) {
-            r = Global.random(8);
+            r = Random.random(8);
             if (r == 1) {
                 Global.getDay().visit("Exercise", this.character, 0);
             } else if (r == 0) {
@@ -358,7 +359,7 @@ public class Angel extends BasePersonality {
                 case 2:
                     return "Angel massages her own cunt as she cums, <i>\"Not enough... Not nearly enough!\"<i>";
                 default:
-                    return Global.pickRandom(Arrays.asList(finalLines)).get();
+                    return Random.pickRandom(Arrays.asList(finalLines)).get();
             }
         });
         character.addLine(CharacterLine.MAKE_ORGASM_LINER, (c, self, other) -> {
@@ -375,7 +376,7 @@ public class Angel extends BasePersonality {
                 case 2:
                     return "<i>\"Enough? This is no where near enough. Stop panting and keep going.\"</i>";
                 default:
-                    return Global.pickRandom(Arrays.asList(finalLines)).get();
+                    return Random.pickRandom(Arrays.asList(finalLines)).get();
             }});
         character.addLine(CharacterLine.NIGHT_LINER, (c, self, other) -> "As you start to head back after the match, Angel grabs your hand and drags you in the other direction. <i>\"You're officially kidnapped, because I haven't had "
                         + "enough sex yet tonight.\"</i> That makes sense... kinda? You did just finish three hours of intense sex-fighting. If she wants too much more than that, you're "

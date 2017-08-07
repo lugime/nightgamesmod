@@ -3,6 +3,7 @@ package nightgames.skills.petskills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
@@ -27,7 +28,7 @@ public class FairyTease extends SimpleEnemySkill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
-            int m = (int) (Global.random(10, 16) + Math.sqrt(getSelf().getLevel())) / 2;
+            int m = (int) (Random.random(10, 16) + Math.sqrt(getSelf().getLevel())) / 2;
             if (target.crotchAvailable() && !c.getStance().penisInserted(target) && target.hasDick()) {
                 c.write(getSelf(), Global.format("{self:SUBJECT} hugs {other:name-possessive} dick and rubs it with "
                                     + "{self:possessive} entire body until {other:pronoun-action:pull|pulls} {self:direct-object} off.",

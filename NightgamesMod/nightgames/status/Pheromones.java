@@ -13,6 +13,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 
 public class Pheromones extends Horny {
@@ -60,7 +61,7 @@ public class Pheromones extends Horny {
                                   .filter(att -> !NON_DEBUFFABLE_ATTS.contains(att))
                                   .filter(att -> affected.get(att) > 0)
                                   .collect(Collectors.toList());
-                Optional<Attribute> att = Global.pickRandom(debuffable);
+                Optional<Attribute> att = Random.pickRandom(debuffable);
                 String message = Global.format("{other:NAME-POSSESSIVE} intoxicating aroma is messing with {self:name-possessive} head, "
                                 + "{self:pronoun-action:feel|seems} %s than before.", affected, sourceCharacter, att.get().getLowerPhrase());
                 if (c != null && att.isPresent()) {
@@ -71,7 +72,7 @@ public class Pheromones extends Horny {
                 affected.add(c, new Abuff(affected, att.get(), -1, 10));
             }
             if (c != null && sourceCharacter.has(Trait.FrenzyScent)) {
-                if (Global.random(13 - stacks) == 0) {
+                if (Random.random(13 - stacks) == 0) {
                     String message;
                     if (affected.human()) {
                         message = Global.format("The heady obscene scent clinging to you is too much. You can't help it any more, you NEED to fuck something right this second!", affected, sourceCharacter);

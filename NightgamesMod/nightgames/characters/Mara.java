@@ -13,6 +13,7 @@ import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.skills.strategy.FootjobStrategy;
@@ -95,7 +96,7 @@ public class Mara extends BasePersonality {
                 case 2:
                     return "<i>\"AAAHHH!\"</i> {self:subject} tries to catch {self:possessive} breath, \"There's... no way... you can keep this up!\"";
                 default:
-                    return Global.pickRandom(Arrays.asList(finalLines))
+                    return Random.pickRandom(Arrays.asList(finalLines))
                                  .get();
              }
          });
@@ -112,13 +113,13 @@ public class Mara extends BasePersonality {
                 case 2:
                     return "<i>\"Oh man, not many people lasted to three. I got more coming for you though!\"</i>";
                 default:
-                    return Global.pickRandom(Arrays.asList(finalLines))
+                    return Random.pickRandom(Arrays.asList(finalLines))
                                  .get();
              }
          });
 
         character.addLine(CharacterLine.LEVEL_DRAIN_LINER, (c, self, other) -> {
-            String part = Global.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
+            String part = Random.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
             if (other.getLevel() < self.getLevel() - 5) {
                 return "\"<i>Annddd... here it comes!</i>\" {self:SUBJECT} happily squeals as the now familiar sensation of your strength entering {self:possessive} flows through the petite girl. "
                                 + "You try struggling out, but {self:subject} simply holds you down with a single hand. \"<i>Now now, don't get antsy! "
@@ -410,33 +411,33 @@ public class Mara extends BasePersonality {
         }
         if (character.money > 0 && character.rank >= 1) {
             Global.getDay()
-                  .visit("Body Shop", character, Global.random(character.money));
+                  .visit("Body Shop", character, Random.random(character.money));
         }
         if (character.money > 0 && character.rank >= 1) {
             Global.getDay()
-                  .visit("Workshop", character, Global.random(character.money));
+                  .visit("Workshop", character, Random.random(character.money));
         }
         if (character.money > 0) {
             Global.getDay()
-                  .visit("Hardware Store", character, Global.random(character.money));
+                  .visit("Hardware Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
             Global.getDay()
-                  .visit("Black Market", character, Global.random(character.money));
+                  .visit("Black Market", character, Random.random(character.money));
         }
         if (character.money > 0) {
             Global.getDay()
-                  .visit("XXX Store", character, Global.random(character.money));
+                  .visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
             Global.getDay()
-                  .visit("Bookstore", character, Global.random(character.money));
+                  .visit("Bookstore", character, Random.random(character.money));
         }
         Decider.visit(character);
         int r;
 
         for (int i = 0; i < time; i++) {
-            r = Global.random(8);
+            r = Random.random(8);
             if (r == 1) {
                 Global.getDay()
                       .visit("Exercise", this.character, 0);
@@ -511,7 +512,7 @@ public class Mara extends BasePersonality {
         }
         if (c.getStance()
              .vaginallyPenetrated(c, character)) {
-            if (character.has(Item.ShockGlove) && Global.random(2) == 0) {
+            if (character.has(Item.ShockGlove) && Random.random(2) == 0) {
                 return "You've got Mara just where you want her. Your arms are wrapped around her, holding her in place as you thrust your cock into her tight pussy over and over. Her moans are getting louder and louder, and you can feel her breath "
                                 + "quickening. You're getting close to cumming, but she's definitely closer. She returns your embrace, squeezing her body against yours, stroking your back with her hands. Her hands creep down to grasp your buttocks. "
                                 + "All of a sudden, she grins deviously, and she whispers...<br/><br/>"

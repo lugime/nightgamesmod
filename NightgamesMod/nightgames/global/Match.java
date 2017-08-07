@@ -111,7 +111,7 @@ public class Match {
         while (time < 36) {
             if (index >= combatants.size()) {
                 index = 0;
-                if (meanLvl() > 3 && Global.random(10) + dropOffTime >= 12) {
+                if (meanLvl() > 3 && Random.random(10) + dropOffTime >= 12) {
                     dropPackage();
                     dropOffTime = 0;
                 }
@@ -217,7 +217,7 @@ public class Match {
                 maxaffection = rival.getAffection(player);
             }
         }
-        if (Global.checkFlag(Flag.metLilly) && !Global.checkFlag(Flag.challengeAccepted) && Global.random(10) >= 7) {
+        if (Global.checkFlag(Flag.metLilly) && !Global.checkFlag(Flag.challengeAccepted) && Random.random(10) >= 7) {
             Global.gui().message(
                             "\nWhen you gather after the match to collect your reward money, you notice Jewel is holding a crumpled up piece of paper and ask about it. "
                                             + "<i>\"This? I found it lying on the ground during the match. It seems to be a worthless piece of trash, but I didn't want to litter.\"</i> Jewel's face is expressionless, "
@@ -300,9 +300,9 @@ public class Match {
         ArrayList<Area> areas = new ArrayList<Area>();
         areas.addAll(map.values());
         for (int i = 0; i < 10; i++) {
-            Area target = areas.get(Global.random(areas.size()));
+            Area target = areas.get(Random.random(areas.size()));
             if (!target.corridor() && !target.open() && target.env.size() < 5) {
-                target.place(new Cache(meanLvl() + Global.random(11) - 4));
+                target.place(new Cache(meanLvl() + Random.random(11) - 4));
                 Global.gui().message("<br/><b>A new cache has been dropped off at " + target.name + "!</b>");
                 break;
             }
@@ -312,7 +312,7 @@ public class Match {
     public void dropChallenge() {
         ArrayList<Area> areas = new ArrayList<Area>();
         areas.addAll(map.values());
-        Area target = areas.get(Global.random(areas.size()));
+        Area target = areas.get(Random.random(areas.size()));
         if (!target.open() && target.env.size() < 5) {
             target.place(new Challenge());
         }

@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.nskills.tags.SkillTag;
@@ -45,11 +46,11 @@ public class Kick extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (!target.getOutfit().slotUnshreddable(ClothingSlot.bottom) && getSelf().get(Attribute.Ki) >= 14
-                        && Global.random(3) == 2) {
+                        && Random.random(3) == 2) {
             writeOutput(c, Result.special, target);
             target.shred(ClothingSlot.bottom);
         } else if (target.roll(getSelf(), c, accuracy(c, target))) {
-            double m = Global.random(16, 21);
+            double m = Random.random(16, 21);
             if (target.has(Trait.brassballs)) {
                 m *= .8;
             }
@@ -68,7 +69,7 @@ public class Kick extends Skill {
                 }
             }
             if (target.has(Trait.achilles) && !target.has(ClothingTrait.armored)) {
-                m += 14 + Global.random(4);
+                m += 14 + Random.random(4);
             }
             if (target.has(ClothingTrait.armored)) {
                 m = m / 2;

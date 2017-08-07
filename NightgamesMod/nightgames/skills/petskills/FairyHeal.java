@@ -3,6 +3,7 @@ package nightgames.skills.petskills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
 
@@ -25,7 +26,7 @@ public class FairyHeal extends SimpleMasterSkill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
-            int m = Global.random(7, 14) + getSelf().getLevel();
+            int m = Random.random(7, 14) + getSelf().getLevel();
             c.write(getSelf(), Global.format("{self:SUBJECT} flies around {other:name-do}, rains magic energy on {other:direct-object}, restoring {other:possessive} strength.", getSelf(), target));
             target.heal(c, m);
         } else {

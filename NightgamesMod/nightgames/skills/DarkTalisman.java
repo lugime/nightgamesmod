@@ -4,6 +4,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Enthralled;
@@ -47,7 +48,7 @@ public class DarkTalisman extends Skill {
         writeOutput(c, result, target);
         getSelf().consume(Item.Talisman, 1);
         if (result == Result.normal) {
-            target.add(c, new Enthralled(target, getSelf(), Global.random(3) + 1));
+            target.add(c, new Enthralled(target, getSelf(), Random.random(3) + 1));
             return true;
         } else {
             return false;

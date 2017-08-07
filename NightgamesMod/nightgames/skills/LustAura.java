@@ -6,6 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Horny;
 import nightgames.status.Stsflag;
 
@@ -40,7 +41,8 @@ public class LustAura extends Skill {
     public boolean resolve(Combat c, Character target) {
         getSelf().arouse(10, c);
         writeOutput(c, Result.normal, target);
-        target.add(c, Horny.getWithPsycologicalType(getSelf(), target, (float) (3 + 2 * getSelf().getExposure()), 3 + Global.random(3),
+        target.add(c, Horny.getWithPsycologicalType(getSelf(), target, (float) (3 + 2 * getSelf().getExposure()), 3 + Random
+                                        .random(3),
                         getSelf().nameOrPossessivePronoun() + " aura of lust"));
         target.emote(Emotion.horny, 10);
         return true;

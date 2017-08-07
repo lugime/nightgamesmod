@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
@@ -42,7 +43,7 @@ public class Squeeze extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
-            double m = Global.random(10, 20);
+            double m = Random.random(10, 20);
             DamageType type = DamageType.physical;
             if (target.has(Trait.brassballs)) {
                 if (target.human()) {

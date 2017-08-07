@@ -5,7 +5,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Shamed;
 
 public class CyberneticMod extends PartMod {
@@ -37,7 +37,7 @@ public class CyberneticMod extends PartMod {
                                 opponent.pronoun(), opponent.human() ? "feel" : "feels"));
                 bonus -= 5;
             } else {
-                if (Global.random(3) == 0 || target.moddedPartCountsAs(opponent, CockMod.incubus)) {
+                if (Random.random(3) == 0 || target.moddedPartCountsAs(opponent, CockMod.incubus)) {
                     String prefix = target.moddedPartCountsAs(opponent, CockMod.incubus) ? "Eager to gain a sample of "
                                     + opponent.nameOrPossessivePronoun() + " exotic, demonic sperm, " : "";
                     c.write(self, String.format(
@@ -47,7 +47,7 @@ public class CyberneticMod extends PartMod {
                                     target.describe(opponent), opponent.pronoun(), opponent.possessiveAdjective(),
                                     opponent.directObject()));
                     bonus += 15;
-                    if (target.moddedPartCountsAs(opponent, CockMod.incubus) || Global.random(4) == 0) {
+                    if (target.moddedPartCountsAs(opponent, CockMod.incubus) || Random.random(4) == 0) {
                         opponent.add(c, new Shamed(opponent));
                     }
                 }

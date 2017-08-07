@@ -17,6 +17,7 @@ import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.skills.strategy.FacesitStrategy;
@@ -290,25 +291,25 @@ public class Kat extends BasePersonality {
             character.money -= 300;
         }
         if (character.money > 0) {
-            Global.getDay().visit("Body Shop", character, Global.random(character.money));
+            Global.getDay().visit("Body Shop", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("XXX Store", character, Global.random(character.money));
+            Global.getDay().visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Black Market", character, Global.random(character.money));
+            Global.getDay().visit("Black Market", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Bookstore", character, Global.random(character.money));
+            Global.getDay().visit("Bookstore", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Hardware Store", character, Global.random(character.money));
+            Global.getDay().visit("Hardware Store", character, Random.random(character.money));
         }
         Decider.visit(character);
         int r;
 
         for (int i = 0; i < time; i++) {
-            r = Global.random(8);
+            r = Random.random(8);
             if (r == 1) {
                 Global.getDay().visit("Exercise", this.character, 0);
             } else if (r == 0) {
@@ -380,7 +381,7 @@ public class Kat extends BasePersonality {
                 return "Your eyes widen as you feel your experience and training leave you and enter Kat's hungry body alongside your climax. "
                                 + "Kat however doesn't seem to really know what is going on, <i>\"Meowrrrr... That feels <b>REALLY</b> gooooodd... mmm...\"</i>";
             } else {
-                String part = Global.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
+                String part = Random.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
                 return "The sexy kitty doesn't pause for even a second as you cum your life force into her gluttonous " + part + ". <i>Aahh ahh! You're delicious nyaa!</i>";
             }
         });

@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
 import nightgames.status.BodyFetish;
@@ -59,20 +59,20 @@ public class Paizuri extends Skill {
         
         int fetishChance = 7 + breasts.getSize() + getSelf().get(Attribute.Fetish) / 2;
 
-        int m = 5 + Global.random(5) + breasts.getSize();
+        int m = 5 + Random.random(5) + breasts.getSize();
         
         if(getSelf().is(Stsflag.oiled)) {
-            m += Global.random(2, 5);
+            m += Random.random(2, 5);
         }
         
         if( getSelf().has(Trait.lactating)) {
-            m += Global.random(3, 5);
+            m += Random.random(3, 5);
             fetishChance += 5;
         }
         
         if (getSelf().has(Trait.temptingtits)) {
             
-            m += Global.random(4, 8);
+            m += Random.random(4, 8);
             fetishChance += 10;
         }
         
@@ -87,7 +87,7 @@ public class Paizuri extends Skill {
             c.write(getSelf(), deal(c, 0, Result.normal, target));
         }
         target.body.pleasure(getSelf(), getSelf().body.getRandom("breasts"), target.body.getRandom("cock"), m, c, this);
-        if (Global.random(100) < fetishChance) {
+        if (Random.random(100) < fetishChance) {
             target.add(c, new BodyFetish(target, getSelf(), BreastsPart.a.getType(), .05 + (0.01 * breasts.getSize()) + getSelf().get(Attribute.Fetish) * .01));
         }
         if (getSelf().has(Trait.temptingtits)) {

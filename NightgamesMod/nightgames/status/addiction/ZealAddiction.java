@@ -11,6 +11,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.stance.Behind;
 import nightgames.stance.Mount;
 import nightgames.stance.Position;
@@ -71,12 +72,12 @@ public class ZealAddiction extends Addiction {
     public void tick(Combat c) {
         super.tick(c);
         if (c != null && (c.getStance().en == Stance.neutral || c.getStance().en == Stance.behind)
-                        && Global.randomdouble() < Math.min(.5f, combatMagnitude / 2.0)) {
+                        && Random.randomdouble() < Math.min(.5f, combatMagnitude / 2.0)) {
             c.write(affected, "Overcome by your desire to serve " + cause.getName() + ", you get on the ground "
                             + "and prostrate yourself in front of " + cause.directObject() + ".");
             boolean behindPossible = cause.hasDick();
             Position pos;
-            if (!behindPossible || Global.random(2) == 0) {
+            if (!behindPossible || Random.random(2) == 0) {
                 pos = new Mount(cause, affected);
                 c.write(cause, String.format(
                                 "%s tells you to roll over, and once you have done so %s sets"

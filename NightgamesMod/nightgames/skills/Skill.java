@@ -11,6 +11,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.pet.Ptype;
 import nightgames.skills.damage.Staleness;
@@ -475,7 +476,7 @@ public abstract class Skill {
         skill.user().spendMojo(c, skill.getMojoCost(c));
         if (success) {
             skill.user().buildMojo(c, generated);
-        } else if (target.has(Trait.tease) && Global.random(4) == 0) {
+        } else if (target.has(Trait.tease) && Random.random(4) == 0) {
             c.write(target, Global.format("Dancing just past {other:name-possessive} reach gives {self:name-do} a minor high.", target, skill.getSelf()));
             target.buildMojo(c, 20);
         }

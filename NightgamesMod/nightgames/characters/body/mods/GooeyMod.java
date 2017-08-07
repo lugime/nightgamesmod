@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.CockBound;
 
 public class GooeyMod extends PartMod {
@@ -25,7 +26,7 @@ public class GooeyMod extends PartMod {
                                             + " leaves the shaft in a constant flow rather than spurts. When {other:possessive} orgasm is"
                                             + " over, {other:subject-action:are} much more drained of cum than usual.",
                             self, opponent, partName));
-            opponent.loseWillpower(c, 10 + Global.random(Math.min(20, self.get(Attribute.Bio))));
+            opponent.loseWillpower(c, 10 + Random.random(Math.min(20, self.get(Attribute.Bio))));
         }
     }
 
@@ -45,7 +46,7 @@ public class GooeyMod extends PartMod {
                         "The slimy filaments inside {self:possessive} %s constantly massage"
                                         + " {other:possessive} %s, filling every inch of it with pleasure.",
                         self, opponent, partName, otherOrgan.describe(opponent)));
-        opponent.body.pleasure(self, part, otherOrgan, 1 + Global.random(7), c);
+        opponent.body.pleasure(self, part, otherOrgan, 1 + Random.random(7), c);
     }
 
     public Optional<String> getFluids() {

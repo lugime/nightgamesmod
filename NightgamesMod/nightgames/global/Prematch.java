@@ -96,12 +96,12 @@ public class Prematch implements Scene {
     }
 
     private Modifier offer(Player player) {
-        if (Global.random(10) > 4) {
+        if (Random.random(10) > 4) {
             return new NoModifier();
         }
         Set<Modifier> modifiers = new HashSet<>(Global.getModifierPool());
         modifiers.removeIf(mod -> !mod.isApplicable() || mod.name().equals("normal"));
-        return Global.pickRandom(modifiers.toArray(new Modifier[] {})).get();
+        return Random.pickRandom(modifiers.toArray(new Modifier[] {})).get();
     }
 
     @Override

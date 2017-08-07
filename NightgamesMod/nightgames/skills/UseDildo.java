@@ -4,6 +4,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -39,10 +40,10 @@ public class UseDildo extends Skill {
             int m;
             if (getSelf().has(Item.Dildo2)) {
                 writeOutput(c, Result.upgrade, target);
-                m = Global.random(10, 20);
+                m = Random.random(10, 20);
             } else {
                 writeOutput(c, Result.normal, target);
-                m = Global.random(5, 15);
+                m = Random.random(5, 15);
                 
             }
 

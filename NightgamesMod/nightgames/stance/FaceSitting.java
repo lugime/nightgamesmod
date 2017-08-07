@@ -10,6 +10,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.Anilingus;
 import nightgames.skills.Blowjob;
 import nightgames.skills.Cunnilingus;
@@ -154,11 +155,11 @@ public class FaceSitting extends AbstractBehindStance {
                             "{self:NAME-POSSESSIVE} body glows purple as {other:subject-action:feel|feels}"
                             + " {other:possessive} very spirit drained through %s connection.",
                             top, bottom, c.bothPossessive(bottom)));
-            int m = Global.random(5) + 5;
+            int m = Random.random(5) + 5;
             bottom.drain(c, top, (int) top.modifyDamage(DamageType.drain, bottom, m));
         }
         if (top.has(Trait.drainingass)) {
-            if (Global.random(3) == 0) {
+            if (Random.random(3) == 0) {
                 c.write(top, Global.format("{self:name-possessive} ass seems to <i>inhale</i>, drawing"
                                 + " great gouts of {other:name-possessive} strength from {other:possessive}"
                                 + " body.", top, bottom));

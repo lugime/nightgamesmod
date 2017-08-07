@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Status;
 import nightgames.status.Stsflag;
 
@@ -231,13 +232,13 @@ public class MagicMilkAddiction extends Addiction {
             int loss;
             switch (getCombatSeverity()) {
                 case LOW:
-                    loss = Global.random(1, 3);
+                    loss = Random.random(1, 3);
                     break;
                 case MED:
-                    loss = Global.random(3, 6);
+                    loss = Random.random(3, 6);
                     break;
                 case HIGH:
-                    loss = Global.random(5, 8);
+                    loss = Random.random(5, 8);
                     break;
                 default:
                     throw new IllegalStateException();

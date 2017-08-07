@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class HeldOral extends AbstractFacingStance {
     public HeldOral(Character top, Character bottom) {
@@ -154,7 +155,7 @@ public class HeldOral extends AbstractFacingStance {
     }
 
     private void pleasureRandomCombination(Combat c, Character self, Character opponent, String pussyString, String cockString) {
-        int targM = Global.random(6, 11);
+        int targM = Random.random(6, 11);
         List<Runnable> possibleActions = new ArrayList<>();
         if (self.hasPussy()) {
             possibleActions.add(() -> {
@@ -168,7 +169,7 @@ public class HeldOral extends AbstractFacingStance {
                 self.body.pleasure(opponent, opponent.body.getRandom("mouth"), self.body.getRandomCock(), targM, c);
             });
         }
-        Optional<Runnable> action = Global.pickRandom(possibleActions);
+        Optional<Runnable> action = Random.pickRandom(possibleActions);
         if (action.isPresent()) {
             action.get().run();
         }

@@ -24,6 +24,7 @@ import nightgames.characters.Growth;
 import nightgames.characters.Trait;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
 
@@ -101,7 +102,7 @@ public abstract class CharacterConfiguration {
                                 .filter(entry -> entry.getValue() > 0)
                                 .map(Entry::getKey)
                                 .collect(Collectors.toList());
-                Optional<Attribute> attToTrain = Global.pickRandom(attsToTrain);
+                Optional<Attribute> attToTrain = Random.pickRandom(attsToTrain);
                 // put it into the level plan.
                 attToTrain.ifPresent(att -> {
                     attsForLevel.compute(att, (key, old) -> old == null? 1 : old + 1);

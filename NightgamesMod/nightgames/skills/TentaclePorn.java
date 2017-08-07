@@ -8,6 +8,7 @@ import nightgames.characters.body.TentaclePart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Bound;
 import nightgames.status.Oiled;
 import nightgames.status.Stsflag;
@@ -48,7 +49,7 @@ public class TentaclePorn extends Skill {
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             if (target.mostlyNude()) {
-                int m = Global.random(getSelf().get(Attribute.Fetish)) / 2 + 1;
+                int m = Random.random(getSelf().get(Attribute.Fetish)) / 2 + 1;
                 if (target.bound()) {
                     writeOutput(c, Result.special, target);
                     if (target.hasDick())

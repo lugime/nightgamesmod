@@ -11,6 +11,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class Drained extends Abuff {
     public static void drain(Combat c, Character drainer, Character drained, 
@@ -87,7 +88,8 @@ public class Drained extends Abuff {
                 // large
                 message = "{self:subject-action:have} %s some of {other:name-possessive} %s, greatly %s {self:possessive} %s.";
             }
-            return Global.format(message, affected, other, Global.pickRandom(stolenSynonyms).get(), modded.getDrainedDO(), Global.pickRandom(boostingSynonyms).get(), modded.getDrainerOwnDO());
+            return Global.format(message, affected, other, Random.pickRandom(stolenSynonyms).get(), modded.getDrainedDO(),
+                            Random.pickRandom(boostingSynonyms).get(), modded.getDrainerOwnDO());
         }
     }
 

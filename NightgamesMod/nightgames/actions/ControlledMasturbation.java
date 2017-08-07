@@ -2,6 +2,7 @@ package nightgames.actions;
 
 import nightgames.characters.Character;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Stsflag;
 
 public class ControlledMasturbation extends Action {
@@ -37,7 +38,7 @@ public class ControlledMasturbation extends Action {
                             + " you pause. Just what is going on here?", user, Global.noneCharacter(), mast));
         }
         
-        user.tempt(40 + Global.random(20));
+        user.tempt(40 + Random.random(20));
         
         return Movement.wait;
     }

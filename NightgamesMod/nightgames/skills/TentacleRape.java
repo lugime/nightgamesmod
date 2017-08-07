@@ -8,6 +8,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Bound;
 import nightgames.status.Oiled;
 import nightgames.status.Slimed;
@@ -52,20 +53,20 @@ public class TentacleRape extends Skill {
         tentacles = getSelf().body.getRandom("tentacles");
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             if (target.mostlyNude()) {
-                int m = 2 + Global.random(4);
+                int m = 2 + Random.random(4);
                 if (target.bound()) {
                     writeOutput(c, Result.special, target);
                     if (target.hasDick()) {
                         target.body.pleasure(getSelf(), tentacles, target.body.getRandom("cock"), m, c, this);
-                        m = 2 + Global.random(4);
+                        m = 2 + Random.random(4);
                     }
                     if (target.hasPussy()) {
                         target.body.pleasure(getSelf(), tentacles, target.body.getRandom("pussy"), m, c, this);
-                        m = 2 + Global.random(4);
+                        m = 2 + Random.random(4);
                     }
                     if (target.hasBreasts()) {
                         target.body.pleasure(getSelf(), tentacles, target.body.getRandom("breasts"), m, c, this);
-                        m = 2 + Global.random(4);
+                        m = 2 + Random.random(4);
                     }
                     if (target.body.has("ass")) {
                         target.body.pleasure(getSelf(), tentacles, target.body.getRandom("ass"), m, c, this);
@@ -88,7 +89,7 @@ public class TentacleRape extends Skill {
             return false;
         }
         if (getSelf().has(Trait.VolatileSubstrate) && getSelf().has(Trait.slime)) {
-            target.add(c, new Slimed(target, getSelf(), Global.random(2, 5)));
+            target.add(c, new Slimed(target, getSelf(), Random.random(2, 5)));
         }
         return true;
     }

@@ -9,6 +9,7 @@ import nightgames.characters.NPC;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Outfit;
 import nightgames.status.Disguised;
 import nightgames.status.Stsflag;
@@ -49,7 +50,7 @@ public class NPCPetCharacter extends PetCharacter {
         if (disguised != null) {
             lines = disguised.getTarget().getLines();
         }
-        return Global.format(Global.pickRandom(lines.get(lineType)).orElse((cb, sf, ot) -> "").getLine(c, this, other), this, other);
+        return Global.format(Random.pickRandom(lines.get(lineType)).orElse((cb, sf, ot) -> "").getLine(c, this, other), this, other);
     }
 
     @Override

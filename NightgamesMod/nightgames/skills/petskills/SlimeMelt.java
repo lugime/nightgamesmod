@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -43,7 +44,7 @@ public class SlimeMelt extends SimpleEnemySkill {
         if (!target.breastsAvailable() && !target.outfit.slotUnshreddable(ClothingSlot.top)) {
             strippable.add(ClothingSlot.top);
         }
-        ClothingSlot targetSlot = Global.pickRandom(strippable).get();
+        ClothingSlot targetSlot = Random.pickRandom(strippable).get();
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             // should never be null here, since otherwise we can't use the skill          
             Clothing stripped = target.strip(targetSlot, c);

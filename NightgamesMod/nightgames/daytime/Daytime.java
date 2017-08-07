@@ -8,6 +8,7 @@ import nightgames.characters.NPC;
 import nightgames.characters.Player;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.addiction.Addiction;
 
 public class Daytime {
@@ -209,14 +210,14 @@ public class Daytime {
             a = 100 - 2 * one.get(Attribute.Perception);
             b = 100 - 2 * two.get(Attribute.Perception);
         }
-        if (Global.random(100) >= a) {
+        if (Random.random(100) >= a) {
             one.modAttributeDontSaveData(att, 1);
             if (one.human()) {
                 Global.gui()
                       .message("<b>Your " + att + " has improved.</b>");
             }
         }
-        if (Global.random(100) >= b) {
+        if (Random.random(100) >= b) {
             two.modAttributeDontSaveData(att, 1);
             if (two.human()) {
                 Global.gui()

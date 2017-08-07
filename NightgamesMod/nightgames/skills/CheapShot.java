@@ -6,6 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
 import nightgames.stance.Behind;
@@ -43,11 +44,11 @@ public class CheapShot extends Skill {
     public boolean resolve(Combat c, Character target) {
         getSelf().add(c, new Primed(getSelf(), -3));
         writeOutput(c, Result.normal, target);
-        if (target.human() && Global.random(5) >= 3) {
+        if (target.human() && Random.random(5) >= 3) {
             c.write(getSelf(), getSelf().bbLiner(c, target));
         }
         c.setStance(new Behind(getSelf(), target), getSelf(), true);
-        target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Global.random(8, 20)));
+        target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Random.random(8, 20)));
         getSelf().buildMojo(c, 10);
 
         getSelf().emote(Emotion.confident, 15);

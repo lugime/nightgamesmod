@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.modifier.BaseModifier;
 
@@ -73,7 +74,7 @@ public class LevelDrainModifier extends BaseModifier {
         if (score > 0) {
             Global.gui().message("Additionally, you get a few bottles from Lilly as extras prizes.");
             for (int i = 0; i < score; i++) {
-                player.gain(Global.pickRandom(EXTRA_LOOT).get());
+                player.gain(Random.pickRandom(EXTRA_LOOT).get());
             }
         }
     }

@@ -4,6 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class Missionary extends MaledomSexStance {
 
@@ -74,7 +75,7 @@ public class Missionary extends MaledomSexStance {
 
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
-        boolean coiled = Global.random(2) == 0;
+        boolean coiled = Random.random(2) == 0;
         if (!coiled) {
             if (writeMessage) {
                 c.write(bottom, Global.format(
@@ -97,7 +98,7 @@ public class Missionary extends MaledomSexStance {
     }
 
     public static Position similarInstance(Character top, Character bottom) {
-        if (top.get(Attribute.Power) > 25 && Global.random(2) == 0) {
+        if (top.get(Attribute.Power) > 25 && Random.random(2) == 0) {
             return new UpsideDownMaledom(top, bottom);
         }
         return new Missionary(top, bottom);

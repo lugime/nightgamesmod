@@ -7,6 +7,7 @@ import nightgames.characters.body.mods.FeralMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.FaceSitting;
 import nightgames.status.BodyFetish;
@@ -50,7 +51,7 @@ public class FaceSit extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        if (getSelf().has(Trait.enthrallingjuices) && Global.random(4) == 0 && !target.wary()) {
+        if (getSelf().has(Trait.enthrallingjuices) && Random.random(4) == 0 && !target.wary()) {
             writeOutput(c, Result.special, target);
             target.add(c, new Enthralled(target, getSelf(), 5));
         } else {
@@ -66,11 +67,11 @@ public class FaceSit extends Skill {
         } else {
             getSelf().body.pleasure(target, target.body.getRandom("mouth"), getSelf().body.getRandom("pussy"), m, c, this);
             
-            if (Global.random(100) < 1 + getSelf().get(Attribute.Fetish) / 2) {
+            if (Random.random(100) < 1 + getSelf().get(Attribute.Fetish) / 2) {
                 target.add(c, new BodyFetish(target, getSelf(), "pussy", .05));
             }
         }
-        double n = 4 + Global.random(4) + getSelf().body.getHotness(target);
+        double n = 4 + Random.random(4) + getSelf().body.getHotness(target);
         if (target.has(Trait.imagination)) {
             n *= 1.5;
         }
@@ -87,7 +88,7 @@ public class FaceSit extends Skill {
         if (getSelf().has(Trait.bewitchingbottom)) {
             fetishChance *= 2;
         }
-        if (Global.random(100) < fetishChance) {
+        if (Random.random(100) < fetishChance) {
             target.add(c, new BodyFetish(target, getSelf(), "ass", .25));
         }
       

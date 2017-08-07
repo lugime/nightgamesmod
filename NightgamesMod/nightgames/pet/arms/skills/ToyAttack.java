@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.ToysPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.Arm;
@@ -25,7 +26,7 @@ public class ToyAttack extends ArmSkill {
     @Override
     public boolean resolve(Combat c, Arm arm, Character owner, Character target) {
 
-        int m = 5 + Global.random(10);
+        int m = 5 + Random.random(10);
         m += (int) owner.modifyDamage(DamageType.gadgets, target, 2);
         if (c.getStance()
              .penetrated(c, target) && target.hasDick()) {
@@ -57,16 +58,16 @@ public class ToyAttack extends ArmSkill {
             boolean cockAvaiable = target.body.has("cock") && !c.getStance().penetratedBy(c, owner, target);
             
             if (pussyAvaiable && cockAvaiable) {
-                part = Global.random(3) == 0 ? "pussy" : Global.random(2) == 0 ? "cock" : "ass";
+                part = Random.random(3) == 0 ? "pussy" : Random.random(2) == 0 ? "cock" : "ass";
             } else if (cockAvaiable) {
-                part = Global.random(2) == 0 ? "cock" : "ass";
+                part = Random.random(2) == 0 ? "cock" : "ass";
             } else if (pussyAvaiable) {
-                part = Global.random(2) == 0 ? "pussy" : "ass";
+                part = Random.random(2) == 0 ? "pussy" : "ass";
             } else {
                 part = "ass";
             }
             if (c.getStance()
-                 .dom(owner) || Global.random(100) < owner.get(Attribute.Science) + owner.get(Attribute.Cunning)) {
+                 .dom(owner) || Random.random(100) < owner.get(Attribute.Science) + owner.get(Attribute.Cunning)) {
                 if (part.equals("pussy")) {
                     c.write(PetCharacter.DUMMY, Global.format("{self:NAME-POSSESSIVE} %s shapes itself"
                                     + " into a cock-like column of material and shoots straight at"

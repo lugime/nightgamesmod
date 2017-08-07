@@ -21,6 +21,7 @@ import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.CombatantData;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.pet.arms.ArmManager;
@@ -112,7 +113,7 @@ public class Airi extends BasePersonality {
             }
         });
         character.addLine(CharacterLine.LEVEL_DRAIN_LINER, (c, self, other) -> {
-            String part = Global.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
+            String part = Random.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
             if (character.has(Trait.slime)) {
                 if (other.getLevel() < self.getLevel() - 5) {
                     return "{self:SUBJECT} tousles {other:possessive} hair fondly as {other:subject} cum, \"<i>How does it feel... reduced to mere prey...? You're just food... for me now...</i>\"";
@@ -470,7 +471,7 @@ public class Airi extends BasePersonality {
         Decider.visit(character);
         int r;
         for (int i = 0; i < time; i++) {
-            r = Global.random(8);
+            r = Random.random(8);
             if (r == 1) {
                 Global.getDay().visit("Exercise", this.character, 0);
             } else if (r == 0) {

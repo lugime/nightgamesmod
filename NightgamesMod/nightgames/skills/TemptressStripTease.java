@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.stance.Stance;
 import nightgames.status.Alluring;
 import nightgames.status.Charmed;
@@ -66,9 +67,9 @@ public class TemptressStripTease extends StripTease {
             } else {
                 c.write(getSelf(), receive(c, 0, Result.weak, target));
             }
-            target.temptNoSource(c, getSelf(), 10 + Global.random(Math.max(5, technique)), this);
-            if (Global.random(2) == 0) {
-                target.add(c, new Charmed(target, Global.random(Math.min(3, technique))));
+            target.temptNoSource(c, getSelf(), 10 + Random.random(Math.max(5, technique)), this);
+            if (Random.random(2) == 0) {
+                target.add(c, new Charmed(target, Random.random(Math.min(3, technique))));
             }
             getSelf().add(c, new Alluring(getSelf(), 3));
         } else {
@@ -78,8 +79,8 @@ public class TemptressStripTease extends StripTease {
                 c.write(getSelf(), receive(c, 0, Result.normal, target));
             }
 
-            target.temptNoSource(c, getSelf(), 15 + Global.random(Math.max(10, technique)), this);
-            target.add(c, new Charmed(target, Global.random(Math.min(5, technique))));
+            target.temptNoSource(c, getSelf(), 15 + Random.random(Math.max(10, technique)), this);
+            target.add(c, new Charmed(target, Random.random(Math.min(5, technique))));
             getSelf().add(c, new Alluring(getSelf(), 5));
             getSelf().undress(c);
         }

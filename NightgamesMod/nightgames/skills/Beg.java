@@ -6,6 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Charmed;
 import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
@@ -35,7 +36,7 @@ public class Beg extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        if ((Global.random(30) <= getSelf().get(Attribute.Submissive) - target.get(Attribute.Cunning) / 2
+        if ((Random.random(30) <= getSelf().get(Attribute.Submissive) - target.get(Attribute.Cunning) / 2
                         && !target.is(Stsflag.cynical) || target.getMood() == Emotion.dominant)
                         && target.getMood() != Emotion.angry && target.getMood() != Emotion.desperate) {
             Result results;

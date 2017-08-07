@@ -16,6 +16,7 @@ import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.json.JsonUtils;
@@ -260,8 +261,8 @@ public class GenericBodyPart implements BodyPart {
             c.write(self, Global
                             .format("{self:name-possessive} rubber gloves provide a unique sensation as {self:subject-action:run|runs} {self:possessive} hands over {other:possessive} "
                                             + target.describe(opponent) + ".", self, opponent));
-            bonus += 5 + Global.random(5);
-            if (Global.random(5) == 0) {
+            bonus += 5 + Random.random(5);
+            if (Random.random(5) == 0) {
                 c.write(self, "Unfortunately, the gloves wear out with their usage.");
                 self.shred(ClothingSlot.arms);
             }
@@ -270,13 +271,13 @@ public class GenericBodyPart implements BodyPart {
             c.write(self, Global
                             .format("{self:name-possessive} hands dance across {other:possessive} "
                                             + target.describe(opponent) + ", hitting all the right spots.", self, opponent));
-            bonus += Global.random(2, 6);
+            bonus += Random.random(2, 6);
         }
         if (type.equals("feet") && self.has(Trait.nimbletoes)) {
             c.write(self, Global
                             .format("{self:name-possessive} nimble toes adeptly massage {other:possessive} "
                                             + target.describe(opponent) + " elicting a quiet gasp.", self, opponent));
-            bonus += Global.random(2, 6);
+            bonus += Random.random(2, 6);
         }
         return bonus;
     }

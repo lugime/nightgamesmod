@@ -11,6 +11,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class Seeded extends Status implements InsertedStatus {
     private String target;
@@ -105,9 +106,9 @@ public class Seeded extends Status implements InsertedStatus {
                                             + "{self:possessive} mind blanks out as every thought is replaced with a feral need to mate.",
                             affected, other, hole.describe(affected)));
             affected.heal(c, 100, " (Seedling)");
-            affected.arouse(Math.max(Global.random(50, 100), affected.getArousal().max() / 4), c,
+            affected.arouse(Math.max(Random.random(50, 100), affected.getArousal().max() / 4), c,
                             other.nameOrPossessivePronoun() + " seedling");
-            affected.body.pleasure(other, seed, hole, Global.random(10, 20) + other.get(Attribute.Bio) / 2, c);
+            affected.body.pleasure(other, seed, hole, Random.random(10, 20) + other.get(Attribute.Bio) / 2, c);
             affected.add(c, new Frenzied(other, 1000));
         } else if (time >= 2) {
             if (stage < 2) {
@@ -124,8 +125,8 @@ public class Seeded extends Status implements InsertedStatus {
             Global.gui().message(c, affected,
                             Global.format("The thick tuber-like roots inside {self:direct-object} constantly shift and scrape against {self:possessive} %s, leaving {self:direct-object} both horny and lenthargic at the same time.",
                                             affected, other, hole.describe(affected)));
-            affected.drainStaminaAsMojo(c, other, Global.random(5, 11), 1.0f);
-            affected.body.pleasure(other, seed, hole, Global.random(10, 20) + other.get(Attribute.Bio) / 2, c);
+            affected.drainStaminaAsMojo(c, other, Random.random(5, 11), 1.0f);
+            affected.body.pleasure(other, seed, hole, Random.random(10, 20) + other.get(Attribute.Bio) / 2, c);
         } else if (time >= 1) {
             if (stage < 1) {
                 stage = 1;
@@ -138,7 +139,7 @@ public class Seeded extends Status implements InsertedStatus {
             Global.gui().message(c, affected,
                             Global.format("{self:SUBJECT-ACTION:feel|feels} slow as the thin threadlike roots latch onto your inner walls and seem to leech your vigor.",
                                             affected, other, hole.describe(affected)));
-            affected.drainStaminaAsMojo(c, other, Global.random(2, 6), 1.0f);
+            affected.drainStaminaAsMojo(c, other, Random.random(2, 6), 1.0f);
         } else {
             if (!c.shouldAutoresolve())
             Global.gui().message(c, affected, Global.format("The seed sits uncomfortably in {self:possessive} %s.",

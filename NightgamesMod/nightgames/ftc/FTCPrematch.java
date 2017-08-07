@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Player;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.global.Scene;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
@@ -88,7 +89,7 @@ public class FTCPrematch implements Scene {
                 }
             } else {
                 do {
-                    prey = (Character) Global.pickRandom(Global.getParticipants().toArray()).get();
+                    prey = (Character) Random.pickRandom(Global.getParticipants().toArray()).get();
                 } while (prey.human());
                 if (!Global.checkFlag(Flag.didFTC)) {
                     message += "\"No one? Really? Fine, then I'll pick someone. Let's see... " + prey.getTrueName()

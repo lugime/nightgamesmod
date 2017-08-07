@@ -8,6 +8,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.stance.FlyingCowgirl;
 import nightgames.status.Falling;
 
@@ -52,7 +53,7 @@ public class ReverseFly extends Fly {
             target.emote(Emotion.desperate, 50);
             target.emote(Emotion.nervous, 75);
 
-            int m = 5 + Global.random(5);
+            int m = 5 + Random.random(5);
             int otherm = m;
             if (getSelf().has(Trait.insertion)) {
                 otherm += Math.min(getSelf().get(Attribute.Seduction) / 4, 40);

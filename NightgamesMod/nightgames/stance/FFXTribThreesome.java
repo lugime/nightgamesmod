@@ -10,6 +10,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
 
@@ -193,8 +194,8 @@ public class FFXTribThreesome extends Position {
     }
 
     private void strugglePleasure(Combat c, Character self, Character opponent) {
-        int selfM = Global.random(6, 11);
-        int targM = Global.random(6, 11);
+        int selfM = Random.random(6, 11);
+        int targM = Random.random(6, 11);
         self.body.pleasure(opponent, opponent.body.getRandomPussy(), self.body.getRandomPussy(), selfM, c);
         opponent.body.pleasure(self, self.body.getRandomPussy(), opponent.body.getRandomPussy(), targM, c);
     }

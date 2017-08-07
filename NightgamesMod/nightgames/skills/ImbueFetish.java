@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.BodyFetish;
 
 public class ImbueFetish extends Skill {
@@ -45,7 +46,7 @@ public class ImbueFetish extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        chosenFetish = Global.pickRandom(
+        chosenFetish = Random.pickRandom(
                         POSSIBLE_FETISHES.stream().filter(part -> getSelf().body.has(part)).toArray(String[]::new)).get();
         if (getSelf().human()) {
             c.write(getSelf(), deal(c, 0, Result.normal, target));
@@ -53,7 +54,7 @@ public class ImbueFetish extends Skill {
             c.write(getSelf(), receive(c, 0, Result.normal, target));
         }
         target.add(c, new BodyFetish(target, getSelf(), chosenFetish,
-                        Global.randomdouble() * .2 + getSelf().get(Attribute.Fetish) * .01));
+                        Random.randomdouble() * .2 + getSelf().get(Attribute.Fetish) * .01));
         chosenFetish = null;
         return true;
     }

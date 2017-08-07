@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Falling;
 import nightgames.status.Slimed;
@@ -38,7 +39,7 @@ public class Trip extends Skill {
             if (isSlime()) {
                 writeOutput(c, Result.special, target);
                 if (getSelf().has(Trait.VolatileSubstrate)) {
-                    target.add(c, new Slimed(target, getSelf(), Global.random(2, 4)));
+                    target.add(c, new Slimed(target, getSelf(), Random.random(2, 4)));
                 }
             } else {
                 writeOutput(c, Result.normal, target);

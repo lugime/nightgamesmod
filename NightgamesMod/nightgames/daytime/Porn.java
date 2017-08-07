@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.global.Configuration;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Random;
 
 public class Porn extends Activity {
     public Porn(Character player) {
@@ -33,9 +34,9 @@ public class Porn extends Activity {
 
     private int gainArousal(Character self) {
         int maximumArousalForLevel = Configuration.getMaximumArousalPossible(self);
-        int gain = 1 + Global.random(2);
+        int gain = 1 + Random.random(2);
         if (player.has(Trait.expertGoogler)) {
-            gain = gain + Global.random(2);
+            gain = gain + Random.random(2);
         }
         gain = (int) Math.max(0, (int) Math.min(maximumArousalForLevel, self.getArousal().trueMax() + gain) - self.getArousal().trueMax());
         self.getArousal().gain(gain);
@@ -104,7 +105,7 @@ public class Porn extends Activity {
                 available.add(Scene.reyka1);
             }
         }
-        return available.get(Global.random(available.size()));
+        return available.get(Random.random(available.size()));
     }
 
     private static enum Scene {

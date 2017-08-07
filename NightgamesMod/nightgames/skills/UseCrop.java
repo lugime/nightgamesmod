@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -46,9 +46,9 @@ public class UseCrop extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
-            double m = Global.random(12, 18);
+            double m = Random.random(12, 18);
             if (target.crotchAvailable() && c.getStance().reachBottom(getSelf())) {
-                if (getSelf().has(Item.Crop2) && Global.random(10) > 7 && !target.has(Trait.brassballs)) {
+                if (getSelf().has(Item.Crop2) && Random.random(10) > 7 && !target.has(Trait.brassballs)) {
                     writeOutput(c, Result.critical, target);
                     if (target.has(Trait.achilles)) {
                         m += 6;
@@ -57,12 +57,12 @@ public class UseCrop extends Skill {
                     m += 8;
                 } else {
                     writeOutput(c, Result.normal, target);
-                    target.pain(c, getSelf(), 5 + Global.random(12) + target.get(Attribute.Perception) / 2);
+                    target.pain(c, getSelf(), 5 + Random.random(12) + target.get(Attribute.Perception) / 2);
                 }
             } else {
                 writeOutput(c, Result.weak, target);
-                m -= Global.random(2, 6);
-                target.pain(c, getSelf(), 5 + Global.random(12));
+                m -= Random.random(2, 6);
+                target.pain(c, getSelf(), 5 + Random.random(12));
             }
             target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.gadgets, target, m));
             target.emote(Emotion.angry, 15);

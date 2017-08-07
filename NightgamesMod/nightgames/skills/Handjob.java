@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
@@ -43,7 +43,7 @@ public class Handjob extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int m = Global.random(8, 13);
+        int m = Random.random(8, 13);
 
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             if (getSelf().get(Attribute.Seduction) >= 8) {
@@ -110,7 +110,7 @@ public class Handjob extends Skill {
                                 getSelf().subject(), target.nameOrPossessivePronoun());
             }
 
-            else if ((r = Global.random(3)) == 0) {
+            else if ((r = Random.random(3)) == 0) {
                 return String.format("%s strokes and teases %s dick, sending shivers of pleasure up %s spine.",
                                 getSelf().subject(), target.nameOrPossessivePronoun(),
                                 target.possessiveAdjective());

@@ -12,6 +12,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 
@@ -89,7 +90,7 @@ public class StripMinor extends Skill {
                                                    .filter(article -> article.getName().toLowerCase().equals(choice.toLowerCase()))
                                                    .findAny();
         } else {
-            articleToStrip = Global.pickRandom(getStrippableArticles(c));
+            articleToStrip = Random.pickRandom(getStrippableArticles(c));
         }
         if (!articleToStrip.isPresent()) {
             c.write(getSelf(), Global.format("{self:SUBJECT} tried to go after {other:name-possessive} clothing, "

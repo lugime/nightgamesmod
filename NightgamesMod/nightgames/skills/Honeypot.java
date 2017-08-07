@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 
 public class Honeypot extends Skill {
@@ -37,10 +38,10 @@ public class Honeypot extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        Optional<PetCharacter> targetPet = Global.pickRandom(c.getPetsFor(target));
+        Optional<PetCharacter> targetPet = Random.pickRandom(c.getPetsFor(target));
         if (targetPet.isPresent()) {
             writeOutput(c, Result.normal, targetPet.get());
-            double m = Global.random(10, 25);
+            double m = Random.random(10, 25);
             targetPet.get().body.pleasure(getSelf(), getSelf().body.getRandom("hands"), 
                             targetPet.get().body.getRandomGenital(), m, c);
             getSelf().arouse(getSelf().getArousal().max() / 4, c);

@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.stance.Mount;
 import nightgames.stance.ReverseMount;
 import nightgames.stance.Stance;
@@ -34,7 +34,7 @@ public class Stumble extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        if (Global.random(2) == 0) {
+        if (Random.random(2) == 0) {
             c.setStance(new Mount(target, getSelf()), target, false);
         } else {
             c.setStance(new ReverseMount(target, getSelf()), target, false);

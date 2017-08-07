@@ -9,6 +9,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.CockBound;
 import nightgames.status.Stsflag;
 
@@ -97,8 +98,8 @@ public abstract class FemdomSexStance extends Position {
         Character opponent = getPartner(c, struggler);
         boolean cockbound = opponent.is(Stsflag.cockbound);
 
-        int selfM = Global.random(6, 11);
-        int targM = Global.random(6, 11);
+        int selfM = Random.random(6, 11);
+        int targM = Random.random(6, 11);
         if (cockbound) {
             CockBound s = (CockBound) struggler.getStatus(Stsflag.cockbound);
             c.write(struggler,
@@ -126,8 +127,8 @@ public abstract class FemdomSexStance extends Position {
         Character opponent = getPartner(c, escapee);
         boolean cockbound = opponent.is(Stsflag.cockbound);
 
-        int selfM = Global.random(6, 11);
-        int targM = Global.random(6, 11);
+        int selfM = Random.random(6, 11);
+        int targM = Random.random(6, 11);
         if (cockbound) {
             CockBound s = (CockBound) escapee.getStatus(Stsflag.cockbound);
             c.write(escapee,

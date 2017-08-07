@@ -8,7 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
 
@@ -48,6 +48,6 @@ public class BreastStrategy extends KnockdownThenActionStrategy {
 
     @Override
     public int initialDuration(Combat c, Character self) {
-        return Global.random(2, 6);
+        return Random.random(2, 6);
     }
 }

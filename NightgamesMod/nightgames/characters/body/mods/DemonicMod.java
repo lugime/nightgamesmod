@@ -1,8 +1,6 @@
 package nightgames.characters.body.mods;
 
 import java.util.EnumSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
@@ -12,6 +10,7 @@ import nightgames.characters.body.CockMod;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.damage.DamageType;
 import nightgames.status.Drained;
@@ -65,9 +64,9 @@ public class DemonicMod extends PartMod {
                                 "Since %s had focused so much of %s in %s %s, there is much more for %s to take.",
                                 opponent.subject(), opponent.reflectivePronoun(), opponent.possessiveAdjective(),
                                 target.describe(opponent), self.subject()));
-                strength = Global.random(20, 31);
+                strength = Random.random(20, 31);
             } else {
-                strength = Global.random(10, 21);
+                strength = Random.random(10, 21);
             }
             if (bottomless) {
                 strength = strength * 3 / 2;
@@ -81,7 +80,7 @@ public class DemonicMod extends PartMod {
             }
             for (int i = 0; i < 10; i++) {
                 Attribute canBeStolen[] = EnumSet.complementOf(EnumSet.of(Attribute.Speed, Attribute.Perception)).stream().filter(a -> opponent.get(a) > 0).toArray(size -> new Attribute[size]);
-                Attribute stolen = Global.pickRandom(canBeStolen).orElse(null);
+                Attribute stolen = Random.pickRandom(canBeStolen).orElse(null);
                 if (stolen != null) {
                     int stolenStrength = Math.min(strength / 10, opponent.get(stolen));
                     Drained.drain(c, self, opponent, stolen, stolenStrength, 20, true);

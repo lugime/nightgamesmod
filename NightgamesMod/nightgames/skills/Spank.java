@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
 import nightgames.status.Shamed;
@@ -28,9 +28,9 @@ public class Spank extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        double m = Global.random(6, 13);
+        double m = Random.random(6, 13);
         if (getSelf().has(Trait.disciplinarian)) {
-            boolean shamed = Global.random(10) >= 5 || !target.is(Stsflag.shamed) && getSelf().canSpend(5);
+            boolean shamed = Random.random(10) >= 5 || !target.is(Stsflag.shamed) && getSelf().canSpend(5);
             if (shamed) {
                 getSelf().spendMojo(c, 5);
             }

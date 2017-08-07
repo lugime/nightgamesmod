@@ -4,6 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.pet.PetCharacter;
@@ -22,7 +23,7 @@ public class DefabRay extends ArmSkill {
     @Override
     public boolean resolve(Combat c, Arm arm, Character owner, Character target) {
         boolean sub = c.getStance().dom(owner);
-        boolean success = sub || Global.random(100) < 10 + owner.get(Attribute.Science);
+        boolean success = sub || Random.random(100) < 10 + owner.get(Attribute.Science);
         
         if (success) {
             ClothingSlot slot = target.outfit.getRandomShreddableSlot();

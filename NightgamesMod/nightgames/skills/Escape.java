@@ -6,7 +6,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.pet.arms.skills.Grab;
 import nightgames.stance.Neutral;
@@ -97,7 +97,7 @@ public class Escape extends Skill {
         Optional<String> compulsion = Compulsive.describe(c, getSelf(), Situation.PREVENT_ESCAPE);
         if (compulsion.isPresent()) {
             c.write(getSelf(), compulsion.get());
-            getSelf().pain(c, null, 20 + Global.random(40));
+            getSelf().pain(c, null, 20 + Random.random(40));
             Compulsive.doPostCompulsion(c, getSelf(), Situation.PREVENT_ESCAPE);
             return true;
         }

@@ -7,6 +7,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.FFMCowgirlThreesome;
@@ -70,7 +71,7 @@ public class PetThreesome extends Skill {
     }
 
     protected Character getFucker(Combat c) {
-        return Global.pickRandom(c.getPetsFor(getSelf())).orElse(null);
+        return Random.pickRandom(c.getPetsFor(getSelf())).orElse(null);
     }
 
     protected Character getMaster(Combat c) {
@@ -79,7 +80,7 @@ public class PetThreesome extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int m = 5 + Global.random(5);
+        int m = 5 + Random.random(5);
         int otherm = m;
         Character fucker = getFucker(c);
         Character master = getMaster(c);
@@ -95,7 +96,7 @@ public class PetThreesome extends Skill {
             }
         }
         if (targetO.isReady(target)) {
-            Result result = Global.random(3) == 0 ? Result.critical : Result.normal;
+            Result result = Random.random(3) == 0 ? Result.critical : Result.normal;
             if (selfO.isType("pussy") && targetO.isType("cock") && target.hasPussy() && master.hasDick()) {
                 c.write(getSelf(), Global.format("While {self:subject} is holding {other:name-do} down, "
                                 + "{master:subject-action:move|moves} behind {other:direct-object} and {master:action:pierce|pierces} "

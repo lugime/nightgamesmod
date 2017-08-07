@@ -12,6 +12,7 @@ import nightgames.characters.body.CockMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.pet.arms.skills.Grab;
 import nightgames.skills.damage.DamageType;
@@ -81,7 +82,7 @@ public class Struggle extends Skill {
         Optional<String> compulsion = Compulsive.describe(c, getSelf(), Situation.PREVENT_STRUGGLE);
         if (compulsion.isPresent()) {
             c.write(getSelf(), compulsion.get());
-            getSelf().pain(c, null, 20 + Global.random(40));
+            getSelf().pain(c, null, 20 + Random.random(40));
             Compulsive.doPostCompulsion(c, getSelf(), Situation.PREVENT_STRUGGLE);
             return true;
         }
@@ -246,7 +247,7 @@ public class Struggle extends Skill {
             difficulty += 5;
         }
         if (getSelf().check(Attribute.Power, difficulty)
-                        && (!target.has(Trait.grappler) || Global.random(10) >= 2)) {
+                        && (!target.has(Trait.grappler) || Random.random(10) >= 2)) {
             if (getSelf().human()) {
                 c.write(getSelf(), "You manage to scrabble out of " + target.getName() + "'s grip.");
             } else if (c.shouldPrintReceive(target, c)) {
@@ -285,7 +286,7 @@ public class Struggle extends Skill {
                            Math.max(getSelf().get(Attribute.Seduction), 
                                            getSelf().get(Attribute.Cunning))) / 2;        
         }
-        dc = attrLevel + Global.random(-10, 20);
+        dc = attrLevel + Random.random(-10, 20);
         
         // One MagLock, pretty easy to remove
         if (stat.getCount() == 1) {
@@ -344,7 +345,7 @@ public class Struggle extends Skill {
         int trueResist = Math.max(20, baseResist) - getSelf().get(Attribute.Science) / 2 
                                                   - getSelf().get(Attribute.Power) / 3 
                                                   - getSelf().get(Attribute.Cunning) / 3;
-        if (Global.random(100) > trueResist) {
+        if (Random.random(100) > trueResist) {
             c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:wrench|wrenches}"
                             + " {other:name-possessive} Grabber off {self:possessive}"
                             + " wrist without too much trouble.", getSelf(), target));

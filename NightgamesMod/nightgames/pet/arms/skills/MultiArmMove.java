@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.pet.arms.Arm;
 
 public abstract class MultiArmMove {
@@ -22,6 +22,6 @@ public abstract class MultiArmMove {
     public abstract void execute(Combat c, Character owner, Character target, List<Arm> arms);
     
     public boolean shouldExecute() {
-        return Global.random(100) < 20;
+        return Random.random(100) < 20;
     }
 }

@@ -26,6 +26,7 @@ import nightgames.ftc.FTCMatch;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.global.Prematch;
+import nightgames.global.Random;
 import nightgames.gui.ActionButton;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
@@ -491,7 +492,7 @@ public class Player extends Character {
     @Override
     public void flee(Area location2) {
         Area[] adjacent = location2.adjacent.toArray(new Area[location2.adjacent.size()]);
-        Area destination = adjacent[Global.random(adjacent.length)];
+        Area destination = adjacent[Random.random(adjacent.length)];
         gui.message("You dash away and escape into the <b>" + destination.name + ".</b>");
         travel(destination);
         location2.endEncounter();
@@ -515,7 +516,7 @@ public class Player extends Character {
 
     @Override
     public void craft() {
-        int roll = Global.random(10);
+        int roll = Random.random(10);
         Global.gui().message("You spend some time crafting some potions with the equipment.");
         if (check(Attribute.Cunning, 25)) {
             if (roll == 9) {
@@ -565,7 +566,7 @@ public class Player extends Character {
 
     @Override
     public void search() {
-        int roll = Global.random(10);
+        int roll = Random.random(10);
         switch (roll) {
             case 9:
                 gain(Item.Tripwire);
@@ -711,18 +712,18 @@ public class Player extends Character {
             case damage:
                 c.write(this, "You dodge " + target.getName()
                                 + "'s slow attack and hit her sensitive tit to stagger her.");
-                target.pain(c, target, 4 + Math.min(Global.random(get(Attribute.Power)), 20));
+                target.pain(c, target, 4 + Math.min(Random.random(get(Attribute.Power)), 20));
                 break;
             case pleasure:
                 if (!target.crotchAvailable() || !target.hasPussy()) {
                     c.write(this, "You pull " + target.getName()
                                     + " off balance and lick her sensitive ear. She trembles as you nibble on her earlobe.");
                     target.body.pleasure(this, body.getRandom("tongue"), target.body.getRandom("ears"),
-                                    4 + Math.min(Global.random(get(Attribute.Seduction)), 20), c);
+                                    4 + Math.min(Random.random(get(Attribute.Seduction)), 20), c);
                 } else {
                     c.write(this, "You pull " + target.getName() + " to you and rub your thigh against her girl parts.");
                     target.body.pleasure(this, body.getRandom("feet"), target.body.getRandomPussy(),
-                                    4 + Math.min(Global.random(get(Attribute.Seduction)), 20), c);
+                                    4 + Math.min(Random.random(get(Attribute.Seduction)), 20), c);
                 }
                 break;
             case fucking:
@@ -740,7 +741,7 @@ public class Player extends Character {
                     }
                 } else {
                     target.body.pleasure(this, body.getRandom("hands"), target.body.getRandomBreasts(),
-                                    4 + Math.min(Global.random(get(Attribute.Seduction)), 20), c);
+                                    4 + Math.min(Random.random(get(Attribute.Seduction)), 20), c);
                     c.write(this, Global.format(
                                     "{self:SUBJECT-ACTION:pinch|pinches} {other:possessive} nipples with {self:possessive} hands as {other:subject-action:try|tries} to fuck {self:direct-object}. "
                                                     + "While {other:subject-action:yelp|yelps} with surprise, {self:subject-action:take|takes} the chance to pleasure {other:possessive} body.",
@@ -756,7 +757,7 @@ public class Player extends Character {
                 } else {
                     c.write(this, "You manage to dodge " + target.possessiveAdjective()
                                     + " groping hands and give a retaliating slap in return.");
-                    target.pain(c, target, 4 + Math.min(Global.random(get(Attribute.Power)), 20));
+                    target.pain(c, target, 4 + Math.min(Random.random(get(Attribute.Power)), 20));
                 }
                 break;
             case positioning:
@@ -773,7 +774,7 @@ public class Player extends Character {
             default:
                 c.write(this, "You manage to dodge " + target.possessiveAdjective()
                                 + " attack and give a retaliating slap in return.");
-                target.pain(c, target, 4 + Math.min(Global.random(get(Attribute.Power)), 20));
+                target.pain(c, target, 4 + Math.min(Random.random(get(Attribute.Power)), 20));
         }
     }
 

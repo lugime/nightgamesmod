@@ -7,6 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
 import nightgames.stance.BreastSmothering;
@@ -58,10 +59,10 @@ public class BreastSmother extends Skill {
         boolean special = c.getStance().en != Stance.breastsmothering && !c.getStance().havingSex(c);        
         writeOutput(c, special ? Result.special : Result.normal, target);
 
-        double n = 10 + Global.random(5) + getSelf().body.getLargestBreasts().getSize();
+        double n = 10 + Random.random(5) + getSelf().body.getLargestBreasts().getSize();
 
         if (target.has(Trait.temptingtits)) {
-            n += Global.random(5, 10);
+            n += Random.random(5, 10);
         }
         if (target.has(Trait.beguilingbreasts)) {
             n *= 1.5;
@@ -72,7 +73,7 @@ public class BreastSmother extends Skill {
         }
 
         target.temptWithSkill(c, getSelf(), getSelf().body.getRandom("breasts"), (int) Math.round(n / 2), this);
-        target.weaken(c, (int) getSelf().modifyDamage(DamageType.physical, target, Global.random(5, 15)));
+        target.weaken(c, (int) getSelf().modifyDamage(DamageType.physical, target, Random.random(5, 15)));
 
         target.loseWillpower(c, Math.min(5, target.getWillpower().max() * 10 / 100 ));     
 
@@ -82,7 +83,7 @@ public class BreastSmother extends Skill {
         } else {
             getSelf().emote(Emotion.dominant, 10);
         }
-        if (Global.random(100) < 15 + 2 * getSelf().get(Attribute.Fetish)) {
+        if (Random.random(100) < 15 + 2 * getSelf().get(Attribute.Fetish)) {
             target.add(c, new BodyFetish(target, getSelf(), "breasts", .25));
         }
         return true;

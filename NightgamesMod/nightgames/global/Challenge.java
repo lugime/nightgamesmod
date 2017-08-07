@@ -37,7 +37,7 @@ public class Challenge implements Deployable {
         }
         available.add(GOAL.pendomwin);
         available.add(GOAL.subwin);
-        return available.get(Global.random(available.size()));
+        return available.get(Random.random(available.size()));
     }
 
     public String message() {
@@ -130,9 +130,9 @@ public class Challenge implements Deployable {
     public boolean resolve(Character active) {
         if (active.state == State.ready) {
             owner = active;
-            target = Global.getMatch().combatants.get(Global.random(Global.getMatch().combatants.size() - 1));
+            target = Global.getMatch().combatants.get(Random.random(Global.getMatch().combatants.size() - 1));
             for (int i = 0; i < 10 && target == active; i++) {
-                target = Global.getMatch().combatants.get(Global.random(Global.getMatch().combatants.size() - 1));
+                target = Global.getMatch().combatants.get(Random.random(Global.getMatch().combatants.size() - 1));
             }
             if (target == active) {
                 return false;

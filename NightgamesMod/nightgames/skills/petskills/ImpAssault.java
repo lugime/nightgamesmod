@@ -5,6 +5,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
@@ -33,7 +34,7 @@ public class ImpAssault extends SimpleEnemySkill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
-            int m = 8 + getSelf().getLevel() + Global.random(5);
+            int m = 8 + getSelf().getLevel() + Random.random(5);
             if (target.hasBalls()) {
                 if (target.has(Trait.achilles) && !target.has(ClothingTrait.armored)) {
                     m += 8;

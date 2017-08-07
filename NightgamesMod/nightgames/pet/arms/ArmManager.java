@@ -22,7 +22,7 @@ import nightgames.characters.body.mods.DemonicMod;
 import nightgames.characters.body.mods.TentacledMod;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.skills.ArmSkill;
 import nightgames.pet.arms.skills.DoubleGrab;
@@ -48,7 +48,7 @@ public class ArmManager {
         arms.clear();
         if (owner.has(Trait.octo)) {
             if (owner.level < 30) {
-                if (Global.randomdouble() < .5) {
+                if (Random.randomdouble() < .5) {
                     arms.add(new Grabber(this));
                     arms.add(new Grabber(this));
                     arms.add(new ToyArm(this));
@@ -58,7 +58,7 @@ public class ArmManager {
                     arms.add(new ToyArm(this));
                 }
             } else {
-                double r = Global.randomdouble();
+                double r = Random.randomdouble();
                 if (r > .75) {
                     arms.add(new Grabber(this));
                     arms.add(new Grabber(this));
@@ -89,8 +89,8 @@ public class ArmManager {
         if (owner.has(Trait.Pseudopod) && owner.has(Trait.slime)) {
             addArm(new TentacleClinger(this));
             if (owner.level >= 58 && owner.has(Trait.Imposter)) {
-                addArm(new TentacleImpaler(this, Global.pickRandom(IMPALER_MODS)));
-                addArm(new TentacleSucker(this, Global.pickRandom(SUCKER_MODS)));
+                addArm(new TentacleImpaler(this, Random.pickRandom(IMPALER_MODS)));
+                addArm(new TentacleSucker(this, Random.pickRandom(SUCKER_MODS)));
             } else if (owner.level >= 28) {
                 addArm(new TentacleImpaler(this, Optional.empty()));
                 addArm(new TentacleSucker(this, Optional.empty()));
@@ -178,8 +178,8 @@ public class ArmManager {
     }
 
     private void doArmAction(Arm arm, Combat c, Character owner, Character target) {
-        if (arm.attackOdds(c, owner, target) > Global.random(100)) {
-            Optional<ArmSkill> skill = Global.pickRandom(arm.getSkills(c, owner, target)
+        if (arm.attackOdds(c, owner, target) > Random.random(100)) {
+            Optional<ArmSkill> skill = Random.pickRandom(arm.getSkills(c, owner, target)
                                                   .stream()
                                                   .filter(s -> s.usable(c, arm, owner, target))
                                                   .toArray(ArmSkill[]::new));

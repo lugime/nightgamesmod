@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
 import nightgames.stance.Mount;
@@ -38,17 +39,17 @@ public class Tackle extends Skill {
                             + " to take {self:subject} place on top of {other:possessive} heaving chest."
                             , getSelf(), target));
             c.setStance(new Mount(getSelf(), target));
-            target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Global.random(15, 30)));
+            target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Random.random(15, 30)));
             target.add(c, new Winded(target, 2));
         }
         if (target.roll(getSelf(), c, accuracy(c, target))
                         && getSelf().check(Attribute.Power, target.knockdownDC() - getSelf().get(Attribute.Animism))) {
             if (getSelf().get(Attribute.Animism) >= 1) {
                 writeOutput(c, Result.special, target);
-                target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Global.random(15, 30)));
+                target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Random.random(15, 30)));
             } else {
                 writeOutput(c, Result.normal, target);
-                target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Global.random(10, 25)));
+                target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, Random.random(10, 25)));
             }
             c.setStance(new Mount(getSelf(), target), getSelf(), true);
         } else {

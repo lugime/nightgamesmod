@@ -20,6 +20,7 @@ import nightgames.combat.IEncounter;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
@@ -214,7 +215,7 @@ public class PetCharacter extends Character {
         double masterSkillRating = Math.max(.001, bestMasterSkill.rating);
         double enemySkillRating = Math.max(.001, bestEnemySkill.rating);
 
-        double roll = Global.randomdouble(masterSkillRating + enemySkillRating) - masterSkillRating;
+        double roll = Random.randomdouble(masterSkillRating + enemySkillRating) - masterSkillRating;
         if (Global.isDebugOn(DebugFlags.DEBUG_PET)) {
             System.out.printf("Rolled %s for master skill: %s [%.2f] and %s [%.2f]\n", roll, bestMasterSkill.skill.getLabel(c), -masterSkillRating, bestEnemySkill.skill.getLabel(c), enemySkillRating);
         }
@@ -291,7 +292,7 @@ public class PetCharacter extends Character {
         super.resolveOrgasm(c, opponent, selfPart, opponentPart, times, totalTimes);
         if (getSelf().owner().has(Trait.StickyFinale)) {
             c.write(this, Global.format("The force of {self:name-possessive} orgasm causes {self:direct-object} to shudder and explode in a rain of slime, completely covering {other:name-do} with the sticky substance.", this, opponent));
-            opponent.add(c, new Slimed(opponent, getSelf().owner(), Global.random(5, 11)));
+            opponent.add(c, new Slimed(opponent, getSelf().owner(), Random.random(5, 11)));
         } else {
             c.write(this, Global.format("The force of {self:name-possessive} orgasm destroys {self:possessive} anchor to the fight and {self:pronoun} disappears.", this, opponent));
         }

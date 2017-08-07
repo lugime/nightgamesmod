@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.FiredUp;
 
@@ -35,7 +35,7 @@ public class TemptressBlowjob extends Blowjob {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        int m = 10 + Global.random(getSelf().get(Attribute.Technique) / 2);
+        int m = 10 + Random.random(getSelf().get(Attribute.Technique) / 2);
 
         if (getSelf().has(Trait.silvertongue)) {
             m += 4;

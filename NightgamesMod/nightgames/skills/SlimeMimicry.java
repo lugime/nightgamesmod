@@ -9,6 +9,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Random;
 import nightgames.status.Stsflag;
 
 public class SlimeMimicry extends Skill {
@@ -41,7 +42,7 @@ public class SlimeMimicry extends Skill {
 
     @Override
     public boolean resolve(Combat c, Character target) {
-        return Global.pickRandom(MIMICRY_SKILLS).get().copy(getSelf()).resolve(c, target);
+        return Random.pickRandom(MIMICRY_SKILLS).get().copy(getSelf()).resolve(c, target);
     }
 
     @Override

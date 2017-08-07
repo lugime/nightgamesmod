@@ -1224,7 +1224,7 @@ public class GUI extends JFrame implements Observer {
         statusText.setContentType("text/html");
         HTMLDocument doc = (HTMLDocument) statusText.getDocument();
         HTMLEditorKit editorKit = (HTMLEditorKit) statusText.getEditorKit();
-        Global.freezeRNG();
+        Random.freezeRNG();
         try {
             editorKit.insertHTML(doc, doc.getLength(),
                             "<font face='Georgia' color='white' size='" + descFontSize + "'>"
@@ -1235,7 +1235,7 @@ public class GUI extends JFrame implements Observer {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        Global.unfreezeRNG();
+        Random.unfreezeRNG();
         JScrollPane scrollPane = new JScrollPane(statusText);
         scrollPane.setBackground(GUIColors.bgLight);
         scrollPane.setOpaque(false);
