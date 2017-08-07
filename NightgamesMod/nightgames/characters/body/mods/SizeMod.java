@@ -12,7 +12,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.global.Random;
-import nightgames.utilities.Math;
+import nightgames.utilities.MathUtils;
 
 public class SizeMod extends PartMod {
     public static int COCK_SIZE_TINY = 3;
@@ -117,7 +117,7 @@ public class SizeMod extends PartMod {
     }
 
     public static int clampToValidSize(BodyPart part, int size) {
-        return Math.clamp(size, getMinimumSize(part.getType()), getMaximumSize(part.getType()));
+        return MathUtils.clamp(size, getMinimumSize(part.getType()), getMaximumSize(part.getType()));
     }
 
     @Override

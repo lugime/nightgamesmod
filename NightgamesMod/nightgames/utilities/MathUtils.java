@@ -1,9 +1,9 @@
 package nightgames.utilities;
 
 /**
- * Math helpers.
+ * MathUtils helpers.
  */
-public class Math {
+public class MathUtils {
     public static int clamp(int number, int min, int max) {
         return java.lang.Math.min(java.lang.Math.max(number, min), max);
     }

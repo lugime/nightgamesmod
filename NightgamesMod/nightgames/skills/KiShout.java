@@ -7,7 +7,7 @@ import nightgames.combat.Result;
 import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Falling;
-import nightgames.utilities.Math;
+import nightgames.utilities.MathUtils;
 
 public class KiShout extends Skill {
     public KiShout(Character self) {
@@ -42,7 +42,7 @@ public class KiShout extends Skill {
     public int accuracy(Combat c, Character target) {
         double attDifference = (2 * getSelf().get(Attribute.Ki) + getSelf().get(Attribute.Power)) - target.get(Attribute.Power);
         double accuracy = 2.5f * attDifference + 75 - target.knockdownDC();
-        return (int) Math.round(Math.clamp(accuracy, 25, 150));
+        return (int) Math.round(MathUtils.clamp(accuracy, 25, 150));
     }
 
     @Override

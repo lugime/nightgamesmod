@@ -10,7 +10,7 @@ import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Falling;
 import nightgames.status.Slimed;
-import nightgames.utilities.Math;
+import nightgames.utilities.MathUtils;
 
 public class Trip extends Skill {
     public Trip(Character self) {
@@ -86,7 +86,7 @@ public class Trip extends Skill {
             accuracy += 25;
         }
 
-        return (int) Math.round(Math.clamp(accuracy, isSlime() ? 50 : 25, 150));
+        return (int) Math.round(MathUtils.clamp(accuracy, isSlime() ? 50 : 25, 150));
     }
 
     @Override

@@ -73,7 +73,7 @@ import nightgames.items.Item;
 import nightgames.skills.Skill;
 import nightgames.skills.TacticGroup;
 import nightgames.utilities.DebugHelper;
-import nightgames.utilities.Math;
+import nightgames.utilities.MathUtils;
 
 @SuppressWarnings("unused")
 public class GUI extends JFrame implements Observer {
@@ -323,12 +323,12 @@ public class GUI extends JFrame implements Observer {
         ButtonGroup size = new ButtonGroup();
         rdfntnorm = new JButton("Smaller");
         rdfntnorm.addActionListener(a -> {
-            fontsize = Math.clamp(fontsize - 1, 1, 7);
+            fontsize = MathUtils.clamp(fontsize - 1, 1, 7);
             Global.gui().message("Text Size changed to " + fontsize);
         });
         rdnfntlrg = new JButton("Larger");
         rdnfntlrg.addActionListener(a -> {
-            fontsize = Math.clamp(fontsize + 1, 1, 7);
+            fontsize = MathUtils.clamp(fontsize + 1, 1, 7);
             Global.gui().message("Text Size changed to " + fontsize);
         });
         size.add(rdfntnorm);

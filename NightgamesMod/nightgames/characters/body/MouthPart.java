@@ -12,7 +12,7 @@ import nightgames.status.Frenzied;
 import nightgames.status.PartiallyCorrupted;
 import nightgames.status.Stsflag;
 import nightgames.status.Trance;
-import nightgames.utilities.Math;
+import nightgames.utilities.MathUtils;
 
 public class MouthPart extends GenericBodyPart {
     /**
@@ -97,7 +97,7 @@ public class MouthPart extends GenericBodyPart {
                 }
                 opponent.add(c, new Trance(opponent));
             }
-            bonus += Random.random(3) + Math.clamp(self.get(Attribute.Seduction) / 3, 10, 30)
+            bonus += Random.random(3) + MathUtils.clamp(self.get(Attribute.Seduction) / 3, 10, 30)
                             * self.getArousal().percent() / 100.0;
         }
         if (self.has(Trait.sweetlips) && c.getStance().sub(self)) {
