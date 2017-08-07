@@ -1,11 +1,6 @@
 package nightgames.global;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -15,22 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import nightgames.characters.*;
 import nightgames.characters.Character;
 import nightgames.requirements.TraitRequirement;
-
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonWriter;
 
 import nightgames.Resources.ResourceLoader;
 import nightgames.actions.Action;
@@ -49,7 +33,7 @@ public class Global {
     private static GUI gui;
     public static Daytime day;
     protected static int date;
-    private static Time time;
+    public static Time time;
     public static Scene current;
     public static boolean debug[] = new boolean[DebugFlags.values().length];
     public static int debugSimulation = 0;
@@ -175,7 +159,7 @@ public class Global {
         date++;
         time = Time.DAY;
         if (Flag.checkFlag(Flag.autosave)) {
-            Global.autoSave();
+            SaveFile.autoSave();
         }
         Match.endMatch(Global.gui());
     }
@@ -184,24 +168,13 @@ public class Global {
         day = null;
         time = Time.NIGHT;
         if (Flag.checkFlag(Flag.autosave)) {
-            autoSave();
+            SaveFile.autoSave();
         }
         startNight();
     }
 
     public static void startNight() {
         Match.decideMatchType().buildPrematch(CharacterPool.human);
-    }
-
-    public static void autoSave() {
-        save(new File("./auto.ngs"));
-    }
-
-    public static void saveWithDialog() {
-        Optional<File> file = gui().askForSaveFile();
-        if (file.isPresent()) {
-            save(file.get());
-        }
     }
 
     protected static SaveData saveData() {
@@ -215,42 +188,6 @@ public class Global {
         return data;
     }
 
-    public static void save(File file) {
-        SaveData data = saveData();
-        JsonObject saveJson = data.toJson();
-
-        try (JsonWriter saver = new JsonWriter(new FileWriter(file))) {
-            saver.setIndent("  ");
-            JsonUtils.getGson().toJson(saveJson, saver);
-        } catch (IOException | JsonIOException e) {
-            System.err.println("Could not save file " + file + ": " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    public static void loadWithDialog() {
-        JFileChooser dialog = new JFileChooser("./");
-        FileFilter savesFilter = new FileNameExtensionFilter("Nightgame Saves", "ngs");
-        dialog.addChoosableFileFilter(savesFilter);
-        dialog.setFileFilter(savesFilter);
-        dialog.setMultiSelectionEnabled(false);
-        int rv = dialog.showOpenDialog(gui);
-        if (rv != JFileChooser.APPROVE_OPTION) {
-            return;
-        }
-        File file = dialog.getSelectedFile();
-        if (!file.isFile()) {
-            file = new File(dialog.getSelectedFile().getAbsolutePath() + ".ngs");
-            if (!file.isFile()) {
-                // not a valid save, abort
-                JOptionPane.showMessageDialog(gui, "Nightgames save file not found", "File not found",
-                                JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-        load(file);
-    }
-
     protected static void resetForLoad() {
         CharacterPool.players.clear();
         Flag.flags.clear();
@@ -261,44 +198,6 @@ public class Global {
         Clothing.buildClothingTable();
         CharacterPool.rebuildCharacterPool(Optional.empty());
         day = null;
-    }
-
-    public static void load(File file) {
-        resetForLoad();
-
-        JsonObject object;
-        try (Reader loader = new InputStreamReader(new FileInputStream(file))) {
-            object = new JsonParser().parse(loader).getAsJsonObject();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Couldn't load data; just get out
-            return;
-        }
-        SaveData data = new SaveData(object);
-        loadData(data);
-        gui.populatePlayer(CharacterPool.human);
-        if (time == Time.DAY) {
-            startDay();
-        } else {
-            startNight();
-        }
-    }
-
-    /**
-     * Loads game state data into static fields from SaveData object.
-     *
-     * @param data A SaveData object, as loaded from save files.
-     */
-    protected static void loadData(SaveData data) {
-        CharacterPool.players.addAll(data.players);
-        CharacterPool.players.stream().filter(c -> c instanceof NPC).forEach(
-                        c -> CharacterPool.characterPool.put(c.getType(), (NPC) c));
-        Flag.flags.addAll(data.flags);
-        Flag.counters.putAll(data.counters);
-        date = data.date;
-        time = data.time;
-        gui.fontsize = data.fontsize;
     }
 
 

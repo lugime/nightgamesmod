@@ -213,7 +213,7 @@ public class GUI extends JFrame implements Observer {
         //mntmLoad.setBackground(GUIColors.bgGrey);
         mntmLoad.setHorizontalAlignment(SwingConstants.CENTER);
 
-        mntmLoad.addActionListener(arg0 -> Global.loadWithDialog());
+        mntmLoad.addActionListener(arg0 -> SaveFile.loadWithDialog());
 
         menuBar.add(mntmLoad);
 

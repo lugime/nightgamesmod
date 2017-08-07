@@ -25,11 +25,11 @@ public class SaveAndLoadTest {
     }
 
     @Test public void testLoadAndSave() throws Exception {
-        Global.load(savePath.toFile());
+        SaveFile.load(savePath.toFile());
         SaveData firstLoadData = Global.saveData();
         Path tempSave = Files.createTempFile("", "");
-        Global.save(tempSave.toFile());
-        Global.load(tempSave.toFile());
+        SaveFile.save(tempSave.toFile());
+        SaveFile.load(tempSave.toFile());
         SaveData reloadedData = Global.saveData();
         assertThat(reloadedData.players, equalTo(firstLoadData.players));
         for (Character player : firstLoadData.players) {
