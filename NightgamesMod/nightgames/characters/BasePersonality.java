@@ -63,7 +63,7 @@ public abstract class BasePersonality implements Personality {
         Optional<NpcConfiguration> mergedConfig = NpcConfiguration.mergeOptionalNpcConfigs(charConfig, commonConfig);
         mergedConfig.ifPresent(cfg -> cfg.apply(character));
 
-        if (Global.checkFlag("FutaTime") && character.initialGender == CharacterSex.female) {
+        if (Flag.checkFlag("FutaTime") && character.initialGender == CharacterSex.female) {
             character.initialGender = CharacterSex.herm;
         }
         character.body.makeGenitalOrgans(character.initialGender);
@@ -131,7 +131,7 @@ public abstract class BasePersonality implements Personality {
         HashSet<Skill> tactic;
         Skill chosen;
         ArrayList<WeightedSkill> priority = Decider.parseSkills(available, c, character);
-        if (!Global.checkFlag(Flag.dumbmode)) {
+        if (!Flag.checkFlag(Flag.dumbmode)) {
             chosen = Decider.prioritizeNew(character, priority, c);
         } else {
             chosen = character.prioritize(priority);

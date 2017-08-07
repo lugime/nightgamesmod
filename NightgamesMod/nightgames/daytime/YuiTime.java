@@ -35,13 +35,13 @@ public class YuiTime extends BaseNPCTime {
               .clearCommand();
         if (choice.equals("Start")) {
             acted = false;
-            if (Global.checkFlag(Flag.YuiAvailable)) {
+            if (Flag.checkFlag(Flag.YuiAvailable)) {
                 Global.gui()
                       .message("Yui greets you happily when you arrive at her hideout/shed. <i>\"Master! It's good to see you. I've collected some items "
                                       + "you may find useful.\"</i> She grins and hands you the items proudly. She's acting so much like an excited puppy that you end up patting "
                                       + "her on the head. She blushes, but seems to like it. <i>\"Would you like to spend some time training? Or is there something else I can do "
                                       + "to help you?\"</i><br/>");
-                if (Global.checkFlag(Flag.Yui)) {
+                if (Flag.checkFlag(Flag.Yui)) {
                     Global.gui()
                           .message("");
                 } else {
@@ -53,7 +53,7 @@ public class YuiTime extends BaseNPCTime {
                 choose("Train with Yui", Global.gui());
                 npc.gainAffection(player, Math.min(Math.max(0, 20 - npc.getAffection(player)), 5));
                 player.gainAffection(npc, Math.min(Math.max(0, 20 - player.getAffection(npc)), 5));
-                Global.unflag(Flag.YuiAvailable);
+                Flag.unflag(Flag.YuiAvailable);
                 acted = true;
                 player.gain(Item.Tripwire);
                 player.gain(Item.Rope);
@@ -76,7 +76,7 @@ public class YuiTime extends BaseNPCTime {
                   .message("Yui's skills at subterfuge turn out to be as strong as she claimed. She's also quite a good teacher. Apparently she helped train her "
                                   + "younger sister, so she's used to it. Nothing she teaches you is overtly sexual, but you can see some useful applications for the Games.");
             player.modAttributeDontSaveData(Attribute.Ninjutsu, 1);
-            Global.flag("Trained" + Attribute.Ninjutsu.name());
+            Flag.flag("Trained" + Attribute.Ninjutsu.name());
             choose("Leave", Global.gui());
         }
     }

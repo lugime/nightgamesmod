@@ -17,10 +17,10 @@ public class FTCPrematch implements Scene {
 
     public FTCPrematch(Player player) {        
         Global.current = this;
-        Global.unflag(Flag.victory);
+        Flag.unflag(Flag.victory);
         List<KeyableButton> choice = new ArrayList<>();
         String message = "";
-        if (!Global.checkFlag(Flag.didFTC)) {
+        if (!Flag.checkFlag(Flag.didFTC)) {
             message += "When you get to the student union, you find it deserted save for"
                             + " a note telling you to go to the parking lot instead. Once you get"
                             + " there, the others, including Lilly, are already waiting next to a van. "
@@ -59,13 +59,13 @@ public class FTCPrematch implements Scene {
     public void respond(String response) {
         if (response.equals("Start the Match")) {
             FTCModifier mod = new FTCModifier(prey);
-            Global.flag(Flag.didFTC);
+            Flag.flag(Flag.didFTC);
             Match.setUpMatch(mod);
         } else {
             String message = "";
             if (response.equals("Volunteer")) {
                 prey = Global.getPlayer();
-                if (!Global.checkFlag(Flag.didFTC)) {
+                if (!Flag.checkFlag(Flag.didFTC)) {
                     message += "\"That's the spirit! Oh, did I mention the Prey has to be naked"
                                     + " for the duration of the match and can't use any items?\" Lilly grins mischievously as she"
                                     + " reveals this small detail, but it's too late to back down now. Everyone"
@@ -88,7 +88,7 @@ public class FTCPrematch implements Scene {
                 do {
                     prey = (Character) Random.pickRandom(Match.getParticipants().toArray()).get();
                 } while (prey.human());
-                if (!Global.checkFlag(Flag.didFTC)) {
+                if (!Flag.checkFlag(Flag.didFTC)) {
                     message += "\"No one? Really? Fine, then I'll pick someone. Let's see... " + prey.getTrueName()
                                     + "! You have the honors tonight. Oh and just so"
                                     + " you know, the Prey competes naked and without items. Get to it!\" "

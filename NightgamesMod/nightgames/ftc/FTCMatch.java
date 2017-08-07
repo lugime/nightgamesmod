@@ -69,7 +69,7 @@ public class FTCMatch extends Match {
     @Override
     public void end() {
         super.end();
-        Global.unflag(Flag.FTC);
+        Flag.unflag(Flag.FTC);
         combatants.forEach(c -> c.remove(Item.Flag));
     }
 

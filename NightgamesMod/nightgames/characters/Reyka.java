@@ -17,6 +17,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Flag;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
@@ -119,7 +120,7 @@ public class Reyka extends BasePersonality {
         character.getGrowth().addTrait(58, Trait.carnalvirtuoso);
 
         character.addCombatScene(new CombatScene((c, self, other) -> self.getLevel() >= 12 
-                        && !Global.checkFlag(REYKA_DISABLING_FOCUS) && !Global.checkFlag(REYKA_SEDUCTION_FOCUS)
+                        && !Flag.checkFlag(REYKA_DISABLING_FOCUS) && !Flag.checkFlag(REYKA_SEDUCTION_FOCUS)
                         , (c, self, other) -> Formatter.format("You had turned your back to Reyka after your fight."
                                         + " Big mistake. Out of nowhere, {self:pronoun} crashes into"
                                         + " you from behind with great force, knocking you down."
@@ -177,8 +178,8 @@ public class Reyka extends BasePersonality {
                         }))));
 
         character.addCombatScene(new CombatScene((c, self, other) -> self.getLevel() >= 22
-                        && !Global.checkFlag(REYKA_DRAINING_FOCUS) && !Global.checkFlag(REYKA_CORRUPTION_FOCUS)
-                        && (Global.checkFlag(REYKA_DISABLING_FOCUS) || Global.checkFlag(REYKA_SEDUCTION_FOCUS))
+                        && !Flag.checkFlag(REYKA_DRAINING_FOCUS) && !Flag.checkFlag(REYKA_CORRUPTION_FOCUS)
+                        && (Flag.checkFlag(REYKA_DISABLING_FOCUS) || Flag.checkFlag(REYKA_SEDUCTION_FOCUS))
                         , (c, self, other) -> Formatter.format("After your fight, Reyka is staring at you"
                                         + " appraisingly. <i>\"{other:name}, your progress lately has"
                                         + " been impressive. I've been keeping a close eye on you -"
@@ -226,8 +227,8 @@ public class Reyka extends BasePersonality {
                                              + " amenable towards letting me borrow some of your talents."
                                              + " Ah, the thrill of the hunt! %s I'll see you around, {other:name},"
                                              + " that I can promise you\"</i> You think you might be in trouble..."
-                                             , self, other, Global.checkFlag(REYKA_DISABLING_FOCUS) &&
-                                             Global.checkFlag(REYKA_SEDUCTION_FOCUS) ? "First your complete "
+                                             , self, other, Flag.checkFlag(REYKA_DISABLING_FOCUS) &&
+                                             Flag.checkFlag(REYKA_SEDUCTION_FOCUS) ? "First your complete "
                                                              + "self-confidence, now this. You're shaping up"
                                                              + " to be quite the worthy opponent!" : "Your"
                                                              + " determination is getting be all worked up!"
@@ -240,7 +241,7 @@ public class Reyka extends BasePersonality {
     }
 
     private void useDisabling() {
-        Global.flag(REYKA_DISABLING_FOCUS);
+        Flag.flag(REYKA_DISABLING_FOCUS);
         character.getGrowth().addTrait(12, Trait.SuccubusWarmth);
         character.getGrowth().addTrait(19, Trait.lactating);
         character.getGrowth().addTrait(19, Trait.Pacification);
@@ -249,7 +250,7 @@ public class Reyka extends BasePersonality {
     }
 
     private void useSeduction() {
-        Global.flag(REYKA_SEDUCTION_FOCUS);
+        Flag.flag(REYKA_SEDUCTION_FOCUS);
         character.getGrowth().addTrait(12, Trait.MelodiousInflection);
         character.getGrowth().addTrait(19, Trait.ComeHither);
         character.getGrowth().addTrait(28, Trait.TenderKisses);
@@ -257,25 +258,25 @@ public class Reyka extends BasePersonality {
     }
 
     private void useCorruption() {
-        Global.flag(REYKA_CORRUPTION_FOCUS);
+        Flag.flag(REYKA_CORRUPTION_FOCUS);
         character.getGrowth().addTrait(21, Trait.Corrupting);
         character.getGrowth().addTrait(30, Trait.InfernalAllegiance);
         character.getGrowth().addTrait(40, Trait.LastingCorruption);
-        if (Global.checkFlag(REYKA_DISABLING_FOCUS)) {
+        if (Flag.checkFlag(REYKA_DISABLING_FOCUS)) {
             character.getGrowth().addTrait(52, Trait.TotalSubjugation);
-        } else if (Global.checkFlag(REYKA_SEDUCTION_FOCUS)) {
+        } else if (Flag.checkFlag(REYKA_SEDUCTION_FOCUS)) {
             character.getGrowth().addTrait(52, Trait.Subversion);
         }
     }
 
     private void useDraining() {
-        Global.flag(REYKA_DRAINING_FOCUS);
+        Flag.flag(REYKA_DRAINING_FOCUS);
         character.getGrowth().addTrait(21, Trait.Greedy);
         character.getGrowth().addTrait(30, Trait.RaptorMentis);
         character.getGrowth().addTrait(40, Trait.BottomlessPit);
-        if (Global.checkFlag(REYKA_DISABLING_FOCUS)) {
+        if (Flag.checkFlag(REYKA_DISABLING_FOCUS)) {
             character.getGrowth().addTrait(52, Trait.SpecificSapping);
-        } else if (Global.checkFlag(REYKA_SEDUCTION_FOCUS)) {
+        } else if (Flag.checkFlag(REYKA_SEDUCTION_FOCUS)) {
             character.getGrowth().addTrait(52, Trait.WillingSacrifice);
         }
     }

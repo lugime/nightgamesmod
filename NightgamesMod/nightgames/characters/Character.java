@@ -2039,7 +2039,7 @@ public abstract class Character extends Observable implements Cloneable {
                     c.write(opponent, leveldrainLiner);
                 }
                 int gained;
-                if (Global.checkFlag(Flag.hardmode)) {
+                if (Flag.checkFlag(Flag.hardmode)) {
                     drain(c, opponent, 30 + Random.random(50));
                     gained = opponent.getXPReqToNextLevel();
                 } else {
@@ -2539,7 +2539,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public void bounty(int points, Character victor) {
         int score = points;
-        if (Global.checkFlag(Flag.FTC) && points == 1) {
+        if (Flag.checkFlag(Flag.FTC) && points == 1) {
             FTCMatch match = (FTCMatch) Global.getMatch();
             if (match.isPrey(this)) {
                 score = 3;
@@ -2554,7 +2554,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public boolean eligible(Character p2) {
         boolean ftc = true;
-        if (Global.checkFlag(Flag.FTC)) {
+        if (Flag.checkFlag(Flag.FTC)) {
             FTCMatch match = (FTCMatch) Global.getMatch();
             ftc = !match.inGracePeriod() || (!match.isPrey(this) && !match.isPrey(p2));
         }
@@ -3371,8 +3371,8 @@ public abstract class Character extends Observable implements Cloneable {
                         || !hasDick() 
                         || (body.getLargestBreasts().getSize() > SizeMod.getMinimumSize("breasts") && body.getFace().getFemininity(this) > 0) 
                         || (body.getFace().getFemininity(this) >= 1.5) 
-                        || (human() && Global.checkFlag(Flag.PCFemalePronounsOnly))
-                        || (!human() && Global.checkFlag(Flag.NPCFemalePronounsOnly));
+                        || (human() && Flag.checkFlag(Flag.PCFemalePronounsOnly))
+                        || (!human() && Flag.checkFlag(Flag.NPCFemalePronounsOnly));
     }
 
     public String nameDirectObject() {
@@ -3408,11 +3408,11 @@ public abstract class Character extends Observable implements Cloneable {
     }
 
     public double pussyPreference() {
-        return 11 - Global.getValue(Flag.malePref);
+        return 11 - Flag.getValue(Flag.malePref);
     }
 
     public double dickPreference() {
-        return Global.getValue(Flag.malePref);
+        return Flag.getValue(Flag.malePref);
     }
 
     public boolean wary() {

@@ -17,6 +17,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
@@ -86,7 +87,7 @@ public class Jewel extends BasePersonality {
 
     private void useMartial() {
         Growth growth = character.getGrowth();
-        Global.flag(JEWEL_MARTIAL_FOCUS);
+        Flag.flag(JEWEL_MARTIAL_FOCUS);
         growth.addTrait(11, Trait.grappler);
         growth.addTrait(25, Trait.disablingblows);
         growth.addTrait(37, Trait.naturalTop);
@@ -95,7 +96,7 @@ public class Jewel extends BasePersonality {
 
     private void useAnal() {
         Growth growth = character.getGrowth();
-        Global.flag(JEWEL_ANAL_FOCUS);
+        Flag.flag(JEWEL_ANAL_FOCUS);
         growth.addTrait(11, Trait.powerfulcheeks);
         growth.addBodyPartMod(25, "ass", FieryMod.INSTANCE);
         growth.addTrait(37, Trait.temptingass);
@@ -104,13 +105,13 @@ public class Jewel extends BasePersonality {
 
     private void usePhysical() {
         Growth growth = character.getGrowth();
-        Global.flag(JEWEL_PHYSICAL_FOCUS);
+        Flag.flag(JEWEL_PHYSICAL_FOCUS);
         growth.addTrait(22, Trait.indomitable);
         growth.addTrait(39, Trait.confidentdom);
-        if (Global.checkFlag(JEWEL_ANAL_FOCUS)) {
+        if (Flag.checkFlag(JEWEL_ANAL_FOCUS)) {
             growth.addTrait(50, Trait.drainingass);
         }
-        if (Global.checkFlag(JEWEL_PHYSICAL_FOCUS)) {
+        if (Flag.checkFlag(JEWEL_PHYSICAL_FOCUS)) {
             growth.addTrait(50, Trait.edger);
         }
         growth.addTrait(55, Trait.oblivious);
@@ -118,13 +119,13 @@ public class Jewel extends BasePersonality {
 
     private void useMental() {
         Growth growth = character.getGrowth();
-        Global.flag(JEWEL_MENTAL_FOCUS);
+        Flag.flag(JEWEL_MENTAL_FOCUS);
         growth.addTrait(22, Trait.commandingvoice);
         growth.addTrait(39, Trait.mentalfortress);
-        if (Global.checkFlag(JEWEL_ANAL_FOCUS)) {
+        if (Flag.checkFlag(JEWEL_ANAL_FOCUS)) {
             growth.addTrait(50, Trait.bewitchingbottom);
         }
-        if (Global.checkFlag(JEWEL_PHYSICAL_FOCUS)) {
+        if (Flag.checkFlag(JEWEL_PHYSICAL_FOCUS)) {
             growth.addTrait(50, Trait.unquestionable);
         }
         growth.addTrait(55, Trait.overwhelmingPresence);
@@ -140,8 +141,8 @@ public class Jewel extends BasePersonality {
         growth.willpower = 1.7f;
 
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return character.getLevel() >= 10 && !Global.checkFlag(JEWEL_ANAL_FOCUS)
-                            && !Global.checkFlag(JEWEL_MARTIAL_FOCUS);
+            return character.getLevel() >= 10 && !Flag.checkFlag(JEWEL_ANAL_FOCUS)
+                            && !Flag.checkFlag(JEWEL_MARTIAL_FOCUS);
         }, (c, self, player) -> character.subject() + " leans back a bit as she watches you recover from your fight."
                         + " <i>\"Hey, " + player.getName() + ". Pop quiz. If I were to knock you on your ass and then"
                         + " ride your cock with </i>my<i> ass, which part would you enjoy more?\"</i>",
@@ -177,9 +178,9 @@ public class Jewel extends BasePersonality {
                                         }))));
 
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return character.getLevel() >= 20 && !Global.checkFlag(JEWEL_MENTAL_FOCUS)
-                            && !Global.checkFlag(JEWEL_PHYSICAL_FOCUS)
-                            && (Global.checkFlag(JEWEL_MARTIAL_FOCUS) || Global.checkFlag(JEWEL_ANAL_FOCUS));
+            return character.getLevel() >= 20 && !Flag.checkFlag(JEWEL_MENTAL_FOCUS)
+                            && !Flag.checkFlag(JEWEL_PHYSICAL_FOCUS)
+                            && (Flag.checkFlag(JEWEL_MARTIAL_FOCUS) || Flag.checkFlag(JEWEL_ANAL_FOCUS));
         }, (c, self, player) -> "Jewel stands over you after the fight while looking at you rather coldly, <i>\"So, "
                         + player.getName() + ". You're going to be doing what I tell"
                         + " you. No, don't interrupt. You are. My question is, are you just going"
@@ -255,11 +256,11 @@ public class Jewel extends BasePersonality {
     public void rest(int time) {
         if (character.rank >= 1) {
             if (!character.has(Trait.fighter)
-                            && (Global.checkFlag(JEWEL_MARTIAL_FOCUS) || Global.checkFlag(JEWEL_ANAL_FOCUS))) {
+                            && (Flag.checkFlag(JEWEL_MARTIAL_FOCUS) || Flag.checkFlag(JEWEL_ANAL_FOCUS))) {
                 advance();
             }
         }
-        if (character.getLevel() >= 40 && Global.checkFlag(JEWEL_ANAL_FOCUS)) {
+        if (character.getLevel() >= 40 && Flag.checkFlag(JEWEL_ANAL_FOCUS)) {
             if (!character.body.getRandomAss()
                                .getMods()
                                .stream()

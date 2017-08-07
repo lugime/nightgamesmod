@@ -23,7 +23,6 @@ import nightgames.characters.CharacterSex;
 import nightgames.characters.Growth;
 import nightgames.characters.Trait;
 import nightgames.global.Flag;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
@@ -169,7 +168,7 @@ public abstract class CharacterConfiguration {
 
     private static void modMeters(Character character, int levels) {
         Growth growth = character.getGrowth();
-        boolean hard = Global.checkFlag(Flag.hardmode);
+        boolean hard = Flag.checkFlag(Flag.hardmode);
         for (int i = 0; i < levels; i++) {
             character.getStamina().gain(growth.stamina);
             character.getArousal().gain(growth.arousal);

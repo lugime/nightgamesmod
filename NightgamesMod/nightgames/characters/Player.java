@@ -407,7 +407,7 @@ public class Player extends Character {
         } else if (state == State.masturbating) {
             masturbate();
         } else {
-            if (Global.checkFlag(Flag.FTC)) {
+            if (Flag.checkFlag(Flag.FTC)) {
                 Character holder = ((FTCMatch) Global.getMatch()).getFlagHolder();
                 if (holder != null && !holder.human()) {
                     gui.message("<b>" + holder.subject() + " currently holds the Flag.</b></br>");

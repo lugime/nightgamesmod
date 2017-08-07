@@ -1,6 +1,8 @@
 package nightgames.global;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 
 public enum Flag {
     metBroker,
@@ -81,8 +83,67 @@ public enum Flag {
     AutoNext,
     NoFTC
     ;
-    
+
+    static Set<String> flags;
+    static Map<String, Float> counters;
+
     public static boolean exists(String flag) {
         return Arrays.stream(values()).anyMatch(f -> f.name().equals(flag));
+    }
+
+    public static void flag(String f) {
+        flags.add(f);
+    }
+
+    public static void unflag(String f) {
+        flags.remove(f);
+    }
+
+    public static void flag(Flag f) {
+        flags.add(f.name());
+    }
+
+    public static void unflag(Flag f) {
+        flags.remove(f.name());
+    }
+
+    public static void setFlag(String f, boolean value) {
+        if (value) {
+            flag(f);
+        } else {
+            unflag(f);
+        }
+    }
+
+    public static void setFlag(Flag f, boolean value) {
+        if (value) {
+            flags.add(f.name());
+        } else {
+            flags.remove(f.name());
+        }
+    }
+
+    public static boolean checkFlag(Flag f) {
+        return flags.contains(f.name());
+    }
+
+    public static boolean checkFlag(String key) {
+        return flags.contains(key);
+    }
+
+    public static float getValue(Flag f) {
+        if (!counters.containsKey(f.name())) {
+            return 0;
+        } else {
+            return counters.get(f.name());
+        }
+    }
+
+    public static void modCounter(Flag f, float inc) {
+        counters.put(f.name(), getValue(f) + inc);
+    }
+
+    public static void setCounter(Flag f, float val) {
+        counters.put(f.name(), val);
     }
 }

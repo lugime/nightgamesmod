@@ -520,10 +520,10 @@ public class CreationGUI extends JPanel {
                 traits = Arrays.asList((Trait) StrengthBox.getSelectedItem(), (Trait) WeaknessBox.getSelectedItem());
             }
             if (rdbtnDumb.isSelected()) {
-                Global.flag(Flag.dumbmode);
+                Flag.flag(Flag.dumbmode);
             }
             if (rdbtnHard.isSelected()) {
-                Global.flag(Flag.hardmode);
+                Flag.flag(Flag.hardmode);
             }
             Map<Attribute, Integer> selectedAttributes = new HashMap<>();
             selectedAttributes.put(Attribute.Power, power);

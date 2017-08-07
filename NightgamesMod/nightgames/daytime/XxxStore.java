@@ -26,7 +26,7 @@ public class XxxStore extends Store {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.basicStores);
+        return Flag.checkFlag(Flag.basicStores);
     }
 
     @Override
@@ -64,9 +64,9 @@ public class XxxStore extends Store {
                                                 + "...<br/><br/>"
                                                 + "After a long pause, you squeeze her small, but obviously corporeal breast. She lets out a girly yelp, which earns you some more looks from customers. \"It was just a "
                                                 + "joke. You didn't have to grope me so roughly. My name is Alice.\"<br/><br/>");
-                Global.flag(Flag.metAlice);
+                Flag.flag(Flag.metAlice);
                 player.modAttributeDontSaveData(Attribute.Submissive, 1);
-                Global.flag("Trained" + Attribute.Submissive.name());
+                Flag.flag("Trained" + Attribute.Submissive.name());
                 acted = true;
             }
             if (choice.startsWith("Talk to Alice")) {
@@ -89,7 +89,7 @@ public class XxxStore extends Store {
                                         "A very familiar face pokes into the room. <i>\"I thought I recognized that voice.\"</i> Holy shit. You don't think you've ever been happier to see Mara. What is she doing here? <i>\"I just bought a new toy that I think you'll like.\"</i> That can wait until later. Right now, you just want to get free. She curiously inspects your situation as you explain how you ended up like this. <i>\"Submissive training? You know, I could always dominate you if you want me to.\"</i> She leans in close and looks at the key on your penis. <i>\"That looks pretty tight, but I have a good idea.\"</i> She starts to lick and suck your rod. You groan quietly at the pleasure from her warm, wet mouth. The aphrodisiac Alice slipped you is making you more sensitive than usual and her tongue feels great. Once she's thoroughly coated your member in saliva, she removes her mouth and teases your sensitive glans with her finger. You're so turned on that you're leaking liberal amounts of precum. She mixes the fluid with her saliva and soon your shaft is slick with the makeshift lubricant. She gently eases the keyring off your erection and waves the key victoriously in front of you.<br/><br/>That was brilliant! As soon as she uncuffs you, you're eager to give her a a good fucking to thank her. She wags a finger at you scoldingly and puts the key in her pocket. <i>\"Not so fast. You're still in the middle of training, right? You were just lucky that I happened to be here. If I let you out without bullying you, it'll defeat the entire point.\"</i><br/><br/>This particular scenario wasn't really what you signed up for. At this point, you're ready to just call it a day.<br/><i>\"Nah.\"</i> She leans down and resumes her blowjob. The sudden pleasure causes you to throw your head back and moan in an undignified manner. Her small mouth can only contain part of your erect length, but her tongue is very energetic and her technique is quite skilled. This feels amazing and you're going to cum in no time, but if Mara's planning to be dommy, it's only a matter of time...<br/><br/><i>\"That's all.\"</i> She says cheerfully. She ceases her oral effort and the wonderful sensations disappear. You groan in frustration as your cock throbs with need. <i>\"This is fun. I don't get enough opportunities to tease and deny during the Games. I wish they would give me bonus points for making my opponents beg.\"</i> She leans down and plants a kiss on your cock head. <i>\"Ooh! We should try out my new toy!\"</i><br/><br/>She opens up a bag and pulls out a pink cocksleeve. <i>\"I don't have any lube, but you seem pretty slippery already.\"</i> She slips the toy over your erection without any resistance. It is snug, but comfortable. This seems like a normal cocksleeve, if a little heavier than it looked. Mara grins impishly and holds up a small remote. <i>\"Built in vibrator.\"</i> She hits the button and the toy starts vibrating all around your cock. You let out a little moan at the stimulation. It's not at pleasant as Mara's tongue, but it provides a different sort of pleasure.<br/><br/> She sits on your lap so her groin is touching the outside of the vibrating toy. <i>\"That feels nice, doesn't it? I like a toy we can share.\"</i> She pulls you into a soft kiss and carelessly drops the remote to the floor. <i>\"No stopping this time, go ahead and cum for me.\"</i> You feel self conscious about how eagerly she's staring at your face, but you can't deny the effect the persistent vibration is having on you. You're already past the point of no return.<br/><br/>You close your eyes and groan as you cum. Your seed quickly fills the snug cocksleeve and starts to leak out. Mara giggles as she watches your reaction. <i>\"You make some nice faces. I should record it next time.\"</i> As thrilled as you are to provide her entertainment, she still hasn't shut off this damn toy. It's starting to get very uncomfortable against your overstimulated cock. <i>\"Oh right, where did that thing get too?\"</i> She leans down to the floor, searching for the remote while continuing to press herself against the toy. She manages to retrieve the remote, displaying impressive flexibility, but still doesn't shut it off. You writhe in discomfort while she sighs contently. <i>\"This is pretty nice, maybe I'll leave it on a bit longer.\"</i> She kisses you tenderly, probing your mouth with her tongue. You find yourself unable to resist her adorable charm, even while she's basically torturing you.<br/><br/>Eventually, you have to break the kiss and beg for mercy. <i>\"Oh, fine.\"</i> She finally shuts off the vibration and you slump down in relief. She uncuffs you and retrieves her messy cocksleeve. <i>\"Feeling more subby yet? If you want to be tied up and teased, you can always just give me a call instead of going through all this trouble.\"</i>");
                 }
 
-                Global.unflag(Flag.AliceAvailable);
+                Flag.unflag(Flag.AliceAvailable);
                 player.modAttributeDontSaveData(Attribute.Submissive, 1);
                 acted = true;
             }
@@ -148,12 +148,12 @@ public class XxxStore extends Store {
             }
             sale(Item.Blindfold, Global.gui());
             displayClothes();
-            if (Global.checkFlag(Flag.AliceAvailable)) {
+            if (Flag.checkFlag(Flag.AliceAvailable)) {
                 Global.gui().message(
                                 "You see Alice hanging around near the bondage gear. You aren't sure whether she's waiting for you or not.");
                 choose("Talk to Alice", Global.gui());
             }
-            if (player.getLevel() >= 5 && !Global.checkFlag(Flag.metAlice) && !Global.checkFlag(Flag.victory)) {
+            if (player.getLevel() >= 5 && !Flag.checkFlag(Flag.metAlice) && !Flag.checkFlag(Flag.victory)) {
                 choose("Learn to be Submissive", Global.gui());
             }
             choose("Leave", Global.gui());

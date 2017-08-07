@@ -108,7 +108,7 @@ public class Match {
         Set<Character> lineup = new HashSet<>(Global.debugChars);
         Character lover = null;
         int maxaffection = 0;
-        Global.unflag(Flag.FTC);
+        Flag.unflag(Flag.FTC);
         for (Character player : Global.players) {
             player.getStamina().fill();
             player.getArousal().empty();
@@ -136,9 +136,9 @@ public class Match {
         }
         lineup.add(Global.human);
         if (matchmod.name().equals("maya")) {
-            if (!Global.checkFlag(Flag.Maya)) {
+            if (!Flag.checkFlag(Flag.Maya)) {
                 Global.newChallenger(new Maya(Global.human.getLevel()));
-                Global.flag(Flag.Maya);
+                Flag.flag(Flag.Maya);
             }
             NPC maya = Optional.ofNullable(Global.getNPC("Maya")).orElseThrow(() -> new IllegalStateException(
                             "Maya data unavailable when attempting to add her to lineup."));
@@ -211,7 +211,7 @@ public class Match {
             if (combatants.size() < 5) {
                 return new Match(combatants, new NoModifier());
             }
-            Global.flag(Flag.FTC);
+            Flag.flag(Flag.FTC);
             return new FTCMatch(combatants, ((FTCModifier) mod).getPrey());
         } else {
             return new Match(combatants, mod);
@@ -253,7 +253,7 @@ public class Match {
                     dropPackage();
                     dropOffTime = 0;
                 }
-                if (Global.checkFlag(Flag.challengeAccepted) && (time == 6 || time == 12 || time == 18 || time == 24)) {
+                if (Flag.checkFlag(Flag.challengeAccepted) && (time == 6 || time == 12 || time == 18 || time == 24)) {
                     dropChallenge();
                 }
                 time++;
@@ -340,7 +340,7 @@ public class Match {
         condition.extraWinnings(player, score.get(player));
         if (winner == player) {
             Global.gui().message("You also earned a bonus of $" + 5 * player.prize() + " for placing first.");
-            Global.flag(Flag.victory);
+            Flag.flag(Flag.victory);
         }
         winner.modMoney(5 * winner.prize());
         Global.gui().message("You traded in " + cloth + " sets of clothes for a total of $" + cloth * player.prize()
@@ -355,7 +355,7 @@ public class Match {
                 maxaffection = rival.getAffection(player);
             }
         }
-        if (Global.checkFlag(Flag.metLilly) && !Global.checkFlag(Flag.challengeAccepted) && Random.random(10) >= 7) {
+        if (Flag.checkFlag(Flag.metLilly) && !Flag.checkFlag(Flag.challengeAccepted) && Random.random(10) >= 7) {
             Global.gui().message(
                             "\nWhen you gather after the match to collect your reward money, you notice Jewel is holding a crumpled up piece of paper and ask about it. "
                                             + "<i>\"This? I found it lying on the ground during the match. It seems to be a worthless piece of trash, but I didn't want to litter.\"</i> Jewel's face is expressionless, "
@@ -367,7 +367,7 @@ public class Match {
                                             + "sweep of the grounds each night to make sure they're all picked up by morning. They have competitors' names on them, so we absolutely cannot let a normal student find "
                                             + "one.\"</i> She toys with a pigtail idly while looking annoyed. <i>\"For what it's worth, they do seem to pay well if you do what the note says that night. Do with them what "
                                             + "you will.\"</i><br/>");
-            Global.flag(Flag.challengeAccepted);
+            Flag.flag(Flag.challengeAccepted);
         }
         /*
          * if (maxaffection >= 15 && closest != null) { closest.afterParty(); } else { Global.gui().message("You walk back to your dorm and get yourself cleaned up."); }

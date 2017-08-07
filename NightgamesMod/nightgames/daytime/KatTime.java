@@ -158,7 +158,7 @@ public class KatTime extends BaseNPCTime {
             choose("Games", Global.gui());
             choose("Sparring", Global.gui());
             choose("Sex", Global.gui());
-            if (Global.checkFlag(Flag.metAisha) && !Global.checkFlag(Flag.catspirit)
+            if (Flag.checkFlag(Flag.metAisha) && !Flag.checkFlag(Flag.catspirit)
                             && Global.getNPC("Kat").getAffection(player) >= 5) {
                 choose("Ask about Animal Spirit", Global.gui());
             }
@@ -468,7 +468,7 @@ public class KatTime extends BaseNPCTime {
                 npc.getGrowth().addTrait(0, Trait.aikidoNovice);
             }
         } else if (choice.startsWith("Ask about Animal Spirit")) {
-            Global.flag(Flag.catspirit);
+            Flag.flag(Flag.catspirit);
             Global.gui().message("You know that Kat's power comes from an animal spirit "
                             + "inside her, but she never mentioned how that came to be. It seems like "
                             + "that might be a useful ability, so you decide to ask her about it. <i>"

@@ -368,7 +368,7 @@ public class Combat extends Observable implements Cloneable {
         loser.getWillpower()
              .fill();
 
-        if (Global.checkFlag(Flag.FTC) && loser.has(Item.Flag)) {
+        if (Flag.checkFlag(Flag.FTC) && loser.has(Item.Flag)) {
             write(victor, Formatter.format(
                             "<br/><b>{self:SUBJECT-ACTION:take|takes} the " + "Flag from {other:subject}!</b>", victor,
                             loser));
@@ -453,7 +453,7 @@ public class Combat extends Observable implements Cloneable {
             other = p1;
         }
         message = describe(player, other);
-        if (!shouldAutoresolve() && !Global.checkFlag(Flag.noimage)) {
+        if (!shouldAutoresolve() && !Flag.checkFlag(Flag.noimage)) {
             Global.gui()
                   .clearImage();
             if (!imagePath.isEmpty()) {
@@ -1323,7 +1323,7 @@ public class Combat extends Observable implements Cloneable {
 
     private boolean next() {
         if (phase != CombatPhase.ENDED) {
-            if (!(wroteMessage || phase == CombatPhase.START) || !beingObserved || shouldAutoresolve() || (Global.checkFlag(Flag.AutoNext)
+            if (!(wroteMessage || phase == CombatPhase.START) || !beingObserved || shouldAutoresolve() || (Flag.checkFlag(Flag.AutoNext)
                             && FAST_COMBAT_SKIPPABLE_PHASES.contains(phase))) {
                 return false;
             } else {
@@ -1664,13 +1664,13 @@ public class Combat extends Observable implements Cloneable {
     }
 
     public void writeSystemMessage(String battleString) {
-        if (Global.checkFlag(Flag.systemMessages)) {
+        if (Flag.checkFlag(Flag.systemMessages)) {
             write(battleString);
         }
     }
 
     public void writeSystemMessage(Character character, String string) {
-        if (Global.checkFlag(Flag.systemMessages)) {
+        if (Flag.checkFlag(Flag.systemMessages)) {
             write(character, string);
         }
     }
@@ -1680,7 +1680,7 @@ public class Combat extends Observable implements Cloneable {
     }
 
     private boolean doExtendedLog() {
-        return (p1.human() || p2.human()) && Global.checkFlag(Flag.extendedLogs);
+        return (p1.human() || p2.human()) && Flag.checkFlag(Flag.extendedLogs);
     }
 
     public boolean isBeingObserved() {

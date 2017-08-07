@@ -32,7 +32,7 @@ public class BlackMarket extends Store {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.blackMarket);
+        return Flag.checkFlag(Flag.blackMarket);
     }
 
     @Override
@@ -49,8 +49,8 @@ public class BlackMarket extends Store {
         }
         checkSale(choice);
         if (player.human()) {
-            if (Global.checkFlag(Flag.blackMarketPlus)) {
-                if (!Global.checkFlag(Flag.metRin)) {
+            if (Flag.checkFlag(Flag.blackMarketPlus)) {
+                if (!Flag.checkFlag(Flag.metRin)) {
                     Global.gui().message(
                                     "You knock on the door to the black market. When Ridley answers, you tell him that you're here to see his premium goods on behalf of "
                                                     + "Callisto. Ridley glances back into the room for a moment and then walks past you without saying anything. You stand there confused, until you see the "
@@ -63,7 +63,7 @@ public class BlackMarket extends Store {
                                                     + "not be reliable enough to earn her trust, otherwise she wouldn't feel the need to keep an eye on him all the time. <i>\"Aesop sold you my name, right? I'll have "
                                                     + "to collect my share from him later. I have many items you won't find anywhere else; items that will give you an edge in the games. Not all of them are completely "
                                                     + "safe, but I think you knew that when you came looking for the black market.\"</i>");
-                    Global.flag(Flag.metRin);
+                    Flag.flag(Flag.metRin);
                 } else if (choice.startsWith("Cursed Artifacts")) {
                     Global.gui().message(
                                     "You ask Rin about the assorted tomes and unpleasant looking idols she's laid out. <i>\"You should be careful with those, they're all "
@@ -72,7 +72,7 @@ public class BlackMarket extends Store {
                                                     + "valuable themselves, otherwise I'd have sold them to collectors. A skilled spiritualist could refine the curse to bestow an unholy boon. Fortunately, "
                                                     + "I have the training to do so.\"</i> An unholy boon? That sounds more than a bit worrying. <i>\"Are you religious? In my experience, demons are just another "
                                                     + "flavor of spirit. It's still your choice, do what you like.\"</i>");
-                    Global.flag(Flag.darkness);
+                    Flag.flag(Flag.darkness);
                     acted = true;
                 } else if (choice.startsWith("Dark Power")) {
                     if (player.money >= 1000 * (player.getPure(Attribute.Dark) + 1)) {
@@ -85,7 +85,7 @@ public class BlackMarket extends Store {
                                                         + "seems tame now, willing to obey your command should you call for it. <i>\"The ritual is complete. You can keep the artifact as a souvenir, but all its "
                                                         + "power is in you now.\"</i><br/><br/>");
                         player.modAttributeDontSaveData(Attribute.Dark, 1);
-                        Global.flag("Trained" + Attribute.Dark.name());
+                        Flag.flag("Trained" + Attribute.Dark.name());
                         acted = true;
                         trained = true;
                     } else {
@@ -98,7 +98,7 @@ public class BlackMarket extends Store {
                                                     + "useful are they? <i>\"They won't do you much good to use them during the match, but if you use them now, their power will transfer to you. Mostly they'll give "
                                                     + "you fetishes that you'll be able to share with your opponents. It's a high risk, high reward style of sex-fighting.\"</i> Rin smiles and reclines on the couch. "
                                                     + "<i>\"If you buy something, I don't mind helping you try it out. No extra charge of course, I'm not a prostitute.\"</i>");
-                    Global.flag(Flag.fetishism);
+                    Flag.flag(Flag.fetishism);
                     acted = true;
                 } else if (choice.startsWith("Fetishism")) {
                     if (player.money >= 1000 * (player.getPure(Attribute.Fetish) + 1)) {
@@ -109,7 +109,7 @@ public class BlackMarket extends Store {
                                                         + "must show on your face, because her smiles becomes slightly more reassuring. <i>\"Sometimes the path to power can be painful. The gifts in these items may "
                                                         + "bring you victory, but there's no easy way to unlock them. Besides, you'll enjoy it before we're through. That's the whole point after all.\"</i><br/><br/>");
                         player.modAttributeDontSaveData(Attribute.Fetish, 1);
-                        Global.flag("Trained" + Attribute.Fetish.name());
+                        Flag.flag("Trained" + Attribute.Fetish.name());
                         acted = true;
                         trained = true;
                     } else {
@@ -121,12 +121,12 @@ public class BlackMarket extends Store {
                                                     + "you a polite smile and stands up. <i>\"Welcome back. What can I do for you?\"</i>");
                 }
                 if (!trained) {
-                    if (!Global.checkFlag(Flag.darkness)) {
+                    if (!Flag.checkFlag(Flag.darkness)) {
                         choose("Cursed Artifacts", Global.gui());
                     } else {
                         choose("Dark Power: $" + 1000 * (player.getPure(Attribute.Dark) + 1), Global.gui());
                     }
-                    if (!Global.checkFlag(Flag.fetishism)) {
+                    if (!Flag.checkFlag(Flag.fetishism)) {
                         choose("S&M Gear", Global.gui());
                     } else {
                         choose("Fetishism: $" + 1000 * (player.getPure(Attribute.Fetish) + 1), Global.gui());
@@ -182,14 +182,14 @@ public class BlackMarket extends Store {
             for (Item i : stock.keySet()) {
                 int max = 10;
                 if (i.equals(Item.PriapusDraft)) {
-                    if (Random.random(10) > Global.getValue(Flag.malePref)) {
+                    if (Random.random(10) > Flag.getValue(Flag.malePref)) {
                         bored++;
                         continue;
                     }
                     max = 1;
                 }
                 if (i.equals(Item.FemDraft)) {
-                    if (Random.random(10) < Global.getValue(Flag.malePref)) {
+                    if (Random.random(10) < Flag.getValue(Flag.malePref)) {
                         bored++;
                         continue;
                     }

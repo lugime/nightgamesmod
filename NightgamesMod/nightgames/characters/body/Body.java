@@ -291,7 +291,7 @@ public class Body implements Cloneable {
             message = "%s{self:possessive} %s is <font color='rgb(255,105,105)'>not very attractive</font>... "
                             + "Hopefully {self:pronoun} can make up for it in technique.";
         }
-        if (Global.checkFlag(Flag.systemMessages)) {
+        if (Flag.checkFlag(Flag.systemMessages)) {
             message += String.format(" (%.01f)", hotness);
         }
         return Formatter.format(message, character, other, startString, bodyString);
@@ -1020,7 +1020,7 @@ public class Body implements Cloneable {
             // no TG for herms or asexuals
             return;
         }
-        if (character.useFemalePronouns() && Global.checkFlag(Flag.femaleTGIntoHerm)) {
+        if (character.useFemalePronouns() && Flag.checkFlag(Flag.femaleTGIntoHerm)) {
             changeSex(CharacterSex.herm);
             return;
         }

@@ -12,7 +12,6 @@ import com.google.gson.JsonObject;
 
 import nightgames.Resources.ResourceLoader;
 import nightgames.global.Flag;
-import nightgames.global.Global;
 import nightgames.json.JsonUtils;
 import nightgames.skills.Skill;
 import nightgames.stance.Stance;
@@ -75,7 +74,7 @@ public class AiModifiers {
     }
 
     public double getMalePref() {
-        return malePref.orElse((double) Global.getValue(Flag.malePref));
+        return malePref.orElse((double) Flag.getValue(Flag.malePref));
     }
 
     public void setMalePref(Optional<Double> malePref) {

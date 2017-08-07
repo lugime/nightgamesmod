@@ -27,7 +27,7 @@ public class MasturbateAction extends Action {
             if (user.hasDick()) {
                 Global.gui().message(
                                 "You desperately need to deal with your erection before you run into an opponent. You find an isolated corner and quickly jerk off.");
-                if (user.human() && Global.checkFlag(Flag.masturbationSemen)) {
+                if (user.human() && Flag.checkFlag(Flag.masturbationSemen)) {
                     if (user.getArousal().percent() > 50) {
                         Global.gui().message(
                                         "You remember that Reyka asked you to bring back some semen for her transformation rituals, and you catch your semen with one of her magic bottles.");

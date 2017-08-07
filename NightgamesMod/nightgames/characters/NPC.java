@@ -507,7 +507,7 @@ public class NPC extends Character {
                 HashSet<Action> moves = new HashSet<>();
                 HashSet<Movement> radar = new HashSet<>();
                 FTCMatch match;
-                if (Global.checkFlag(Flag.FTC) && allowedActions().isEmpty()) {
+                if (Flag.checkFlag(Flag.FTC) && allowedActions().isEmpty()) {
                     match = (FTCMatch) Global.getMatch();
                     if (match.isPrey(this) && match.getFlagHolder() == null) {
                         moves.add(findPath(match.gps("Central Camp")));

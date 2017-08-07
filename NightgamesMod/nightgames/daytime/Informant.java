@@ -36,7 +36,7 @@ public class Informant extends Activity {
               .clearText();
         Global.gui()
               .clearCommand();
-        if (!Global.checkFlag(Flag.metBroker)) {
+        if (!Flag.checkFlag(Flag.metBroker)) {
             Global.gui()
                   .message("It's almost strange seeing the Quad bustling with people knowing how completely deserted it is at night. Of course, you've been here more "
                                   + "during the day than at night, so the unsettling feeling you have is probably just a delayed reaction to the eerie atmosphere last night. You're here to "
@@ -58,11 +58,11 @@ public class Informant extends Activity {
                                   + "spending some time with the nastiest, most extreme porn you can get your hands on. After a few hours of that, everything else will seem milder in comparison. Lastly, don't "
                                   + "underestimate the effect of confidence in a fight. If you can consistently dish out a good fucking, you may find things going your way more often.\"</i><br/>"
                                   + "Aesop suddenly looks at his phone and stands up. <i>\"Sorry, I need to run for now. Shoot me a text when you're interested in some more advice. I'll meet you here again.\"</i>");
-            Global.flag(Flag.metBroker);
+            Flag.flag(Flag.metBroker);
             choose("Leave", Global.gui());
             acted = true;
             return;
-        } else if (player.getRank() >= 1 && !Global.checkFlag(Flag.rank1)) {
+        } else if (player.getRank() >= 1 && !Flag.checkFlag(Flag.rank1)) {
             Global.gui()
                   .message("You go to meet Aesop at the usual spot, but today he's not alone. The woman who initially recruited you - named Maya, if you remember correctly - is waiting "
                                   + "for you. Looking at her next to Aesop, she's probably not much older than he is, but something about her makes her seem more mature. She has modest clothes, glasses and long "
@@ -79,7 +79,7 @@ public class Informant extends Activity {
                                   + "I can arrange some more competition for you if you're interested. Now I'm not trying to imply that you're the sort of greedy bastard who isn't satisfied with four girls in his "
                                   + "harem. Obviously a serious athlete such as yourself needs a wide range of competitors to hone his skills. I happen to know some girls who are currently taking a break from the "
                                   + "Game for various reasons. For a nominal fee, I could probably convince them to return. Let me know if you're interested in hearing their stories.\"</i>");
-            Global.flag(Flag.rank1);
+            Flag.flag(Flag.rank1);
         } else if (choice.equals("Start") || choice.equals("Back")) {
             Global.gui()
                   .message("The spot where you're suppose to meet Aesop is quiet again. Given the number of people in the Quad during the day, you're starting to feel like people "
@@ -101,7 +101,7 @@ public class Informant extends Activity {
                                   + "in the local hardware store. If you're feeling particularly thrifty, you can raid the storage in the engineering workshops or under the dining hall. No one really cares if some "
                                   + "random crap disappears from there during the night.\"</i><br/>This is all kinda mundane advice. You were half expecting the address of an abandoned building and a password.<br/><i>\"Oh there's "
                                   + "that too, but it'll cost you. If you ever need some more illicit goods, I can sell you a location later.\"</i>");
-            Global.flag(Flag.basicStores);
+            Flag.flag(Flag.basicStores);
             choose("Leave", Global.gui());
             acted = true;
             return;
@@ -117,7 +117,7 @@ public class Informant extends Activity {
                                   + "fee of course) and I'll give you some background, some interests, and some places where you're likely to 'coincidentally' run into her during the day. Even if she doesn't "
                                   + "seem interested in you at first, you can try again after a few matches. In my experience, after you have sex with a girl a few times, she starts to remember your name. Who "
                                   + "knows, you might get a girlfriend out of this. It's not entirely unprecedented.\"</i>");
-            Global.flag(Flag.girlAdvice);
+            Flag.flag(Flag.girlAdvice);
             choose("Leave", Global.gui());
             acted = true;
             return;
@@ -131,7 +131,7 @@ public class Informant extends Activity {
                                       + "mental training that you just mentioned are conflicting. If you sharpen your senses to be more aware of your opponents, your sense of touch will also be sharpened and you'll be "
                                       + "more vulnerable to their 'attacks.' On the other hand, you can train yourself to block out the pleasure being inflicted on you, but you risk your brain filtering out crucial information.\"</i><br/>"
                                       + "<i>\"If you're still interested, there's a girl named Suzume who leads guided meditation on campus. If you ask nicely, she may give you a private lesson to push you in either direction.\"</i>");
-                Global.flag(Flag.meditation);
+                Flag.flag(Flag.meditation);
                 player.money -= 200;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -148,7 +148,7 @@ public class Informant extends Activity {
                                       + "can rapidly dissolve synthetic clothing without harming skin - I know a guy on campus.\"</i><br/>You hand over a considerable sum of cash and Aesop slides you "
                                       + "a piece of paper.<br/><i>\"The dude's name is Mike Ridley, definitely an asshole, but he can get you want you want. He probably won't ask what you want it "
                                       + "for and you shouldn't volunteer the information. He mostly sells pot to normal students. He's not in the loop, so to speak.\"</i>");
-                Global.flag(Flag.blackMarket);
+                Flag.flag(Flag.blackMarket);
                 player.money -= 400;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -170,7 +170,7 @@ public class Informant extends Activity {
                                       + "get a chance to really talk with her while the other students are around. After class she seems to disappear to quickly that you're starting to suspect she's actively "
                                       + "avoiding you.<br/><i>\"I said she was shy, didn't I? In the afternoon, she spends a lot of time studying in the library like a good student. Seems like a good "
                                       + "place to talk to her privately.\"</i>");
-                Global.flag(Flag.CassieKnown);
+                Flag.flag(Flag.CassieKnown);
                 player.money -= 300;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -191,7 +191,7 @@ public class Informant extends Activity {
                                       + "bed, but tends to get bored quickly. If you want her to take you seriously, you'll need to impress her. She likes being in control, but I bet she turns to jello if "
                                       + "you can beat her at her own game. Talking to her may be tough. I can give you some locations where she and her friends tend to hang out, but you're going to have a "
                                       + "hell of a time catching her alone.\"</i>");
-                Global.flag(Flag.AngelKnown);
+                Flag.flag(Flag.AngelKnown);
                 player.money -= 300;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -211,7 +211,7 @@ public class Informant extends Activity {
                                       + "Like a lot of geniuses, her personality is kinda problematic. On the surface she seems arrogant and manipulative, but I'd wager under that facade, she's actually "
                                       + "a nice girl. If you're interested in her, she's pretty easy to find. When she's not in class or in a match, she seems to spend all her time in on of the computer labs "
                                       + "or the electrical engineering workshop.\"</i>");
-                Global.flag(Flag.MaraKnown);
+                Flag.flag(Flag.MaraKnown);
                 player.money -= 300;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -232,7 +232,7 @@ public class Informant extends Activity {
                                       + "thrown herself almost obsessively into martial arts and is following a training regimen that probably tops what she would be doing if she was in the military. Competitive "
                                       + "sexfighting is probably a smaller leap for her than anyone else in your year. Your best bet to approach her is probably while she is training, but given her combative "
                                       + "personality, I suspect you're going to need to prove yourself a worthy rival before she'll show any interest in you.\"</i>");
-                Global.flag(Flag.JewelKnown);
+                Flag.flag(Flag.JewelKnown);
                 player.money -= 300;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -250,7 +250,7 @@ public class Informant extends Activity {
                                       + "gave you the address. Now I think you're ready for the password. The black market stocks some rare and unusual items for their prefered customers. Tell "
                                       + "them Callisto sent you and they'll make them available for you. I do feel compelled to warn you that some of the shit they sell there is pretty dangerous. "
                                       + "I don't mean your life is at risk, nothing that serious, but be careful not to lose your humanity. Sometimes power really can change a person.\"</i>");
-                Global.flag(Flag.blackMarketPlus);
+                Flag.flag(Flag.blackMarketPlus);
                 player.money -= 2500;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -264,7 +264,7 @@ public class Informant extends Activity {
             if (player.money >= 2500) {
                 Global.gui()
                       .message("Aesop looks at you strangely then slips you a piece of paper.");
-                Global.flag(Flag.bodyShop);
+                Flag.flag(Flag.bodyShop);
                 player.money -= 2500;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -285,7 +285,7 @@ public class Informant extends Activity {
                                       + "saved you a lot of money. Aesop smiles in a way that reminds you of a shark. <i>\"I'm an information broker. Sometimes I sell people information, sometimes I buy "
                                       + "their silence. The Suzuki dojo has fallen on tough times recently, so when I offered her a thousand dollars to wait for you to come to me, she was fairly agreeable.\"</i> "
                                       + "Fucking hell. If nothing else, at least Aesop is giving you a lesson in economics 101.");
-                Global.flag(Flag.dojo);
+                Flag.flag(Flag.dojo);
                 player.money -= 2500;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -305,7 +305,7 @@ public class Informant extends Activity {
                                       + "Games has been eager to take your money.<br/><br/>Aesop gives you a frown of disapproval. <i>\"I wasn't implying that she's greedy. Aisha is passionate about developing "
                                       + "her craft and only takes money to further her research. Of all the people I've sent you to, she's easily the most altruistic. I meant it when I called her a "
                                       + "friend, and I have a lot of respect for her, so don't make judgments before you've met her.\"</i>");
-                Global.flag(Flag.magicstore);
+                Flag.flag(Flag.magicstore);
                 player.money -= 2500;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -324,7 +324,7 @@ public class Informant extends Activity {
                                       + "though, he learned to set traps and rig up impressive inventions. Pretty soon he became a major threat. Now he's got his own workshop on campus where he's basically "
                                       + "left to work on his inventions. He tells me that if I send people to him, he's willing to make some custom toys. If he takes a liking to you, he may even teach you "
                                       + "some of his secrets.\"</i>");
-                Global.flag(Flag.workshop);
+                Flag.flag(Flag.workshop);
                 player.money -= 2500;
                 choose("Leave", Global.gui());
                 acted = true;
@@ -369,7 +369,7 @@ public class Informant extends Activity {
             return;
         }
         if (choice.equals("More Competitors")) {
-            if (!Global.checkFlag(Flag.Reyka) && Global.checkFlag(Flag.blackMarketPlus)) {
+            if (!Flag.checkFlag(Flag.Reyka) && Flag.checkFlag(Flag.blackMarketPlus)) {
                 Global.gui()
                       .message("<i>\"Let me tell you the story of a succubus named Reyka. So a while back a competitor decides it's a good idea to save up a bunch of money and buy the most "
                                       + "powerful summoning scroll on the black market and feed the demon enough mana to keep her fighting for several matches. You can imagine how well that worked. He summoned "
@@ -379,7 +379,7 @@ public class Informant extends Activity {
                                       + "banish her and someone's paying her living expenses. She's pretty aggressive, but probably not actually dangerous... probably.\"</i><br/><br/>");
                 choose("Reyka: $1000", Global.gui());
             }
-            if (!Global.checkFlag(Flag.Airi) && Global.checkFlag(Flag.workshop)) {
+            if (!Flag.checkFlag(Flag.Airi) && Flag.checkFlag(Flag.workshop)) {
                 Global.gui()
                       .message("<i>\"So there's a second year bio student that was involved with a bit of an accident last year. Aya? No... Arin? No... Oh yes, her name was Airi! "
                              + "She's a pretty moussy little Japanese girl, but she got along well enough. Anyways, back to her accident. I think her experiement was supposed to to "
@@ -389,7 +389,7 @@ public class Informant extends Activity {
                              + "She's definitely still a cutie though. So whaddaya say, want me to try and talk to her for you?\"</i><br/><br/>");
                 choose("Airi: $1000", Global.gui());
             }
-            if (!Global.checkFlag(Flag.Kat) && Global.checkFlag(Flag.magicstore)) {
+            if (!Flag.checkFlag(Flag.Kat) && Flag.checkFlag(Flag.magicstore)) {
                 Global.gui()
                       .message("<i>\"So last year Kat (funny name, you'll see why later) was responsible for a couple of all time firsts. The first 'first'.... The first unprecedented event "
                                       + "was an actual virgin joining in a match. She had never had sex before and may not have even masturbated before if the rumors are true. Her first match, she became everyone's toy. Absolutely everyone "
@@ -415,7 +415,7 @@ public class Informant extends Activity {
                     }
                 }
             }
-            if (!Global.checkFlag(Flag.Eve) && Global.checkFlag(Flag.blackMarketPlus) && player.getRank() >= 2) {
+            if (!Flag.checkFlag(Flag.Eve) && Flag.checkFlag(Flag.blackMarketPlus) && player.getRank() >= 2) {
                 Global.gui()
                       .message("<i>\"Eve Ranger is... a lot of things, but mostly a cautionary tale. "
                                       + "She started the same year I did. From the beginning, it was obvious"
@@ -467,7 +467,7 @@ public class Informant extends Activity {
                       .message("<i>\"Ok, I'll talk to Reyka. She spends a lot of nights surfing the internet, but I'm sure she wouldn't mind an opportunity for some free prey.\"</i>");
                 acted = true;
                 Global.newChallenger(Global.getNPCByType(new Reyka().getType()).ai);
-                Global.flag(Flag.Reyka);
+                Flag.flag(Flag.Reyka);
             } else {
                 Global.gui()
                       .message("You don't have enough money<br/><br/>");
@@ -482,7 +482,7 @@ public class Informant extends Activity {
                                       + "Don't let it catch you off guard.\"</i>");
                 acted = true;
                 Global.newChallenger(Global.getNPCByType(new Airi().getType()).ai);
-                Global.flag(Flag.Airi);
+                Flag.flag(Flag.Airi);
             } else {
                 Global.gui()
                       .message("You don't have enough money<br/><br/>");
@@ -496,7 +496,7 @@ public class Informant extends Activity {
                                       + "just an ordinary girl. Besides, if her fans hear that you've been mean to her, they'll probably kick your ass. That includes me, by the way.\"</i>");
                 acted = true;
                 Global.newChallenger(Global.getNPCByType(new Kat().getType()).ai);
-                Global.flag(Flag.Kat);
+                Flag.flag(Flag.Kat);
             } else {
                 Global.gui()
                       .message("You don't have enough money<br/><br/>");
@@ -513,7 +513,7 @@ public class Informant extends Activity {
 
                 acted = true;
                 Global.newChallenger(Global.getNPCByType(new Eve().getType()).ai);
-                Global.flag(Flag.Eve);
+                Flag.flag(Flag.Eve);
             } else {
                 Global.gui()
                       .message("You don't have enough money<br/><br/>");
@@ -536,59 +536,59 @@ public class Informant extends Activity {
             String message = "You tell Aesop about the feelings you've been having"
                             + " lately, asking if he can do anything to help. <i>" +
                             Formatter.format(add.informantsOverview(), add.affected, add.getCause());
-            if (!Global.checkFlag(Flag.AddictionAdvice)) {
+            if (!Flag.checkFlag(Flag.AddictionAdvice)) {
                 message += "\n\nAnyway, if you want to get rid of it, I might have got an address for you."
                                 + " Being as kind as I am, I'll give it to you for free. You know, help"
                                 + " a pal in need and all. That's not to say it isn't going to cost you, though.</i>";
-                Global.flag(Flag.AddictionAdvice);
+                Flag.flag(Flag.AddictionAdvice);
             }
             Global.gui().message(message);
         }
-        if (!Global.checkFlag(Flag.basicStores)) {
+        if (!Flag.checkFlag(Flag.basicStores)) {
             choose("Purchasing supplies", Global.gui());
         }
-        if (!Global.checkFlag(Flag.girlAdvice)) {
+        if (!Flag.checkFlag(Flag.girlAdvice)) {
             choose("The Competition", Global.gui());
         }
-        if (!Global.checkFlag(Flag.meditation)) {
+        if (!Flag.checkFlag(Flag.meditation)) {
             choose("Meditation: $200", Global.gui());
         }
-        if (Global.checkFlag(Flag.basicStores) && !Global.checkFlag(Flag.blackMarket)) {
+        if (Flag.checkFlag(Flag.basicStores) && !Flag.checkFlag(Flag.blackMarket)) {
             choose("Black Market: $400", Global.gui());
         }
-        if (Global.checkFlag(Flag.girlAdvice) && !Global.checkFlag(Flag.CassieKnown)) {
+        if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.CassieKnown)) {
             choose("Cassie: $300", Global.gui());
         }
-        if (Global.checkFlag(Flag.girlAdvice) && !Global.checkFlag(Flag.AngelKnown)) {
+        if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.AngelKnown)) {
             choose("Angel: $300", Global.gui());
         }
-        if (Global.checkFlag(Flag.girlAdvice) && !Global.checkFlag(Flag.MaraKnown)) {
+        if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.MaraKnown)) {
             choose("Mara: $300", Global.gui());
         }
-        if (Global.checkFlag(Flag.girlAdvice) && !Global.checkFlag(Flag.JewelKnown)) {
+        if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.JewelKnown)) {
             choose("Jewel: $300", Global.gui());
         }
-        if (Global.checkFlag(Flag.rank1)) {
-            if (Global.checkFlag(Flag.blackMarket) && !Global.checkFlag(Flag.blackMarketPlus)) {
+        if (Flag.checkFlag(Flag.rank1)) {
+            if (Flag.checkFlag(Flag.blackMarket) && !Flag.checkFlag(Flag.blackMarketPlus)) {
                 choose("Exotic Artifacts: $2500", Global.gui());
             }
-            if (!Global.checkFlag(Flag.bodyShop)) {
+            if (!Flag.checkFlag(Flag.bodyShop)) {
                 choose("Body Shop: $2500", Global.gui());
             }
-            if (Global.checkFlag(Flag.meditation) && !Global.checkFlag(Flag.dojo)) {
+            if (Flag.checkFlag(Flag.meditation) && !Flag.checkFlag(Flag.dojo)) {
                 choose("Martial Arts: $2500", Global.gui());
             }
-            if (!Global.checkFlag(Flag.workshop)) {
+            if (!Flag.checkFlag(Flag.workshop)) {
                 choose("Tech: $2500", Global.gui());
             }
-            if (!Global.checkFlag(Flag.magicstore)) {
+            if (!Flag.checkFlag(Flag.magicstore)) {
                 choose("Magic?: $2500", Global.gui());
             }
             if (newCharacters()) {
                 choose("More Competitors", Global.gui());
             }
         }
-        if (Global.checkFlag(Flag.girlAdvice)) {
+        if (Flag.checkFlag(Flag.girlAdvice)) {
             choose("Competition Info", Global.gui());
             choose("Select Competitors", Global.gui());
         }
@@ -605,6 +605,6 @@ public class Informant extends Activity {
     }
 
     public boolean newCharacters() {
-        return Global.checkFlag(Flag.rank1);
+        return Flag.checkFlag(Flag.rank1);
     }
 }

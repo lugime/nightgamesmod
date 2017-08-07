@@ -4,7 +4,6 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Flag;
-import nightgames.global.Global;
 import nightgames.skills.Skill;
 
 public abstract class SimpleEnemySkill extends Skill {
@@ -18,10 +17,10 @@ public abstract class SimpleEnemySkill extends Skill {
     }
 
     protected boolean gendersMatch(Character other) {
-        if (other.useFemalePronouns() && getSelf().useFemalePronouns() && Global.checkFlag(Flag.skipFF)) {
+        if (other.useFemalePronouns() && getSelf().useFemalePronouns() && Flag.checkFlag(Flag.skipFF)) {
             return false;
         }
-        if (!other.useFemalePronouns() && !getSelf().useFemalePronouns() && Global.checkFlag(Flag.skipMM)) {
+        if (!other.useFemalePronouns() && !getSelf().useFemalePronouns() && Flag.checkFlag(Flag.skipMM)) {
             return false;
         }
         return true;

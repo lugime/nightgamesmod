@@ -13,6 +13,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Flag;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
@@ -73,7 +74,7 @@ public class Angel extends BasePersonality {
         character.getGrowth().bonusArousal = 4;
 
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 10 && !Global.checkFlag(ANGEL_SEX_FOCUS) && !Global.checkFlag(ANGEL_NYMPHOMANIA_FOCUS);
+            return self.getLevel() >= 10 && !Flag.checkFlag(ANGEL_SEX_FOCUS) && !Flag.checkFlag(ANGEL_NYMPHOMANIA_FOCUS);
         }, (c, self, player) -> Formatter.format("After another exhausting fight with her where you've been pretty much been driven insane with her sexual prowess, "
                         + "Angel shows a rare moment of vulnerability and slides into your arms. <i>\"Hey {other:name}, I've been thinking, do you think this is wrong?\"</i> "
                         + "Puzzled, you ask her what she means. <i>\"Well... you know, fucking like rabbits every day. "
@@ -123,8 +124,8 @@ public class Angel extends BasePersonality {
                     )
                 ));
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 20 && !Global.checkFlag(ANGEL_FOLLOWERS_FOCUS) && !Global.checkFlag(ANGEL_WORSHIP_FOCUS)
-                            && (Global.checkFlag(ANGEL_SEX_FOCUS) || Global.checkFlag(ANGEL_NYMPHOMANIA_FOCUS));
+            return self.getLevel() >= 20 && !Flag.checkFlag(ANGEL_FOLLOWERS_FOCUS) && !Flag.checkFlag(ANGEL_WORSHIP_FOCUS)
+                            && (Flag.checkFlag(ANGEL_SEX_FOCUS) || Flag.checkFlag(ANGEL_NYMPHOMANIA_FOCUS));
         }, (c, self, player) -> "After another session of fantastic sex with your favorite sex goddess, Angel looks a bit reluctant to leave. "
                         + "You do want to try to get some more matches in, but her broody look invites some discussion. "
                         + "Patting your own lap, you motion for Angel to sit down. Luckily for you, she doesn't leave you hanging and does just that. "
@@ -215,7 +216,7 @@ public class Angel extends BasePersonality {
     }
 
     private void useSex() {
-        Global.flag(ANGEL_SEX_FOCUS);
+        Flag.flag(ANGEL_SEX_FOCUS);
         character.getGrowth().addTrait(12, Trait.holecontrol);
         character.getGrowth().addTrait(20, Trait.zealinspiring);
         character.getGrowth().addTrait(25, Trait.powerfulhips);
@@ -224,7 +225,7 @@ public class Angel extends BasePersonality {
     }
 
     private void useNymphomania() {
-        Global.flag(ANGEL_NYMPHOMANIA_FOCUS);
+        Flag.flag(ANGEL_NYMPHOMANIA_FOCUS);
         character.modAttributeDontSaveData(Attribute.Nymphomania, 1);
         character.getGrowth().addTrait(12, Trait.lastStand);
         character.getGrowth().addTrait(20, Trait.nymphomania);
@@ -234,13 +235,13 @@ public class Angel extends BasePersonality {
     }
 
     private void useFollowers() {
-        Global.flag(ANGEL_FOLLOWERS_FOCUS);
+        Flag.flag(ANGEL_FOLLOWERS_FOCUS);
         character.getGrowth().addTrait(21, Trait.apostles);
         character.getGrowth().addTrait(30, Trait.leadership);
-        if (Global.checkFlag(ANGEL_SEX_FOCUS)) {
+        if (Flag.checkFlag(ANGEL_SEX_FOCUS)) {
             character.getGrowth().addTrait(42, Trait.inspirational);
         }
-        if (Global.checkFlag(ANGEL_NYMPHOMANIA_FOCUS)) {
+        if (Flag.checkFlag(ANGEL_NYMPHOMANIA_FOCUS)) {
             character.getGrowth().addTrait(42, Trait.showmanship);
         }
         character.getGrowth().addTrait(45, Trait.tactician);
@@ -249,15 +250,15 @@ public class Angel extends BasePersonality {
     }
 
     private void useWorship() {
-        Global.flag(ANGEL_WORSHIP_FOCUS);
+        Flag.flag(ANGEL_WORSHIP_FOCUS);
         character.getGrowth().addTrait(21, Trait.objectOfWorship);
         character.getGrowth().addTrait(30, Trait.magicEyeArousal);
         character.getGrowth().addTrait(42, Trait.sacrosanct);
         character.getGrowth().addTrait(45, Trait.genuflection);
-        if (Global.checkFlag(ANGEL_SEX_FOCUS)) {
+        if (Flag.checkFlag(ANGEL_SEX_FOCUS)) {
             character.getGrowth().addTrait(48, Trait.piety);
         } 
-        if (Global.checkFlag(ANGEL_NYMPHOMANIA_FOCUS)) {
+        if (Flag.checkFlag(ANGEL_NYMPHOMANIA_FOCUS)) {
             character.getGrowth().addTrait(48, Trait.mandateOfHeaven);
         }
         character.getGrowth().addTrait(60, Trait.revered);
@@ -266,7 +267,7 @@ public class Angel extends BasePersonality {
     @Override
     public void rest(int time) {
         if (character.rank >= 1) {
-            if (!character.has(Trait.demigoddess) && (Global.checkFlag(ANGEL_SEX_FOCUS) || Global.checkFlag(ANGEL_NYMPHOMANIA_FOCUS))) {
+            if (!character.has(Trait.demigoddess) && (Flag.checkFlag(ANGEL_SEX_FOCUS) || Flag.checkFlag(ANGEL_NYMPHOMANIA_FOCUS))) {
                 advance();
             }
         }

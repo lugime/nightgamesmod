@@ -22,21 +22,21 @@ public class Daytime {
         this.player = player;
         this.eventMgr = new DaytimeEventManager(player);
         buildActivities();
-        if (Global.checkFlag(Flag.metAlice)) {
-            if (Global.checkFlag(Flag.victory)) {
-                Global.unflag(Flag.AliceAvailable);
+        if (Flag.checkFlag(Flag.metAlice)) {
+            if (Flag.checkFlag(Flag.victory)) {
+                Flag.unflag(Flag.AliceAvailable);
             } else {
-                Global.flag(Flag.AliceAvailable);
+                Flag.flag(Flag.AliceAvailable);
             }
         }
-        if (Global.checkFlag(Flag.YuiLoyalty)) {
-            Global.flag(Flag.YuiAvailable);
+        if (Flag.checkFlag(Flag.YuiLoyalty)) {
+            Flag.flag(Flag.YuiAvailable);
         }
-        if (Global.checkFlag(Flag.YuiUnlocking)) {
-            Global.unflag(Flag.YuiUnlocking);
+        if (Flag.checkFlag(Flag.YuiUnlocking)) {
+            Flag.unflag(Flag.YuiUnlocking);
         }
         
-        Global.unflag(Flag.threesome);
+        Flag.unflag(Flag.threesome);
         time = 10;
         // do NPC day length
         if (Global.getDate() % 7 == 6 || Global.getDate() % 7 == 0) {
@@ -167,16 +167,16 @@ public class Daytime {
         activities.add(new CassieTime(player));
         activities.add(new JewelTime(player));
         activities.add(new MaraTime(player));
-        if (Global.checkFlag(Flag.Kat)) {
+        if (Flag.checkFlag(Flag.Kat)) {
             activities.add(new KatTime(player));
         }
         activities.add(new Closet(player));
         activities.add(new ClothingStore(player));
         activities.add(new Boutique(player));
-        if (Global.checkFlag(Flag.Reyka)) {
+        if (Flag.checkFlag(Flag.Reyka)) {
             activities.add(new ReykaTime(player));
         }
-        if (Global.checkFlag(Flag.YuiLoyalty)) {
+        if (Flag.checkFlag(Flag.YuiLoyalty)) {
             activities.add(new YuiTime(player));
         }
         activities.add(new MagicTraining(player));

@@ -19,7 +19,7 @@ public class Prematch implements Scene {
 
     public Prematch(Player player) {
         Global.current = this;
-        Global.unflag(Flag.victory);
+        Flag.unflag(Flag.victory);
         List<KeyableButton> choice = new ArrayList<KeyableButton>();
         String message = "";
         if (player.getLevel() < 5) {
@@ -28,7 +28,7 @@ public class Prematch implements Scene {
                             + "you head to your assigned starting point and wait. At exactly 10:00, the match is on.";
             type = new NoModifier();
             choice.add(new SceneButton("Start The Match"));
-        } else if (!Global.checkFlag(Flag.metLilly)) {
+        } else if (!Flag.checkFlag(Flag.metLilly)) {
             message += "You get to the student union a little earlier than usual. Cassie and Jewel are there already and you spend a few minutes talking with them while "
                             + "you wait for the other girls to show up. A few people are still rushing around making preparations, but it's not clear exactly what they're doing. "
                             + "Other than making sure there are enough spare clothes to change into, there shouldn't be too much setup required. Maybe they're responsible for "
@@ -49,7 +49,7 @@ public class Prematch implements Scene {
                             + "agree to this, I'll throw an extra $" + new UnderwearOnlyModifier().bonus()
                             + " on top of your normal prize for each point you score. Interested?\"</i>";
             type = new UnderwearOnlyModifier();
-            Global.flag(Flag.metLilly);
+            Flag.flag(Flag.metLilly);
             choice.add(new SceneButton("Do it"));
             choice.add(new SceneButton("Not interested"));
         } else if (player.getRank() > 0 && Global.getDate() % 30 == 0) {

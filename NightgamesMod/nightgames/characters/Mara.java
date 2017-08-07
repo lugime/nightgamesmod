@@ -12,6 +12,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Flag;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
@@ -190,8 +191,8 @@ public class Mara extends BasePersonality {
         character.getGrowth().bonusArousal = 2;
 
         character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 10 && !Global.checkFlag(MARA_GENERAL_TECH_FOCUS)
-                                        && !Global.checkFlag(MARA_HARPOON_FOCUS),
+                        (c, self, other) -> self.getLevel() >= 10 && !Flag.checkFlag(MARA_GENERAL_TECH_FOCUS)
+                                        && !Flag.checkFlag(MARA_HARPOON_FOCUS),
                         (c, self, other) -> Formatter.format(
                                         "You see {self:name} fiddling with the device on her arm"
                                                         + " as you both recover from your match. <i>\"Damn thing is on the fritz"
@@ -255,8 +256,8 @@ public class Mara extends BasePersonality {
                         }))));
 
         character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 20 && !Global.checkFlag(MARA_OCTO_FOCUS)
-                                        && !Global.checkFlag(MARA_MIND_CONTROL_FOCUS),
+                        (c, self, other) -> self.getLevel() >= 20 && !Flag.checkFlag(MARA_OCTO_FOCUS)
+                                        && !Flag.checkFlag(MARA_MIND_CONTROL_FOCUS),
                         (c, self, other) -> Formatter.format(
                                         "You and {self:name} are both getting back up after your match,"
                                                         + " cleaning yourselves as much as possible before moving on. <i>\"Hey, {other:name}."
@@ -343,7 +344,7 @@ public class Mara extends BasePersonality {
     }
 
     private void useGeneralTech() {
-        Global.flag(MARA_GENERAL_TECH_FOCUS);
+        Flag.flag(MARA_GENERAL_TECH_FOCUS);
         character.getGrowth().addTrait(10, Trait.bomber);
         character.getGrowth().addTrait(19, Trait.maglocks);
         character.getGrowth().addTrait(26, Trait.trainingcollar);
@@ -351,7 +352,7 @@ public class Mara extends BasePersonality {
     }
 
     private void useHarpoon() {
-        Global.flag(MARA_HARPOON_FOCUS);
+        Flag.flag(MARA_HARPOON_FOCUS);
         character.getGrowth().addTrait(10, Trait.harpoon);
         character.getGrowth().addTrait(19, Trait.yank);
         character.getGrowth().addTrait(26, Trait.conducivetoy);
@@ -359,18 +360,18 @@ public class Mara extends BasePersonality {
     }
 
     private void useOcto() {
-        Global.flag(MARA_OCTO_FOCUS);
+        Flag.flag(MARA_OCTO_FOCUS);
         character.getGrowth().addTrait(20, Trait.octo); // upgrades itself (in RoboArmManager)
     }
 
     private void useMindControl() {
-        Global.flag(MARA_MIND_CONTROL_FOCUS);
+        Flag.flag(MARA_MIND_CONTROL_FOCUS);
         character.getGrowth().addTrait(20, Trait.mindcontroller);
         character.getGrowth().addTrait(29, Trait.infrasound);
         character.getGrowth()
                  .addClothing(29, Clothing.getByID("infrasoundnecklace"));
         character.getGrowth().addTrait(40, Trait.ControlledRelease);
-        if (Global.checkFlag(MARA_GENERAL_TECH_FOCUS)) {
+        if (Flag.checkFlag(MARA_GENERAL_TECH_FOCUS)) {
             character.getGrowth().addTrait(53, Trait.RemoteControl);
         } else {
             character.getGrowth().addTrait(53, Trait.EyeOpener);

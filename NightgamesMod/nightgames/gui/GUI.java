@@ -378,86 +378,86 @@ public class GUI extends JFrame implements Observer {
                 put(10, new JLabel("Male"));
             }
         });
-        malePrefSlider.setValue(Math.round(Global.getValue(Flag.malePref)));
+        malePrefSlider.setValue(Math.round(Flag.getValue(Flag.malePref)));
         malePrefSlider.setToolTipText("This setting affects the gender your opponents will gravitate towards once that"
                         + " option becomes available.");
-        malePrefSlider.addChangeListener(e -> Global.setCounter(Flag.malePref, malePrefSlider.getValue()));
+        malePrefSlider.addChangeListener(e -> Flag.setCounter(Flag.malePref, malePrefSlider.getValue()));
 
         // malePrefPanel - options submenu - visible
         optionsPanel.add(malePrefSlider);
         mntmOptions.addActionListener(arg0 -> {
-            if (Global.checkFlag(Flag.systemMessages)) {
+            if (Flag.checkFlag(Flag.systemMessages)) {
                 rdMsgOn.setSelected(true);
             } else {
                 rdMsgOff.setSelected(true);
             }
 
-            if (Global.checkFlag(Flag.AutoNext)) {
+            if (Flag.checkFlag(Flag.AutoNext)) {
                 rdAutoNextOn.setSelected(true);
             } else {
                 rdAutoNextOff.setSelected(true);
             }
 
-            if (Global.checkFlag(Flag.hardmode)) {
+            if (Flag.checkFlag(Flag.hardmode)) {
                 rdhard.setSelected(true);
             } else {
                 rdeasy.setSelected(true);
             }
 
-            if (Global.checkFlag(Flag.dumbmode)) {
+            if (Flag.checkFlag(Flag.dumbmode)) {
                 rddumb.setSelected(true);
             } else {
                 rdnormal.setSelected(true);
             }
-            if (Global.checkFlag(Flag.autosave)) {
+            if (Flag.checkFlag(Flag.autosave)) {
                 rdautosaveon.setSelected(true);
             } else {
                 rdautosaveoff.setSelected(true);
             }
-            if (Global.checkFlag(Flag.noportraits)) {
+            if (Flag.checkFlag(Flag.noportraits)) {
                 rdporoff.setSelected(true);
             } else {
                 rdporon.setSelected(true);
             }
-            if (Global.checkFlag(Flag.noimage)) {
+            if (Flag.checkFlag(Flag.noimage)) {
                 rdimgoff.setSelected(true);
             } else {
                 rdimgon.setSelected(true);
             }
-            if (Global.checkFlag(Flag.largefonts)) {
+            if (Flag.checkFlag(Flag.largefonts)) {
                 rdnfntlrg.setSelected(true);
             } else {
                 rdfntnorm.setSelected(true);
             }
-            if (Global.checkFlag(Flag.NPCFemalePronounsOnly)) {
+            if (Flag.checkFlag(Flag.NPCFemalePronounsOnly)) {
                 rdNPCPronounFemale.setSelected(true);
             } else {
                 rdNPCPronounBody.setSelected(true);
             }
-            if (Global.checkFlag(Flag.PCFemalePronounsOnly)) {
+            if (Flag.checkFlag(Flag.PCFemalePronounsOnly)) {
                 rdPronounFemale.setSelected(true);
             } else {
                 rdPronounBody.setSelected(true);
             }
-            malePrefSlider.setValue(Math.round(Global.getValue(Flag.malePref)));
+            malePrefSlider.setValue(Math.round(Flag.getValue(Flag.malePref)));
             int result = JOptionPane.showConfirmDialog(GUI.this, optionsPanel, "Options", JOptionPane.OK_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE);
             if (result == JOptionPane.OK_OPTION) {
-                Global.setFlag(Flag.systemMessages, rdMsgOn.isSelected());
-                Global.setFlag(Flag.AutoNext, rdAutoNextOn.isSelected());
-                Global.setFlag(Flag.dumbmode, !rdnormal.isSelected());
-                Global.setFlag(Flag.hardmode, rdhard.isSelected());
-                Global.setFlag(Flag.autosave, rdautosaveon.isSelected());
-                Global.setFlag(Flag.noportraits, rdporoff.isSelected());
-                Global.setFlag(Flag.NPCFemalePronounsOnly, rdNPCPronounFemale.isSelected());
-                Global.setFlag(Flag.PCFemalePronounsOnly, rdPronounFemale.isSelected());
+                Flag.setFlag(Flag.systemMessages, rdMsgOn.isSelected());
+                Flag.setFlag(Flag.AutoNext, rdAutoNextOn.isSelected());
+                Flag.setFlag(Flag.dumbmode, !rdnormal.isSelected());
+                Flag.setFlag(Flag.hardmode, rdhard.isSelected());
+                Flag.setFlag(Flag.autosave, rdautosaveon.isSelected());
+                Flag.setFlag(Flag.noportraits, rdporoff.isSelected());
+                Flag.setFlag(Flag.NPCFemalePronounsOnly, rdNPCPronounFemale.isSelected());
+                Flag.setFlag(Flag.PCFemalePronounsOnly, rdPronounFemale.isSelected());
                 if (!rdporon.isSelected()) {
                     showNone();
                 }
                 if (rdimgon.isSelected()) {
-                    Global.unflag(Flag.noimage);
+                    Flag.unflag(Flag.noimage);
                 } else {
-                    Global.flag(Flag.noimage);
+                    Flag.flag(Flag.noimage);
                     if (imgLabel != null) {
                         imgPanel.remove(imgLabel);
                     }
@@ -668,7 +668,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public void displayImage(String path, String artist) {
-        if (Global.checkFlag(Flag.noimage)){ 
+        if (Flag.checkFlag(Flag.noimage)){
             return;
         }
         if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
@@ -730,7 +730,7 @@ public class GUI extends JFrame implements Observer {
 
     // portrait loader
     public void loadPortrait(Combat c, Character player, Character enemy) {
-        if (!Global.checkFlag(Flag.noportraits) && c != null && c.isBeingObserved()) {
+        if (!Flag.checkFlag(Flag.noportraits) && c != null && c.isBeingObserved()) {
             if (Global.isDebugOn(DebugFlags.DEBUG_GUI)) {
                 System.out.println("Load portraits");
             }
@@ -1290,7 +1290,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public void systemMessage(String string) {
-        if (Global.checkFlag(Flag.systemMessages)) {
+        if (Flag.checkFlag(Flag.systemMessages)) {
             message(string);
         }
     }

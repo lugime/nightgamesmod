@@ -17,7 +17,7 @@ public class Meditation extends Activity {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.meditation);
+        return Flag.checkFlag(Flag.meditation);
     }
 
     @Override
@@ -27,8 +27,8 @@ public class Meditation extends Activity {
         }
         Global.gui().clearText();
         Global.gui().clearCommand();
-        if (Global.checkFlag(Flag.dojo) && choice.equals("Start")) {
-            if (!Global.checkFlag(Flag.metSuzume)) {
+        if (Flag.checkFlag(Flag.dojo) && choice.equals("Start")) {
+            if (!Flag.checkFlag(Flag.metSuzume)) {
                 Global.gui().message(
                                 "You go to the Suzuki dojo to meet Suzume. She looks like she's trying to looks like project the air of a dignified martial arts master, but "
                                                 + "you can tell she's excited at the prospect of getting a student. <i>\"Aesop tells me you're interested in becoming my apprentice. Sorry I didn't offer to "
@@ -41,7 +41,7 @@ public class Meditation extends Activity {
                                                 + "but I can't train you for free. I don't charge for guided meditation because it's not a traditional dojo service, but you'll need to pay for each training "
                                                 + "session.\"</i> Her expression darkens as she bites her lip. <i>\"My father is not in good health and he can't take students. I need money to keep the dojo open, and "
                                                 + "I know you're making plenty in the games.\"</i>");
-                Global.flag(Flag.metSuzume);
+                Flag.flag(Flag.metSuzume);
                 choose("Train: $" + 1000 * (player.get(Attribute.Ki) + 1), Global.gui());
                 choose("Sharpen Senses", Global.gui());
                 choose("Shut Out Sensation", Global.gui());
@@ -77,7 +77,7 @@ public class Meditation extends Activity {
                                                 + "normally fighting in.<br/><br/><i>\"Your Ki skills can be very useful, but be careful to pace yourself or you may run out of stamina.\"</i>");
                 player.money -= 1000 * (player.getPure(Attribute.Ki) + 1);
                 player.modAttributeDontSaveData(Attribute.Ki, 1);
-                Global.flag("Trained" + Attribute.Ki.name());
+                Flag.flag("Trained" + Attribute.Ki.name());
                 acted = true;
                 if (!player.has(Clothing.getByID("gi"))) {
                     player.gain(Clothing.getByID("gi"));
@@ -162,7 +162,7 @@ public class Meditation extends Activity {
 
     @Override
     public String toString() {
-        if (Global.checkFlag(Flag.dojo)) {
+        if (Flag.checkFlag(Flag.dojo)) {
             return "Dojo";
         } else {
             return name;

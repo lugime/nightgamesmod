@@ -16,6 +16,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Flag;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
@@ -83,7 +84,7 @@ public class Kat extends BasePersonality {
     private static final String KAT_PHEROMONE_FOCUS = "KatPheromoneFocus";
     private static final String KAT_FRENZY_FOCUS = "KatFrenzyFocus";
     private void useSpeed() {
-        Global.flag(KAT_SPEED_FOCUS);
+        Flag.flag(KAT_SPEED_FOCUS);
         character.getGrowth().addTrait(13, Trait.FeralAgility);
         character.getGrowth().addTrait(19, Trait.NimbleRecovery);
         character.getGrowth().addTrait(34, Trait.CrossCounter);
@@ -92,7 +93,7 @@ public class Kat extends BasePersonality {
     }
 
     private void usePower() {
-        Global.flag(KAT_POWER_FOCUS);
+        Flag.flag(KAT_POWER_FOCUS);
         character.getGrowth().addTrait(13, Trait.FeralStrength);
         character.getGrowth().addTrait(19, Trait.Unwavering);
         character.getGrowth().addTrait(34, Trait.Untamed);
@@ -100,13 +101,13 @@ public class Kat extends BasePersonality {
     }
 
     private void usePheromones() {
-        Global.flag(KAT_PHEROMONE_FOCUS);
+        Flag.flag(KAT_PHEROMONE_FOCUS);
         character.getGrowth().addTrait(22, Trait.lacedjuices);
         character.getGrowth().addTrait(28, Trait.BefuddlingFragrance);
-        if (Global.checkFlag(KAT_SPEED_FOCUS)) {
+        if (Flag.checkFlag(KAT_SPEED_FOCUS)) {
             character.getGrowth().addTrait(43, Trait.FastDiffusion);
         }
-        if (Global.checkFlag(KAT_POWER_FOCUS)){
+        if (Flag.checkFlag(KAT_POWER_FOCUS)){
             character.getGrowth().addTrait(43, Trait.PiercingOdor);
         }
         character.getGrowth().addTrait(49, Trait.ComplexAroma);
@@ -114,14 +115,14 @@ public class Kat extends BasePersonality {
     }
 
     private void useFrenzy() {
-        Global.flag(KAT_FRENZY_FOCUS);
+        Flag.flag(KAT_FRENZY_FOCUS);
         character.getGrowth().addTrait(22, Trait.Rut);
         character.getGrowth().addTrait(22, Trait.NaturalHeat);
         character.getGrowth().addTrait(28, Trait.PrimalHeat);
-        if (Global.checkFlag(KAT_SPEED_FOCUS)) {
+        if (Flag.checkFlag(KAT_SPEED_FOCUS)) {
             character.getGrowth().addTrait(43, Trait.Jackhammer);
         }
-        if (Global.checkFlag(KAT_POWER_FOCUS)){
+        if (Flag.checkFlag(KAT_POWER_FOCUS)){
             character.getGrowth().addTrait(43, Trait.Piledriver);
         }
         character.getGrowth().addTrait(49, Trait.MindlessDesire);
@@ -135,7 +136,7 @@ public class Kat extends BasePersonality {
         character.getGrowth().bonusStamina = 1;
         character.getGrowth().bonusArousal = 2;
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 13 && !Global.checkFlag(KAT_POWER_FOCUS) && !Global.checkFlag(KAT_SPEED_FOCUS);
+            return self.getLevel() >= 13 && !Flag.checkFlag(KAT_POWER_FOCUS) && !Flag.checkFlag(KAT_SPEED_FOCUS);
         }, (c, self, player) -> Formatter.format("Exhilarated after the fight, Kat pounces on you once again. "
                         + "She doesn't seem too keen on having more sex, so you just hold her in your lap and pet her cute cat ears. "
                         + "Kat narrows her eyes and purrs, <i>\"So what do you think nya? I've gotten better right?\"</i> "
@@ -181,8 +182,8 @@ public class Kat extends BasePersonality {
                     )
                 ));
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 22 && !Global.checkFlag(KAT_FRENZY_FOCUS) && !Global.checkFlag(KAT_PHEROMONE_FOCUS)
-                            && (Global.checkFlag(KAT_POWER_FOCUS) || Global.checkFlag(KAT_SPEED_FOCUS));
+            return self.getLevel() >= 22 && !Flag.checkFlag(KAT_FRENZY_FOCUS) && !Flag.checkFlag(KAT_PHEROMONE_FOCUS)
+                            && (Flag.checkFlag(KAT_POWER_FOCUS) || Flag.checkFlag(KAT_SPEED_FOCUS));
         }, (c, self, player) -> "Kat smells like an animal in heat, and her scent is driving you wild. "
                         + "You're not sure if she notices this herself, but you can definitely tell that "
                         + "you're not going to calm down any time soon. Against your better judgement, "

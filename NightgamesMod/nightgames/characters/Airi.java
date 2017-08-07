@@ -20,10 +20,7 @@ import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.CombatantData;
 import nightgames.combat.Result;
-import nightgames.global.Formatter;
-import nightgames.global.Global;
-import nightgames.global.Match;
-import nightgames.global.Random;
+import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.pet.arms.ArmManager;
@@ -153,7 +150,7 @@ public class Airi extends BasePersonality {
         character.getGrowth().bonusStamina = 1;
         character.getGrowth().bonusArousal = 1;
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 13 && self.has(Trait.slime) && !Global.checkFlag(AIRI_SLIME_FOCUS) && !Global.checkFlag(AIRI_MIMICRY_FOCUS);
+            return self.getLevel() >= 13 && self.has(Trait.slime) && !Flag.checkFlag(AIRI_SLIME_FOCUS) && !Flag.checkFlag(AIRI_MIMICRY_FOCUS);
         }, (c, self, player) -> {
                 return Formatter.format("After the match, you spend a few minutes examining the slime girl, much to her disconcertment. "
                                 + "It's quite curious how she can easily transform between slime and human form. "
@@ -257,8 +254,8 @@ public class Airi extends BasePersonality {
                     )
                 ));
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 22 && self.has(Trait.slime) && !Global.checkFlag(AIRI_REPLICATION_FOCUS) && !Global.checkFlag(AIRI_TENTACLES_FOCUS)
-                            && (Global.checkFlag(AIRI_SLIME_FOCUS) || Global.checkFlag(AIRI_MIMICRY_FOCUS));
+            return self.getLevel() >= 22 && self.has(Trait.slime) && !Flag.checkFlag(AIRI_REPLICATION_FOCUS) && !Flag.checkFlag(AIRI_TENTACLES_FOCUS)
+                            && (Flag.checkFlag(AIRI_SLIME_FOCUS) || Flag.checkFlag(AIRI_MIMICRY_FOCUS));
         }, (c, self, player) -> "It's been a while since Airi has joined you in the games and it definitely shows. "
                         + "She seems much more confident and more experienced with sex fighting. "
                         + "The changes doesn't just stop there at mental ones though. Airi also seems... bigger..? than before. "
@@ -353,7 +350,7 @@ public class Airi extends BasePersonality {
     }
 
     private void useMimicry() {
-        Global.setFlag(AIRI_MIMICRY_FOCUS, true);
+        Flag.setFlag(AIRI_MIMICRY_FOCUS, true);
         character.getGrowth().addTrait(13, Trait.Imposter);
         character.getGrowth().addTrait(19, Trait.ImitatedStrength);
         character.getGrowth().addTrait(34, Trait.ThePrestige);
@@ -361,7 +358,7 @@ public class Airi extends BasePersonality {
     }
 
     private void useSlime() {
-        Global.setFlag(AIRI_SLIME_FOCUS, true);
+        Flag.setFlag(AIRI_SLIME_FOCUS, true);
         character.getGrowth().addTrait(13, Trait.VolatileSubstrate);
         character.getGrowth().addTrait(19, Trait.ParasiticBond);
         character.getGrowth().addTrait(34, Trait.PetrifyingPolymers);
@@ -369,13 +366,13 @@ public class Airi extends BasePersonality {
     }
 
     private void useReplication() {
-        Global.setFlag(AIRI_REPLICATION_FOCUS, true);
+        Flag.setFlag(AIRI_REPLICATION_FOCUS, true);
         character.getGrowth().addTrait(22, Trait.BinaryFission);
         character.getGrowth().addTrait(28, Trait.RapidMeiosis);
-        if (Global.checkFlag(AIRI_MIMICRY_FOCUS)) {
+        if (Flag.checkFlag(AIRI_MIMICRY_FOCUS)) {
             character.getGrowth().addTrait(43, Trait.StickyFinale);
         }
-        if (Global.checkFlag(AIRI_SLIME_FOCUS)) {
+        if (Flag.checkFlag(AIRI_SLIME_FOCUS)) {
             character.getGrowth().addTrait(43, Trait.MimicBodyPart);
         }
         character.getGrowth().addTrait(49, Trait.HiveMind);
@@ -383,7 +380,7 @@ public class Airi extends BasePersonality {
     }
 
     private void useTentacles() {
-        Global.setFlag(AIRI_TENTACLES_FOCUS, true);
+        Flag.setFlag(AIRI_TENTACLES_FOCUS, true);
         character.getGrowth().addTrait(22, Trait.Pseudopod);
     }
 

@@ -2,7 +2,6 @@ package nightgames.characters;
 
 import nightgames.global.Flag;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 public enum CharacterSex {
     male("male"),
@@ -27,7 +26,8 @@ public enum CharacterSex {
     }
 
     public boolean hasBalls() {
-        return this == male || this == trap || (this == herm && Global.checkFlag(Flag.hermHasBalls))|| (this == shemale && !Global.checkFlag(Flag.shemaleNoBalls));
+        return this == male || this == trap || (this == herm && Flag
+                        .checkFlag(Flag.hermHasBalls))|| (this == shemale && !Flag.checkFlag(Flag.shemaleNoBalls));
     }
 
     @Override

@@ -193,7 +193,7 @@ public class Cassie extends BasePersonality {
     }
 
     private void useBreastsFocus() {
-        Global.flag(CASSIE_BREAST_FOCUS);
+        Flag.flag(CASSIE_BREAST_FOCUS);
         character.body.addReplace(BreastsPart.f, 1);
         character.getGrowth().addTrait(11, Trait.lactating);
         character.getGrowth().addTrait(25, Trait.magicmilk);
@@ -201,36 +201,36 @@ public class Cassie extends BasePersonality {
         character.getGrowth().addTrait(57, Trait.sedativecream);
     }
     private void useMouthFocus() {
-        Global.flag(CASSIE_MOUTH_FOCUS);
+        Flag.flag(CASSIE_MOUTH_FOCUS);
         character.getGrowth().addTrait(11, Trait.experttongue);
         character.getGrowth().addBodyPartMod(25, "mouth", ExtendedTonguedMod.INSTANCE);
         character.getGrowth().addTrait(38, Trait.tongueTraining3);
         character.getGrowth().addBodyPartMod(57, "mouth", new ArcaneMod());
     }
     private void useEnchantressBonus() {
-        Global.flag(CASSIE_ENCHANTRESS_FOCUS);
+        Flag.flag(CASSIE_ENCHANTRESS_FOCUS);
         character.getGrowth().addTrait(21, Trait.Illusionist);
         character.getGrowth().addTrait(21, Trait.magicEyeArousal);
         character.getGrowth().addTrait(28, Trait.magicEyeFrenzy);
         character.getGrowth().addTrait(30, Trait.hypnoticsemen);
         character.getGrowth().addTrait(32, Trait.magicEyeTrance);
         character.getGrowth().addTrait(43, Trait.magicEyeEnthrall);
-        if (Global.checkFlag(CASSIE_BREAST_FOCUS)) {
+        if (Flag.checkFlag(CASSIE_BREAST_FOCUS)) {
             character.getGrowth().addTrait(47, Trait.beguilingbreasts);
         }
-        if (Global.checkFlag(CASSIE_MOUTH_FOCUS)) {
+        if (Flag.checkFlag(CASSIE_MOUTH_FOCUS)) {
             character.getGrowth().addTrait(47, Trait.soulsucker);
         }
         character.getGrowth().addTrait(60, Trait.enchantingVoice);
     }
 
     private void useSubmissiveBonus() {
-        Global.flag(CASSIE_SUBMISSIVE_FOCUS);
+        Flag.flag(CASSIE_SUBMISSIVE_FOCUS);
         character.getGrowth().addTrait(21, Trait.submissive);
-        if (Global.checkFlag(CASSIE_BREAST_FOCUS)) {
+        if (Flag.checkFlag(CASSIE_BREAST_FOCUS)) {
             character.getGrowth().addTrait(28, Trait.PheromonedMilk);
         }
-        if (Global.checkFlag(CASSIE_MOUTH_FOCUS)) {
+        if (Flag.checkFlag(CASSIE_MOUTH_FOCUS)) {
             character.getGrowth().addTrait(28, Trait.sweetlips);
         }
         character.getGrowth().addTrait(32, Trait.addictivefluids);
@@ -249,7 +249,7 @@ public class Cassie extends BasePersonality {
         character.getGrowth().bonusArousal = 3;
 
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 10 && !Global.checkFlag(CASSIE_BREAST_FOCUS) && !Global.checkFlag(CASSIE_MOUTH_FOCUS);
+            return self.getLevel() >= 10 && !Flag.checkFlag(CASSIE_BREAST_FOCUS) && !Flag.checkFlag(CASSIE_MOUTH_FOCUS);
         }, (c, self, player) -> "Before leaving, " + character.getName() + " turns and asks you \"Hey " + player.getName() + ", what turns you on more? Just for the sakes of... science let's say. I noticed you spending a lot of time on my boobs... are you a tits " + player.guyOrGirl()+ "? Or do you prefer something more romantic? Maybe a kiss would do?\"",
                 Arrays.asList(
                         new CombatSceneChoice("Stare at her breasts", (c, self, other) -> {
@@ -278,8 +278,8 @@ public class Cassie extends BasePersonality {
                     )
                 ));
         character.addCombatScene(new CombatScene((c, self, other) -> {
-            return self.getLevel() >= 20 && !Global.checkFlag(CASSIE_SUBMISSIVE_FOCUS) && !Global.checkFlag(CASSIE_ENCHANTRESS_FOCUS)
-                            && (Global.checkFlag(CASSIE_BREAST_FOCUS) || Global.checkFlag(CASSIE_MOUTH_FOCUS));
+            return self.getLevel() >= 20 && !Flag.checkFlag(CASSIE_SUBMISSIVE_FOCUS) && !Flag.checkFlag(CASSIE_ENCHANTRESS_FOCUS)
+                            && (Flag.checkFlag(CASSIE_BREAST_FOCUS) || Flag.checkFlag(CASSIE_MOUTH_FOCUS));
         }, (c, self, player) -> "After you two recover from your afterglow, Cassie turns towards you. \"You know, we've been competing in the games for a while now. I can't believe how much I've changed! "
                         + "When we just started, I've only gone all the way with a " + c.getOpponent(character).boyOrGirl() + " once. I barely knew what to do even! Now though...\" Cassie gigles and starts tickling your spent "
                         + "cock with an conjured arcane feather. \"Hey " + player.getName()+", what do you think? are you disappointed I turned out this way?\"",
@@ -355,7 +355,7 @@ public class Cassie extends BasePersonality {
     @Override
     public void rest(int time) {
         if (character.rank >= 1) {
-            if (!character.has(Trait.witch) && (Global.checkFlag(CASSIE_BREAST_FOCUS) || Global.checkFlag(CASSIE_MOUTH_FOCUS))) {
+            if (!character.has(Trait.witch) && (Flag.checkFlag(CASSIE_BREAST_FOCUS) || Flag.checkFlag(CASSIE_MOUTH_FOCUS))) {
                 advance();
             }
         }
@@ -408,10 +408,10 @@ public class Cassie extends BasePersonality {
                 Global.getDay().visit("Browse Porn Sites", this.character, 0);
             }
         }
-        if (Global.getValue(Flag.CassieLoneliness) < 0) {
-            Global.setCounter(Flag.CassieLoneliness, 0);
+        if (Flag.getValue(Flag.CassieLoneliness) < 0) {
+            Flag.setCounter(Flag.CassieLoneliness, 0);
         }
-        Global.modCounter(Flag.CassieLoneliness, 5);
+        Flag.modCounter(Flag.CassieLoneliness, 5);
         Decider.visit(character);
     }
 

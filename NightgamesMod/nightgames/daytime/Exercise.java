@@ -17,7 +17,7 @@ public class Exercise extends Activity {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.metBroker);
+        return Flag.checkFlag(Flag.metBroker);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Exercise extends Activity {
                         + "you a better look at her lovely face. <i>\"I just moved here and I wasn't sure what to expect from the local culture. That man gave a bit of a poor first impression, "
                         + "but I'm glad to see there are also kind men like you.\"</i><br/><br/>"
                         + "She gives you a little bow before she walks away. After she's gone, you kinda regret not at getting at least her name. Oh well, maybe you'll run into her again.");
-                Global.flag(Flag.metYui);
-                Global.flag(Flag.YuiUnlocking);
+                Flag.flag(Flag.metYui);
+                Flag.flag(Flag.YuiUnlocking);
                 Global.getNPC("Yui").gainAffection(player, 1);
                 break;
             case yuiintro2:
@@ -131,8 +131,8 @@ public class Exercise extends Activity {
                         + "bow, but seems hesistant to leave right away. <i>\"This is the first time I've really regretted not owning a cell phone. If I ever buy one, I promise I'll give you my "
                         + "number.\"</i> She smiles brightly. <i>\"We've had two serendipitous meetings in such a short period of time. I'm sure we'll meet again soon.\"</i>");
                 Global.getNPC("Yui").gainAffection(player, 1);
-                Global.flag(Flag.YuiWalletReturned);
-                Global.flag(Flag.YuiUnlocking);
+                Flag.flag(Flag.YuiWalletReturned);
+                Flag.flag(Flag.YuiUnlocking);
                 break;
             case yuiintro3:
                 Global.gui().message("You take a jog around the campus. You find yourself thinking about the girl you encountered on a couple previous jogs, Yui. You haven't had any way to contact "
@@ -177,21 +177,21 @@ public class Exercise extends Activity {
                         + "Yui blushes again, but looks determined. <i>\"Please let me call you Master. It's really important to me to show you my commitment. I'll... try not to say it in front of "
                         + "other people.\"</i> Her expression is too sincere to turn down. Fine, she can call you whatever she wants." );
                 Global.getNPC("Yui").gainAffection(player, 1);
-                Global.flag(Flag.YuiLoyalty);
+                Flag.flag(Flag.YuiLoyalty);
                 break;
         }
     }
 
     private Scene pickScene(int gain) {
         ArrayList<Scene> available = new ArrayList<Scene>();
-        if(player.getRank()>=1&&!Global.checkFlag(Flag.metYui)){
+        if(player.getRank()>=1&&!Flag.checkFlag(Flag.metYui)){
             available.add(Scene.yuiintro1);
         }
 
-        if(Global.checkFlag(Flag.metYui) && !Global.checkFlag(Flag.YuiWalletReturned) && !Global.checkFlag(Flag.YuiUnlocking)){
+        if(Flag.checkFlag(Flag.metYui) && !Flag.checkFlag(Flag.YuiWalletReturned) && !Flag.checkFlag(Flag.YuiUnlocking)){
             available.add(Scene.yuiintro2);
         }
-        if(!Global.checkFlag(Flag.YuiLoyalty) && Global.checkFlag(Flag.YuiWalletReturned) && !Global.checkFlag(Flag.YuiUnlocking)){
+        if(!Flag.checkFlag(Flag.YuiLoyalty) && Flag.checkFlag(Flag.YuiWalletReturned) && !Flag.checkFlag(Flag.YuiUnlocking)){
             available.add(Scene.yuiintro3);
         }
         if (gain == 0) {

@@ -8,6 +8,7 @@ import java.util.Optional;
 import nightgames.characters.Character;
 import nightgames.characters.NPC;
 import nightgames.characters.Trait;
+import nightgames.global.Flag;
 import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.items.Item;
@@ -36,7 +37,7 @@ public abstract class BaseNPCTime extends Activity {
 
     @Override
     public boolean known() {
-        return knownFlag.isEmpty() || Global.checkFlag(knownFlag);
+        return knownFlag.isEmpty() || Flag.checkFlag(knownFlag);
     }
 
     List<TransformationOption> options;
@@ -114,7 +115,7 @@ public abstract class BaseNPCTime extends Activity {
         } else if (choice.equals(transformationOptionString)) {
             Global.gui().message(Formatter.format(transformationIntro, npc, player));
             if (!transformationFlag.equals("")) {
-                Global.flag(transformationFlag);
+                Flag.flag(transformationFlag);
             }
             options.stream()
                    .forEach(opt -> {

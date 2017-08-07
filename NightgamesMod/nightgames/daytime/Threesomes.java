@@ -271,7 +271,7 @@ public class Threesomes extends DaytimeEvent {
                                       + "sides.");
                 break;
         }
-        Global.flag(Flag.threesome);
+        Flag.flag(Flag.threesome);
     }
 
 
@@ -287,7 +287,7 @@ public class Threesomes extends DaytimeEvent {
     }
 
     @Override boolean available() {
-        return !Global.checkFlag(Flag.threesome);
+        return !Flag.checkFlag(Flag.threesome);
     }
 
 }

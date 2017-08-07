@@ -22,12 +22,12 @@ public class Resupply extends Action {
     @Override
     public boolean usable(Character user) {
         return  !user.bound() && user.location().resupply() || user.has(Trait.immobile)
-                        || (Global.checkFlag(Flag.FTC) && ((FTCMatch) Global.getMatch()).isBase(user, user.location()));
+                        || (Flag.checkFlag(Flag.FTC) && ((FTCMatch) Global.getMatch()).isBase(user, user.location()));
     }
 
     @Override
     public Movement execute(Character user) {
-        if (Global.checkFlag(Flag.FTC)) {
+        if (Flag.checkFlag(Flag.FTC)) {
             FTCMatch match = (FTCMatch) Global.getMatch();
             if (user.human()) {
                 Global.gui().message("You get a change of clothes from the chest placed here.");

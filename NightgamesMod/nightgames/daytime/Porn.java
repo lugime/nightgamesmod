@@ -16,7 +16,7 @@ public class Porn extends Activity {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.metBroker);
+        return Flag.checkFlag(Flag.metBroker);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Porn extends Activity {
             if (Global.getNPC("Angel").getAffection(player) >= 10) {
                 available.add(Scene.angel1);
             }
-            if (Global.checkFlag(Flag.Reyka) && Global.getNPC("Reyka").getAffection(player) >= 1) {
+            if (Flag.checkFlag(Flag.Reyka) && Global.getNPC("Reyka").getAffection(player) >= 1) {
                 available.add(Scene.reyka1);
             }
         }

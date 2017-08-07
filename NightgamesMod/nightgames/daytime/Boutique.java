@@ -14,7 +14,7 @@ public class Boutique extends Store {
     @Override
     public boolean known() {
         if (player.useFemalePronouns()) {
-            return Global.checkFlag(Flag.basicStores);
+            return Flag.checkFlag(Flag.basicStores);
         }
         return false;
     }

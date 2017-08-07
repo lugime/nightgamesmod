@@ -18,14 +18,14 @@ public class MagicTraining extends Activity {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.magicstore);
+        return Flag.checkFlag(Flag.magicstore);
     }
 
     @Override
     public void visit(String choice) {
         Global.gui().clearText();
         Global.gui().clearCommand();
-        if (!Global.checkFlag(Flag.metAisha)) {
+        if (!Flag.checkFlag(Flag.metAisha)) {
             Global.gui().message(
                             "Aisha apparently spends most of her time in a mostly abandoned creative writing reference room in the back of the liberal arts building. On paper, she "
                                             + "apparently runs a fantasy writing workshop. You're not sure if she is serious about writing, but it makes a good cover.<br/><br/>When you get to the reference room, she's the "
@@ -50,7 +50,7 @@ public class MagicTraining extends Activity {
                                             + "with her love juice before offering them to you. It takes you a second before you realize you can move again. After hesitating for a moment, you lick her fingers clean. <i>\"There "
                                             + "we go. I've tasted some of your essence and you've tasted some of mine.\"</i> What was that about? <i>\"Oh this wasn't just a demonstration. I also took the liberty of creating a magic "
                                             + "link between us. It'll make your training easier.\"</i>");
-            Global.flag(Flag.metAisha);
+            Flag.flag(Flag.metAisha);
             choose("Lesson: $" + 1000 * (player.getPure(Attribute.Arcane) + 1), Global.gui());
             choose("Leave", Global.gui());
             acted = true;
@@ -223,7 +223,7 @@ public class MagicTraining extends Activity {
                 }
                 player.money -= 1000 * (player.getPure(Attribute.Arcane) + 1);
                 player.modAttributeDontSaveData(Attribute.Arcane, 1);
-                Global.flag("Trained" + Attribute.Arcane.name());
+                Flag.flag("Trained" + Attribute.Arcane.name());
                 acted = true;
             } else {
                 Global.gui().message("You don't have enough money for training.");
@@ -245,7 +245,7 @@ public class MagicTraining extends Activity {
             }
             choose("Leave", Global.gui());
         } else if (choice.startsWith("Ask about Animal Spirit")) {
-            Global.flag(Flag.furry);
+            Flag.flag(Flag.furry);
             Global.gui().message("You bring up the topic of Kat's animal spirit and "
                             + "how she mentioned Aisha's involvement. Aisha's smile fades and "
                             + "she nods somberly.<br/><i>\"Yes. I told Kat that I was studying "
@@ -347,7 +347,7 @@ public class MagicTraining extends Activity {
                             + "continue to help you out, you should ask her to train you to control your new powers. "
                             + "I want you to do it here, so I can continue to watch you... just to be safe, of course.\"</i>");
             player.modAttributeDontSaveData(Attribute.Animism, 1);
-            Global.flag("Trained" + Attribute.Animism.name());
+            Flag.flag("Trained" + Attribute.Animism.name());
             acted = true;
             choose("Leave", Global.gui());
         } else if (choice.startsWith("Buy a minor scroll: $200")) {
@@ -380,10 +380,10 @@ public class MagicTraining extends Activity {
         if (player.getPure(Attribute.Animism) >= 1) {
             choose("Animism training: $" + (500 + 500 * (player.getPure(Attribute.Animism) + 1)), Global.gui());
         }
-        if (Global.checkFlag(Flag.catspirit) && !Global.checkFlag(Flag.furry)) {
+        if (Flag.checkFlag(Flag.catspirit) && !Flag.checkFlag(Flag.furry)) {
             choose("Ask about Animal Spirit", Global.gui());
         }
-        if (Global.checkFlag(Flag.furry) && player.getPure(Attribute.Animism) == 0) {
+        if (Flag.checkFlag(Flag.furry) && player.getPure(Attribute.Animism) == 0) {
             choose("Get Animal Spirit", Global.gui());
         }
         if (player.getPure(Attribute.Arcane) >= 2 && player.money >= 200) {

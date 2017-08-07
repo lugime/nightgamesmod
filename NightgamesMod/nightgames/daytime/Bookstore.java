@@ -17,7 +17,7 @@ public class Bookstore extends Store {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.basicStores);
+        return Flag.checkFlag(Flag.basicStores);
     }
 
     @Override

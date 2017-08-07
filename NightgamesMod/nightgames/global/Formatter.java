@@ -286,14 +286,14 @@ public class Formatter {
 	}
 
     public static boolean checkCharacterDisabledFlag(Character self) {
-        return Global.checkFlag(String.format(DISABLED_FORMAT, self.getTrueName()));
+        return Flag.checkFlag(String.format(DISABLED_FORMAT, self.getTrueName()));
     }
 
     public static void setCharacterDisabledFlag(Character self) {
-        Global.flag(String.format(DISABLED_FORMAT, self.getTrueName()));
+        Flag.flag(String.format(DISABLED_FORMAT, self.getTrueName()));
     }
 
     public static void unsetCharacterDisabledFlag(Character self) {
-        Global.unflag(String.format(DISABLED_FORMAT, self.getTrueName()));
+        Flag.unflag(String.format(DISABLED_FORMAT, self.getTrueName()));
     }
 }

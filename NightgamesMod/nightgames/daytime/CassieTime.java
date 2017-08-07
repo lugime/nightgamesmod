@@ -554,7 +554,7 @@ public class CassieTime extends BaseNPCTime {
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);
         } else if (choice.equals("Leave")) {
-            Global.modCounter(Flag.CassieLoneliness, -2);
+            Flag.modCounter(Flag.CassieLoneliness, -2);
             done(true);
         }
     }

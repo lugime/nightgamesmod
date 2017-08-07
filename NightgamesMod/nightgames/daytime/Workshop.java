@@ -17,14 +17,14 @@ public class Workshop extends Activity {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.workshop);
+        return Flag.checkFlag(Flag.workshop);
     }
 
     @Override
     public void visit(String choice) {
         Global.gui().clearText();
         Global.gui().clearCommand();
-        if (!Global.checkFlag(Flag.metJett)) {
+        if (!Flag.checkFlag(Flag.metJett)) {
             Global.gui().message(
                             "You head to Jett's workshop. Apparently he has an implicit claim on this workshop in the same way that Mara does on her computer room. "
                                             + "When you enter the room, he's busy machining an unidentifiable metal component. When he finishes the part, he walks over to greet you, but doesn't "
@@ -36,7 +36,7 @@ public class Workshop extends Activity {
                                             + "to someone who doesn't know how to maintain and operate it safely. I'm not risking you sodding up one of my inventions in a way that gets a girl hurt. What "
                                             + "I am willing to do is teach you how I put my equipment together. If you're a quick study and can understand how my toys work, I'll help you build your own. Oh, "
                                             + "and I'm not helping you for free. No offence, but I'm rooting for your opponents. Male solidarity is fine and well, but they're a lot more attractive than you.\"</i>");
-            Global.flag(Flag.metJett);
+            Flag.flag(Flag.metJett);
             acted = true;
             choose("Lecture: $" + 1000 * (player.getPure(Attribute.Science) + 1), Global.gui());
         } else if (choice.equals("Start")) {
@@ -130,7 +130,7 @@ public class Workshop extends Activity {
                                                 + "recharge during a match, there are a few compatible charging stations in the Mechanical Engineering workshops.\"</i>");
                 player.money -= 1000 * (player.getPure(Attribute.Science) + 1);
                 player.modAttributeDontSaveData(Attribute.Science, 1);
-                Global.flag("Trained" + Attribute.Science.name());
+                Flag.flag("Trained" + Attribute.Science.name());
                 if (!player.has(Item.ShockGlove)) {
                     player.gain(Item.ShockGlove);
                 }

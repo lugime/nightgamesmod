@@ -16,7 +16,7 @@ public class VideoGames extends Activity {
 
     @Override
     public boolean known() {
-        return Global.checkFlag(Flag.metBroker);
+        return Flag.checkFlag(Flag.metBroker);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class VideoGames extends Activity {
 
                 player.gainAffection(Global.getNPC("Cassie"), 1);
                 Global.getNPC("Cassie").gainAffection(player, 1);
-                Global.flag(Flag.Cassievg1);
+                Flag.flag(Flag.Cassievg1);
                 break;
             case cassie2:
                 Global.gui().message(
@@ -96,7 +96,7 @@ public class VideoGames extends Activity {
 
                 player.gainAffection(Global.getNPC("Cassie"), 1);
                 Global.getNPC("Cassie").gainAffection(player, 1);
-                Global.flag(Flag.Cassievg2);
+                Flag.flag(Flag.Cassievg2);
                 break;
             case mara1:
                 Global.gui().message(
@@ -104,7 +104,7 @@ public class VideoGames extends Activity {
 
                 player.gainAffection(Global.getNPC("Mara"), 1);
                 Global.getNPC("Mara").gainAffection(player, 1);
-                Global.flag(Flag.Maravg1);
+                Flag.flag(Flag.Maravg1);
                 break;
             case mara2:
                 Global.gui().message(
@@ -112,7 +112,7 @@ public class VideoGames extends Activity {
 
                 player.gainAffection(Global.getNPC("Mara"), 1);
                 Global.getNPC("Mara").gainAffection(player, 1);
-                Global.flag(Flag.maravg2);
+                Flag.flag(Flag.maravg2);
                 break;
             case cassiemara:
                 Global.gui().message(
@@ -125,19 +125,19 @@ public class VideoGames extends Activity {
                 Global.gui().message(
                                 "While spending so much time with Angel, you've quickly become friends with Caroline. It helps that she's very outgoing and apparently has no hesitation about coming to a guy's room to play video games. She's also fucking good at them.<br/><i>\"That's right, mash out that easy super. I'll just block it all!\"</i> She always seems cool and calculating when you're playing analog games, but apparently fighting games are able to get her fired up. Also, she's fucking good at them.<br/><i>\"And... you're dead.\"</i> You haven't lost yet. Oh wait, yes you have. You didn't realize she could cancel her special into her level 3 super. You're 0 for 3 against her so far.<br/><br/>Ok, new strategy. Your close up game isn't working, so you switch to a ranged character in hopes of zoning her out. It works out for a little while... kinda. It's a little closer at least. Your opportunity comes when you manage to break her Persona. Her character is heavily reliant on her Persona attacks, so she's almost helpless until she recovers. You rush in to finish her off. <i>\"Nope! Not gonna happen!\"</i> She's purely on the defensive, but she keeps avoiding your throws. The chip damage alone should be enough.<br/><br/><i>\"Almost got my Persona back!\"</i> No! no! no! She has a full meter, but you're not going to let her use it! <i>\"Yes! Yes! Yes!\"</i> Her Persona recovers right before you can finish her off and she interrupts you with her super. She lets out a loud whoop as she wins the match.<br/>Come to think of it, she wins most of the analog games too.");
 
-                Global.modCounter(Flag.CarolineAffection, 1.0F);
+                Flag.modCounter(Flag.CarolineAffection, 1.0F);
                 break;
             case caroline2:
                 Global.gui().message(
                                 "Caroline comes over to play games again. This time you've got something simpler, but more interesting. <i>\"Oh sweet! You can pick up a sword by just rolling over it.\"</i><br/> She still seems to be picking this up faster than you. She's steadily pushing you back. Still, you're not doing too bad. You seem to be more consistent than her when fighting unarmed. You end up in a tense back-and-forth battle on her last screen. At the very edge of the screen, you successfully disarm her, but she rolls past you before you can react. She cheers as she reaches her goal.<br/><br/><i>\"Man that was a hell of a fight. But, at the end of the day, who got eaten by the dick shaped monster?\"</i> Yeah, she did. Still, you're pretty sure you've gotten the hang of this. You'll probably beat her this time. <i>\"You can try, but I'm all about getting that dick. The dick will be mine again!\"</i><br/>Within a couple minutes, her words seem to be ringing true. She manages to push you back to her last screen, but you're not going to let it go the same way twice. <br/><br/>You get an easy kill using a door as a chokepoint and rush to the next screen before she can respawn. On the next screen, you throw your sword, killing her again and making yourself a little faster. You rush past her again and she throws a sword at your back. You roll under it and she respawns just in time to get hit by her own sword. The momentum is firmly on your side now. She can't stop you as you rush across the length of the map and reach your goal.<br/><br/>Finally. It's not much, but you've proven that you can beat Caroline with a little luck and a lot of effort.");
 
-                Global.modCounter(Flag.CarolineAffection, 1.0F);
+                Flag.modCounter(Flag.CarolineAffection, 1.0F);
                 break;
             case caroline3:
                 Global.gui().message(
                                 "This is probably the most streamlined game you've played with Caroline, but the most hopeless for you. <i>\"Fraud detection warning! Come on, you have to win at least once.\"</i> That's easier said than done. How much has she played this game? She finishes you with a headshot, just to show off.<br/><i>\"Oh wow! Fraud detected. You got rekt!\"</i> Caroline sets down her controller so she can do a little victory dance. <i>\"I've never seen that happen before. Well, I've only played a little of this, so I guess it's not that surprising.\"</i> As she finishes her victory dance, she notices your expression. <i>\"Aww... Are you sucking cause you got beat?\"</i> You're not sulking, you're just feeling a bit salty right now.<br/><br/>You looks at you for a few seconds before apparently coming to a decision. <i>\"Okay,\"</i> she says, moving closer to you. <i>\"I bet I can cheer you up. Take off your pants\"</i> You look at her blankly, wondering if you misheard her. <i>\"Don't be shy. It's just a special service for a friend. Angel already said it was fine. Now strip.\"</i><br/>You obediently remove your pants and underwear, still not entirely sure what is happening. <i>\"Now, we should start with some ground rules. This is purely a favor for a friend, it does not imply any sort of romantic relationship. That means there's no kissing, no fucking, and you don't get to be jealous if I jerk off my other friends. Also, I offer this service if I think you need it, you don't ask me for it. If all my guy friends pester me for handjobs whenever they get a little horny, I'd never get any rest. Are we clear?\"</i><br/><br/>You nod your assent and she starts massaging your soft dick into an erection. She seems very focused on her task and she's staring at your groin with an intensity that would make even a hardened sexfighter blush. Does she do this a lot? <i>\"I guess my perverted side is showing, just in case you thought I didn't fit in with Angel or Mei.\"</i> She twists her hands around the head of your penis, making your hips buck in pleasure. <i>\"I like playing with dicks. Guys like their dicks played with. It's a total win-win situation. Of course, I don't do it for guys in a relationship unless the girlfriend approves. Like I said earlier, Angel gave the OK before I even asked her. You're lucky your girlfriend is so generous.\"</i><br/><br/>You would debate some of the complexities of your and Angel's relationship, but Caroline is making it very hard for you to talk right now. She must have a lot of practice doing this, because her handjob is good enough to rival any you've received in the Games. She quickly strokes your cock and gently plays with your balls. You're on the verge of cumming and groan out a couple words of warning. In one fluid motion, Caroline pulls a tissue out of her pocket and uses it to catch your ejaculation. <i>\"That was close. You almost made a mess.\"</i> She leans down and licks a couple stray drops of jizz off your dick. <i>\"You're welcome.\"</i>");
 
-                Global.modCounter(Flag.CarolineAffection, 1.0F);
+                Flag.modCounter(Flag.CarolineAffection, 1.0F);
         }
 
         choose("Leave", Global.gui());
@@ -152,26 +152,26 @@ public class VideoGames extends Activity {
         if (player.getAffection(Global.getNPC("Cassie")) >= 5) {
             available.add(Scene.cassie1);
         }
-        if (player.getAffection(Global.getNPC("Cassie")) >= 10 && Global.checkFlag(Flag.Cassievg1)) {
+        if (player.getAffection(Global.getNPC("Cassie")) >= 10 && Flag.checkFlag(Flag.Cassievg1)) {
             available.add(Scene.cassie2);
         }
         if (player.getAffection(Global.getNPC("Mara")) >= 5) {
             available.add(Scene.mara1);
         }
-        if (player.getAffection(Global.getNPC("Mara")) >= 10 && Global.checkFlag(Flag.Maravg1)) {
+        if (player.getAffection(Global.getNPC("Mara")) >= 10 && Flag.checkFlag(Flag.Maravg1)) {
             available.add(Scene.mara2);
         }
-        if (Global.getNPC("Cassie").getAffection(Global.getNPC("Mara")) >= 10 && Global.checkFlag(Flag.Cassievg2)
-                        && Global.checkFlag(Flag.maravg2)) {
+        if (Global.getNPC("Cassie").getAffection(Global.getNPC("Mara")) >= 10 && Flag.checkFlag(Flag.Cassievg2)
+                        && Flag.checkFlag(Flag.maravg2)) {
             available.add(Scene.cassiemara);
         }
         if (player.getAffection(Global.getNPC("Angel")) >= 10) {
             available.add(Scene.caroline1);
         }
-        if (Global.getValue(Flag.CarolineAffection) >= 3.0F) {
+        if (Flag.getValue(Flag.CarolineAffection) >= 3.0F) {
             available.add(Scene.caroline2);
         }
-        if (Global.getValue(Flag.CarolineAffection) >= 10.0F) {
+        if (Flag.getValue(Flag.CarolineAffection) >= 10.0F) {
             available.add(Scene.caroline3);
         }
         return available.get(Random.random(available.size()));

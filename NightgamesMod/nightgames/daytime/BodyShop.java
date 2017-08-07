@@ -545,7 +545,7 @@ public class BodyShop extends Activity {
     @Override
     public boolean known() {
 
-        return Global.checkFlag(Flag.bodyShop);
+        return Flag.checkFlag(Flag.bodyShop);
     }
 
     private void displaySelection() {

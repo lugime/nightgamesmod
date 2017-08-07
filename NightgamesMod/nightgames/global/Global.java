@@ -85,8 +85,6 @@ public class Global {
     public static Set<Character> players;
     public static Set<Character> debugChars;
     public static Set<Character> resting;
-    private static Set<String> flags;
-    private static Map<String, Float> counters;
     public static Player human;
     public static Match match;
     public static Daytime day;
@@ -106,13 +104,13 @@ public class Global {
 
     public Global(boolean headless) {
         rng = new Random();
-        flags = new HashSet<>();
+        Flag.flags = new HashSet<>();
         players = new HashSet<>();
         debugChars = new HashSet<>();
         resting = new HashSet<>();
-        counters = new HashMap<>();
+        Flag.counters = new HashMap<>();
         jdate = new Date();
-        counters.put(Flag.malePref.name(), 0.f);
+        Flag.counters.put(Flag.malePref.name(), 0.f);
         Clothing.buildClothingTable();
         Logwriter.makeLogger(jdate);
         TraitRequirement.setTraitRequirements(new TraitTree(ResourceLoader.getFileResourceAsStream("data/TraitRequirements.xml")));
@@ -154,14 +152,14 @@ public class Global {
         // Add starting characters to players
         players.addAll(characterPool.values().stream().filter(npc -> npc.isStartCharacter).collect(Collectors.toList()));
         if (!cfgFlags.isEmpty()) {
-            flags = cfgFlags.stream().collect(Collectors.toSet());
+            Flag.flags = cfgFlags.stream().collect(Collectors.toSet());
         }
         Map<String, Boolean> configurationFlags = JsonUtils.mapFromJson(JsonUtils.rootJson(new InputStreamReader(ResourceLoader.getFileResourceAsStream("data/globalflags.json"))).getAsJsonObject(), String.class, Boolean.class);
-        configurationFlags.forEach((flag, val) -> Global.setFlag(flag, val));
+        configurationFlags.forEach((flag, val) -> Flag.setFlag(flag, val));
         time = Time.NIGHT;
         date = 1;
         Formatter.setCharacterDisabledFlag(getNPCByType("Yui"));
-        setFlag(Flag.systemMessages, true);
+        Flag.setFlag(Flag.systemMessages, true);
         Match.setUpMatch(new NoModifier());
     }
 
@@ -248,7 +246,7 @@ public class Global {
         }
         date++;
         time = Time.DAY;
-        if (Global.checkFlag(Flag.autosave)) {
+        if (Flag.checkFlag(Flag.autosave)) {
             Global.autoSave();
         }
         Match.endMatch(Global.gui());
@@ -257,7 +255,7 @@ public class Global {
     public static void endDay() {
         day = null;
         time = Time.NIGHT;
-        if (checkFlag(Flag.autosave)) {
+        if (Flag.checkFlag(Flag.autosave)) {
             autoSave();
         }
         startNight();
@@ -310,62 +308,6 @@ public class Global {
         return getNPCByType(type);
     }
 
-    public static void flag(String f) {
-        flags.add(f);
-    }
-
-    public static void unflag(String f) {
-        flags.remove(f);
-    }
-
-    public static void flag(Flag f) {
-        flags.add(f.name());
-    }
-
-    public static void unflag(Flag f) {
-        flags.remove(f.name());
-    }
-
-    public static void setFlag(String f, boolean value) {
-        if (value) { 
-            flag(f);
-        } else {
-            unflag(f);
-        }
-    }
-
-    public static void setFlag(Flag f, boolean value) {
-        if (value) { 
-            flags.add(f.name()); 
-        } else { 
-            flags.remove(f.name()); 
-        }
-    }
-
-    public static boolean checkFlag(Flag f) {
-        return flags.contains(f.name());
-    }
-
-    public static boolean checkFlag(String key) {
-        return flags.contains(key);
-    }
-
-    public static float getValue(Flag f) {
-        if (!counters.containsKey(f.name())) {
-            return 0;
-        } else {
-            return counters.get(f.name());
-        }
-    }
-
-    public static void modCounter(Flag f, float inc) {
-        counters.put(f.name(), getValue(f) + inc);
-    }
-
-    public static void setCounter(Flag f, float val) {
-        counters.put(f.name(), val);
-    }
-
     public static void autoSave() {
         save(new File("./auto.ngs"));
     }
@@ -380,8 +322,8 @@ public class Global {
     protected static SaveData saveData() {
         SaveData data = new SaveData();
         data.players.addAll(players);
-        data.flags.addAll(flags);
-        data.counters.putAll(counters);
+        data.flags.addAll(Flag.flags);
+        data.counters.putAll(Flag.counters);
         data.time = time;
         data.date = date;
         data.fontsize = gui.fontsize;
@@ -483,7 +425,7 @@ public class Global {
 
     protected static void resetForLoad() {
         players.clear();
-        flags.clear();
+        Flag.flags.clear();
         gui.clearText();
         human = new Player("Dummy");
         gui.purgePlayer();
@@ -524,8 +466,8 @@ public class Global {
         players.addAll(data.players);
         players.stream().filter(c -> c instanceof NPC).forEach(
                         c -> characterPool.put(c.getType(), (NPC) c));
-        flags.addAll(data.flags);
-        counters.putAll(data.counters);
+        Flag.flags.addAll(data.flags);
+        Flag.counters.putAll(data.counters);
         date = data.date;
         time = data.time;
         gui.fontsize = data.fontsize;
@@ -592,7 +534,7 @@ public class Global {
 
     public static void reset() {
         players.clear();
-        flags.clear();
+        Flag.flags.clear();
         day = null;
         match = null;
         human = new Player("Dummy");

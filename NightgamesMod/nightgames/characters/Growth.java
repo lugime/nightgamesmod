@@ -10,7 +10,6 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.global.Flag;
-import nightgames.global.Global;
 import nightgames.items.clothing.Clothing;
 import nightgames.utilities.DebugHelper;
 
@@ -162,7 +161,7 @@ public class Growth implements Cloneable {
 
         character.availableAttributePoints += attributes[Math.min(character.rank, attributes.length-1)] + extraAttributes;
 
-        if (Global.checkFlag(Flag.hardmode)) {
+        if (Flag.checkFlag(Flag.hardmode)) {
             character.getStamina().gain(bonusStamina);
             character.getArousal().gain(bonusArousal);
             character.getWillpower().gain(bonusWillpower);
@@ -180,7 +179,7 @@ public class Growth implements Cloneable {
         character.getStamina().gain(-stamina);
         character.getArousal().gain(-arousal);
         character.getWillpower().gain(-willpower);
-        if (Global.checkFlag(Flag.hardmode)) {
+        if (Flag.checkFlag(Flag.hardmode)) {
             character.getStamina().gain(-bonusStamina);
             character.getArousal().gain(-bonusArousal);
             character.getWillpower().gain(-bonusWillpower);
