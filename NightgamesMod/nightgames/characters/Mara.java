@@ -251,8 +251,8 @@ public class Mara extends BasePersonality {
                             useGeneralTech();
                             useHarpoon();
                             character.getGrowth().extraAttributes += 1;
-                            Global.getPlayer()
-                                  .getGrowth().addTraitPoints(new int[] {12, 39}, Global.getPlayer());
+                            CharacterPool.getPlayer()
+                                  .getGrowth().addTraitPoints(new int[] {12, 39}, CharacterPool.getPlayer());
                             return true;
                         }))));
 
@@ -310,8 +310,8 @@ public class Mara extends BasePersonality {
                                             useMindControl();
                                             useOcto();
                                             character.getGrowth().extraAttributes += 1;
-                                            Global.getPlayer()
-                                                  .getGrowth().addTraitPoints(new int[] {21, 48}, Global.getPlayer());
+                                            CharacterPool.getPlayer()
+                                                  .getGrowth().addTraitPoints(new int[] {21, 48}, CharacterPool.getPlayer());
                                             return true;
                                         }))));
 

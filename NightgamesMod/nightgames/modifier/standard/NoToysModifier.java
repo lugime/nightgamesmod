@@ -2,7 +2,7 @@ package nightgames.modifier.standard;
 
 import java.util.Map;
 
-import nightgames.global.Global;
+import nightgames.characters.CharacterPool;
 import nightgames.items.Item;
 import nightgames.modifier.BaseModifier;
 import nightgames.modifier.item.BanToysModifier;
@@ -40,7 +40,7 @@ public class NoToysModifier extends BaseModifier {
 
     @Override
     public boolean isApplicable() {
-        Map<Item, Integer> inv = Global.getPlayer().getInventory();
+        Map<Item, Integer> inv = CharacterPool.getPlayer().getInventory();
         return inv.containsKey(Item.Dildo) || inv.containsKey(Item.Dildo2) || inv.containsKey(Item.Onahole)
                         || inv.containsKey(Item.Onahole2);
     }

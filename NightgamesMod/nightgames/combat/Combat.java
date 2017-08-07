@@ -14,12 +14,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import nightgames.areas.Area;
-import nightgames.characters.Attribute;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.Emotion;
-import nightgames.characters.NPC;
-import nightgames.characters.State;
-import nightgames.characters.Trait;
 import nightgames.characters.body.Body;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.BreastsPart;
@@ -436,7 +432,7 @@ public class Combat extends Observable implements Cloneable {
             NPC commenter = (NPC) other;
             Optional<String> comment = commenter.getComment(this);
             if (comment.isPresent()) {
-                write(commenter, "<i>\"" + Formatter.format(comment.get(), commenter, Global.getPlayer()) + "\"</i>");
+                write(commenter, "<i>\"" + Formatter.format(comment.get(), commenter, CharacterPool.getPlayer()) + "\"</i>");
             }
         }
     }
@@ -864,9 +860,9 @@ public class Combat extends Observable implements Cloneable {
     private String describe(Character player, Character other) {
         if (beingObserved) {
             return "<font color='rgb(255,220,220)'>"
-                            + other.describe(Global.getPlayer().get(Attribute.Perception), this)
+                            + other.describe(CharacterPool.getPlayer().get(Attribute.Perception), this)
                             + "</font><br/><br/><font color='rgb(220,220,255)'>"
-                            + player.describe(Global.getPlayer().get(Attribute.Perception), this)
+                            + player.describe(CharacterPool.getPlayer().get(Attribute.Perception), this)
                             + "</font><br/><br/><font color='rgb(134,196,49)'><b>"
                             + Formatter.capitalizeFirstLetter(getStance().describe(this)) + "</b></font>";
         } else if (!player.is(Stsflag.blinded)) {
@@ -1240,7 +1236,7 @@ public class Combat extends Observable implements Cloneable {
         if (text.length() > 0) {
             if (user.human()) {
                 message = message + "<br/><font color='rgb(200,200,255)'>" + text + "<font color='white'>";
-            } else if (user.isPet() && user.isPetOf(Global.getPlayer())) {
+            } else if (user.isPet() && user.isPetOf(CharacterPool.getPlayer())) {
                 message = message + "<br/><font color='rgb(130,225,200)'>" + text + "<font color='white'>";
             } else if (user.isPet()) {
                 message = message + "<br/><font color='rgb(210,130,255)'>" + text + "<font color='white'>";

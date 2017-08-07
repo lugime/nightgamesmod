@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
@@ -201,7 +202,7 @@ public class MagicMilkAddiction extends Addiction {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        return new MagicMilkAddiction(Global.noneCharacter(), Global.getCharacterByType(obj.get("cause").getAsString()),
+        return new MagicMilkAddiction(Global.noneCharacter(), CharacterPool.getCharacterByType(obj.get("cause").getAsString()),
                         (float) obj.get("magnitude").getAsInt());
     }
 

@@ -73,7 +73,7 @@ public class Player extends Character {
         if (gui.combat != null) {
             gui.combat.pause();
         }
-        Player player = Global.human;
+        Player player = CharacterPool.human;
         if (player.availableAttributePoints > 0) {
             Formatter.writeIfCombatUpdateImmediately(gui.combat, player, player.availableAttributePoints + " Attribute Points remain.\n");
             gui.clearCommand();
@@ -95,9 +95,9 @@ public class Player extends Character {
                     RunnableButton button = new RunnableButton(feat.toString(), () -> {
                         gui.clearTextIfNeeded();
                         Global.gui().message("Gained feat: " + feat.toString());
-                        Global.getPlayer().add(feat);
-                        Global.gui().message(Skill.gainSkills(Global.getPlayer()));
-                        Global.getPlayer().traitPoints -= 1;
+                        CharacterPool.getPlayer().add(feat);
+                        Global.gui().message(Skill.gainSkills(CharacterPool.getPlayer()));
+                        CharacterPool.getPlayer().traitPoints -= 1;
                         gui.refresh();
                         ding(gui);
                     });
@@ -131,7 +131,7 @@ public class Player extends Character {
                 } else if (Global.day != null) {
                     Global.getDay().plan();
                 } else {
-                    new Prematch(Global.human);
+                    new Prematch(CharacterPool.human);
                 }
             }
         }
@@ -185,7 +185,7 @@ public class Player extends Character {
         if (Global.gui().combat != null && (Global.gui().combat.p1.human() || Global.gui().combat.p2.human())) {
             body.describeBodyText(b, Global.gui().combat.getOpponent(this), false);
         } else {
-            body.describeBodyText(b, Global.getCharacterByType("Angel"), false);
+            body.describeBodyText(b, CharacterPool.getCharacterByType("Angel"), false);
         }
         if (getTraits().size() > 0) {
             b.append("<br/>Traits:<br/>");

@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.items.Item;
@@ -12,7 +13,7 @@ public class YuiTime extends BaseNPCTime {
     private boolean acted;
 
     public YuiTime(Character player) {
-        super(player, Global.getNPC("Yui"));
+        super(player, CharacterPool.getNPC("Yui"));
         knownFlag = "YuiLoyalty";
         giftedString = "\"Thanks! You're a pretty nice you know?\"";
         giftString = "\"A present? I'm not going to go easy on you even if you bribe me you know?\"";

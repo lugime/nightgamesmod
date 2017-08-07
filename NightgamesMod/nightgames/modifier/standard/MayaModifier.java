@@ -1,5 +1,6 @@
 package nightgames.modifier.standard;
 
+import nightgames.characters.CharacterPool;
 import nightgames.global.Global;
 import nightgames.modifier.BaseModifier;
 
@@ -50,7 +51,7 @@ public class MayaModifier extends BaseModifier {
 
     @Override
     public boolean isApplicable() {
-        return Global.getPlayer().getRank() > 0 && Global.getDate() % 15 == 0;
+        return CharacterPool.getPlayer().getRank() > 0 && Global.getDate() % 15 == 0;
     }
 
 }

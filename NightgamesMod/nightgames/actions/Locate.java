@@ -5,6 +5,7 @@ import java.io.StringWriter;
 
 import nightgames.areas.Area;
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.Global;
 import nightgames.gui.GUI;
@@ -58,7 +59,7 @@ public class Locate extends Action {
             gui.clearText();
             gui.clearCommand();
             Global.getMatch().resume();
-        } else if ((target = Global.getParticipantsByName(choice)) != null) {
+        } else if ((target = CharacterPool.getParticipantsByName(choice)) != null) {
             Area area = target.location();
             gui.clearText();
             if (area != null) {

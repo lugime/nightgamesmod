@@ -2,6 +2,7 @@ package nightgames.skills;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BreastsPart;
 import nightgames.characters.body.CockMod;
@@ -9,7 +10,6 @@ import nightgames.characters.body.mods.ArcaneMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.status.Abuff;
 import nightgames.status.SlimeMimicry;
 import nightgames.status.Stsflag;
@@ -26,7 +26,7 @@ public class MimicWitch extends Skill {
 
     @Override
     public boolean usable(Combat c, Character target) {
-        return getSelf().canRespond() && !getSelf().is(Stsflag.mimicry) && Global.getNPC("Cassie").has(Trait.witch);
+        return getSelf().canRespond() && !getSelf().is(Stsflag.mimicry) && CharacterPool.getNPC("Cassie").has(Trait.witch);
     }
 
     @Override

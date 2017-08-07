@@ -119,7 +119,7 @@ public class Angel extends BasePersonality {
                             useSex();
                             character.getGrowth().extraAttributes += 1;
                             // some compensation for the added difficulty. She gets 6 traits and 2 attribute points/level, and you only get 2 traits, but you are fighting more people than just her.
-                            Global.getPlayer().getGrowth().addTraitPoints(new int[]{12,39},Global.getPlayer());
+                            CharacterPool.getPlayer().getGrowth().addTraitPoints(new int[]{12,39}, CharacterPool.getPlayer());
                             return true;
                         })
                     )
@@ -183,7 +183,7 @@ public class Angel extends BasePersonality {
                             useFollowers();
                             character.getGrowth().extraAttributes += 1;
                             // some compensation for the added difficulty. She gets 6 traits and 1 attribute point/level, and you only get 2 traits, but you are fighting more people than just her.
-                            Global.getPlayer().getGrowth().addTraitPoints(new int[]{21,48},Global.getPlayer());
+                            CharacterPool.getPlayer().getGrowth().addTraitPoints(new int[]{21,48}, CharacterPool.getPlayer());
                             return true;
                         })
                     )

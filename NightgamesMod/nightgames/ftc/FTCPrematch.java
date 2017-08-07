@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Player;
 import nightgames.global.*;
 import nightgames.gui.KeyableButton;
@@ -64,7 +65,7 @@ public class FTCPrematch implements Scene {
         } else {
             String message = "";
             if (response.equals("Volunteer")) {
-                prey = Global.getPlayer();
+                prey = CharacterPool.getPlayer();
                 if (!Flag.checkFlag(Flag.didFTC)) {
                     message += "\"That's the spirit! Oh, did I mention the Prey has to be naked"
                                     + " for the duration of the match and can't use any items?\" Lilly grins mischievously as she"

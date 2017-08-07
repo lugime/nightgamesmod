@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.daytime.Activity;
 import nightgames.global.Global;
 import nightgames.items.clothing.Clothing;
@@ -105,7 +106,7 @@ public class ClothesChangeGUI extends JPanel {
         tempList.sort(new ClothingSorter());
         tempList.forEach(article -> outfitListModel.addElement(article));
         DecimalFormat format = new DecimalFormat("#.##");
-        appearanceLabel.setText("Attractiveness: " + format.format(character.body.getHotness(Global.getCharacterByType("Angel"))));
+        appearanceLabel.setText("Attractiveness: " + format.format(character.body.getHotness(CharacterPool.getCharacterByType("Angel"))));
         exposureLabel.setText("Exposure: " + format.format(character.outfit.getExposure()));
         Global.gui().refresh();
     }

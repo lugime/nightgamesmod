@@ -186,7 +186,7 @@ public class Airi extends BasePersonality {
                         new CombatSceneChoice("Transform?", (c, self, other) -> {
                             List<Character> lovers = Match
                                             .getMatchParticipantsInAffectionOrder().stream().filter(pa -> !pa.getType().equals(getType())).collect(Collectors.toList());
-                            Character lover = Global.getCharacterByType(new Angel().getType());
+                            Character lover = CharacterPool.getCharacterByType(new Angel().getType());
                             if (!lovers.isEmpty()) {
                                 lover = lovers.get(0);
                             }
@@ -248,7 +248,7 @@ public class Airi extends BasePersonality {
                             useMimicry();
                             character.getGrowth().extraAttributes += 1;
                             // some compensation for the added difficulty. She gets 6 traits and 2 attribute points/level, and you only get 2 traits, but you are fighting more people than just her.
-                            Global.getPlayer().getGrowth().addTraitPoints(new int[]{12,39},Global.getPlayer());
+                            CharacterPool.getPlayer().getGrowth().addTraitPoints(new int[]{12,39}, CharacterPool.getPlayer());
                             return true;
                         })
                     )
@@ -327,7 +327,7 @@ public class Airi extends BasePersonality {
                             useTentacles();
                             character.getGrowth().extraAttributes += 1;
                             // some compensation for the added difficulty. She gets 5 traits and 1 attribute point/level, and you only get 2 traits, but you are fighting more people than just her.
-                            Global.getPlayer().getGrowth().addTraitPoints(new int[]{21,48},Global.getPlayer());
+                            CharacterPool.getPlayer().getGrowth().addTraitPoints(new int[]{21,48}, CharacterPool.getPlayer());
                             return true;
                         })
                     )

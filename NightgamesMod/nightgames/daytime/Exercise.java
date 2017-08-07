@@ -3,6 +3,7 @@ package nightgames.daytime;
 import java.util.ArrayList;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.Configuration;
 import nightgames.global.Flag;
@@ -76,15 +77,15 @@ public class Exercise extends Activity {
                 Global.gui().message(
                                 "You head over to the campus gym and coincidentally run into Cassie there. <i>\"Hi. I'm not really much of a fitness enthusiast, but I need to get into better shape if I'm going to stay competitive.\"</i><br/>The two of you spend some time doing light exercise and chatting.");
 
-                Global.getNPC("Cassie").gainAffection(player, 1);
-                player.gainAffection(Global.getNPC("Cassie"), 1);
+                CharacterPool.getNPC("Cassie").gainAffection(player, 1);
+                player.gainAffection(CharacterPool.getNPC("Cassie"), 1);
                 break;
             case jewel1:
                 Global.gui().message(
                                 "You're going for a run around the campus and run into Jewel doing the same. She makes an immediate beeline towards you. <i>\"You're not getting out of running today, no matter how tempting the alternative is. We're going to get some real exercise.\"</i> She pushes you a lot harder than you had planned and you're exhausted by the end of it, but you did manage to keep up with her.");
 
-                Global.getNPC("Jewel").gainAffection(player, 1);
-                player.gainAffection(Global.getNPC("Jewel"), 1);
+                CharacterPool.getNPC("Jewel").gainAffection(player, 1);
+                player.gainAffection(CharacterPool.getNPC("Jewel"), 1);
                 break;
             case yuiintro1:
                 Global.gui().message("For a change of pace, you decide to try a different jogging route today that takes you outside the campus. There's less foot traffic to worry about here, "
@@ -109,7 +110,7 @@ public class Exercise extends Activity {
                         + "She gives you a little bow before she walks away. After she's gone, you kinda regret not at getting at least her name. Oh well, maybe you'll run into her again.");
                 Flag.flag(Flag.metYui);
                 Flag.flag(Flag.YuiUnlocking);
-                Global.getNPC("Yui").gainAffection(player, 1);
+                CharacterPool.getNPC("Yui").gainAffection(player, 1);
                 break;
             case yuiintro2:
                 Global.gui().message("As you jog around the campus, you stumble onto a wallet sitting on the ground. It's right next to a bench, so it probably fell out of the owner's pocket "
@@ -130,7 +131,7 @@ public class Exercise extends Activity {
                         + "trouble you needlessly after you've helped me so much. Besides, now that I have my ID back, I need to finish my registration.\"</i> She gives you a small, Japanese-style "
                         + "bow, but seems hesistant to leave right away. <i>\"This is the first time I've really regretted not owning a cell phone. If I ever buy one, I promise I'll give you my "
                         + "number.\"</i> She smiles brightly. <i>\"We've had two serendipitous meetings in such a short period of time. I'm sure we'll meet again soon.\"</i>");
-                Global.getNPC("Yui").gainAffection(player, 1);
+                CharacterPool.getNPC("Yui").gainAffection(player, 1);
                 Flag.flag(Flag.YuiWalletReturned);
                 Flag.flag(Flag.YuiUnlocking);
                 break;
@@ -176,7 +177,7 @@ public class Exercise extends Activity {
                         + "People will assume you're in a kinky relationship.<br/><br/>"
                         + "Yui blushes again, but looks determined. <i>\"Please let me call you Master. It's really important to me to show you my commitment. I'll... try not to say it in front of "
                         + "other people.\"</i> Her expression is too sincere to turn down. Fine, she can call you whatever she wants." );
-                Global.getNPC("Yui").gainAffection(player, 1);
+                CharacterPool.getNPC("Yui").gainAffection(player, 1);
                 Flag.flag(Flag.YuiLoyalty);
                 break;
         }
@@ -201,10 +202,10 @@ public class Exercise extends Activity {
             available.add(Scene.basic1);
             available.add(Scene.basic2);
             available.add(Scene.basic3);
-            if (Global.getNPC("Cassie").getAffection(player) >= 5) {
+            if (CharacterPool.getNPC("Cassie").getAffection(player) >= 5) {
                 available.add(Scene.cassie1);
             }
-            if (Global.getNPC("Jewel").getAffection(player) >= 5 && player.getStamina().max() >= 35) {
+            if (CharacterPool.getNPC("Jewel").getAffection(player) >= 5 && player.getStamina().max() >= 35) {
                 available.add(Scene.jewel1);
             }
         }

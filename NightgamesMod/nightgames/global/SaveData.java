@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.json.JsonUtils;
 
 /**
@@ -51,7 +52,7 @@ public class SaveData {
         for (JsonElement element : charactersJSON) {
             JsonObject characterJSON = element.getAsJsonObject();
             String type = characterJSON.get("type").getAsString();
-            Character character = Global.getCharacterByType(type);
+            Character character = CharacterPool.getCharacterByType(type);
             character.load(characterJSON);
 
             players.add(character);

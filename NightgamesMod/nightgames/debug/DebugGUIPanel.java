@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 
 import nightgames.characters.Character;
 import nightgames.characters.Attribute;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.DebugFlags;
 import nightgames.global.Global;
@@ -42,7 +43,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.setXP (\\d+)", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 target.setXP(Integer.valueOf(list.get(2)));
             } catch (NullPointerException e) {
                 output.setText(list.get(1) + " is not a valid charater");
@@ -50,7 +51,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.setMoney (\\d+)", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 target.setMoney(Integer.valueOf(list.get(2)));
             } catch (NullPointerException e) {
                 output.setText(list.get(1) + " is not a valid charater");
@@ -58,7 +59,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.move (\\w+)", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 target.travel(Global.getMatch().getAreas().stream().filter(area -> area.name.toLowerCase().contains(list.get(2).toLowerCase())).findAny().get());
             } catch (NullPointerException e) {
                 output.setText(list.get(1) + " is not a valid charater");
@@ -66,7 +67,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.addTrait (\\w+)", (output, list) -> {
             try {
-            	Character target = Global.getCharacterByType(list.get(1));
+            	Character target = CharacterPool.getCharacterByType(list.get(1));
             	if (list.get(2).equals("all")) {
             		for (Trait t : Trait.values()) {
             			target.add(t);
@@ -82,7 +83,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.removeTrait (\\w+)", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 target.remove(Trait.valueOf(list.get(2)));
             } catch (NullPointerException e) {
                 output.setText(list.get(1) + " is not a valid charater");
@@ -92,7 +93,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.addItem (\\w+) ?(\\d+)?", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 int amt = 1;
                 if (list.size() > 3 && list.get(3) != null) {
                     amt = Integer.valueOf(list.get(3));
@@ -106,7 +107,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.addAtt (\\w+) ?(\\d+)?", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 int amt = 1;
                 if (list.size() > 3 && list.get(3) != null) {
                     amt = Integer.valueOf(list.get(3));
@@ -120,12 +121,12 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.addAffection (\\d+)?", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 int amt = 1;
                 if (list.size() > 2 && list.get(2) != null) {
                     amt = Integer.valueOf(list.get(2));
                 }
-                target.gainAffection(Global.getPlayer(), amt);
+                target.gainAffection(CharacterPool.getPlayer(), amt);
             } catch (NullPointerException e) {
                 output.setText(list.get(1) + " is not a valid charater");
             } catch (IllegalArgumentException e) {
@@ -134,12 +135,12 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.addAttraction (\\d+)?", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 int amt = 1;
                 if (list.size() > 2 && list.get(2) != null) {
                     amt = Integer.valueOf(list.get(2));
                 }
-                target.gainAttraction(Global.getPlayer(), amt);
+                target.gainAttraction(CharacterPool.getPlayer(), amt);
             } catch (NullPointerException e) {
                 output.setText(list.get(1) + " is not a valid charater");
             } catch (IllegalArgumentException e) {
@@ -147,7 +148,7 @@ public class DebugGUIPanel extends JPanel {
             }
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.ding( \\d+)?", (output, list) -> {
-            Character target = Global.getCharacterByType(list.get(1));
+            Character target = CharacterPool.getCharacterByType(list.get(1));
             if (target == null) {
                 output.setText(list.get(1) + " is not a valid charater");
                 return;
@@ -163,7 +164,7 @@ public class DebugGUIPanel extends JPanel {
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.list", (output, list) -> {
             try {
-                Character target = Global.getCharacterByType(list.get(1));
+                Character target = CharacterPool.getCharacterByType(list.get(1));
                 StringBuilder sb = new StringBuilder();
                 sb.append("Level: " + target.getLevel() + "\n");
                 List<Trait> traits = new ArrayList<>(target.getTraits());
@@ -178,7 +179,8 @@ public class DebugGUIPanel extends JPanel {
                 String attString = Arrays.stream(Attribute.values()).filter(att -> target.get(att) != 0).map(att -> String.format("%s: %d", att, target.get(att))).collect(Collectors.joining("\n"));
                 output.setText(String.format("Stamina [%s]\nArousal [%s]\nMojo [%s]\nWillpower [%s]\nAttractiveness: %.01f\n%s\n%s",
                                 target.getStamina().toString(), target.getArousal().toString(),
-                                target.getMojo().toString(), target.getWillpower().toString(), target.body.getHotness(Global.getPlayer()), attString, sb.toString()));
+                                target.getMojo().toString(), target.getWillpower().toString(), target.body.getHotness(
+                                                CharacterPool.getPlayer()), attString, sb.toString()));
             } catch (NullPointerException e) {
                 output.setText(list.get(1) + " is not a valid charater");
             }

@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
@@ -360,7 +361,7 @@ public class Corruption extends Addiction {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        return new Corruption(Global.noneCharacter(), Global.getCharacterByType(obj.get("cause").getAsString()),
+        return new Corruption(Global.noneCharacter(), CharacterPool.getCharacterByType(obj.get("cause").getAsString()),
                         (float) obj.get("magnitude").getAsInt());
     }
 

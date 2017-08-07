@@ -3,6 +3,7 @@ package nightgames.daytime;
 import java.util.Optional;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 
@@ -10,37 +11,37 @@ public class Threesomes extends DaytimeEvent {
 
     public Threesomes(Character player) {
         super(player);
-        if (Global.getNPC("Cassie")
+        if (CharacterPool.getNPC("Cassie")
                   .getAffection(player) >= 20
-                        && Global.getNPC("Jewel")
+                        && CharacterPool.getNPC("Jewel")
                                  .getAffection(player) >= 20
-                        && Global.getNPC("Jewel")
-                                 .getAffection(Global.getNPC("Cassie")) >= 5) {
+                        && CharacterPool.getNPC("Jewel")
+                                 .getAffection(CharacterPool.getNPC("Cassie")) >= 5) {
                         //TODO && Global.getValue(Flag.CassieDWV) >= 5) {
             register("CassieJewel", 5);
         }
-        if (Global.getNPC("Mara")
+        if (CharacterPool.getNPC("Mara")
                   .getAffection(player) >= 20
-                        && Global.getNPC("Jewel")
+                        && CharacterPool.getNPC("Jewel")
                                  .getAffection(player) >= 20
-                        && Global.getNPC("Jewel")
-                                 .getAffection(Global.getNPC("Mara")) >= 5) {
+                        && CharacterPool.getNPC("Jewel")
+                                 .getAffection(CharacterPool.getNPC("Mara")) >= 5) {
             register("MaraJewel", 5);
         }
-        if (Global.getNPC("Mara")
+        if (CharacterPool.getNPC("Mara")
                   .getAffection(player) >= 15
-                        && Global.getNPC("Angel")
+                        && CharacterPool.getNPC("Angel")
                                  .getAffection(player) >= 15
-                        && Global.getNPC("Angel")
-                                 .getAffection(Global.getNPC("Mara")) >= 10) {
+                        && CharacterPool.getNPC("Angel")
+                                 .getAffection(CharacterPool.getNPC("Mara")) >= 10) {
             register("AngelMara", 5);
         }
-        if (Global.getNPC("Mara")
+        if (CharacterPool.getNPC("Mara")
                   .getAffection(player) >= 15
-                        && Global.getNPC("Cassie")
+                        && CharacterPool.getNPC("Cassie")
                                  .getAffection(player) >= 15
-                        && Global.getNPC("Cassie")
-                                 .getAffection(Global.getNPC("Mara")) >= 10) {
+                        && CharacterPool.getNPC("Cassie")
+                                 .getAffection(CharacterPool.getNPC("Mara")) >= 10) {
             register("CassieMara", 5);
         }
     }

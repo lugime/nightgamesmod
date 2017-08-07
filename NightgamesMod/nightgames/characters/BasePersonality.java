@@ -99,7 +99,7 @@ public abstract class BasePersonality implements Personality {
             if (addiction.atLeast(Severity.LOW)) {
                 Character cause = addiction.getCause();
                 int affection = character.getAffection(cause);
-                int affectionDelta = affection - character.getAffection(Global.getPlayer());
+                int affectionDelta = affection - character.getAffection(CharacterPool.getPlayer());
                 // day 10, this would be (10 + sqrt(10) * 5) * .7 = 18 affection lead to max
                 // day 60, this would be (10 + sqrt(70) * 5) * .7 = 36 affection lead to max
                 double chanceToDoDaytime = .25 + (addiction.getMagnitude() / 2) + Math

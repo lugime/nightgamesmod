@@ -1,6 +1,7 @@
 package nightgames.gui;
 
 import nightgames.characters.Attribute;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.Global;
 import nightgames.global.TestGlobal;
@@ -31,8 +32,8 @@ public class CreationGUITest {
         creationGUI.seduction = 11;
         creationGUI.cunning = 9;
         creationGUI.makeGame(Optional.empty());
-        assertThat(Global.human.att, allOf(hasEntry(Attribute.Power, 5), hasEntry(Attribute.Seduction, 11),
+        assertThat(CharacterPool.human.att, allOf(hasEntry(Attribute.Power, 5), hasEntry(Attribute.Seduction, 11),
                         hasEntry(Attribute.Cunning, 9)));
-        assertThat(Global.human.getTraits(), IsCollectionContaining.hasItems(Trait.romantic, Trait.insatiable));
+        assertThat(CharacterPool.human.getTraits(), IsCollectionContaining.hasItems(Trait.romantic, Trait.insatiable));
     }
 }

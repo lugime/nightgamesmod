@@ -106,11 +106,11 @@ public class Match {
 
     public static void setUpMatch(Modifier matchmod) {
         assert Global.day == null;
-        Set<Character> lineup = new HashSet<>(Global.debugChars);
+        Set<Character> lineup = new HashSet<>(CharacterPool.debugChars);
         Character lover = null;
         int maxaffection = 0;
         Flag.unflag(Flag.FTC);
-        for (Character player : Global.players) {
+        for (Character player : CharacterPool.players) {
             player.getStamina().fill();
             player.getArousal().empty();
             player.getMojo().empty();
@@ -118,15 +118,15 @@ public class Match {
             if (player.getPure(Attribute.Science) > 0) {
                 player.chargeBattery();
             }
-            if (Global.human.getAffection(player) > maxaffection && !player.has(Trait.event) && !Formatter
+            if (CharacterPool.human.getAffection(player) > maxaffection && !player.has(Trait.event) && !Formatter
                             .checkCharacterDisabledFlag(player)) {
-                maxaffection = Global.human.getAffection(player);
+                maxaffection = CharacterPool.human.getAffection(player);
                 lover = player;
             }
         }
         List<Character> participants = new ArrayList<>();
         // Disable characters flagged as disabled
-        for (Character c : Global.players) {
+        for (Character c : CharacterPool.players) {
             // Disabling the player wouldn't make much sense, and there's no PlayerDisabled flag.
             if (c.getType().equals("Player") || !Formatter.checkCharacterDisabledFlag(c)) {
                 participants.add(c);
@@ -135,17 +135,17 @@ public class Match {
         if (lover != null) {
             lineup.add(lover);
         }
-        lineup.add(Global.human);
+        lineup.add(CharacterPool.human);
         if (matchmod.name().equals("maya")) {
             if (!Flag.checkFlag(Flag.Maya)) {
-                Global.newChallenger(new Maya(Global.human.getLevel()));
+                CharacterPool.newChallenger(new Maya(CharacterPool.human.getLevel()));
                 Flag.flag(Flag.Maya);
             }
-            NPC maya = Optional.ofNullable(Global.getNPC("Maya")).orElseThrow(() -> new IllegalStateException(
+            NPC maya = Optional.ofNullable(CharacterPool.getNPC("Maya")).orElseThrow(() -> new IllegalStateException(
                             "Maya data unavailable when attempting to add her to lineup."));
             lineup.add(maya);
             lineup = pickCharacters(participants, lineup, 5);
-            Global.resting = new HashSet<>(Global.players);
+            Global.resting = new HashSet<>(CharacterPool.players);
             Global.resting.removeAll(lineup);
             maya.gain(Item.Aphrodisiac, 10);
             maya.gain(Item.DisSol, 10);
@@ -168,12 +168,12 @@ public class Match {
                 lineup.add(prey);
             }
             lineup = pickCharacters(participants, lineup, 5);
-            Global.resting = new HashSet<>(Global.players);
+            Global.resting = new HashSet<>(CharacterPool.players);
             Global.resting.removeAll(lineup);
             Global.match = buildMatch(lineup, matchmod);
         } else if (participants.size() > 5) {
             lineup = pickCharacters(participants, lineup, 5);
-            Global.resting = new HashSet<>(Global.players);
+            Global.resting = new HashSet<>(CharacterPool.players);
             Global.resting.removeAll(lineup);
             Global.match = buildMatch(lineup, matchmod);
         } else {
@@ -183,9 +183,9 @@ public class Match {
     }
 
     public static void startMatch() {
-        Global.getPlayer().getAddictions().forEach(a -> {
+        CharacterPool.getPlayer().getAddictions().forEach(a -> {
             Optional<Status> withEffect = a.startNight();
-            withEffect.ifPresent(s -> Global.getPlayer().addNonCombat(s));
+            withEffect.ifPresent(s -> CharacterPool.getPlayer().addNonCombat(s));
         });
         startMatchGui(Global.gui());
         Global.match.round();
@@ -220,7 +220,7 @@ public class Match {
     }
 
     public static HashSet<Character> getParticipants() {
-        return new HashSet<>(Global.players);
+        return new HashSet<>(CharacterPool.players);
     }
 
     public static Set<Character> pickCharacters(Collection<Character> avail, Collection<Character> added, int size) {
@@ -239,7 +239,7 @@ public class Match {
         if (Global.match == null) {
             return Collections.emptyList();
         }
-        return Global.getInAffectionOrder(Global.match.combatants.stream().filter(c -> !c.human()).collect(Collectors.toList()));
+        return CharacterPool.getInAffectionOrder(Global.match.combatants.stream().filter(c -> !c.human()).collect(Collectors.toList()));
     }
 
     public MatchType getType() {
@@ -388,8 +388,8 @@ public class Match {
                 character.add(Trait.masterheels);
             }
         }
-        Global.getPlayer().getAddictions().forEach(Addiction::endNight);
-        new Postmatch(Global.getPlayer(), combatants);
+        CharacterPool.getPlayer().getAddictions().forEach(Addiction::endNight);
+        new Postmatch(CharacterPool.getPlayer(), combatants);
     }
 
     public int getHour() {
@@ -458,7 +458,7 @@ public class Match {
     }
 
     public void quit() {
-        Character human = Global.getPlayer();
+        Character human = CharacterPool.getPlayer();
         if (human.state == State.combat) {
             if (human.location().fight.getCombat() != null) {
                 human.location().fight.getCombat().forfeit(human);

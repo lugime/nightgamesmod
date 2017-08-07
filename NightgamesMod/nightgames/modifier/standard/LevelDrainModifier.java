@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.*;
 import nightgames.items.Item;
@@ -13,7 +14,7 @@ public class LevelDrainModifier extends BaseModifier {
     public LevelDrainModifier() {
         custom = (c, m) -> {
             if (!c.human()) {
-                if (c.getLevel() < Global.getPlayer().getLevel() + 5) {
+                if (c.getLevel() < CharacterPool.getPlayer().getLevel() + 5) {
                     c.addTemporaryTrait(Trait.ExpertLevelDrainer, 999);
                 } else {
                     c.removeTemporarilyAddedTrait(Trait.ExpertLevelDrainer);
@@ -40,7 +41,7 @@ public class LevelDrainModifier extends BaseModifier {
 
     @Override
     public String intro() {
-        return "<i>\"" + Global.getPlayer().getName() + ", don't you think you are getting a bit too strong? "
+        return "<i>\"" + CharacterPool.getPlayer().getName() + ", don't you think you are getting a bit too strong? "
              + "The girls aren't really winning many matches any more! The benefactor doesn't like that, oh no he doesn't. Technically, I'm supposed to put you "
              + "in a different rotation with more difficult opponents, but the girls seems vehemently against it. Isn't it nice to be loved? "
              + "But since we can't really let this continue the way it's going, I have a proposal for you.\"</i> Lilly rubs her hands together mischeviously and takes out "
@@ -59,10 +60,10 @@ public class LevelDrainModifier extends BaseModifier {
 
     @Override
     public boolean isApplicable() {
-        int playerLevel = Global.getPlayer().getLevel();
+        int playerLevel = CharacterPool.getPlayer().getLevel();
         double averageLevel = Match.getParticipants().stream().filter(p -> !p.human()).filter(p -> !Formatter.checkCharacterDisabledFlag(p)).mapToInt(Character::getLevel).average().orElse(0);
         return playerLevel > averageLevel + 5
-                        && (Flag.checkFlag(Flag.darkness) || Global.getPlayer().getRank() >= 2)
+                        && (Flag.checkFlag(Flag.darkness) || CharacterPool.getPlayer().getRank() >= 2)
                         && Match.getParticipants().stream().noneMatch(p -> p.has(Trait.leveldrainer));
     }
 

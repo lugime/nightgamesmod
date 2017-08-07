@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
@@ -238,7 +239,7 @@ public class MindControl extends Addiction {
     }
 
     @Override public Status loadFromJson(JsonObject obj) {
-        return new MindControl(Global.noneCharacter(), Global.getCharacterByType(obj.get("cause").getAsString()),
+        return new MindControl(Global.noneCharacter(), CharacterPool.getCharacterByType(obj.get("cause").getAsString()),
                         obj.get("magnitude").getAsInt());
     }
 

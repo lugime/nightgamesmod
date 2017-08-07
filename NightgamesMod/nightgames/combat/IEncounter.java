@@ -1,6 +1,7 @@
 package nightgames.combat;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.global.Encs;
 import nightgames.global.Global;
 import nightgames.gui.GUI;
@@ -42,10 +43,10 @@ public interface IEncounter {
     default void promptIntervene(Character p1, Character p2, GUI gui) {
         List<KeyableButton> choices = Arrays.asList(
                         new RunnableButton("Help " + p1.getName(), () -> {
-                            intrude(Global.getPlayer(), p1);
+                            intrude(CharacterPool.getPlayer(), p1);
                         }),
                         new RunnableButton("Help " + p2.getName(), () -> {
-                            intrude(Global.getPlayer(), p2);
+                            intrude(CharacterPool.getPlayer(), p2);
                         }),
                         new RunnableButton("Watch them fight", () -> {
                             watch();
@@ -60,7 +61,7 @@ public interface IEncounter {
         if (!target.mostlyNude()) {
             choices.add(EncounterButton.encounterButton("Steal Clothes", this, target, Encs.stealclothes));
         }
-        if (Global.human.has(Item.Aphrodisiac)) {
+        if (CharacterPool.human.has(Item.Aphrodisiac)) {
             choices.add(EncounterButton.encounterButton("Use Aphrodisiac", this, target,
                             Encs.aphrodisiactrick));
         }
@@ -72,7 +73,7 @@ public interface IEncounter {
     default void promptOpportunity(Character target, Trap trap, GUI gui) {
         List<KeyableButton> choices = Arrays.asList(
         new RunnableButton("Attack " + target.getName(), () -> {
-            parse(Encs.capitalize, Global.getPlayer(), target, trap);
+            parse(Encs.capitalize, CharacterPool.getPlayer(), target, trap);
             Global.getMatch().resume();
         }),
         EncounterButton.encounterButton("Wait", this, target, Encs.wait));
@@ -84,7 +85,7 @@ public interface IEncounter {
         List<KeyableButton> choices = new ArrayList<>();
         choices.add(EncounterButton.encounterButton("Fight", this, target, Encs.fight));
         choices.add(EncounterButton.encounterButton("Flee", this, target, Encs.flee));
-        if (item(Item.SmokeBomb, 1).meets(null, Global.human, null)) {
+        if (item(Item.SmokeBomb, 1).meets(null, CharacterPool.human, null)) {
             choices.add(EncounterButton.encounterButton("Smoke Bomb", this, target, Encs.smoke));
         }
         gui.prompt(choices);

@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.google.gson.JsonObject;
 
 import nightgames.characters.Character;
+import nightgames.characters.CharacterPool;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Formatter;
@@ -256,7 +257,7 @@ public abstract class Addiction extends Status {
     }
 
     public static Addiction load(Character self, JsonObject object) {
-        Character cause = Global.getNPCByType(object.get("cause").getAsString());
+        Character cause = CharacterPool.getNPCByType(object.get("cause").getAsString());
         if (cause == null) {
             return null;
         }

@@ -2471,7 +2471,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public void resupply() {
         for (String victorType : mercy) {
-            Character victor = Global.getCharacterByType(victorType);
+            Character victor = CharacterPool.getCharacterByType(victorType);
             victor.bounty(has(Trait.event) ? 5 : 1, victor);
         }
         mercy.clear();
@@ -2514,7 +2514,7 @@ public abstract class Character extends Observable implements Cloneable {
 
     public void finishMatch() {
         for (String victorType : mercy) {
-            Character victor = Global.getCharacterByType(victorType);
+            Character victor = CharacterPool.getCharacterByType(victorType);
             victor.bounty(has(Trait.event) ? 5 : 1, victor);
         }
         Global.gui().clearImage();
@@ -3003,9 +3003,9 @@ public abstract class Character extends Observable implements Cloneable {
         b.append("<br/>");
         if (human()) {
             // ALWAYS GET JUDGED BY ANGEL. lol.
-            body.describeBodyText(b, Global.getCharacterByType("Angel"), notableOnly);
+            body.describeBodyText(b, CharacterPool.getCharacterByType("Angel"), notableOnly);
         } else {
-            body.describeBodyText(b, Global.getPlayer(), notableOnly);
+            body.describeBodyText(b, CharacterPool.getPlayer(), notableOnly);
         }
         if (getTraits().size() > 0) {
             b.append("<br/>Traits:<br/>");

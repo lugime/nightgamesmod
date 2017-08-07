@@ -3,12 +3,8 @@ package nightgames.daytime;
 import java.util.HashMap;
 import java.util.Map;
 
-import nightgames.characters.Airi;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.Eve;
-import nightgames.characters.Kat;
-import nightgames.characters.NPC;
-import nightgames.characters.Reyka;
 import nightgames.characters.custom.RecruitmentData;
 import nightgames.global.Flag;
 import nightgames.global.Formatter;
@@ -339,12 +335,12 @@ public class Informant extends Activity {
         if (choice.equals("Select Competitors")) {
             Global.gui()
             .message("Haha, feeling the heat? That's okay, I can talk to the organizers about redirecting some of the competitors to other sessions. Just let me know who is becoming too much for you.");
-            Global.everyone().stream()
+            CharacterPool.everyone().stream()
                   .filter(c -> !c.human())
                   .filter(c -> !Formatter.checkCharacterDisabledFlag(c))
                   .forEach(character -> choose(String.format(REMOVE_PREFIX + "%s", character.getTrueName()),
                                   Global.gui()));
-            Global.everyone().stream()
+            CharacterPool.everyone().stream()
                   .filter(c -> !c.human())
                   .filter(c -> Formatter.checkCharacterDisabledFlag(c) && !c.getType().equals("Yui"))
                   .forEach(character -> choose(String.format(RETURN_PREFIX + "%s", character.getTrueName()),
@@ -356,7 +352,7 @@ public class Informant extends Activity {
             String name = choice.substring(REMOVE_PREFIX.length());
             Global.gui()
                   .message("Got it, I'll see about sending " + name+ " to another session.");
-            Formatter.setCharacterDisabledFlag(Global.getParticipantsByName(name));
+            Formatter.setCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
             choose("Select Competitors", Global.gui());
             return;
         }
@@ -364,7 +360,7 @@ public class Informant extends Activity {
             String name = choice.substring(RETURN_PREFIX.length());
             Global.gui()
                   .message("Missing " + name+ " already? I'll see what I can do.");
-            Formatter.unsetCharacterDisabledFlag(Global.getParticipantsByName(name));
+            Formatter.unsetCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
             choose("Select Competitors", Global.gui());
             return;
         }
@@ -401,8 +397,8 @@ public class Informant extends Activity {
                                       + "than you.\"</i><br/><br/>");
                 choose("Kat: $1000", Global.gui());
             }
-            for (Character c : Global.allNPCs()) {
-                if (c.isCustomNPC() && !Global.everyone()
+            for (Character c : CharacterPool.allNPCs()) {
+                if (c.isCustomNPC() && !CharacterPool.everyone()
                                               .contains(c)) {
                     NPC npc = (NPC) c;
                     RecruitmentData data = npc.getRecruitmentData();
@@ -451,7 +447,7 @@ public class Informant extends Activity {
                     Global.gui()
                           .message("<i>\"" + data.confirm + "\"</i>");
                     acted = true;
-                    Global.newChallenger(npc.ai);
+                    CharacterPool.newChallenger(npc.ai);
                 } else {
                     Global.gui()
                           .message("You cannot pay the cost.<br/><br/>");
@@ -466,7 +462,7 @@ public class Informant extends Activity {
                 Global.gui()
                       .message("<i>\"Ok, I'll talk to Reyka. She spends a lot of nights surfing the internet, but I'm sure she wouldn't mind an opportunity for some free prey.\"</i>");
                 acted = true;
-                Global.newChallenger(Global.getNPCByType(new Reyka().getType()).ai);
+                CharacterPool.newChallenger(CharacterPool.getNPCByType(new Reyka().getType()).ai);
                 Flag.flag(Flag.Reyka);
             } else {
                 Global.gui()
@@ -481,7 +477,7 @@ public class Informant extends Activity {
                                       + "Word of advice, Airi's isn't all that personable to begin with, but her entire uh \"personality\" changes when she cums. "
                                       + "Don't let it catch you off guard.\"</i>");
                 acted = true;
-                Global.newChallenger(Global.getNPCByType(new Airi().getType()).ai);
+                CharacterPool.newChallenger(CharacterPool.getNPCByType(new Airi().getType()).ai);
                 Flag.flag(Flag.Airi);
             } else {
                 Global.gui()
@@ -495,7 +491,7 @@ public class Informant extends Activity {
                       .message("<i>\"Pleasure doing business with you. Just be nice to Kat. She's very catlike and confident when she's turned on, but during the day or after climax, she's "
                                       + "just an ordinary girl. Besides, if her fans hear that you've been mean to her, they'll probably kick your ass. That includes me, by the way.\"</i>");
                 acted = true;
-                Global.newChallenger(Global.getNPCByType(new Kat().getType()).ai);
+                CharacterPool.newChallenger(CharacterPool.getNPCByType(new Kat().getType()).ai);
                 Flag.flag(Flag.Kat);
             } else {
                 Global.gui()
@@ -512,7 +508,7 @@ public class Informant extends Activity {
                                       + " for after all.\"</i>");
 
                 acted = true;
-                Global.newChallenger(Global.getNPCByType(new Eve().getType()).ai);
+                CharacterPool.newChallenger(CharacterPool.getNPCByType(new Eve().getType()).ai);
                 Flag.flag(Flag.Eve);
             } else {
                 Global.gui()
@@ -521,7 +517,7 @@ public class Informant extends Activity {
         }
         if (choice.equals("Competition Info")) {
             String message = "<i>\"You want to know how the competition is doing? I can give you a breakdown on each of your opponents:\"</i><br/><br/>";
-            for (Character npc : Global.everyone()) {
+            for (Character npc : CharacterPool.everyone()) {
                 if (!npc.human() && !Formatter.checkCharacterDisabledFlag(npc)) {
                     message = message + npc.dumpstats(false) + "<br/><br/>";
                 }
@@ -530,7 +526,7 @@ public class Informant extends Activity {
                   .message(message);
         }
         if (choice.equals("Help with Addiction")) {
-            Addiction add = Global.getPlayer()
+            Addiction add = CharacterPool.getPlayer()
                                   .getStrongestAddiction()
                                   .get();
             String message = "You tell Aesop about the feelings you've been having"
@@ -592,7 +588,7 @@ public class Informant extends Activity {
             choose("Competition Info", Global.gui());
             choose("Select Competitors", Global.gui());
         }
-        if (Global.getPlayer()
+        if (CharacterPool.getPlayer()
                   .checkAddiction()) {
             choose("Help with Addiction", Global.gui());
         }

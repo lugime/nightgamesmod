@@ -273,7 +273,7 @@ public class Cassie extends BasePersonality {
                             useBreastsFocus();
                             character.getGrowth().extraAttributes += 1;
                             // some compensation for the added difficulty. She gets 4 traits and 3 attribute points/level, and you only get 2 traits, but you are fighting more people than just her.
-                            Global.getPlayer().getGrowth().addTraitPoints(new int[]{1,57},Global.getPlayer());
+                            CharacterPool.getPlayer().getGrowth().addTraitPoints(new int[]{1,57}, CharacterPool.getPlayer());
                             return true;
                         })
                     )
@@ -290,13 +290,14 @@ public class Cassie extends BasePersonality {
                                             + "<br/>"
                                             + "Cassie smiles wryly, \"I thought so. I think I've been trying so hard that I've lost a bit of my true self. "
                                             + "But you know, it doesn't have to be this way. I think I can try applying some of that in a better way.\" She stands up and gives you a quick kiss on the cheek. "
-                                            + "\"Thank you " +Global.getPlayer().getName() + ", you've really help me make up my mind. But the next time we fight, I definitely wont lose!\"");
+                                            + "\"Thank you " + CharacterPool.getPlayer().getName() + ", you've really help me make up my mind. But the next time we fight, I definitely wont lose!\"");
                             useSubmissiveBonus();
                             return true;
                         }),
                         new CombatSceneChoice("Like her new assertive self more", (c, self, other) -> {
                             c.write("You reply that you love her magic and new her confident self. Falling into her eyes is a real turn on for you. "
-                                            + "Cassie's eyes widen briefly before cracking into a wide smile, \""+ Global.getPlayer().getName() + ", I didn't realize you were a sub! "
+                                            + "Cassie's eyes widen briefly before cracking into a wide smile, \""+ CharacterPool
+                                            .getPlayer().getName() + ", I didn't realize you were a sub! "
                                                             + "Do you like being helpless? "
                                                             + "Does it excite you when you are under my control, doing my bidding? I think I can work with that...\"");
                             useEnchantressBonus();

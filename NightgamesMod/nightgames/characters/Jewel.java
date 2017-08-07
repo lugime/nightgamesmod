@@ -172,9 +172,9 @@ public class Jewel extends BasePersonality {
                                             useMartial();
                                             growth.extraAttributes += 1;
                                             // some compensation for the added difficulty. She gets 4 traits and 3 attribute points/level, and you only get 2 traits, but you are fighting more people than just her.
-                                            Global.getPlayer()
+                                            CharacterPool.getPlayer()
                                                   .getGrowth()
-                                                  .addTraitPoints(new int[] {25, 47}, Global.getPlayer());
+                                                  .addTraitPoints(new int[] {25, 47}, CharacterPool.getPlayer());
                                             return true;
                                         }))));
 
@@ -207,9 +207,9 @@ public class Jewel extends BasePersonality {
                             usePhysical();
                             character.getGrowth().extraAttributes += 1;
                             // some compensation for the added difficulty. She gets 4 traits and 3 attribute points/level, and you only get 2 traits, but you are fighting more people than just her.
-                            Global.getPlayer()
+                            CharacterPool.getPlayer()
                                   .getGrowth()
-                                  .addTraitPoints(new int[] {1, 57}, Global.getPlayer());
+                                  .addTraitPoints(new int[] {1, 57}, CharacterPool.getPlayer());
                             return true;
                         }))));
 

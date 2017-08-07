@@ -23,39 +23,17 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import nightgames.characters.*;
+import nightgames.characters.Character;
 import nightgames.requirements.TraitRequirement;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
 
 import nightgames.Resources.ResourceLoader;
 import nightgames.actions.Action;
-import nightgames.characters.Airi;
-import nightgames.characters.Angel;
-import nightgames.characters.Attribute;
-import nightgames.characters.Cassie;
-import nightgames.characters.Character;
-import nightgames.characters.CharacterSex;
-import nightgames.characters.Eve;
-import nightgames.characters.Jewel;
-import nightgames.characters.Kat;
-import nightgames.characters.Mara;
-import nightgames.characters.Maya;
-import nightgames.characters.NPC;
-import nightgames.characters.Personality;
-import nightgames.characters.Player;
-import nightgames.characters.Reyka;
-import nightgames.characters.Trait;
-import nightgames.characters.TraitTree;
-import nightgames.characters.Yui;
-import nightgames.characters.custom.CustomNPC;
-import nightgames.characters.custom.JsonSourceNPCDataLoader;
-import nightgames.characters.custom.NPCData;
 import nightgames.daytime.Daytime;
 import nightgames.gui.GUI;
 import nightgames.gui.HeadlessGui;
@@ -64,7 +42,6 @@ import nightgames.json.JsonUtils;
 import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.NoModifier;
 import nightgames.skills.*;
-import nightgames.start.NpcConfiguration;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
 import nightgames.trap.Trap;
@@ -73,15 +50,11 @@ public class Global {
     private static GUI gui;
     static HashMap<String, Match.MatchAction> matchActions = null;
     public static Set<Skill> skillPool = new HashSet<>();
-    private static Map<String, NPC> characterPool;
     public static Set<Action> actionPool;
     public static Set<Trap> trapPool;
     public static Set<Trait> featPool;
     public static Set<Modifier> modifierPool;
-    public static Set<Character> players;
-    public static Set<Character> debugChars;
     public static Set<Character> resting;
-    public static Player human;
     public static Match match;
     public static Daytime day;
     protected static int date;
@@ -96,8 +69,8 @@ public class Global {
     public Global(boolean headless) {
         nightgames.global.Random.rng = new Random();
         Flag.flags = new HashSet<>();
-        players = new HashSet<>();
-        debugChars = new HashSet<>();
+        CharacterPool.players = new HashSet<>();
+        CharacterPool.debugChars = new HashSet<>();
         resting = new HashSet<>();
         Flag.counters = new HashMap<>();
         Flag.counters.put(Flag.malePref.name(), 0.f);
@@ -125,20 +98,20 @@ public class Global {
                     CharacterSex pickedGender, Map<Attribute, Integer> selectedAttributes) {
         Optional<PlayerConfiguration> playerConfig = config.map(c -> c.player);
         Collection<String> cfgFlags = config.map(StartConfiguration::getFlags).orElse(new ArrayList<>());
-        human = new Player(playerName, pickedGender, playerConfig, pickedTraits, selectedAttributes);
-        if(human.has(Trait.largereserves)) {
-            human.getWillpower().gain(20);
+        CharacterPool.human = new Player(playerName, pickedGender, playerConfig, pickedTraits, selectedAttributes);
+        if(CharacterPool.human.has(Trait.largereserves)) {
+            CharacterPool.human.getWillpower().gain(20);
         }
-        players.add(human);
+        CharacterPool.players.add(CharacterPool.human);
         if (gui != null) {
-            gui.populatePlayer(human);
+            gui.populatePlayer(CharacterPool.human);
         }
-        Skill.buildSkillPool(human);
+        Skill.buildSkillPool(CharacterPool.human);
         Clothing.buildClothingTable();
-        Skill.learnSkills(human);
-        rebuildCharacterPool(config);
+        Skill.learnSkills(CharacterPool.human);
+        CharacterPool.rebuildCharacterPool(config);
         // Add starting characters to players
-        players.addAll(characterPool.values().stream().filter(npc -> npc.isStartCharacter).collect(Collectors.toList()));
+        CharacterPool.players.addAll(CharacterPool.characterPool.values().stream().filter(npc -> npc.isStartCharacter).collect(Collectors.toList()));
         if (!cfgFlags.isEmpty()) {
             Flag.flags = cfgFlags.stream().collect(Collectors.toSet());
         }
@@ -146,22 +119,13 @@ public class Global {
         configurationFlags.forEach((flag, val) -> Flag.setFlag(flag, val));
         time = Time.NIGHT;
         date = 1;
-        Formatter.setCharacterDisabledFlag(getNPCByType("Yui"));
+        Formatter.setCharacterDisabledFlag(CharacterPool.getNPCByType("Yui"));
         Flag.setFlag(Flag.systemMessages, true);
         Match.setUpMatch(new NoModifier());
     }
 
     public static GUI gui() {
         return gui;
-    }
-
-    /**
-     * WARNING DO NOT USE THIS IN ANY COMBAT RELATED CODE.
-     * IT DOES NOT TAKE INTO ACCOUNT THAT THE PLAYER GETS CLONED. WARNING. WARNING.
-     * @return
-     */
-    public static Player getPlayer() {
-        return human;
     }
 
     public static Set<Action> getActions() {
@@ -182,7 +146,7 @@ public class Global {
 
     public static void startDay() {
         match = null;
-        day = new Daytime(human);
+        day = new Daytime(CharacterPool.human);
         day.plan();
     }
 
@@ -198,7 +162,7 @@ public class Global {
         double level = 0;
         int maxLevelTracker = 0;
 
-        for (Character player : players) {
+        for (Character player : CharacterPool.players) {
             player.getStamina().fill();
             player.getArousal().empty();
             player.getMojo().empty();
@@ -208,20 +172,20 @@ public class Global {
                 maxLevelTracker = Math.max(player.getLevel(), maxLevelTracker);
             }
         }
-        final int maxLevel = maxLevelTracker / players.size();
-        players.stream().filter(c -> c.has(Trait.naturalgrowth)).filter(c -> c.getLevel() < maxLevel + 2).forEach(c -> {
+        final int maxLevel = maxLevelTracker / CharacterPool.players.size();
+        CharacterPool.players.stream().filter(c -> c.has(Trait.naturalgrowth)).filter(c -> c.getLevel() < maxLevel + 2).forEach(c -> {
             while (c.getLevel() < maxLevel + 2) {
                 c.ding(null);
             }
         });
-        players.stream().filter(c -> c.has(Trait.unnaturalgrowth)).filter(c -> c.getLevel() < maxLevel + 5)
+        CharacterPool.players.stream().filter(c -> c.has(Trait.unnaturalgrowth)).filter(c -> c.getLevel() < maxLevel + 5)
                         .forEach(c -> {
                             while (c.getLevel() < maxLevel + 5) {
                                 c.ding(null);
                             }
                         });
 
-        level /= players.size();
+        level /= CharacterPool.players.size();
 
         for (Character rested : resting) {
             rested.gainXP(100 + Math.max(0, (int) Math.round(10 * (level - rested.getLevel()))));
@@ -244,28 +208,7 @@ public class Global {
     }
 
     public static void startNight() {
-        Match.decideMatchType().buildPrematch(human);
-    }
-
-    public static List<Character> getInAffectionOrder(List<Character> viableList) {
-        List<Character> results = new ArrayList<>(viableList);
-        results.sort((a, b) -> a.getAffection(getPlayer()) - b.getAffection(getPlayer()));
-        return results;
-    }
-
-    public static NPC getNPCByType(String type) {
-        NPC results = characterPool.get(type);
-        if (results == null) {
-            System.err.println("failed to find NPC for type " + type);
-        }
-        return results;
-    }
-
-    public static Character getCharacterByType(String type) {
-        if (type.equals(human.getType())) {
-            return human;
-        }
-        return getNPCByType(type);
+        Match.decideMatchType().buildPrematch(CharacterPool.human);
     }
 
     public static void autoSave() {
@@ -281,7 +224,7 @@ public class Global {
 
     protected static SaveData saveData() {
         SaveData data = new SaveData();
-        data.players.addAll(players);
+        data.players.addAll(CharacterPool.players);
         data.flags.addAll(Flag.flags);
         data.counters.putAll(Flag.counters);
         data.time = time;
@@ -303,63 +246,6 @@ public class Global {
         }
     }
 
-    private static Optional<NpcConfiguration> findNpcConfig(String type, Optional<StartConfiguration> startConfig) {
-        return startConfig.isPresent() ? startConfig.get().findNpcConfig(type) : Optional.empty();
-    }
-
-    public static void rebuildCharacterPool(Optional<StartConfiguration> startConfig) {
-        characterPool = new HashMap<>();
-        debugChars.clear();
-
-        Optional<NpcConfiguration> commonConfig =
-                        startConfig.isPresent() ? Optional.of(startConfig.get().npcCommon) : Optional.empty();
-
-        try (InputStreamReader reader = new InputStreamReader(
-                        ResourceLoader.getFileResourceAsStream("characters/included.json"))) {
-            JsonArray characterSet = JsonUtils.rootJson(reader).getAsJsonArray();
-            for (JsonElement element : characterSet) {
-                String name = element.getAsString();
-                try {
-                    NPCData data = JsonSourceNPCDataLoader
-                                    .load(ResourceLoader.getFileResourceAsStream("characters/" + name));
-                    Optional<NpcConfiguration> npcConfig = findNpcConfig(CustomNPC.TYPE_PREFIX + data.getName(), startConfig);
-                    Personality npc = new CustomNPC(data, npcConfig, commonConfig);
-                    characterPool.put(npc.getCharacter().getType(), npc.getCharacter());
-                    System.out.println("Loaded " + name);
-                } catch (JsonParseException e1) {
-                    System.err.println("Failed to load NPC " + name);
-                    e1.printStackTrace();
-                }
-            }
-        } catch (JsonParseException | IOException e1) {
-            System.err.println("Failed to load character set");
-            e1.printStackTrace();
-        }
-
-        // TODO: Refactor into function and unify with CustomNPC handling.
-        Personality cassie = new Cassie(findNpcConfig("Cassie", startConfig), commonConfig);
-        Personality angel = new Angel(findNpcConfig("Angel", startConfig), commonConfig);
-        Personality reyka = new Reyka(findNpcConfig("Reyka", startConfig), commonConfig);
-        Personality kat = new Kat(findNpcConfig("Kat", startConfig), commonConfig);
-        Personality mara = new Mara(findNpcConfig("Mara", startConfig), commonConfig);
-        Personality jewel = new Jewel(findNpcConfig("Jewel", startConfig), commonConfig);
-        Personality airi = new Airi(findNpcConfig("Airi", startConfig), commonConfig);
-        Personality eve = new Eve(findNpcConfig("Eve", startConfig), commonConfig);
-        Personality maya = new Maya(1, findNpcConfig("Maya", startConfig), commonConfig);
-        Personality yui = new Yui(findNpcConfig("Yui", startConfig), commonConfig);
-        characterPool.put(cassie.getCharacter().getType(), cassie.getCharacter());
-        characterPool.put(angel.getCharacter().getType(), angel.getCharacter());
-        characterPool.put(reyka.getCharacter().getType(), reyka.getCharacter());
-        characterPool.put(kat.getCharacter().getType(), kat.getCharacter());
-        characterPool.put(mara.getCharacter().getType(), mara.getCharacter());
-        characterPool.put(jewel.getCharacter().getType(), jewel.getCharacter());
-        characterPool.put(airi.getCharacter().getType(), airi.getCharacter());
-        characterPool.put(eve.getCharacter().getType(), eve.getCharacter());
-        characterPool.put(maya.getCharacter().getType(), maya.getCharacter());
-        characterPool.put(yui.getCharacter().getType(), yui.getCharacter());
-        debugChars.add(reyka.getCharacter());
-    }
-    
     public static void loadWithDialog() {
         JFileChooser dialog = new JFileChooser("./");
         FileFilter savesFilter = new FileNameExtensionFilter("Nightgame Saves", "ngs");
@@ -384,14 +270,14 @@ public class Global {
     }
 
     protected static void resetForLoad() {
-        players.clear();
+        CharacterPool.players.clear();
         Flag.flags.clear();
         gui.clearText();
-        human = new Player("Dummy");
+        CharacterPool.human = new Player("Dummy");
         gui.purgePlayer();
-        Skill.buildSkillPool(human);
+        Skill.buildSkillPool(CharacterPool.human);
         Clothing.buildClothingTable();
-        rebuildCharacterPool(Optional.empty());
+        CharacterPool.rebuildCharacterPool(Optional.empty());
         day = null;
     }
 
@@ -409,7 +295,7 @@ public class Global {
         }
         SaveData data = new SaveData(object);
         loadData(data);
-        gui.populatePlayer(human);
+        gui.populatePlayer(CharacterPool.human);
         if (time == Time.DAY) {
             startDay();
         } else {
@@ -423,44 +309,14 @@ public class Global {
      * @param data A SaveData object, as loaded from save files.
      */
     protected static void loadData(SaveData data) {
-        players.addAll(data.players);
-        players.stream().filter(c -> c instanceof NPC).forEach(
-                        c -> characterPool.put(c.getType(), (NPC) c));
+        CharacterPool.players.addAll(data.players);
+        CharacterPool.players.stream().filter(c -> c instanceof NPC).forEach(
+                        c -> CharacterPool.characterPool.put(c.getType(), (NPC) c));
         Flag.flags.addAll(data.flags);
         Flag.counters.putAll(data.counters);
         date = data.date;
         time = data.time;
         gui.fontsize = data.fontsize;
-    }
-
-    public static Set<Character> everyone() {
-        return players;
-    }
-
-    public static boolean newChallenger(Personality challenger) {
-        if (!players.contains(challenger.getCharacter())) {
-            int targetLevel = human.getLevel();
-            if (challenger.getCharacter().has(Trait.leveldrainer)) {
-                targetLevel -= 4;
-            }
-            while (challenger.getCharacter().getLevel() <= targetLevel) {
-                challenger.getCharacter().ding(null);
-            }
-            players.add(challenger.getCharacter());
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public static NPC getNPC(String name) {
-        for (Character c : allNPCs()) {
-            if (c.getType().equalsIgnoreCase(name)) {
-                return (NPC) c;
-            }
-        }
-        System.err.println("NPC \"" + name + "\" is not loaded.");
-        return null;
     }
 
 
@@ -493,22 +349,18 @@ public class Global {
     }
 
     public static void reset() {
-        players.clear();
+        CharacterPool.players.clear();
         Flag.flags.clear();
         day = null;
         match = null;
-        human = new Player("Dummy");
+        CharacterPool.human = new Player("Dummy");
         gui.purgePlayer();
         xpRate = 1.0;
         gui.createCharacter();
     }
 
     public static boolean inGame() {
-        return !players.isEmpty();
-    }
-
-    public static boolean characterTypeInGame(String type) {
-        return players.stream().anyMatch(c -> type.equals(c.getType()));
+        return !CharacterPool.players.isEmpty();
     }
 
     public static int getDate() {
@@ -529,16 +381,8 @@ public class Global {
         return prefix + fullDescribe;
     }
 
-    public static Collection<NPC> allNPCs() {
-        return characterPool.values();
-    }
-
     public static Set<Modifier> getModifierPool() {
         return modifierPool;
-    }
-
-    public static Character getParticipantsByName(String name) {
-        return players.stream().filter(c -> c.getTrueName().equals(name)).findAny().get();
     }
 
     public static void main(String[] args) {

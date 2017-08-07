@@ -636,7 +636,7 @@ public class NPC extends Character {
 
     @Override
     public void afterParty() {
-        Global.gui().message(getRandomLineFor(CharacterLine.NIGHT_LINER, null, Global.getPlayer()));
+        Global.gui().message(getRandomLineFor(CharacterLine.NIGHT_LINER, null, CharacterPool.getPlayer()));
     }
 
     public void daytime(int time) {

@@ -1,6 +1,5 @@
 package nightgames.characters;
 
-import nightgames.global.Global;
 import nightgames.gui.GUI;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.RunnableButton;
@@ -11,8 +10,8 @@ public class AttributeButton implements Serializable {
     public static KeyableButton attributeButton(GUI gui, Attribute att) {
         return new RunnableButton(att.name(), () -> {
             gui.clearTextIfNeeded();
-            Global.getPlayer().mod(att, 1);
-            Global.getPlayer().availableAttributePoints -= 1;
+            CharacterPool.getPlayer().mod(att, 1);
+            CharacterPool.getPlayer().availableAttributePoints -= 1;
             gui.refresh();
             Player.ding(gui);
         });

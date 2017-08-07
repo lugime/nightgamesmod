@@ -1,6 +1,6 @@
 package nightgames.modifier.standard;
 
-import nightgames.global.Global;
+import nightgames.characters.CharacterPool;
 import nightgames.modifier.BaseModifier;
 
 public class VibrationModifier extends BaseModifier {
@@ -23,14 +23,14 @@ public class VibrationModifier extends BaseModifier {
 
     @Override
     public String intro() {
-        if (Global.getPlayer().hasDick()) {
-            return "<i>\"Do you like toys, " + Global.getPlayer().getTrueName()
+        if (CharacterPool.getPlayer().hasDick()) {
+            return "<i>\"Do you like toys, " + CharacterPool.getPlayer().getTrueName()
                             + "? I thought of a way to make your matches harder that you'll still enjoy.\"</i> She holds up a small plastic ring. "
                             + "<i>\"Vibrating cock-ring,\"</i> she explains. <i>\"I'll give you a $" + bonus()
                             + " for each fight you win while this little fellow keeps you horny and ready to "
                             + "burst.\"</i>";
-        } else if (Global.getPlayer().hasPussy()) {
-            return "<i>\"Do you like toys, " + Global.getPlayer().getTrueName()
+        } else if (CharacterPool.getPlayer().hasPussy()) {
+            return "<i>\"Do you like toys, " + CharacterPool.getPlayer().getTrueName()
                             + "? I thought of a way to make your matches harder that you'll still enjoy.\"</i> She holds up a small plastic ring. "
                             + "<i>\"Vibrating clit-ring,\"</i> she explains. <i>\"I'll give you a $" + bonus()
                             + " for each fight you win while this little fellow keeps you horny and ready to "
@@ -41,7 +41,7 @@ public class VibrationModifier extends BaseModifier {
 
     @Override
     public String acceptance() {
-        if (Global.getPlayer().hasDick()) {
+        if (CharacterPool.getPlayer().hasDick()) {
             return "You agree to Lilly's rule and reach out to take the cock-ring, but she shakes her head. <i>\"I need to put it on you to make sure it's positioned correctly. Don't worry, "
                             + "you don't need to undress.\"</i> She steps close to you and slips her hand down the front of your pants and underwear. Her fingers dexterously manipulate your dick as she "
                             + "manuevers the ring onto it. From her expression, it looks like she's concentrating on her task rather than trying to entice you, but her closeness and her touch still "
@@ -50,7 +50,7 @@ public class VibrationModifier extends BaseModifier {
                             + "have to endure this for three hours? <i>\"The intensity will automatically modulate to keep you from going numb, but after a few minutes, you'll partially adapt to it. "
                             + "I'll hang onto the remote during the match.\"</i> She hits the button again and the vibration stops. <i>\"If this ends up making you cum, I won't be offended if you think "
                             + "about me.\"</i>";
-        } else if (Global.getPlayer().hasPussy()) {
+        } else if (CharacterPool.getPlayer().hasPussy()) {
             return "You agree to Lilly's rule and reach out to take the clit-ring, but she shakes her head. <i>\"I need to put it on you to make sure it's positioned correctly. Don't worry, "
                             + "you don't need to undress.\"</i> She steps close to you and slips her hand down the front of your waistband and underwear. Her fingers dexterously teases your nub as she "
                             + "manuevers the ring onto it. From her expression, it looks like she's concentrating on her task rather than trying to entice you, but her closeness and her touch still "
@@ -65,6 +65,6 @@ public class VibrationModifier extends BaseModifier {
 
     @Override
     public boolean isApplicable() {
-        return Global.getPlayer().hasDick() || Global.getPlayer().hasPussy();
+        return CharacterPool.getPlayer().hasDick() || CharacterPool.getPlayer().hasPussy();
     }
 }

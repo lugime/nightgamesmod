@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import nightgames.actions.Movement;
 import nightgames.areas.Area;
-import nightgames.characters.Attribute;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.State;
-import nightgames.characters.Trait;
 import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.status.Enthralled;
@@ -543,7 +541,7 @@ public class Encounter implements Serializable, IEncounter {
                 aphrodisiactrick(self, target);
                 break;
             case stealclothes:
-                steal(Global.getPlayer(), target);
+                steal(CharacterPool.getPlayer(), target);
                 break;
             case fight:
                 fightOrFlight(self, true, Optional.empty());

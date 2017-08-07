@@ -2,10 +2,8 @@ package nightgames.daytime;
 
 import java.util.ArrayList;
 
-import nightgames.characters.Attribute;
+import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.characters.NPC;
-import nightgames.characters.Player;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.global.Random;
@@ -49,8 +47,8 @@ public class Daytime {
     private boolean morning() {
         Global.gui()
               .clearText();
-        Global.getPlayer().getAddictions().forEach(Addiction::clearDaytime);
-        Global.getPlayer().getAddictions().stream().map(a -> a.describeMorning()).forEach(s -> Global.gui().message(s));
+        CharacterPool.getPlayer().getAddictions().forEach(Addiction::clearDaytime);
+        CharacterPool.getPlayer().getAddictions().stream().map(a -> a.describeMorning()).forEach(s -> Global.gui().message(s));
         if (eventMgr.playMorningScene()) {
             time = 12;
             return true;
@@ -130,7 +128,7 @@ public class Daytime {
                 }
             }
         } else {
-            for (Character npc : Global.everyone()) {
+            for (Character npc : CharacterPool.everyone()) {
                 if (!npc.human() && npc instanceof NPC) {
                     if (npc.getLevel() / 10 > npc.getRank()) {
                         npc.rankup();

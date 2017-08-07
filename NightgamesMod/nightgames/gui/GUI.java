@@ -1080,7 +1080,7 @@ public class GUI extends JFrame implements Observer {
     }
 
     public void refresh() {
-        Player player = Global.human;
+        Player player = CharacterPool.human;
         stamina.setText("Stamina: " + getLabelString(player.getStamina()));
         arousal.setText("Arousal: " + getLabelString(player.getArousal()));
         mojo.setText("Mojo: " + getLabelString(player.getMojo()));
@@ -1173,7 +1173,7 @@ public class GUI extends JFrame implements Observer {
         }
         JPanel statsPanel = new JPanel(new GridLayout(0, 3));
 
-        Player player = Global.human;
+        Player player = CharacterPool.human;
 
         statusPanel.add(statsPanel);
         //statsPanel.setPreferredSize(new Dimension(400, 200));
