@@ -89,17 +89,12 @@ public class Global {
     public static Daytime day;
     protected static int date;
     private static Time time;
-    private Date jdate;
     public static TraitTree traitRequirements;
     public static Scene current;
     public static boolean debug[] = new boolean[DebugFlags.values().length];
     public static int debugSimulation = 0;
     public static double moneyRate = 1.0;
     public static double xpRate = 1.0;
-    public static ContextFactory factory;
-    public static Context cx;
-
-    public static final Path COMBAT_LOG_DIR = new File("combatlogs").toPath();
 
     public Global(boolean headless) {
         nightgames.global.Random.rng = new Random();
@@ -108,14 +103,11 @@ public class Global {
         debugChars = new HashSet<>();
         resting = new HashSet<>();
         Flag.counters = new HashMap<>();
-        jdate = new Date();
         Flag.counters.put(Flag.malePref.name(), 0.f);
         Clothing.buildClothingTable();
-        Logwriter.makeLogger(jdate);
+        Logwriter.makeLogger(new Date());
         TraitRequirement.setTraitRequirements(new TraitTree(ResourceLoader.getFileResourceAsStream("data/TraitRequirements.xml")));
         current = null;
-        factory = new ContextFactory();
-        cx = factory.enterContext();
         Formatter.buildParser();
         Action.buildActionPool();
         Trait.buildFeatPool();
