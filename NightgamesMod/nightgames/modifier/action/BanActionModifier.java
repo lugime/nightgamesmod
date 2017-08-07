@@ -13,7 +13,6 @@ import com.google.gson.JsonObject;
 
 import nightgames.actions.Action;
 import nightgames.characters.Character;
-import nightgames.global.Global;
 import nightgames.global.Match;
 import nightgames.json.JsonUtils;
 import nightgames.modifier.ModifierComponentLoader;
@@ -75,6 +74,6 @@ public class BanActionModifier extends ActionModifier implements ModifierCompone
     }
 
     private Optional<Action> identify(String name) {
-        return Global.getActions().stream().filter(a -> a.getClass().getSimpleName().equals(name)).findAny();
+        return Action.getActions().stream().filter(a -> a.getClass().getSimpleName().equals(name)).findAny();
     }
 }

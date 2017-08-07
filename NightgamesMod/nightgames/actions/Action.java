@@ -48,6 +48,10 @@ public abstract class Action implements Serializable {
         }
     }
 
+    public static Set<Action> getActions() {
+        return actionPool;
+    }
+
     public abstract boolean usable(Character user);
 
     public abstract Movement execute(Character user);

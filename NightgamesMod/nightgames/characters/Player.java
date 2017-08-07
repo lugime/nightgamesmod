@@ -448,7 +448,7 @@ public class Player extends Character {
                             possibleActions.add(new Leap(path));
                         }
                     }
-                    possibleActions.addAll(Global.getActions());
+                    possibleActions.addAll(Action.getActions());
                     for (Action act : possibleActions) {
                         if (act.usable(this) 
                                         && Match.getMatch().condition.allowAction(act, this, Match.getMatch())) {

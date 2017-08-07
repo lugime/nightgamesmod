@@ -555,7 +555,7 @@ public class NPC extends Character {
     
     private void pickAndDoAction(Collection<Action> available, Collection<Action> moves, Collection<Movement> radar) {
         if (available.isEmpty()) {
-            available.addAll(Global.getActions());
+            available.addAll(Action.getActions());
             available.addAll(moves);
         }
         available.removeIf(a -> a == null || !a.usable(this));

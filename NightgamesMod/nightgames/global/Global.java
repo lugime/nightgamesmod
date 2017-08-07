@@ -118,10 +118,6 @@ public class Global {
         return gui;
     }
 
-    public static Set<Action> getActions() {
-        return Action.actionPool;
-    }
-
     public static Time getTime() {
         return time;
     }
