@@ -1,10 +1,6 @@
 package nightgames.characters;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import nightgames.global.Global;
 import nightgames.items.clothing.ClothingSlot;
@@ -507,6 +503,15 @@ public enum Trait {
     private String name;
     public Trait parent;
     public Status status;
+
+    public static void buildFeatPool() {
+        Global.featPool = new HashSet<>();
+        for (Trait trait : values()) {
+            if (trait.isFeat()) {
+                Global.featPool.add(trait);
+            }
+        }
+    }
 
     public String getDesc() {
         return desc;

@@ -106,7 +106,7 @@ public class Global {
     private static Map<String, NPC> characterPool;
     public static Set<Action> actionPool;
     public static Set<Trap> trapPool;
-    private static Set<Trait> featPool;
+    public static Set<Trait> featPool;
     private static Set<Modifier> modifierPool;
     private static Set<Character> players;
     private static Set<Character> debugChars;
@@ -147,7 +147,7 @@ public class Global {
         cx = factory.enterContext();
         Formatter.buildParser();
         Action.buildActionPool();
-        buildFeatPool();
+        Trait.buildFeatPool();
         buildSkillPool(noneCharacter);
         buildModifierPool();
         gui = makeGUI(headless);
@@ -492,15 +492,6 @@ public class Global {
 
         if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
             getSkillPool().add(new SelfStun(ch));
-        }
-    }
-
-    public static void buildFeatPool() {
-        featPool = new HashSet<>();
-        for (Trait trait : Trait.values()) {
-            if (trait.isFeat()) {
-                featPool.add(trait);
-            }
         }
     }
 
