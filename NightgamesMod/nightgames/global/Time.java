@@ -6,6 +6,8 @@ package nightgames.global;
 public enum Time {
     DAY("day"), NIGHT("night");
 
+    public static Time time;
+    protected static int date;
     final String desc;
 
     Time(String desc) {
@@ -34,5 +36,13 @@ public enum Time {
             default:
                 return oldDesc;
         }
+    }
+
+    public static Time getTime() {
+        return time;
+    }
+
+    public static int getDate() {
+        return date;
     }
 }

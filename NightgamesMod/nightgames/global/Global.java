@@ -32,8 +32,6 @@ import nightgames.start.StartConfiguration;
 public class Global {
     private static GUI gui;
     public static Daytime day;
-    protected static int date;
-    public static Time time;
     public static Scene current;
     public static boolean debug[] = new boolean[DebugFlags.values().length];
     public static int debugSimulation = 0;
@@ -91,8 +89,8 @@ public class Global {
         }
         Map<String, Boolean> configurationFlags = JsonUtils.mapFromJson(JsonUtils.rootJson(new InputStreamReader(ResourceLoader.getFileResourceAsStream("data/globalflags.json"))).getAsJsonObject(), String.class, Boolean.class);
         configurationFlags.forEach((flag, val) -> Flag.setFlag(flag, val));
-        time = Time.NIGHT;
-        date = 1;
+        Time.time = Time.NIGHT;
+        Time.date = 1;
         Formatter.setCharacterDisabledFlag(CharacterPool.getNPCByType("Yui"));
         Flag.setFlag(Flag.systemMessages, true);
         Match.setUpMatch(new NoModifier());
@@ -100,10 +98,6 @@ public class Global {
 
     public static GUI gui() {
         return gui;
-    }
-
-    public static Time getTime() {
-        return time;
     }
 
     public static Daytime getDay() {
@@ -121,7 +115,7 @@ public class Global {
      * saves got flagged as NIGHT instead.
      */
     public static void endNightForSave() {
-        time = Time.DAY;
+        Time.time = Time.DAY;
     }
     
     public static void endNight() {
@@ -156,8 +150,8 @@ public class Global {
         for (Character rested : Match.resting) {
             rested.gainXP(100 + Math.max(0, (int) Math.round(10 * (level - rested.getLevel()))));
         }
-        date++;
-        time = Time.DAY;
+        Time.date++;
+        Time.time = Time.DAY;
         if (Flag.checkFlag(Flag.autosave)) {
             SaveFile.autoSave();
         }
@@ -166,7 +160,7 @@ public class Global {
 
     public static void endDay() {
         day = null;
-        time = Time.NIGHT;
+        Time.time = Time.NIGHT;
         if (Flag.checkFlag(Flag.autosave)) {
             SaveFile.autoSave();
         }
@@ -182,8 +176,8 @@ public class Global {
         data.players.addAll(CharacterPool.players);
         data.flags.addAll(Flag.flags);
         data.counters.putAll(Flag.counters);
-        data.time = time;
-        data.date = date;
+        data.time = Time.time;
+        data.date = Time.date;
         data.fontsize = gui.fontsize;
         return data;
     }
@@ -242,10 +236,6 @@ public class Global {
 
     public static boolean inGame() {
         return !CharacterPool.players.isEmpty();
-    }
-
-    public static int getDate() {
-        return date;
     }
 
 

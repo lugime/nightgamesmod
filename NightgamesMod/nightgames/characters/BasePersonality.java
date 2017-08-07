@@ -18,10 +18,7 @@ import nightgames.characters.custom.CharacterLine;
 import nightgames.characters.custom.CommentSituation;
 import nightgames.characters.custom.RecruitmentData;
 import nightgames.combat.Combat;
-import nightgames.global.DebugFlags;
-import nightgames.global.Flag;
-import nightgames.global.Global;
-import nightgames.global.Random;
+import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
@@ -103,7 +100,7 @@ public abstract class BasePersonality implements Personality {
                 // day 10, this would be (10 + sqrt(10) * 5) * .7 = 18 affection lead to max
                 // day 60, this would be (10 + sqrt(70) * 5) * .7 = 36 affection lead to max
                 double chanceToDoDaytime = .25 + (addiction.getMagnitude() / 2) + Math
-                                .clamp((affectionDelta / (10 + Math.sqrt(Global.getDate()) * 5)), -.7, .7);
+                                .clamp((affectionDelta / (10 + Math.sqrt(Time.getDate()) * 5)), -.7, .7);
                 if (Random.randomdouble() < chanceToDoDaytime) {
                     addiction.aggravate(null, Addiction.MED_INCREASE);
                     addiction.flagDaytime();

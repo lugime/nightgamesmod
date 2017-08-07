@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.global.Random;
+import nightgames.global.Time;
 import nightgames.status.addiction.Addiction;
 
 public class Daytime {
@@ -37,7 +38,7 @@ public class Daytime {
         Flag.unflag(Flag.threesome);
         time = 10;
         // do NPC day length
-        if (Global.getDate() % 7 == 6 || Global.getDate() % 7 == 0) {
+        if (Time.getDate() % 7 == 6 || Time.getDate() % 7 == 0) {
             daylength = 10;
         } else {
             daylength = 7;
@@ -92,7 +93,7 @@ public class Daytime {
         } else if (player.getLevel() / 10 > player.getRank()) {
             Global.gui().message("You have advanced to rank " + ++player.rank + "!");
             time = 15;
-        } else if (Global.getDate() % 7 == 6 || Global.getDate() % 7 == 0) {
+        } else if (Time.getDate() % 7 == 6 || Time.getDate() % 7 == 0) {
             Global.gui()
                   .message("You don't have any classes today, but you try to get up at a reasonable hour so you can make full use of your weekend.");
             time = 12;

@@ -80,7 +80,7 @@ public class SaveFile {
         SaveData data = new SaveData(object);
         loadData(data);
         Global.gui().populatePlayer(CharacterPool.human);
-        if (Global.time == Time.DAY) {
+        if (Time.time == Time.DAY) {
             Global.startDay();
         } else {
             Global.startNight();
@@ -98,8 +98,8 @@ public class SaveFile {
                         c -> CharacterPool.characterPool.put(c.getType(), (NPC) c));
         Flag.flags.addAll(data.flags);
         Flag.counters.putAll(data.counters);
-        Global.date = data.date;
-        Global.time = data.time;
+        Time.date = data.date;
+        Time.time = data.time;
         Global.gui().fontsize = data.fontsize;
     }
 }

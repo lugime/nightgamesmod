@@ -1103,7 +1103,7 @@ public class GUI extends JFrame implements Observer {
         // We may be in between setting NIGHT and building the Match object
         String timeText;
         String textColor = "rgb(0, 0, 0)";
-        if (Global.getTime() == Time.NIGHT) {
+        if (Time.getTime() == Time.NIGHT) {
             // yup... silverbard pls :D
             if (Match.getMatch() == null) {
                 timeText = "9:50 pm";
@@ -1113,7 +1113,7 @@ public class GUI extends JFrame implements Observer {
                 timeText = Match.getMatch().getTime() + " pm";
             }
             textColor = "rgb(51, 101, 202)";
-        } else if (Global.getTime() == Time.DAY) { // not updating correctly during daytime
+        } else if (Time.getTime() == Time.DAY) { // not updating correctly during daytime
             if (Global.getDay() != null) {
                 timeText = Global.getDay().getTime();
             } else {
@@ -1121,10 +1121,10 @@ public class GUI extends JFrame implements Observer {
             }
             textColor = "rgb(253, 184, 19)";
         } else {
-            System.err.println("Unknown time of day: " + Global.getTime());
+            System.err.println("Unknown time of day: " + Time.getTime());
             timeText = "";
         }
-        timeLabel.setText(String.format("<html>Day %d - <font color='%s'>%s</font></html>", Global.getDate(), textColor, timeText));
+        timeLabel.setText(String.format("<html>Day %d - <font color='%s'>%s</font></html>", Time.getDate(), textColor, timeText));
         displayStatus();
         List<Item> availItems = player.getInventory().entrySet().stream().filter(entry -> (entry.getValue() > 0))
                 .map(Map.Entry::getKey).collect(Collectors.toList());
