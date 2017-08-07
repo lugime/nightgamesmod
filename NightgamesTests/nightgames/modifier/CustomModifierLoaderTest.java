@@ -41,7 +41,7 @@ public class CustomModifierLoaderTest {
         Global.buildModifierPool();
         Action.buildActionPool();
         player = new Player("player");
-        Global.buildSkillPool(player);
+        Skill.buildSkillPool(player);
     }
 
     @Before public void setUp() throws Exception {
