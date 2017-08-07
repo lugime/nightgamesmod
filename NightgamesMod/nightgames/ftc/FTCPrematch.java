@@ -5,10 +5,7 @@ import java.util.List;
 
 import nightgames.characters.Character;
 import nightgames.characters.Player;
-import nightgames.global.Flag;
-import nightgames.global.Global;
-import nightgames.global.Random;
-import nightgames.global.Scene;
+import nightgames.global.*;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
 import nightgames.gui.SceneButton;
@@ -63,7 +60,7 @@ public class FTCPrematch implements Scene {
         if (response.equals("Start the Match")) {
             FTCModifier mod = new FTCModifier(prey);
             Global.flag(Flag.didFTC);
-            Global.setUpMatch(mod);
+            Match.setUpMatch(mod);
         } else {
             String message = "";
             if (response.equals("Volunteer")) {
@@ -89,7 +86,7 @@ public class FTCPrematch implements Scene {
                 }
             } else {
                 do {
-                    prey = (Character) Random.pickRandom(Global.getParticipants().toArray()).get();
+                    prey = (Character) Random.pickRandom(Match.getParticipants().toArray()).get();
                 } while (prey.human());
                 if (!Global.checkFlag(Flag.didFTC)) {
                     message += "\"No one? Really? Fine, then I'll pick someone. Let's see... " + prey.getTrueName()

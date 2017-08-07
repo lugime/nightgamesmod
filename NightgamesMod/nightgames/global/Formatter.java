@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Formatter {
     public static void buildParser() {
-        Global.matchActions = new HashMap<String, Global.MatchAction>();
+        Global.matchActions = new HashMap<String, Match.MatchAction>();
         Global.matchActions.put("possessive", (self, first, second, third) -> {
             if (self != null) {
                 return self.possessiveAdjective();

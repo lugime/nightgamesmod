@@ -109,10 +109,10 @@ public class Prematch implements Scene {
         String message = "";
         List<KeyableButton> choice = new ArrayList<KeyableButton>();
         if (response.startsWith("Start")) {
-            Global.setUpMatch(type);
+            Match.setUpMatch(type);
         } else if (response.startsWith("Not")) {
             type = new NoModifier();
-            Global.setUpMatch(type);
+            Match.setUpMatch(type);
         } else if (response.startsWith("Do")) {
             message += type.acceptance();
             choice.add(new SceneButton("Start The Match"));

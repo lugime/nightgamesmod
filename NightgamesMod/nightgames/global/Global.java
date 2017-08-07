@@ -1,6 +1,5 @@
 package nightgames.global;
 
-import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -11,7 +10,6 @@ import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,9 +41,6 @@ import com.google.gson.stream.JsonWriter;
 
 import nightgames.Resources.ResourceLoader;
 import nightgames.actions.Action;
-import nightgames.actions.Movement;
-import nightgames.areas.Area;
-import nightgames.areas.MapDrawHint;
 import nightgames.characters.Airi;
 import nightgames.characters.Angel;
 import nightgames.characters.Attribute;
@@ -69,40 +64,36 @@ import nightgames.characters.custom.JsonSourceNPCDataLoader;
 import nightgames.characters.custom.NPCData;
 import nightgames.combat.Combat;
 import nightgames.daytime.Daytime;
-import nightgames.ftc.FTCMatch;
 import nightgames.gui.GUI;
 import nightgames.gui.HeadlessGui;
-import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
 import nightgames.modifier.Modifier;
-import nightgames.modifier.standard.FTCModifier;
 import nightgames.modifier.standard.NoModifier;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.*;
 import nightgames.start.NpcConfiguration;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
-import nightgames.status.Status;
 import nightgames.trap.Trap;
 
 public class Global {
     public static Random rng;
     private static GUI gui;
-    static HashMap<String, MatchAction> matchActions = null;
+    static HashMap<String, Match.MatchAction> matchActions = null;
     private static Set<Skill> skillPool = new HashSet<>();
     private static Map<String, NPC> characterPool;
     public static Set<Action> actionPool;
     public static Set<Trap> trapPool;
     public static Set<Trait> featPool;
     public static Set<Modifier> modifierPool;
-    private static Set<Character> players;
-    private static Set<Character> debugChars;
-    private static Set<Character> resting;
+    public static Set<Character> players;
+    public static Set<Character> debugChars;
+    public static Set<Character> resting;
     private static Set<String> flags;
     private static Map<String, Float> counters;
     public static Player human;
-    private static Match match;
+    public static Match match;
     public static Daytime day;
     protected static int date;
     private static Time time;
@@ -176,7 +167,7 @@ public class Global {
         date = 1;
         setCharacterDisabledFlag(getNPCByType("Yui"));
         setFlag(Flag.systemMessages, true);
-        setUpMatch(new NoModifier());
+        Match.setUpMatch(new NoModifier());
     }
 
     public static GUI gui() {
@@ -267,18 +258,6 @@ public class Global {
         }
         Match.endMatch(Global.gui());
     }
-    
-    private static Set<Character> pickCharacters(Collection<Character> avail, Collection<Character> added, int size) {
-        List<Character> randomizer = avail.stream()
-                        .filter(c -> !c.human())
-                        .filter(c -> !c.has(Trait.event))
-                        .filter(c -> !added.contains(c))
-                        .collect(Collectors.toList());
-        Collections.shuffle(randomizer);
-        Set<Character> results = new HashSet<>(added);
-        results.addAll(randomizer.subList(0, Math.min(Math.max(0, size - results.size())+1, randomizer.size())));
-        return results;
-    }
 
     public static void endDay() {
         day = null;
@@ -290,106 +269,13 @@ public class Global {
     }
 
     public static void startNight() {
-        decideMatchType().buildPrematch(human);
-    }
-
-    public static List<Character> getMatchParticipantsInAffectionOrder() {
-        if (match == null) {
-            return Collections.emptyList();
-        }
-        return getInAffectionOrder(match.combatants.stream().filter(c -> !c.human()).collect(Collectors.toList()));
+        Match.decideMatchType().buildPrematch(human);
     }
 
     public static List<Character> getInAffectionOrder(List<Character> viableList) {
         List<Character> results = new ArrayList<>(viableList);
         results.sort((a, b) -> a.getAffection(getPlayer()) - b.getAffection(getPlayer()));
         return results;
-    }
-
-    public static void setUpMatch(Modifier matchmod) {
-        assert day == null;
-        Set<Character> lineup = new HashSet<>(debugChars);
-        Character lover = null;
-        int maxaffection = 0;
-        unflag(Flag.FTC);
-        for (Character player : players) {
-            player.getStamina().fill();
-            player.getArousal().empty();
-            player.getMojo().empty();
-            player.getWillpower().fill();
-            if (player.getPure(Attribute.Science) > 0) {
-                player.chargeBattery();
-            }
-            if (human.getAffection(player) > maxaffection && !player.has(Trait.event) && !checkCharacterDisabledFlag(player)) {
-                maxaffection = human.getAffection(player);
-                lover = player;
-            }
-        }
-        List<Character> participants = new ArrayList<>();
-        // Disable characters flagged as disabled
-        for (Character c : players) {
-            // Disabling the player wouldn't make much sense, and there's no PlayerDisabled flag.
-            if (c.getType().equals("Player") || !checkCharacterDisabledFlag(c)) {
-                participants.add(c);
-            }
-        }
-        if (lover != null) {
-            lineup.add(lover);
-        }
-        lineup.add(human);
-        if (matchmod.name().equals("maya")) {
-            if (!checkFlag(Flag.Maya)) {
-                newChallenger(new Maya(human.getLevel()));
-                flag(Flag.Maya);
-            }
-            NPC maya = Optional.ofNullable(getNPC("Maya")).orElseThrow(() -> new IllegalStateException(
-                            "Maya data unavailable when attempting to add her to lineup."));
-            lineup.add(maya);
-            lineup = pickCharacters(participants, lineup, 5);
-            resting = new HashSet<>(players);
-            resting.removeAll(lineup);
-            maya.gain(Item.Aphrodisiac, 10);
-            maya.gain(Item.DisSol, 10);
-            maya.gain(Item.Sedative, 10);
-            maya.gain(Item.Lubricant, 10);
-            maya.gain(Item.BewitchingDraught, 5);
-            maya.gain(Item.FeralMusk, 10);
-            maya.gain(Item.ExtremeAphrodisiac, 5);
-            maya.gain(Item.ZipTie, 10);
-            maya.gain(Item.SuccubusDraft, 10);
-            maya.gain(Item.Lactaid, 5);
-            maya.gain(Item.Handcuffs, 5);
-            maya.gain(Item.Onahole2);
-            maya.gain(Item.Dildo2);
-            maya.gain(Item.Strapon2);
-            match = new Match(lineup, matchmod);
-        } else if (matchmod.name().equals("ftc")) {
-            Character prey = ((FTCModifier) matchmod).getPrey();
-            if (!prey.human()) {
-                lineup.add(prey);
-            }
-            lineup = pickCharacters(participants, lineup, 5);
-            resting = new HashSet<>(players);
-            resting.removeAll(lineup);
-            match = buildMatch(lineup, matchmod);
-        } else if (participants.size() > 5) {
-            lineup = pickCharacters(participants, lineup, 5);
-            resting = new HashSet<>(players);
-            resting.removeAll(lineup);
-            match = buildMatch(lineup, matchmod);
-        } else {
-            match = buildMatch(participants, matchmod);
-        }
-        startMatch();
-    }
-
-    public static void startMatch() {
-        Global.getPlayer().getAddictions().forEach(a -> {
-            Optional<Status> withEffect = a.startNight();
-            withEffect.ifPresent(s -> Global.getPlayer().addNonCombat(s));
-        });
-        Match.startMatch(Global.gui());
-        match.round();
     }
 
     public static String gainSkills(Character c) {
@@ -753,10 +639,6 @@ public class Global {
         return date;
     }
 
-    interface MatchAction {
-        String replace(Character self, String first, String second, String third);
-    }
-
 
     public static String format(String format, Character self, Character target, Object... strings) {
         // pattern to find stuff like {word:otherword:finalword} in strings
@@ -786,7 +668,7 @@ public class Global {
                 second = second.toLowerCase();
                 caps = true;
             }
-            MatchAction action = matchActions.get(second);
+            Match.MatchAction action = matchActions.get(second);
 
             if (action == null) {
                 System.out.println(second);
@@ -832,38 +714,6 @@ public class Global {
 
     public static Set<Modifier> getModifierPool() {
         return modifierPool;
-    }
-
-    public static MatchType decideMatchType() {
-        return MatchType.NORMAL;
-        /*
-         * TODO Lots of FTC bugs right now, will disable it for the time being.
-         * Enable again once some of the bugs are sorted out.
-        
-        if (checkFlag(Flag.NoFTC)) return MatchType.NORMAL;
-        
-        if (human.getLevel() < 15)
-            return MatchType.NORMAL;
-        if (!checkFlag(Flag.didFTC))
-            return MatchType.FTC;
-        return isDebugOn(DebugFlags.DEBUG_FTC) || Global.random(10) == 0 ? MatchType.FTC : MatchType.NORMAL;
-        */
-    }
-
-    private static Match buildMatch(Collection<Character> combatants, Modifier mod) {
-        if (mod.name().equals("ftc")) {
-            if (combatants.size() < 5) {
-                return new Match(combatants, new NoModifier());
-            }
-            flag(Flag.FTC);
-            return new FTCMatch(combatants, ((FTCModifier) mod).getPrey());
-        } else {
-            return new Match(combatants, mod);
-        }
-    }
-
-    public static HashSet<Character> getParticipants() {
-        return new HashSet<>(players);
     }
 
     public static int clamp(int number, int min, int max) {

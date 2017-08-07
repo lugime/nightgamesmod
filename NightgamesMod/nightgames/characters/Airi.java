@@ -21,6 +21,7 @@ import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.CombatantData;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -185,7 +186,8 @@ public class Airi extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("Transform?", (c, self, other) -> {
-                            List<Character> lovers = Global.getMatchParticipantsInAffectionOrder().stream().filter(pa -> !pa.getType().equals(getType())).collect(Collectors.toList());
+                            List<Character> lovers = Match
+                                            .getMatchParticipantsInAffectionOrder().stream().filter(pa -> !pa.getType().equals(getType())).collect(Collectors.toList());
                             Character lover = Global.getCharacterByType(new Angel().getType());
                             if (!lovers.isEmpty()) {
                                 lover = lovers.get(0);

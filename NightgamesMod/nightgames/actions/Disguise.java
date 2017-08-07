@@ -6,6 +6,7 @@ import nightgames.characters.Character;
 import nightgames.characters.NPC;
 import nightgames.characters.Trait;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.global.Random;
 import nightgames.status.Stsflag;
 import nightgames.utilities.DisguiseHelper;
@@ -23,7 +24,7 @@ public class Disguise extends Action {
     }
 
     private NPC getRandomNPC(Character user) {
-        NPC target = (NPC) Random.pickRandom(Global.getParticipants()
+        NPC target = (NPC) Random.pickRandom(Match.getParticipants()
                         .stream().filter(other -> !other.human() 
                                         && user != other 
                                         && !other.has(Trait.cursed)

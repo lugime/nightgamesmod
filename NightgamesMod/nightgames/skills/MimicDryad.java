@@ -10,6 +10,7 @@ import nightgames.characters.body.mods.TentacledMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.status.Abuff;
 import nightgames.status.SlimeMimicry;
 import nightgames.status.Stsflag;
@@ -26,7 +27,7 @@ public class MimicDryad extends Skill {
 
     @Override
     public boolean usable(Combat c, Character target) {
-        return getSelf().canRespond() && !getSelf().is(Stsflag.mimicry) && Global.getParticipants().stream().anyMatch(character -> character.has(Trait.dryad));
+        return getSelf().canRespond() && !getSelf().is(Stsflag.mimicry) && Match.getParticipants().stream().anyMatch(character -> character.has(Trait.dryad));
     }
 
     @Override

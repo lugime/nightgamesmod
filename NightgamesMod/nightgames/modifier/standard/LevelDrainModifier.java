@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.modifier.BaseModifier;
@@ -62,10 +63,10 @@ public class LevelDrainModifier extends BaseModifier {
     @Override
     public boolean isApplicable() {
         int playerLevel = Global.getPlayer().getLevel();
-        double averageLevel = Global.getParticipants().stream().filter(p -> !p.human()).filter(p -> !Global.checkCharacterDisabledFlag(p)).mapToInt(Character::getLevel).average().orElse(0);
+        double averageLevel = Match.getParticipants().stream().filter(p -> !p.human()).filter(p -> !Global.checkCharacterDisabledFlag(p)).mapToInt(Character::getLevel).average().orElse(0);
         return playerLevel > averageLevel + 5
                         && (Global.checkFlag(Flag.darkness) || Global.getPlayer().getRank() >= 2)
-                        && Global.getParticipants().stream().noneMatch(p -> p.has(Trait.leveldrainer));
+                        && Match.getParticipants().stream().noneMatch(p -> p.has(Trait.leveldrainer));
     }
 
     List<Item> EXTRA_LOOT = Arrays.asList(Item.BioGel, Item.MoltenDrippings, Item.RawAether, Item.LubricatingOils, Item.FeralMusk, Item.HolyWater, Item.ExtremeAphrodisiac, Item.nectar);
