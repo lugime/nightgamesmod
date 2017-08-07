@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -76,19 +75,9 @@ import nightgames.gui.HeadlessGui;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
-import nightgames.modifier.CustomModifierLoader;
 import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.FTCModifier;
-import nightgames.modifier.standard.LevelDrainModifier;
-import nightgames.modifier.standard.NoItemsModifier;
 import nightgames.modifier.standard.NoModifier;
-import nightgames.modifier.standard.NoRecoveryModifier;
-import nightgames.modifier.standard.NoToysModifier;
-import nightgames.modifier.standard.NudistModifier;
-import nightgames.modifier.standard.PacifistModifier;
-import nightgames.modifier.standard.UnderwearOnlyModifier;
-import nightgames.modifier.standard.VibrationModifier;
-import nightgames.modifier.standard.VulnerableModifier;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.*;
 import nightgames.start.NpcConfiguration;
@@ -106,7 +95,7 @@ public class Global {
     public static Set<Action> actionPool;
     public static Set<Trap> trapPool;
     public static Set<Trait> featPool;
-    private static Set<Modifier> modifierPool;
+    public static Set<Modifier> modifierPool;
     private static Set<Character> players;
     private static Set<Character> debugChars;
     private static Set<Character> resting;
@@ -148,7 +137,7 @@ public class Global {
         Action.buildActionPool();
         Trait.buildFeatPool();
         Skill.buildSkillPool(noneCharacter);
-        buildModifierPool();
+        Modifier.buildModifierPool();
         gui = makeGUI(headless);
     }
 
@@ -230,46 +219,6 @@ public class Global {
      */
     public static Player getPlayer() {
         return human;
-    }
-
-    public static void buildModifierPool() {
-        modifierPool = new HashSet<>();
-        modifierPool.add(new NoModifier());
-        modifierPool.add(new NoItemsModifier());
-        modifierPool.add(new NoToysModifier());
-        modifierPool.add(new NoRecoveryModifier());
-        modifierPool.add(new NudistModifier());
-        modifierPool.add(new PacifistModifier());
-        modifierPool.add(new UnderwearOnlyModifier());
-        modifierPool.add(new VibrationModifier());
-        modifierPool.add(new VulnerableModifier());
-        modifierPool.add(new LevelDrainModifier());
-
-        File customModFile = new File("data/customModifiers.json");
-        if (customModFile.canRead()) {
-            try {
-                JsonArray array = JsonUtils.rootJson(Files.newBufferedReader(customModFile.toPath())).getAsJsonArray();
-                for (JsonElement element : array) {
-                    JsonObject object;
-                    try {
-                        object = element.getAsJsonObject();
-                    } catch (Exception e) {
-                        System.out.println("Error loading custom modifiers: Non-object element in root array");
-                        continue;
-                    }
-                    Modifier mod = CustomModifierLoader.readModifier(object);
-                    if (!mod.name().equals("DEMO"))
-                        modifierPool.add(mod);
-                    if (isDebugOn(DebugFlags.DEBUG_LOADING))
-                        System.out.println("Loaded custom modifier: " + mod.name());
-                }
-            } catch (IOException e) {
-                System.out.println("Error loading custom modifiers: " + e);
-                e.printStackTrace();
-            }
-        }
-        if (isDebugOn(DebugFlags.DEBUG_LOADING))
-            System.out.println("Done loading modifiers");
     }
 
     public static Set<Action> getActions() {

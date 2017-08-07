@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import nightgames.actions.Action;
 import nightgames.actions.Locate;
 import nightgames.characters.Player;
-import nightgames.global.Global;
 import nightgames.global.Formatter;
 import nightgames.json.JsonUtils;
 import nightgames.items.clothing.Clothing;
@@ -38,7 +37,7 @@ public class CustomModifierLoaderTest {
     @BeforeClass public static void setUpClass() throws Exception {
         Clothing.buildClothingTable();
         Formatter.buildParser();
-        Global.buildModifierPool();
+        Modifier.buildModifierPool();
         Action.buildActionPool();
         player = new Player("player");
         Skill.buildSkillPool(player);
