@@ -145,10 +145,6 @@ public class Global {
         return headless ? new HeadlessGui() : new GUI();
     }
 
-    public static boolean meetsRequirements(Character c, Trait t) {
-        return getTraitRequirements().meetsRequirements(c, t);
-    }
-
     public static boolean isDebugOn(DebugFlags flag) {
         return debug[flag.ordinal()] && debugSimulation == 0;
     }
