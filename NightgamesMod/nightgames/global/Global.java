@@ -580,14 +580,6 @@ public class Global {
         return modifierPool;
     }
 
-    public static int clamp(int number, int min, int max) {
-        return Math.min(Math.max(number, min), max);
-    }
-
-    public static double clamp(double number, double min, double max) {
-        return Math.min(Math.max(number, min), max);
-    }
-
     public static Character getParticipantsByName(String name) {
         return players.stream().filter(c -> c.getTrueName().equals(name)).findAny().get();
     }

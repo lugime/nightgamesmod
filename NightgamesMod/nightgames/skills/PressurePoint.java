@@ -5,10 +5,10 @@ import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.PressurePointed;
 import nightgames.status.Stsflag;
+import nightgames.utilities.Math;
 
 public class PressurePoint extends Skill {
     public PressurePoint(Character self) {
@@ -41,7 +41,7 @@ public class PressurePoint extends Skill {
     public int accuracy(Combat c, Character target) {
         double kiMod = 4 * Math.sqrt(getSelf().get(Attribute.Ki));
         double accuracy = kiMod + 60;
-        return (int) Math.round(Global.clamp(accuracy, 25, 100));
+        return (int) Math.round(Math.clamp(accuracy, 25, 100));
     }
 
     @Override

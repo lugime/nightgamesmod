@@ -10,7 +10,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
+import nightgames.utilities.Math;
 
 public class Slimed extends DurationStatus {
     private static final int MAX_STACKS = 10;
@@ -134,7 +134,7 @@ public class Slimed extends DurationStatus {
     public void replace(Status s) {
         Slimed other = (Slimed) s;
         setDuration(Math.max(other.getDuration(), getDuration()));
-        stacks = Global.clamp(stacks + other.stacks, 0, MAX_STACKS);
+        stacks = Math.clamp(stacks + other.stacks, 0, MAX_STACKS);
         if (stacks == 0) {
             setDuration(0);
             stacks = 0;

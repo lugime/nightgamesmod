@@ -27,6 +27,7 @@ import nightgames.skills.Skill;
 import nightgames.start.NpcConfiguration;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.Addiction.Severity;
+import nightgames.utilities.Math;
 
 public abstract class BasePersonality implements Personality {
     /**
@@ -101,7 +102,8 @@ public abstract class BasePersonality implements Personality {
                 int affectionDelta = affection - character.getAffection(Global.getPlayer());
                 // day 10, this would be (10 + sqrt(10) * 5) * .7 = 18 affection lead to max
                 // day 60, this would be (10 + sqrt(70) * 5) * .7 = 36 affection lead to max
-                double chanceToDoDaytime = .25 + (addiction.getMagnitude() / 2) + Global.clamp((affectionDelta / (10 + Math.sqrt(Global.getDate()) * 5)), -.7, .7);
+                double chanceToDoDaytime = .25 + (addiction.getMagnitude() / 2) + Math
+                                .clamp((affectionDelta / (10 + Math.sqrt(Global.getDate()) * 5)), -.7, .7);
                 if (Random.randomdouble() < chanceToDoDaytime) {
                     addiction.aggravate(null, Addiction.MED_INCREASE);
                     addiction.flagDaytime();
