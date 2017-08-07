@@ -22,6 +22,7 @@ import nightgames.status.Status;
 import nightgames.status.Stsflag;
 
 public abstract class Skill {
+    public static Set<Skill> skillPool = new HashSet<>();
     /**
      *
      */
@@ -333,7 +334,7 @@ public abstract class Skill {
     }
 
     public static Set<Skill> getSkillPool() {
-        return Global.skillPool;
+        return skillPool;
     }
 
     public final boolean requirements(Combat c, Character target) {

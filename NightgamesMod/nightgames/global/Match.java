@@ -23,6 +23,7 @@ import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
 
 public class Match {
+    static HashMap<String, MatchAction> matchActions = null;
     protected int time;
     protected int dropOffTime;
     protected HashMap<String, Area> map;

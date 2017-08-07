@@ -2,9 +2,9 @@ package nightgames.actions;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Set;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
 import nightgames.items.Item;
@@ -15,6 +15,7 @@ public abstract class Action implements Serializable {
      *
      */
     private static final long serialVersionUID = 4981682001213276175L;
+    public static Set<Action> actionPool;
     protected String name;
 
     public Action(String name) {
@@ -22,28 +23,28 @@ public abstract class Action implements Serializable {
     }
 
     public static void buildActionPool() {
-        Global.actionPool = new HashSet<>();
-        Global.actionPool.add(new Resupply());
-        Global.actionPool.add(new Wait());
-        Global.actionPool.add(new Hide());
-        Global.actionPool.add(new Bathe());
-        Global.actionPool.add(new Scavenge());
-        Global.actionPool.add(new Craft());
-        Global.actionPool.add(new Use(Item.Lubricant));
-        Global.actionPool.add(new Use(Item.EnergyDrink));
-        Global.actionPool.add(new Use(Item.Beer));
-        Global.actionPool.add(new Recharge());
-        Global.actionPool.add(new Locate());
-        Global.actionPool.add(new MasturbateAction());
-        Global.actionPool.add(new Energize());
-        Global.actionPool.add(new Disguise());
-        Global.actionPool.add(new BushAmbush());
-        Global.actionPool.add(new PassAmbush());
-        Global.actionPool.add(new TreeAmbush());
-        Global.actionPool.add(new Struggle());
+        actionPool = new HashSet<>();
+        actionPool.add(new Resupply());
+        actionPool.add(new Wait());
+        actionPool.add(new Hide());
+        actionPool.add(new Bathe());
+        actionPool.add(new Scavenge());
+        actionPool.add(new Craft());
+        actionPool.add(new Use(Item.Lubricant));
+        actionPool.add(new Use(Item.EnergyDrink));
+        actionPool.add(new Use(Item.Beer));
+        actionPool.add(new Recharge());
+        actionPool.add(new Locate());
+        actionPool.add(new MasturbateAction());
+        actionPool.add(new Energize());
+        actionPool.add(new Disguise());
+        actionPool.add(new BushAmbush());
+        actionPool.add(new PassAmbush());
+        actionPool.add(new TreeAmbush());
+        actionPool.add(new Struggle());
         Trap.buildTrapPool();
-        for (Trap t : Global.trapPool) {
-            Global.actionPool.add(new SetTrap(t));
+        for (Trap t : Trap.trapPool) {
+            actionPool.add(new SetTrap(t));
         }
     }
 

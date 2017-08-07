@@ -3,9 +3,8 @@ package nightgames.modifier;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.Set;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -22,18 +21,20 @@ import nightgames.modifier.standard.*;
 @SuppressWarnings("unused")
 public interface Modifier {
 
+    Set<Modifier> modifierPool;
+
     static void buildModifierPool() {
-        Global.modifierPool = new HashSet<>();
-        Global.modifierPool.add(new NoModifier());
-        Global.modifierPool.add(new NoItemsModifier());
-        Global.modifierPool.add(new NoToysModifier());
-        Global.modifierPool.add(new NoRecoveryModifier());
-        Global.modifierPool.add(new NudistModifier());
-        Global.modifierPool.add(new PacifistModifier());
-        Global.modifierPool.add(new UnderwearOnlyModifier());
-        Global.modifierPool.add(new VibrationModifier());
-        Global.modifierPool.add(new VulnerableModifier());
-        Global.modifierPool.add(new LevelDrainModifier());
+        modifierPool = new HashSet<>();
+        modifierPool.add(new NoModifier());
+        modifierPool.add(new NoItemsModifier());
+        modifierPool.add(new NoToysModifier());
+        modifierPool.add(new NoRecoveryModifier());
+        modifierPool.add(new NudistModifier());
+        modifierPool.add(new PacifistModifier());
+        modifierPool.add(new UnderwearOnlyModifier());
+        modifierPool.add(new VibrationModifier());
+        modifierPool.add(new VulnerableModifier());
+        modifierPool.add(new LevelDrainModifier());
 
         File customModFile = new File("data/customModifiers.json");
         if (customModFile.canRead()) {
@@ -49,7 +50,7 @@ public interface Modifier {
                     }
                     Modifier mod = CustomModifierLoader.readModifier(object);
                     if (!mod.name().equals("DEMO"))
-                        Global.modifierPool.add(mod);
+                        modifierPool.add(mod);
                     if (Global.isDebugOn(DebugFlags.DEBUG_LOADING))
                         System.out.println("Loaded custom modifier: " + mod.name());
                 }
@@ -60,6 +61,10 @@ public interface Modifier {
         }
         if (Global.isDebugOn(DebugFlags.DEBUG_LOADING))
             System.out.println("Done loading modifiers");
+    }
+
+    static Set<Modifier> getModifierPool() {
+        return modifierPool;
     }
 
     /**

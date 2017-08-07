@@ -44,22 +44,14 @@ import nightgames.modifier.standard.NoModifier;
 import nightgames.skills.*;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
-import nightgames.trap.Trap;
 
 public class Global {
     private static GUI gui;
-    static HashMap<String, Match.MatchAction> matchActions = null;
-    public static Set<Skill> skillPool = new HashSet<>();
-    public static Set<Action> actionPool;
-    public static Set<Trap> trapPool;
-    public static Set<Trait> featPool;
-    public static Set<Modifier> modifierPool;
     public static Set<Character> resting;
     public static Match match;
     public static Daytime day;
     protected static int date;
     private static Time time;
-    public static TraitTree traitRequirements;
     public static Scene current;
     public static boolean debug[] = new boolean[DebugFlags.values().length];
     public static int debugSimulation = 0;
@@ -129,7 +121,7 @@ public class Global {
     }
 
     public static Set<Action> getActions() {
-        return actionPool;
+        return Action.actionPool;
     }
 
     public static Time getTime() {
@@ -373,10 +365,6 @@ public class Global {
             return "an " + fullDescribe;
         }
         return prefix + fullDescribe;
-    }
-
-    public static Set<Modifier> getModifierPool() {
-        return modifierPool;
     }
 
     public static void main(String[] args) {

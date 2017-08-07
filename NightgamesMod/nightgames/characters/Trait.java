@@ -3,7 +3,6 @@ package nightgames.characters;
 import java.util.*;
 
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
@@ -495,7 +494,10 @@ public enum Trait {
     event("event", "special character"),
     mindcontrolresistance("", "temporary resistance to mind games - hidden"),
     none("", "");
-    
+
+    public static Set<Trait> featPool;
+    public static TraitTree traitRequirements;
+
     private static void override(Map<Trait, Collection<Trait>> o, Trait key, Trait... overrides) {
         o.put(key, Arrays.asList(overrides));
     }
@@ -507,16 +509,16 @@ public enum Trait {
     public Status status;
 
     public static void buildFeatPool() {
-        Global.featPool = new HashSet<>();
+        featPool = new HashSet<>();
         for (Trait trait : values()) {
             if (trait.isFeat()) {
-                Global.featPool.add(trait);
+                featPool.add(trait);
             }
         }
     }
 
     public static List<Trait> getFeats(Character c) {
-        List<Trait> a = Global.traitRequirements.availTraits(c);
+        List<Trait> a = traitRequirements.availTraits(c);
         a.sort((first, second) -> first.toString().compareTo(second.toString()));
         return a;
     }
