@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -25,8 +24,6 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import nightgames.requirements.TraitRequirement;
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.ContextFactory;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -169,12 +166,6 @@ public class Global {
 
     public static Set<Action> getActions() {
         return actionPool;
-    }
-
-    public static List<Trait> getFeats(Character c) {
-        List<Trait> a = getTraitRequirements().availTraits(c);
-        a.sort((first, second) -> first.toString().compareTo(second.toString()));
-        return a;
     }
 
     public static Time getTime() {
@@ -574,10 +565,6 @@ public class Global {
 
     public static Character getParticipantsByName(String name) {
         return players.stream().filter(c -> c.getTrueName().equals(name)).findAny().get();
-    }
-
-    public static TraitTree getTraitRequirements() {
-        return traitRequirements;
     }
 
     public static void main(String[] args) {

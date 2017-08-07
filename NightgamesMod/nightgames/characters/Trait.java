@@ -515,6 +515,12 @@ public enum Trait {
         }
     }
 
+    public static List<Trait> getFeats(Character c) {
+        List<Trait> a = Global.traitRequirements.availTraits(c);
+        a.sort((first, second) -> first.toString().compareTo(second.toString()));
+        return a;
+    }
+
     public String getDesc() {
         return desc;
     }

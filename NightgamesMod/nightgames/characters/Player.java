@@ -89,7 +89,7 @@ public class Player extends Character {
         } else if (player.traitPoints > 0 && !gui.skippedFeat) {
             gui.clearCommand();
             Formatter.writeIfCombatUpdateImmediately(gui.combat, player, "You've earned a new perk. Select one below.");
-            for (Trait feat : Global.getFeats(player)) {
+            for (Trait feat : Trait.getFeats(player)) {
                 if (!player.has(feat)) {
                     RunnableButton button = new RunnableButton(feat.toString(), () -> {
                         gui.clearTextIfNeeded();
