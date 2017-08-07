@@ -20,52 +20,6 @@ import nightgames.modifier.standard.*;
 @SuppressWarnings("unused")
 public interface Modifier {
 
-    Set<Modifier> modifierPool;
-
-    static void buildModifierPool() {
-        modifierPool = new HashSet<>();
-        modifierPool.add(new NoModifier());
-        modifierPool.add(new NoItemsModifier());
-        modifierPool.add(new NoToysModifier());
-        modifierPool.add(new NoRecoveryModifier());
-        modifierPool.add(new NudistModifier());
-        modifierPool.add(new PacifistModifier());
-        modifierPool.add(new UnderwearOnlyModifier());
-        modifierPool.add(new VibrationModifier());
-        modifierPool.add(new VulnerableModifier());
-        modifierPool.add(new LevelDrainModifier());
-
-        File customModFile = new File("data/customModifiers.json");
-        if (customModFile.canRead()) {
-            try {
-                JsonArray array = JsonUtils.rootJson(Files.newBufferedReader(customModFile.toPath())).getAsJsonArray();
-                for (JsonElement element : array) {
-                    JsonObject object;
-                    try {
-                        object = element.getAsJsonObject();
-                    } catch (Exception e) {
-                        System.out.println("Error loading custom modifiers: Non-object element in root array");
-                        continue;
-                    }
-                    Modifier mod = CustomModifierLoader.readModifier(object);
-                    if (!mod.name().equals("DEMO"))
-                        modifierPool.add(mod);
-                    if (DebugFlags.isDebugOn(DebugFlags.DEBUG_LOADING))
-                        System.out.println("Loaded custom modifier: " + mod.name());
-                }
-            } catch (IOException e) {
-                System.out.println("Error loading custom modifiers: " + e);
-                e.printStackTrace();
-            }
-        }
-        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_LOADING))
-            System.out.println("Done loading modifiers");
-    }
-
-    static Set<Modifier> getModifierPool() {
-        return modifierPool;
-    }
-
     /**
      * Ensure that the character has an appropriate outfit
      */

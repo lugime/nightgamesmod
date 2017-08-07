@@ -1,17 +1,28 @@
 package nightgames.modifier;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiConsumer;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import nightgames.actions.Action;
 import nightgames.characters.Character;
+import nightgames.global.DebugFlags;
 import nightgames.global.Match;
 import nightgames.items.Item;
+import nightgames.json.JsonUtils;
 import nightgames.modifier.action.ActionModifier;
 import nightgames.modifier.clothing.ClothingModifier;
 import nightgames.modifier.item.ItemModifier;
 import nightgames.modifier.skill.SkillModifier;
+import nightgames.modifier.standard.*;
 import nightgames.modifier.status.StatusModifier;
 
 public abstract class BaseModifier implements Modifier {

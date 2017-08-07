@@ -10,6 +10,7 @@ import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
 import nightgames.gui.SceneButton;
 import nightgames.modifier.Modifier;
+import nightgames.modifier.ModifierPool;
 import nightgames.modifier.standard.MayaModifier;
 import nightgames.modifier.standard.NoModifier;
 import nightgames.modifier.standard.UnderwearOnlyModifier;
@@ -99,7 +100,7 @@ public class Prematch implements Scene {
         if (Random.random(10) > 4) {
             return new NoModifier();
         }
-        Set<Modifier> modifiers = new HashSet<>(Modifier.getModifierPool());
+        Set<Modifier> modifiers = new HashSet<>(ModifierPool.getModifierPool());
         modifiers.removeIf(mod -> !mod.isApplicable() || mod.name().equals("normal"));
         return Random.pickRandom(modifiers.toArray(new Modifier[] {})).get();
     }

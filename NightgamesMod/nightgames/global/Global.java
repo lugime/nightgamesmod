@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import nightgames.characters.*;
 import nightgames.characters.Character;
+import nightgames.modifier.ModifierPool;
 import nightgames.requirements.TraitRequirement;
 
 import nightgames.Resources.ResourceLoader;
@@ -23,7 +24,6 @@ import nightgames.gui.GUI;
 import nightgames.gui.HeadlessGui;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
-import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.NoModifier;
 import nightgames.skills.*;
 import nightgames.start.PlayerConfiguration;
@@ -51,7 +51,7 @@ public class Global {
         Action.buildActionPool();
         Trait.buildFeatPool();
         Skill.buildSkillPool(NPC.noneCharacter);
-        Modifier.buildModifierPool();
+        ModifierPool.buildModifierPool();
         gui = makeGUI(headless);
     }
 

@@ -37,7 +37,7 @@ public class CustomModifierLoaderTest {
     @BeforeClass public static void setUpClass() throws Exception {
         Clothing.buildClothingTable();
         Formatter.buildParser();
-        Modifier.buildModifierPool();
+        ModifierPool.buildModifierPool();
         Action.buildActionPool();
         player = new Player("player");
         Skill.buildSkillPool(player);
