@@ -5,6 +5,7 @@ import nightgames.actions.Action;
 import nightgames.actions.Locate;
 import nightgames.characters.Player;
 import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.json.JsonUtils;
 import nightgames.items.clothing.Clothing;
 import nightgames.modifier.status.StatusModifier;
@@ -36,7 +37,7 @@ public class CustomModifierLoaderTest {
 
     @BeforeClass public static void setUpClass() throws Exception {
         Clothing.buildClothingTable();
-        Global.buildParser();
+        Formatter.buildParser();
         Global.buildModifierPool();
         Action.buildActionPool();
         player = new Player("player");

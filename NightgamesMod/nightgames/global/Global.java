@@ -3,18 +3,12 @@ package nightgames.global;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +19,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -108,6 +101,7 @@ import nightgames.trap.Trap;
 public class Global {
     private static Random rng;
     private static GUI gui;
+    static HashMap<String, MatchAction> matchActions = null;
     private static Set<Skill> skillPool = new HashSet<>();
     private static Map<String, NPC> characterPool;
     public static Set<Action> actionPool;
@@ -146,42 +140,12 @@ public class Global {
         jdate = new Date();
         counters.put(Flag.malePref.name(), 0.f);
         Clothing.buildClothingTable();
-        PrintStream fstream;
-        try {
-            File logfile = new File("nightgames_log.txt");
-            // append the log if it's less than 2 megs in size.
-            fstream = new PrintStream(new FileOutputStream(logfile, logfile.length() < 2L * 1024L * 1024L));
-            OutputStream estream = new TeeStream(System.err, fstream);
-            OutputStream ostream = new TeeStream(System.out, fstream);
-            System.setErr(new PrintStream(estream));
-            System.setOut(new PrintStream(ostream));
-    		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-    		InputStream stream = loader.getResourceAsStream("build.properties");
-
-            System.out.println("=============================================");
-            System.out.println("Nightgames Mod");
-    		if (stream != null) {
-    			Properties prop = new Properties();
-    			prop.load(stream);
-    			System.out.println("version: " + prop.getProperty("version"));
-    			System.out.println("buildtime: " + prop.getProperty("buildtime"));
-    			System.out.println("builder: " + prop.getProperty("builder"));
-    		} else {
-    			System.out.println("dev-build");
-    		}
-            System.out.println(new Timestamp(jdate.getTime()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
+        Logwriter.makeLogger(jdate);
         TraitRequirement.setTraitRequirements(new TraitTree(ResourceLoader.getFileResourceAsStream("data/TraitRequirements.xml")));
         current = null;
         factory = new ContextFactory();
         cx = factory.enterContext();
-        buildParser();
+        Formatter.buildParser();
         Action.buildActionPool();
         buildFeatPool();
         buildSkillPool(noneCharacter);
@@ -1323,194 +1287,6 @@ public class Global {
         String replace(Character self, String first, String second, String third);
     }
 
-    private static HashMap<String, MatchAction> matchActions = null;
-
-    public static void buildParser() {
-        matchActions = new HashMap<>();
-        matchActions.put("possessive", (self, first, second, third) -> {
-            if (self != null) {
-                return self.possessiveAdjective();
-            }
-            return "";
-        });
-        matchActions.put("name-possessive", (self, first, second, third) -> {
-            if (self != null) {
-                return self.nameOrPossessivePronoun();
-            }
-            return "";
-        });
-        matchActions.put("name", (self, first, second, third) -> {
-            if (self != null) {
-                return self.getName();
-            }
-            return "";
-        });
-        matchActions.put("subject-action", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                String verbs[] = third.split("\\|");
-                if (verbs.length > 1) {
-                    return self.subjectAction(verbs[0], verbs[1]);
-                } else {
-                    return self.subjectAction(verbs[0]);
-                }
-            }
-            return "";
-        });
-        matchActions.put("pronoun-action", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                String verbs[] = third.split("\\|");
-                if (verbs.length > 1) {
-                    return self.pronoun() + " " + self.action(verbs[0], verbs[1]);
-                } else {
-                    return self.pronoun() + " " + self.action(verbs[0]);
-                }
-            }
-            return "";
-        });
-        matchActions.put("action", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                String verbs[] = third.split("\\|");
-                if (verbs.length > 1) {
-                    return self.action(verbs[0], verbs[1]);
-                } else {
-                    return self.action(verbs[0]);
-                }
-            }
-            return "";
-        });
-        matchActions.put("if-female", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                return self.useFemalePronouns() ? third : "";
-            }
-            return "";
-        });
-        matchActions.put("if-male", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                return self.useFemalePronouns() ? "" : third;
-            }
-            return "";
-        });
-        matchActions.put("if-human", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                return self.human() ? third : "";
-            }
-            return "";
-        });
-
-        matchActions.put("if-nonhuman", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                return !self.human() ? third : "";
-            }
-            return "";
-        });
-        matchActions.put("subject", (self, first, second, third) -> {
-            if (self != null) {
-                return self.subject();
-            }
-            return "";
-        });
-        matchActions.put("direct-object", (self, first, second, third) -> {
-            if (self != null) {
-                return self.directObject();
-            }
-            return "";
-        });
-        matchActions.put("name-do", (self, first, second, third) -> {
-            if (self != null) {
-                return self.nameDirectObject();
-            }
-            return "";
-        });
-        matchActions.put("body-part", (self, first, second, third) -> {
-            if (self != null && third != null) {
-                BodyPart part = self.body.getRandom(third);
-                if (part == null && third.equals("cock") && self.has(Trait.strapped)) {
-                    part = StraponPart.generic;
-                }
-                if (part != null) {
-                    return part.describe(self);
-                }
-            }
-            return "";
-        });
-        matchActions.put("pronoun", (self, first, second, third) -> {
-            if (self != null) {
-                return self.pronoun();
-            }
-            return "";
-        });
-        matchActions.put("reflective", (self, first, second, third) -> {
-            if (self != null) {
-                return self.reflectivePronoun();
-            }
-            return "";
-        });
-
-        matchActions.put("main-genitals", (self, first, second, third) -> {
-            if (self != null) {
-                if (self.hasDick()) {
-                    return "dick";
-                } else if (self.hasPussy()) {
-                    return "pussy";
-                } else {
-                    return "crotch";
-                }
-            }
-            return "";
-        });
-
-        matchActions.put("balls-vulva", (self, first, second, third) -> {
-            if (self != null) {
-                if (self.hasBalls()) {
-                    return "testicles";
-                } else if (self.hasPussy()) {
-                    return "vulva";
-                } else {
-                    return "crotch";
-                }
-            }
-            return "";
-        });
-
-        matchActions.put("master", (self, first, second, third) -> {
-            if (self.useFemalePronouns()) {
-                return "mistress";
-            } else {
-                return "master";
-            }
-        });
-
-        matchActions.put("mister", (self, first, second, third) -> {
-            if (self.useFemalePronouns()) {
-                return "miss";
-            } else {
-                return "mister";
-            }
-        });
-
-        matchActions.put("true-name", (self, first, second, third) -> {
-            return self.getTrueName();
-        });
-
-        matchActions.put("girl", (self, first, second, third) -> {
-                return self.guyOrGirl();
-        });
-        matchActions.put("guy", (self, first, second, third) -> {
-            return self.guyOrGirl();
-        });
-        matchActions.put("man", (self, first, second, third) -> {
-            return self.useFemalePronouns() ? "woman" : "man";
-        });
-        matchActions.put("boy", (self, first, second, third) -> {
-            return self.boyOrGirl();
-        });
-        matchActions.put("poss-pronoun", (self, first, second, third) -> {
-            if (self != null) {
-                return self.possessivePronoun();
-            }
-            return "";
-        });
-    }
 
     public static String format(String format, Character self, Character target, Object... strings) {
         // pattern to find stuff like {word:otherword:finalword} in strings
