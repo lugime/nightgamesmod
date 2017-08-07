@@ -1,6 +1,7 @@
 package nightgames.modifier;
 
 import com.google.gson.JsonObject;
+import nightgames.actions.Action;
 import nightgames.actions.Locate;
 import nightgames.characters.Player;
 import nightgames.global.Global;
@@ -37,7 +38,7 @@ public class CustomModifierLoaderTest {
         Clothing.buildClothingTable();
         Global.buildParser();
         Global.buildModifierPool();
-        Global.buildActionPool();
+        Action.buildActionPool();
         player = new Player("player");
         Global.buildSkillPool(player);
     }

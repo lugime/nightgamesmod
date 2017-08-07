@@ -50,23 +50,7 @@ import com.google.gson.stream.JsonWriter;
 
 import nightgames.Resources.ResourceLoader;
 import nightgames.actions.Action;
-import nightgames.actions.Bathe;
-import nightgames.actions.BushAmbush;
-import nightgames.actions.Craft;
-import nightgames.actions.Disguise;
-import nightgames.actions.Energize;
-import nightgames.actions.Hide;
-import nightgames.actions.Locate;
-import nightgames.actions.MasturbateAction;
 import nightgames.actions.Movement;
-import nightgames.actions.PassAmbush;
-import nightgames.actions.Recharge;
-import nightgames.actions.Resupply;
-import nightgames.actions.Scavenge;
-import nightgames.actions.SetTrap;
-import nightgames.actions.TreeAmbush;
-import nightgames.actions.Use;
-import nightgames.actions.Wait;
 import nightgames.areas.Area;
 import nightgames.areas.MapDrawHint;
 import nightgames.characters.Airi;
@@ -87,8 +71,6 @@ import nightgames.characters.Reyka;
 import nightgames.characters.Trait;
 import nightgames.characters.TraitTree;
 import nightgames.characters.Yui;
-import nightgames.characters.body.BodyPart;
-import nightgames.characters.body.StraponPart;
 import nightgames.characters.custom.CustomNPC;
 import nightgames.characters.custom.JsonSourceNPCDataLoader;
 import nightgames.characters.custom.NPCData;
@@ -120,28 +102,15 @@ import nightgames.start.NpcConfiguration;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
 import nightgames.status.Status;
-import nightgames.trap.Alarm;
-import nightgames.trap.AphrodisiacTrap;
-import nightgames.trap.Decoy;
-import nightgames.trap.DissolvingTrap;
-import nightgames.trap.EnthrallingTrap;
-import nightgames.trap.IllusionTrap;
-import nightgames.trap.RoboWeb;
-import nightgames.trap.Snare;
-import nightgames.trap.Spiderweb;
-import nightgames.trap.SpringTrap;
-import nightgames.trap.StripMine;
-import nightgames.trap.TentacleTrap;
 import nightgames.trap.Trap;
-import nightgames.trap.Tripline;
 
 public class Global {
     private static Random rng;
     private static GUI gui;
     private static Set<Skill> skillPool = new HashSet<>();
     private static Map<String, NPC> characterPool;
-    private static Set<Action> actionPool;
-    private static Set<Trap> trapPool;
+    public static Set<Action> actionPool;
+    public static Set<Trap> trapPool;
     private static Set<Trait> featPool;
     private static Set<Modifier> modifierPool;
     private static Set<Character> players;
@@ -212,7 +181,7 @@ public class Global {
         factory = new ContextFactory();
         cx = factory.enterContext();
         buildParser();
-        buildActionPool();
+        Action.buildActionPool();
         buildFeatPool();
         buildSkillPool(noneCharacter);
         buildModifierPool();
@@ -559,49 +528,6 @@ public class Global {
         if (Global.isDebugOn(DebugFlags.DEBUG_SKILLS)) {
             getSkillPool().add(new SelfStun(ch));
         }
-    }
-
-    public static void buildActionPool() {
-        actionPool = new HashSet<>();
-        actionPool.add(new Resupply());
-        actionPool.add(new Wait());
-        actionPool.add(new Hide());
-        actionPool.add(new Bathe());
-        actionPool.add(new Scavenge());
-        actionPool.add(new Craft());
-        actionPool.add(new Use(Item.Lubricant));
-        actionPool.add(new Use(Item.EnergyDrink));
-        actionPool.add(new Use(Item.Beer));
-        actionPool.add(new Recharge());
-        actionPool.add(new Locate());
-        actionPool.add(new MasturbateAction());
-        actionPool.add(new Energize());
-        actionPool.add(new Disguise());
-        actionPool.add(new BushAmbush());
-        actionPool.add(new PassAmbush());
-        actionPool.add(new TreeAmbush());
-        actionPool.add(new nightgames.actions.Struggle());
-        buildTrapPool();
-        for (Trap t : trapPool) {
-            actionPool.add(new SetTrap(t));
-        }
-    }
-
-    public static void buildTrapPool() {
-        trapPool = new HashSet<>();
-        trapPool.add(new Alarm());
-        trapPool.add(new Tripline());
-        trapPool.add(new Snare());
-        trapPool.add(new SpringTrap());
-        trapPool.add(new AphrodisiacTrap());
-        trapPool.add(new DissolvingTrap());
-        trapPool.add(new Decoy());
-        trapPool.add(new Spiderweb());
-        trapPool.add(new EnthrallingTrap());
-        trapPool.add(new IllusionTrap());
-        trapPool.add(new StripMine());
-        trapPool.add(new TentacleTrap());
-        trapPool.add(new RoboWeb());
     }
 
     public static void buildFeatPool() {

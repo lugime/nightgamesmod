@@ -3,6 +3,9 @@ package nightgames.trap;
 import nightgames.areas.Deployable;
 import nightgames.characters.Character;
 import nightgames.combat.IEncounter;
+import nightgames.global.Global;
+
+import java.util.HashSet;
 
 public abstract class Trap implements Deployable {
     
@@ -14,7 +17,24 @@ public abstract class Trap implements Deployable {
         this.owner = owner;
         this.setStrength(0);
     }
-    
+
+    public static void buildTrapPool() {
+        Global.trapPool = new HashSet<>();
+        Global.trapPool.add(new Alarm());
+        Global.trapPool.add(new Tripline());
+        Global.trapPool.add(new Snare());
+        Global.trapPool.add(new SpringTrap());
+        Global.trapPool.add(new AphrodisiacTrap());
+        Global.trapPool.add(new DissolvingTrap());
+        Global.trapPool.add(new Decoy());
+        Global.trapPool.add(new Spiderweb());
+        Global.trapPool.add(new EnthrallingTrap());
+        Global.trapPool.add(new IllusionTrap());
+        Global.trapPool.add(new StripMine());
+        Global.trapPool.add(new TentacleTrap());
+        Global.trapPool.add(new RoboWeb());
+    }
+
     protected abstract void trigger(Character target);
 
     public boolean decoy() {

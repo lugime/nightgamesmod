@@ -1,10 +1,14 @@
 package nightgames.actions;
 
 import java.io.Serializable;
+import java.util.HashSet;
 
 import nightgames.characters.Character;
+import nightgames.global.Global;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
+import nightgames.items.Item;
+import nightgames.trap.Trap;
 
 public abstract class Action implements Serializable {
     /**
@@ -15,6 +19,32 @@ public abstract class Action implements Serializable {
 
     public Action(String name) {
         this.name = name;
+    }
+
+    public static void buildActionPool() {
+        Global.actionPool = new HashSet<>();
+        Global.actionPool.add(new Resupply());
+        Global.actionPool.add(new Wait());
+        Global.actionPool.add(new Hide());
+        Global.actionPool.add(new Bathe());
+        Global.actionPool.add(new Scavenge());
+        Global.actionPool.add(new Craft());
+        Global.actionPool.add(new Use(Item.Lubricant));
+        Global.actionPool.add(new Use(Item.EnergyDrink));
+        Global.actionPool.add(new Use(Item.Beer));
+        Global.actionPool.add(new Recharge());
+        Global.actionPool.add(new Locate());
+        Global.actionPool.add(new MasturbateAction());
+        Global.actionPool.add(new Energize());
+        Global.actionPool.add(new Disguise());
+        Global.actionPool.add(new BushAmbush());
+        Global.actionPool.add(new PassAmbush());
+        Global.actionPool.add(new TreeAmbush());
+        Global.actionPool.add(new Struggle());
+        Trap.buildTrapPool();
+        for (Trap t : Global.trapPool) {
+            Global.actionPool.add(new SetTrap(t));
+        }
     }
 
     public abstract boolean usable(Character user);
