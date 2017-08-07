@@ -3,6 +3,7 @@ package nightgames.gui;
 import nightgames.actions.Action;
 import nightgames.characters.Character;
 import nightgames.global.Global;
+import nightgames.global.Match;
 
 public class ActionButton extends RunnableButton {
     /**
@@ -15,7 +16,7 @@ public class ActionButton extends RunnableButton {
             Global.gui().clearText();
             action.execute(user);
             if (!action.freeAction()) {
-                Global.getMatch().resume();
+                Match.getMatch().resume();
             }
         });
     }

@@ -10,6 +10,7 @@ import nightgames.characters.Character;
 import nightgames.combat.IEncounter;
 import nightgames.global.DebugFlags;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.status.Stsflag;
 import nightgames.trap.Trap;
 
@@ -123,10 +124,10 @@ public class Area implements Serializable {
         if (fight != null && fight.checkIntrude(p)) {
             p.intervene(fight, fight.getPlayer(1), fight.getPlayer(2));
         } else if (present.size() > 1 && canFight(p)) {
-            for (Character opponent : Global.getMatch().combatants) {
+            for (Character opponent : Match.getMatch().combatants) {
                 if (present.contains(opponent) && opponent != p
                                 && canFight(opponent)) {
-                    fight = Global.getMatch().getType().buildEncounter(p, opponent, this);
+                    fight = Match.getMatch().getType().buildEncounter(p, opponent, this);
                     return fight.spotCheck();
                 }
             }
@@ -143,7 +144,7 @@ public class Area implements Serializable {
             for (Character opponent : present) {
                 if (opponent != target) {
                     if (target.eligible(opponent) && opponent.eligible(target) && fight == null) {
-                        fight = Global.getMatch().getType().buildEncounter(opponent, target, this);
+                        fight = Match.getMatch().getType().buildEncounter(opponent, target, this);
                         opponent.promptTrap(fight, target, trap);
                         return true;
                     }

@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.State;
 import nightgames.characters.Trait;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.Loot;
@@ -70,7 +71,7 @@ public class Cache implements Deployable {
                             break;
                         case Perception:
                             Global.gui().message("<br/><br/>Something is off in this "
-                                            + Global.getMatch().genericRoomDescription()
+                                            + Match.getMatch().genericRoomDescription()
                                             + ", but it's hard to put your finger on it. A trap? No, it's not that. You spot a carefully hidden, but "
                                             + "nonetheless out-of-place package. It's not sealed and the contents seem like they could be useful, so you help yourself.<br/><br/>");
                             break;
@@ -104,7 +105,7 @@ public class Cache implements Deployable {
                             break;
                         case Perception:
                             Global.gui().message("<br/><br/>Something is off in this "
-                                            + Global.getMatch().genericRoomDescription()
+                                            + Match.getMatch().genericRoomDescription()
                                             + ", but it's hard to put your finger on it. A trap? No, it's not that. You summon a minor spirit to search the "
                                             + "area. It's not much good in a fight, but it is pretty decent at finding hidden objects. It leads you to a small hidden box of goodies.<br/><br/>");
                             break;
@@ -137,7 +138,7 @@ public class Cache implements Deployable {
                                                         + "You do your best to decode it, but after a couple of failed attempts, the screen turns off and stops responding.<br/><br/>");
                         break;
                     case Perception:
-                        Global.gui().message("<br/><br/>Something is off in this " + Global.getMatch().genericRoomDescription()
+                        Global.gui().message("<br/><br/>Something is off in this " + Match.getMatch().genericRoomDescription()
                                         + ", but it's hard to put your finger on it. A trap? No, it's not that. Probably nothing.<br/><br/>");
                         break;
                     case Power:

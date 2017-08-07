@@ -485,7 +485,7 @@ public class GUI extends JFrame implements Observer {
                             "Do you want to quit for the night? Your opponents will continue to fight and gain exp.",
                             "Retire early?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
             if (result == JOptionPane.OK_OPTION) {
-                Global.getMatch().quit();
+                Match.getMatch().quit();
             }
         });
         menuBar.add(mntmQuitMatch);
@@ -606,7 +606,7 @@ public class GUI extends JFrame implements Observer {
         centerPanel.add(clothesPanel, USE_CLOSET_UI);
 
         JButton debug = new JButton("Debug");
-        debug.addActionListener(arg0 -> Global.getMatch().resume());
+        debug.addActionListener(arg0 -> Match.getMatch().resume());
 
         // commandPanel - visible, contains the player's command buttons
         groupBox = Box.createHorizontalBox();
@@ -1045,13 +1045,13 @@ public class GUI extends JFrame implements Observer {
                 commandPanel.add(button);
             }
         }
-        Global.getMatch().pause();
+        Match.getMatch().pause();
         commandPanel.refresh();
     }
 
     public void addButtonWithPause(KeyableButton button) {
         commandPanel.add(button);
-        Global.getMatch().pause();
+        Match.getMatch().pause();
         commandPanel.refresh();
     }
 
@@ -1105,12 +1105,12 @@ public class GUI extends JFrame implements Observer {
         String textColor = "rgb(0, 0, 0)";
         if (Global.getTime() == Time.NIGHT) {
             // yup... silverbard pls :D
-            if (Global.getMatch() == null) {
+            if (Match.getMatch() == null) {
                 timeText = "9:50 pm";
-            } else if (Global.getMatch().getHour() >= 12) {
-                timeText = Global.getMatch().getTime() + " am";
+            } else if (Match.getMatch().getHour() >= 12) {
+                timeText = Match.getMatch().getTime() + " am";
             } else {
-                timeText = Global.getMatch().getTime() + " pm";
+                timeText = Match.getMatch().getTime() + " pm";
             }
             textColor = "rgb(51, 101, 202)";
         } else if (Global.getTime() == Time.DAY) { // not updating correctly during daytime

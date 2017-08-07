@@ -130,9 +130,9 @@ public class Challenge implements Deployable {
     public boolean resolve(Character active) {
         if (active.state == State.ready) {
             owner = active;
-            target = Global.getMatch().combatants.get(Random.random(Global.getMatch().combatants.size() - 1));
+            target = Match.getMatch().combatants.get(Random.random(Match.getMatch().combatants.size() - 1));
             for (int i = 0; i < 10 && target == active; i++) {
-                target = Global.getMatch().combatants.get(Random.random(Global.getMatch().combatants.size() - 1));
+                target = Match.getMatch().combatants.get(Random.random(Match.getMatch().combatants.size() - 1));
             }
             if (target == active) {
                 return false;
@@ -140,7 +140,7 @@ public class Challenge implements Deployable {
             goal = pick();
             if (active.human()) {
                 Global.gui().message("You find a gold envelope sitting conspicously in the middle of the "
-                                + Global.getMatch().genericRoomDescription()
+                                + Match.getMatch().genericRoomDescription()
                                 + ". You open it up and read the note inside.\n'" + message() + "'\n");
             }
             active.location().remove(this);

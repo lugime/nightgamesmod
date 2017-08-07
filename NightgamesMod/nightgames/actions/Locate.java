@@ -8,6 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.status.Detected;
@@ -50,7 +51,7 @@ public class Locate extends Action {
         Character target;
         GUI gui = Global.gui();
         if (choice.equals("Start")) {
-            Global.getMatch().combatants.stream().filter(c -> self.getAffection(c) >= MINIMUM_SCRYING_REQUIREMENT)
+            Match.getMatch().combatants.stream().filter(c -> self.getAffection(c) >= MINIMUM_SCRYING_REQUIREMENT)
                             .forEach((character) -> {
                                 choose(character.getTrueName(), self, gui);
                             });
@@ -58,7 +59,7 @@ public class Locate extends Action {
         } else if (choice.equals("Leave")) {
             gui.clearText();
             gui.clearCommand();
-            Global.getMatch().resume();
+            Match.getMatch().resume();
         } else if ((target = CharacterPool.getParticipantsByName(choice)) != null) {
             Area area = target.location();
             gui.clearText();

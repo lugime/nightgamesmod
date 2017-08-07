@@ -172,7 +172,7 @@ public class Decider {
                 }
             }
             String workshop = Flag.checkFlag(Flag.FTC) ? "Cabin" : "Workshop";
-            Move path = character.findPath(Global.getMatch().gps(workshop));
+            Move path = character.findPath(Match.getMatch().gps(workshop));
             if (path != null) {
                 return path;
             }
@@ -274,7 +274,7 @@ public class Decider {
 
             // Sum up rating, add to map
             rating = (double) Math.pow(2, RATING_FACTOR * raw_rating + wskill.weight + wskill.skill.priorityMod(c)
-                            + Global.getMatch().condition.getSkillModifier().encouragement(wskill.skill, c, self));
+                            + Match.getMatch().condition.getSkillModifier().encouragement(wskill.skill, c, self));
             sum += rating;
             moveList.add(new WeightedSkill(sum, raw_rating, rating, wskill.skill));
         }
@@ -338,7 +338,7 @@ public class Decider {
             }
             // Sum up rating, add to map
             rating = (double) Math.pow(2, RATING_FACTOR * raw_rating + wskill.weight + wskill.skill.priorityMod(c)
-                            + Global.getMatch().condition.getSkillModifier().encouragement(wskill.skill, c, self));
+                            + Match.getMatch().condition.getSkillModifier().encouragement(wskill.skill, c, self));
             sum += rating;
             moveList.add(new WeightedSkill(sum, raw_rating, rating, wskill.skill));
         }

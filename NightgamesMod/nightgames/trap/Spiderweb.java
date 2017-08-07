@@ -6,6 +6,7 @@ import nightgames.characters.State;
 import nightgames.characters.Trait;
 import nightgames.combat.IEncounter;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingSlot;
 
@@ -95,7 +96,7 @@ public class Spiderweb extends Trap {
         victim.defeated(attacker);
         victim.getArousal().empty();
         attacker.tempt(20);
-        Global.getMatch().score(attacker, victim.has(Trait.event) ? 5 : 1);
+        Match.getMatch().score(attacker, victim.has(Trait.event) ? 5 : 1);
         attacker.state = State.ready;
         victim.state = State.ready;
         victim.location().endEncounter();

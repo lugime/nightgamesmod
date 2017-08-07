@@ -141,8 +141,8 @@ public class Combat extends Observable implements Cloneable {
         this.p2 = p2;
         p1.startBattle(this);
         p2.startBattle(this);
-        getCombatantData(p1).setManager(Global.getMatch().getMatchData().getDataFor(p1).getArmManager());
-        getCombatantData(p2).setManager(Global.getMatch().getMatchData().getDataFor(p2).getArmManager());
+        getCombatantData(p1).setManager(Match.getMatch().getMatchData().getDataFor(p1).getArmManager());
+        getCombatantData(p2).setManager(Match.getMatch().getMatchData().getDataFor(p2).getArmManager());
         location = loc;
         message = "";
         paused = false;
@@ -1411,10 +1411,10 @@ public class Combat extends Observable implements Cloneable {
             log.logEnd(winner);
         }
         if (!p1.has(Trait.Pseudopod)) {
-            Global.getMatch().getMatchData().getDataFor(p1).setArmManager(getCombatantData(p1).getManager());
+            Match.getMatch().getMatchData().getDataFor(p1).setArmManager(getCombatantData(p1).getManager());
         }
         if (!p2.has(Trait.Pseudopod)) {
-            Global.getMatch().getMatchData().getDataFor(p2).setArmManager(getCombatantData(p2).getManager());
+            Match.getMatch().getMatchData().getDataFor(p2).setArmManager(getCombatantData(p2).getManager());
         }
         if (!ding && beingObserved) {
             endCombat(Global.gui());
@@ -1783,7 +1783,7 @@ public class Combat extends Observable implements Cloneable {
         gui.clearText();
         gui.clearImage();
         gui.showMap();
-        Global.getMatch().resume();
+        Match.getMatch().resume();
     }
 
     public void choose(Character npc, String message, CombatSceneChoice choice, GUI gui) {

@@ -16,7 +16,7 @@ import javax.swing.JComponent;
 import nightgames.areas.Area;
 import nightgames.areas.Cache;
 import nightgames.areas.MapDrawHint;
-import nightgames.global.Global;
+import nightgames.global.Match;
 
 @SuppressWarnings("serial")
 public class MapComponent extends JComponent {
@@ -52,7 +52,7 @@ public class MapComponent extends JComponent {
     }
 
     public void paint(Graphics g) {
-        if (Global.getMatch() == null) {
+        if (Match.getMatch() == null) {
             return;
         }
         if (g instanceof Graphics2D) {
@@ -69,7 +69,7 @@ public class MapComponent extends JComponent {
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.WHITE);
         g.drawRect(borderWidth, borderWidth, width - borderWidth * 2, height - borderWidth * 2);
-        Collection<Area> rooms = Global.getMatch().getAreas();
+        Collection<Area> rooms = Match.getMatch().getAreas();
         rooms.stream().forEach(area -> {
             if (area.drawHint.rect.width == 0 || area.drawHint.rect.height == 0) {
                 return;

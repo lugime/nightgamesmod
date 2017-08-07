@@ -378,7 +378,7 @@ public class Encounter implements Serializable, IEncounter {
         target.getArousal()
               .empty();
         attacker.tempt(20);
-        Global.getMatch()
+        Match.getMatch()
               .score(attacker, target.has(Trait.event) ? 5 : 1);
         attacker.state = State.ready;
         target.state = State.ready;
@@ -415,7 +415,7 @@ public class Encounter implements Serializable, IEncounter {
         target.getArousal()
               .empty();
         attacker.tempt(20);
-        Global.getMatch()
+        Match.getMatch()
               .score(attacker, target.has(Trait.event) ? 5 : 1);
         attacker.state = State.ready;
         target.state = State.ready;
@@ -454,7 +454,7 @@ public class Encounter implements Serializable, IEncounter {
         target.getArousal()
               .empty();
         attacker.tempt(20);
-        Global.getMatch()
+        Match.getMatch()
               .score(attacker, target.has(Trait.event) ? 5 : 1);
         attacker.state = State.ready;
         target.state = State.ready;

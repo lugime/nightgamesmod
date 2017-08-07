@@ -83,8 +83,8 @@ public class Player extends Character {
                 }
             }
             gui.commandPanel.add(AttributeButton.attributeButton(gui, Attribute.Willpower));
-            if (Global.getMatch() != null) {
-                Global.getMatch().pause();
+            if (Match.getMatch() != null) {
+                Match.getMatch().pause();
             }
             gui.commandPanel.refresh();
         } else if (player.traitPoints > 0 && !gui.skippedFeat) {
@@ -125,9 +125,9 @@ public class Player extends Character {
             } else {
                 if (gui.combat != null) {
                     gui.combat.resume();
-                } else if (Global.getMatch() != null) {
+                } else if (Match.getMatch() != null) {
                     gui.showMap();
-                    Global.getMatch().resume();
+                    Match.getMatch().resume();
                 } else if (Global.day != null) {
                     Global.getDay().plan();
                 } else {
@@ -379,7 +379,7 @@ public class Player extends Character {
 
         if (state == State.combat) {
             if (!location.fight.battle()) {
-                Global.getMatch()
+                Match.getMatch()
                       .resume();
             }
         } else if (busy > 0) {
@@ -409,7 +409,7 @@ public class Player extends Character {
             masturbate();
         } else {
             if (Flag.checkFlag(Flag.FTC)) {
-                Character holder = ((FTCMatch) Global.getMatch()).getFlagHolder();
+                Character holder = ((FTCMatch) Match.getMatch()).getFlagHolder();
                 if (holder != null && !holder.human()) {
                     gui.message("<b>" + holder.subject() + " currently holds the Flag.</b></br>");
                 }
@@ -451,7 +451,7 @@ public class Player extends Character {
                     possibleActions.addAll(Global.getActions());
                     for (Action act : possibleActions) {
                         if (act.usable(this) 
-                                        && Global.getMatch().condition.allowAction(act, this, Global.getMatch())) {
+                                        && Match.getMatch().condition.allowAction(act, this, Match.getMatch())) {
                             addAction(act);
                         }
                     }

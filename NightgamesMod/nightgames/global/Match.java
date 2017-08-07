@@ -23,6 +23,8 @@ import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
 
 public class Match {
+    public static Set<Character> resting;
+    public static Match match;
     static HashMap<String, MatchAction> matchActions = null;
     protected int time;
     protected int dropOffTime;
@@ -146,8 +148,8 @@ public class Match {
                             "Maya data unavailable when attempting to add her to lineup."));
             lineup.add(maya);
             lineup = pickCharacters(participants, lineup, 5);
-            Global.resting = new HashSet<>(CharacterPool.players);
-            Global.resting.removeAll(lineup);
+            resting = new HashSet<>(CharacterPool.players);
+            resting.removeAll(lineup);
             maya.gain(Item.Aphrodisiac, 10);
             maya.gain(Item.DisSol, 10);
             maya.gain(Item.Sedative, 10);
@@ -162,23 +164,23 @@ public class Match {
             maya.gain(Item.Onahole2);
             maya.gain(Item.Dildo2);
             maya.gain(Item.Strapon2);
-            Global.match = new Match(lineup, matchmod);
+            match = new Match(lineup, matchmod);
         } else if (matchmod.name().equals("ftc")) {
             Character prey = ((FTCModifier) matchmod).getPrey();
             if (!prey.human()) {
                 lineup.add(prey);
             }
             lineup = pickCharacters(participants, lineup, 5);
-            Global.resting = new HashSet<>(CharacterPool.players);
-            Global.resting.removeAll(lineup);
-            Global.match = buildMatch(lineup, matchmod);
+            resting = new HashSet<>(CharacterPool.players);
+            resting.removeAll(lineup);
+            match = buildMatch(lineup, matchmod);
         } else if (participants.size() > 5) {
             lineup = pickCharacters(participants, lineup, 5);
-            Global.resting = new HashSet<>(CharacterPool.players);
-            Global.resting.removeAll(lineup);
-            Global.match = buildMatch(lineup, matchmod);
+            resting = new HashSet<>(CharacterPool.players);
+            resting.removeAll(lineup);
+            match = buildMatch(lineup, matchmod);
         } else {
-            Global.match = buildMatch(participants, matchmod);
+            match = buildMatch(participants, matchmod);
         }
         startMatch();
     }
@@ -189,7 +191,7 @@ public class Match {
             withEffect.ifPresent(s -> CharacterPool.getPlayer().addNonCombat(s));
         });
         startMatchGui(Global.gui());
-        Global.match.round();
+        match.round();
     }
 
     public static MatchType decideMatchType() {
@@ -237,10 +239,14 @@ public class Match {
     }
 
     public static List<Character> getMatchParticipantsInAffectionOrder() {
-        if (Global.match == null) {
+        if (match == null) {
             return Collections.emptyList();
         }
-        return CharacterPool.getInAffectionOrder(Global.match.combatants.stream().filter(c -> !c.human()).collect(Collectors.toList()));
+        return CharacterPool.getInAffectionOrder(match.combatants.stream().filter(c -> !c.human()).collect(Collectors.toList()));
+    }
+
+    public static Match getMatch() {
+        return match;
     }
 
     public MatchType getType() {

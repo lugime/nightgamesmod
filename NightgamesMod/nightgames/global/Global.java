@@ -47,8 +47,6 @@ import nightgames.start.StartConfiguration;
 
 public class Global {
     private static GUI gui;
-    public static Set<Character> resting;
-    public static Match match;
     public static Daytime day;
     protected static int date;
     private static Time time;
@@ -63,7 +61,7 @@ public class Global {
         Flag.flags = new HashSet<>();
         CharacterPool.players = new HashSet<>();
         CharacterPool.debugChars = new HashSet<>();
-        resting = new HashSet<>();
+        Match.resting = new HashSet<>();
         Flag.counters = new HashMap<>();
         Flag.counters.put(Flag.malePref.name(), 0.f);
         Clothing.buildClothingTable();
@@ -128,16 +126,12 @@ public class Global {
         return time;
     }
 
-    public static Match getMatch() {
-        return match;
-    }
-
     public static Daytime getDay() {
         return day;
     }
 
     public static void startDay() {
-        match = null;
+        Match.match = null;
         day = new Daytime(CharacterPool.human);
         day.plan();
     }
@@ -179,7 +173,7 @@ public class Global {
 
         level /= CharacterPool.players.size();
 
-        for (Character rested : resting) {
+        for (Character rested : Match.resting) {
             rested.gainXP(100 + Math.max(0, (int) Math.round(10 * (level - rested.getLevel()))));
         }
         date++;
@@ -344,7 +338,7 @@ public class Global {
         CharacterPool.players.clear();
         Flag.flags.clear();
         day = null;
-        match = null;
+        Match.match = null;
         CharacterPool.human = new Player("Dummy");
         gui.purgePlayer();
         xpRate = 1.0;

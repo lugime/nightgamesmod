@@ -3,7 +3,7 @@ package nightgames.combat;
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.global.Encs;
-import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.gui.GUI;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.RunnableButton;
@@ -52,7 +52,7 @@ public interface IEncounter {
                             watch();
                         }));
         gui.prompt(choices);
-        Global.getMatch().pause();
+        Match.getMatch().pause();
     }
 
     default void promptShower(Character target, GUI gui) {
@@ -67,18 +67,18 @@ public interface IEncounter {
         }
         choices.add(EncounterButton.encounterButton("Do Nothing", this, target, Encs.wait));
         gui.prompt(choices);
-        Global.getMatch().pause();
+        Match.getMatch().pause();
     }
 
     default void promptOpportunity(Character target, Trap trap, GUI gui) {
         List<KeyableButton> choices = Arrays.asList(
         new RunnableButton("Attack " + target.getName(), () -> {
             parse(Encs.capitalize, CharacterPool.getPlayer(), target, trap);
-            Global.getMatch().resume();
+            Match.getMatch().resume();
         }),
         EncounterButton.encounterButton("Wait", this, target, Encs.wait));
         gui.prompt(choices);
-        Global.getMatch().pause();
+        Match.getMatch().pause();
     }
 
     default void promptFF(Character target, GUI gui) {
@@ -89,7 +89,7 @@ public interface IEncounter {
             choices.add(EncounterButton.encounterButton("Smoke Bomb", this, target, Encs.smoke));
         }
         gui.prompt(choices);
-        Global.getMatch().pause();
+        Match.getMatch().pause();
     }
 
     default void promptAmbush(Character target, GUI gui) {
@@ -98,6 +98,6 @@ public interface IEncounter {
         choices.add(EncounterButton.encounterButton("Wait", this, target, Encs.wait));
         choices.add(EncounterButton.encounterButton("Flee", this, target, Encs.fleehidden));
         gui.prompt(choices);
-        Global.getMatch().pause();
+        Match.getMatch().pause();
     }
 }

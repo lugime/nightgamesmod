@@ -987,8 +987,8 @@ public abstract class Character extends Observable implements Cloneable {
     public void change() {
         outfit.undress();
         outfit.dress(outfitPlan);
-        if (Global.getMatch() != null) {
-            Global.getMatch().condition.handleOutfit(this);
+        if (Match.getMatch() != null) {
+            Match.getMatch().condition.handleOutfit(this);
         }
     }
 
@@ -2480,33 +2480,33 @@ public abstract class Character extends Observable implements Cloneable {
         getWillpower().fill();
         if (location().present.size() > 1) {
             if (location().id() == Movement.dorm) {
-                if (Global.getMatch().gps("Quad").present.isEmpty()) {
+                if (Match.getMatch().gps("Quad").present.isEmpty()) {
                     if (human()) {
                         Global.gui()
                                         .message("You hear your opponents searching around the dorm, so once you finish changing, you hop out the window and head to the quad.");
                     }
-                    travel(Global.getMatch().gps("Quad"));
+                    travel(Match.getMatch().gps("Quad"));
                 } else {
                     if (human()) {
                         Global.gui()
                                         .message("You hear your opponents searching around the dorm, so once you finish changing, you quietly move downstairs to the laundry room.");
                     }
-                    travel(Global.getMatch().gps("Laundry"));
+                    travel(Match.getMatch().gps("Laundry"));
                 }
             }
             if (location().id() == Movement.union) {
-                if (Global.getMatch().gps("Quad").present.isEmpty()) {
+                if (Match.getMatch().gps("Quad").present.isEmpty()) {
                     if (human()) {
                         Global.gui()
                                         .message("You don't want to be ambushed leaving the student union, so once you finish changing, you hop out the window and head to the quad.");
                     }
-                    travel(Global.getMatch().gps("Quad"));
+                    travel(Match.getMatch().gps("Quad"));
                 } else {
                     if (human()) {
                         Global.gui()
                                         .message("You don't want to be ambushed leaving the student union, so once you finish changing, you sneak out the back door and head to the pool.");
                     }
-                    travel(Global.getMatch().gps("Pool"));
+                    travel(Match.getMatch().gps("Pool"));
                 }
             }
         }
@@ -2540,7 +2540,7 @@ public abstract class Character extends Observable implements Cloneable {
     public void bounty(int points, Character victor) {
         int score = points;
         if (Flag.checkFlag(Flag.FTC) && points == 1) {
-            FTCMatch match = (FTCMatch) Global.getMatch();
+            FTCMatch match = (FTCMatch) Match.getMatch();
             if (match.isPrey(this)) {
                 score = 3;
             } else if (!match.isPrey(victor)) {
@@ -2549,13 +2549,13 @@ public abstract class Character extends Observable implements Cloneable {
                 score = 0; // Hunter beating prey gets no points, only for flag.
             }
         }
-        Global.getMatch().score(this, score);
+        Match.getMatch().score(this, score);
     }
 
     public boolean eligible(Character p2) {
         boolean ftc = true;
         if (Flag.checkFlag(Flag.FTC)) {
-            FTCMatch match = (FTCMatch) Global.getMatch();
+            FTCMatch match = (FTCMatch) Match.getMatch();
             ftc = !match.inGracePeriod() || (!match.isPrey(this) && !match.isPrey(p2));
         }
         return ftc && !mercy.contains(p2.getType()) && state != State.resupplying;

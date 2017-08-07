@@ -2,7 +2,7 @@ package nightgames.modifier.item;
 
 import nightgames.characters.Character;
 import nightgames.ftc.FTCMatch;
-import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.items.Item;
 
 public class FlagOnlyModifier extends ItemModifier {
@@ -10,7 +10,7 @@ public class FlagOnlyModifier extends ItemModifier {
 
     @Override
     public boolean itemIsBanned(Character c, Item i) {
-        return ((FTCMatch) Global.getMatch()).isPrey(c) && i != Item.Flag;
+        return ((FTCMatch) Match.getMatch()).isPrey(c) && i != Item.Flag;
     }
 
     @Override

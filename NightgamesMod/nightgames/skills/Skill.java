@@ -10,10 +10,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.DebugFlags;
-import nightgames.global.Formatter;
-import nightgames.global.Global;
-import nightgames.global.Random;
+import nightgames.global.*;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.pet.Ptype;
 import nightgames.skills.damage.Staleness;
@@ -393,7 +390,7 @@ public abstract class Skill {
                         && s.type(c) != Tactics.fucking && s.type(c) != Tactics.pleasure && s.type(c) != Tactics.misc;
         boolean allureRestricted =
                         target.is(Stsflag.alluring) && (s.type(c) == Tactics.damage || s.type(c) == Tactics.debuff);
-        boolean modifierRestricted = !Global.getMatch().condition.getSkillModifier().allowedSkill(c,s);
+        boolean modifierRestricted = !Match.getMatch().condition.getSkillModifier().allowedSkill(c,s);
         boolean usable = s.usable(c, target) && s.getSelf().canSpend(s.getMojoCost(c)) && !charmRestricted
                         && !allureRestricted && !modifierRestricted;
         return usable;

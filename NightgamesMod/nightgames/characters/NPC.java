@@ -214,7 +214,7 @@ public class NPC extends Character {
         gainXP(getDefeatXP(target));
         target.gainXP(target.getVictoryXP(this));
         arousal.empty();
-        if (!target.human() || !Global.getMatch().condition.name().equals("norecovery")) {
+        if (!target.human() || !Match.getMatch().condition.name().equals("norecovery")) {
             target.arousal.empty();
         }
         if (this.has(Trait.insatiable)) {
@@ -513,7 +513,7 @@ public class NPC extends Character {
                 HashSet<Movement> radar = new HashSet<>();
                 FTCMatch match;
                 if (Flag.checkFlag(Flag.FTC) && allowedActions().isEmpty()) {
-                    match = (FTCMatch) Global.getMatch();
+                    match = (FTCMatch) Match.getMatch();
                     if (match.isPrey(this) && match.getFlagHolder() == null) {
                         moves.add(findPath(match.gps("Central Camp")));
                         if (Global.isDebugOn(DebugFlags.DEBUG_FTC))

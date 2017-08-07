@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.ftc.FTCMatch;
 import nightgames.global.Flag;
 import nightgames.global.Global;
+import nightgames.global.Match;
 import nightgames.items.Item;
 
 public class Resupply extends Action {
@@ -22,13 +23,13 @@ public class Resupply extends Action {
     @Override
     public boolean usable(Character user) {
         return  !user.bound() && user.location().resupply() || user.has(Trait.immobile)
-                        || (Flag.checkFlag(Flag.FTC) && ((FTCMatch) Global.getMatch()).isBase(user, user.location()));
+                        || (Flag.checkFlag(Flag.FTC) && ((FTCMatch) Match.getMatch()).isBase(user, user.location()));
     }
 
     @Override
     public Movement execute(Character user) {
         if (Flag.checkFlag(Flag.FTC)) {
-            FTCMatch match = (FTCMatch) Global.getMatch();
+            FTCMatch match = (FTCMatch) Match.getMatch();
             if (user.human()) {
                 Global.gui().message("You get a change of clothes from the chest placed here.");
             }
@@ -39,7 +40,7 @@ public class Resupply extends Action {
             }
         } else {
             if (user.human()) {
-                if (Global.getMatch().condition.name().equals("nudist")) {
+                if (Match.getMatch().condition.name().equals("nudist")) {
                     Global.gui().message(
                                     "You check in so that you're eligible to fight again, but you still don't get any clothes.");
                 } else {
