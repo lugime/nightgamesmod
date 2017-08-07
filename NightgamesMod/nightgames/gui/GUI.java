@@ -66,6 +66,7 @@ import nightgames.characters.*;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.daytime.Activity;
+import nightgames.daytime.Daytime;
 import nightgames.debug.DebugGUIPanel;
 import nightgames.global.*;
 import nightgames.items.Item;
@@ -1114,8 +1115,8 @@ public class GUI extends JFrame implements Observer {
             }
             textColor = "rgb(51, 101, 202)";
         } else if (Time.getTime() == Time.DAY) { // not updating correctly during daytime
-            if (Global.getDay() != null) {
-                timeText = Global.getDay().getTime();
+            if (Daytime.getDay() != null) {
+                timeText = Daytime.getDay().getTime();
             } else {
                 timeText = "10:00 am";
             }

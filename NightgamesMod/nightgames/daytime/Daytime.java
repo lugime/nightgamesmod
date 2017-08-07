@@ -11,6 +11,7 @@ import nightgames.global.Time;
 import nightgames.status.addiction.Addiction;
 
 public class Daytime {
+    public static Daytime day;
     private ArrayList<Activity> activities;
     private Player player;
     int time;
@@ -43,6 +44,10 @@ public class Daytime {
         } else {
             daylength = 7;
         }
+    }
+
+    public static Daytime getDay() {
+        return day;
     }
 
     private boolean morning() {

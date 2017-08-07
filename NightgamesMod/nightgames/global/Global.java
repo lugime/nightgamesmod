@@ -31,7 +31,6 @@ import nightgames.start.StartConfiguration;
 
 public class Global {
     private static GUI gui;
-    public static Daytime day;
     public static Scene current;
     public static boolean debug[] = new boolean[DebugFlags.values().length];
     public static int debugSimulation = 0;
@@ -100,14 +99,10 @@ public class Global {
         return gui;
     }
 
-    public static Daytime getDay() {
-        return day;
-    }
-
     public static void startDay() {
         Match.match = null;
-        day = new Daytime(CharacterPool.human);
-        day.plan();
+        Daytime.day = new Daytime(CharacterPool.human);
+        Daytime.day.plan();
     }
 
     /**
@@ -159,7 +154,7 @@ public class Global {
     }
 
     public static void endDay() {
-        day = null;
+        Daytime.day = null;
         Time.time = Time.NIGHT;
         if (Flag.checkFlag(Flag.autosave)) {
             SaveFile.autoSave();
@@ -191,7 +186,7 @@ public class Global {
         Skill.buildSkillPool(CharacterPool.human);
         Clothing.buildClothingTable();
         CharacterPool.rebuildCharacterPool(Optional.empty());
-        day = null;
+        Daytime.day = null;
     }
 
 
@@ -226,7 +221,7 @@ public class Global {
     public static void reset() {
         CharacterPool.players.clear();
         Flag.flags.clear();
-        day = null;
+        Daytime.day = null;
         Match.match = null;
         CharacterPool.human = new Player("Dummy");
         gui.purgePlayer();

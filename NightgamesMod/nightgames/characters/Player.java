@@ -22,6 +22,7 @@ import nightgames.characters.body.mods.GooeyMod;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
 import nightgames.combat.Result;
+import nightgames.daytime.Daytime;
 import nightgames.ftc.FTCMatch;
 import nightgames.global.*;
 import nightgames.gui.ActionButton;
@@ -128,8 +129,8 @@ public class Player extends Character {
                 } else if (Match.getMatch() != null) {
                     gui.showMap();
                     Match.getMatch().resume();
-                } else if (Global.day != null) {
-                    Global.getDay().plan();
+                } else if (Daytime.day != null) {
+                    Daytime.getDay().plan();
                 } else {
                     new Prematch(CharacterPool.human);
                 }

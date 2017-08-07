@@ -20,6 +20,7 @@ import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.CombatantData;
 import nightgames.combat.Result;
+import nightgames.daytime.Daytime;
 import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -473,9 +474,9 @@ public class Airi extends BasePersonality {
         for (int i = 0; i < time; i++) {
             r = Random.random(8);
             if (r == 1) {
-                Global.getDay().visit("Exercise", this.character, 0);
+                Daytime.getDay().visit("Exercise", this.character, 0);
             } else if (r == 0) {
-                Global.getDay().visit("Browse Porn Sites", this.character, 0);
+                Daytime.getDay().visit("Browse Porn Sites", this.character, 0);
             }
         }
     }

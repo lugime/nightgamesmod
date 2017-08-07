@@ -17,8 +17,8 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.daytime.Daytime;
 import nightgames.global.Flag;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -288,31 +288,31 @@ public class Jewel extends BasePersonality {
 
         if (character.rank >= 1) {
             if (character.money > 0) {
-                Global.getDay()
+                Daytime.getDay()
                       .visit("Dojo", character, Random.random(character.money));
-                Global.getDay()
+                Daytime.getDay()
                       .visit("Meditation", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay()
+                Daytime.getDay()
                       .visit("Body Shop", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay()
+                Daytime.getDay()
                       .visit("Workshop", character, Random.random(character.money));
             }
         }
 
         if (character.money > 0) {
-            Global.getDay()
+            Daytime.getDay()
                   .visit("Bookstore", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay()
+            Daytime.getDay()
                   .visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay()
+            Daytime.getDay()
                   .visit("Black Market", character, Random.random(character.money));
         }
         int r;
@@ -320,10 +320,10 @@ public class Jewel extends BasePersonality {
         for (int i = 0; i < time; i++) {
             r = Random.random(8);
             if (r == 1) {
-                Global.getDay()
+                Daytime.getDay()
                       .visit("Exercise", this.character, 0);
             } else if (r == 0) {
-                Global.getDay()
+                Daytime.getDay()
                       .visit("Browse Porn Sites", this.character, 0);
             }
         }

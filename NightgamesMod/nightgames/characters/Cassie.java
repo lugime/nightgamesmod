@@ -17,8 +17,8 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.daytime.Daytime;
 import nightgames.global.Flag;
-import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -382,32 +382,32 @@ public class Cassie extends BasePersonality {
         }
         if (character.rank >= 1) {
             if (character.money > 0) {
-                Global.getDay().visit("Magic Training", character, Random.random(character.money));
+                Daytime.getDay().visit("Magic Training", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay().visit("Workshop", character, Random.random(character.money));
+                Daytime.getDay().visit("Workshop", character, Random.random(character.money));
             }
         }
 
         if (character.money > 0) {
-            Global.getDay().visit("XXX Store", character, Random.random(character.money));
+            Daytime.getDay().visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Bookstore", character, Random.random(character.money));
+            Daytime.getDay().visit("Bookstore", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Hardware Store", character, Random.random(character.money));
+            Daytime.getDay().visit("Hardware Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Black Market", character, Random.random(character.money));
+            Daytime.getDay().visit("Black Market", character, Random.random(character.money));
         }
         int r;
         for (int i = 0; i < time; i++) {
             r = Random.random(8);
             if (r == 1) {
-                Global.getDay().visit("Exercise", this.character, 0);
+                Daytime.getDay().visit("Exercise", this.character, 0);
             } else if (r == 0) {
-                Global.getDay().visit("Browse Porn Sites", this.character, 0);
+                Daytime.getDay().visit("Browse Porn Sites", this.character, 0);
             }
         }
         if (Flag.getValue(Flag.CassieLoneliness) < 0) {

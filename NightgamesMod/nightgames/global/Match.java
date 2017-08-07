@@ -9,6 +9,7 @@ import nightgames.areas.Cache;
 import nightgames.areas.MapSchool;
 import nightgames.characters.*;
 import nightgames.characters.Character;
+import nightgames.daytime.Daytime;
 import nightgames.ftc.FTCMatch;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
@@ -108,7 +109,7 @@ public class Match {
     }
 
     public static void setUpMatch(Modifier matchmod) {
-        assert Global.day == null;
+        assert Daytime.day == null;
         Set<Character> lineup = new HashSet<>(CharacterPool.debugChars);
         Character lover = null;
         int maxaffection = 0;

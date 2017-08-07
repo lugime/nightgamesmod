@@ -3,7 +3,6 @@ package nightgames.daytime;
 import nightgames.characters.Character;
 import nightgames.global.Global;
 import nightgames.gui.GUI;
-import nightgames.gui.KeyableButton;
 import nightgames.gui.RunnableButton;
 
 public abstract class Activity {
@@ -33,12 +32,12 @@ public abstract class Activity {
 
     public void done(boolean acted) {
         if (acted) {
-            Global.getDay().advance(time);
+            Daytime.getDay().advance(time);
         }
         page = 0;
         Global.gui().clearImage();
         Global.gui().clearPortrait();
-        Global.getDay().plan();
+        Daytime.getDay().plan();
     }
 
     @Override

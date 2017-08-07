@@ -4,7 +4,7 @@ import nightgames.characters.body.*;
 import nightgames.characters.body.mods.DivineMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.daytime.Daytime;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -174,26 +174,26 @@ public class TestAngel extends BasePersonality {
                 character.add(Trait.lacedjuices);
             }
             if (character.money > 0) {
-                Global.getDay().visit("Body Shop", character, Random.random(character.money));
+                Daytime.getDay().visit("Body Shop", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay().visit("Black Market", character, Random.random(character.money));
+                Daytime.getDay().visit("Black Market", character, Random.random(character.money));
             }
             if (character.money > 0) {
-                Global.getDay().visit("Workshop", character, Random.random(character.money));
+                Daytime.getDay().visit("Workshop", character, Random.random(character.money));
             }
         }
         if (character.money > 0) {
-            Global.getDay().visit("XXX Store", character, Random.random(character.money));
+            Daytime.getDay().visit("XXX Store", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Black Market", character, Random.random(character.money));
+            Daytime.getDay().visit("Black Market", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Bookstore", character, Random.random(character.money));
+            Daytime.getDay().visit("Bookstore", character, Random.random(character.money));
         }
         if (character.money > 0) {
-            Global.getDay().visit("Hardware Store", character, Random.random(character.money));
+            Daytime.getDay().visit("Hardware Store", character, Random.random(character.money));
         }
         Decider.visit(character);
         int r;

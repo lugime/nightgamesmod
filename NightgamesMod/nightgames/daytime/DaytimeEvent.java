@@ -54,8 +54,8 @@ abstract class DaytimeEvent implements Scene {
     
     @Override
     public final void respond(String response) {
-        Global.getDay().advance(1);
-        Global.getDay().plan();
+        Daytime.getDay().advance(1);
+        Daytime.getDay().plan();
     }
     
     private void runScene(String scene) {
