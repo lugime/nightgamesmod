@@ -296,4 +296,11 @@ public class Formatter {
     public static void unsetCharacterDisabledFlag(Character self) {
         Flag.unflag(String.format(DISABLED_FORMAT, self.getTrueName()));
     }
+
+    public static String prependPrefix(String prefix, String fullDescribe) {
+        if (prefix.equals("a ") && "aeiou".contains(fullDescribe.substring(0, 1).toLowerCase())) {
+            return "an " + fullDescribe;
+        }
+        return prefix + fullDescribe;
+    }
 }

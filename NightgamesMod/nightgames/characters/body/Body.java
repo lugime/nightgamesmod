@@ -305,7 +305,7 @@ public class Body implements Cloneable {
         for (BodyPart part : sortedParts) {
             if (!notableOnly || part.isNotable()) {
                 if (previous != null) {
-                    b.append(Global.prependPrefix(previous.prefix(), previous.fullDescribe(character)));
+                    b.append(Formatter.prependPrefix(previous.prefix(), previous.fullDescribe(character)));
                     b.append(", ");
                 }
                 previous = part;
@@ -315,7 +315,7 @@ public class Body implements Cloneable {
             b.append("nothing notable.<br/>");
         } else {
             b.append("and ");
-            b.append(Global.prependPrefix(previous.prefix(), previous.fullDescribe(character)));
+            b.append(Formatter.prependPrefix(previous.prefix(), previous.fullDescribe(character)));
             b.append(".<br/>");
         }
         b.append(formatHotnessText(other));
@@ -1215,7 +1215,7 @@ public class Body implements Cloneable {
                     sb.append(" turned back into ");
                 }
                 for (BodyPart p : removed.subList(0, removed.size() - 1)) {
-                    sb.append(Global.prependPrefix(p.prefix(), p.fullDescribe(character)))
+                    sb.append(Formatter.prependPrefix(p.prefix(), p.fullDescribe(character)))
                       .append(", ");
                 }
                 if (removed.size() > 1) {
@@ -1223,7 +1223,7 @@ public class Body implements Cloneable {
                 }
                 BodyPart last = removed.get(removed.size() - 1);
                 if (last != null)
-                sb.append(Global.prependPrefix(last.prefix(), last.fullDescribe(character)));
+                sb.append(Formatter.prependPrefix(last.prefix(), last.fullDescribe(character)));
                 sb.append('.');
             }
             Formatter.writeIfCombat(c, character, sb.toString());

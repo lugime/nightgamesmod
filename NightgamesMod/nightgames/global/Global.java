@@ -354,13 +354,6 @@ public class Global {
     }
 
 
-    public static String prependPrefix(String prefix, String fullDescribe) {
-        if (prefix.equals("a ") && "aeiou".contains(fullDescribe.substring(0, 1).toLowerCase())) {
-            return "an " + fullDescribe;
-        }
-        return prefix + fullDescribe;
-    }
-
     public static void main(String[] args) {
         new Logwriter();
         for (String arg : args) {

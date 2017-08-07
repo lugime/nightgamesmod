@@ -4,7 +4,6 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
 
 public class BodyModEffect extends ItemEffect {
     private BodyPart affected;
@@ -50,7 +49,7 @@ public class BodyModEffect extends ItemEffect {
                         user.body.temporaryAddOrReplacePartWithType(newPart, original, duration);
                         message = Formatter.format(
                                         String.format("{self:NAME-POSSESSIVE} %s grew into %s",
-                                                        original.fullDescribe(user), Global.prependPrefix(
+                                                        original.fullDescribe(user), Formatter.prependPrefix(
                                                                         newPart.prefix(), newPart.fullDescribe(user))),
                                         user, opponent);
                     }
@@ -69,7 +68,7 @@ public class BodyModEffect extends ItemEffect {
                         user.body.temporaryAddOrReplacePartWithType(newPart, original, duration);
                         message = Formatter.format(
                                         String.format("{self:NAME-POSSESSIVE} %s shrunk into %s",
-                                                        original.fullDescribe(user), Global.prependPrefix(
+                                                        original.fullDescribe(user), Formatter.prependPrefix(
                                                                         newPart.prefix(), newPart.fullDescribe(user))),
                                         user, opponent);
                     }
@@ -86,12 +85,12 @@ public class BodyModEffect extends ItemEffect {
                     user.body.temporaryAddOrReplacePartWithType(affected, original, duration);
                     message = Formatter.format(String.format("{self:NAME-POSSESSIVE} %s turned into %s",
                                     original.fullDescribe(user),
-                                    Global.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
+                                    Formatter.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
                                     opponent);
                 } else {
                     user.body.temporaryAddPart(affected, duration);
                     message = Formatter.format(String.format("{self:SUBJECT} grew %s",
-                                    Global.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
+                                    Formatter.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
                                     opponent);
                 }
                 break;
@@ -101,7 +100,7 @@ public class BodyModEffect extends ItemEffect {
                 } else if (original == null) {
                     user.body.temporaryAddPart(affected, duration);
                     message = Formatter.format(String.format("{self:SUBJECT} grew %s",
-                                    Global.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
+                                    Formatter.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
                                     opponent);
                 } else {
                     message = "";
@@ -111,14 +110,14 @@ public class BodyModEffect extends ItemEffect {
                 user.body.temporaryAddPart(affected, duration);
                 message = Formatter.format(
                                 String.format("{self:SUBJECT} grew %s",
-                                                Global.prependPrefix(affected.prefix(), affected.fullDescribe(user))),
+                                                Formatter.prependPrefix(affected.prefix(), affected.fullDescribe(user))),
                                 user, opponent);
                 break;
             case growplus:
                 if (original == null) {
                     user.body.temporaryAddPart(affected, duration);
                     message = Formatter.format(String.format("{self:SUBJECT} grew %s",
-                                    Global.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
+                                    Formatter.prependPrefix(affected.prefix(), affected.fullDescribe(user))), user,
                                     opponent);
                 } else {
                     BodyPart newPart;
