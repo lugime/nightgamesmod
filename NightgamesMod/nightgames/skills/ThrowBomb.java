@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.stance.Stance;
@@ -81,10 +81,10 @@ public class ThrowBomb extends Skill {
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.miss) {
-            return Global.format("You try to get a Pheromone Bomb on {other:subject}, but "
+            return Formatter.format("You try to get a Pheromone Bomb on {other:subject}, but "
                             + "{other:pronoun} slaps it out of your hand.", getSelf(), target);
         }
-        return Global.format(
+        return Formatter.format(
                         "You take out a Pheromone Bomb, arm it, and stick it to" + " {other:name-possessive} chest.",
                         getSelf(), target);
     }
@@ -95,7 +95,7 @@ public class ThrowBomb extends Skill {
             case behind:
             case pin:
             case behindfootjob:
-                return Global.format(
+                return Formatter.format(
                                 "{self:SUBJECT} reaches around {other:name-do} from behind and holds a spherical device"
                                                 + " to {other:possessive} chest. It beeps softly when it makes contact, and"
                                                 + " when {self:pronoun} pulls {self:possessive} hand back it sticks to {other:name-do},"
@@ -104,19 +104,19 @@ public class ThrowBomb extends Skill {
             case cowgirl:
             case missionary:
             case mount:
-                return Global.format(c.getStance()
+                return Formatter.format(c.getStance()
                                       .dom(getSelf()) ? DOM_SEX : SUB_SEX,
                                 getSelf(), target);
             case neutral:
                 if (modifier == Result.miss) {
-                    return Global.format(
+                    return Formatter.format(
                                     "{self:SUBJECT} throws something at {other:name-do}. It looks somewhat like a baseball at first,"
                                                     + " but as {other:pronoun-action:step} to the side and see it fly past {other:subject-action:note}"
                                                     + " that it's actually"
                                                     + " a metal sphere; a machine of some sort. It's probably a good thing it sailed past.",
                                     getSelf(), target);
                 }
-                return Global.format(
+                return Formatter.format(
                                 "With a near-perfect baseball pitch, {self:subject} throws some kind of object at {other:name-do}."
                                                 + " It hits {other:direct-object} square in the chest, beeping as it impacts. It seems to be a"
                                                 + " small device, though {other:direct-object} can't tell what it's supposed to do. "
@@ -126,12 +126,12 @@ public class ThrowBomb extends Skill {
                                 getSelf(), target);
             default:
                 if (modifier == Result.miss) {
-                    return Global.format(
+                    return Formatter.format(
                                     "{self:SUBJECT} brandishes a small spherical device, but {other:subject-action:slap} it out of"
                                                     + " {self:possessive} hands before {self:pronoun} can do anything with it.",
                                     getSelf(), target);
                 }
-                return Global.format(
+                return Formatter.format(
                                 "{self:SUBJECT} takes out a small, round device and sticks it onto {other:name-possessive} chest."
                                                 + " Knowing {self:direct-object}, it would probably be best to get it off quickly.",
                                 getSelf(), target);

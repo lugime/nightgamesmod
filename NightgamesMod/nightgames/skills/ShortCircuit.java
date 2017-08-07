@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.status.Rewired;
@@ -62,7 +62,7 @@ public class ShortCircuit extends Skill {
                         + "done something to %s sense of touch.", getSelf().subject(),
                         target.nameDirectObject(), target.pronoun(), target.action("feel"),
                         target.possessiveAdjective(),
-                        Global.capitalizeFirstLetter(target.subjectAction("feel")),
+                        Formatter.capitalizeFirstLetter(target.subjectAction("feel")),
                         getSelf().subject(), target.possessiveAdjective());
     }
 

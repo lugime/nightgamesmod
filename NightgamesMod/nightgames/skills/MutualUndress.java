@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 
 public class MutualUndress extends Skill {
@@ -78,7 +78,7 @@ public class MutualUndress extends Skill {
                         + "%s asks %s if %s %s to join %s in feeling good, and before %s it "
                         + "%s has got %s naked as well.", getSelf().subject(), getSelf().possessiveAdjective(),
                         target.subject(), getSelf().subject(), getSelf().possessiveAdjective(),
-                        Global.capitalizeFirstLetter(getSelf().pronoun()), target.directObject(),
+                        Formatter.capitalizeFirstLetter(getSelf().pronoun()), target.directObject(),
                         target.pronoun(), target.action("want"), getSelf().directObject(),
                         target.subjectAction("realize"), getSelf().subject(),
                         target.directObject());

@@ -8,6 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
@@ -48,7 +49,7 @@ public class HypnoVisor extends Status {
     @Override
     public void tick(Combat c) {
         affected.addict(c, AddictionType.MIND_CONTROL, cause, Addiction.LOW_INCREASE / 2);
-        c.write(affected, Global.format("The Hypno Visor is corrupting your mind, rewiring it"
+        c.write(affected, Formatter.format("The Hypno Visor is corrupting your mind, rewiring it"
                         + " to follow {other:name-possessive} commands.", affected, cause));
     }
     

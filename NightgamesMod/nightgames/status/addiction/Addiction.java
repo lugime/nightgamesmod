@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.status.Status;
@@ -203,7 +204,7 @@ public abstract class Addiction extends Status {
         Severity old = getSeverity();
         magnitude = clamp(magnitude + amt);
         if (getSeverity() != old) {
-            Global.writeIfCombat(c, cause, Global.format(describeIncrease(), affected, cause));
+            Formatter.writeIfCombat(c, cause, Formatter.format(describeIncrease(), affected, cause));
         }
     }
 
@@ -211,7 +212,7 @@ public abstract class Addiction extends Status {
         Severity old = getSeverity();
         magnitude = clamp(magnitude - amt);
         if (getSeverity() != old) {
-            Global.writeIfCombat(c, cause, Global.format(describeDecrease(), affected, cause));
+            Formatter.writeIfCombat(c, cause, Formatter.format(describeDecrease(), affected, cause));
         }
     }
 
@@ -219,7 +220,7 @@ public abstract class Addiction extends Status {
         Severity old = getCombatSeverity();
         combatMagnitude = clamp(combatMagnitude + amt);
         if (getSeverity() != old) {
-            Global.writeIfCombat(c, cause, Global.format(describeCombatIncrease(), affected, cause));
+            Formatter.writeIfCombat(c, cause, Formatter.format(describeCombatIncrease(), affected, cause));
         }
     }
 
@@ -227,7 +228,7 @@ public abstract class Addiction extends Status {
         Severity old = getCombatSeverity();
         combatMagnitude = clamp(combatMagnitude - amt);
         if (getSeverity() != old) {
-            Global.writeIfCombat(c, cause, Global.format(describeCombatDecrease(), affected, cause));
+            Formatter.writeIfCombat(c, cause, Formatter.format(describeCombatDecrease(), affected, cause));
         }
     }
 

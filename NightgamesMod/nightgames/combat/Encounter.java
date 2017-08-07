@@ -9,10 +9,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.State;
 import nightgames.characters.Trait;
-import nightgames.global.DebugFlags;
-import nightgames.global.Encs;
-import nightgames.global.Global;
-import nightgames.global.Random;
+import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.status.Enthralled;
 import nightgames.status.Flatfooted;
@@ -287,7 +284,7 @@ public class Encounter implements Serializable, IEncounter {
         target.addNonCombat(new Flatfooted(target, 3));
         if (p1.human() || p2.human()) {
             fight = Combat.beginCombat(attacker, target, ambushRegular, Global.gui());
-            Global.gui().message(Global.format("{self:SUBJECT-ACTION:catch|catches} {other:name-do} by surprise and {self:action:attack|attacks}!", attacker, target));
+            Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:catch|catches} {other:name-do} by surprise and {self:action:attack|attacks}!", attacker, target));
         } else {
             fight = new Combat(attacker, target, location, ambushRegular);
         }
@@ -529,7 +526,8 @@ public class Encounter implements Serializable, IEncounter {
 
     public void parse(Encs choice, Character self, Character target, Trap trap) {
         if (Global.isDebugOn(DebugFlags.DEBUG_SCENE)) {
-            System.out.println(Global.format("{self:true-name} uses %s (%s) on {other:true-name}", self, target, choice, trap));
+            System.out.println(
+                            Formatter.format("{self:true-name} uses %s (%s) on {other:true-name}", self, target, choice, trap));
         }
         switch (choice) {
             case ambush:
@@ -568,12 +566,12 @@ public class Encounter implements Serializable, IEncounter {
     
     private String smokeMessage(Character c) {
         return String.format("%s a smoke bomb and %s.", 
-                        Global.capitalizeFirstLetter(c.subjectAction("drop", "drops"))
+                        Formatter.capitalizeFirstLetter(c.subjectAction("drop", "drops"))
                         , c.action("disappear", "disappears"));
     }
 
     private String fleeHiddenMessage(Character c, Character other) {
-        return Global.format("{self:SUBJECT-ACTION:flee} before {other:subject-action:can} notice {self:direct-object}.", c, other);
+        return Formatter.format("{self:SUBJECT-ACTION:flee} before {other:subject-action:can} notice {self:direct-object}.", c, other);
     }
 
     @Override

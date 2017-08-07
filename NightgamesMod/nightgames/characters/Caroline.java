@@ -13,6 +13,7 @@ import nightgames.characters.body.mods.ArcaneMod;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -150,7 +151,7 @@ public class Caroline extends BasePersonality {
                     return "{self:SUBJECT} opens her eyes and takes in the situation. Oooh a rematch? I'm game!</i>";
                 }
             }
-            return Global.format("{self:SUBJECT} quickly scans the situation and with an approving look from Angel, she gets ready to attack!</i>", self, other);
+            return Formatter.format("{self:SUBJECT} quickly scans the situation and with an approving look from Angel, she gets ready to attack!</i>", self, other);
         });
     }
 

@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -127,7 +127,7 @@ public class BreastSmother extends Skill {
         }
         
         if (getSelf().has(Trait.temptingtits)) {
-            b.append(Global.capitalizeFirstLetter(target.possessiveAdjective()) + " can't help but groan in pleasure from having " + target.possessiveAdjective() + " face stuck between your perfect tits");                          
+            b.append(Formatter.capitalizeFirstLetter(target.possessiveAdjective()) + " can't help but groan in pleasure from having " + target.possessiveAdjective() + " face stuck between your perfect tits");
             if (getSelf().has(Trait.beguilingbreasts)) {
                 b.append(", and you smile as " + target.pronoun() + " snuggles deeper into your cleavage");
             } 

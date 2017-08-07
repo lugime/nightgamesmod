@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
@@ -75,7 +75,7 @@ public class VibroTease extends Skill {
         return String.format("%s cranks up the vibration to maximum level which stirs up %s insides. "
                         + "%s teasingly pokes the tip against %s %s which causes %s limbs to get shaky from the pleasure.",
                         getSelf().subject(), target.nameOrPossessivePronoun(),
-                        Global.capitalizeFirstLetter(getSelf().pronoun()), target.possessiveAdjective(),
+                        Formatter.capitalizeFirstLetter(getSelf().pronoun()), target.possessiveAdjective(),
                         target.hasBalls() ? "prostate" : "sensitive insides", target.possessiveAdjective());
     }
 

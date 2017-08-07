@@ -12,6 +12,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
@@ -62,7 +63,7 @@ public class Pheromones extends Horny {
                                   .filter(att -> affected.get(att) > 0)
                                   .collect(Collectors.toList());
                 Optional<Attribute> att = Random.pickRandom(debuffable);
-                String message = Global.format("{other:NAME-POSSESSIVE} intoxicating aroma is messing with {self:name-possessive} head, "
+                String message = Formatter.format("{other:NAME-POSSESSIVE} intoxicating aroma is messing with {self:name-possessive} head, "
                                 + "{self:pronoun-action:feel|seems} %s than before.", affected, sourceCharacter, att.get().getLowerPhrase());
                 if (c != null && att.isPresent()) {
                     c.write(affected, message);
@@ -75,9 +76,9 @@ public class Pheromones extends Horny {
                 if (Random.random(13 - stacks) == 0) {
                     String message;
                     if (affected.human()) {
-                        message = Global.format("The heady obscene scent clinging to you is too much. You can't help it any more, you NEED to fuck something right this second!", affected, sourceCharacter);
+                        message = Formatter.format("The heady obscene scent clinging to you is too much. You can't help it any more, you NEED to fuck something right this second!", affected, sourceCharacter);
                     } else {
-                        message = Global.format("The heady obscene scent clinging to {self:name-do} is clearly overwhelming {self:direct-object}. "
+                        message = Formatter.format("The heady obscene scent clinging to {self:name-do} is clearly overwhelming {self:direct-object}. "
                                         + "Groaning with animal passion, {self:subject} is descends into a frenzy!", affected, sourceCharacter);
                     }
                     c.write(affected, message);

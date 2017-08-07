@@ -21,6 +21,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 
 public class Outfit {
@@ -316,7 +317,7 @@ public class Outfit {
                 sb.append("<br/>");
             }
         }
-        return Global.capitalizeFirstLetter(Global.format(sb.toString(), c, c));
+        return Formatter.capitalizeFirstLetter(Formatter.format(sb.toString(), c, c));
     }
 
     public boolean isNude() {

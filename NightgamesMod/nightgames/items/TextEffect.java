@@ -2,7 +2,7 @@ package nightgames.items;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class TextEffect extends ItemEffect {
     private String format;
@@ -14,7 +14,7 @@ public class TextEffect extends ItemEffect {
 
     @Override
     public boolean use(Combat c, Character user, Character opponent, Item item) {
-        c.write(user, Global.format(format, user, opponent));
+        c.write(user, Formatter.format(format, user, opponent));
         return true;
     }
 }

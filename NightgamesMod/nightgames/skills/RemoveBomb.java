@@ -5,7 +5,7 @@ import java.util.Optional;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Compulsive;
 import nightgames.status.Compulsive.Situation;
@@ -87,17 +87,17 @@ public class RemoveBomb extends Skill {
         switch (c.getStance().en) {
             case behind:
             case pin:
-                return Global.format("You reach towards your chest, aiming to get the beeping sphere off and away,"
+                return Formatter.format("You reach towards your chest, aiming to get the beeping sphere off and away,"
                             + " but {other:subject} catches your wrists and pulls your hands back down."
                                 , getSelf(), target);    
             case missionary:
             case cowgirl:
             case mount:
-                return Global.format("You try to get the metallic sphere off your chest, but {other:subject} catches"
+                return Formatter.format("You try to get the metallic sphere off your chest, but {other:subject} catches"
                                 + " your hands and pulls them up over your head, well away from the"
                                 + " intimidating device.", getSelf(), target);
             default:
-                return Global.format("You try to remove the metallic sphere from your chest, but {other:subject}"
+                return Formatter.format("You try to remove the metallic sphere from your chest, but {other:subject}"
                                 + " keeps your hands away from it.", getSelf(), target);
         }
     }

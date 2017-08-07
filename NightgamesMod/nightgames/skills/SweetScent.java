@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.Frenzied;
 
 public class SweetScent extends Skill {
@@ -78,7 +78,7 @@ public class SweetScent extends Skill {
             return String.format("%s breathes out a dizzying pink gas which spreads through the area. "
                             + "%s quickly %s to the coying scent as %s whole"
                             + " body flushes with arousal.", getSelf().subject(),
-                            Global.capitalizeFirstLetter(target.subject()),
+                            Formatter.capitalizeFirstLetter(target.subject()),
                             target.action("succumb"), target.possessiveAdjective());
         } else {
             return String.format("%s breathes out a dizzying pink gas, but %s to cover"

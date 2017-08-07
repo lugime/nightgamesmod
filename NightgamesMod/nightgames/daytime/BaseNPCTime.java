@@ -8,6 +8,7 @@ import java.util.Optional;
 import nightgames.characters.Character;
 import nightgames.characters.NPC;
 import nightgames.characters.Trait;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.Loot;
@@ -71,7 +72,7 @@ public abstract class BaseNPCTime extends Activity {
         Optional<TransformationOption> optionalOption =
                         options.stream().filter(opt -> choice.equals(opt.option)).findFirst();
         Optional<Loot> optionalGiftOption = giftables.stream()
-                        .filter(gift -> choice.equals(Global.capitalizeFirstLetter(gift.getName()))).findFirst();
+                        .filter(gift -> choice.equals(Formatter.capitalizeFirstLetter(gift.getName()))).findFirst();
 
         if (optionalOption.isPresent()) {
             TransformationOption option = optionalOption.get();
@@ -79,13 +80,13 @@ public abstract class BaseNPCTime extends Activity {
                             .allMatch(entry -> player.has(entry.getKey(), entry.getValue()));
             int moneyCost = option.moneyCost.apply(this.player);
             if (!hasAll) {
-                Global.gui().message(Global.format(noRequestedItems, npc, player));
+                Global.gui().message(Formatter.format(noRequestedItems, npc, player));
                 choose("Back", Global.gui());
             } else if (player.money < moneyCost) {
-                Global.gui().message(Global.format(notEnoughMoney, npc, player));
+                Global.gui().message(Formatter.format(notEnoughMoney, npc, player));
                 choose("Back", Global.gui());
             } else {
-                Global.gui().message(Global.format(option.scene, npc, player));
+                Global.gui().message(Formatter.format(option.scene, npc, player));
                 option.ingredients.entrySet().stream().forEach(entry -> player.consume(entry.getKey(), entry.getValue(), false));
                 option.effect.execute(null, player, npc);
                 if (moneyCost > 0) {
@@ -94,7 +95,7 @@ public abstract class BaseNPCTime extends Activity {
                 choose("Leave", Global.gui());
             }
         } else if (optionalGiftOption.isPresent()) {
-            Global.gui().message(Global.format(giftedString, npc, player));
+            Global.gui().message(Formatter.format(giftedString, npc, player));
             if (optionalGiftOption.get() instanceof Clothing) {
                 if (player.closet.contains(optionalGiftOption.get())) {
                     player.closet.remove(optionalGiftOption.get());
@@ -105,13 +106,13 @@ public abstract class BaseNPCTime extends Activity {
             npc.gainAffection(player, 2);
             choose("Back", Global.gui());
         } else if (choice.equals("Gift")) {
-            Global.gui().message(Global.format(giftString, npc, player));
-            giftables.stream().forEach(loot -> choose(Global.capitalizeFirstLetter(loot.getName()), Global.gui()));
+            Global.gui().message(Formatter.format(giftString, npc, player));
+            giftables.stream().forEach(loot -> choose(Formatter.capitalizeFirstLetter(loot.getName()), Global.gui()));
             choose("Back", Global.gui());
         } else if (choice.equals("Change Outfit")) {
             Global.gui().changeClothes(npc, this, "Back");
         } else if (choice.equals(transformationOptionString)) {
-            Global.gui().message(Global.format(transformationIntro, npc, player));
+            Global.gui().message(Formatter.format(transformationIntro, npc, player));
             if (!transformationFlag.equals("")) {
                 Global.flag(transformationFlag);
             }
@@ -144,7 +145,7 @@ public abstract class BaseNPCTime extends Activity {
             choose("Back", Global.gui());
         } else if (choice.equals("Start") || choice.equals("Back")) {
             if (npc.getAffection(player) > 25 && (advTrait == null || npc.has(advTrait))) {
-                Global.gui().message(Global.format(loveIntro, npc, player));
+                Global.gui().message(Formatter.format(loveIntro, npc, player));
                 choose("Games", Global.gui());
                 choose("Sparring", Global.gui());
                 choose("Sex", Global.gui());

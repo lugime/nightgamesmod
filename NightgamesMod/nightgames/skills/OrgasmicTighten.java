@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
@@ -83,10 +83,10 @@ public class OrgasmicTighten extends Thrust {
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
         if (c.getStance().en == Stance.anal) {
-            return Global.format("While cumming {self:name-possessive} spasming backdoor seems to urge {other:name-do} to do the same.",
+            return Formatter.format("While cumming {self:name-possessive} spasming backdoor seems to urge {other:name-do} to do the same.",
                             getSelf(), target);
         } else {
-            return Global.format("While cumming {self:name-possessive} spasming honeypot seems to urge {other:name-do} to do the same.",
+            return Formatter.format("While cumming {self:name-possessive} spasming honeypot seems to urge {other:name-do} to do the same.",
                             getSelf(), target);
         }
     }

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Path;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -18,8 +17,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.swing.JFileChooser;
@@ -62,7 +59,6 @@ import nightgames.characters.Yui;
 import nightgames.characters.custom.CustomNPC;
 import nightgames.characters.custom.JsonSourceNPCDataLoader;
 import nightgames.characters.custom.NPCData;
-import nightgames.combat.Combat;
 import nightgames.daytime.Daytime;
 import nightgames.gui.GUI;
 import nightgames.gui.HeadlessGui;
@@ -70,7 +66,6 @@ import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
 import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.NoModifier;
-import nightgames.pet.PetCharacter;
 import nightgames.skills.*;
 import nightgames.start.NpcConfiguration;
 import nightgames.start.PlayerConfiguration;
@@ -165,7 +160,7 @@ public class Global {
         configurationFlags.forEach((flag, val) -> Global.setFlag(flag, val));
         time = Time.NIGHT;
         date = 1;
-        setCharacterDisabledFlag(getNPCByType("Yui"));
+        Formatter.setCharacterDisabledFlag(getNPCByType("Yui"));
         setFlag(Flag.systemMessages, true);
         Match.setUpMatch(new NoModifier());
     }
@@ -298,16 +293,6 @@ public class Global {
         for (Skill skill : getSkillPool()) {
             c.learn(skill);
         }
-    }
-
-    public static String capitalizeFirstLetter(String original) {
-        if (original == null) {
-            return "";
-        }
-        if (original.length() == 0) {
-            return original;
-        }
-        return original.substring(0, 1).toUpperCase() + original.substring(1);
     }
 
     public static NPC getNPCByType(String type) {
@@ -576,18 +561,7 @@ public class Global {
         return null;
     }
 
-    public static void main(String[] args) {
-        new Logwriter();
-        for (String arg : args) {
-            try {
-                DebugFlags flag = DebugFlags.valueOf(arg);
-                debug[flag.ordinal()] = true;
-            } catch (IllegalArgumentException e) {
-                // pass
-            }
-        }
-        new Global(false);
-    }
+
 
     public static String getIntro() {
         return "You don't really know why you're going to the Student Union in the middle of the night."
@@ -640,51 +614,6 @@ public class Global {
     }
 
 
-    public static String format(String format, Character self, Character target, Object... strings) {
-        // pattern to find stuff like {word:otherword:finalword} in strings
-        Pattern p = Pattern.compile("\\{((?:self)|(?:other)|(?:master))(?::([^:}]+))?(?::([^:}]+))?\\}");
-        format = String.format(format, strings);
-
-        Matcher matcher = p.matcher(format);
-        StringBuffer b = new StringBuffer();
-        while (matcher.find()) {
-            String first = matcher.group(1);
-            String second = matcher.group(2);
-            if (second == null) {
-                second = "";
-            }
-            String third = matcher.group(3);
-            Character character = null;
-            if (first.equals("self")) {
-                character = self;
-            } else if (first.equals("other")) {
-                character = target;
-            } else if (first.equals("master") && self instanceof PetCharacter) {
-                character = ((PetCharacter)self).getSelf().owner();
-            }
-            String replacement = matcher.group(0);
-            boolean caps = false;
-            if (second.toUpperCase().equals(second)) {
-                second = second.toLowerCase();
-                caps = true;
-            }
-            Match.MatchAction action = matchActions.get(second);
-
-            if (action == null) {
-                System.out.println(second);
-            }
-            if (action != null) {
-                replacement = action.replace(character, first, second, third);
-                if (caps) {
-                    replacement = Global.capitalizeFirstLetter(replacement);
-                }
-            }
-            matcher.appendReplacement(b, replacement);
-        }
-        matcher.appendTail(b);
-        return b.toString();
-    }
-
     private static Character noneCharacter = new NPC("none", 1, null);
 
     public static Character noneCharacter() {
@@ -700,12 +629,6 @@ public class Global {
 
     public static Collection<NPC> allNPCs() {
         return characterPool.values();
-    }
-
-    private static DecimalFormat formatter = new DecimalFormat("#.##");
-
-    public static String formatDecimal(double val) {
-        return formatter.format(val);
     }
 
     public static Set<Skill> getSkillPool() {
@@ -728,45 +651,22 @@ public class Global {
         return players.stream().filter(c -> c.getTrueName().equals(name)).findAny().get();
     }
 
-    private static String DISABLED_FORMAT = "%sDisabled";
     public static Random FROZEN_RNG = new Random();
-    public static boolean checkCharacterDisabledFlag(Character self) {
-        return checkFlag(String.format(DISABLED_FORMAT, self.getTrueName()));
-    }
-
-    public static void setCharacterDisabledFlag(Character self) {
-        flag(String.format(DISABLED_FORMAT, self.getTrueName()));
-    }    
-
-    public static void unsetCharacterDisabledFlag(Character self) {
-        unflag(String.format(DISABLED_FORMAT, self.getTrueName()));
-    }
 
     public static TraitTree getTraitRequirements() {
         return traitRequirements;
     }
 
-    public static void writeIfCombatUpdateImmediately(Combat c, Character self, String string) {
-        writeIfCombat(c, self, string);
-        if (c != null) {
-            c.updateMessage();
+    public static void main(String[] args) {
+        new Logwriter();
+        for (String arg : args) {
+            try {
+                DebugFlags flag = DebugFlags.valueOf(arg);
+                debug[flag.ordinal()] = true;
+            } catch (IllegalArgumentException e) {
+                // pass
+            }
         }
+        new Global(false);
     }
-
-	public static void writeIfCombat(Combat c, Character self, String string) {
-	    if (c != null) {
-	        c.write(self, string);
-	    } else if (self.human()) {
-			gui().message(string);
-		}
-	}
-
-	public static void writeFormattedIfCombat(Combat c, String string, Character self, Character other, Object ...args) {
-		if (c == null) {
-			gui().message(format(string, self, other, args));
-		} else {
-			c.write(self, format(string, self, other, args));
-		}
-	}
-
 }

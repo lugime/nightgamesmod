@@ -7,7 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.stance.Anal;
@@ -71,7 +71,7 @@ public class AssFuck extends Fuck {
             target.add(c, new Oiled(target));
             getSelf().consume(Item.Lubricant, 1);
         }
-        c.write(getSelf(), Global.format(premessage, getSelf(), target));
+        c.write(getSelf(), Formatter.format(premessage, getSelf(), target));
 
         int m = Random.random(10, 15);
         if (getSelf().has(Trait.strapped) && getSelf().has(Item.Strapon2)) {
@@ -177,7 +177,7 @@ public class AssFuck extends Fuck {
                             + " %s %s to struggle away, but %s %s %s hips closer and slowly pushes the dildo"
                             + " inside %s ass.", getSelf().subjectAction("spread"), target.nameOrPossessivePronoun(),
                             target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.pronoun()), target.action("try", "tries"),
+                            Formatter.capitalizeFirstLetter(target.pronoun()), target.action("try", "tries"),
                             getSelf().subject(), getSelf().action("pull"), target.possessiveAdjective(), 
                             target.possessiveAdjective());
         }

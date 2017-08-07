@@ -3,7 +3,7 @@ package nightgames.pet.arms.skills;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.Arm;
@@ -26,13 +26,13 @@ public class TentacleInjectSensitivity extends TentacleArmSkill {
         boolean success = sub || Random.random(100) < 10 + owner.get(Attribute.Slime);
 
         if (success) {
-            c.write(PetCharacter.DUMMY, Global.format("With a sudden whipping motion, {self:NAME-POSSESSIVE} needle-tipped tentacle flies forward and stabs itself into {other:name-possessive} skin. "
+            c.write(PetCharacter.DUMMY, Formatter.format("With a sudden whipping motion, {self:NAME-POSSESSIVE} needle-tipped tentacle flies forward and stabs itself into {other:name-possessive} skin. "
                             + "Without giving you a chance to react, the slimey appendage injects a mystery fluid into your body. "
                             + "The effects are unfortunately quite clear to {other:direct-object} as {other:pronoun-action:feel} {other:possessive} body's sensitivity get cranked up to eleven.", owner, target));
             target.add(c, new Hypersensitive(target, 10));
             return true;
         } else {
-            c.write(PetCharacter.DUMMY, Global.format("A %s flies towards {other:name-do}, "
+            c.write(PetCharacter.DUMMY, Formatter.format("A %s flies towards {other:name-do}, "
                             + "but {other:pronoun-action:dodge} out of the way just in time.", owner, target, arm.getName()));
             return false;
         }

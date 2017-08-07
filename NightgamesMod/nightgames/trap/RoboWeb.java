@@ -4,6 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.status.RoboWebbed;
@@ -55,7 +56,7 @@ public class RoboWeb extends Trap {
                             + " thrashes around wildly, moaning loudly. %s is not getting"
                             + " out of there anytime soon. Oh, the possibilities...", target.getName(), target.directObject(),
                             target.directObject(), target.pronoun(), target.pronoun(),
-                            Global.capitalizeFirstLetter(target.pronoun())));
+                            Formatter.capitalizeFirstLetter(target.pronoun())));
         }
         target.outfit.undress();
         target.addNonCombat(new RoboWebbed(target, 100 + getStrength(), this));

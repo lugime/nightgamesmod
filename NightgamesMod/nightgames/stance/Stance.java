@@ -1,6 +1,6 @@
 package nightgames.stance;
 
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.BothRequirementSkillTag;
 import nightgames.nskills.tags.SkillTag;
 
@@ -38,6 +38,6 @@ public enum Stance {
     incubusembrace;
 
     public SkillTag getSkillTag() {
-        return new BothRequirementSkillTag((result, value) -> result.getCombat().getStance().en == this, Global.capitalizeFirstLetter(name())+"Position");
+        return new BothRequirementSkillTag((result, value) -> result.getCombat().getStance().en == this, Formatter.capitalizeFirstLetter(name())+"Position");
     }
 }

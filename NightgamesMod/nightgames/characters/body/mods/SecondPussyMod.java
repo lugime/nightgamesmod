@@ -5,7 +5,7 @@ import java.util.Optional;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class SecondPussyMod extends PartMod {
     public static final SecondPussyMod INSTANCE = new SecondPussyMod();
@@ -25,9 +25,9 @@ public class SecondPussyMod extends PartMod {
 
     public String getLongDescriptionOverride(Character self, BodyPart part, String previousDescription) {
         if (part.isType("ass")) {
-            return Global.format("Instead of a normal sphincter, {self:possessive} round butt is crowned by a slobbering second pussy.", self, self);
+            return Formatter.format("Instead of a normal sphincter, {self:possessive} round butt is crowned by a slobbering second pussy.", self, self);
         } else if (part.isType("mouth")) {
-            return Global.format("When {self:pronoun} opens {self:possessive} mouth, you can see soft pulsating folds lining {self:possessive} inner mouth, tailor made to suck cocks.", self, self);
+            return Formatter.format("When {self:pronoun} opens {self:possessive} mouth, you can see soft pulsating folds lining {self:possessive} inner mouth, tailor made to suck cocks.", self, self);
         }
         return previousDescription;
     }

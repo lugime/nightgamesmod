@@ -3,7 +3,7 @@ package nightgames.stance;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.damage.DamageType;
 
 public class Jumped extends FemdomSexStance {
@@ -88,7 +88,7 @@ public class Jumped extends FemdomSexStance {
                 c.write("Your legs give out and you fall on the floor. " + top.getName() + " lands heavily on your lap.");
                 c.setStance(new Cowgirl(top, bottom));
             } else {
-                c.write(Global.format("{other:SUBJECT-ACTION:lose} {other:possessive} balance and {other:action:fall},"
+                c.write(Formatter.format("{other:SUBJECT-ACTION:lose} {other:possessive} balance and {other:action:fall},"
                                 + " pulling {self:name-do} down on top of {other:direct-object}.", top, bottom));
                 c.setStance(new Cowgirl(top, bottom));
             }
@@ -100,7 +100,7 @@ public class Jumped extends FemdomSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format(
+            c.write(bottom, Formatter.format(
                             "{self:SUBJECT-ACTION:pinch|pinches} {other:possessive} clitoris with {self:possessive} hands as {other:subject-action:try|tries} to ride {self:direct-object}. "
                                             + "While {other:subject-action:yelp|yelps} with surprise, {self:subject-action:take|takes} the chance to push {other:direct-object} against a wall and fuck {other:direct-object} in a standing position.",
                                             bottom, top));

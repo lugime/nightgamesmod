@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Jumped;
@@ -74,7 +74,7 @@ public class ReverseCarry extends Carry {
             return (damage > 0 ? "" : "You ") + "leap into " + target.possessiveAdjective()
                             + " arms, but she deposits you back onto the floor.";
         } else {
-            return Global.format(
+            return Formatter.format(
                             (damage > 0 ? "" : "You ")
                                             + " leap into {other:possessive} arms, impaling yourself onto her {other:body-part:cock} "
                                             + ". She lets out a noise that's equal parts surprise and delight as you bounce on her pole.",

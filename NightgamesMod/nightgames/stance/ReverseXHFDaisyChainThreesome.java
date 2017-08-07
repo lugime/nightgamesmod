@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
 
@@ -47,7 +47,7 @@ public class ReverseXHFDaisyChainThreesome extends FemdomSexStance {
     @Override
     public void checkOngoing(Combat c) {
         if (!c.getOtherCombatants().contains(domSexCharacter)) {
-            c.write(bottom, Global.format("With the disappearance of {self:name-do}, {other:subject-action:continue} to fuck {self:direct-object} doggy style.", domSexCharacter, bottom));
+            c.write(bottom, Formatter.format("With the disappearance of {self:name-do}, {other:subject-action:continue} to fuck {self:direct-object} doggy style.", domSexCharacter, bottom));
             c.setStance(new Doggy(top, bottom));
         }
     }
@@ -116,7 +116,7 @@ public class ReverseXHFDaisyChainThreesome extends FemdomSexStance {
         if (top.human()) {
             return "";
         } else {
-            return Global.format("{master:subject-action:are|is} fucking {other:name-do} from behind while {self:subject} is riding {other:possessive} dick, creating a {other:name}-sandwich.", domSexCharacter, bottom);
+            return Formatter.format("{master:subject-action:are|is} fucking {other:name-do} from behind while {self:subject} is riding {other:possessive} dick, creating a {other:name}-sandwich.", domSexCharacter, bottom);
         }
     }
 
@@ -173,7 +173,7 @@ public class ReverseXHFDaisyChainThreesome extends FemdomSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} off {self:reflective}.", bottom, top));
+            c.write(bottom, Formatter.format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} off {self:reflective}.", bottom, top));
         }
         return new Neutral(bottom, top);
     }

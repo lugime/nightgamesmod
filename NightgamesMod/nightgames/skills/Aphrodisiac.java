@@ -8,7 +8,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.mods.DemonicMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -91,7 +91,7 @@ public class Aphrodisiac extends Skill {
             return String.format(
                             "You pop an Aphrodisiac into your Aerosolizer and spray %s"
                                             + " with a cloud of mist. %s flushes and %s eyes fill with lust as it takes hold.",
-                            target.getName(), Global.capitalizeFirstLetter(target.pronoun()), target.possessiveAdjective());
+                            target.getName(), Formatter.capitalizeFirstLetter(target.pronoun()), target.possessiveAdjective());
         } else if (modifier == Result.miss) {
             return "You throw an Aphrodisiac at " + target.getName() + ", but " + target.pronoun()
                             + " ducks out of the way and it splashes harmlessly on the ground. What a waste.";
@@ -106,7 +106,7 @@ public class Aphrodisiac extends Skill {
                             + getSelf().possessiveAdjective() + " juices" + " on " + getSelf().possessiveAdjective()
                             + " fingertip, " + getSelf().subjectAction("pull") + " it out and flicks it at "
                             + target.directObject() + "," + " skillfully depositing it in " + target.possessiveAdjective()
-                            + " open mouth. " + Global.capitalizeFirstLetter(target.subject()) + " immediately feel"
+                            + " open mouth. " + Formatter.capitalizeFirstLetter(target.subject()) + " immediately feel"
                             + " a flash of heat spread through " + target.directObject()
                             + " and only a small part of it results from the anger caused by "
                             + getSelf().possessiveAdjective() + " dirty move.";
@@ -129,8 +129,8 @@ public class Aphrodisiac extends Skill {
                             "%s inserts a bottle into the attachment on %s arm. %s suddenly surrounded by a sweet smelling cloud of mist. %s %s %s blood boil "
                                             + "with desire as the unnatural gas takes effect.",
                             getSelf().getName(), getSelf().possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.subjectAction("are", "is")),
-                            Global.capitalizeFirstLetter(target.pronoun()), target.action("feel"),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("are", "is")),
+                            Formatter.capitalizeFirstLetter(target.pronoun()), target.action("feel"),
                             target.possessiveAdjective());
         } else if (modifier == Result.strong) {
             return getSelf().subjectAction("dip") + " a finger " + (getSelf().crotchAvailable() ? ""
@@ -143,7 +143,7 @@ public class Aphrodisiac extends Skill {
                             + getSelf().possessiveAdjective() + " juices" + " on " + getSelf().possessiveAdjective()
                             + " fingertip, " + getSelf().subjectAction("pull") + " it out and flicks it at "
                             + target.directObject() + "," + " skillfully depositing it in " + target.possessiveAdjective()
-                            + " open mouth. " + Global.capitalizeFirstLetter(target.subject()) + " immediately feel"
+                            + " open mouth. " + Formatter.capitalizeFirstLetter(target.subject()) + " immediately feel"
                             + " a flash of heat spread through " + target.directObject()
                             + " and only a small part of it" + " results from the anger caused by "
                             + getSelf().possessiveAdjective() + " dirty move.";

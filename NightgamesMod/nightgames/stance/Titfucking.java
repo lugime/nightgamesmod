@@ -5,7 +5,7 @@ import java.util.List;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class Titfucking extends AbstractFacingStance {
@@ -15,7 +15,7 @@ public class Titfucking extends AbstractFacingStance {
 
     @Override
     public String describe(Combat c) {
-        return Global.format(
+        return Formatter.format(
                         "{self:SUBJECT-ACTION:are|is} sitting on top of {other:name-do} vigorously fucking {other:possessive} {other:body-part:breasts}.",
                         top, bottom);
     }
@@ -145,7 +145,7 @@ public class Titfucking extends AbstractFacingStance {
 
     private void pleasureStruggle(Combat c, Character self, Character opponent, String cockString) {
         int targM = Random.random(6, 11);
-        c.write(self, Global.format(cockString, self, opponent));
+        c.write(self, Formatter.format(cockString, self, opponent));
         self.body.pleasure(opponent, opponent.body.getRandomBreasts(), self.body.getRandomCock(), targM, c);
     }
 

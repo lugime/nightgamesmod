@@ -10,7 +10,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class Braced extends DurationStatus {
@@ -55,7 +55,7 @@ public class Braced extends DurationStatus {
                         "Once bitten twice shy, {self:subject} only {self:action:take} a glancing blow."
                         );
         }
-        c.write(affected, Global.format(Random.pickRandom(possibleStrings).get(), affected, affected));
+        c.write(affected, Formatter.format(Random.pickRandom(possibleStrings).get(), affected, affected));
         return -x * 3 / 4;
     }
 
@@ -73,7 +73,7 @@ public class Braced extends DurationStatus {
                         "Being more careful now, {self:subject-action:avoid} manages to conserve most of {self:possessive} stamina."
                         );
         }
-        c.write(affected, Global.format(Random.pickRandom(possibleStrings).get(), affected, affected));
+        c.write(affected, Formatter.format(Random.pickRandom(possibleStrings).get(), affected, affected));
         return -x * 3 / 4;
     }
 
@@ -86,7 +86,7 @@ public class Braced extends DurationStatus {
                             "Being more careful now, {self:subject-action:avoid} manages to prevent most of the theft of {self:possessive} stamina."
                             );
         }
-        c.write(affected, Global.format(Random.pickRandom(possibleStrings).get(), affected, affected));
+        c.write(affected, Formatter.format(Random.pickRandom(possibleStrings).get(), affected, affected));
         return -x * 3 / 4;
     }
 

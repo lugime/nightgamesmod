@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Mount;
 import nightgames.stance.Stance;
@@ -77,9 +77,9 @@ public class Blindside extends Skill {
                                         + " %s mouth. %s are so absorbed in kissing back, that %s only notice %s ulterior motive"
                                         + " once %s has already swept %s legs out from under %s and %s has landed on top of %s.",
                         getSelf().possessiveAdjective(), getSelf().getName(), target.subject(),
-                        Global.capitalizeFirstLetter(getSelf().possessiveAdjective()), target.directObject(),
+                        Formatter.capitalizeFirstLetter(getSelf().possessiveAdjective()), target.directObject(),
                         getSelf().pronoun(), target.directObject(), getSelf().possessiveAdjective(),
-                        target.possessiveAdjective(), Global.capitalizeFirstLetter(target.pronoun()), target.pronoun(),
+                        target.possessiveAdjective(), Formatter.capitalizeFirstLetter(target.pronoun()), target.pronoun(),
                         getSelf().possessiveAdjective(), getSelf().pronoun(), target.possessiveAdjective(),
                         target.directObject(), getSelf().pronoun(), target.directObject());
     }

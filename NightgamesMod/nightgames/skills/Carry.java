@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Standing;
@@ -46,7 +46,7 @@ public class Carry extends Fuck {
         String premessage = premessage(c, target);
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             if (getSelf().human()) {
-                c.write(getSelf(), Global.capitalizeFirstLetter(
+                c.write(getSelf(), Formatter.capitalizeFirstLetter(
                                 premessage + deal(c, premessage.length(), Result.normal, target)));
             } else if (c.shouldPrintReceive(target, c)) {
                 c.write(getSelf(), premessage + receive(c, premessage.length(), Result.normal, target));
@@ -61,7 +61,7 @@ public class Carry extends Fuck {
             getSelf().body.pleasure(target, getTargetOrgan(target), getSelfOrgan(), m, c, this);
         } else {
             if (getSelf().human()) {
-                c.write(getSelf(), Global
+                c.write(getSelf(), Formatter
                                 .capitalizeFirstLetter(premessage + deal(c, premessage.length(), Result.miss, target)));
             } else if (c.shouldPrintReceive(target, c)) {
                 c.write(getSelf(), premessage + receive(c, premessage.length(), Result.miss, target));
@@ -101,7 +101,7 @@ public class Carry extends Fuck {
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.miss) {
-            return Global.format(
+            return Formatter.format(
                             (damage > 0 ? "" : "{self:subject} ")
                                             + "picks {other:subject} up, but {other:pronoun-action:manage|manages} out of"
                                             + " {self:possessive} grip before {self:pronoun} can do anything. Moreover, "
@@ -109,7 +109,7 @@ public class Carry extends Fuck {
                                             + "while she's distracted.",
                             getSelf(), target);
         } else {
-            return Global.format(
+            return Formatter.format(
                             (damage > 0 ? "" : "{self:subject} ")
                                             + "scoops {other:subject} up in {self:possessive} powerful arms and simultaneously thrusts"
                                             + " {self:possessive} {self:body-part:cock} into {other:possessive} {other:body-part:pussy}.",

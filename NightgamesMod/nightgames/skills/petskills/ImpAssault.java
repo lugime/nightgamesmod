@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.nskills.tags.SkillTag;
@@ -39,14 +39,14 @@ public class ImpAssault extends SimpleEnemySkill {
                 if (target.has(Trait.achilles) && !target.has(ClothingTrait.armored)) {
                     m += 8;
                 }
-                c.write(getSelf(), Global.format("While {other:name-possessive} attention is focused on {self:possessive} master, "
+                c.write(getSelf(), Formatter.format("While {other:name-possessive} attention is focused on {self:possessive} master, "
                                 + "{self:subject} creeps close to {other:direct-object} and uppercuts {other:direct-object} in the balls.", 
                                 getSelf(), target));
                 target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, m));
                 target.emote(Emotion.nervous, 10);
                 target.emote(Emotion.angry, 10);
             } else {
-                c.write(getSelf(), Global.format("{self:SUBJECT} runs up to {other:name-do} and punches {other:direct-object} in the gut.", getSelf(), target));
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} runs up to {other:name-do} and punches {other:direct-object} in the gut.", getSelf(), target));
                 target.pain(c, getSelf(), (int) getSelf().modifyDamage(DamageType.physical, target, m));
                 target.emote(Emotion.nervous, 10);
                 target.emote(Emotion.angry, 10);

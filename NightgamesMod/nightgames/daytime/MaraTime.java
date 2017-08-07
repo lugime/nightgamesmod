@@ -10,6 +10,7 @@ import nightgames.characters.body.CockMod;
 import nightgames.characters.body.CockPart;
 import nightgames.characters.body.mods.CyberneticMod;
 import nightgames.characters.body.mods.SizeMod;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
@@ -271,7 +272,7 @@ public class MaraTime extends BaseNPCTime {
                       .message("You invite Mara to your room some fun. As soon as you get there she walks up behind you, shoves her hand down the front of your pants, and grabs you penis. "
                                       + "You're taken by surprise, but it doesn't stop you from getting hard in her hand. <i>\"You said we're here to have fun and I've decided you're my toy today,\"</i> she whispers "
                                       + "in an unusually sultry voice. When you're fully erect, she withdraws her hand and orders you to strip. Once you're naked, she has you sit on the bed and begins to fondle "
-                                      + "your balls. <i>\"" +Global.capitalizeFirstLetter(Global.getPlayer().boyOrGirl()) + "s get really nervous when I play with these, but it feels good, doesn't it?\"</i> She's mostly back to her typical, mischievous self, but you can see a "
+                                      + "your balls. <i>\"" + Formatter.capitalizeFirstLetter(Global.getPlayer().boyOrGirl()) + "s get really nervous when I play with these, but it feels good, doesn't it?\"</i> She's mostly back to her typical, mischievous self, but you can see a "
                                       + "dominant gleam in her eye. She takes her time undressing, turning it into a full stripshow, then she sits on your lap facing you. Her pussy is close enough to your straining "
                                       + "dick that you can feel her heat. <i>\"I think it would be a lot of fun to train you,\"</i> she says in her sweetest, innocent voice. <i>\"I'll train you so no other girl can get you "
                                       + "hard, but you'll come instantly at my touch. Then you'll win against everyone except me. Doesn't that sound advantageous for both of us?\"</i> You can't tell if she's joking or "

@@ -3,7 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 
 public class ConcedePosition extends Skill {
@@ -44,7 +44,7 @@ public class ConcedePosition extends Skill {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-            return Global.format("{other:NAME-POSSESSIVE} divine majesty is too much for {self:name-do}. "
+            return Formatter.format("{other:NAME-POSSESSIVE} divine majesty is too much for {self:name-do}. "
                             + "With a docile smile, {self:pronoun-action:concede|concedes} {self:possessive} dominant position to {other:direct-object}.", getSelf(), target);
     }
 

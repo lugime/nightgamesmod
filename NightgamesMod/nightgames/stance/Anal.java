@@ -3,7 +3,7 @@ package nightgames.stance;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Anal extends AnalSexStance {
 
@@ -110,7 +110,7 @@ public class Anal extends AnalSexStance {
                 c.write("With your asshole suddenly disappearing, " + inserter.getName()
                                 + "'s dick pops out of what was once your sphincter.");
             } else {
-                c.write(Global.capitalizeFirstLetter(inserter.nameOrPossessivePronoun()) + 
+                c.write(Formatter.capitalizeFirstLetter(inserter.nameOrPossessivePronoun()) +
                                 " dick pops out of " + inserted.getName() 
                                 + " as "+inserted.possessiveAdjective()+" asshole shrinks and disappears.");
             }
@@ -122,14 +122,14 @@ public class Anal extends AnalSexStance {
     public Position reverse(Combat c, boolean writeMessage) {
         if (top.has(Trait.strapped)) {
             if (writeMessage) {
-                c.write(bottom, Global.format(
+                c.write(bottom, Formatter.format(
                                 "As {other:subject-action:are|is} thrusting into {self:name-do} with {other:possessive} strapon, {self:subject-action:force|forces} {self:possessive} hips back and knock {other:direct-object} off balance. {self:SUBJECT-ACTION:quickly pull|quickly pulls} {other:possessive} fake cock out of {self:possessive} bottom while sitting on top of {other:direct-object}.",
                                 bottom, top));
             }
             return new ReverseMount(bottom, top);
         } else {
             if (writeMessage) {
-                c.write(bottom, Global.format(
+                c.write(bottom, Formatter.format(
                                 "As {other:subject-action:are|is} thrusting into {self:name-do} with {other:possessive} {other:body-part:cock}, {self:subject-action:force|forces} {self:possessive} hips back and knock {other:direct-object} off balance. {self:SUBJECT-ACTION:quickly manuever|quickly manuevers} {self:reflective} on top of {other:direct-object}, now fucking {other:direct-object} back in an anal cowgirl position.",
                                 bottom, top));
             }

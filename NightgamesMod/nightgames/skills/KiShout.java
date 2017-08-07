@@ -4,6 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Falling;
@@ -78,11 +79,11 @@ public class KiShout extends Skill {
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.miss) {
-            return Global.format("{self:SUBJECT-ACTION:take} a deep breath, gathering {self:possessive} ki in {self:possessive} center. "
+            return Formatter.format("{self:SUBJECT-ACTION:take} a deep breath, gathering {self:possessive} ki in {self:possessive} center. "
                             + "Without warning, {self:subject-action:let} out an earsplitting howl that forces {other:name-do} back several feet. "
                             + "Unfortunately {other:pronoun-action:recover} quite quickly.", getSelf(), target);
         } else {
-            return Global.format("{self:SUBJECT-ACTION:take} a deep breath, gathering {self:possessive} ki in {self:possessive} center. "
+            return Formatter.format("{self:SUBJECT-ACTION:take} a deep breath, gathering {self:possessive} ki in {self:possessive} center. "
                             + "Without warning, {self:subject-action:let} out an earsplitting howl that knocks {other:name-do} off {other:possessive} feet.", getSelf(), target);
         }
     }

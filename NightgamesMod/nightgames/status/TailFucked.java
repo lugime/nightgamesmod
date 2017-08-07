@@ -11,7 +11,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class TailFucked extends Status implements InsertedStatus {
     private String target;
@@ -34,7 +34,7 @@ public class TailFucked extends Status implements InsertedStatus {
         if (hole == null || tail == null) {
             return "";
         }
-        return Global.capitalizeFirstLetter(String.format("%s now fucking %s %s with %s %s\n",
+        return Formatter.capitalizeFirstLetter(String.format("%s now fucking %s %s with %s %s\n",
                         other.subjectAction("are", "is"), affected.nameOrPossessivePronoun(), hole.describe(affected),
                         other.possessiveAdjective(), tail.describe(other)));
     }
@@ -46,7 +46,7 @@ public class TailFucked extends Status implements InsertedStatus {
         if (hole == null || tail == null) {
             return "";
         }
-        return Global.capitalizeFirstLetter(String.format("%s fucking %s %s with %s %s\n",
+        return Formatter.capitalizeFirstLetter(String.format("%s fucking %s %s with %s %s\n",
                             other.subjectAction("are", "is"), affected.nameOrPossessivePronoun(),
                             hole.describe(affected), other.possessiveAdjective(), tail.describe(other)));
     }
@@ -69,8 +69,8 @@ public class TailFucked extends Status implements InsertedStatus {
             affected.removelist.add(this);
             return;
         }
-        c.write(other, Global.capitalizeFirstLetter(
-                        Global.format("{other:name-possessive} {other:body-part:tail} relentlessly fucks {self:name-do} in {self:possessive} {self:body-part:"
+        c.write(other, Formatter.capitalizeFirstLetter(
+                        Formatter.format("{other:name-possessive} {other:body-part:tail} relentlessly fucks {self:name-do} in {self:possessive} {self:body-part:"
                                         + target + "}.", affected, other)));
         affected.body.pleasure(other, tail, hole, 10, c);
         other.body.pleasure(affected, hole, tail, 2, c);

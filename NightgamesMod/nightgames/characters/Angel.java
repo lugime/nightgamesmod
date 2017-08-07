@@ -13,6 +13,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
@@ -73,7 +74,7 @@ public class Angel extends BasePersonality {
 
         character.addCombatScene(new CombatScene((c, self, other) -> {
             return self.getLevel() >= 10 && !Global.checkFlag(ANGEL_SEX_FOCUS) && !Global.checkFlag(ANGEL_NYMPHOMANIA_FOCUS);
-        }, (c, self, player) -> Global.format("After another exhausting fight with her where you've been pretty much been driven insane with her sexual prowess, "
+        }, (c, self, player) -> Formatter.format("After another exhausting fight with her where you've been pretty much been driven insane with her sexual prowess, "
                         + "Angel shows a rare moment of vulnerability and slides into your arms. <i>\"Hey {other:name}, I've been thinking, do you think this is wrong?\"</i> "
                         + "Puzzled, you ask her what she means. <i>\"Well... you know, fucking like rabbits every day. "
                         + "I love feeling good and I know I'm good at making other people feel good. Sometimes though, I wonder if I'm being too overbearing. "
@@ -151,7 +152,7 @@ public class Angel extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("Answer: Focus on gathering a following", (c, self, other) -> {
-                            c.write(Global.format("You reply that you would her first follower if she was looking for them. "
+                            c.write(Formatter.format("You reply that you would her first follower if she was looking for them. "
                                             + "You jokingly kneel in front of her and kiss her feet. "
                                             + "Angel seems surprised for a moment before a familiar lascivious smile creeps into her expression. "
                                             + "<i>\"{other:name}, {other:name}, {other:name}, what do we have here? A willing supplicant? "
@@ -172,7 +173,7 @@ public class Angel extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("Answer: Why not both? [Hard Mode]", (c, self, other) -> {
-                            c.write(Global.format("You tell her that the Angel you know wouldn't even think of choosing between either of them. "
+                            c.write(Formatter.format("You tell her that the Angel you know wouldn't even think of choosing between either of them. "
                                             + "The Angel you know could gather a following within a day even while maintaining her close friendships. She's just amazing like that. "
                                             + "<br/>For the first time since you've gotten to know her, Angel seems to blush. \"<i>Enough flattery " + other.getName() + ", it wont make me go any easier on you. "
                                                             + "But you know, you're right. Why should I choose? They should be happy to grovel for me. I <b>am</b> a Goddess after all.</i>\"", self, other));

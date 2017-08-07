@@ -8,7 +8,7 @@ import java.util.Optional;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class HeldOral extends AbstractFacingStance {
@@ -18,7 +18,7 @@ public class HeldOral extends AbstractFacingStance {
 
     @Override
     public String describe(Combat c) {
-        return Global.format(
+        return Formatter.format(
                         "{self:SUBJECT-ACTION:are|is} holding {other:name-do} down with {self:possessive} face nested between {other:possessive} legs.",
                         top, bottom);
     }
@@ -159,13 +159,13 @@ public class HeldOral extends AbstractFacingStance {
         List<Runnable> possibleActions = new ArrayList<>();
         if (self.hasPussy()) {
             possibleActions.add(() -> {
-                c.write(self, Global.format(pussyString, self, opponent));
+                c.write(self, Formatter.format(pussyString, self, opponent));
                 self.body.pleasure(opponent, opponent.body.getRandom("mouth"), self.body.getRandomPussy(), targM, c);
             });
         }
         if (self.hasDick()) {
             possibleActions.add(() -> {
-                c.write(self, Global.format(cockString, self, opponent));
+                c.write(self, Formatter.format(cockString, self, opponent));
                 self.body.pleasure(opponent, opponent.body.getRandom("mouth"), self.body.getRandomCock(), targM, c);
             });
         }

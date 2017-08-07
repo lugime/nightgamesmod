@@ -3,7 +3,7 @@ package nightgames.pet.arms.skills;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.Arm;
@@ -16,7 +16,7 @@ public class TentacleInjectVenom extends TentacleArmSkill {
     }
 
     public String getSourceString(Character self) {
-        return Global.format("{self:NAME-POSSESSIVE} tentacle venom", self, self);
+        return Formatter.format("{self:NAME-POSSESSIVE} tentacle venom", self, self);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class TentacleInjectVenom extends TentacleArmSkill {
         boolean success = sub || Random.random(100) < 10 + owner.get(Attribute.Slime);
 
         if (success) {
-            c.write(PetCharacter.DUMMY, Global.format("{self:NAME-POSSESSIVE} injector tentacle shoots forward and embeds itself in {other:name-possessive} arm. "
+            c.write(PetCharacter.DUMMY, Formatter.format("{self:NAME-POSSESSIVE} injector tentacle shoots forward and embeds itself in {other:name-possessive} arm. "
                             + "{other:pronoun-action:yelp} and {other:action:pull} it out straight away. Unfortunately, "
                             + "{other:pronoun} already {other:action:start} to feel sluggish as {other:pronoun-action:realize} "
                             + "{other:pronoun-action:have} been poisoned.", owner, target));
@@ -39,7 +39,7 @@ public class TentacleInjectVenom extends TentacleArmSkill {
             target.add(c, new Abuff(target, Attribute.Speed, target.getPure(Attribute.Speed) / 3, 10));
             return true;
         } else {
-            c.write(PetCharacter.DUMMY, Global.format("A %s flies towards {other:name-do}, "
+            c.write(PetCharacter.DUMMY, Formatter.format("A %s flies towards {other:name-do}, "
                             + "but {other:pronoun-action:dodge} out of the way just in time.", owner, target, arm.getName()));
             return false;
         }

@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -46,7 +46,7 @@ public class Diversion extends Skill {
                                 + " and throw it to the right, while you jump to the left. " + target.getName()
                                 + " catches your discarded clothing, " + "losing sight of you in the process.");
             } else {
-                c.write(getSelf(), Global.format("{other:SUBJECT-ACTION:lose} sight of {self:name-do} for just a moment, "
+                c.write(getSelf(), Formatter.format("{other:SUBJECT-ACTION:lose} sight of {self:name-do} for just a moment, "
                                 + "but then {other:pronoun-action:see} moving behind "
                                 + "{other:reflective} in {other:possessive} peripheral vision. {other:SUBJECT} quickly {other:action:spin} "
                                 + "around and {other:action:grab} {self:direct-object}, but {other:pronoun-action:find} {other:reflective} "
@@ -57,7 +57,7 @@ public class Diversion extends Skill {
             target.add(c, new Flatfooted(target, 1));
             return true;
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:try} to divert {other:name-possessive} attention by stripping off {self:possessive} clothing, "
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:try} to divert {other:name-possessive} attention by stripping off {self:possessive} clothing, "
                             + "only to find out {self:pronoun-action:have} nothing left. ", getSelf(), target));
             return false;
         }
@@ -90,7 +90,7 @@ public class Diversion extends Skill {
                         attacker.subjectAction("lose"), getSelf().subject(), attacker.pronoun(),
                         attacker.action("see"),
                         getSelf().directObject(), attacker.directObject(),
-                        Global.capitalizeFirstLetter(attacker.subject()), attacker.action("spin"),
+                        Formatter.capitalizeFirstLetter(attacker.subject()), attacker.action("spin"),
                         getSelf().nameDirectObject(), getSelf().possessiveAdjective(),
                         article.getName());
     }

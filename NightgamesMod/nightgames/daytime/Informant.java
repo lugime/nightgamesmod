@@ -11,6 +11,7 @@ import nightgames.characters.NPC;
 import nightgames.characters.Reyka;
 import nightgames.characters.custom.RecruitmentData;
 import nightgames.global.Flag;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.status.addiction.Addiction;
 
@@ -340,12 +341,12 @@ public class Informant extends Activity {
             .message("Haha, feeling the heat? That's okay, I can talk to the organizers about redirecting some of the competitors to other sessions. Just let me know who is becoming too much for you.");
             Global.everyone().stream()
                   .filter(c -> !c.human())
-                  .filter(c -> !Global.checkCharacterDisabledFlag(c))
+                  .filter(c -> !Formatter.checkCharacterDisabledFlag(c))
                   .forEach(character -> choose(String.format(REMOVE_PREFIX + "%s", character.getTrueName()),
                                   Global.gui()));
             Global.everyone().stream()
                   .filter(c -> !c.human())
-                  .filter(c -> Global.checkCharacterDisabledFlag(c) && !c.getType().equals("Yui"))
+                  .filter(c -> Formatter.checkCharacterDisabledFlag(c) && !c.getType().equals("Yui"))
                   .forEach(character -> choose(String.format(RETURN_PREFIX + "%s", character.getTrueName()),
                                   Global.gui()));
             choose("Back", Global.gui());
@@ -355,7 +356,7 @@ public class Informant extends Activity {
             String name = choice.substring(REMOVE_PREFIX.length());
             Global.gui()
                   .message("Got it, I'll see about sending " + name+ " to another session.");
-            Global.setCharacterDisabledFlag(Global.getParticipantsByName(name));
+            Formatter.setCharacterDisabledFlag(Global.getParticipantsByName(name));
             choose("Select Competitors", Global.gui());
             return;
         }
@@ -363,7 +364,7 @@ public class Informant extends Activity {
             String name = choice.substring(RETURN_PREFIX.length());
             Global.gui()
                   .message("Missing " + name+ " already? I'll see what I can do.");
-            Global.unsetCharacterDisabledFlag(Global.getParticipantsByName(name));
+            Formatter.unsetCharacterDisabledFlag(Global.getParticipantsByName(name));
             choose("Select Competitors", Global.gui());
             return;
         }
@@ -521,7 +522,7 @@ public class Informant extends Activity {
         if (choice.equals("Competition Info")) {
             String message = "<i>\"You want to know how the competition is doing? I can give you a breakdown on each of your opponents:\"</i><br/><br/>";
             for (Character npc : Global.everyone()) {
-                if (!npc.human() && !Global.checkCharacterDisabledFlag(npc)) {
+                if (!npc.human() && !Formatter.checkCharacterDisabledFlag(npc)) {
                     message = message + npc.dumpstats(false) + "<br/><br/>";
                 }
             }
@@ -534,7 +535,7 @@ public class Informant extends Activity {
                                   .get();
             String message = "You tell Aesop about the feelings you've been having"
                             + " lately, asking if he can do anything to help. <i>" +
-                            Global.format(add.informantsOverview(), add.affected, add.getCause());
+                            Formatter.format(add.informantsOverview(), add.affected, add.getCause());
             if (!Global.checkFlag(Flag.AddictionAdvice)) {
                 message += "\n\nAnyway, if you want to get rid of it, I might have got an address for you."
                                 + " Being as kind as I am, I'll give it to you for free. You know, help"

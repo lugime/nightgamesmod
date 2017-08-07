@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
@@ -73,7 +73,7 @@ public class Tickle extends Skill {
                 }
                 if (target.has(Trait.ticklish)) {
                     bonus = 4 + Random.random(3);
-                    c.write(target, Global.format(
+                    c.write(target, Formatter.format(
                                     "{other:SUBJECT-ACTION:squirm|squirms} uncontrollably from {self:name-possessive} actions. Yup, definitely ticklish.",
                                     getSelf(), target));
                 }
@@ -87,7 +87,7 @@ public class Tickle extends Skill {
                     writeOutput(c, Result.item, target);
                     if (target.has(Trait.ticklish)) {
                         bonus = 4 + Random.random(3);
-                        c.write(target, Global.format(
+                        c.write(target, Formatter.format(
                                         "{other:SUBJECT-ACTION:squirm|squirms} uncontrollably from {self:name-possessive} actions. Yup definitely ticklish.",
                                         getSelf(), target));
                     }
@@ -97,7 +97,7 @@ public class Tickle extends Skill {
                     writeOutput(c, Result.weak, target);
                     if (target.has(Trait.ticklish)) {
                         bonus = 4 + Random.random(3);
-                        c.write(target, Global.format(
+                        c.write(target, Formatter.format(
                                         "{other:SUBJECT-ACTION:squirm|squirms} uncontrollably from {self:name-possessive} actions. Yup definitely ticklish.",
                                         getSelf(), target));
                     }
@@ -110,7 +110,7 @@ public class Tickle extends Skill {
                 int bonus = 0;
                 if (target.has(Trait.ticklish)) {
                     bonus = 2 + Random.random(3);
-                    c.write(target, Global.format(
+                    c.write(target, Formatter.format(
                                     "{other:SUBJECT-ACTION:squirm|squirms} uncontrollably from {self:name-possessive} actions. Yup definitely ticklish.",
                                     getSelf(), target));
                 }

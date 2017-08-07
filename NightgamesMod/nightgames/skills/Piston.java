@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class Piston extends Thrust {
@@ -55,7 +55,7 @@ public class Piston extends Thrust {
             return "You pound " + target.getName()
                             + " in the ass. She whimpers in pleasure and can barely summon the strength to hold herself off the floor.";
         } else if (modifier == Result.reverse) {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:bounce|bounces} on {other:name-possessive} cock, relentlessly driving you both towards orgasm.",
                             getSelf(), target);
         } else {
@@ -82,7 +82,7 @@ public class Piston extends Thrust {
                             getSelf().subject(), target.nameOrPossessivePronoun(), 
                             c.bothDirectObject(target));
         } else {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:rapidly pound|rapidly pounds} {self:possessive} {self:body-part:cock} into {other:possessive} {other:body-part:pussy}, "
                                             + "relentlessly driving %s toward orgasm.",
                             getSelf(), target, c.bothDirectObject(target));

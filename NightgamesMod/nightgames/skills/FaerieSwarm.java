@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 
@@ -66,9 +66,9 @@ public class FaerieSwarm extends Skill {
         "You unroll the summoning scroll and unleash a cloud of cute, naked faeries. "
                         + "They eagerly take advantage of " + target.getName()
                         + "'s naked body, teasing and tickling every exposed erogenous zone. "
-                        + Global.capitalizeFirstLetter(target.pronoun()) + " tries in vain to defend "
+                        + Formatter.capitalizeFirstLetter(target.pronoun()) + " tries in vain to defend "
                         + target.directObject() + "self, but there are too many of them and they're too quick. "
-                        + Global.capitalizeFirstLetter(target.pronoun())
+                        + Formatter.capitalizeFirstLetter(target.pronoun())
                         + "'s reduced to writhing and giggling in pleasure until "
                         + "the brief summoning spell exires.";
     }

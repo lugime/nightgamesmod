@@ -5,7 +5,7 @@ import nightgames.characters.body.Body;
 import nightgames.characters.body.CockMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Knotted;
 import nightgames.status.Stsflag;
@@ -82,7 +82,7 @@ public class ToggleKnot extends Skill {
                                 + " growing to the size of a small apple. %s not"
                                                 + " getting <i>that</i> out of %s any time soon...",
                                                 firstPart, getSelf().nameOrPossessivePronoun(),
-                                                Global.capitalizeFirstLetter(target.subjectAction("are", "is")),
+                                                Formatter.capitalizeFirstLetter(target.subjectAction("are", "is")),
                                                 target.reflectivePronoun()));
             }
             target.add(c, new Knotted(target, getSelf(), c.getStance().anallyPenetrated(c, target)));

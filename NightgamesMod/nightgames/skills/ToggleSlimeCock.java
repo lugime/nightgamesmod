@@ -7,7 +7,7 @@ import nightgames.characters.body.CockPart;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.status.Stsflag;
 
@@ -67,7 +67,7 @@ public class ToggleSlimeCock extends Skill {
             getSelf().body.temporaryAddOrReplacePartWithType(new CockPart().applyMod(new SizeMod(SizeMod.COCK_SIZE_BIG)).applyMod(CockMod.slimy), 100);
         }
         if (!target.human() || !target.is(Stsflag.blinded))
-            c.write(getSelf(), Global.format(msg, getSelf(), target));
+            c.write(getSelf(), Formatter.format(msg, getSelf(), target));
         else 
             printBlinded(c);
         return true;

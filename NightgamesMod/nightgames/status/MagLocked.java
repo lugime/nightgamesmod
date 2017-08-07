@@ -10,7 +10,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 
 public class MagLocked extends Status {
@@ -45,18 +45,18 @@ public class MagLocked extends Status {
     @Override
     public String describe(Combat c) {
         if (count == 1) {
-            return Global.format(
+            return Formatter.format(
                             "A single inactive MagLock hangs around one of {self:name-possessive}"
                                             + " wrists. It's harmless for now, but any more would be dangerous.",
                             affected, c.getOpponent(affected));
         } else if (count == 2) {
-            return Global.format(
+            return Formatter.format(
                             "{other:NAME-POSSESSIVE} two MagLocks, placed around {self:name-possessive}"
                                             + " wrists, have locked together behind {self:possessive} back and"
                                             + " are restraining {self:possessive} movement.",
                             affected, c.getOpponent(affected));
         } else {
-            return Global.format(
+            return Formatter.format(
                             "Hogtied by {other:name-possessive} MagLocks,"
                                             + "{self:subject-action:are|is} completely immobilized.",
                             affected, c.getOpponent(affected));
@@ -79,7 +79,7 @@ public class MagLocked extends Status {
             if (count == 3) flag(Stsflag.hogtied);
         }
         if (!c.getOpponent(affected).has(Item.Battery)) {
-            c.write(Global.format(
+            c.write(Formatter.format(
                             "<b>{other:NAME-POSSESSIVE} MagLocks have run out of power and "
                                             + "fall harmlessly off of {self:subject} and onto the ground.",
                             affected, c.getOpponent(affected)));

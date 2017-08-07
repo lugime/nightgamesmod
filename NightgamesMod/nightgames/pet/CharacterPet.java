@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.NPC;
 import nightgames.characters.Player;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class CharacterPet extends Pet {
     public CharacterPet(Character owner, Character prototype, int power, int ac) {
@@ -55,7 +55,7 @@ public class CharacterPet extends Pet {
 
     @Override
     public void caught(Combat c, Character captor) {
-        c.write(getSelf(), Global.format("In the heat of battle, {other:subject} manages to catch {self:name-do} and pin {self:direct-object} down. "
+        c.write(getSelf(), Formatter.format("In the heat of battle, {other:subject} manages to catch {self:name-do} and pin {self:direct-object} down. "
                         + "{other:SUBJECT} takes this chance to grind {other:possessive} knee between {self:name-possessive} legs, rubbing out a quick orgasm for {self:direct-object}.", getSelf(), captor));
         getSelf().doOrgasm(c, captor, null, null);
     }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
@@ -43,7 +43,7 @@ public class FFXTribThreesome extends Position {
     @Override
     public void checkOngoing(Combat c) {
         if (!c.getOtherCombatants().contains(domSexCharacter)) {
-            c.write(bottom, Global.format("With the disappearance of {self:name-do}, {other:subject-action:manage|manages} to escape.", domSexCharacter, bottom));
+            c.write(bottom, Formatter.format("With the disappearance of {self:name-do}, {other:subject-action:manage|manages} to escape.", domSexCharacter, bottom));
             c.setStance(new Neutral(top, bottom));
         }
     }
@@ -154,7 +154,7 @@ public class FFXTribThreesome extends Position {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} off {self:reflective}.", bottom, top));
+            c.write(bottom, Formatter.format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} off {self:reflective}.", bottom, top));
         }
         return new Neutral(bottom, top);
     }
@@ -203,7 +203,7 @@ public class FFXTribThreesome extends Position {
     @Override
     public void struggle(Combat c, Character struggler) {
         Character opponent = getPartner(c, struggler);
-        c.write(struggler, Global.format("{self:SUBJECT-ACTION:struggle} in {other:name-possessive} grip, "
+        c.write(struggler, Formatter.format("{self:SUBJECT-ACTION:struggle} in {other:name-possessive} grip, "
                         + "but the slippery sensation of %s sexes sliding against each other distracts "
                         + "{self:direct-object} long enough for {other:pronoun} to regain"
                         + " {other:possessive} grip on {self:possessive} leg.",
@@ -215,7 +215,7 @@ public class FFXTribThreesome extends Position {
     @Override
     public void escape(Combat c, Character escapee) {
         Character opponent = getPartner(c, escapee);
-        c.write(escapee, Global.format("{self:SUBJECT-ACTION:attempt} to rock {self:possessive} hips wildly, "
+        c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:attempt} to rock {self:possessive} hips wildly, "
                         + "hoping it will distract {other:name-do} long enough for {self:direct-object} to escape. "
                         + "Sadly, it doesn't accomplish much other than arousing the hell out of both of %s."
                         , escapee, opponent, c.bothDirectObject(opponent)));

@@ -11,6 +11,7 @@ import nightgames.characters.NPC;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.ItemEffect;
@@ -100,7 +101,7 @@ public class UseDraft extends Skill {
         } else {
             boolean eventful = false;
             if (shouldPrint(target))
-                c.write(getSelf(), Global.format(
+                c.write(getSelf(), Formatter.format(
                             String.format("{self:SUBJECT-ACTION:%s|%ss} %s%s", used.getEffects().get(0).getSelfVerb(),
                                             used.getEffects().get(0).getSelfVerb(), used.pre(), used.getName()),
                             getSelf(), target));

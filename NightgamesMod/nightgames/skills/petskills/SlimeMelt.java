@@ -6,7 +6,7 @@ import java.util.List;
 import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -48,12 +48,12 @@ public class SlimeMelt extends SimpleEnemySkill {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             // should never be null here, since otherwise we can't use the skill          
             Clothing stripped = target.strip(targetSlot, c);
-            c.write(getSelf(), Global.format("{self:SUBJECT} pounces on {other:name-do} playfully, "
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} pounces on {other:name-do} playfully, "
                             + "and its corrosive body melts {other:possessive} %s as a fortunate accident.", 
                             getSelf(), target, stripped.getName()));
             target.emote(Emotion.nervous, 10);
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT} launches itself towards {other:name-do}, but {other:SUBJECT-ACTION:sidestep|sidesteps} it handily.",
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} launches itself towards {other:name-do}, but {other:SUBJECT-ACTION:sidestep|sidesteps} it handily.",
                             getSelf(), target));
             return false;
         }

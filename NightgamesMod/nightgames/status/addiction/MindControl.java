@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
@@ -167,7 +168,7 @@ public class MindControl extends Addiction {
         super.tick(c);
         if (!affected.is(Stsflag.enthralled) && Random.randomdouble() < magnitude / 3) {
             affected.addlist.add(new Enthralled(affected, cause, 3));
-            Global.writeIfCombat(c, cause, cause.getName() + "'s constant urging overcomes your defences, washing away all of your resistance.");
+            Formatter.writeIfCombat(c, cause, cause.getName() + "'s constant urging overcomes your defences, washing away all of your resistance.");
         }
     }
 
@@ -254,7 +255,7 @@ public class MindControl extends Addiction {
                     case cowgirl:
                         succeeded = true;
                         description = "You turn your head away as you feel your orgasm coming on, wary of " + controller.getName() + "'s"
-                                        + " hypnotic eyes. " + Global.capitalizeFirstLetter(controller.pronoun()) + "'s"
+                                        + " hypnotic eyes. " + Formatter.capitalizeFirstLetter(controller.pronoun()) + "'s"
                                         + " not having it, though. " + controller.pronoun() + " grabs your head"
                                         + " and forces your eyelids open with " + controller.directObject()+ " thumbs. ";
                         break;
@@ -262,7 +263,7 @@ public class MindControl extends Addiction {
                         if (pos instanceof AnalCowgirl) {
                             succeeded = true;
                             description = "You turn your head away as you feel your orgasm coming on, wary of " + controller.getName() + "'s"
-                                            + " hypnotic eyes. " + Global.capitalizeFirstLetter(controller.pronoun()) + "'s"
+                                            + " hypnotic eyes. " + Formatter.capitalizeFirstLetter(controller.pronoun()) + "'s"
                                             + " not having it, though. " + controller.pronoun() + " grabs your head"
                                             + " and forces your eyelids open with " + controller.directObject() + " thumbs. ";
                             break;
@@ -279,7 +280,7 @@ public class MindControl extends Addiction {
                         succeeded = true;
                         if (pos.dom(controller)) {
                             description = "You turn your head away as you feel your orgasm coming on, wary of " + controller.getName() + "'s"
-                                            + " hypnotic eyes. " + Global.capitalizeFirstLetter(controller.pronoun()) + "'s"
+                                            + " hypnotic eyes. " + Formatter.capitalizeFirstLetter(controller.pronoun()) + "'s"
                                             + " not having it, though. " + controller.pronoun() + " twists your head back"
                                             + " and forces your eyelids open with " + controller.directObject() + " thumbs. ";
                         } else {
@@ -292,7 +293,7 @@ public class MindControl extends Addiction {
                         if (pos.dom(controller)) {
                             succeeded = true;
                             description = "You turn your head away as you feel your orgasm coming on, wary of " + controller.getName() + "'s"
-                                            + " hypnotic eyes. " + Global.capitalizeFirstLetter(controller.pronoun()) + "'s"
+                                            + " hypnotic eyes. " + Formatter.capitalizeFirstLetter(controller.pronoun()) + "'s"
                                             + " not having it, though. " + controller.pronoun() + " grabs your head"
                                             + " and forces your eyelids open with " + controller.directObject() + " thumbs. ";
                         } else {
@@ -394,7 +395,7 @@ public class MindControl extends Addiction {
                         .percent() > 5) {
                 int amt = getSeverity().ordinal() * (Random.random(6) + 1);
                 affected.weaken(c, (int) cause.modifyDamage(DamageType.temptation, affected, amt));
-                Global.writeIfCombat(c, affected, "You keep fighting your own body to do as you want, and it's tiring you rapidly.");
+                Formatter.writeIfCombat(c, affected, "You keep fighting your own body to do as you want, and it's tiring you rapidly.");
             }
         }
 

@@ -117,7 +117,7 @@ public class Match {
             if (player.getPure(Attribute.Science) > 0) {
                 player.chargeBattery();
             }
-            if (Global.human.getAffection(player) > maxaffection && !player.has(Trait.event) && !Global
+            if (Global.human.getAffection(player) > maxaffection && !player.has(Trait.event) && !Formatter
                             .checkCharacterDisabledFlag(player)) {
                 maxaffection = Global.human.getAffection(player);
                 lover = player;
@@ -127,7 +127,7 @@ public class Match {
         // Disable characters flagged as disabled
         for (Character c : Global.players) {
             // Disabling the player wouldn't make much sense, and there's no PlayerDisabled flag.
-            if (c.getType().equals("Player") || !Global.checkCharacterDisabledFlag(c)) {
+            if (c.getType().equals("Player") || !Formatter.checkCharacterDisabledFlag(c)) {
                 participants.add(c);
             }
         }

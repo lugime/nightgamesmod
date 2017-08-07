@@ -3,7 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 import nightgames.skills.damage.DamageType;
 
@@ -78,7 +78,7 @@ public class Sedate extends Skill {
                             + "%s suddenly surrounded by a cloud of dense fog. The "
                             + "fog seems to fill %s head and %s body feels heavy.",
                             getSelf().subject(), getSelf().possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.action("are", "is")),
+                            Formatter.capitalizeFirstLetter(target.action("are", "is")),
                             target.possessiveAdjective(), target.possessiveAdjective());
         } else if (modifier == Result.miss) {
             return String.format("%s splashes a bottle of liquid in %s direction, but none of it hits %s.",

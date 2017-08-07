@@ -8,7 +8,7 @@ import java.util.Set;
 import nightgames.characters.Character;
 import nightgames.characters.DummyCharacter;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class TentaclePart extends GenericBodyPart {
@@ -93,7 +93,7 @@ public class TentaclePart extends GenericBodyPart {
     public double applySubBonuses(Character self, Character opponent, BodyPart with, BodyPart target, double damage,
                     Combat c) {
         if (with.isType(attachpoint) && Random.random(3) > -1) {
-            c.write(self, Global.format("Additionally, {self:name-possessive} " + fullDescribe(self)
+            c.write(self, Formatter.format("Additionally, {self:name-possessive} " + fullDescribe(self)
                             + " take the opportunity to squirm against {other:name-possessive} "
                             + target.fullDescribe(opponent) + ".", self, opponent));
             opponent.body.pleasure(self, this, target, 5, c);

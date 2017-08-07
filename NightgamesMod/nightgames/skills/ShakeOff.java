@@ -3,7 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.Slimed;
 import nightgames.status.Stsflag;
 
@@ -47,7 +47,7 @@ public class ShakeOff extends Skill {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("{self:SUBJECT-ACTION:take|takes} a moment to shake off the sticky slime all over {self:reflective}", getSelf(), target);
+        return Formatter.format("{self:SUBJECT-ACTION:take|takes} a moment to shake off the sticky slime all over {self:reflective}", getSelf(), target);
     }
 
     @Override

@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 
 /**
@@ -85,25 +86,27 @@ public class Stunned extends DurationStatus {
 
     @Override
     public int damage(Combat c, int x) {
-        Global.writeIfCombat(c, affected, Global.format("Since {self:subject-action:are} already downed, there's not much more that can be done.", affected, affected));
+        Formatter.writeIfCombat(c, affected, Formatter.format("Since {self:subject-action:are} already downed, there's not much more that can be done.", affected, affected));
         return -x;
     }
 
     @Override
     public int weakened(Combat c, int x) {
-        Global.writeIfCombat(c, affected, Global.format("Since {self:subject-action:are} already downed, there's not much more that can be done.", affected, affected));
+        Formatter.writeIfCombat(c, affected, Formatter.format("Since {self:subject-action:are} already downed, there's not much more that can be done.", affected, affected));
         return -x;
     }
 
     @Override
     public int drained(Combat c, int x) {
-        Global.writeIfCombat(c, affected, Global.format("Since {self:subject-action:are} already downed, there's not much to take.", affected, affected));
+        Formatter.writeIfCombat(c, affected, Formatter
+                        .format("Since {self:subject-action:are} already downed, there's not much to take.", affected, affected));
         return -x;
     }
 
     @Override
     public int tempted(Combat c, int x) {
-        Global.writeIfCombat(c, affected, Global.format("%s, {self:subject-action:are} already unconscious.", affected, affected, affected.human() ? "Fortunately" : "Unfortunately"));
+        Formatter.writeIfCombat(c, affected, Formatter
+                        .format("%s, {self:subject-action:are} already unconscious.", affected, affected, affected.human() ? "Fortunately" : "Unfortunately"));
         return -x;
     }
 

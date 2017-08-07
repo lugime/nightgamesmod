@@ -7,7 +7,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.mods.ExtendedTonguedMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.ReverseMount;
@@ -176,7 +176,7 @@ public class Blowjob extends Skill {
                             + "Her lower tongue runs up and down %s shaft causing %s to shudder with arousal.",
                             getSelf().nameOrPossessivePronoun(), target.subjectAction("feel"),
                             target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.pronoun()), target.directObject(),
+                            Formatter.capitalizeFirstLetter(target.pronoun()), target.directObject(),
                             target.possessiveAdjective(), target.directObject());
         } else if (modifier == Result.reverse) {
             m += String.format("Faced with %s dick sitting squarely in front of %s face, %s"
@@ -196,7 +196,7 @@ public class Blowjob extends Skill {
                 m += String.format("%s %s tongue up the length of %s dick, sending a jolt of pleasure up %s spine. "
                                 + "%s slowly wraps %s lips around %s dick and sucks.",
                                 getSelf().subjectAction("run"), getSelf().possessiveAdjective(), target.nameOrPossessivePronoun(),
-                                target.possessiveAdjective(), Global.capitalizeFirstLetter(getSelf().pronoun()),
+                                target.possessiveAdjective(), Formatter.capitalizeFirstLetter(getSelf().pronoun()),
                                 getSelf().possessiveAdjective(), target.nameOrPossessivePronoun());
             } else if (r == 1) {
                 m += String.format("%s on the head of %s cock while %s hand strokes the shaft.",

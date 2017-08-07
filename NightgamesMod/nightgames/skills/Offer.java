@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.stance.Anal;
 import nightgames.stance.Cowgirl;
@@ -123,7 +123,7 @@ public class Offer extends Skill {
                                                 + "straight up with your hand, all ready for %s to mount. %s weighs the situation for only"
                                                 + " a brief moment before sitting down on your awaiting shaft.",
                                 getSelf().body.getRandomCock().describe(getSelf()), target.getName(),
-                                Global.capitalizeFirstLetter(target.pronoun()));
+                                Formatter.capitalizeFirstLetter(target.pronoun()));
             case anal:
                 return String.format(
                                 "You get on the ground with "
@@ -132,7 +132,7 @@ public class Offer extends Skill {
                                                 + " to stick %s %s into your ass. %s takes pity on you, and plunges in.",
                                 target.getName(), target.directObject(), target.possessiveAdjective(),
                                 target.body.getRandomInsertable().describe(target),
-                                Global.capitalizeFirstLetter(target.pronoun()));
+                                Formatter.capitalizeFirstLetter(target.pronoun()));
             default: // special
                 return String.format(
                                 "You lay down on your back and spread your legs,"
@@ -154,9 +154,9 @@ public class Offer extends Skill {
                                                     + "%s not interested, however, and just %s %s. %s seemed to enjoy that, but"
                                                     + " is still disappointed over not getting the fucking %s wanted.",
                                     getSelf().getName(), getSelf().possessiveAdjective(), target.nameDirectObject(),
-                                    Global.capitalizeFirstLetter(target.subjectAction("are","is")),
+                                    Formatter.capitalizeFirstLetter(target.subjectAction("are","is")),
                                     target.action("spank"), getSelf().directObject(),
-                                    Global.capitalizeFirstLetter(getSelf().pronoun()), getSelf().pronoun());
+                                    Formatter.capitalizeFirstLetter(getSelf().pronoun()), getSelf().pronoun());
                 } else {
                     return String.format(
                                     "%s grabs %s %s and waves it at %s, "
@@ -165,7 +165,7 @@ public class Offer extends Skill {
                                     getSelf().getName(), getSelf().possessiveAdjective(),
                                     getSelf().body.getRandomCock().describe(getSelf()), 
                                     target.nameDirectObject(), target.dickPreference(), getSelf().directObject(),
-                                    Global.capitalizeFirstLetter(target.subject()), target.action("laugh"),
+                                    Formatter.capitalizeFirstLetter(target.subject()), target.action("laugh"),
                                     getSelf().possessiveAdjective(), getSelf().possessiveAdjective());
                 }
             case normal:
@@ -175,7 +175,7 @@ public class Offer extends Skill {
                                                 + " to mount %s, enveloping the hard shaft in %s %s.",
                                 getSelf().getName(), getSelf().possessiveAdjective(), getSelf().possessiveAdjective(),
                                 getSelf().body.getRandomCock().describe(getSelf()), target.nameOrPossessivePronoun(),
-                                Global.capitalizeFirstLetter(target.subjectAction("admit")), target.reflectivePronoun(),
+                                Formatter.capitalizeFirstLetter(target.subjectAction("admit")), target.reflectivePronoun(),
                                 target.action("proceed"), getSelf().directObject(), target.possessiveAdjective(),
                                 target.body.getRandomPussy().describe(target));
             case anal:
@@ -185,7 +185,7 @@ public class Offer extends Skill {
                                                 + " knees and %s to it.",
                                 getSelf().getName(), getSelf().possessiveAdjective(), target.nameOrPossessivePronoun(),
                                 target.directObject(), getSelf().directObject(), 
-                                Global.capitalizeFirstLetter(target.subjectAction("get")),
+                                Formatter.capitalizeFirstLetter(target.subjectAction("get")),
                                 target.possessiveAdjective(), target.action("get"));
             default: // special
                 return String.format(
@@ -196,7 +196,7 @@ public class Offer extends Skill {
                                 getSelf().getName(), getSelf().possessiveAdjective(), getSelf().possessiveAdjective(),
                                 getSelf().possessiveAdjective(), getSelf().possessiveAdjective(),
                                 target.nameDirectObject(),
-                                Global.capitalizeFirstLetter(getSelf().possessiveAdjective()), target.possessiveAdjective(),
+                                Formatter.capitalizeFirstLetter(getSelf().possessiveAdjective()), target.possessiveAdjective(),
                                 target.body.getRandomCock().describe(target), target.directObject(),
                                 target.pronoun(), getSelf().possessiveAdjective(), getSelf().possessiveAdjective());
         }

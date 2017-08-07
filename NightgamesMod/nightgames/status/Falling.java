@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.stance.StandingOver;
 
 public class Falling extends Status {
@@ -43,16 +43,16 @@ public class Falling extends Status {
     public int regen(Combat c) {
         affected.removelist.add(this);
         if (c.getStance().havingSex(c) && c.getStance().dom(affected) && c.getStance().reversable(c)) {
-            c.write(c.getOpponent(affected), Global.format("{other:SUBJECT-ACTION:take|takes} the chance to shift into a more dominant position.", affected, c.getOpponent(affected)));
+            c.write(c.getOpponent(affected), Formatter.format("{other:SUBJECT-ACTION:take|takes} the chance to shift into a more dominant position.", affected, c.getOpponent(affected)));
             c.setStance(c.getStance().reverse(c, true));
         } else if (!c.getStance().prone(affected)) {
             c.setStance(new StandingOver(c.getOpponent(affected), affected));
         }
         if (affected.has(Trait.NimbleRecovery)) {
-            c.write(Global.format("{self:NAME-POSSESSIVE} nimble body expertly breaks the fall.", affected, c.getOpponent(affected)));
+            c.write(Formatter.format("{self:NAME-POSSESSIVE} nimble body expertly breaks the fall.", affected, c.getOpponent(affected)));
             affected.add(c, new Stunned(affected, 0, true));
         } else if (affected.has(Trait.Unwavering)) {
-            c.write(Global.format("{self:SUBJECT-ACTION:go|goes} down but the fall seems to hardly affect {self:direct-object}.", affected, c.getOpponent(affected)));
+            c.write(Formatter.format("{self:SUBJECT-ACTION:go|goes} down but the fall seems to hardly affect {self:direct-object}.", affected, c.getOpponent(affected)));
         } else {
             affected.add(c, new Stunned(affected));            
         }

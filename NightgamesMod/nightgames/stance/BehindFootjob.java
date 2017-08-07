@@ -2,7 +2,7 @@ package nightgames.stance;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class BehindFootjob extends AbstractBehindStance {
@@ -12,7 +12,7 @@ public class BehindFootjob extends AbstractBehindStance {
 
     @Override
     public String describe(Combat c) {
-        return Global.format(
+        return Formatter.format(
                         "{self:SUBJECT-ACTION:are|is} holding {other:name-do} from behind with {self:possessive} legs wrapped around {other:direct-object}",
                         top, bottom);
     }
@@ -94,7 +94,7 @@ public class BehindFootjob extends AbstractBehindStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format(
+            c.write(bottom, Formatter.format(
                             "{self:SUBJECT-ACTION:summon} what little willpower {self:pronoun-action:have}"
                             + " left and {self:pronoun-action:grab} {other:name-possessive} feet and pull"
                             + " them off {self:name-possessive} crotch. Taking advantage"
@@ -124,12 +124,12 @@ public class BehindFootjob extends AbstractBehindStance {
     @Override
     public void struggle(Combat c, Character struggler) {
         if (struggler.hasDick()) {
-            c.write(struggler, Global.format("{self:SUBJECT-ACTION:attempt} to twist out of {other:name-possessive} grip, but "
+            c.write(struggler, Formatter.format("{self:SUBJECT-ACTION:attempt} to twist out of {other:name-possessive} grip, but "
                             + " {other:pronoun-action:wraps} {other:possessive} legs around {self:possessive} waist and steps "
                             + "on {self:possessive} cock hard, making {self:direct-object} yelp.", struggler, top));
             struggler.body.pleasure(top, top.body.getRandom("feet"), struggler.body.getRandomCock(), Random.random(6, 11), c);
         } else {
-            c.write(struggler, Global.format("{self:SUBJECT-ACTION:attempt} to twist out of {other:name-possessive} grip, but "
+            c.write(struggler, Formatter.format("{self:SUBJECT-ACTION:attempt} to twist out of {other:name-possessive} grip, but "
                             + " {other:pronoun-action:wrap} {other:possessive} legs around {self:possessive} waist and digs {other:possessive} "
                             + "heels into {self:possessive} pussy, making {self:direct-object} yelp.", struggler, top));
             struggler.body.pleasure(top, top.body.getRandom("feet"), struggler.body.getRandomPussy(), Random
@@ -140,7 +140,7 @@ public class BehindFootjob extends AbstractBehindStance {
 
     @Override
     public void escape(Combat c, Character escapee) {
-        c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
+        c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
                         + " {other:direct-object} behind {self:direct-object} with {other:possessive} long legs wrapped around {self:possessive} waist securely, there is nothing {self:pronoun} can do.",
                         escapee, top));
         super.escape(c, escapee);

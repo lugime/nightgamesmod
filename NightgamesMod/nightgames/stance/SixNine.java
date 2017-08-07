@@ -7,7 +7,7 @@ import java.util.List;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class SixNine extends AbstractBehindStance {
     public SixNine(Character top, Character bottom) {
@@ -28,7 +28,7 @@ public class SixNine extends AbstractBehindStance {
         if (top.human()) {
             return String.format("You are on top of %s in the 69 position. %s %s is right in front of your face "
                             + "and you can feel %s breath on your %s.", bottom.nameDirectObject(),
-                            Global.capitalizeFirstLetter(bottom.possessiveAdjective()), bottomParts,
+                            Formatter.capitalizeFirstLetter(bottom.possessiveAdjective()), bottomParts,
                             bottom.possessiveAdjective(), topParts);
         } else {
             return String.format("%s and %s are on the floor in 69 position. "
@@ -173,7 +173,7 @@ public class SixNine extends AbstractBehindStance {
 
     @Override
     public void escape(Combat c, Character escapee) {
-        c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
+        c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
                         + " {other:direct-object} sitting firmly on {self:possessive} chest, there is nothing {self:pronoun} can do.",
                         escapee, top));
         super.escape(c, escapee);

@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.status.Enthralled;
@@ -54,7 +54,7 @@ public class ArcaneMod extends PartMod {
             opponent.drainMojo(c, self, strength);
             if (self.isPet()) {
                 Character master = ((PetCharacter) self).getSelf().owner();
-                c.write(self, Global.format("The energy seems to flow through {self:direct-object} and into {self:possessive} {other:master}.", self, master));
+                c.write(self, Formatter.format("The energy seems to flow through {self:direct-object} and into {self:possessive} {other:master}.", self, master));
                 master.buildMojo(c, strength);
             }
             if (Random.random(8) == 0 && !opponent.wary()) {

@@ -7,6 +7,7 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.skills.TacticGroup;
 import nightgames.skills.Tactics;
@@ -15,8 +16,8 @@ public class SwitchTacticsButton extends KeyableButton {
     private static final long serialVersionUID = -3949203523669294068L;
     private String label;
     public SwitchTacticsButton(TacticGroup group) {
-        super(Global.capitalizeFirstLetter(group.name()));
-        label = Global.capitalizeFirstLetter(group.name());
+        super(Formatter.capitalizeFirstLetter(group.name()));
+        label = Formatter.capitalizeFirstLetter(group.name());
         getButton().setBorderPainted(false);
         getButton().setOpaque(true);
         getButton().setFont(new Font("Baskerville Old Face", Font.PLAIN, 14));
@@ -33,7 +34,7 @@ public class SwitchTacticsButton extends KeyableButton {
         getButton().setForeground(foregroundColor(bgColor));
         setBorder(new LineBorder(getButton().getBackground(), 3));
         int nSkills = Global.gui().nSkillsForGroup(group);
-        getButton().setText(Global.capitalizeFirstLetter(group.name()) + " [" + nSkills + "]");
+        getButton().setText(Formatter.capitalizeFirstLetter(group.name()) + " [" + nSkills + "]");
         if (nSkills == 0 && group != TacticGroup.all) {
             getButton().setEnabled(false);
             getButton().setForeground(Color.WHITE);

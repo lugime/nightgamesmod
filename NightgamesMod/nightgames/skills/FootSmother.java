@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.BodyFetish;
@@ -40,9 +40,9 @@ public class FootSmother extends Skill {
         int m = 0;
         m = 8 + Random.random(6);
         if (getSelf().human()) {
-            c.write(getSelf(), Global.format(deal(c, 0, Result.normal, target), getSelf(), target));
+            c.write(getSelf(), Formatter.format(deal(c, 0, Result.normal, target), getSelf(), target));
         } else {
-            c.write(getSelf(), Global.format(receive(c, 0, Result.normal, target), getSelf(), target));
+            c.write(getSelf(), Formatter.format(receive(c, 0, Result.normal, target), getSelf(), target));
         }
         target.temptWithSkill(c, getSelf(), getSelf().body.getRandom("feet"), m, this);
         if (Random.random(100) < 30 + 2 * getSelf().get(Attribute.Fetish)) {
@@ -101,7 +101,7 @@ public class FootSmother extends Skill {
                                 + target.body.getRandomPussy().getFluids(target) + " puddles underneath {other:direct-object}";
             }
         }
-        return Global.format(message + parts + ".", getSelf(), target);
+        return Formatter.format(message + parts + ".", getSelf(), target);
     }
 
     @Override

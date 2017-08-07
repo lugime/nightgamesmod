@@ -8,7 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class Feral extends Status {
@@ -21,7 +21,7 @@ public class Feral extends Status {
     @Override
     public String describe(Combat c) {
         return String.format("%s seems beyond reason in %s feral lust.\n",
-                        Global.capitalizeFirstLetter(affected.subject()), affected.possessiveAdjective());
+                        Formatter.capitalizeFirstLetter(affected.subject()), affected.possessiveAdjective());
     }
 
     @Override

@@ -6,7 +6,7 @@ import nightgames.characters.body.PussyPart;
 import nightgames.characters.body.mods.GooeyMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.status.Stsflag;
 
@@ -74,7 +74,7 @@ public class ToggleSlimePussy extends Skill {
             getSelf().body.add(PussyPart.generic.applyMod(GooeyMod.INSTANCE));
         }
         if (!target.human() || !target.is(Stsflag.blinded))
-            c.write(getSelf(), Global.format(msg, getSelf(), target));
+            c.write(getSelf(), Formatter.format(msg, getSelf(), target));
         else 
             printBlinded(c);
         return true;

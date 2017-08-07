@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingSlot;
@@ -158,7 +158,7 @@ public class Squeeze extends Skill {
             return String.format("%s grins menacingly and firmly grabs %s nuts. %s squeezes as hard as "
                             + "%s can, but %s hardly %s it.", getSelf().subject(),
                             target.nameOrPossessivePronoun(),
-                            Global.capitalizeFirstLetter(getSelf().subject()),
+                            Formatter.capitalizeFirstLetter(getSelf().subject()),
                             getSelf().pronoun(), target.pronoun(), target.action("feel"));
         } else if (modifier == Result.item) {
             return String.format("%s grabs %s crotch through %s %s, but %s can barely feel it.",
@@ -169,7 +169,7 @@ public class Squeeze extends Skill {
             return String.format("%s reaches between %s legs and grabs %s exposed balls. %s "
                             + "in pain as %s pulls and squeezes them.", getSelf().subject(),
                             target.nameOrPossessivePronoun(), target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.subjectAction("writhe")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("writhe")),
                             getSelf().subject());
         }
     }

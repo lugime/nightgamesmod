@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.stance.IncubusEmbrace;
 import nightgames.stance.Position;
 import nightgames.stance.Stance;
@@ -65,7 +65,7 @@ public class Embrace extends Skill {
 
         if (selfCatches) {
             c.write(getSelf(),
-                            Global.format("%s Now properly seated, {self:subject-action:continue|continues}"
+                            Formatter.format("%s Now properly seated, {self:subject-action:continue|continues}"
                                             + " {self:possessive} bouncing movements while pressing {other:name-possessive}"
                                             + " head to {self:possessive} chest. Meanwhile, {self:possessive}"
                                             + " {self:body-part:wings} wrap around {other:direct-object}, holding"
@@ -75,7 +75,7 @@ public class Embrace extends Skill {
                         && c.getStance().penetratedBy(c, target, getSelf())) {
             if (target.hasDick()) {
                 next = new IncubusEmbrace(getSelf(), target, () -> {
-                    c.write(getSelf(), Global.format("{self:NAME-POSSESSIVE} {self:body-part:tail}"
+                    c.write(getSelf(), Formatter.format("{self:NAME-POSSESSIVE} {self:body-part:tail}"
                                     + " reaches around and opens up in front of {other:name-possessive}"
                                     + " hard {other:body-part:cock}. In a quick motion, the turgid shaft"
                                     + " is swallowed up completely. The bulbous head at the end of the"
@@ -85,7 +85,7 @@ public class Embrace extends Skill {
                 }, Stsflag.tailsucked);
             } else if (c.getStance().anallyPenetrated(c, target) && target.hasPussy()) {
                 next = new IncubusEmbrace(getSelf(), target, () -> {
-                    c.write(getSelf(), Global.format("{self:NAME-POSSESSIVE} prehensile"
+                    c.write(getSelf(), Formatter.format("{self:NAME-POSSESSIVE} prehensile"
                                     + " {self:body-part:tail} snakes around {other:name-possessive}"
                                     + " waist and then downward between {other:possessive} legs."
                                     + " Having quickly found its target and coated it in copious"
@@ -115,7 +115,7 @@ public class Embrace extends Skill {
         switch (pos.en) {
             case cowgirl:
                 assert selfCatches;
-                return Global.format(
+                return Formatter.format(
                                 "{self:SUBJECT-ACTION:pull|pulls} {other:name-possessive}"
                                                 + " upper body up to {self:possessive} own by {other:possessive}"
                                                 + " shoulders. One hand slips behind {other:name-possessive} head and"
@@ -127,7 +127,7 @@ public class Embrace extends Skill {
                                 getSelf(), target);
             case coiled:
                 assert selfCatches;
-                return Global.format(
+                return Formatter.format(
                                 "{self:NAME-POSSESSIVE} arms and legs pull even tighter around"
                                                 + " {other:name-do}. Then, quickly and efficiently,"
                                                 + " {self:pronoun-action:roll|rolls} %s over, seating"
@@ -138,7 +138,7 @@ public class Embrace extends Skill {
                                 getSelf(), target, c.bothDirectObject(target));
             case flying:
                 if (pos.penetrated(c, getSelf())) {
-                    return Global.format(
+                    return Formatter.format(
                                     "A powerful fear seizes {other:name-do} as"
                                                     + " {self:subject} suddenly {self:action:swoop|swoops} down to"
                                                     + " the ground. {self:PRONOUN-ACTION:are|is} skilled enough to"
@@ -154,7 +154,7 @@ public class Embrace extends Skill {
             case doggy:
             case anal:
                 assert !selfCatches;
-                return Global.format("{self:SUBJECT-ACTION:lean} forward and {self:action:grab}"
+                return Formatter.format("{self:SUBJECT-ACTION:lean} forward and {self:action:grab}"
                                 + " {other:subject} %s. {self:PRONOUN} then hoists %s back upright and"
                                 + " {self:action:wrap} {self:possessive} wings around {other:name-do}, continuing"
                                 + " {self:possessive} thrusts with new vigor.", getSelf(), target, target.hasBreasts() ?

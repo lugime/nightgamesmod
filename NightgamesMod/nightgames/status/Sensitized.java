@@ -8,6 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.json.JsonUtils;
 
@@ -35,7 +36,7 @@ public class Sensitized extends DurationStatus {
     public String initialMessage(Combat c, Optional<Status> replacement) {
         if (replacement.isPresent())
             return "";
-        return Global.format(String.format("{self:NAME-POSSESSIVE} groans as {self:possessive} %s grows hot.",
+        return Formatter.format(String.format("{self:NAME-POSSESSIVE} groans as {self:possessive} %s grows hot.",
                         part.describe(affected)), affected, c.getOpponent(affected));
     }
 

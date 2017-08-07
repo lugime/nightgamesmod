@@ -5,7 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.Lethargic;
 
 public class SpiralThrust extends Thrust {
@@ -77,7 +77,7 @@ public class SpiralThrust extends Thrust {
             return "You unleash your strongest technique into " + target.getName()
                             + "'s ass, spiraling your hips and stretching her tight sphincter.";
         } else if (modifier == Result.reverse) {
-            return Global.format("As you bounce on " + target.getName()
+            return Formatter.format("As you bounce on " + target.getName()
                             + "'s steaming pole, you feel a power welling up inside you. You put everything you have into moving your hips circularly, "
                             + "rubbing every inch of her cock with your hot slippery "
                             + getSelfOrgan(c, target).fullDescribe(getSelf()) + ".", getSelf(), target);
@@ -95,10 +95,10 @@ public class SpiralThrust extends Thrust {
             return String.format("%s drills into %s ass with extraordinary power. %s head seems to go"
                             + " blank and %s %s face down to the ground as %s arms turn to jelly and give out.",
                             getSelf().subject(), target.nameOrPossessivePronoun(),
-                            Global.capitalizeFirstLetter(target.nameOrPossessivePronoun()),
+                            Formatter.capitalizeFirstLetter(target.nameOrPossessivePronoun()),
                             target.pronoun(), target.action("fall"), target.possessiveAdjective());
         } else if (modifier != Result.reverse) {
-            return Global.format(
+            return Formatter.format(
                             "The movements of {self:name-possessive} cock suddenly change. {self:PRONOUN} suddenly begins "
                             + "drilling {other:name-possessive} poor pussy with an unprecedented passion. "
                                             + "The only thing {other:subject} can do is bite {other:possessive} lips and try to not instantly cum.",

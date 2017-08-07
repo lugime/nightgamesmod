@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.nskills.tags.SkillTag;
@@ -115,7 +115,7 @@ public class Knee extends Skill {
                             + "to close %s legs, but %s holds them open.",
                             getSelf().subject(), getSelf().possessiveAdjective(),
                             target.nameOrPossessivePronoun(), victim,
-                            Global.capitalizeFirstLetter(target.subjectAction("cry", "cries")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("cry", "cries")),
                             target.possessiveAdjective(), getSelf().subject());
         } else {
             return String.format("%s steps in close and brings %s knee up between %s legs, "
@@ -123,7 +123,7 @@ public class Knee extends Skill {
                             + "intense pain in %s abdomen.", getSelf().subject(),
                             getSelf().possessiveAdjective(), target.nameOrPossessivePronoun(),
                             target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.subjectAction("groan")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("groan")),
                             target.action("collapse"), target.possessiveAdjective());
         }
     }

@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -108,7 +108,7 @@ public class MagicMissile extends Skill {
             return String.format("%s casts a quick spell and fires a bolt of magic into %s vulnerable "
                             + "groin. %s %s injured plums as pain saps the strength from %s "
                             + "legs.", getSelf().subject(), target.nameOrPossessivePronoun(),
-                            Global.capitalizeFirstLetter(target.subjectAction("cup")), target.possessiveAdjective(),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("cup")), target.possessiveAdjective(),
                             target.possessiveAdjective());
         } else {
             return String.format("%s hand glows as %s casts a spell. Before %s can react, %s "

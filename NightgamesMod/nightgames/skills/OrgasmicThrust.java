@@ -5,7 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 
@@ -64,11 +64,11 @@ public class OrgasmicThrust extends Thrust {
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.anal) {
-            return Global.format("As {self:pronoun-action:are|is} about to cum, {self:subject} rapidly and almost involuntarily "
+            return Formatter.format("As {self:pronoun-action:are|is} about to cum, {self:subject} rapidly and almost involuntarily "
                             + "{self:action:pump|pumps} {other:name-possessive} ass with {self:possessive} rock hard cock. "
                             + "The only thing {other:pronoun} can manage to do is try and hold on.", getSelf(), target);
         } else {
-            return Global.format("As {self:pronoun-action:are|is} about to cum, {self:subject} rapidly and almost involuntarily "
+            return Formatter.format("As {self:pronoun-action:are|is} about to cum, {self:subject} rapidly and almost involuntarily "
                             + "{self:action:pump|pumps} {other:name-possessive} hot sex with {self:possessive} rock hard cock. "
                             + "The only thing {other:pronoun} can manage to do is try and hold on.", getSelf(), target);
         }

@@ -1,7 +1,7 @@
 package nightgames.characters.body;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class FacePart extends GenericBodyPart {
     private double femininity;
@@ -34,7 +34,7 @@ public class FacePart extends GenericBodyPart {
         } else {
             desc = "{self:PRONOUN-ACTION:have|has} a beautiful face at the height of femininity.";
         }
-        String parsedDesc = Global.format(desc, c, c);
+        String parsedDesc = Formatter.format(desc, c, c);
         b.append(parsedDesc);
     }
 

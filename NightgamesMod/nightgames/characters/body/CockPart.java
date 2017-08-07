@@ -10,7 +10,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -74,7 +74,7 @@ public class CockPart extends GenericBodyPart {
             if (self.has(Trait.polecontrol)) {
                 desc += "expert ";
             }
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "{self:SUBJECT-ACTION:use|uses} {self:possessive} " + desc
                                             + "cock control to grind against {other:name-possessive} inner walls, making {other:possessive} knuckles whiten as {other:pronoun} {other:action:moan|moans} uncontrollably.",
                             self, opponent));
@@ -93,7 +93,7 @@ public class CockPart extends GenericBodyPart {
         double bonus = super.applyReceiveBonuses(self, opponent, target, damage, c);
         if ((opponent.has(Trait.dickhandler) || opponent.has(Trait.anatomyknowledge)) && opponent.canRespond() && c.getStance().mobile(opponent)) {
             c.write(opponent,
-                            Global.format("{other:NAME-POSSESSIVE} expert handling of {self:name-possessive} cock causes {self:subject} to shudder uncontrollably.",
+                            Formatter.format("{other:NAME-POSSESSIVE} expert handling of {self:name-possessive} cock causes {self:subject} to shudder uncontrollably.",
                                             self, opponent));
             if (opponent.has(Trait.dickhandler)) {
                 bonus += 5;
@@ -104,7 +104,7 @@ public class CockPart extends GenericBodyPart {
         }
         if (self.has(Trait.druglacedprecum) && !opponent.isPartProtected(target)) {
             opponent.add(c, new Sensitized(opponent, target, .2, 2.0, 20));
-            c.write(self, Global.format("{self:NAME-POSSESSIVE} drug-laced precum is affecting {other:direct-object}.",
+            c.write(self, Formatter.format("{self:NAME-POSSESSIVE} drug-laced precum is affecting {other:direct-object}.",
                             self, opponent));
         }
         return bonus;

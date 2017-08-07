@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.BehindFootjob;
@@ -81,14 +81,14 @@ public class HeelGrind extends Skill {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "You wrap your legs around {other:name-possessive} waist and press your heel gently into {other:possessive} cunt. Locking your ankles to keep {other:possessive} held in place, you start to gently gyrate your heel against {other:possessive} wet lips. Cupping each of {other:possessive} {other:body-part:breasts} with your hands, you start to pull and play with {other:name-possessive} nipples between your fingers. Your heel now coated in {other:possessive} wetness, you apply even more pressure and speed as you feel {other:subject} starting to hump it on {other:possessive} own.",
                         getSelf(), target);
     }
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:subject} wraps {self:possessive} legs around {other:name-possessive} waist and "
                         + "presses {self:possessive} soft heel against {other:possessive} pussy, eliciting a gasp. "
                         + "{self:SUBJECT} grins at {other:name-possessive} reaction while locking {self:possessive} feet "

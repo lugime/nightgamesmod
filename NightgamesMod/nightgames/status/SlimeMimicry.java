@@ -8,13 +8,13 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class SlimeMimicry extends DurationStatus {
     private final String mimickedName;
 
     public SlimeMimicry(String name, Character affected, int duration) {
-        super("Mimicry: " + Global.capitalizeFirstLetter(name), affected, duration);
+        super("Mimicry: " + Formatter.capitalizeFirstLetter(name), affected, duration);
         this.mimickedName = name;
         this.flag(Stsflag.mimicry);
         this.flag(Stsflag.form);
@@ -22,12 +22,12 @@ public class SlimeMimicry extends DurationStatus {
 
     @Override
     public String initialMessage(Combat c, Optional<Status> replacement) {
-        return Global.format("{self:SUBJECT} started mimicking a %s.", affected, c.getOpponent(affected), mimickedName);
+        return Formatter.format("{self:SUBJECT} started mimicking a %s.", affected, c.getOpponent(affected), mimickedName);
     }
 
     @Override
     public String describe(Combat c) {
-    	return Global.format("{self:SUBJECT-ACTION:are|is} mimicking a %s.", affected, c.getOpponent(affected), mimickedName);
+    	return Formatter.format("{self:SUBJECT-ACTION:are|is} mimicking a %s.", affected, c.getOpponent(affected), mimickedName);
     }
 
     @Override

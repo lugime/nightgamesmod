@@ -2,7 +2,7 @@ package nightgames.nskills.tags;
 
 import java.util.Optional;
 
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.struct.SkillResultStruct;
 
 public class BodyPartSkillTag extends SkillTag {
@@ -16,7 +16,7 @@ public class BodyPartSkillTag extends SkillTag {
     };
     public BodyPartSkillTag(String type) {
         this.type = type;
-        this.name = "Uses"+Global.capitalizeFirstLetter(type);
+        this.name = "Uses"+ Formatter.capitalizeFirstLetter(type);
     }
 
     @Override

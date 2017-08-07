@@ -8,7 +8,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class FieryMod extends PartMod {
     public static final FieryMod INSTANCE = new FieryMod();
@@ -47,7 +47,7 @@ public class FieryMod extends PartMod {
                 opponent.pain(c, self, 20 + self.get(Attribute.Ki) / 2);
             }
         } else {
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "The intense heat emanating from {self:possessive} %s overpowers {other:possessive} senses now that {other:pronoun} cannot respond.", self, opponent, part.getType()));
             return 20;
         }

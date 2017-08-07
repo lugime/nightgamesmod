@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -109,7 +109,7 @@ public class Kiss extends Skill {
         if (getSelf().has(Trait.TenderKisses) && target.is(Stsflag.charmed) && Random.random(3) == 0) {
             DurationStatus charmed = (DurationStatus) target.getStatus(Stsflag.charmed);
             charmed.setDuration(charmed.getDuration() + Random.random(1, 2));
-            c.write(getSelf(), Global.format("<b>The exquisite tenderness of {self:name-possessive} kisses"
+            c.write(getSelf(), Formatter.format("<b>The exquisite tenderness of {self:name-possessive} kisses"
                             + " reinforces the haze clouding {other:name-possessive} mind.</b>", getSelf(), target));
         }
         BodyPart selfMouth = getSelf().body.getRandom("mouth");
@@ -213,11 +213,11 @@ public class Kiss extends Skill {
                             getSelf().subject(), target.nameDirectObject(), target.subject(),
                             target.action("try", "tries"), getSelf().possessiveAdjective(),
                             target.possessiveAdjective(), target.pronoun(), target.action("are", "is"),
-                            Global.capitalizeFirstLetter(target.subjectAction("start")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("start")),
                             target.pronoun(), target.action("realize"), getSelf().subject(),
                             target.directObject(), getSelf().possessiveAdjective(), 
                             target.nameOrPossessivePronoun(), c.bothPossessive(target), 
-                            Global.capitalizeFirstLetter(target.subjectAction("try", "tries")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("try", "tries")),
                             getSelf().nameOrPossessivePronoun(), target.directObject());
         }
         if (modifier == Result.special) {

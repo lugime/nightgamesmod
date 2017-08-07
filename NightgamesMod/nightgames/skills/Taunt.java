@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Charmed;
 import nightgames.status.Enthralled;
@@ -52,12 +52,12 @@ public class Taunt extends Skill {
             target.loseWillpower(c, willpowerLoss, 0, false, " (Biting Words)");
         }
         if (getSelf().has(Trait.commandingvoice) && Random.random(3) == 0) {
-            c.write(getSelf(), Global.format("{other:SUBJECT-ACTION:speak|speaks} with such unquestionable"
+            c.write(getSelf(), Formatter.format("{other:SUBJECT-ACTION:speak|speaks} with such unquestionable"
                             + " authority that {self:subject-action:don't|doesn't} even consider not obeying."
                             , getSelf(), target));
             target.add(c, new Enthralled(target, getSelf(), 1, false));
         } else if (getSelf().has(Trait.MelodiousInflection) && !target.is(Stsflag.charmed) && Random.random(3) == 0) {
-            c.write(getSelf(), Global.format("Something about {self:name-possessive} words, the"
+            c.write(getSelf(), Formatter.format("Something about {self:name-possessive} words, the"
                             + " way {self:possessive} voice rises and falls, {self:possessive}"
                             + " pauses and pitch... {other:SUBJECT} soon {other:action:find|finds}"
                             + " {other:reflective} utterly hooked.", getSelf(), target));

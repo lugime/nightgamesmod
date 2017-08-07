@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 
 public class InjectAntidote extends Skill {
@@ -47,13 +47,13 @@ public class InjectAntidote extends Skill {
     }
 
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "You inject yourself with an antidote. The drug quickly purges any foreign influence from your system.",
                         getSelf(), target);
     }
 
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:SUBJECT} jabs {self:reflective} with a needle, sighing as {self:pronoun} pushes the needle down. Before {other:name-possessive} eyes, {self:possessive} entire bodily system is purged of all factors, both begin and malign.",
                         getSelf(), target);
     }

@@ -9,7 +9,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.damage.DamageType;
@@ -36,7 +36,7 @@ public class DemonicMod extends PartMod {
 
     public double applyBonuses(Combat c, Character self, Character opponent, BodyPart part, BodyPart target, double damage) {
         if (opponent.has(Trait.succubus)) {
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "{self:NAME-POSSESSIVE} %s does nothing special against one of {self:possessive} own kind.", self, opponent, part.describe(self)));
             return 0;
         }
@@ -50,8 +50,9 @@ public class DemonicMod extends PartMod {
         } else {
             boolean bottomless = self.has(Trait.BottomlessPit);
             String domSubText = c.getStance().dom(self) ? ("{self:pronoun-action:" + (part.isType("mouth") ? "suck" : "ride") + "} {other:direct-object}") : "{other:pronoun-action:fuck} {self:direct-object}";
-            String fuckingText = Global.format("{self:POSSESSIVE} hot flesh kneads {other:possessive} %s as " + domSubText + ", drawing ", self, opponent, target.describe(opponent));
-            String normalText = Global.format("As {self:possessive} %s touches {other:poss-pronoun}, {self:pronoun-action:draw} large ", self, opponent, part.getType(), target.describe(opponent));
+            String fuckingText = Formatter
+                            .format("{self:POSSESSIVE} hot flesh kneads {other:possessive} %s as " + domSubText + ", drawing ", self, opponent, target.describe(opponent));
+            String normalText = Formatter.format("As {self:possessive} %s touches {other:poss-pronoun}, {self:pronoun-action:draw} large ", self, opponent, part.getType(), target.describe(opponent));
             c.write(self, (fucking ? fuckingText : normalText) + String.format("gouts of life energy out of %s %s which is %sabsorbed by %s %s%s.",
                             opponent.possessiveAdjective(), target.describe(opponent),
                             bottomless ? "greedily " : "",
@@ -75,7 +76,7 @@ public class DemonicMod extends PartMod {
             opponent.drain(c, self, strength);
             if (self.isPet()) {
                 Character master = ((PetCharacter) self).getSelf().owner();
-                c.write(self, Global.format("The stolen strength seems to be shared with {self:possessive} {other:master} through {self:possessive} infernal connection.", self, master));
+                c.write(self, Formatter.format("The stolen strength seems to be shared with {self:possessive} {other:master} through {self:possessive} infernal connection.", self, master));
                 master.heal(c, strength);
             }
             for (int i = 0; i < 10; i++) {

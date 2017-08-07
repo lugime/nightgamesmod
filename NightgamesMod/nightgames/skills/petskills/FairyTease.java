@@ -2,7 +2,7 @@ package nightgames.skills.petskills;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -30,30 +30,31 @@ public class FairyTease extends SimpleEnemySkill {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             int m = (int) (Random.random(10, 16) + Math.sqrt(getSelf().getLevel())) / 2;
             if (target.crotchAvailable() && !c.getStance().penisInserted(target) && target.hasDick()) {
-                c.write(getSelf(), Global.format("{self:SUBJECT} hugs {other:name-possessive} dick and rubs it with "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} hugs {other:name-possessive} dick and rubs it with "
                                     + "{self:possessive} entire body until {other:pronoun-action:pull|pulls} {self:direct-object} off.",
                                     getSelf(), target));
                 m += 5;
                 target.body.pleasure(getSelf(), getSelf().body.getRandom("skin"), target.body.getRandomCock(), m, c);
             } else if (target.hasDick() && !c.getStance().penisInserted(target) ) {
-                c.write(getSelf(), Global.format("{self:SUBJECT} slips into {other:name-possessive} %s and plays with "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} slips into {other:name-possessive} %s and plays with "
                                 + "{other:possessive} penis until {other:pronoun-action:manage|manages} to remove {self:direct-object}.",
                                 getSelf(), target, target.getOutfit().getTopOfSlot(ClothingSlot.bottom).getName()));
                 target.body.pleasure(getSelf(), getSelf().body.getRandom("skin"), target.body.getRandomCock(), m, c);
             } else if (target.breastsAvailable()) {
-                c.write(getSelf(), Global.format("{self:SUBJECT} hugs {other:name-possessive} chest and rubs {other:possessive} nipples with "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} hugs {other:name-possessive} chest and rubs {other:possessive} nipples with "
                                 + "{self:possessive} entire body until {other:pronoun-action:pull|pulls} {self:direct-object} off.",
                                 getSelf(), target));
                 m += 5;
                 target.body.pleasure(getSelf(), getSelf().body.getRandom("skin"), target.body.getRandomBreasts(), m, c);
             } else {
-                c.write(getSelf(), Global.format("{self:SUBJECT} slips into {other:name-possessive} %s and plays with "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} slips into {other:name-possessive} %s and plays with "
                                 + "{other:possessive} sensitive nipples until {other:pronoun-action:manage|manages} to remove {self:direct-object}.",
                                 getSelf(), target, target.getOutfit().getTopOfSlot(ClothingSlot.top).getName()));
                 target.body.pleasure(getSelf(), getSelf().body.getRandom("skin"), target.body.getRandomBreasts(), m, c);
             }
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT} flies around the edge of the fight looking for an opening.", getSelf(), target));
+            c.write(getSelf(), Formatter
+                            .format("{self:SUBJECT} flies around the edge of the fight looking for an opening.", getSelf(), target));
             return false;
         }
         return true;

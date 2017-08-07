@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.damage.DamageType;
 
 public class Atrophy extends DurationStatus {
@@ -34,7 +34,7 @@ public class Atrophy extends DurationStatus {
 
     @Override
     public String toString() {
-        return "Weakened from " + source + " (" + Global.formatDecimal(magnitude) + " x " + getDuration() + ")";
+        return "Weakened from " + source + " (" + Formatter.formatDecimal(magnitude) + " x " + getDuration() + ")";
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Atrophy extends DurationStatus {
     @Override
     public String initialMessage(Combat c, Optional<Status> replacement) {
         return String.format("%s %sweakening from %s.\n", affected.subjectAction("are", "is"), replacement.isPresent() ? "" : "now ",
-                        source + " (" + Global.formatDecimal(magnitude) + " x " + getDuration() + ")");
+                        source + " (" + Formatter.formatDecimal(magnitude) + " x " + getDuration() + ")");
     }
 
     @Override

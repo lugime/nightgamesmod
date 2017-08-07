@@ -13,6 +13,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.skills.AssFuck;
 import nightgames.skills.Carry;
@@ -78,7 +79,7 @@ public class Frenzied extends DurationStatus {
     @Override
     public String initialMessage(Combat c, Optional<Status> replacement) {
         if (affected.has(Trait.Rut) && !affected.human()) {
-            return Global.format("There's a frenzied look in {self:name-possessive} eyes as they zero in on {other:name-possessive} crotch. "
+            return Formatter.format("There's a frenzied look in {self:name-possessive} eyes as they zero in on {other:name-possessive} crotch. "
                             + "This could be bad.", affected, c.getOpponent(affected));
         }
         return String.format("%s mind blanks, leaving only the bestial need to breed.",
@@ -95,7 +96,7 @@ public class Frenzied extends DurationStatus {
                             affected.getName(), affected.possessiveAdjective());
         }
         if (affected.has(Trait.PrimalHeat)) {
-            msg += Global.format(" Somehow {self:possessive} crazed animal desperation makes {self:direct-object} seem more attractive than ever.", affected, c.getOpponent(affected));
+            msg += Formatter.format(" Somehow {self:possessive} crazed animal desperation makes {self:direct-object} seem more attractive than ever.", affected, c.getOpponent(affected));
         }
         return msg;
     }

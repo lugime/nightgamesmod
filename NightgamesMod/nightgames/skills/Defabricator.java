@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
 
@@ -63,7 +63,7 @@ public class Defabricator extends Skill {
                         + "The device's function is immediately revealed as %s clothes just vanish "
                         + "in the light. %s left naked in seconds.", getSelf().subject(),
                         target.nameDirectObject(), target.possessiveAdjective(), 
-                        Global.capitalizeFirstLetter(target.subjectAction("are", "is")));
+                        Formatter.capitalizeFirstLetter(target.subjectAction("are", "is")));
     }
 
 }

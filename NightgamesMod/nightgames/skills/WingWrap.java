@@ -5,7 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.stance.Stance;
 import nightgames.status.Stsflag;
@@ -56,7 +56,7 @@ public class WingWrap extends Skill {
             SubmissiveHold hold = new SubmissiveHold(getSelf());
             if (Skill.skillIsUsable(c, hold, target)) {
                 c.write(getSelf(),
-                                Global.format("Taking full advantage of {other:name-possessive}"
+                                Formatter.format("Taking full advantage of {other:name-possessive}"
                                                 + " surprise, {self:subject-action} uses more conventional means"
                                                 + " to secure an even better hold on {other:direct-object}!", getSelf(),
                                                 target));
@@ -109,7 +109,7 @@ public class WingWrap extends Skill {
             desc += "As the material of the wings settle on {other:name-possessive} skin,"
                             + " they begin to drain {other:direct-object} of {other:possessive}" + " Power!";
         }
-        return Global.format(desc, getSelf(), target);
+        return Formatter.format(desc, getSelf(), target);
     }
 
     @Override

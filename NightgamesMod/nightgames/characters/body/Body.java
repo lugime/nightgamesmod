@@ -26,10 +26,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
-import nightgames.global.DebugFlags;
-import nightgames.global.Flag;
-import nightgames.global.Global;
-import nightgames.global.Random;
+import nightgames.global.*;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.json.JsonUtils;
@@ -297,11 +294,11 @@ public class Body implements Cloneable {
         if (Global.checkFlag(Flag.systemMessages)) {
             message += String.format(" (%.01f)", hotness);
         }
-        return Global.format(message, character, other, startString, bodyString);
+        return Formatter.format(message, character, other, startString, bodyString);
     }
     private static final BodyPartSorter SORTER = new BodyPartSorter();
     public void describeBodyText(StringBuilder b, Character other, boolean notableOnly) {
-        b.append(Global.format("{self:POSSESSIVE} body has ", character, null));
+        b.append(Formatter.format("{self:POSSESSIVE} body has ", character, null));
         BodyPart previous = null;
         List<BodyPart> sortedParts = new ArrayList<>(getCurrentParts());
         sortedParts.sort(SORTER);
@@ -746,7 +743,7 @@ public class Body implements Cloneable {
             String battleString = String.format(
                             "%s%s %s</font> was pleasured by %s%s</font> for <font color='rgb(255,50,200)'>%d</font> "
                                             + "base:%.1f (%.1f%s) x multiplier: %.2f (1 + sen:%.1f + ple:%.1f + per:%.1f %s %s)%s\n",
-                            firstColor, Global.capitalizeFirstLetter(character.nameOrPossessivePronoun()),
+                            firstColor, Formatter.capitalizeFirstLetter(character.nameOrPossessivePronoun()),
                             target.describe(character), secondColor, pleasuredBy, result, base, magnitude, bonusString,
                             multiplier, sensitivity - 1, pleasure - 1, perceptionBonus - 1, stageString, dominanceString, 
                             staleString);
@@ -755,7 +752,7 @@ public class Body implements Cloneable {
             }
             Optional<BodyFetish> otherFetish = opponent.body.getFetish(target.getType());
             if (otherFetish.isPresent() && otherFetish.get().magnitude > .3 && perceptionlessDamage > 0 && skill != null && skill.getSelf().equals(character) && opponent != character && opponent.canRespond()) {
-                c.write(character, Global.format("Playing with {other:possessive} {other:body-part:%s} arouses {self:direct-object} almost as much as {other:direct-object}.", opponent, character, target.getType()));
+                c.write(character, Formatter.format("Playing with {other:possessive} {other:body-part:%s} arouses {self:direct-object} almost as much as {other:direct-object}.", opponent, character, target.getType()));
                 opponent.temptNoSkill(c, character, target, (int) Math.round(perceptionlessDamage * (otherFetish.get().magnitude - .2)));
             }
         } else {
@@ -767,7 +764,7 @@ public class Body implements Cloneable {
             String battleString = String.format(
                             "%s%s %s</font> was pleasured for <font color='rgb(255,50,200)'>%d</font> "
                                             + "base:%.1f (%.2f%s) x multiplier: %.2f (sen:%.1f + ple:%.1f + per:%.1f)\n",
-                            firstColor, Global.capitalizeFirstLetter(character.nameOrPossessivePronoun()),
+                            firstColor, Formatter.capitalizeFirstLetter(character.nameOrPossessivePronoun()),
                             target.describe(character), result, base, magnitude, bonusString, multiplier,
                             sensitivity - 1, pleasure - 1, perceptionBonus - 1);
             if (c != null) {
@@ -775,19 +772,20 @@ public class Body implements Cloneable {
             }
         }
         if (unsatisfied) {
-            c.write(character, Global.format("Foreplay doesn't seem to do it for {self:name-do} anymore. {self:PRONOUN-ACTION:clearly need|clearly needs} to fuck!", character, opponent));
+            c.write(character, Formatter.format("Foreplay doesn't seem to do it for {self:name-do} anymore. {self:PRONOUN-ACTION:clearly need|clearly needs} to fuck!", character, opponent));
         }
         if (staleMove && skill.user().human()) {
-            c.write(opponent, Global.format("This seems to be a getting bit boring for {other:direct-object}... Maybe it's time to switch it up?", opponent, character));
+            c.write(opponent, Formatter.format("This seems to be a getting bit boring for {other:direct-object}... Maybe it's time to switch it up?", opponent, character));
         }
         double percentPleasure = 100.0 * result / character.getArousal().max();
         if (character.has(Trait.sexualDynamo) && percentPleasure >= 5 && Random.random(4) == 0) {
-            c.write(character, Global.format("Sexual pleasure seems only to feed {self:name-possessive} ", character, opponent));
+            c.write(character, Formatter
+                            .format("Sexual pleasure seems only to feed {self:name-possessive} ", character, opponent));
             character.buildMojo(c, (int)Math.floor(percentPleasure));
         }
         if (character.has(Trait.showmanship) && percentPleasure >= 5 && opponent.isPet() && ((PetCharacter)opponent).getSelf().owner().equals(character)) {
             Character voyeur = c.getOpponent(character);
-            c.write(character, Global.format("{self:NAME-POSSESSIVE} moans as {other:subject-action:make|makes} a show of pleasing {other:possessive} {self:master} "
+            c.write(character, Formatter.format("{self:NAME-POSSESSIVE} moans as {other:subject-action:make|makes} a show of pleasing {other:possessive} {self:master} "
                             + "turns %s on immensely.", character, opponent, voyeur.nameDirectObject()));
             voyeur.temptWithSkill(c, character, null, Math.max(Random.random(14, 20), result / 3), skill);
         }
@@ -1177,7 +1175,7 @@ public class Body implements Cloneable {
             LinkedList<BodyPart> added = new LinkedList<>(r.added);
             LinkedList<BodyPart> removed = new LinkedList<>(r.removed);
             if (added.size() > 0 && removed.size() == 0) {
-                sb.append(Global.format("{self:NAME-POSSESSIVE} ", character, character));
+                sb.append(Formatter.format("{self:NAME-POSSESSIVE} ", character, character));
                 for (BodyPart p : added.subList(0, added.size() - 1)) {
                     sb.append(p.fullDescribe(character))
                       .append(", ");
@@ -1189,7 +1187,7 @@ public class Body implements Cloneable {
                                .fullDescribe(character));
                 sb.append(" disappeared.");
             } else if (removed.size() > 0 && added.size() == 0) {
-                sb.append(Global.format("{self:NAME-POSSESSIVE} ", character, character));
+                sb.append(Formatter.format("{self:NAME-POSSESSIVE} ", character, character));
                 for (BodyPart p : removed.subList(0, removed.size() - 1)) {
                     sb.append(p.fullDescribe(character))
                       .append(", ");
@@ -1201,7 +1199,7 @@ public class Body implements Cloneable {
                                  .fullDescribe(character));
                 sb.append(" reappeared.");
             } else if (removed.size() > 0 && added.size() > 0) {
-                sb.append(Global.format("{self:NAME-POSSESSIVE} ", character, character));
+                sb.append(Formatter.format("{self:NAME-POSSESSIVE} ", character, character));
                 for (BodyPart p : added.subList(0, added.size() - 1)) {
                     sb.append(p.fullDescribe(character))
                       .append(", ");
@@ -1228,10 +1226,11 @@ public class Body implements Cloneable {
                 sb.append(Global.prependPrefix(last.prefix(), last.fullDescribe(character)));
                 sb.append('.');
             }
-            Global.writeIfCombat(c, character, sb.toString());
+            Formatter.writeIfCombat(c, character, sb.toString());
         }
         for (PartModReplacement r : expiredMods) {
-            Global.writeIfCombat(c, character, Global.format("{self:NAME-POSSESSIVE} %s lost its %s.", character, character, r.getType(), r.getMod().describeAdjective(r.getType())));
+            Formatter.writeIfCombat(c, character, Formatter
+                            .format("{self:NAME-POSSESSIVE} %s lost its %s.", character, character, r.getType(), r.getMod().describeAdjective(r.getType())));
             modReplacements.get(r.getType()).remove(r);
         }
     }
@@ -1274,7 +1273,7 @@ public class Body implements Cloneable {
         }
         part.receiveCum(c, character, opponent, part);
         if (character.has(Trait.spiritphage)) {
-            c.write(character, "<br/><b>" + Global.capitalizeFirstLetter(character.subjectAction("glow", "glows")
+            c.write(character, "<br/><b>" + Formatter.capitalizeFirstLetter(character.subjectAction("glow", "glows")
                             + " with power as the cum is absorbed by " + character.possessiveAdjective() + " "
                             + part.describe(character) + ".</b>"));
             character.add(c, new Abuff(character, Attribute.Power, 5, 10));
@@ -1283,21 +1282,21 @@ public class Body implements Cloneable {
             character.buildMojo(c, 100);
         }
         if (opponent.has(Trait.hypnoticsemen)) {
-            c.write(character, Global.format(
+            c.write(character, Formatter.format(
                             "<br/><b>{other:NAME-POSSESSIVE} hypnotic semen takes its toll on {self:name-possessive} willpower, rendering {self:direct-object} doe-eyed and compliant.</b>",
                             character, opponent));
             character.loseWillpower(c, 10 + Random.random(10));
         }
         if (part.getType().equals("ass") || part.getType().equals("pussy")) {
             if (character.has(Trait.RapidMeiosis) && character.has(Trait.slime)) {
-                c.write(opponent, Global.format("{self:NAME-POSSESSIVE} hungry %s seems to vacuum {other:name-possessive} sperm into itself as {other:pronoun-action:cum|cums}. "
+                c.write(opponent, Formatter.format("{self:NAME-POSSESSIVE} hungry %s seems to vacuum {other:name-possessive} sperm into itself as {other:pronoun-action:cum|cums}. "
                                 + "As {other:pronoun-action:lay|lays} there heaving in exertion, {self:possessive} belly rapidly bloats up "
                                 + "as if going through 9 months of pregancy within seconds. With a groan, {self:pronoun-action:expel|expels} a massive quantity of slime onto the floor. "
                                 + "The slime seems to quiver for a second before reforming itself into an exact copy of {self:name-do}!", character, opponent, part.describe(character)));
                 c.addPet(character, Divide.makeClone(c, character).getSelf());
             }
             if (opponent.has(Trait.RapidMeiosis) && opponent.has(Trait.slime)) {
-                c.write(opponent, Global.format("After {other:name-possessive} gooey cum fills {self:name-possessive} %s, "
+                c.write(opponent, Formatter.format("After {other:name-possessive} gooey cum fills {self:name-possessive} %s, "
                                 + "{self:pronoun-action:feel|feels} {self:possessive} belly suddenly churn and inflate. "
                                 + "The faux-semen seems to be multiplying inside {self:direct-object}! "
                                 + "Without warning, the sticky liquid makes a quick exit out of {self:possessive} orfice "

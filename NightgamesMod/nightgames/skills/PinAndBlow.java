@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.HeldOral;
 import nightgames.stance.Stance;
@@ -83,12 +83,12 @@ public class PinAndBlow extends Skill {
         
         if( c.getStance().en == Stance.paizuripin)
         {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:free|frees} {other:possessive} cock from her breasts, and quickly {self:action:settle|settles} {self:possessive} head between {other:possessive} legs.",
                             getSelf(), target);
         }else
         {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:bow|bows} {other:name-do} over, and {self:action:settle|settles} {self:possessive} head between {other:possessive} legs.",
                             getSelf(), target);
         }                       

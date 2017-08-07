@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.stance.Mount;
@@ -90,7 +90,7 @@ public class ComeHither extends Skill {
             msg += "roll over on top of {other:direct-object}, holding {other:direct-object} down while"
                             + " kissing {other:direct-object} tenderly.";
         }
-        return Global.format(msg, getSelf(), target);
+        return Formatter.format(msg, getSelf(), target);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ComeHither extends Skill {
             msg += "flips the both of " + c.bothDirectObject(target) + " over so {other:subject-action:are|is}"
                             + " on {other:possessive} back, and leans in for a lustful kiss.";
         }
-        return Global.format(msg, getSelf(), target);
+        return Formatter.format(msg, getSelf(), target);
     }
 
 }

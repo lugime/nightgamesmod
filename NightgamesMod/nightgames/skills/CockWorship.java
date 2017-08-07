@@ -7,7 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.BodyFetish;
@@ -93,7 +93,7 @@ public class CockWorship extends Skill {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "You ecstatically crawl towards {other:name-do} and reverently hold {other:possessive} {other:body-part:cock} with your hands. "
                                         + "You carefully take {other:possessive} member into your {self:body-part:mouth} and start blowing {other:direct-object} for all you are worth. "
                                         + "Minutes pass and you lose yourself in sucking {other:name-possessive} divine shaft while idly playing with yourself. Finally, {other:subject} "
@@ -103,7 +103,7 @@ public class CockWorship extends Skill {
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:subject} ecstatically crawls to {other:subject} on {self:possessive} knees and reverently cups {other:possessive} {other:body-part:cock}"
                                         + "with {self:possessive} hands. {self:PRONOUN} carefully takes {other:possessive} member into {self:possessive} {self:body-part:mouth} and starts sucking on it "
                                         + "like it was the most delicious popsicle made. Minutes pass and {self:subject} continues blowing {other:possessive} shaft while idly playing with "

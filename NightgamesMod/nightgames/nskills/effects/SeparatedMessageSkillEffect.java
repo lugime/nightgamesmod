@@ -3,7 +3,7 @@ package nightgames.nskills.effects;
 import java.util.Optional;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.struct.SkillResultStruct;
 
 public class SeparatedMessageSkillEffect implements SkillEffect {
@@ -25,9 +25,9 @@ public class SeparatedMessageSkillEffect implements SkillEffect {
         Character self = results.getSelf().getCharacter();
         Character other = results.getOther().getCharacter();
         if (!self.human() && npcMessage.isPresent()) {
-            results.getCombat().write(self, Global.format(npcMessage.get(), self, other));
+            results.getCombat().write(self, Formatter.format(npcMessage.get(), self, other));
         } else {
-            results.getCombat().write(self, Global.format(message, self, other));
+            results.getCombat().write(self, Formatter.format(message, self, other));
         }
         return true;
     }

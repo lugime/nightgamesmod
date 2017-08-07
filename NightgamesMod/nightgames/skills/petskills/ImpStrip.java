@@ -8,7 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -51,11 +51,11 @@ public class ImpStrip extends SimpleEnemySkill {
         if (getSelf().check(Attribute.Cunning, difficulty)) {
             // should never be null here, since otherwise we can't use the skill          
             Clothing stripped = target.strip(targetSlot.get(), c);
-            c.write(getSelf(), Global.format("{self:SUBJECT} steals {other:name-possessive} %s and runs off with it.", 
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} steals {other:name-possessive} %s and runs off with it.",
                             getSelf(), target, stripped.getName()));
             target.emote(Emotion.nervous, 10);
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT} yanks on {other:name-possessive} %s ineffectually.",
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} yanks on {other:name-possessive} %s ineffectually.",
                             getSelf(), target, target.outfit.getTopOfSlot(targetSlot.orElse(ClothingSlot.top))));
             return false;
         }

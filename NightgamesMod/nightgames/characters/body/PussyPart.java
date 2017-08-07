@@ -10,7 +10,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class PussyPart extends GenericBodyPart {
@@ -105,7 +105,7 @@ public class PussyPart extends GenericBodyPart {
             if (self.has(Trait.holecontrol)) {
                 desc += "well-trained ";
             }
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "{self:SUBJECT-ACTION:use|uses} {self:possessive} " + desc
                                             + "vaginal muscles to milk {other:name-possessive} cock, adding to the pleasure.",
                             self, opponent));
@@ -121,7 +121,7 @@ public class PussyPart extends GenericBodyPart {
     public void tickHolding(Combat c, Character self, Character opponent, BodyPart otherOrgan) {
         super.tickHolding(c, self, opponent, otherOrgan);
         if (self.has(Trait.autonomousPussy)) {
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "{self:NAME-POSSESSIVE} " + fullDescribe(self)
                                             + " churns against {other:name-possessive} cock, "
                                             + "seemingly with a mind of its own. Warm waves of flesh rub against {other:possessive} shaft, elliciting groans of pleasure from {other:direct-object}.",
@@ -135,7 +135,7 @@ public class PussyPart extends GenericBodyPart {
         double bonus = super.applyReceiveBonuses(self, opponent, target, damage, c);
         if (opponent.canRespond() && (opponent.has(Trait.pussyhandler) || opponent.has(Trait.anatomyknowledge)) && c.getStance().mobile(opponent)) {
             c.write(opponent,
-                            Global.format("{other:NAME-POSSESSIVE} expert handling of {self:name-possessive} pussy causes {self:subject} to shudder uncontrollably.",
+                            Formatter.format("{other:NAME-POSSESSIVE} expert handling of {self:name-possessive} pussy causes {self:subject} to shudder uncontrollably.",
                                             self, opponent));
             if (opponent.has(Trait.pussyhandler)) {
                 bonus += 5;

@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.Aggressive;
 import nightgames.status.Stsflag;
 
@@ -38,13 +38,13 @@ public class Spores extends Skill {
     public boolean resolve(Combat c, Character target) {
         if (target.wary()) {
             c.write(getSelf(),
-                            Global.format("{self:SUBJECT-ACTION:release|releases} a mass of tiny particles, but "
+                            Formatter.format("{self:SUBJECT-ACTION:release|releases} a mass of tiny particles, but "
                                             + "{other:subject-action:avoid|avoids} breathing any of them in.",
                             getSelf(), target));
             return false;
         } else {
             c.write(getSelf(),
-                            Global.format("{self:SUBJECT-ACTION:release|releases} a mass of tiny particles, and "
+                            Formatter.format("{self:SUBJECT-ACTION:release|releases} a mass of tiny particles, and "
                                             + "{other:subject-action:are|is} forced to breathe them in. The scent"
                                             + " drives {other:direct-object} into a frenzy.", getSelf(), target));
             target.add(c, new Aggressive(target, getSelf().nameOrPossessivePronoun() + " spores", 5));

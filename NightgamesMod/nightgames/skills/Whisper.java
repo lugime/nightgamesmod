@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Enthralled;
 
@@ -92,7 +92,7 @@ public class Whisper extends Skill {
                             + " %s words echo through %s head and %s %s a"
                             + " strong compulsion to do what %s tells %s.", getSelf().subject(),
                             target.nameOrPossessivePronoun(), 
-                            Global.capitalizeFirstLetter(getSelf().possessiveAdjective()),
+                            Formatter.capitalizeFirstLetter(getSelf().possessiveAdjective()),
                                             target.possessiveAdjective(), target.pronoun(),
                                             target.action("feel"), getSelf().subject(),
                                             target.directObject());

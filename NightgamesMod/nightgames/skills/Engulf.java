@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Engulfed;
 import nightgames.stance.Stance;
@@ -53,7 +53,7 @@ public class Engulf extends CounterBase {
 
     @Override
     public String getBlockedString(Combat c, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:SUBJECT-ACTION:move|moves} to engulf {other:subject} "
                                         + "in {self:possessive} slime, but {other:pronoun} stays out of {self:possessive} reach.",
                         getSelf(), target);
@@ -76,14 +76,14 @@ public class Engulf extends CounterBase {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "You spread out your slime, getting ready to trap {other:name} in it.",
                         getSelf(), target);
     }
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:NAME}'s body spreads out across the floor. From {self:possessive} lowered position, "
                         + "{self:pronoun} smiles deviously up at {other:name-do}, goading {other:direct-object} into an attack.",
                         getSelf(), target);
@@ -109,7 +109,7 @@ public class Engulf extends CounterBase {
             msg += "pussy, ";
         msg += "ass and every other inch of {other:possessive} skin. ";
         msg += getSelf().getRandomLineFor(CharacterLine.ENGULF_LINER, c, target);
-        c.write(getSelf(), Global.format(msg, getSelf(), target));
+        c.write(getSelf(), Formatter.format(msg, getSelf(), target));
         c.setStance(new Engulfed(getSelf(), target), getSelf(), true);
         getSelf().emote(Emotion.dominant, 50);
         getSelf().emote(Emotion.horny, 30);

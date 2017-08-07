@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -209,7 +209,7 @@ public class AssJob extends Skill {
                                     getSelf().getName(), target.subject(), target.possessiveAdjective(),
                                     target.body.getRandomCock().describe(getSelf()),
                                     getSelf().possessiveAdjective(),
-                                    Global.capitalizeFirstLetter(target.pronoun()),
+                                    Formatter.capitalizeFirstLetter(target.pronoun()),
                                     target.action("try", "tries"),
                                     getSelf().pronoun(), getSelf()
                                                     .possessiveAdjective(),
@@ -227,7 +227,7 @@ public class AssJob extends Skill {
                                                     + "you see?\"</i> - %s taunts %s, shaking %s hips invitingly.",
                                                     target.subjectAction("try", "tries"),
                                     getSelf().getName(), getSelf().pronoun(), 
-                                    target.possessiveAdjective(), Global.capitalizeFirstLetter(target.pronoun()),
+                                    target.possessiveAdjective(), Formatter.capitalizeFirstLetter(target.pronoun()),
                                     getSelf().possessiveAdjective(), target.possessiveAdjective(),
                                     getSelf().pronoun(), target.directObject(),
                                     getSelf().pronoun(), target.directObject(), getSelf().possessiveAdjective());
@@ -240,7 +240,7 @@ public class AssJob extends Skill {
                                                 + "%s sensitive %s.",
                                 getSelf().getName(), getSelf().possessiveAdjective(),
                                 target.possessiveAdjective(), target.possessiveAdjective(), target.pronoun(), target.possessiveAdjective(),
-                                Global.capitalizeFirstLetter(getSelf().pronoun()), 
+                                Formatter.capitalizeFirstLetter(getSelf().pronoun()),
                                 target.directObject(), getSelf().possessiveAdjective(),
                                 target.possessiveAdjective(), target.body.getRandomCock().describe(target));
             case miss:

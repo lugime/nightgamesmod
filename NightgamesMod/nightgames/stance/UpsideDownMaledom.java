@@ -2,7 +2,7 @@ package nightgames.stance;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class UpsideDownMaledom extends MaledomSexStance {
     public UpsideDownMaledom(Character top, Character bottom) {
@@ -89,12 +89,12 @@ public class UpsideDownMaledom extends MaledomSexStance {
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
             if (bottom.human()) {
-                c.write(bottom, Global.format(
+                c.write(bottom, Formatter.format(
                                 "Summoning your remaining strength, you hold your arms up against the floor and use your hips to tip {other:name-do} off-balance with {other:possessive} dick still held inside of you. "
                                                 + "{other:SUBJECT} lands on the floor with you on top of {other:direct-object} in a reverse cow-girl.",
                                 bottom, top));
             } else {
-                c.write(bottom, Global.format(
+                c.write(bottom, Formatter.format(
                                 "{self:SUBJECT} suddenly pushes against the floor and knocks {other:name-do} to the ground with {self:possessive} hips. "
                                                 + "{other:PRONOUN-ACTION:land} on the floor with {self:name-do} on"
                                                 + " top of {other:direct-object} with {self:direct-object} in a reverse cow-girl position.",

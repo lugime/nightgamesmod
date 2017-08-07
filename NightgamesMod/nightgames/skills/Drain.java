@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -251,7 +251,7 @@ public class Drain extends Skill {
                                     + " far more valuable than a simple sex fight...",
                                     target.directObject(), target.possessiveAdjective(), getSelf().nameDirectObject(),
                                     target.subjectAction("feel"), getSelf().subject(), getSelf().pronoun(),
-                                    target.subjectAction("are", "is"), Global.capitalizeFirstLetter(target.possessiveAdjective()),
+                                    target.subjectAction("are", "is"), Formatter.capitalizeFirstLetter(target.possessiveAdjective()),
                                     target.pronoun(), target.action("have", "has"));
                 default:
                     // Should never happen
@@ -307,7 +307,7 @@ public class Drain extends Skill {
                                     + " far more valuable than a simple sex fight...",
                                     target.directObject(), target.possessiveAdjective(), getSelf().nameDirectObject(),
                                     target.subjectAction("feel"), getSelf().subject(), getSelf().pronoun(),
-                                    target.subjectAction("are", "is"), Global.capitalizeFirstLetter(target.possessiveAdjective()),
+                                    target.subjectAction("are", "is"), Formatter.capitalizeFirstLetter(target.possessiveAdjective()),
                                     target.pronoun(), target.action("have", "has"));
                 default:
                     // Should never happen

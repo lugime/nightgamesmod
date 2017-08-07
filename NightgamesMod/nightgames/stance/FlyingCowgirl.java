@@ -2,7 +2,7 @@ package nightgames.stance;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 
@@ -114,14 +114,14 @@ public class FlyingCowgirl extends FemdomSexStance {
     public Position reverse(Combat c, boolean writeMessage) {
         if (bottom.body.getRandomWings() != null) {
             if (writeMessage) {
-                c.write(bottom, Global.format(
+                c.write(bottom, Formatter.format(
                                 "In a desperate gamble for dominance, {self:subject-action:piston|pistons} wildly into {other:name-do}, making {other:direct-object} yelp and breaking {other:possessive} concentration. Shaking off {other:possessive} limbs coiled around {self:subject}, {self:subject-action:start|starts} flying on {self:possessive} own and starts fucking {other:direct-object} back in the air.",
                                 bottom, top));
             }
             return new FlyingCarry(bottom, top);
         } else {
             if (writeMessage) {
-                c.write(Global.format("Weakened by {self:possessive} squirming, {other:SUBJECT-ACTION:fall|falls} to the ground and so {self:action:do|does} {self:name-do}. Fortunately, {other:possessive} body cushions {self:possessive} fall, but you're not sure {self:action:if she appreciates that as much as you do|if you appreciate that as much as she does}. "
+                c.write(Formatter.format("Weakened by {self:possessive} squirming, {other:SUBJECT-ACTION:fall|falls} to the ground and so {self:action:do|does} {self:name-do}. Fortunately, {other:possessive} body cushions {self:possessive} fall, but you're not sure {self:action:if she appreciates that as much as you do|if you appreciate that as much as she does}. "
                                 + "While {other:subject-action:are|is} dazed, {self:subject-action:mount|mounts} {other:direct-object} and {self:action:start|starts} fucking {other:direct-object} in a missionary position.", bottom, top));
             }
             top.pain(c, bottom, (int) bottom.modifyDamage(DamageType.physical, top, Random.random(50, 75)));

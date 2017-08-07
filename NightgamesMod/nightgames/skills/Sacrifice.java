@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Sacrifice extends Skill {
 
@@ -60,7 +60,7 @@ public class Sacrifice extends Skill {
         return String.format("%s pinches %s nipples hard while screaming in pain. %s %s "
                         + "stagger in exhaustion, but %s seems much less aroused.",
                         getSelf().subject(), getSelf().nameOrPossessivePronoun(),
-                        Global.capitalizeFirstLetter(target.subjectAction("see")), getSelf().directObject(),
+                        Formatter.capitalizeFirstLetter(target.subjectAction("see")), getSelf().directObject(),
                         getSelf().pronoun());
     }
 }

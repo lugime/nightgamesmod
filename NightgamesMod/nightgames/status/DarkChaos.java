@@ -9,7 +9,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.stance.Stance;
 import nightgames.stance.StandingOver;
@@ -33,7 +33,7 @@ public class DarkChaos extends Status {
         if (affected.human()) {
             return "The blackness coursing through your soul is looking for ways to hinder you.";
         } else {
-            return Global.format("{self:subject-action:are} visibly distracted, trying to fight the corruption in {self:reflective}.", affected, affected);            
+            return Formatter.format("{self:subject-action:are} visibly distracted, trying to fight the corruption in {self:reflective}.", affected, affected);
         }
     }
 
@@ -159,7 +159,7 @@ public class DarkChaos extends Status {
                 c.setStance(new StandingOver(c.getOpponent(affected), affected));
             else
                 affected.addlist.add(effect.apply(affected));
-            c.write(affected, Global.format(message, affected, partner));
+            c.write(affected, Formatter.format(message, affected, partner));
         }
 
         static Effect pick(Combat c, Character affected) {

@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.json.JsonUtils;
 
 public class PartFucked extends Status implements InsertedStatus {
@@ -18,7 +18,7 @@ public class PartFucked extends Status implements InsertedStatus {
     private BodyPart penetrator;
 
     public PartFucked(Character affected, Character other, BodyPart stick, String hole) {
-        super(Global.capitalizeFirstLetter(stick.getType()) + (hole.equals("ass") ? " Pegged" : " Fucked"), affected);
+        super(Formatter.capitalizeFirstLetter(stick.getType()) + (hole.equals("ass") ? " Pegged" : " Fucked"), affected);
         target = hole;
         this.penetrator = stick;
         this.other = other;
@@ -37,7 +37,7 @@ public class PartFucked extends Status implements InsertedStatus {
         if (hole == null || penetrator == null) {
             return "";
         }
-        return Global.capitalizeFirstLetter(String.format("%s now fucking %s %s with %s %s\n",
+        return Formatter.capitalizeFirstLetter(String.format("%s now fucking %s %s with %s %s\n",
                         other.subjectAction("are", "is"), affected.nameOrPossessivePronoun(), hole.describe(affected),
                         other.possessiveAdjective(), penetrator.describe(other)));
     }
@@ -48,7 +48,7 @@ public class PartFucked extends Status implements InsertedStatus {
         if (hole == null || penetrator == null) {
             return "";
         }
-        return Global.capitalizeFirstLetter(String.format("%s fucking %s %s with %s %s\n",
+        return Formatter.capitalizeFirstLetter(String.format("%s fucking %s %s with %s %s\n",
                             other.subjectAction("are", "is"), affected.nameOrPossessivePronoun(),
                             hole.describe(affected), other.possessiveAdjective(), penetrator.describe(other)));
     }
@@ -70,8 +70,8 @@ public class PartFucked extends Status implements InsertedStatus {
             affected.removelist.add(this);
             return;
         }
-        c.write(other, Global.capitalizeFirstLetter(
-                        Global.format("{other:name-possessive} %s relentlessly fucks {self:name-do} {self:possessive} {self:body-part:"
+        c.write(other, Formatter.capitalizeFirstLetter(
+                        Formatter.format("{other:name-possessive} %s relentlessly fucks {self:name-do} {self:possessive} {self:body-part:"
                                         + target + "}.", affected, other, penetrator.describe(other))));
         affected.body.pleasure(other, penetrator, hole, 10, c);
         other.body.pleasure(affected, hole, penetrator, 2, c);
@@ -80,7 +80,7 @@ public class PartFucked extends Status implements InsertedStatus {
     }
 
     public void onRemove(Combat c, Character other) {
-        c.write(other, Global.format("{other:NAME-POSSESSIVE} slick %s slips out of {self:direct-object} with an audible pop.", affected, other, penetrator.describe(other)));
+        c.write(other, Formatter.format("{other:NAME-POSSESSIVE} slick %s slips out of {self:direct-object} with an audible pop.", affected, other, penetrator.describe(other)));
     }
 
     @Override
@@ -130,7 +130,7 @@ public class PartFucked extends Status implements InsertedStatus {
 
     @Override
     public String toString() {
-        return Global.capitalizeFirstLetter(penetrator.getType()) + " fucked";
+        return Formatter.capitalizeFirstLetter(penetrator.getType()) + " fucked";
     }
 
     @Override

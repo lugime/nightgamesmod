@@ -9,7 +9,7 @@ import nightgames.characters.body.PussyPart;
 import nightgames.characters.body.TentaclePart;
 import nightgames.characters.body.mods.GooeyMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.Grind;
 import nightgames.skills.Piston;
 import nightgames.skills.PussyGrind;
@@ -57,11 +57,11 @@ public class Slime extends Pet {
             (new SlimeJob(getSelf())).resolve(c, opponent.getSelf());
         } else {
             if (!opponent.hasDick()) {
-                c.write(getSelf(), Global.format("{self:SUBJECT} gathers around {other:name-possessive} ankles. With unexpected speed, it surges up {other:possessive} legs and simultaneously penetrates {other:possessive} pussy and "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} gathers around {other:name-possessive} ankles. With unexpected speed, it surges up {other:possessive} legs and simultaneously penetrates {other:possessive} pussy and "
                                 + "ass. {other:PRONOUN} screams in pleasure and falls to {other:possessive} knees as the amorphous blob fucks both {other:possessive} holes. By the time {other:subject} climaxes and disappears, {other:pronoun} is completely "
                                 + "fucked senseless.", getSelf(), opponent.getSelf()));
             } else {
-                c.write(getSelf(), Global.format("{other:SUBJECT} grabs for {self:name-do}, but it leaps past {other:possessive} guard and covers {other:possessive} cock. The slime forms perfectly to {other:possessive} dick and balls, milking "
+                c.write(getSelf(), Formatter.format("{other:SUBJECT} grabs for {self:name-do}, but it leaps past {other:possessive} guard and covers {other:possessive} cock. The slime forms perfectly to {other:possessive} dick and balls, milking "
                                 + "as much pre-cum as it can get. {other:SUBJECT} tries to pull off the slime, but it acts as lubricant and {other:possessive} attempts to remove it devolve into masturbation. "
                                 + "{other:PRONOUN} ejaculates into the slime and disappears.", getSelf(), opponent.getSelf()));
             }

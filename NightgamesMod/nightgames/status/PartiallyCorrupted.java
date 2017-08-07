@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
 
@@ -34,9 +34,9 @@ public class PartiallyCorrupted extends DurationStatus {
             affected.addict(c, AddictionType.CORRUPTION,
                             cause, cause.has(Trait.Subversion) ? Addiction.HIGH_INCREASE : Addiction.MED_INCREASE);
             counter = 0;
-            return Global.format("{other:NAME-POSSESSIVE} lips have finally broke through {self:possessive} resistance and planted a bit of {other:possessive} darkness inside {self:possessive} very soul!", affected, cause);
+            return Formatter.format("{other:NAME-POSSESSIVE} lips have finally broke through {self:possessive} resistance and planted a bit of {other:possessive} darkness inside {self:possessive} very soul!", affected, cause);
         } else {
-            return Global.format("You {self:if-human:feel}{self:if-nonhuman:almost see} {other:NAME-POSSESSIVE} lips tug on {self:name-possessive} very soul. If this keeps up, {self:pronoun} could be in serious trouble!", affected, cause);
+            return Formatter.format("You {self:if-human:feel}{self:if-nonhuman:almost see} {other:NAME-POSSESSIVE} lips tug on {self:name-possessive} very soul. If this keeps up, {self:pronoun} could be in serious trouble!", affected, cause);
         }
     }
 
@@ -51,7 +51,7 @@ public class PartiallyCorrupted extends DurationStatus {
     @Override
     public String describe(Combat c) {
         if (counter > 0) {
-            return Global.format("The barriers protecting {self:name-possessive} soul are temporarily weakened by {other:name-possessive} lips.", affected, cause);
+            return Formatter.format("The barriers protecting {self:name-possessive} soul are temporarily weakened by {other:name-possessive} lips.", affected, cause);
         } else {
             return "";
         }

@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.CockBound;
 import nightgames.status.Stsflag;
 
@@ -22,9 +22,9 @@ public class ExtendedTonguedMod extends PartMod {
 
     public String getLongDescriptionOverride(Character self, BodyPart part, String previousDescription) {
         if (part.isType("mouth")) {
-            return previousDescription + Global.format(" Occasionally, a pink tongue slides out of %s and licks {self:possessive} second lips.", self, self, part.getType());
+            return previousDescription + Formatter.format(" Occasionally, a pink tongue slides out of %s and licks {self:possessive} second lips.", self, self, part.getType());
         } else {
-            return previousDescription + Global.format(" When {self:pronoun-action:open} {self:pronoun} mouth, you see an unnaturally long tongue.", self, self, part.getType());
+            return previousDescription + Formatter.format(" When {self:pronoun-action:open} {self:pronoun} mouth, you see an unnaturally long tongue.", self, self, part.getType());
         }
     }
 

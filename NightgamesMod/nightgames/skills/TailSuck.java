@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 import nightgames.status.Drained;
@@ -140,7 +140,7 @@ public class TailSuck extends Skill {
                             getSelf().getName(), getSelf().possessiveAdjective(),
                             target.nameOrPossessivePronoun(), target.directObject(),target.directObject(),
                             target.possessiveAdjective(), target.body.getRandomCock().describe(target),
-                            Global.capitalizeFirstLetter(target.subjectAction("feel")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("feel")),
                             target.pronoun(), target.action("are", "is"), target.directObject());
         } else if (modifier == Result.critical) {
             return String.format(
@@ -150,7 +150,7 @@ public class TailSuck extends Skill {
                                             + " think %s were fucking %s. Suddenly, the slick canal contracts around %s dick, and"
                                             + " %s %s some of %s strength flowing out of %s and into it. That is not good.",
                             target.possessiveAdjective(), getSelf().nameOrPossessivePronoun(), target.subjectAction("feel"),
-                            getSelf().possessiveAdjective(), Global.capitalizeFirstLetter(target.pronoun()),
+                            getSelf().possessiveAdjective(), Formatter.capitalizeFirstLetter(target.pronoun()),
                             target.action("are", "is"), target.pronoun(), target.action("feel"),
                             target.possessiveAdjective(), target.body.getRandomCock().describe(target), 
                             getSelf().possessiveAdjective(), user().body.getRandomPussy().describe(getSelf()),

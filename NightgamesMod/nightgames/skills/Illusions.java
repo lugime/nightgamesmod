@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.Alluring;
 import nightgames.status.Distorted;
 
@@ -64,7 +64,7 @@ public class Illusions extends Skill {
                         + " but it's still a distraction. At the same "
                         + "time, %s suddenly looks irresistible.", getSelf().subject(),
                         target.nameOrPossessivePronoun(), getSelf().directObject(),
-                        Global.capitalizeFirstLetter(target.pronoun()), getSelf().getName(),
+                        Formatter.capitalizeFirstLetter(target.pronoun()), getSelf().getName(),
                         getSelf().nameDirectObject());
     }
 }

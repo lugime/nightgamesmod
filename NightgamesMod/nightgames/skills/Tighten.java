@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
@@ -98,11 +98,11 @@ public class Tighten extends Thrust {
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
         if (c.getStance().en == Stance.anal) {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:rhythmically squeeze|rhythmically squeezes} {self:possessive} {self:body-part:ass} around {other:possessive} dick, milking {other:direct-object} for all that {self:pronoun-action:are|is} worth.",
                             getSelf(), target);
         } else {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:give|gives} {other:direct-object} a seductive wink and suddenly {self:possessive} {self:body-part:pussy} squeezes around {other:possessive} {other:body-part:cock} as though it's trying to milk {other:direct-object}.",
                             getSelf(), target);
         }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.requirements.Requirement;
 
 public class CustomStringEntry {
@@ -31,7 +31,7 @@ public class CustomStringEntry {
     }
 
     public String getLine(Combat c, Character self, Character other) {
-        return Global.format(line, self, other);
+        return Formatter.format(line, self, other);
     }
     
     public String getRawLine() {

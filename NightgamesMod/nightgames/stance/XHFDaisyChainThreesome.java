@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
 
@@ -40,7 +40,7 @@ public class XHFDaisyChainThreesome extends MaledomSexStance {
     @Override
     public void checkOngoing(Combat c) {
         if (!c.getOtherCombatants().contains(domSexCharacter)) {
-            c.write(bottom, Global.format("With the disappearance of {self:name-do}, {master:subject-action:continue} to ride {self:name-do} in a reverse cowgirl position.", domSexCharacter, bottom));
+            c.write(bottom, Formatter.format("With the disappearance of {self:name-do}, {master:subject-action:continue} to ride {self:name-do} in a reverse cowgirl position.", domSexCharacter, bottom));
             c.setStance(new ReverseCowgirl(top, bottom));
         }
     }
@@ -125,7 +125,7 @@ public class XHFDaisyChainThreesome extends MaledomSexStance {
         if (top.human()) {
             return "";
         } else {
-            return Global.format("{self:subject-action:are|is} fucking {other:name-do} from behind "
+            return Formatter.format("{self:subject-action:are|is} fucking {other:name-do} from behind "
                             + "while {master:subject} is riding {other:possessive} dick, "
                             + "creating a {other:name}-sandwich.", domSexCharacter, bottom);
         }
@@ -184,7 +184,7 @@ public class XHFDaisyChainThreesome extends MaledomSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} off {self:reflective}.", bottom, top));
+            c.write(bottom, Formatter.format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} off {self:reflective}.", bottom, top));
         }
         return new Neutral(bottom, top);
     }

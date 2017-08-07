@@ -9,7 +9,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Blinded extends Status {
 
@@ -31,12 +31,12 @@ public class Blinded extends Status {
     
     @Override
     public String initialMessage(Combat c, Optional<Status> replacement) {
-        return Global.capitalizeFirstLetter(String.format("%s eyes are now blocked by %s", affected.nameOrPossessivePronoun(), cause));
+        return Formatter.capitalizeFirstLetter(String.format("%s eyes are now blocked by %s", affected.nameOrPossessivePronoun(), cause));
     }
 
     @Override
     public String describe(Combat c) {
-        return Global.capitalizeFirstLetter(String.format("%s eyesight is blocked by %s.", affected.nameOrPossessivePronoun(), cause));
+        return Formatter.capitalizeFirstLetter(String.format("%s eyesight is blocked by %s.", affected.nameOrPossessivePronoun(), cause));
     }
 
     @Override

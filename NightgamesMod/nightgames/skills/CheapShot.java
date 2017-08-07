@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -106,7 +106,7 @@ public class CheapShot extends Skill {
                             "%s suddenly vanishes right in front of %s eyes. That wasn't just fast, %s completely disappeared! %s something "
                                             + "that sounds like 'Za Warudo' before %s suffer a painful groin hit from behind.",
                             getSelf().getName(), target.nameOrPossessivePronoun(), getSelf().pronoun(),
-                            Global.capitalizeFirstLetter(target.subjectAction("hear")), target.pronoun());
+                            Formatter.capitalizeFirstLetter(target.subjectAction("hear")), target.pronoun());
         }
     }
 

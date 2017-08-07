@@ -5,7 +5,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.GenericBodyPart;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class PartModEffect extends ItemEffect {
     private String affectedType;
@@ -29,7 +29,7 @@ public class PartModEffect extends ItemEffect {
         if (oldPart != null && oldPart instanceof GenericBodyPart && !oldPart.moddedPartCountsAs(user, mod)) {
             user.body.temporaryAddPartMod(affectedType, mod, selfDuration);
             BodyPart newPart = user.body.getRandom(affectedType);
-            Global.writeFormattedIfCombat(c, "<b>{self:NAME-POSSESSIVE} %s turned into a %s!</b>", user, opponent, oldPart.describe(user), newPart.describe(user));
+            Formatter.writeFormattedIfCombat(c, "<b>{self:NAME-POSSESSIVE} %s turned into a %s!</b>", user, opponent, oldPart.describe(user), newPart.describe(user));
             return true;
         }
         return false;

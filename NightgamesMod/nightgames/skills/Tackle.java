@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -32,7 +32,7 @@ public class Tackle extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (getSelf().has(Trait.takedown) && target.getStamina().percent() <= 25) {
-            c.write(getSelf(), Global.format("While {other:subject-action:take|takes} a breath,"
+            c.write(getSelf(), Formatter.format("While {other:subject-action:take|takes} a breath,"
                             + " {self:subject-action:take|takes} careful aim at {other:possessive}"
                             + " waist and {self:action:charge|charges} in at full speed. It's a perfect"
                             + " hit, knocking the wind out of {other:subject} and allowing {self:subject}"

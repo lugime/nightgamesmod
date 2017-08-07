@@ -10,7 +10,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.mods.ParasitedMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.pet.PetCharacter;
@@ -50,7 +50,7 @@ public class SlimeCloneParasite extends SimpleEnemySkill {
             Optional<BodyPart> result = Random.pickRandom(possibleTargets);
             if (result.isPresent()) {
                 BodyPart targetPart = result.get();
-                c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:launch} {self:reflective} at {other:name-possessive} %s. "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:launch} {self:reflective} at {other:name-possessive} %s. "
                                 + "{other:PRONOUN-ACTION:try} to dodge out of the way, but it's no use. "
                                 + "{self:NAME-POSSESSIVE} gelatinous body has deformed around {other:possessive} %s and manages "
                                 + "to crawl inside {other:possessive} body somehow!",
@@ -59,7 +59,7 @@ public class SlimeCloneParasite extends SimpleEnemySkill {
             }
             return true;
         }
-        c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:launch} {self:reflective} at {other:name-do}, but {other:pronoun-action:dodge} away in time.", getSelf(), target));
+        c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:launch} {self:reflective} at {other:name-do}, but {other:pronoun-action:dodge} away in time.", getSelf(), target));
         return false;
     }
 

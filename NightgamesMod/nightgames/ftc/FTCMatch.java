@@ -10,10 +10,7 @@ import java.util.Map;
 import nightgames.actions.Movement;
 import nightgames.areas.Area;
 import nightgames.characters.Character;
-import nightgames.global.Flag;
-import nightgames.global.Global;
-import nightgames.global.Match;
-import nightgames.global.MatchType;
+import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.modifier.standard.FTCModifier;
 
@@ -219,7 +216,7 @@ public class FTCMatch extends Match {
     public void turnInFlag(Character ch) {
         flagInCenter = true;
         score(ch, 5);
-        Global.gui().message(Global.format("<b>{self:SUBJECT-ACTION:turn|turns} in the flag and "
+        Global.gui().message(Formatter.format("<b>{self:SUBJECT-ACTION:turn|turns} in the flag and "
                         + "{self:action:gain|gains} five points.</b>", ch, Global.noneCharacter()));
         ch.remove(Item.Flag);
     }
@@ -232,7 +229,7 @@ public class FTCMatch extends Match {
         flagInCenter = false;
         gracePeriod = 3;
         flagCounter = 0;
-        Global.gui().message(Global.format("{self:SUBJECT-ACTION:grab|grabs} a new flag from the stash. That means"
+        Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:grab|grabs} a new flag from the stash. That means"
                         + " {self:pronoun} cannot be attacked for two turns, so {self:pronoun}"
                         + " {self:action:have|has} a chance to hide.", prey, Global.noneCharacter()));
         prey.gain(Item.Flag);

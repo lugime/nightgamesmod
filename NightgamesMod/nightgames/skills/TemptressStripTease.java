@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.stance.Stance;
 import nightgames.status.Alluring;
@@ -119,7 +119,7 @@ public class TemptressStripTease extends StripTease {
                             + " %s can only gawk in amazement as her perfect body is revealed bit"
                             + " by bit, and the thought of doing anything to blemish such"
                             + " perfection seems very unpleasant indeed.", getSelf().subject(),
-                            Global.capitalizeFirstLetter(target.subject()));
+                            Formatter.capitalizeFirstLetter(target.subject()));
         }
     }
 

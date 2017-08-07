@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.pet.arms.Arm;
 import nightgames.pet.arms.ArmType;
 import nightgames.status.Bound;
@@ -36,7 +36,7 @@ public class DoubleGrab extends MultiArmMove {
 
     @Override
     public void execute(Combat c, Character owner, Character target, List<Arm> arms) {
-        c.write(owner, Global.format("Two of {self:name-possessive} Grabbers fly out towards"
+        c.write(owner, Formatter.format("Two of {self:name-possessive} Grabbers fly out towards"
                         + " {other:name-possessive} prone body, seizing a wrist each. The two"
                         + " arms lock together behind {other:possessive} back, completely immobilizing"
                         + " {other:possessive} arms.", owner, target));

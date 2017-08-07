@@ -8,6 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.CockPart;
 import nightgames.characters.body.mods.SizeMod;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.requirements.BodyPartRequirement;
@@ -199,7 +200,7 @@ public class AiriTime extends BaseNPCTime {
         } else if (choice.equals("Sex")) {
             Global.gui().loadPortrait("airi_mostly_slime.jpg");
             Global.gui().showPortrait();
-            Global.gui().message(Global.format("You know that Airi, while appearing kind of shy at first, has an incredible appetite for sex thanks to her condition. You try broaching the subject with her, hoping that she can help you with the boner that's been developing "
+            Global.gui().message(Formatter.format("You know that Airi, while appearing kind of shy at first, has an incredible appetite for sex thanks to her condition. You try broaching the subject with her, hoping that she can help you with the boner that's been developing "
                             + "ever since the cute girl greated you. You're not sure if she's conscious of it, but every time she walks past you, some part of her brushes against <i>that</i> part, successfully teasing you to full mast. "
                             + "Hoping to cue her in, you press her dainty hands against your crotch. Airi's completely lack of surprise confirms that she's been doing it on purpose. Giving you a small smile, she skillfully reaches into your pants and starts "
                             + "stroking your hard shaft. You moan into her mouth as you kiss her needily, feeling your spunk rapidly boiling in your balls. Airi smiles at you and asks <i>\"Ready for something special?\"</i>"
@@ -232,7 +233,7 @@ public class AiriTime extends BaseNPCTime {
         } else if (choice.equals("Sparring")) {
             Global.gui().loadPortrait("airi_mostly_slime.jpg");
             Global.gui().showPortrait();
-            Global.gui().message(Global.format("You suggest doing some practice to Airi, seeing how she's not incredibly physically fit. You tell her that being a bit stronger will help her in the night games when she doesn't make use of her slime form. Airi seems a bit hesistant at first but agrees when "
+            Global.gui().message(Formatter.format("You suggest doing some practice to Airi, seeing how she's not incredibly physically fit. You tell her that being a bit stronger will help her in the night games when she doesn't make use of her slime form. Airi seems a bit hesistant at first but agrees when "
                             + "you promise her an nice date at the nice french resturaunt near campus if she can win once. It turns out sitting in the lab every day does not make her very fast nor very strong. You easily wrestle her to the ground every time. Airi tries everything from kicking you when you "
                             + "approach, slipping out from your hold, and slapping your privates when she gets the chance, but there's no overcoming the basic difference in fitness. Airi looks visibly frustrated, but urges you to continue. Looks like she has a bit of a competitive streak like Jewel."
                             + "<br/><br/>"
@@ -260,7 +261,7 @@ public class AiriTime extends BaseNPCTime {
         } else if (choice.equals("Games")) {
             Global.gui().loadPortrait("airi_human.jpg");
             Global.gui().showPortrait();
-            Global.gui().message(Global.format("[Placeholder]You play monster hunter with Airi.", Global.getCharacterByType("Airi"), Global.getPlayer()));
+            Global.gui().message(Formatter.format("[Placeholder]You play monster hunter with Airi.", Global.getCharacterByType("Airi"), Global.getPlayer()));
             Daytime.train(player, npc, Attribute.Cunning);
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);

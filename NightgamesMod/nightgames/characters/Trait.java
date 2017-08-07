@@ -2,6 +2,7 @@ package nightgames.characters;
 
 import java.util.*;
 
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
@@ -16,7 +17,7 @@ import nightgames.status.addiction.AddictionType;
 
 public enum Trait {
     sadist("Sadist", "Skilled at providing pleasure alongside pain",
-                    (b, c, t) -> b.append(Global.capitalizeFirstLetter(
+                    (b, c, t) -> b.append(Formatter.capitalizeFirstLetter(
                                     String.format("%s sneers in an unsettling way.", c.subject())))),
     bitingwords("Biting Words", "Knows how to rub salt in the wound."),
     smqueen("SM Queen", "A natural dom."),
@@ -365,7 +366,7 @@ public enum Trait {
     // Speed Focus
     NimbleRecovery("Nimble Recovery", "Recovers from knockdowns faster"),
     FeralAgility("Feral Agility", "Extra cunning, evade and counter chance", (b, c, t) -> {
-        b.append(Global.format("It's hard to follow {self:name-possessive} erratic movement with the eyes.", c, c));
+        b.append(Formatter.format("It's hard to follow {self:name-possessive} erratic movement with the eyes.", c, c));
     }),
     CrossCounter("Cross Counter", "Chance to counter your opponent's counters"),
     Catwalk("Catwalk", "Sexy walk, alluring when moving"),
@@ -380,7 +381,7 @@ public enum Trait {
     FastDiffusion("Fast Diffusion", "Bonus to pheromone power when far away."),
     PiercingOdor("Piercing Odor", "Pheromones are strong enough to overcome the calm."),
     ComplexAroma("Complex Aroma", "Pheromones can stack more times.", (b, c, t) ->
-        b.append(Global.format("A complex aroma lingers in the air.", c, c))),
+        b.append(Formatter.format("A complex aroma lingers in the air.", c, c))),
 
     // Frenzy Focus
     Rut("Rut", "Chance to go into a frenzy when over half arousal."),

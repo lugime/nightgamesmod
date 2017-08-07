@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.BodyFetish;
@@ -57,9 +57,9 @@ public class Footjob extends Skill {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             int m = Random.random(12, 20);
             if (getSelf().human()) {
-                c.write(getSelf(), Global.format(deal(c, m, Result.normal, target), getSelf(), target));
+                c.write(getSelf(), Formatter.format(deal(c, m, Result.normal, target), getSelf(), target));
             } else if (c.shouldPrintReceive(target, c)) {
-                c.write(getSelf(), Global.format(receive(c, m, Result.normal, target), getSelf(), target));
+                c.write(getSelf(), Formatter.format(receive(c, m, Result.normal, target), getSelf(), target));
             }
             if (target.hasDick()) {
                 target.body.pleasure(getSelf(), getSelf().body.getRandom("feet"), target.body.getRandom("cock"), m, c, this);
@@ -71,9 +71,9 @@ public class Footjob extends Skill {
             }
         } else {
             if (getSelf().human()) {
-                c.write(getSelf(), Global.format(deal(c, 0, Result.miss, target), getSelf(), target));
+                c.write(getSelf(), Formatter.format(deal(c, 0, Result.miss, target), getSelf(), target));
             } else if (c.shouldPrintReceive(target, c)) {
-                c.write(getSelf(), Global.format(receive(c, 0, Result.miss, target), getSelf(), target));
+                c.write(getSelf(), Formatter.format(receive(c, 0, Result.miss, target), getSelf(), target));
             }
             return false;
         }

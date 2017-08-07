@@ -5,6 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
@@ -55,13 +56,13 @@ public class ThrowSlime extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         if (target.has(Trait.slime)) {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:throw|throws} a glob of slime at"
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:throw|throws} a glob of slime at"
                             + " {other:name-do}, but it is simply absorbed into {other:possessive}"
                             + " equally slimy body. That was rather underwhelming.", getSelf(), target));
             return false;
         } else {
             HitType type = decideEffect(c, target);
-            c.write(Global.format("With a large movement of {self:possessive} arms, {self:subject-action:throw|throws}"
+            c.write(Formatter.format("With a large movement of {self:possessive} arms, {self:subject-action:throw|throws}"
                             + " a big glob of viscous slime at {other:name-do}. ", getSelf(), target));
             type.message(c, getSelf(), target);
             if (type != HitType.NONE) {
@@ -151,38 +152,38 @@ public class ThrowSlime extends Skill {
             String msg = "";
             switch (this) {
                 case BOUND_S:
-                    msg += Global.format("While in the air, the mass of slime splits in two, and the remaining projectiles"
+                    msg += Formatter.format("While in the air, the mass of slime splits in two, and the remaining projectiles"
                                     + " impact both of {other:possessive} hands, binding them solidly to "
                                     + (c.getStance().en == Stance.neutral ? "one another." : "the ground.")
                                     , self, target);
                     break;
                 case BOUND_W:
-                    msg += Global.format("The slime impacts one of {other:possessive} hands, encasing it in a slimy"
+                    msg += Formatter.format("The slime impacts one of {other:possessive} hands, encasing it in a slimy"
                                     + " mitten. {other:PRONOUN-ACTION:are|is} going to have to get that off before"
                                     + " continuing.", self, target);
                     break;
                 case FALL:
-                    msg += Global.format("The glob impacts with a powerful <i>thud</i>, and it knocks"
+                    msg += Formatter.format("The glob impacts with a powerful <i>thud</i>, and it knocks"
                                     + " {other:subject} off {other:possessive} feet.", self, target);
                     break;
                 case FLAT_1:
-                    msg += Global.format("The slimy ball connects soundly with {other:possessive} head,"
+                    msg += Formatter.format("The slimy ball connects soundly with {other:possessive} head,"
                                     + " dazing {other:direct-object}.", self, target);
                     break;
                 case FLAT_3:
-                    msg += Global.format("The slime hits {other:possessive} already prone body with"
+                    msg += Formatter.format("The slime hits {other:possessive} already prone body with"
                                     + " substantial force, knocking the wind solidly out of {other:direct-object}."
                                     , self, target);
                     break;
                 case TRANCE:
-                    msg += Global.format("The glob catches on {other:possessive} arm, seemingly harmless. Then,"
+                    msg += Formatter.format("The glob catches on {other:possessive} arm, seemingly harmless. Then,"
                                     + " however, a flush spreads across {other:possessive} skin, radiating outward"
                                     + " from the slime. When the flush reaches {other:name-possessive} head,"
                                     + " {other:pronoun-action:fall|falls} straight into a deep trance."
                                     , self, target);
                     break;
                 case NONE:
-                    msg += Global.format("{other:PRONOUN}, however, "
+                    msg += Formatter.format("{other:PRONOUN}, however, "
                                     + "{other:action:manage|manages} to evade the onrushing slime.", self, target);
                     break;
                 case PARASITED:
@@ -197,7 +198,7 @@ public class ThrowSlime extends Skill {
                                 + " harmless, however, is the sensation of some left-over slime still "
                                 + " working its magic inside your skull...";
                     } else {
-                        msg += Global.format("You can't help but feel a little giddy as your risky move succeeds,"
+                        msg += Formatter.format("You can't help but feel a little giddy as your risky move succeeds,"
                                         + " and the slime wraps around {other:name-possessive} head."
                                         + " You know it won't be long now. {other:PRONOUN} tries to throw and"
                                         + " claw the slime off, but you can already feel the connection forming."
@@ -206,7 +207,7 @@ public class ThrowSlime extends Skill {
                     }
                     break;
                 case FRENZIED:
-                    msg += Global.format("The glob catches on {other:possessive} arm, seemingly harmless. Then,"
+                    msg += Formatter.format("The glob catches on {other:possessive} arm, seemingly harmless. Then,"
                                     + " however, a flush spreads across {other:possessive} skin, radiating outward"
                                     + " from the slime. "
                                     + (target.human() ? "It feels warm, and when it reaches your head it fills your"

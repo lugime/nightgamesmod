@@ -10,7 +10,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class Drained extends Abuff {
@@ -29,18 +29,18 @@ public class Drained extends Abuff {
             drained.add(c, new Drained(drained, drainer, att, -realValue, duration));
             if (write) {
                 if (drainer.has(Trait.WillingSacrifice) && drained.is(Stsflag.charmed)) {
-                    Global.writeIfCombat(c, drainer, Global.format("With {other:name-possessive} mental defences lowered as they are,"
+                    Formatter.writeIfCombat(c, drainer, Formatter.format("With {other:name-possessive} mental defences lowered as they are,"
                                     + " {self:subject-action:are|is} able to draw in more of {other:possessive} %s than"
                                     + " normal."
                                     , drainer, drained, att.toString()));
                 }
                 if (drainer.has(Trait.Greedy)) {
-                    Global.writeIfCombat(c, drainer, Global.format("{self:SUBJECT-ACTION:suck|sucks} {other:name-possessive} %s"
+                    Formatter.writeIfCombat(c, drainer, Formatter.format("{self:SUBJECT-ACTION:suck|sucks} {other:name-possessive} %s"
                                     + " deeply into {self:reflective}, holding onto it for longer than usual."
                                     , drainer, drained, att.toString()));
                 }
                 if (drainer.has(Trait.RaptorMentis)) {
-                    Global.writeIfCombat(c, drainer, Global.format("Additionally, the draining leaves a profound emptiness in its"
+                    Formatter.writeIfCombat(c, drainer, Formatter.format("Additionally, the draining leaves a profound emptiness in its"
                                     + " wake, sapping {other:name-possessive} confidence.", drainer, drained));
                 }
             }
@@ -48,7 +48,7 @@ public class Drained extends Abuff {
                 drained.drainMojo(c, drainer, Math.max(5, realValue));
             }
         } else {
-            Global.writeIfCombat(c, drainer, Global.format("{self:subject-action:try} to drain {other:name-possessive} %s but {self:action:find} that there's nothing left to take.",
+            Formatter.writeIfCombat(c, drainer, Formatter.format("{self:subject-action:try} to drain {other:name-possessive} %s but {self:action:find} that there's nothing left to take.",
                             drainer, drained, att.getDrainedDO()));
         }
     }
@@ -88,7 +88,7 @@ public class Drained extends Abuff {
                 // large
                 message = "{self:subject-action:have} %s some of {other:name-possessive} %s, greatly %s {self:possessive} %s.";
             }
-            return Global.format(message, affected, other, Random.pickRandom(stolenSynonyms).get(), modded.getDrainedDO(),
+            return Formatter.format(message, affected, other, Random.pickRandom(stolenSynonyms).get(), modded.getDrainedDO(),
                             Random.pickRandom(boostingSynonyms).get(), modded.getDrainerOwnDO());
         }
     }

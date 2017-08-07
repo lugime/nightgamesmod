@@ -8,7 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.Escape;
 import nightgames.skills.Nothing;
 import nightgames.skills.Skill;
@@ -159,7 +159,7 @@ public class NursingHold extends AbstractFacingStance {
 
     @Override
     public void escape(Combat c, Character escapee) {
-        c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
+        c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
                         + " {other:direct-object} impressive chest in front of {self:possessive} face, {self:pronoun-action:are} easily convinced to stop.",
                         escapee, top));
         (new Suckle(escapee)).resolve(c, top);

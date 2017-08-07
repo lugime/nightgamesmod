@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
@@ -44,7 +44,7 @@ public class Yank extends Skill {
             removeChance /= 2;
         }
         if (target.roll(getSelf(), c, acc)) {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:yank|yanks} {other:name-do}"
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:yank|yanks} {other:name-do}"
                             + " forward by the toy still connecting them, and "
                             + " {other:pronoun-action} stumbles and falls.", getSelf(), target));
             target.add(c, new Falling(target));
@@ -54,7 +54,7 @@ public class Yank extends Skill {
             }
             return true;
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:pull|pulls} {other:name-do}"
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:pull|pulls} {other:name-do}"
                             + " forward by the toy still connecting them, but "
                             + " {other:pronoun-action:keep|keeps} {other:possessive}"
                             + " balance.", getSelf(), target));

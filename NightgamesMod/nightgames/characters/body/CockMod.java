@@ -15,7 +15,7 @@ import nightgames.characters.body.mods.FieryMod;
 import nightgames.characters.body.mods.PartMod;
 import nightgames.characters.body.mods.DemonicMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.damage.DamageType;
@@ -71,7 +71,7 @@ public class CockMod extends PartMod {
         double bonus = super.applyBonuses(c, self, opponent, part, target, damage);
         if (this.equals(blessed) && target.isType("cock")) {
             if (self.getStatus(Stsflag.divinecharge) != null) {
-                c.write(self, Global.format(
+                c.write(self, Formatter.format(
                                 "{self:NAME-POSSESSIVE} concentrated divine energy in {self:possessive} cock rams into {other:name-possessive} pussy, sending unimaginable pleasure directly into {other:possessive} soul.",
                                 self, opponent));
             }
@@ -127,7 +127,7 @@ public class CockMod extends PartMod {
         	if (amtDrained != 0) {
         		if (self.isPet()) {
 	                Character master = ((PetCharacter) self).getSelf().owner();
-	                c.write(self, Global.format("The stolen strength seems to flow through to {self:possessive} {other:master} through {self:possessive} infernal connection.", self, master));
+	                c.write(self, Formatter.format("The stolen strength seems to flow through to {self:possessive} {other:master} through {self:possessive} infernal connection.", self, master));
 	                opponent.drainWillpower(c, master, strength);
 	            } else {
 	                opponent.drainWillpower(c, self, strength);
@@ -209,14 +209,14 @@ public class CockMod extends PartMod {
         if (this.equals(blessed) && c.getStance().inserted(self)) {
             DivineCharge charge = (DivineCharge) self.getStatus(Stsflag.divinecharge);
             if (charge == null) {
-                c.write(self, Global.format(
+                c.write(self, Formatter.format(
                                 "{self:NAME-POSSESSIVE} " + part.fullDescribe(self)
                                                 + " radiates a golden glow as {self:subject-action:groan|groans}. "
                                                 + "{other:SUBJECT-ACTION:realize|realizes} {self:subject-action:are|is} feeding on {self:possessive} own pleasure to charge up {self:possessive} divine energy.",
                                 self, opponent));
                 self.add(c, new DivineCharge(self, .25));
             } else {
-                c.write(self, Global.format(
+                c.write(self, Formatter.format(
                                 "{self:SUBJECT-ACTION:continue|continues} feeding on {self:possessive} own pleasure to charge up {self:possessive} divine energy.",
                                 self, opponent));
                 self.add(c, new DivineCharge(self, charge.magnitude));
@@ -242,7 +242,7 @@ public class CockMod extends PartMod {
                                     opponent.directObject());
                     if (target.moddedPartCountsAs(opponent, FeralMod.INSTANCE)) {
                         message += String.format(" %s no resistance to the subversive seed.",
-                                        Global.capitalizeFirstLetter(opponent.subjectAction("offer", "offers")));
+                                        Formatter.capitalizeFirstLetter(opponent.subjectAction("offer", "offers")));
                         duration += 2;
                     }
                     opponent.add(c, new Enthralled(opponent, self, duration));
@@ -279,7 +279,7 @@ public class CockMod extends PartMod {
     public void onStartPenetration(Combat c, Character self, Character opponent, BodyPart part, BodyPart target) {
         if (this.equals(blessed) && target.isErogenous()) {
             if (!self.human()) {
-                c.write(self, Global.format(
+                c.write(self, Formatter.format(
                                 "As soon as {self:subject} penetrates you, you realize you're screwed. Both literally and figuratively. While it looks innocuous enough, {self:name-possessive} {self:body-part:cock} "
                                                 + "feels like pure ecstasy. {self:SUBJECT} hasn't even begun moving yet, but {self:possessive} cock simply sitting within you radiates a heat that has you squirming uncontrollably.",
                                 self, opponent));
@@ -289,7 +289,7 @@ public class CockMod extends PartMod {
 
     public void onEndPenetration(Combat c, Character self, Character opponent, BodyPart part, BodyPart target) {
         if (this.equals(slimy)) {
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "As {self:possessive} {self:body-part:cock} leaves {other:possessive} "
                                             + target.describe(opponent)
                                             + ", a small bit of slime stays behind, vibrating inside of {other:direct-object}.",

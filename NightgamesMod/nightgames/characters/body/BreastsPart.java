@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -91,7 +91,7 @@ public class BreastsPart extends GenericBodyPart {
     @Override
     public void describeLong(StringBuilder b, Character c) {
         if (c.hasPussy() || getSize() > 0) {
-            b.append(Global.capitalizeFirstLetter(fullDescribe(c)));
+            b.append(Formatter.capitalizeFirstLetter(fullDescribe(c)));
             b.append(" adorn " + c.nameOrPossessivePronoun() + " chest.");
         }
     }
@@ -125,22 +125,22 @@ public class BreastsPart extends GenericBodyPart {
                 if (addictionLevel < Addiction.LOW_THRESHOLD) {
                     // not addicted
                     c.write(opponent,
-                                    Global.format("{self:NAME-POSSESSIVE} milk makes the blood surge from {other:name-possessive} head into {other:possessive} crotch, leaving {other:direct-object} light-headed and horny",
+                                    Formatter.format("{self:NAME-POSSESSIVE} milk makes the blood surge from {other:name-possessive} head into {other:possessive} crotch, leaving {other:direct-object} light-headed and horny",
                                                     self, opponent));
                 } else if (addictionLevel < .3f) {
                     // starting addiction
                     c.write(opponent,
-                                    Global.format("{self:NAME-POSSESSIVE} milk seems sweeter than usual. While {other:subject} know from experience that {self:possessive} saccharine cream is a powerful aphrodisiac, {other:pronoun} can't but help drinking down more.",
+                                    Formatter.format("{self:NAME-POSSESSIVE} milk seems sweeter than usual. While {other:subject} know from experience that {self:possessive} saccharine cream is a powerful aphrodisiac, {other:pronoun} can't but help drinking down more.",
                                                     self, opponent));
                 } else if (addictionLevel < .45f) {
                     // addicted
                     c.write(opponent,
-                                    Global.format("As Cassie's milk dribbles down her breasts, you awake to a powerful need for her cream. Ignoring the potential aphrodisiac effectes, you quickly capture her nipples in your lips and relieve your parched throat with her delicious milk.",
+                                    Formatter.format("As Cassie's milk dribbles down her breasts, you awake to a powerful need for her cream. Ignoring the potential aphrodisiac effectes, you quickly capture her nipples in your lips and relieve your parched throat with her delicious milk.",
                                                     self, opponent));
                 } else if (addictionLevel < Addiction.HIGH_THRESHOLD) {
                     // dependent
                     c.write(opponent,
-                                    Global.format("{other:NAME} desperately {other:action:suck|sucks} at {self:name-possessive} milky teats as soon as they're in front of {other:direct-object}. "
+                                    Formatter.format("{other:NAME} desperately {other:action:suck|sucks} at {self:name-possessive} milky teats as soon as they're in front of {other:direct-object}. "
                                                     + "{other:POSSESSIVE} burning need to imbibe {self:possessive} sweet milk is overpowering all rational thought. "
                                                     + "{self:SUBJECT} smiles at {other:direct-object} and gently cradles {other:possessive} head, rocking {other:direct-object} back and forth while {other:subject} drink. "
                                                     + "The warm milk settles in {other:possessive} belly, slowly setting {other:possessive} body on fire with arousal.",
@@ -148,7 +148,7 @@ public class BreastsPart extends GenericBodyPart {
                 } else {
                     // enslaved
                     c.write(opponent,
-                                    Global.format("{other:SUBJECT} slavishly {other:action:wrap} {other:possessive} lips around {self:name-possessive} immaculate teats and start suckling. "
+                                    Formatter.format("{other:SUBJECT} slavishly {other:action:wrap} {other:possessive} lips around {self:name-possessive} immaculate teats and start suckling. "
                                                     + "{other:POSSESSIVE} vision darkens around the edges and {other:possessive} world is completely focused on draining {self:possessive} wonderful breasts. "
                                                     + "{self:SUBJECT} smiles at {other:direct-object} and gently cradles {other:possessive} head, rocking {other:direct-object} back and forth while {other:subject} drink. "
                                                     + "The warm milk settles in {other:possessive} belly, slowly setting {other:possessive} body on fire with arousal.",
@@ -172,21 +172,21 @@ public class BreastsPart extends GenericBodyPart {
             }
             if (self.has(Trait.sedativecream)) {
                 c.write(opponent,
-                                Global.format("The power seems to leave {other:name-possessive} body as {other:pronoun-action:sip|sips} {self:possessive} cloying cream.",
+                                Formatter.format("The power seems to leave {other:name-possessive} body as {other:pronoun-action:sip|sips} {self:possessive} cloying cream.",
                                                 self, opponent));
                 opponent.weaken(c, opponent.getStamina().max() / 10);
                 opponent.add(c, new Abuff(opponent, Attribute.Power, -Random.random(1, 3), 20));
             }
             if (self.has(Trait.Pacification)) {
                 c.write(opponent,
-                                Global.format("With every drop of {self:name-possessive} infernal milk {other:subject-action:swallow},"
+                                Formatter.format("With every drop of {self:name-possessive} infernal milk {other:subject-action:swallow},"
                                                 + " {self:pronoun} seems more and more impossibly beautiful to {other:possessive} eyes."
                                                 + " Why would {other:pronoun} want to mar such perfect beauty?",
                                                 self, opponent));
                 opponent.add(c, new Charmed(opponent, 2).withFlagRemoved(Stsflag.mindgames));
             }
             if (self.has(Trait.PheromonedMilk) && !opponent.has(Trait.Rut)) {
-                c.write(opponent, Global.format("<b>Drinking {self:possessive} breast milk sends {other:direct-object} into a chemically induced rut!</b>",
+                c.write(opponent, Formatter.format("<b>Drinking {self:possessive} breast milk sends {other:direct-object} into a chemically induced rut!</b>",
                                                 self, opponent));
                 opponent.addTemporaryTrait(Trait.Rut, 10);
             }

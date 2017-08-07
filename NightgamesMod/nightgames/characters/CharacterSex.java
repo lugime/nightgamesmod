@@ -1,6 +1,7 @@
 package nightgames.characters;
 
 import nightgames.global.Flag;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 
 public enum CharacterSex {
@@ -31,7 +32,7 @@ public enum CharacterSex {
 
     @Override
     public String toString() {
-        return Global.capitalizeFirstLetter(desc);
+        return Formatter.capitalizeFirstLetter(desc);
     }
 
     public boolean considersItselfFeminine() {

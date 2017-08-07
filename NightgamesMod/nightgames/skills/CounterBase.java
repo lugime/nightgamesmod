@@ -3,7 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.CounterStatus;
 import nightgames.status.Stsflag;
@@ -24,7 +24,7 @@ public abstract class CounterBase extends Skill {
     }
 
     public String getBlockedString(Combat c, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:SUBJECT-ACTION:block|blocks} {other:name-possessive} attack and {self:action:move|moves} in for a counter. "
                                         + "However, {other:subject-action:were|was} wary of {self:direct-object} and {other:action:jump|jumps} back before {self:subject} can catch {other:direct-object}.",
                         getSelf(), target);

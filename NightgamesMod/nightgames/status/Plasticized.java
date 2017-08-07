@@ -9,6 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 
 /**
@@ -58,14 +59,15 @@ public class Plasticized extends DurationStatus {
 
     @Override
     public void onRemove(Combat c, Character other) {
-        Global.writeFormattedIfCombat(c, "{self:SUBJECT-ACTION:are|is} finally freed of {self:possessive} plastic prison!", affected, other);
+        Formatter.writeFormattedIfCombat(c, "{self:SUBJECT-ACTION:are|is} finally freed of {self:possessive} plastic prison!", affected, other);
     }
 
     @Override
     public int regen(Combat c) {
         super.regen(c);
         if (c != null && c.getStance().mobile(affected)) {
-        	c.write(affected, Global.format("It's impossible for {self:name-do} to stay on {self:possessive} feet.", affected, c.getOpponent(affected)));
+        	c.write(affected, Formatter
+                            .format("It's impossible for {self:name-do} to stay on {self:possessive} feet.", affected, c.getOpponent(affected)));
         	affected.add(c, new Falling(affected));
         }
         affected.emote(Emotion.nervous, 5);

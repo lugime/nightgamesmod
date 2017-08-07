@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.stance.Stance;
 
@@ -78,13 +78,13 @@ public class Grind extends Thrust {
     public String deal(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.reverse) {
             if (getLabel(c).equals(divineName)) {
-                return Global.format(
+                return Formatter.format(
                                 "{self:SUBJECT-ACTION:fill|fills} {self:possessive} pussy with divine power until it's positively dripping with glowing golden mists. {self:PRONOUN} {self:action:then grind|grinds} against {other:direct-object} with {self:possessive} "
                                                 + getSelfOrgan(c, target).fullDescribe(getSelf())
                                                 + ", stimulating {other:possessive} entire manhood, completely obliterating any resistance from {other:possessive} mind.",
                                 getSelf(), target);
             }
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:grind|grinds} against {other:direct-object} with {self:possessive} "
                                             + getSelfOrgan(c, target).fullDescribe(getSelf())
                                             + ", stimulating {other:possessive} entire manhood and bringing {other:direct-object} closer to climax.",
@@ -92,11 +92,11 @@ public class Grind extends Thrust {
         } else {
             if (getLabel(c).equals(divineName)) {
                 // TODO divine for fucking someone
-                return Global.format(
+                return Formatter.format(
                                 "{self:SUBJECT} grind {self:possessive} hips against {other:direct-object} without thrusting. {other:SUBJECT} trembles and gasps as the movement stimulates {other:possessive} clit and the walls of {other:possessive} {other:body-part:pussy}.",
                                 getSelf(), target);
             }
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT} grind {self:possessive} hips against {other:direct-object} without thrusting. {other:SUBJECT} trembles and gasps as the movement stimulates {other:possessive} clit and the walls of {other:possessive} {other:body-part:pussy}.",
                             getSelf(), target);
         }

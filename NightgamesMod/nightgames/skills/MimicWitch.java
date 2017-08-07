@@ -8,6 +8,7 @@ import nightgames.characters.body.CockMod;
 import nightgames.characters.body.mods.ArcaneMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.status.Abuff;
 import nightgames.status.SlimeMimicry;
@@ -105,7 +106,7 @@ public class MimicWitch extends Skill {
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("{self:NAME-POSSESSIVE} amorphous body shakes violently and her human-features completely dissolve. "
+        return Formatter.format("{self:NAME-POSSESSIVE} amorphous body shakes violently and her human-features completely dissolve. "
                         + "After briefly becoming something that resembles a mannequin, her goo shifts colors into a glowing purple hue. "
                         + "Facial features forms again out of her previously smooth slime into something very familiar to {other:name-do}. "
                         + "Looks like {self:NAME} is mimicking Cassie's witch form!", getSelf(), target);

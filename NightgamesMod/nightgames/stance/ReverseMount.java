@@ -2,7 +2,7 @@ package nightgames.stance;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class ReverseMount extends AbstractBehindStance {
     public ReverseMount(Character top, Character bottom) {
@@ -117,7 +117,7 @@ public class ReverseMount extends AbstractBehindStance {
 
     @Override
     public void escape(Combat c, Character escapee) {
-        c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
+        c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
                         + " {other:direct-object} sitting firmly on {self:possessive} chest, there is nothing {self:pronoun} can do.",
                         escapee, top));
         super.escape(c, escapee);

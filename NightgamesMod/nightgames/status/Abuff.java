@@ -8,6 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 
 public class Abuff extends DurationStatus {
@@ -41,9 +42,9 @@ public class Abuff extends DurationStatus {
             newValue = this.value;
         }
         if (newValue < 0) {
-            return Global.format("{self:pronoun-action:feel|seems} %s{self:if-human: than before}{self:if-nonhuman: now}", affected, affected, modded.getLowerPhrase());
+            return Formatter.format("{self:pronoun-action:feel|seems} %s{self:if-human: than before}{self:if-nonhuman: now}", affected, affected, modded.getLowerPhrase());
         } else {
-            return Global.format("{self:pronoun-action:feel|seems} %s{self:if-human: than before}{self:if-nonhuman: now}", affected, affected, modded.getRaisePhrase());
+            return Formatter.format("{self:pronoun-action:feel|seems} %s{self:if-human: than before}{self:if-nonhuman: now}", affected, affected, modded.getRaisePhrase());
         }
     }
 

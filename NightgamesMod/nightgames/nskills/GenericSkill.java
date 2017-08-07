@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.requirements.Requirement;
 
@@ -73,7 +73,7 @@ public class GenericSkill implements SkillInterface {
         double roll = Random.randomdouble();
         Optional<SkillResult> maybeResults = getPossibleResults(c, user, target, roll).stream().max((a, b) -> Integer.compare(a.getPriority(), b.getPriority()));
         if (!maybeResults.isPresent() || maybeResults.get().getPriority() < 0) {
-            c.write(user, Global.format("{self:NAME-POSSESSIVE} %s failed.", user, target, getName()));
+            c.write(user, Formatter.format("{self:NAME-POSSESSIVE} %s failed.", user, target, getName()));
             return false;
         }
         return maybeResults.get().resolve(c, user, target, roll);

@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 import nightgames.items.ItemEffect;
 
@@ -29,7 +29,7 @@ public class UseSemen extends Skill {
         Item used = Item.semen;
         boolean eventful = false;
         c.write(getSelf(),
-                        Global.format("{self:SUBJECT-ACTION:take|takes} out a bottle of milky white semen and {self:action:gulp|gulps} it down in one breath.",
+                        Formatter.format("{self:SUBJECT-ACTION:take|takes} out a bottle of milky white semen and {self:action:gulp|gulps} it down in one breath.",
                                         getSelf(), target));
         for (ItemEffect e : used.getEffects()) {
             eventful = e.use(c, getSelf(), target, used) || eventful;

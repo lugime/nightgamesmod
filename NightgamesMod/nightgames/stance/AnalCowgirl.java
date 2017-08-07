@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class AnalCowgirl extends AnalSexStance {
 
@@ -129,7 +129,7 @@ public class AnalCowgirl extends AnalSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global
+            c.write(bottom, Formatter
                             .format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} forward onto {other:possessive} hands and knees. {self:SUBJECT-ACTION:follow|follows} {other:direct-object}, still inside {other:possessive} tight ass, and {self:SUBJECT-ACTION:continue|continues} "
                                             + "to fuck {other:direct-object} from behind.", bottom, top));
         }

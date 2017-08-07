@@ -3,7 +3,7 @@ package nightgames.stance;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class Cowgirl extends FemdomSexStance {
@@ -19,7 +19,7 @@ public class Cowgirl extends FemdomSexStance {
         } else {
             return String.format("%s is riding %s in Cowgirl position. %s breasts bounce in front of %s"
                             + " face each time %s moves %s hips.", top.subject(), bottom.nameDirectObject(),
-                            Global.capitalizeFirstLetter(top.possessiveAdjective()), bottom.possessiveAdjective(),
+                            Formatter.capitalizeFirstLetter(top.possessiveAdjective()), bottom.possessiveAdjective(),
                             top.pronoun(), top.possessiveAdjective());
         }
     }
@@ -80,7 +80,7 @@ public class Cowgirl extends FemdomSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format(
+            c.write(bottom, Formatter.format(
                             "{self:SUBJECT-ACTION:pinch|pinches} {other:possessive} clitoris with {self:possessive} hands as {other:subject-action:try|tries} to ride {self:direct-object}. "
                                             + "While {other:subject-action:yelp|yelps} with surprise, {self:subject-action:take|takes} the chance to swing around into a dominant missionary position.",
                             bottom, top));

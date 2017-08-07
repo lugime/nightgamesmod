@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
@@ -134,18 +134,18 @@ public class Kick extends Skill {
             return getSelf().getName() + "'s kick hits nothing but air.";
         }
         if (modifier == Result.special) {
-            return Global.format("{self:SUBJECT} launches a powerful kick straight at {other:name-possessive} groin, but pulls it back "
+            return Formatter.format("{self:SUBJECT} launches a powerful kick straight at {other:name-possessive} groin, but pulls it back "
                             + "just before impact. {other:pronoun-action:feel|feels} a chill run down {other:possessive} spine and {other:possessive} {other:balls-vulva} "
                             + "are grateful for the last second reprieve. {other:POSSESSIVE} %s crumble off {other:possessive} body,"
                             + " practically disintegrating.... Still somewhat grateful.", getSelf(), target,
                             target.getOutfit().getTopOfSlot(ClothingSlot.bottom).getName());
         }
         if (modifier == Result.strong) {
-            return Global.format("With {other:name-do} flat on {other:possessive} back, {self:subject-action:quickly move|quickly moves} in to press {self:possessive} advantage. "
+            return Formatter.format("With {other:name-do} flat on {other:possessive} back, {self:subject-action:quickly move|quickly moves} in to press {self:possessive} advantage. "
                             + "Faster than {other:pronoun} can react, {self:possessive} foot shoots up between "
                             + "{other:possessive} legs, dealing a critical hit on {other:possessive} unprotected {other:balls-vulva}.", getSelf(), target);
         } else {
-            return Global.format("{self:NAME-POSSESSIVE} foot lashes out into {other:name-possessive} delicate {other:balls-vulva} with devastating force.", getSelf(), target);
+            return Formatter.format("{self:NAME-POSSESSIVE} foot lashes out into {other:name-possessive} delicate {other:balls-vulva} with devastating force.", getSelf(), target);
         }
     }
 

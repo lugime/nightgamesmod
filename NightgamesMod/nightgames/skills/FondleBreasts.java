@@ -5,7 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.stance.Stance;
@@ -103,7 +103,7 @@ public class FondleBreasts extends Skill {
                             target.body.getRandomBreasts().describe(target),
                             target.possessiveAdjective(), target.directObject());
         } else if (modifier == Result.special) {
-            return Global.format("{self:SUBJECT-ACTION:slip|slips} {self:possessive} agile fingers into {other:name-possessive} bra, massaging and pinching at {other:possessive} nipples.",
+            return Formatter.format("{self:SUBJECT-ACTION:slip|slips} {self:possessive} agile fingers into {other:name-possessive} bra, massaging and pinching at {other:possessive} nipples.",
                             getSelf(), target);
         } else {
             return String.format("%s massages %s %s over %s %s.",

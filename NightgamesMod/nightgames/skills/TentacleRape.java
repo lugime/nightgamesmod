@@ -7,7 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Bound;
 import nightgames.status.Oiled;
@@ -127,7 +127,7 @@ public class TentacleRape extends Skill {
             return String.format("%s shoots %s %s forward at %s. %s barely able to avoid them.",
                             getSelf().subject(), getSelf().possessiveAdjective(),
                             tentacles.describe(getSelf()), target.nameDirectObject(), 
-                            Global.capitalizeFirstLetter(target.subjectAction("are", "is")));
+                            Formatter.capitalizeFirstLetter(target.subjectAction("are", "is")));
         } else if (modifier == Result.weak) {
             return String.format("%s shoots %s %s forward at %s, entangling %s arms and legs.",
                             getSelf().subject(), getSelf().possessiveAdjective(), tentacles.describe(getSelf()),

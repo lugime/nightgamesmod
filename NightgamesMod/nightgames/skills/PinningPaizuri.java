@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.HeldPaizuri;
 import nightgames.stance.Stance;
@@ -87,12 +87,12 @@ public class PinningPaizuri extends Skill {
         
         if( c.getStance().en == Stance.oralpin)
         {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:free|frees} {other:possessive} cock from her mouth, and quickly {self:action:wrap|wraps} {self:possessive} breasts around {other:possessive} cock.",
                             getSelf(), target);
         }else
         {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:bow|bows} {other:name-do} over, and {self:action:wrap|wraps} {self:possessive} breasts around {other:possessive} cock.",
                             getSelf(), target);
         }             

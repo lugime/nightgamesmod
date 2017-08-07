@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Bound;
 
@@ -58,13 +58,13 @@ public class ImaginaryBonds extends Skill {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("You lean close to {other:name-do} and tell her that {other:pronoun} cannot move {other:possessive} body. "
+        return Formatter.format("You lean close to {other:name-do} and tell her that {other:pronoun} cannot move {other:possessive} body. "
                         + "{other:NAME-POSSESSIVE} eyes widen as your hypnotic suggestion rings true in {other:possessive} mind.", getSelf(), target);
     }
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("{self:SUBJECT} leans close to you and helpfully informs {other:name-do} that {other:pronoun} cannot move your body. "
+        return Formatter.format("{self:SUBJECT} leans close to you and helpfully informs {other:name-do} that {other:pronoun} cannot move your body. "
                         + "Of course! why didn't {other:pronoun} notice this earlier? ", getSelf(), target);
     }
 

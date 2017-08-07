@@ -8,6 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 
 public class Alluring extends DurationStatus {
@@ -31,13 +32,13 @@ public class Alluring extends DurationStatus {
 
     @Override
     public String initialMessage(Combat c, Optional<Status> replacement) {
-        return Global.format("{self:SUBJECT-ACTION:are|is} now alluring.\n", affected, null);
+        return Formatter.format("{self:SUBJECT-ACTION:are|is} now alluring.\n", affected, null);
     }
 
     @Override
     public String describe(Combat c) {
         if (!affected.human()) {
-            return Global.format("{self:SUBJECT-ACTION:look|looks} impossibly beautiful to {other:name-possessive} eyes, {other:pronoun} can't bear to hurt {self:direct-object}.", affected, c.getOpponent(affected));
+            return Formatter.format("{self:SUBJECT-ACTION:look|looks} impossibly beautiful to {other:name-possessive} eyes, {other:pronoun} can't bear to hurt {self:direct-object}.", affected, c.getOpponent(affected));
         }
         return "";
     }

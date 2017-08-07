@@ -5,6 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
@@ -97,7 +98,7 @@ public class Wait extends Skill {
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.special) {
-            return Global.format("{self:SUBJECT} closes {self:possessive} eyes and takes a deep breath. "
+            return Formatter.format("{self:SUBJECT} closes {self:possessive} eyes and takes a deep breath. "
                             + "You see a warm glow briefly surround {self:direct-object} before disappearing. "
                             + "When {self:pronoun} opens {self:possessive} eyes, {self:pronoun} looks reinvigorated.",
                             getSelf(), target);

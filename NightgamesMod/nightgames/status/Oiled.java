@@ -8,7 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Oiled extends Status {
     public Oiled(Character affected) {
@@ -48,7 +48,7 @@ public class Oiled extends Status {
 
     @Override
     public double pleasure(Combat c, BodyPart withPart, BodyPart targetPart, double x) {
-        c.write(affected, Global.format("{self:NAME-POSSESSIVE} slippery oiled form makes {self:direct-object} all the more sensitive.", affected, c.getOpponent(affected)));
+        c.write(affected, Formatter.format("{self:NAME-POSSESSIVE} slippery oiled form makes {self:direct-object} all the more sensitive.", affected, c.getOpponent(affected)));
         return x / 4;
     }
 

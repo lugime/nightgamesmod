@@ -3,7 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 import nightgames.status.Hypersensitive;
 import nightgames.status.Stsflag;
@@ -83,7 +83,7 @@ public class Sensitize extends Skill {
                             + " hot, but goosebumps appear anyway. "
                             + "Even the air touching %s skin makes %s shiver.", getSelf().subject(),
                             getSelf().possessiveAdjective(), 
-                            Global.capitalizeFirstLetter(target.subjectAction("are", "is")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("are", "is")),
                             target.possessiveAdjective(), target.possessiveAdjective(),
                             target.directObject());
         } else if (modifier == Result.miss) {

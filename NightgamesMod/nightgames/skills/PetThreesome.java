@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -98,7 +98,7 @@ public class PetThreesome extends Skill {
         if (targetO.isReady(target)) {
             Result result = Random.random(3) == 0 ? Result.critical : Result.normal;
             if (selfO.isType("pussy") && targetO.isType("cock") && target.hasPussy() && master.hasDick()) {
-                c.write(getSelf(), Global.format("While {self:subject} is holding {other:name-do} down, "
+                c.write(getSelf(), Formatter.format("While {self:subject} is holding {other:name-do} down, "
                                 + "{master:subject-action:move|moves} behind {other:direct-object} and {master:action:pierce|pierces} "
                                 + "{other:direct-object} with {master:possessive} cock. "
                                 + "Taking advantage of {other:possessive} surprise "
@@ -109,7 +109,7 @@ public class PetThreesome extends Skill {
                 target.body.pleasure(master, master.body.getRandomCock(), target.body.getRandomPussy(), otherm, 0, c, false, this);
                 master.body.pleasure(target, target.body.getRandomPussy(), master.body.getRandomCock(), m, 0, c, false, this);
             } else if (selfO.isType("pussy") && targetO.isType("pussy")) {
-                c.write(getSelf(), Global.format("While {master:subject:are|is} holding {other:name-do} down, "
+                c.write(getSelf(), Formatter.format("While {master:subject:are|is} holding {other:name-do} down, "
                                 + "{self:subject-action:mount|mounts} {other:direct-object} and {self:action:press|presses} "
                                 + "{self:possessive} own pussy against {other:possessive}s.", fucker, 
                                 target));
@@ -118,20 +118,20 @@ public class PetThreesome extends Skill {
                 master.body.pleasure(target, target.body.getRandomPussy(), master.body.getRandomCock(), m, 0, c, false, this);
             } else if (selfO.isType("pussy")) {
                 if (result == Result.critical && master.useFemalePronouns()) {
-                    c.write(getSelf(), Global.format("While %s holding {other:name-do} down with %s ass, "
+                    c.write(getSelf(), Formatter.format("While %s holding {other:name-do} down with %s ass, "
                                     + "{self:subject} mounts {other:direct-object} and pierces "
                                     + "{self:reflective} with {other:possessive} cock.", fucker, 
                                     target, master.subjectAction("are", "is"), master.possessiveAdjective()));
                     c.setStance(new FFMFacesittingThreesome(fucker, master, target), getSelf(), true);
                 } else {
-                    c.write(getSelf(), Global.format("While %s holding {other:name-do} down, "
+                    c.write(getSelf(), Formatter.format("While %s holding {other:name-do} down, "
                                     + "{self:subject} mounts {other:direct-object} and pierces "
                                     + "{self:reflective} with {other:possessive} cock.", fucker, 
                                     target, master.subjectAction("are", "is")));
                     c.setStance(new FFMCowgirlThreesome(fucker, master, target), getSelf(), true);
                 }
             } else if (selfO.isType("cock") && master.hasPussy() && target.hasDick()) {
-                c.write(getSelf(), Global.format("While %s holding {other:name-do} down, "
+                c.write(getSelf(), Formatter.format("While %s holding {other:name-do} down, "
                                 + "{self:subject} moves behind {other:direct-object} and pierces "
                                 + "{other:direct-object} with {self:possessive} cock. "
                                 + "Taking advantage of {other:possessive} surprise %s {other:name-possessive} "
@@ -142,14 +142,14 @@ public class PetThreesome extends Skill {
                 target.body.pleasure(master, master.body.getRandomPussy(), target.body.getRandomCock(), otherm, 0, c, false, this);
                 master.body.pleasure(target, target.body.getRandomCock(), master.body.getRandomPussy(), m, 0, c, false, this);
             } else if (selfO.isType("cock") && !master.hasDick()) {
-                c.write(getSelf(), Global.format("While %s holding {other:name-do} down, "
+                c.write(getSelf(), Formatter.format("While %s holding {other:name-do} down, "
                                 + "{self:subject} mounts {other:direct-object} and pierces "
                                 + "{other:direct-object} with {self:possessive} cock in the missionary position.", fucker, 
                                 target, master.subjectAction("are", "is")));
                 c.setStance(new MFFMissionaryThreesome(fucker, master, target), getSelf(), true);
             } else if (selfO.isType("cock")) {
                 if (result == Result.critical) {
-                    c.write(getSelf(), Global.format("While %s holding {other:name-do} from behind, "
+                    c.write(getSelf(), Formatter.format("While %s holding {other:name-do} from behind, "
                                     + "{self:subject} mounts {other:direct-object} and pierces "
                                     + "{other:direct-object} with {self:possessive} cock in the missionary position. "
                                     + "It does not end there however, as %s {other:possessive} remaining hole, "
@@ -159,7 +159,7 @@ public class PetThreesome extends Skill {
                     target.body.pleasure(master, master.body.getRandomCock(), target.body.getRandomAss(), otherm, 0, c, false, this);
                     master.body.pleasure(target, target.body.getRandomAss(), master.body.getRandomCock(), m, 0, c, false, this);
                 } else {
-                    c.write(getSelf(), Global.format("While %s holding {other:name-possessive} head, "
+                    c.write(getSelf(), Formatter.format("While %s holding {other:name-possessive} head, "
                                     + "{self:subject} gets behind {other:direct-object} and pierces "
                                     + "{other:direct-object} with {self:possessive} cock. "
                                     + "It does not end there however, as %s {other:direct-object} %s cock, "
@@ -174,7 +174,7 @@ public class PetThreesome extends Skill {
             target.body.pleasure(fucker, selfO, targetO, otherm, c, this);
             fucker.body.pleasure(target, targetO, selfO, m, c, this);
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:try|tries} to pull {other:name-do} into a threesome but {other:pronoun-action:are|is} not aroused enough yet.", 
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:try|tries} to pull {other:name-do} into a threesome but {other:pronoun-action:are|is} not aroused enough yet.",
                             getSelf(), target));
             return false;
         }

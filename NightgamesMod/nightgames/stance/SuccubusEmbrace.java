@@ -3,7 +3,7 @@ package nightgames.stance;
 import nightgames.characters.Character;
 import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class SuccubusEmbrace extends FemdomSexStance {
 
@@ -30,7 +30,7 @@ public class SuccubusEmbrace extends FemdomSexStance {
         } else {
             breastDesc = "you tightly against {self:direct-object}";
         }
-        return Global.format("{self:name} is sitting on top of you, with your"
+        return Formatter.format("{self:name} is sitting on top of you, with your"
                         + " {other:body-part:cock} nestled deep within {self:possessive}"
                         + " {self:body-part:pussy}. {self:POSSESSIVE} {self:body-part:wings}"
                         + " are wrapped around your back, pressing %s.", top, bottom, breastDesc);
@@ -44,7 +44,7 @@ public class SuccubusEmbrace extends FemdomSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format(
+            c.write(bottom, Formatter.format(
                             "{self:SUBJECT-ACTION:pinch|pinches} {other:possessive} clitoris with {self:possessive} hands as {other:subject-action:try|tries} to ride {self:direct-object}. "
                                             + "While {other:subject-action:yelp|yelps} with surprise, {self:subject-action:take|takes} the chance to swing around into a dominant missionary position.",
                             bottom, top));

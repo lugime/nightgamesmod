@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.skills.Anilingus;
 import nightgames.skills.Blowjob;
@@ -32,7 +32,7 @@ public class FaceSitting extends AbstractBehindStance {
 
     @Override
     public String describe(Combat c) {
-        return Global.capitalizeFirstLetter(top.subjectAction("are", "is")) + " sitting on "
+        return Formatter.capitalizeFirstLetter(top.subjectAction("are", "is")) + " sitting on "
                         + bottom.nameOrPossessivePronoun() + " face while holding " + bottom.possessiveAdjective()
                         + " arms so " + bottom.subject() + " cannot escape";
     }
@@ -151,7 +151,7 @@ public class FaceSitting extends AbstractBehindStance {
         top.emote(Emotion.dominant, 20);
         top.emote(Emotion.horny, 10);
         if (top.has(Trait.energydrain)) {
-            c.write(top, Global.format(
+            c.write(top, Formatter.format(
                             "{self:NAME-POSSESSIVE} body glows purple as {other:subject-action:feel|feels}"
                             + " {other:possessive} very spirit drained through %s connection.",
                             top, bottom, c.bothPossessive(bottom)));
@@ -160,13 +160,13 @@ public class FaceSitting extends AbstractBehindStance {
         }
         if (top.has(Trait.drainingass)) {
             if (Random.random(3) == 0) {
-                c.write(top, Global.format("{self:name-possessive} ass seems to <i>inhale</i>, drawing"
+                c.write(top, Formatter.format("{self:name-possessive} ass seems to <i>inhale</i>, drawing"
                                 + " great gouts of {other:name-possessive} strength from {other:possessive}"
                                 + " body.", top, bottom));
                 bottom.drain(c, top, top.getLevel());
                 Drained.drain(c, top, bottom, Attribute.Power, 3, 10, true);
             } else {
-                c.write(top, Global.format("{other:SUBJECT-ACTION:feel} both {other:possessive} breath and energy being stolen by {self:NAME-POSSESSIVE} ass overlapping {other:POSSESSIVE} face."
+                c.write(top, Formatter.format("{other:SUBJECT-ACTION:feel} both {other:possessive} breath and energy being stolen by {self:NAME-POSSESSIVE} ass overlapping {other:POSSESSIVE} face."
                                 + " .", top, bottom));
                 bottom.drain(c, top, top.getLevel()/2);
             }
@@ -247,7 +247,7 @@ public class FaceSitting extends AbstractBehindStance {
 
     @Override
     public void escape(Combat c, Character escapee) {
-        c.write(escapee, Global.format(
+        c.write(escapee, Formatter.format(
                         "{self:SUBJECT-ACTION:try} to escape {other:name-possessive} hold, but with"
                                         + " {other:direct-object} behind {self:direct-object} with {other:possessive} long legs wrapped around {self:possessive} waist securely, there is nothing {self:pronoun} can do.",
                         escapee, top));

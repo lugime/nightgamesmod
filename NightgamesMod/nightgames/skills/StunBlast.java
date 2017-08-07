@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingTrait;
@@ -89,7 +89,7 @@ public class StunBlast extends Skill {
                             getSelf().possessiveAdjective(), target.nameOrPossessivePronoun(),
                             target.pronoun(), target.action("cover"), target.possessiveAdjective());
         } else if (modifier == Result.special) {
-            return Global.format("{self:SUBJECT} presses a button on {self:possessive} arm device,"
+            return Formatter.format("{self:SUBJECT} presses a button on {self:possessive} arm device,"
                             + "and a bright flash suddenly travels along {self:possessive} connection to"
                             + " the toy which is still stuck to you. When it reaches you, a huge shock"
                             + " stuns your body, leaving you helpless on the ground while the toy"

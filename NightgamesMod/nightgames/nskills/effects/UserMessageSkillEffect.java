@@ -1,7 +1,7 @@
 package nightgames.nskills.effects;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.struct.SkillResultStruct;
 
 public class UserMessageSkillEffect implements SkillEffect {
@@ -15,7 +15,7 @@ public class UserMessageSkillEffect implements SkillEffect {
     public boolean apply(SkillResultStruct results) {
         Character self = results.getSelf().getCharacter();
         Character other = results.getOther().getCharacter();
-        results.getCombat().write(self, Global.format(message, self, other));
+        results.getCombat().write(self, Formatter.format(message, self, other));
         return true;
     }
 

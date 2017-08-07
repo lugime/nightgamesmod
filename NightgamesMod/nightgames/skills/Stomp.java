@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.items.clothing.ClothingTrait;
@@ -138,8 +138,8 @@ public class Stomp extends Skill {
                                             + " When it lands, you feel a sympathetic jolt run up your spine as %s gonads are crushed beneath your foot."
                                             + " %s whimpers in pain, but not as much as you'd expect from such a magnificent impact.",
                             target.getName(), target.body.getRandomCock().describe(target), target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.pronoun()), target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.pronoun()));
+                            Formatter.capitalizeFirstLetter(target.pronoun()), target.possessiveAdjective(),
+                            Formatter.capitalizeFirstLetter(target.pronoun()));
         } else if (modifier == Result.weak) {
             return "You step between " + target.getName()
                             + "'s legs and stomp down on her groin. Your foot hits something solid and she doesn't seem terribly affected.";
@@ -147,7 +147,7 @@ public class Stomp extends Skill {
             return String.format(
                             "You step between %s's legs and stomp down on %s groin."
                                             + "%s exhales sharply, but does not seem hurt much at all. Somehow.",
-                            target.getName(), target.possessiveAdjective(), Global.capitalizeFirstLetter(target.pronoun()));
+                            target.getName(), target.possessiveAdjective(), Formatter.capitalizeFirstLetter(target.pronoun()));
         } else {
             if (target.hasBalls()) {
                 return "You pull " + target.getName()
@@ -169,7 +169,7 @@ public class Stomp extends Skill {
                             + "erupt from %s delicates as %s feet crash down on them.",
                             getSelf().subject(), target.nameOrPossessivePronoun(),
                             target.possessiveAdjective(), getSelf().possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.subjectAction("are", "is")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("are", "is")),
                             getSelf().nameOrPossessivePronoun(), getSelf().pronoun(),
                             target.directObject(), getSelf().pronoun(), target.possessiveAdjective(),
                             target.subjectAction("realize"), getSelf().pronoun(),
@@ -185,9 +185,9 @@ public class Stomp extends Skill {
                             getSelf().getName(), target.nameOrPossessivePronoun(),
                             getSelf().possessiveAdjective(), target.possessiveAdjective(),
                             target.body.getRandomCock().describe(target), 
-                            Global.capitalizeFirstLetter(target.subjectAction("were", "was")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("were", "was")),
                             getSelf().pronoun(), 
-                            Global.capitalizeFirstLetter(target.subjectAction("were", "was")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("were", "was")),
                             target.possessiveAdjective());
         } else if (modifier == Result.weak2) {
             return String.format("%s forces %s legs open and brutally stomps %s "
@@ -202,7 +202,7 @@ public class Stomp extends Skill {
                             + "jewels. %s up in the fetal position, groaning in agony.",
                             getSelf().subject(), target.nameOrPossessivePronoun(),
                             target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.subjectAction("curl")));
+                            Formatter.capitalizeFirstLetter(target.subjectAction("curl")));
         }
     }
 

@@ -5,7 +5,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 
@@ -62,15 +62,15 @@ public class Edge extends Skill {
         boolean hit = !target.canAct() || c.getStance().dom(getSelf())
                         || target.roll(getSelf(), c, accuracy(c, target));
         if (!hit) {
-            c.write(getSelf(), Global.format("{self:NAME-POSSESSIVE} hands descend towards"
+            c.write(getSelf(), Formatter.format("{self:NAME-POSSESSIVE} hands descend towards"
                             + "{other:name-possessive} {other:body-part:cock}, but "
                             + "{other:pronoun} succeeds in keeping them well away.", getSelf(), target));
             return false;
         } else if (target.getArousal().percent() < 100) {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:jerk|jerks} {other:name-possessive}"
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:jerk|jerks} {other:name-possessive}"
                             + " {other:body-part:cock} slowly yet deliberately with both hands.", getSelf(), target));
         } else {
-            c.write(getSelf(), Global.format("{other:SUBJECT-ACTION:are|is} already so close to cumming, but"
+            c.write(getSelf(), Formatter.format("{other:SUBJECT-ACTION:are|is} already so close to cumming, but"
                             + " {self:name-possessive} hands make such careful, calculated movements all over"
                             + " {other:possessive} {other:body-part:cock} that {other:pronoun-action:stay|stays}"
                             + " <i>just</i> away from that impending peak. "

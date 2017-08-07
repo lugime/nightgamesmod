@@ -9,7 +9,7 @@ import com.google.gson.JsonObject;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 
 public class Converted extends Abuff {
@@ -44,7 +44,7 @@ public class Converted extends Abuff {
                 // large
                 message = "Much of {self:name-possessive} %s has been %s into %s.";
             }
-            return Global.format(message, affected, affected, converted.getDrainedDO(), Random.pickRandom(synonyms).get(), modded.getDrainerDO());
+            return Formatter.format(message, affected, affected, converted.getDrainedDO(), Random.pickRandom(synonyms).get(), modded.getDrainerDO());
         }
     }
 
@@ -65,7 +65,7 @@ public class Converted extends Abuff {
             // large
             message = "Almost all of {self:name-possessive} %s has been %s into %s.";
         }
-        return Global.format(message, affected, affected, converted.getDrainedDO(), Random.pickRandom(synonyms).get(), modded.getDrainerDO());
+        return Formatter.format(message, affected, affected, converted.getDrainedDO(), Random.pickRandom(synonyms).get(), modded.getDrainerDO());
     }
 
     @Override

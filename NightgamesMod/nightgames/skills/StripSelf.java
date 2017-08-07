@@ -12,6 +12,7 @@ import nightgames.characters.NPC;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
@@ -50,7 +51,7 @@ public class StripSelf extends Skill {
         Clothing clothing = null;
         int diff = getSelf().stripDifficulty(target);
         if (!choice.isEmpty() && Random.random(50) < diff) {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:try|tries} to remove the %s"
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:try|tries} to remove the %s"
                             + " from {self:possessive} body, but it stubbornly sticks"
                             + " to {self:direct-object}.", getSelf(), target, choice));
             return false;
@@ -95,7 +96,7 @@ public class StripSelf extends Skill {
         if (clothing == null) {
             c.write(getSelf(), "Skill failed...");
         } else {
-            c.write(getSelf(), Global.format(String.format("{self:SUBJECT-ACTION:strip|strips} off %s %s.",
+            c.write(getSelf(), Formatter.format(String.format("{self:SUBJECT-ACTION:strip|strips} off %s %s.",
                             getSelf().possessiveAdjective(), clothing.getName()), getSelf(), target));
         }
         return true;

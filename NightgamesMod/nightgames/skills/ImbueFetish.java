@@ -8,7 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.BodyFetish;
 
@@ -85,7 +85,7 @@ public class ImbueFetish extends Skill {
                         + "strong attraction towards %s.",
                         target.subjectAction("feel"), target.possessiveAdjective(), target.pronoun(),
                         target.action("look"), target.pronoun(), target.action("see"),
-                        Global.capitalizeFirstLetter(target.subjectAction("remove")),
+                        Formatter.capitalizeFirstLetter(target.subjectAction("remove")),
                         target.pronoun(), target.action("look"), getSelf().nameDirectObject(),
                         getSelf().possessiveAdjective(), target.pronoun(), target.action("feel"),
                         chosenFetish);

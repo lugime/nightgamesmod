@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
 
@@ -72,7 +72,7 @@ public class DivineCharge extends Status {
     @Override
     public String describe(Combat c) {
         return "Concentrated divine energy surges through " + affected.nameOrPossessivePronoun() + " " + getPart(c)
-                        + " (" + Global.formatDecimal(magnitude) + ").";
+                        + " (" + Formatter.formatDecimal(magnitude) + ").";
     }
 
     @Override

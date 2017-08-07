@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Hypersensitive;
 
@@ -99,7 +99,7 @@ public class BreastGrowth extends Skill {
                                             + "causing them to grow rapidly. %s knees buckle with the new"
                                             + " sensitivity you bestowed on %s boobs.",
                             target.nameOrPossessivePronoun(),
-                            Global.capitalizeFirstLetter(target.possessiveAdjective()), target.possessiveAdjective());
+                            Formatter.capitalizeFirstLetter(target.possessiveAdjective()), target.possessiveAdjective());
             if (damage > 0) {
                 message += " You realize the effects are permanent!";
             }
@@ -109,7 +109,7 @@ public class BreastGrowth extends Skill {
                                             + "causing small mounds to rapidly grow on %s. %s knees buckle with the"
                                             + " sensitivity you bestowed on %s new boobs.",
                             target.nameOrPossessivePronoun(), target.directObject(),
-                            Global.capitalizeFirstLetter(target.possessiveAdjective()), target.possessiveAdjective());
+                            Formatter.capitalizeFirstLetter(target.possessiveAdjective()), target.possessiveAdjective());
             if (damage > 0) {
                 message += " You realize the effects are permanent!";
             }
@@ -130,11 +130,11 @@ public class BreastGrowth extends Skill {
                             "%s moving and begins chanting. %s %s breasts grow hot, and they start expanding!"
                                             + " %s to hold them back with %s hands, but the growth continues untill they are a full cup size"
                                             + " bigger than before. The new sensations from %s substantially larger breasts make %s tremble.",
-                            getSelf().getName(), Global.capitalizeFirstLetter(target.subjectAction("feel")),
-                            target.possessiveAdjective(), Global.capitalizeFirstLetter(target.pronoun()),
+                            getSelf().getName(), Formatter.capitalizeFirstLetter(target.subjectAction("feel")),
+                            target.possessiveAdjective(), Formatter.capitalizeFirstLetter(target.pronoun()),
                             target.action("try", "tries"), target.possessiveAdjective(), target.directObject());
             if (damage > 0) {
-                message += Global.capitalizeFirstLetter(target.subjectAction("realize"))
+                message += Formatter.capitalizeFirstLetter(target.subjectAction("realize"))
                                 + " the effects are permanent!";
             }
         } else if (modifier == Result.special) {
@@ -142,15 +142,15 @@ public class BreastGrowth extends Skill {
                             "%s moving and begins chanting. %s %s chest grow hot, and small, perky breasts start to form!"
                                             + " %s to hold them back with %s hands, but the growth continues untill they are a full A-cup."
                                             + " The new sensations from %s new breasts make %s tremble.",
-                            getSelf().getName(), Global.capitalizeFirstLetter(target.subjectAction("feel")),
-                            target.possessiveAdjective(), Global.capitalizeFirstLetter(target.pronoun()),
+                            getSelf().getName(), Formatter.capitalizeFirstLetter(target.subjectAction("feel")),
+                            target.possessiveAdjective(), Formatter.capitalizeFirstLetter(target.pronoun()),
                             target.action("try", "tries"), target.possessiveAdjective(), target.directObject());
         } else {
             message = String.format(
                             "%s moving and begins chanting. %s feeling some tingling in %s breasts, "
                                             + "but it quickly subsides as %s %s out of the way.",
                             getSelf().subjectAction("stop"),
-                            Global.capitalizeFirstLetter(target.subjectAction("start")), target.possessiveAdjective(),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("start")), target.possessiveAdjective(),
                             target.pronoun(), target.action("dodge"));
         }
         return message;

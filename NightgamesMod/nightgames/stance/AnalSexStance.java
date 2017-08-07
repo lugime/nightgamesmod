@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Stsflag;
 
@@ -78,7 +78,7 @@ public abstract class AnalSexStance extends Position {
                 c.write(struggler, "You try to pull dislodge " + inserted.nameDirectObject()
                                 + ", but " + inserted.pronoun() + " holds you down with " + inserted.possessiveAdjective() + " ass.");
             }
-            c.write(bottom, Global.format("{other:POSSESSIVE} hard cock grinding against {self:possessive} "
+            c.write(bottom, Formatter.format("{other:POSSESSIVE} hard cock grinding against {self:possessive} "
                             + "bowels as %s to twist out of %s grip brings both of you closer to the edge.", inserted, inserter,
                             struggler.pronoun() + " " + struggler.action("attempt"), opponent.possessiveAdjective()));
         } else if (c.shouldPrintReceive(getPartner(c, struggler), c)) {
@@ -93,7 +93,7 @@ public abstract class AnalSexStance extends Position {
                 c.write(bottom, String.format("%s tries to squirm away, but %s better leverage.",
                                 struggler.subject(), opponent.subjectAction("have", "has")));
             }
-            c.write(bottom, Global.format("{other:POSSESSIVE} hard cock grinding against {self:possessive} "
+            c.write(bottom, Formatter.format("{other:POSSESSIVE} hard cock grinding against {self:possessive} "
                             + "bowels as %s to twist out of %s grip brings both of %s closer to the edge.", inserted, inserter,
                             struggler.pronoun() + struggler.action(" attempt"), opponent.possessiveAdjective(), 
                             c.bothDirectObject(opponent)));
@@ -112,14 +112,14 @@ public abstract class AnalSexStance extends Position {
         boolean knotted = top.is(Stsflag.knotted);
 
         if (knotted) {
-            c.write(escapee, Global.capitalizeFirstLetter(escapee.subjectAction("try")) + " to force " + inserter.nameOrPossessivePronoun()
+            c.write(escapee, Formatter.capitalizeFirstLetter(escapee.subjectAction("try")) + " to force " + inserter.nameOrPossessivePronoun()
                             + " dick out of " + inserter.nameOrPossessivePronoun() + " ass, but the knot at its base is utterly unyielding.");
         } else if (escapee == inserter) {
-            c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to take advantage of an opening in {other:name-possessive} stance to slip away, "
+            c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to take advantage of an opening in {other:name-possessive} stance to slip away, "
                             + "but {other:pronoun-action:force} {other:possessive} ass on top of {self:direct-object} again, pressing {self:direct-object} into the floor.",
                             escapee, opponent));
         } else {
-            c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to take advantage of an opening in {other:name-possessive} stance to slip away, "
+            c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to take advantage of an opening in {other:name-possessive} stance to slip away, "
                             + "but {other:pronoun-action:pounds} {other:possessive} cock into {self:possessive} ass, forcing {self:direct-object} to give up.", escapee, opponent));
         }
         bottom.body.pleasure(top, Random.pickRandom(topParts(c)).orElse(null), Random.pickRandom(bottomParts()).orElse(null),

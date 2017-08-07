@@ -11,7 +11,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.Anilingus;
 import nightgames.skills.Blowjob;
 import nightgames.skills.BreastWorship;
@@ -35,7 +35,7 @@ public class BodyFetish extends DurationStatus {
     public double magnitude;
 
     public BodyFetish(Character affected, Character origin, String part, double magnitude) {
-        super(Global.capitalizeFirstLetter(part) + " Fetish", affected, 10);
+        super(Formatter.capitalizeFirstLetter(part) + " Fetish", affected, 10);
         flag(Stsflag.bodyfetish);
         this.origin = origin;
         this.part = part;
@@ -70,14 +70,14 @@ public class BodyFetish extends DurationStatus {
         } else {
             desc = "overwhelming ";
         }
-        String magString = Global.formatDecimal(magnitude);
+        String magString = Formatter.formatDecimal(magnitude);
         if (affected.human()) {
             if (origin != null && c != null && c.getOpponent(affected) == origin) {
-                return Global.capitalizeFirstLetter(
+                return Formatter.capitalizeFirstLetter(
                                 desc + "fantasies of worshipping " + origin.nameOrPossessivePronoun() + " " + part
                                                 + " run through your mind (" + magString + ").");
             } else {
-                return Global.capitalizeFirstLetter(desc + "fantasies of worshipping " + part
+                return Formatter.capitalizeFirstLetter(desc + "fantasies of worshipping " + part
                                 + " run through your mind (" + magString + ").");
             }
         } else {

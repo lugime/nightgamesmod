@@ -8,6 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.status.Status;
@@ -261,7 +262,7 @@ public class MagicMilkAddiction extends Addiction {
                 return "You wake up in the morning with a burning need for " + cause.getName() + "'s milk. The thought of resisting the urge doesn't even enter your mind. You quickly whip out your cellphone and dial " + cause.getName() + "'s number. "
                                 + "Moments later, an amused voice answers. You sob into the phone, begging for " + cause.getName() + "'s milk. Luckily, " + cause.getName() + " doesn't seem to want to tease you today, and readily agrees to drop by. "
                                 + "Fifteen agonizing minutes later, the doorbell rings and you rush to answer. Giving you a quick and dirty kiss at the door way, " + cause.getName() + " enters your room and sits down on your bed. "
-                                + Global.capitalizeFirstLetter(cause.pronoun()) + " pats " + cause.directObject() + " lap and motions for you to strip and lie down. You quickly comply and lay in " + cause.directObject() + " lap facing the ceiling, giddy for more milk. <br/>"
+                                + Formatter.capitalizeFirstLetter(cause.pronoun()) + " pats " + cause.directObject() + " lap and motions for you to strip and lie down. You quickly comply and lay in " + cause.directObject() + " lap facing the ceiling, giddy for more milk. <br/>"
                                 + "With a coying grin, " + cause.getName() + " strips off " + cause.directObject() + " top and lets " + cause.directObject() + " bountiful breasts bounce free of " + cause.directObject() + " bra. Your eyes immediately zeroes into " + cause.directObject() + " nipples, already dripping with opalescent white fluids. "
                                 + cause.getName() + " lowers " + cause.directObject() + " breasts into your face, and you happily start drinking " + cause.directObject() + " mindbending milk. Seconds turn into minutes and minutes turn into hours. "
                                 + "You don't know how long your were nursing at " + cause.directObject() + " teats, but you seemed to have dozed off in the middle of it. You find yourself on the bed by yourself, with a blanket covering you. "

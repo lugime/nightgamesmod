@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -104,12 +104,12 @@ public class Smother extends Skill {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("Enjoying your dominance over {other:name-do}, you experimentally scoot your legs forward so that your ass completely eclipses {other:possessive} face. {other:SUBJECT-ACTION:panic|panicks} as {other:pronoun} {other:action:realize|realizes} that {other:pronoun} cannot breathe!", getSelf(), target);
+        return Formatter.format("Enjoying your dominance over {other:name-do}, you experimentally scoot your legs forward so that your ass completely eclipses {other:possessive} face. {other:SUBJECT-ACTION:panic|panicks} as {other:pronoun} {other:action:realize|realizes} that {other:pronoun} cannot breathe!", getSelf(), target);
     }
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("Enjoying {self:possessive} dominance over {other:name-do}, {self:subject} experimentally scoots {self:possessive} legs forward so that {self:possessive} ass completely eclipses {other:possessive} face. {other:SUBJECT-ACTION:panic|panicks} as {other:pronoun} {other:action:realize|realizes} that {other:pronoun} cannot breathe!", getSelf(), target);
+        return Formatter.format("Enjoying {self:possessive} dominance over {other:name-do}, {self:subject} experimentally scoots {self:possessive} legs forward so that {self:possessive} ass completely eclipses {other:possessive} face. {other:SUBJECT-ACTION:panic|panicks} as {other:pronoun} {other:action:realize|realizes} that {other:pronoun} cannot breathe!", getSelf(), target);
     }
 
     @Override

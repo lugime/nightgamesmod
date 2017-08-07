@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.json.JsonUtils;
 
 public class PartSucked extends Status implements InsertedStatus {
@@ -37,7 +37,7 @@ public class PartSucked extends Status implements InsertedStatus {
         if (stick == null || penetrated == null) {
             return "";
         }
-        return Global.capitalizeFirstLetter(String.format("%s now fucking %s %s with %s %s\n",
+        return Formatter.capitalizeFirstLetter(String.format("%s now fucking %s %s with %s %s\n",
                         other.subjectAction("are", "is"), affected.nameOrPossessivePronoun(), stick.describe(affected),
                         other.possessiveAdjective(), penetrated.describe(other)));
     }
@@ -48,7 +48,7 @@ public class PartSucked extends Status implements InsertedStatus {
         if (stick == null || penetrated == null) {
             return "";
         }
-        return Global.capitalizeFirstLetter(String.format("%s fucking %s %s with %s %s\n",
+        return Formatter.capitalizeFirstLetter(String.format("%s fucking %s %s with %s %s\n",
                             other.subjectAction("are", "is"), affected.nameOrPossessivePronoun(),
                             stick.describe(affected), other.possessiveAdjective(), penetrated.describe(other)));
     }
@@ -70,8 +70,8 @@ public class PartSucked extends Status implements InsertedStatus {
             affected.removelist.add(this);
             return;
         }
-        c.write(other, Global.capitalizeFirstLetter(
-                        Global.format("{other:name-possessive} %s mindlessly milks {self:name-possessive} {self:body-part:" + target + "}.", affected, other, penetrated.describe(other))));
+        c.write(other, Formatter.capitalizeFirstLetter(
+                        Formatter.format("{other:name-possessive} %s mindlessly milks {self:name-possessive} {self:body-part:" + target + "}.", affected, other, penetrated.describe(other))));
         affected.body.pleasure(other, penetrated, stick, 10, c);
         other.body.pleasure(affected, stick, penetrated, 2, c);
         affected.emote(Emotion.desperate, 10);
@@ -79,7 +79,7 @@ public class PartSucked extends Status implements InsertedStatus {
     }
 
     public void onRemove(Combat c, Character other) {
-        c.write(other, Global.format("{other:NAME-POSSESSIVE} slick %s falls off {self:direct-object} with an audible pop.", affected, other, penetrated.describe(other)));
+        c.write(other, Formatter.format("{other:NAME-POSSESSIVE} slick %s falls off {self:direct-object} with an audible pop.", affected, other, penetrated.describe(other)));
     }
 
     @Override
@@ -129,7 +129,7 @@ public class PartSucked extends Status implements InsertedStatus {
 
     @Override
     public String toString() {
-        return Global.capitalizeFirstLetter(penetrated.getType()) + " fucked";
+        return Formatter.capitalizeFirstLetter(penetrated.getType()) + " fucked";
     }
 
     @Override

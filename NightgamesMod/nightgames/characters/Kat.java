@@ -16,6 +16,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
@@ -135,7 +136,7 @@ public class Kat extends BasePersonality {
         character.getGrowth().bonusArousal = 2;
         character.addCombatScene(new CombatScene((c, self, other) -> {
             return self.getLevel() >= 13 && !Global.checkFlag(KAT_POWER_FOCUS) && !Global.checkFlag(KAT_SPEED_FOCUS);
-        }, (c, self, player) -> Global.format("Exhilarated after the fight, Kat pounces on you once again. "
+        }, (c, self, player) -> Formatter.format("Exhilarated after the fight, Kat pounces on you once again. "
                         + "She doesn't seem too keen on having more sex, so you just hold her in your lap and pet her cute cat ears. "
                         + "Kat narrows her eyes and purrs, <i>\"So what do you think nya? I've gotten better right?\"</i> "
                         + "You grin and continue scratching her fluffy ears, letting her know that she has. "
@@ -215,7 +216,7 @@ public class Kat extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("Fuck her like she asked", (c, self, other) -> {
-                            c.write(Global.format("Well you're not one to refuse a lady. Holding Kat's lovely legs above your shoulders, you slam into her drenched snatch. "
+                            c.write(Formatter.format("Well you're not one to refuse a lady. Holding Kat's lovely legs above your shoulders, you slam into her drenched snatch. "
                                             + "She screeches at your sudden intrusion, but soon her voice mellows out to sweet moans as you pound her with reckless abandon. "
                                             + "The two of you spend a while just enjoying the sensations of your bodys meeting again and again; her velvety wetness against your rockhard pole. "
                                             + "Alas all good things have to come to an end. With a final few pumps, you ejaculate your thick cum into the petite girl, eliciting a pleasant purr from her. "
@@ -241,7 +242,7 @@ public class Kat extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("Sex, but continue indulging in her scent [Hard Mode]", (c, self, other) -> {
-                            c.write(Global.format("Sex with Kat sounds like a good idea, but you can't bring yourself to stop inhaling her sexy odor. "
+                            c.write(Formatter.format("Sex with Kat sounds like a good idea, but you can't bring yourself to stop inhaling her sexy odor. "
                                             + "The pheromones must be getting to your head, since it took a good ten seconds of indecision before the proverbial lightbulb lit up. "
                                             + "Why not just do both? Not even separating your nose from her skin for a split second, you hug her body close to you and "
                                             + "plung into her tightness in a seated position."

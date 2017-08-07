@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.DamageType;
@@ -47,7 +47,7 @@ public class Slap extends Skill {
                 if (c.getStance().en == Stance.neutral && Random.random(5) == 0) {
                     c.setStance(new StandingOver(getSelf(), target), getSelf(), true);
                     c.write(getSelf(),
-                                    Global.format("{self:SUBJECT-ACTION:slap|slaps} {other:direct-object} hard"
+                                    Formatter.format("{self:SUBJECT-ACTION:slap|slaps} {other:direct-object} hard"
                                                     + " enough to throw {other:pronoun} to the ground.", getSelf(),
                                     target));
                 }

@@ -6,7 +6,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.CockBound;
 
@@ -20,7 +20,7 @@ public class GooeyMod extends PartMod {
     public void onOrgasmWith(Combat c, Character self, Character opponent, BodyPart part, BodyPart target, boolean selfCame) {
         if (c.getStance().isPartFuckingPartInserted(c, opponent, target, self, part) && !selfCame) {
             String partName = part.describe(self);
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "{self:NAME-POSSESSIVE} %s clenches down hard"
                                             + " on {other:name-possessive} {other:body-part:cock}. The suction is so strong that the cum"
                                             + " leaves the shaft in a constant flow rather than spurts. When {other:possessive} orgasm is"
@@ -33,7 +33,7 @@ public class GooeyMod extends PartMod {
     public void onStartPenetration(Combat c, Character self, Character opponent, BodyPart part, BodyPart target) {
         if (c.getStance().isPartFuckingPartInserted(c, opponent, target, self, part)) {
             String partName = part.describe(self);
-            c.write(self, Global.format("{self:NAME-POSSESSIVE} %s envelops"
+            c.write(self, Formatter.format("{self:NAME-POSSESSIVE} %s envelops"
                             + " {other:possessive} {other:body-part:cock} in a sticky grip, making extraction more"
                             + " difficult.", self, opponent, partName));
             opponent.add(c, new CockBound(opponent, 7, self.nameOrPossessivePronoun() + " " + partName));
@@ -42,7 +42,7 @@ public class GooeyMod extends PartMod {
 
     public void tickHolding(Combat c, Character self, Character opponent, BodyPart part, BodyPart otherOrgan) {
         String partName = part.describe(self);
-        c.write(self, Global.format(
+        c.write(self, Formatter.format(
                         "The slimy filaments inside {self:possessive} %s constantly massage"
                                         + " {other:possessive} %s, filling every inch of it with pleasure.",
                         self, opponent, partName, otherOrgan.describe(opponent)));

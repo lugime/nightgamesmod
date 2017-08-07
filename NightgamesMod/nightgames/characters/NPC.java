@@ -416,7 +416,7 @@ public class NPC extends Character {
         if (disguised != null) {
             lines = disguised.getTarget().getLines();
         }
-        return Global.format(Random.pickRandom(lines.get(lineType)).orElse((cb, sf, ot) -> "").getLine(c, this, other), this, other);
+        return Formatter.format(Random.pickRandom(lines.get(lineType)).orElse((cb, sf, ot) -> "").getLine(c, this, other), this, other);
     }
 
     @Override
@@ -589,7 +589,8 @@ public class NPC extends Character {
         level++;
         ai.ding(this);
         if (c != null && c.isBeingObserved()) {
-            Global.writeIfCombatUpdateImmediately(c, this, Global.format("{self:subject-action:have} leveled up!", this, this));
+            Formatter.writeIfCombatUpdateImmediately(c, this, Formatter
+                            .format("{self:subject-action:have} leveled up!", this, this));
         }
     }
 
@@ -679,7 +680,7 @@ public class NPC extends Character {
                     if (reverse != c.getStance() && !BodyPart.hasOnlyType(reverse.bottomParts(), "strapon")) {
                         c.setStance(reverse, this, false);
                     } else {
-                        c.write(this, Global.format(
+                        c.write(this, Formatter.format(
                                         "{self:NAME-POSSESSIVE} quick wits find a gap in {other:name-possessive} hold and {self:action:slip|slips} away.",
                                         this, target));
                         c.setStance(new Neutral(this, c.getOpponent(this)), this, true);
@@ -687,7 +688,7 @@ public class NPC extends Character {
                 } else {
                     target.body.pleasure(this, body.getRandom("hands"), target.body.getRandomBreasts(),
                                     4 + Math.min(Random.random(get(Attribute.Seduction)), 20), c);
-                    c.write(this, Global.format(
+                    c.write(this, Formatter.format(
                                     "{self:SUBJECT-ACTION:pinch|pinches} {other:possessive} nipples with {self:possessive} hands as {other:subject-action:try|tries} to fuck {self:direct-object}. "
                                                     + "While {other:subject-action:yelp|yelps} with surprise, {self:subject-action:take|takes} the chance to pleasure {other:possessive} body",
                                     this, target));
@@ -790,14 +791,14 @@ public class NPC extends Character {
         super.eot(c, opponent);
         ai.eot(c, opponent);
         if (opponent.has(Trait.pheromones) && opponent.getArousal().percent() >= 20 && opponent.rollPheromones(c)) {
-            c.write(opponent, Global.format("<br/>{other:SUBJECT-ACTION:see} {self:subject} swoon slightly "
+            c.write(opponent, Formatter.format("<br/>{other:SUBJECT-ACTION:see} {self:subject} swoon slightly "
                             + "as {self:pronoun-action:get} close to {other:direct-object}. "
                             + "Seems like {self:pronoun-action:are} starting to feel "
                             + "the effects of {other:possessive} musk.", this, opponent));
             add(c, Pheromones.getWith(opponent, this, opponent.getPheromonePower(), 10));
         }
         if (has(Trait.RawSexuality)) {
-            c.write(this, Global.format("{self:NAME-POSSESSIVE} raw sexuality turns both of you on.", this, opponent));
+            c.write(this, Formatter.format("{self:NAME-POSSESSIVE} raw sexuality turns both of you on.", this, opponent));
             temptNoSkillNoSource(c, opponent, getArousal().max() / 20);
             opponent.temptNoSkillNoSource(c, this, opponent.getArousal().max() / 20);
         }

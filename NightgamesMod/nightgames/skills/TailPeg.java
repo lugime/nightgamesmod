@@ -10,7 +10,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.TailPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 import nightgames.stance.Stance;
@@ -201,7 +201,7 @@ public class TailPeg extends Skill {
                                 + " pumps it in and out a for a few times before taking it out again.",
                                 target.nameDirectObject(), getSelf().subject(), target.possessiveAdjective(),
                                 target.possessiveAdjective(), getSelf().possessiveAdjective(),
-                                Global.capitalizeFirstLetter(target.subjectAction("notice")),
+                                Formatter.capitalizeFirstLetter(target.subjectAction("notice")),
                                 target.possessiveAdjective(), target.possessiveAdjective(),
                                 getSelf().subject());
             case miss:
@@ -214,7 +214,7 @@ public class TailPeg extends Skill {
                 return String.format("%s suddenly moves very close to %s. %s an attack from the front"
                                 + " and %s to move back, but %s up shoving %s tail right up %s ass.",
                                 getSelf().subject(), target.nameDirectObject(),
-                                Global.capitalizeFirstLetter(target.subjectAction("expect")),
+                                Formatter.capitalizeFirstLetter(target.subjectAction("expect")),
                                 target.action("try", "tries"), target.action("end"),
                                 getSelf().possessiveAdjective(), target.possessiveAdjective());
             case special:
@@ -225,9 +225,9 @@ public class TailPeg extends Skill {
                                 + " and %s almost %s it as %s cock and ass are stimulated so thoroughly"
                                 + " at the same time.", getSelf().subject(), getSelf().possessiveAdjective(),
                                 target.nameOrPossessivePronoun(),
-                                Global.capitalizeFirstLetter(target.pronoun()), target.action("look"),
+                                Formatter.capitalizeFirstLetter(target.pronoun()), target.action("look"),
                                 target.action("see"), target.directObject(), 
-                                Global.capitalizeFirstLetter(target.subjectAction("try", "tries")),
+                                Formatter.capitalizeFirstLetter(target.subjectAction("try", "tries")),
                                 target.possessiveAdjective(), getSelf().nameOrPossessivePronoun(),
                                 target.possessiveAdjective(), target.possessiveAdjective(),
                                 target.pronoun(), target.action("lose"), target.possessiveAdjective());
@@ -242,10 +242,10 @@ public class TailPeg extends Skill {
                                 + " out by clamping %s legs together, but a squeeze of %s"
                                 + " %s breaks %s concentration, so the tail slides smoothly into %s pussy.",
                                 getSelf().subject(), getSelf().possessiveAdjective(), 
-                                target.nameDirectObject(), Global.capitalizeFirstLetter(target.pronoun()),
+                                target.nameDirectObject(), Formatter.capitalizeFirstLetter(target.pronoun()),
                                 target.action("look"), target.action("see"), target.directObject(),
                                 target.action("panic"),
-                                Global.capitalizeFirstLetter(target.subjectAction("try", "tries")),
+                                Formatter.capitalizeFirstLetter(target.subjectAction("try", "tries")),
                                 target.possessiveAdjective(), getSelf().nameOrPossessivePronoun(),
                                 part,
                                 target.possessiveAdjective(), target.possessiveAdjective());

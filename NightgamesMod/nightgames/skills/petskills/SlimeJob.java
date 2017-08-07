@@ -2,7 +2,7 @@ package nightgames.skills.petskills;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
@@ -29,27 +29,28 @@ public class SlimeJob extends SimpleEnemySkill {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             int m = (int) (Random.random(10, 16) + Math.sqrt(getSelf().getLevel())/ 2);
             if (target.crotchAvailable() && !c.getStance().penisInserted(target) && target.hasDick()) {
-                c.write(getSelf(), Global.format("{self:SUBJECT} forms into a humanoid shape and grabs {other:name-possessive} dick. "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} forms into a humanoid shape and grabs {other:name-possessive} dick. "
                                 + "A slimy vagina forms around {other:possessive} penis and rubs {other:direct-object} with a slippery pleasure.",
                                     getSelf(), target));
                 target.body.pleasure(getSelf(), getSelf().body.getRandomPussy(), target.body.getRandomCock(), m, c);
                 return true;
             } else if (target.hasPussy() && !c.getStance().vaginallyPenetrated(c, target) && target.crotchAvailable() && getSelf().hasDick()) {
-                c.write(getSelf(), Global.format("Two long appendages extend from {self:name-do} and wrap around {other:name-possessive} legs. "
+                c.write(getSelf(), Formatter.format("Two long appendages extend from {self:name-do} and wrap around {other:name-possessive} legs. "
                                 + "A third, phallic shaped appendage forms and penetrates {other:possessive} "
                                 + "pussy. {self:PRONOUN} stifles a moan as the slimy phallus thrusts in and out of {other:direct-object}.",
                                 getSelf(), target));
                 target.body.pleasure(getSelf(), getSelf().body.getRandomCock(), target.body.getRandomPussy(), m, c);
                 return true;
             } else if (target.breastsAvailable()) {
-                c.write(getSelf(), Global.format("{self:SUBJECT} grows two long slimy appendages which rises up and tweaks {other:name-possessive} "
+                c.write(getSelf(), Formatter.format("{self:SUBJECT} grows two long slimy appendages which rises up and tweaks {other:name-possessive} "
                                 + "sensitive nipples.",
                                 getSelf(), target));
                 target.body.pleasure(getSelf(), getSelf().body.getRandom("tentacles"), target.body.getRandomBreasts(), m, c);
                 return true;
             }
         }
-        c.write(getSelf(), Global.format("You see eyes form in {self:name-do} as it watches the fight curiously.", getSelf(), target));
+        c.write(getSelf(), Formatter
+                        .format("You see eyes form in {self:name-do} as it watches the fight curiously.", getSelf(), target));
         return false;
     }
 

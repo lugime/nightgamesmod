@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.CockMod;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Frenzied;
 import nightgames.status.IgnoreOrgasm;
@@ -56,7 +56,7 @@ public class FeralMod extends PartMod {
 
     public void onOrgasm(Combat c, Character self, Character opponent, BodyPart part) {
         if (c.getStance().distance() < 2) {
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "As {self:SUBJECT-ACTION:cum|cums} hard, a literal explosion of pheromones hits {other:name-do}. {other:POSSESSIVE} entire body flushes in arousal; {other:subject} better finish this fast!",
                             self, opponent));
             opponent.add(c, Pheromones.getWith(self, opponent, 10, 5, " orgasmic secretions"));

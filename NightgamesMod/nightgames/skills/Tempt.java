@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Charmed;
 import nightgames.status.Enthralled;
@@ -44,16 +44,16 @@ public class Tempt extends Skill {
         if (getSelf().has(Trait.darkpromises) && tempted && !target.wary() && getSelf().canSpend(15)) {
             getSelf().spendMojo(c, 15);
             c.write(getSelf(),
-                            Global.format("{self:NAME-POSSESSIVE} words fall on fertile grounds. {other:NAME-POSSESSIVE} will to resist crumbles in light of {self:possessive} temptation.",
+                            Formatter.format("{self:NAME-POSSESSIVE} words fall on fertile grounds. {other:NAME-POSSESSIVE} will to resist crumbles in light of {self:possessive} temptation.",
                                             getSelf(), target));
             target.add(c, new Enthralled(target, getSelf(), 3));
         } else if (getSelf().has(Trait.commandingvoice) && Random.random(3) == 0) {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:speak|speaks} with such unquestionable"
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:speak|speaks} with such unquestionable"
                             + " authority that {other:subject-action:don't|doesn't} even consider disobeying."
                             , getSelf(), target));
             target.add(c, new Trance(target, 1, false));
         } else if (getSelf().has(Trait.MelodiousInflection) && !target.is(Stsflag.charmed) && Random.random(3) == 0) {
-            c.write(getSelf(), Global.format("Something about {self:name-possessive} words, the"
+            c.write(getSelf(), Formatter.format("Something about {self:name-possessive} words, the"
                             + " way {self:possessive} voice rises and falls, {self:possessive}"
                             + " pauses and pitch... {other:SUBJECT} soon {other:action:find|finds}"
                             + " {other:reflective} utterly hooked.", getSelf(), target));

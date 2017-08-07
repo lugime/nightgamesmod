@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Charmed;
 import nightgames.status.Stsflag;
@@ -80,11 +80,11 @@ public class Beg extends Skill {
                             + target.possessiveAdjective() + " sadistic side.";
         }
         if (modifier == Result.special) {
-            return Global.format("You put yourself completely at {other:name-possessive} mercy and beg for some more of addictive fluids. "
+            return Formatter.format("You put yourself completely at {other:name-possessive} mercy and beg for some more of addictive fluids. "
                             + "Unfortunately {other:pronoun} doesn't seem to be very inclined to oblige you.", getSelf(), target);
         }
         return "You put yourself completely at " + target.getName() + "'s mercy. "
-                        + Global.capitalizeFirstLetter(target.pronoun())
+                        + Formatter.capitalizeFirstLetter(target.pronoun())
                         + " takes pity on you and gives you a moment to recover.";
     }
 
@@ -93,7 +93,7 @@ public class Beg extends Skill {
         if (modifier == Result.miss) {
             return String.format("%s gives %s a pleading look and asks %s to go light on %s."+
                             "%s is cute, but %s is not getting away that easily.", getSelf().getName(), target.subject(),
-                            target.directObject(), getSelf().directObject(), Global.capitalizeFirstLetter(getSelf().pronoun()),
+                            target.directObject(), getSelf().directObject(), Formatter.capitalizeFirstLetter(getSelf().pronoun()),
                             getSelf().pronoun());
         }
         if (modifier == Result.special) {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -47,11 +47,11 @@ public class Strip extends ArmSkill {
         if (sub || Random.random(100) < accuracy) {
             Clothing stripped = target.outfit.getTopOfSlot(slot);
             if (stripped.is(ClothingTrait.indestructible)) {
-                c.write(PetCharacter.DUMMY, Global.format("A %s lunges at {other:name-do}, its attachment"
+                c.write(PetCharacter.DUMMY, Formatter.format("A %s lunges at {other:name-do}, its attachment"
                                 + " grabbing for {other:possessive} %s. It fails to remove it, however."
                                 , owner, target, arm.getName(), stripped.getName()));
             } else {
-                c.write(PetCharacter.DUMMY, Global.format("A steely blur flies at {other:name-do},"
+                c.write(PetCharacter.DUMMY, Formatter.format("A steely blur flies at {other:name-do},"
                                 + " revealing itself to be a %s which has already latched on"
                                 + " to {other:possessive} %s. The poor garment is no match"
                                 + " for {self:name-possessive} technological advantage and it falls"
@@ -61,7 +61,7 @@ public class Strip extends ArmSkill {
                 return true;
             }
         } else {
-            c.write(PetCharacter.DUMMY, Global.format("{other:SUBJECT-ACTION:manage|manages} to dodge"
+            c.write(PetCharacter.DUMMY, Formatter.format("{other:SUBJECT-ACTION:manage|manages} to dodge"
                             + " {self:name-possessive} %s as it flies at {other:possessive} clothes.",
                             owner, target, arm.getName()));
         }

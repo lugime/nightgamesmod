@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -53,11 +53,11 @@ public class Tear extends Skill {
                                             + getSelf().get(Attribute.Medicine) * 4)) || !target.canAct()))) {
                 if (getSelf().human()) {
                     c.write(getSelf(),
-                                    Global.format("Grabbing your scalpel, you jump forward. The sharp blade makes quick work of {other:possessive}} clothing and your skill with the blade allows you avoid harming them completely. {other:SUBJECT} can only look at you with shock as {other:possessive} shredded clothes float to the ground between you.",
+                                    Formatter.format("Grabbing your scalpel, you jump forward. The sharp blade makes quick work of {other:possessive}} clothing and your skill with the blade allows you avoid harming them completely. {other:SUBJECT} can only look at you with shock as {other:possessive} shredded clothes float to the ground between you.",
                                                     getSelf(), target));
                 } else if (c.shouldPrintReceive(target, c)) {
                     c.write(getSelf(),
-                                    Global.format("{self:SUBJECT} leaps forward. {self:POSSESSIVE} hand is a blur but {other:subject-action:spot|spots} the glint of steel in them. Reflexively, {other:pronoun-action:cover|covers} {other:reflective} with {other:possessive} arms to prevent as much damage as possible. When nothing happens {other:subject-action:open|opens} {other:possessive} eyes to see {self:subject} grinning at {other:direct-object}, a scalpel still in {self:possessive} hands. Looking down {other:pronoun-action:see|sees} that some of {other:possessive} clothes have been cut to ribbons!",
+                                    Formatter.format("{self:SUBJECT} leaps forward. {self:POSSESSIVE} hand is a blur but {other:subject-action:spot|spots} the glint of steel in them. Reflexively, {other:pronoun-action:cover|covers} {other:reflective} with {other:possessive} arms to prevent as much damage as possible. When nothing happens {other:subject-action:open|opens} {other:possessive} eyes to see {self:subject} grinning at {other:direct-object}, a scalpel still in {self:possessive} hands. Looking down {other:pronoun-action:see|sees} that some of {other:possessive} clothes have been cut to ribbons!",
                                                     getSelf(), target));
                 }
                 target.shred(ClothingSlot.top);
@@ -80,7 +80,7 @@ public class Tear extends Skill {
                                     + "nails are not that sharp, and if they were, %s surely wouldn't have gotten away unscathed.",
                                     getSelf().subject(), target.nameDirectObject(), getSelf().possessiveAdjective(),
                                     target.possessiveAdjective(), article.getName(),
-                                    Global.capitalizeFirstLetter(getSelf().pronoun()),
+                                    Formatter.capitalizeFirstLetter(getSelf().pronoun()),
                                     target.nameDirectObject()));
                 }
                 target.shred(ClothingSlot.top);
@@ -128,11 +128,11 @@ public class Tear extends Skill {
                             || !target.canAct())) {
                 if (getSelf().human()) {
                     c.write(getSelf(),
-                                    Global.format("Grabbing your scalpel, you jump forward. The sharp blade makes quick work of {other:possessive} clothing and your skill with the blade allows you avoid harming them completely. {other:SUBJECT} can only look at you with shock as {other:possessive} shredded clothes float to the ground between you.",
+                                    Formatter.format("Grabbing your scalpel, you jump forward. The sharp blade makes quick work of {other:possessive} clothing and your skill with the blade allows you avoid harming them completely. {other:SUBJECT} can only look at you with shock as {other:possessive} shredded clothes float to the ground between you.",
                                                     getSelf(), target));
                 } else if (c.shouldPrintReceive(target, c)) {
                     c.write(getSelf(),
-                                    Global.format("{self:SUBJECT} leaps forward. {self:possessive} hand is a blur but {other:subject-action:spot|spots} the glint of steel in them. Reflexively, {other:pronoun-action:cover|covers} {other:reflective} with {other:possessive} arms to prevent as much damage as possible. When nothing happens {other:subject-action:open|opens} {other:possessive} eyes to see {self:subject} grinning at {other:direct-object}, a scalpel still in {self:possessive} hands. Looking down {other:pronoun-action:see|sees} that some of {other:possessive} clothes have been cut to ribbons!",
+                                    Formatter.format("{self:SUBJECT} leaps forward. {self:possessive} hand is a blur but {other:subject-action:spot|spots} the glint of steel in them. Reflexively, {other:pronoun-action:cover|covers} {other:reflective} with {other:possessive} arms to prevent as much damage as possible. When nothing happens {other:subject-action:open|opens} {other:possessive} eyes to see {self:subject} grinning at {other:direct-object}, a scalpel still in {self:possessive} hands. Looking down {other:pronoun-action:see|sees} that some of {other:possessive} clothes have been cut to ribbons!",
                                                     getSelf(), target));
                 }
                 target.shred(ClothingSlot.bottom);
@@ -155,7 +155,7 @@ public class Tear extends Skill {
                                     + "nails are not that sharp, and if they were, %s surely wouldn't have gotten away unscathed.",
                                     getSelf().subject(), target.nameDirectObject(), getSelf().possessiveAdjective(),
                                     target.possessiveAdjective(), article.getName(),
-                                    Global.capitalizeFirstLetter(getSelf().pronoun()),
+                                    Formatter.capitalizeFirstLetter(getSelf().pronoun()),
                                     target.nameDirectObject()));
                 }
                 target.shred(ClothingSlot.bottom);

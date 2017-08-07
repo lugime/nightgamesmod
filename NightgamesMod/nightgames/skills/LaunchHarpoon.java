@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.nskills.tags.SkillTag;
@@ -74,7 +74,7 @@ public class LaunchHarpoon extends Skill {
                                 + " {other:pronoun-action:have|has} no chance to evade it. ";
             }
             if (target.hasDick()) {
-                c.write(getSelf(), Global.format("%sThe soft material of the toy shapes itself"
+                c.write(getSelf(), Formatter.format("%sThe soft material of the toy shapes itself"
                                 + " around {other:name-possessive} {other:body-part:cock}, creating"
                                 + " an airtight seal around the shaft. {self:SUBJECT-ACTION:press|presses}"
                                 + " a button on the device on {self:possessive} arm, and a strong suction"
@@ -82,7 +82,7 @@ public class LaunchHarpoon extends Skill {
                                 + " strangely pleasurable vibration.", getSelf(), target, aim));
                target.outfit.equip(Clothing.getByID("harpoononahole"));
             } else {
-                c.write(getSelf(), Global.format("%sThe pliable material crawls its way inside of"
+                c.write(getSelf(), Formatter.format("%sThe pliable material crawls its way inside of"
                                 + " {other:name-possessive} {other:body-part:pussy}, shaping itself"
                                 + " to fill it perfectly. The excess at the base forms a cup which"
                                 + " settles over {other:possessive} mons, which"
@@ -95,7 +95,7 @@ public class LaunchHarpoon extends Skill {
             }
             return true;
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:let|lets} {self:possessive} harpoon-like"
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:let|lets} {self:possessive} harpoon-like"
                             + " toy fly from its slot on {self:possessive} arm device towards"
                             + " {other:name-do}, but {other:pronoun} easily {other:action:evade|evades} it.", 
                             getSelf(), target));

@@ -9,7 +9,7 @@ import nightgames.characters.body.mods.PlantMod;
 import nightgames.characters.body.mods.TentacledMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Match;
 import nightgames.status.Abuff;
 import nightgames.status.SlimeMimicry;
@@ -104,7 +104,7 @@ public class MimicDryad extends Skill {
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("{self:NAME-POSSESSIVE} amorphous body quivers and collapses into a puddle. "
+        return Formatter.format("{self:NAME-POSSESSIVE} amorphous body quivers and collapses into a puddle. "
                         + "Starting from the center, the slime matter dyes itself green, transforming itself into a verdant emerald hue within seconds. "
                         + "After reforming her features out of her slime, {other:subject-action:see|sees} that {self:NAME} has taken on an appearance reminiscent of Rosea the dryad, "
                         + "complete with a large slime-parody of a flower replacing where her usual vagina is.", getSelf(), target);

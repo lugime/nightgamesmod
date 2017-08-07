@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.Arm;
@@ -29,7 +29,7 @@ public class TentacleSuck extends TentacleArmSkill {
         BodyPart tentaclePart = TentacleSucker.PART;
 
         if (success) {
-            c.write(PetCharacter.DUMMY, Global.format("{self:NAME-POSSESSIVE} %s shoots forward, snaking through {other:possessive} guard "
+            c.write(PetCharacter.DUMMY, Formatter.format("{self:NAME-POSSESSIVE} %s shoots forward, snaking through {other:possessive} guard "
                             + "and attaching itself to {other:possessive} defenseless cock. "
                             + "{other:SUBJECT-ACTION:try} pulling it off {other:reflective} with {other:possessive} hands but the vacuum-tight "
                             + "suction make it feel like {other:pronoun-action:are} giving {other:reflective} a tug-job.", owner, target, arm.getName()));
@@ -37,7 +37,7 @@ public class TentacleSuck extends TentacleArmSkill {
             target.add(c, new PartSucked(target, owner, tentaclePart, "cock"));
             return true;
         } else {
-            c.write(PetCharacter.DUMMY, Global.format("A %s flies towards {other:name-possessive} crotch, "
+            c.write(PetCharacter.DUMMY, Formatter.format("A %s flies towards {other:name-possessive} crotch, "
                             + "but {other:pronoun-action:dodge} out of the way just in time.", owner, target, arm.getName()));
         }
         return false;

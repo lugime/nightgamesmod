@@ -5,6 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
@@ -129,7 +130,7 @@ public class Trip extends Skill {
                             "%s forms some of %s slime into a sheet and slides it towards %s feet."
                                             + " %s %s away from it, and %s harmlessly retracts the slime.",
                             getSelf().getName(), getSelf().possessiveAdjective(), target.nameOrPossessivePronoun(),
-                            Global.capitalizeFirstLetter(target.pronoun()), target.action("jump"), getSelf().pronoun());
+                            Formatter.capitalizeFirstLetter(target.pronoun()), target.action("jump"), getSelf().pronoun());
         } else {
             return String.format("%s takes %s feet out from under %s and sends %s sprawling to the floor.",
                             getSelf().subject(), target.nameOrPossessivePronoun(), target.directObject(),

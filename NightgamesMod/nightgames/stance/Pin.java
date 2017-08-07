@@ -2,7 +2,7 @@ package nightgames.stance;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Pin extends AbstractFacingStance {
 
@@ -23,7 +23,7 @@ public class Pin extends AbstractFacingStance {
     @Override
     public void checkOngoing(Combat c) {
         if (!top.canAct() && bottom.canAct()) {
-            c.write(bottom, Global.format("With {self:subject} unable to resist, "
+            c.write(bottom, Formatter.format("With {self:subject} unable to resist, "
                             + "{bottom:subject-action:roll} over on top of {self:direct-object}."
                             , top, bottom));
             c.setStance(new Mount(bottom, top));
@@ -126,7 +126,7 @@ public class Pin extends AbstractFacingStance {
 
     @Override
     public void escape(Combat c, Character escapee) {
-        c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} pin, but with"
+        c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} pin, but with"
                         + " {other:direct-object} sitting on {self:possessive} back, holding {self:possessive} wrists firmly, there is nothing {self:pronoun} can do.",
                         escapee, top));
         super.escape(c, escapee);

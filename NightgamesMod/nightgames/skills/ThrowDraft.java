@@ -14,6 +14,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.DebugFlags;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.ItemEffect;
@@ -116,7 +117,7 @@ public class ThrowDraft extends Skill {
             if (verb.isEmpty()) {
                 verb = "throw";
             }
-            c.write(getSelf(), Global.format(
+            c.write(getSelf(), Formatter.format(
                             String.format("{self:SUBJECT-ACTION:%s|%ss} %s%s.", verb, verb, used.pre(), used.getName()),
                             getSelf(), target));
             if (transformativeItems.contains(used) && target.has(Trait.stableform)) {

@@ -7,7 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
@@ -73,7 +73,7 @@ public class ReverseAssFuck extends Fuck {
             getSelf().add(c, new Oiled(getSelf()));
             getSelf().consume(Item.Lubricant, 1);
         }
-        c.write(getSelf(), Global.format(premessage, getSelf(), target));
+        c.write(getSelf(), Formatter.format(premessage, getSelf(), target));
 
         int m = Random.random(10, 15);
         writeOutput(c, Result.normal, target);

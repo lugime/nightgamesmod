@@ -14,7 +14,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -393,7 +393,7 @@ public class Command extends Skill {
                                                 getSelf().subject(), target.subject(), 
                                                 getSelf().possessiveAdjective(), removed.getName(),
                                                 getSelf().directObject(), 
-                                                Global.capitalizeFirstLetter(target.pronoun()),
+                                                Formatter.capitalizeFirstLetter(target.pronoun()),
                                                 target.action("comply", "complies"),
                                                 getSelf().nameOrPossessivePronoun()));
                 target.temptNoSkillNoSource(c, getSelf(), 7 + Random.random(20));
@@ -411,7 +411,7 @@ public class Command extends Skill {
                                                 + " the offending garment.", getSelf().getName(), 
                                                 target.subject(), target.pronoun(), 
                                                 target.possessiveAdjective(), removed.getName(),
-                                                Global.capitalizeFirstLetter(target.pronoun()),
+                                                Formatter.capitalizeFirstLetter(target.pronoun()),
                                                 target.action("remove")));
                 break;
             case SUBMIT:
@@ -421,7 +421,7 @@ public class Command extends Skill {
                                                 + " without hesitation.", getSelf().getName(),
                                                 target.nameOrPossessivePronoun(), target.directObject(),
                                                 target.pronoun(), 
-                                                Global.capitalizeFirstLetter(target.subjectAction("obey"))));
+                                                Formatter.capitalizeFirstLetter(target.subjectAction("obey"))));
                 c.setStance(new StandingOver(getSelf(), target), target, false);
                 break;
             case WORSHIP_COCK:
@@ -432,11 +432,11 @@ public class Command extends Skill {
                                                 + " almost religious zeal. At the same time, %s cannot contain %s lust"
                                                 + " and simply must play with %s.", getSelf().getName(),
                                                 target.subjectAction("NEED", "NEEDS"),
-                                                Global.capitalizeFirstLetter(target.pronoun()),
+                                                Formatter.capitalizeFirstLetter(target.pronoun()),
                                                 target.action("beg"),
                                                 getSelf().nameOrPossessivePronoun(), getSelf().pronoun(),
                                                 target.directObject(),
-                                                Global.capitalizeFirstLetter(target.pronoun()),
+                                                Formatter.capitalizeFirstLetter(target.pronoun()),
                                                 target.action("throw"), target.reflectivePronoun(), getSelf().possessiveAdjective(), 
                                                 target.action("worship"),
                                                 getSelf().body.getRandomCock().describe(target),
@@ -459,11 +459,11 @@ public class Command extends Skill {
                                                 + " almost religious zeal. At the same time, %s cannot contain %s lust"
                                                 + " and simply must play with %s.", getSelf().getName(),
                                                 target.subjectAction("NEED", "NEEDS"),
-                                                Global.capitalizeFirstLetter(target.pronoun()),
+                                                Formatter.capitalizeFirstLetter(target.pronoun()),
                                                 target.action("beg"),
                                                 getSelf().nameOrPossessivePronoun(), getSelf().pronoun(),
                                                 target.directObject(),
-                                                Global.capitalizeFirstLetter(target.pronoun()),
+                                                Formatter.capitalizeFirstLetter(target.pronoun()),
                                                 target.action("throw"), target.reflectivePronoun(), getSelf().possessiveAdjective(), 
                                                 target.action("worship"),
                                                 getSelf().body.getRandomPussy().describe(target),
@@ -480,7 +480,8 @@ public class Command extends Skill {
                 break;
             case MASTER_INSERT:
                 if (c.getStance().havingSex(c, getSelf())) {
-                    c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:order} {other:name-do} to be still.", getSelf(), target));
+                    c.write(getSelf(), Formatter
+                                    .format("{self:SUBJECT-ACTION:order} {other:name-do} to be still.", getSelf(), target));
                 } else {
                     c.write(getSelf(),
                                     String.format("With a mischevous smile, %s tells %s to be still,"

@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.damage.DamageType;
 
 public class Horny extends DurationStatus {
@@ -34,7 +34,7 @@ public class Horny extends DurationStatus {
 
     @Override
     public String toString() {
-        return "Aroused from " + source + " (" + Global.formatDecimal(magnitude) + " x " + getDuration() + ")";
+        return "Aroused from " + source + " (" + Formatter.formatDecimal(magnitude) + " x " + getDuration() + ")";
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Horny extends DurationStatus {
     @Override
     public String initialMessage(Combat c, Optional<Status> replacement) {
         return String.format("%s %saroused by %s.\n", affected.subjectAction("are", "is"), replacement.isPresent() ? "" : "now ",
-                        source + " (" + Global.formatDecimal(magnitude) + " x " + getDuration() + ")");
+                        source + " (" + Formatter.formatDecimal(magnitude) + " x " + getDuration() + ")");
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.skills.Skill;
 import nightgames.skills.Tactics;
 
@@ -23,7 +23,7 @@ public class FFMFacesittingThreesome extends FFMCowgirlThreesome {
         if (top.human()) {
             return "";
         } else {
-            return Global.format("{self:SUBJECT-ACTION:are|is} pressing {self:POSSESSIVE} ass "
+            return Formatter.format("{self:SUBJECT-ACTION:are|is} pressing {self:POSSESSIVE} ass "
                             + "into {other:name-possessive} face while %s fucking {other:direct-object} in the Cowgirl position.", top, bottom, domSexCharacter.subjectAction("are", "is"));
         }
     }
@@ -51,7 +51,7 @@ public class FFMFacesittingThreesome extends FFMCowgirlThreesome {
     @Override
     public void checkOngoing(Combat c) {
         if (!c.getOtherCombatants().contains(domSexCharacter)) {
-            c.write(bottom, Global.format("With the disappearance of {self:name-do}, {other:subject-action:manage|manages} to escape.", domSexCharacter, bottom));
+            c.write(bottom, Formatter.format("With the disappearance of {self:name-do}, {other:subject-action:manage|manages} to escape.", domSexCharacter, bottom));
             c.setStance(new Neutral(top, bottom));
         }
     }

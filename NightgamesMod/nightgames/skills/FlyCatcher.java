@@ -6,7 +6,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.damage.DamageType;
@@ -70,9 +70,9 @@ public class FlyCatcher extends Skill {
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.miss) {
-            return Global.format("{self:SUBJECT-ACTION:try|tries} to chase down {other:name-possessive} pet, but there are none!", getSelf(), target);
+            return Formatter.format("{self:SUBJECT-ACTION:try|tries} to chase down {other:name-possessive} pet, but there are none!", getSelf(), target);
         }
-        return Global.format("{self:SUBJECT-ACTION:take|takes} the time to focus on chasing down {other:name-do}, "
+        return Formatter.format("{self:SUBJECT-ACTION:take|takes} the time to focus on chasing down {other:name-do}, "
                         + "finally catching {other:direct-object} in a submission hold.", getSelf(), target);
     }
 

@@ -9,7 +9,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.stance.Position;
 
@@ -45,7 +45,7 @@ public class WingWrapped extends Status {
                 msg += ", and every bit of {self:possessive} skin they touch seems to go numb with weakness";
             }
         }
-        return Global.format(msg + ".", affected, wrapper);
+        return Formatter.format(msg + ".", affected, wrapper);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class WingWrapped extends Status {
                 msg += ", and every bit of {self:possessive} skin they touch seems to go numb with weakness";
             }
         }
-        return Global.format(msg + ".", affected, wrapper);
+        return Formatter.format(msg + ".", affected, wrapper);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class WingWrapped extends Status {
         if (initialPosition == null) {
             initialPosition = c.getStance();
         } else if (!c.getStance().equals(initialPosition) && !canPersist(c)) {
-            c.write(wrapper, Global.format("Lacking sufficient purchase to keep"
+            c.write(wrapper, Formatter.format("Lacking sufficient purchase to keep"
                             + " {self:name-do} in check any longer, {other:name-possessive}"
                             + " {other:body-part:wings} return to their regular place behind"
                             + " {other:possessive} back.", affected, wrapper));
@@ -82,17 +82,17 @@ public class WingWrapped extends Status {
             return;
         }
         if (!wrapper.body.has("wings")) {
-            c.write(Global.format("Now that {other:name-possessive} wings are gone,"
+            c.write(Formatter.format("Now that {other:name-possessive} wings are gone,"
                             + " they can no longer confine {self:name-do}.", affected, wrapper));
             affected.removelist.add(this);
         } else if (wrapper.has(Trait.VampireWings) && affected.outfit.slotEmpty(ClothingSlot.top)) {
             if (affected.get(Attribute.Power) < 6) {
-                c.write(wrapper, Global.format("{other:NAME-POSSESSIVE} {other:body-part:wings}, pressed"
+                c.write(wrapper, Formatter.format("{other:NAME-POSSESSIVE} {other:body-part:wings}, pressed"
                                 + " against {self:name-possessive} bare skin, try to reel in"
                                 + " {self:possessive} power, but they fail to draw on what little"
                                 + " remains within {self:direct-object}.", affected, wrapper));
             } else {
-                c.write(wrapper, Global.format("{other:NAME-POSSESSIVE} {other:body-part:wings}, pressed"
+                c.write(wrapper, Formatter.format("{other:NAME-POSSESSIVE} {other:body-part:wings}, pressed"
                                 + " against {self:name-possessive} bare skin, leech {self:possessive}"
                                 + " power from {self:possessive} body, letting it flow back into"
                                 + " {other:direct-object}.", affected, wrapper));

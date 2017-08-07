@@ -8,7 +8,7 @@ import nightgames.characters.body.CockPart;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.status.Shamed;
@@ -126,14 +126,14 @@ public class ShrinkRay extends Skill {
             message = String.format("%s points a device at %s groin and giggles as %s genitals "
                             + "shrink. %s in shame and %s %s.", getSelf().subject(),
                             target.nameOrPossessivePronoun(), target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.subjectAction("flush", "flushes")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("flush", "flushes")),
                             target.action("cover"), target.reflectivePronoun());
         } else {
             message = String.format("%s points a device at %s chest and giggles as %s %s"
                             + " shrink. %s in shame and %s %s.", getSelf().subject(),
                             target.nameOrPossessivePronoun(), target.possessiveAdjective(),
                             getSelf().body.getRandomBreasts().describe(getSelf()),
-                            Global.capitalizeFirstLetter(target.subjectAction("flush", "flushes")),
+                            Formatter.capitalizeFirstLetter(target.subjectAction("flush", "flushes")),
                             target.action("cover"), target.reflectivePronoun());
         }
         if (damage == 0) {

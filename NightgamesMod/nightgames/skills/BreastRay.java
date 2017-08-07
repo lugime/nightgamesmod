@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.status.Hypersensitive;
@@ -88,7 +88,7 @@ public class BreastRay extends Skill {
                         + "distracts %s in a delicious way.",
                         getSelf().subjectAction("point"), target.nameOrPossessivePronoun(), target.possessiveAdjective(),
                         target.body.getRandomBreasts().describe(target), plural ? "start" : "starts",
-                                        Global.capitalizeFirstLetter(target.pronoun()), 
+                                        Formatter.capitalizeFirstLetter(target.pronoun()),
                                         target.action("flush", "flushes"),
                                         target.action("try", "tries"),
                                         target.reflectivePronoun(), target.directObject());;

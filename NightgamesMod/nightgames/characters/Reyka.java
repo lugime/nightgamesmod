@@ -17,6 +17,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
@@ -119,7 +120,7 @@ public class Reyka extends BasePersonality {
 
         character.addCombatScene(new CombatScene((c, self, other) -> self.getLevel() >= 12 
                         && !Global.checkFlag(REYKA_DISABLING_FOCUS) && !Global.checkFlag(REYKA_SEDUCTION_FOCUS)
-                        , (c, self, other) -> Global.format("You had turned your back to Reyka after your fight."
+                        , (c, self, other) -> Formatter.format("You had turned your back to Reyka after your fight."
                                         + " Big mistake. Out of nowhere, {self:pronoun} crashes into"
                                         + " you from behind with great force, knocking you down."
                                         + " You quickly roll over, but Reyka binds your legs together at"
@@ -129,7 +130,7 @@ public class Reyka extends BasePersonality {
                                         + " as well, or do I simply give you no choice in the matter?\"</i>", self, other), 
                         Arrays.asList(
                         new CombatSceneChoice("Seduction", (c, self, other) -> {
-                            c.write(Global.format("Well... If you can't stop {self:direct-object} anyway -"
+                            c.write(Formatter.format("Well... If you can't stop {self:direct-object} anyway -"
                                             + " and chances seem good you won't be able to, given present"
                                             + " circumstances - then you might as well enjoy it, right?"
                                             + " <i>\"How wise of you, {other:name}. This should come as no"
@@ -144,7 +145,7 @@ public class Reyka extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("Helplessness", (c, self, other) -> {
-                            c.write(Global.format("You're not about to just roll over and give up. Maybe you can"
+                            c.write(Formatter.format("You're not about to just roll over and give up. Maybe you can"
                                             + " win, maybe you can't, but you are sure as hell going to fight"
                                             + " every step of the way. <i>\"Mmmm, excellent. I do like a challenge,"
                                             + " {other:name}. It makes winning so much more satisfying. Make sure"
@@ -159,7 +160,7 @@ public class Reyka extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("What? You're just going to win! [Hard Mode]", (c, self, other) -> {
-                            c.write(Global.format("{self:PRONOUN} is talking like {self:pronoun}'s already won!"
+                            c.write(Formatter.format("{self:PRONOUN} is talking like {self:pronoun}'s already won!"
                                             + " You let {self:direct-object} know that you're confident you"
                                             + " can take {self:direct-object} on. Almost instantly, a wide,"
                                             + " elated grin appears on Reyka's face and you feel a suspicious wetness"
@@ -178,7 +179,7 @@ public class Reyka extends BasePersonality {
         character.addCombatScene(new CombatScene((c, self, other) -> self.getLevel() >= 22
                         && !Global.checkFlag(REYKA_DRAINING_FOCUS) && !Global.checkFlag(REYKA_CORRUPTION_FOCUS)
                         && (Global.checkFlag(REYKA_DISABLING_FOCUS) || Global.checkFlag(REYKA_SEDUCTION_FOCUS))
-                        , (c, self, other) -> Global.format("After your fight, Reyka is staring at you"
+                        , (c, self, other) -> Formatter.format("After your fight, Reyka is staring at you"
                                         + " appraisingly. <i>\"{other:name}, your progress lately has"
                                         + " been impressive. I've been keeping a close eye on you -"
                                         + " sometimes a </i>very<i> close eye - and I've determined"
@@ -188,7 +189,7 @@ public class Reyka extends BasePersonality {
                                         + " take some of it directly. Which would you prefer?\"</i>", self, other), 
                          Arrays.asList(
                          new CombatSceneChoice("Go team demon!", (c, self, other) -> {
-                             c.write(Global.format("Working with Reyka seems like a good deal. 'Tweaking'"
+                             c.write(Formatter.format("Working with Reyka seems like a good deal. 'Tweaking'"
                                              + " sounds a little worrisome, but you know that for all"
                                              + " of {self:possessive} talk, Reyka isn't all that bad."
                                              + " Or, at least, {self:pronoun} hasn't been. You inform"
@@ -203,7 +204,7 @@ public class Reyka extends BasePersonality {
                              return true;
                          }),
                          new CombatSceneChoice("'Tweaking' sounds really bad...", (c, self, other) -> {
-                             c.write(Global.format("You don't know what Reyka means by 'tweaking you',"
+                             c.write(Formatter.format("You don't know what Reyka means by 'tweaking you',"
                                              + " but you're pretty sure you don't <i>want</i> to know."
                                              + " You turn down {self:possessive} offer. <i>\"A shame. I had"
                                              + " hoped we could come to an understanding. In the end it doesn't"
@@ -218,7 +219,7 @@ public class Reyka extends BasePersonality {
                              return true;
                          }),
                          new CombatSceneChoice("Why not let Reyka help you, instead? [Hard Mode]", (c, self, other) -> {
-                             c.write(Global.format("<i>\"Hahaha! Oh, {other:name}, you really are quite charming,"
+                             c.write(Formatter.format("<i>\"Hahaha! Oh, {other:name}, you really are quite charming,"
                                              + " you know that? But very well, you do not wish to aid me. Then I"
                                              + " will simply have to make you. I'm sure that after a little bit"
                                              + " of that 'tweaking' I mentioned you will be much more"

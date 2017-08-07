@@ -6,7 +6,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 
@@ -70,9 +70,9 @@ public class Honeypot extends Skill {
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.miss) {
-            return Global.format("{self:SUBJECT-ACTION:try|tries} to entice {other:name-possessive} pet, but there are none!", getSelf(), target);
+            return Formatter.format("{self:SUBJECT-ACTION:try|tries} to entice {other:name-possessive} pet, but there are none!", getSelf(), target);
         }
-        return Global.format("{self:SUBJECT-ACTION:take|takes} the time to entice {other:name-do}, "
+        return Formatter.format("{self:SUBJECT-ACTION:take|takes} the time to entice {other:name-do}, "
                         + "rubbing {self:reflective} and putting on a show. "
                         + "{other:SUBJECT} takes the bait and approaches {self:direct-object}. With a sudden motion, {self:pronoun-action:capture|captures} "
                         + "{other:direct-object} with {self:possessive} legs and {self:action:have|haves} {self:possessive} way with the poor follower.", getSelf(), target);

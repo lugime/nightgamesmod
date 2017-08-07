@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Behind;
 import nightgames.stance.Stance;
@@ -60,7 +60,7 @@ public class Turnover extends Skill {
         return String.format("%s rolls %s onto %s stomach. %s %s back "
                         + "up, but %s takes the opportunity to get behind %s.", getSelf().subject(),
                         target.nameDirectObject(), target.possessiveAdjective(),
-                        Global.capitalizeFirstLetter(target.subjectAction("push", "pushes")),
+                        Formatter.capitalizeFirstLetter(target.subjectAction("push", "pushes")),
                         target.reflectivePronoun(), getSelf().subject(), target.directObject());
     }
 

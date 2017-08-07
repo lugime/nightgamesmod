@@ -2,7 +2,7 @@ package nightgames.stance;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 
@@ -121,7 +121,7 @@ public class FlyingCarry extends MaledomSexStance {
     public Position reverse(Combat c, boolean writeMessage) {
         if (bottom.body.getRandomWings() != null) {
             if (writeMessage) {
-                c.write(bottom, Global.format(
+                c.write(bottom, Formatter.format(
                                 "In a desperate gamble for dominance, {self:subject} rides {other:name-do} wildly, making {other:direct-object} gasp and breaking {other:possessive} concentration. Shaking off {other:possessive} strong arms, {self:subject-action:start|starts} flying on {self:possessive} own and starts riding {other:direct-object} with more control in the air.",
                                 bottom, top));
             }

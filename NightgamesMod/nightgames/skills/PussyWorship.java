@@ -6,7 +6,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.BodyFetish;
@@ -90,7 +90,7 @@ public class PussyWorship extends Skill {
 
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "You ecstatically crawl towards {other:name-do} and bring your face up to {other:possessive} {other:body-part:pussy}. "
                                         + "You carefully form a seal with your mouth and {other:possessive} netherlips, and stick your tongue into {other:possessive} moist slit. "
                                         + "Minutes pass and you lose yourself alternating between tonguing {other:name-possessive} divine cunt while idly playing with yourself and "
@@ -101,7 +101,7 @@ public class PussyWorship extends Skill {
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:subject} ecstatically crawls to {other:name-do} on {self:possessive} knees and attaches {self:possessive} {self:body-part:mouth} to "
                                         + "{other:possessive} {other:body-part:pussy} while holding onto {other:possessive} legs. {self:SUBJECT} carefully takes a few licks of {other:possessive} slit before "
                                         + "diving right in with {self:possessive} tongue to eat {other:name-do} out. Minutes pass and {self:subject} continues {self:possessive} attack on {other:name-possessive} cunt while idly playing with "

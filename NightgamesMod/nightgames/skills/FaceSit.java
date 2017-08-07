@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.mods.FeralMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.FaceSitting;
@@ -165,7 +165,7 @@ public class FaceSit extends Skill {
                                 getSelf().possessiveAdjective(), target.possessiveAdjective(),
                                 target.nameOrPossessivePronoun(), target.pronoun(),
                                 target.action("are", "is"), getSelf().directObject(),
-                                Global.capitalizeFirstLetter(getSelf().subject()),
+                                Formatter.capitalizeFirstLetter(getSelf().subject()),
                                 target.subject(), target.action("suck"), getSelf().possessiveAdjective());
             } else if (modifier == Result.strong) {
                 return String.format("%s straddles %s head and dominates %s by putting %s balls in %s mouth. "
@@ -198,8 +198,8 @@ public class FaceSit extends Skill {
                                 target.action("drink"), getSelf().possessiveAdjective(),
                                 target.subjectAction("feel"), getSelf().nameOrPossessivePronoun(), 
                                 target.possessiveAdjective(),
-                                Global.capitalizeFirstLetter(target.pronoun()), 
-                                Global.capitalizeFirstLetter(target.pronoun()), 
+                                Formatter.capitalizeFirstLetter(target.pronoun()),
+                                Formatter.capitalizeFirstLetter(target.pronoun()),
                                 getSelf().nameDirectObject(), target.action("don't", "doesn't"));
             } else if (modifier == Result.strong) {
                 return String.format("%s straddles %s face and presses %s pussy against %s mouth. %s "
@@ -209,7 +209,7 @@ public class FaceSit extends Skill {
                                 + "the source!", getSelf().subject(), target.nameOrPossessivePronoun(),
                                 getSelf().possessiveAdjective(), target.possessiveAdjective(), target.subjectAction("open"),
                                 target.possessiveAdjective(), getSelf().nameDirectObject(), getSelf().pronoun(),
-                                 target.directObject(), Global.capitalizeFirstLetter(target.subjectAction("feel")),
+                                 target.directObject(), Formatter.capitalizeFirstLetter(target.subjectAction("feel")),
                                  target.possessiveAdjective(), getSelf().nameOrPossessivePronoun(), target.possessiveAdjective(),
                                  getSelf().pronoun(), getSelf().action("are", "is"), target.directObject());
             } else {
@@ -219,7 +219,7 @@ public class FaceSit extends Skill {
                                 + " to demonstrate %s superiority.",getSelf().subject(), target.nameOrPossessivePronoun(),
                                 getSelf().possessiveAdjective(), target.possessiveAdjective(), target.subjectAction("open"),
                                 target.possessiveAdjective(), getSelf().nameDirectObject(), getSelf().pronoun(),
-                                 target.directObject(), Global.capitalizeFirstLetter(getSelf().pronoun()), getSelf().possessiveAdjective());
+                                 target.directObject(), Formatter.capitalizeFirstLetter(getSelf().pronoun()), getSelf().possessiveAdjective());
             }
         }
     }

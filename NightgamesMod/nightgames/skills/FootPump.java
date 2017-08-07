@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.BehindFootjob;
@@ -71,13 +71,13 @@ public class FootPump extends Skill {
     }
 
     @Override public String deal(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "You wrap your legs around {other:name-possessive} waist and grip {other:possessive} {other:body-part:cock} between your toes. Massaging {other:name-possessive} {other:body-part:cock} between your toes, you start to stroke {other:possessive} {other:body-part:cock} up and down between your toes. Reaching around from behind {other:possessive} back, you start to tease and caress {other:possessive} breasts with your hands. Alternating between pumping and massaging the head of {other:possessive} {other:body-part:cock} with your toes, {other:pronoun} begins to let out a low moan with each additional touch.",
                         getSelf(), target);
     }
 
     @Override public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format(
+        return Formatter.format(
                         "{self:SUBJECT} wraps {self:possessive} legs around {other:name-possessive} waist and settles {self:possessive} "
                         + "feet on both sides of {other:possessive} {other:body-part:cock}. Cupping {other:name-possessive} "
                         + "dick with {self:possessive} arches, {self:subject} starts making long and steady strokes up and "

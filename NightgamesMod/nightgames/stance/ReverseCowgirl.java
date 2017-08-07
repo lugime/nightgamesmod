@@ -2,7 +2,7 @@ package nightgames.stance;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class ReverseCowgirl extends FemdomSexStance {
 
@@ -74,7 +74,7 @@ public class ReverseCowgirl extends FemdomSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global
+            c.write(bottom, Formatter
                             .format("{self:SUBJECT-ACTION:manage|manages} to unbalance {other:name-do} and push {other:direct-object} forward onto {other:possessive} hands and knees. {self:SUBJECT-ACTION:follow|follows} {other:direct-object}, still inside {other:possessive} tight wetness, and continue "
                                             + "to fuck {other:direct-object} from behind.", bottom, top));
         }

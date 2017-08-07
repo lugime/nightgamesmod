@@ -8,7 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.CockBound;
 import nightgames.status.Stsflag;
@@ -40,7 +40,7 @@ public abstract class FemdomSexStance extends Position {
             if (inserter.human()) {
                 c.write(inserted.getName() + " groans with frustration with the sudden disappearance of your pole.");
             } else {
-                c.write(Global.format("With {self:name-possessive} {self:body-part:cock} gone,"
+                c.write(Formatter.format("With {self:name-possessive} {self:body-part:cock} gone,"
                                 + " {other:subject-action:groan} in frustration and {other:action:cease}"
                                 + " {other:possessive} merciless riding.", inserter, inserted));
             }
@@ -103,7 +103,7 @@ public abstract class FemdomSexStance extends Position {
         if (cockbound) {
             CockBound s = (CockBound) struggler.getStatus(Stsflag.cockbound);
             c.write(struggler,
-                            Global.format("{self:SUBJECT-ACTION:try|tries} to struggle out of {other:possessive} iron grip on {self:possessive} dick. However, {other:possessive} "
+                            Formatter.format("{self:SUBJECT-ACTION:try|tries} to struggle out of {other:possessive} iron grip on {self:possessive} dick. However, {other:possessive} "
                                             + s.binding
                                             + " has other ideas. {other:SUBJECT-ACTION:run|runs} {other:possessive} "
                                             + s.binding
@@ -111,7 +111,7 @@ public abstract class FemdomSexStance extends Position {
                             struggler, opponent));
             selfM += 5;
         } else {
-            c.write(struggler, Global.format("{self:SUBJECT-ACTION:try} to tip {other:name-do} off balance, but {other:pronoun-action:drop} {other:possessive} hips firmly, "
+            c.write(struggler, Formatter.format("{self:SUBJECT-ACTION:try} to tip {other:name-do} off balance, but {other:pronoun-action:drop} {other:possessive} hips firmly, "
                             + "pushing {self:possessive} cock deep inside {other:reflective} and pinning {self:direct-object} to the floor. "
                             + "The sensations from wrestling with {self:possessive} cock buried inside {other:direct-object} almost make {self:direct-object} cum.", struggler, opponent));
         }
@@ -132,7 +132,7 @@ public abstract class FemdomSexStance extends Position {
         if (cockbound) {
             CockBound s = (CockBound) escapee.getStatus(Stsflag.cockbound);
             c.write(escapee,
-                            Global.format("{self:SUBJECT-ACTION:try|tries} to escape {other:possessive} iron grip on {self:possessive} dick. However, {other:possessive} "
+                            Formatter.format("{self:SUBJECT-ACTION:try|tries} to escape {other:possessive} iron grip on {self:possessive} dick. However, {other:possessive} "
                                             + s.binding
                                             + " has other ideas. {other:SUBJECT-ACTION:run|runs} {other:possessive} "
                                             + s.binding
@@ -140,7 +140,7 @@ public abstract class FemdomSexStance extends Position {
                             escapee, opponent));
             selfM += 5;
         } else {
-            c.write(escapee, Global.format("{self:SUBJECT-ACTION:attempt} to escape {other:name-possessive} embrace, "
+            c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:attempt} to escape {other:name-possessive} embrace, "
                             + "but {other:pronoun-action:drop} {other:possessive} hips firmly, pushing {self:possessive} "
                             + "cock deep inside {other:reflective} and pinning {self:direct-object} to the floor. "
                             + "The sensations from moving around so much with {self:possessive} cock buried inside {other:direct-object} almost make {self:direct-object} cum.", escapee, opponent));

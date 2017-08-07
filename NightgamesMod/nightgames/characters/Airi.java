@@ -20,6 +20,7 @@ import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.CombatantData;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Match;
 import nightgames.global.Random;
@@ -154,7 +155,7 @@ public class Airi extends BasePersonality {
         character.addCombatScene(new CombatScene((c, self, other) -> {
             return self.getLevel() >= 13 && self.has(Trait.slime) && !Global.checkFlag(AIRI_SLIME_FOCUS) && !Global.checkFlag(AIRI_MIMICRY_FOCUS);
         }, (c, self, player) -> {
-                return Global.format("After the match, you spend a few minutes examining the slime girl, much to her disconcertment. "
+                return Formatter.format("After the match, you spend a few minutes examining the slime girl, much to her disconcertment. "
                                 + "It's quite curious how she can easily transform between slime and human form. "
                                 + "Somehow, she can solidify her fluid composition into something indistinguishable from normal flesh and skin. "
                                 + "You suppose it must be pretty convenient that she can hide her exotic attribute and live a normal life even after "
@@ -220,7 +221,7 @@ public class Airi extends BasePersonality {
                                 loverFormString = "familiar seductive form";
                                 loverTalkString = "tempts in {other:name-possessive} melodious voice,";
                             }
-                            c.write(Global.format("You ask Airi if she could transform into someone else, or if she's just limited to her human body and her slime form. "
+                            c.write(Formatter.format("You ask Airi if she could transform into someone else, or if she's just limited to her human body and her slime form. "
                                             + "Intrigued, Airi asks you in her weird breathy voice, <i>\"Interesting... who shall I become...?\"</i> Immediately, "
                                             + "{other:name-possessive} %s comes to mind, so you ask Airi if she could try turning into {other:direct-object}. "
                                             + "The asian girl seems to pout for a split second before her body collapses into itself. "
@@ -307,7 +308,7 @@ public class Airi extends BasePersonality {
                             return true;
                         }),
                         new CombatSceneChoice("Tentacles?", (c, self, other) -> {
-                            c.write(Global.format("You note the extra mass that Airi now has, and wonder what she could do with them. Now if you were being honest with yourself, you've always been a fan of "
+                            c.write(Formatter.format("You note the extra mass that Airi now has, and wonder what she could do with them. Now if you were being honest with yourself, you've always been a fan of "
                                             + "tentacle hentai. Something about the wiggling fleshy arms just flips your switch, you know? Since Airi's from Japan, she must be familiar with that particular "
                                             + "flavor of porn... right? Mustering up some courage, you ask Airi if she could form tentacles with her slime, because... you know, you'd find them sexy. "
                                             + "The positively withering look that she sends you unfortunately seems to indicate that she does not necessarily share your procivilities."
@@ -392,13 +393,13 @@ public class Airi extends BasePersonality {
             if (character.hasPussy() && !character.body.getRandomPussy().moddedPartCountsAs(character, GooeyMod.INSTANCE)) {
                 character.body.temporaryAddPartMod("pussy", GooeyMod.INSTANCE, 999);
                 c.write(character, 
-                                Global.format("{self:NAME-POSSESSIVE} %s re-slime-ified.",
+                                Formatter.format("{self:NAME-POSSESSIVE} %s re-slime-ified.",
                                                 character, opponent, character.body.getRandomPussy().describe(character)));
             }
             if (character.hasDick() && !character.body.getRandomCock().moddedPartCountsAs(character, CockMod.slimy)) {
                 character.body.temporaryAddPartMod("cock", CockMod.slimy, 999);
                 c.write(character,
-                                Global.format("{self:NAME-POSSESSIVE} %s re-slime-ified.",
+                                Formatter.format("{self:NAME-POSSESSIVE} %s re-slime-ified.",
                                                 character, opponent, character.body.getRandomCock().describe(character)));
             }
         }
@@ -411,13 +412,13 @@ public class Airi extends BasePersonality {
         if (times == totalTimes && ((self.getWillpower().percent() < 60 && !self.has(Trait.slime)) || unmaskable)) {
             boolean unmasked = false;
             if (unmaskable) {
-                c.write(self, Global.format("<b>As {self:subject} orgasms, {self:possessive} whole body shimmers and seems to melt into a puddle of goo. "
+                c.write(self, Formatter.format("<b>As {self:subject} orgasms, {self:possessive} whole body shimmers and seems to melt into a puddle of goo. "
                                 + "A human body rises from the slime and molds itself to a facsimile of an all-too-familiar Asian {self:boy} giving you a self satisfied little smirk. "
                                 + "Shit, {self:pronoun} tricked you, it was Airi all along!</b><br/>", self, opponent));
                 opponent.add(c, new Flatfooted(opponent, 2));
                 unmasked = true;
             } else {
-                c.write(self, Global.format("After {self:name-possessive} orgasm, her whole body shimmers and melts into a puddle of goo. A human body rises from the slime and molds itself to a facsimile of {self:reflective}. "
+                c.write(self, Formatter.format("After {self:name-possessive} orgasm, her whole body shimmers and melts into a puddle of goo. A human body rises from the slime and molds itself to a facsimile of {self:reflective}. "
                                 + "Gone is the slim repressed girl you knew. The new Airi that appears before you is a sexually idealized version of herself, with bigger breasts, a dynamic body line and long legs that end in a ball of blue goo. "
                                 + "You're now fighting {self:name} in slime form!", self, opponent));
             }
@@ -459,7 +460,7 @@ public class Airi extends BasePersonality {
                 data.setManager(manager);
             }
             if (unmasked && self.has(Trait.ThePrestige) && c.getStance().distance() < 2) {
-                c.write(self, Global.format("<b>Taking advantage of {other:name-possessive} bewilderment, {self:subject-action:swoop} {self:possessive} slime onto {other:possessive} hapless form, swiftly engulfing it in {self:possessive} amorphous body.</b><br/>", self, opponent));
+                c.write(self, Formatter.format("<b>Taking advantage of {other:name-possessive} bewilderment, {self:subject-action:swoop} {self:possessive} slime onto {other:possessive} hapless form, swiftly engulfing it in {self:possessive} amorphous body.</b><br/>", self, opponent));
                 c.setStance(new Engulfed(self, opponent));
             }
             self.moodSwing(c);
@@ -494,7 +495,7 @@ public class Airi extends BasePersonality {
         opponent.arousal.empty();
         if (character.is(Stsflag.disguised)) {
             StringBuilder sb = new StringBuilder();
-            sb.append(Global.format("Just as {self:subject-action:are} about to bring you to mind bending orgasm, {self:possessive} face shifts and melts. "
+            sb.append(Formatter.format("Just as {self:subject-action:are} about to bring you to mind bending orgasm, {self:possessive} face shifts and melts. "
                             + "One moment was staring at you haughtily like {self:pronoun} usually does, and the next, {self:possessive} entire body melts into a familiar cerulean goo. "
                             + "Fuck, it seems like Airi has managed to trick you! The semi-opaque slime girl just smiles at you rather sarcastically "
                             + "and taunts <i>\"You thought... {self:name}? Too bad...\"</i> You try to escape {self:possessive} hold on you, but you're way too far gone, "
@@ -511,7 +512,7 @@ public class Airi extends BasePersonality {
                     sb.append("Airi furrows her faux-eyebrows in a look of intense concentration. A split second later, a newly form slit opens between her legs with an audiable pop. "
                                     + "Seeing your shocked expression, the lithe Japanese girl climbs ontop of you with an almost malicious grin. ");
                 }
-                sb.append(Global.format("You almost lose it right there as Airi lowers herself on top of you. Her mimicked {self:body-part:pussy} swallows your {other:body-part:cock} with ease, "
+                sb.append(Formatter.format("You almost lose it right there as Airi lowers herself on top of you. Her mimicked {self:body-part:pussy} swallows your {other:body-part:cock} with ease, "
                                 + "and immediately <i>tightens</i> around your fleshy rod. You gasp as her transformed cunt becomes narrower and narrower around you, "
                                 + "completely wrapping around the neck of your penis in a chokehold. You beg her to stop, but the smug asian girl just shakes her head and replies <i>\"No... this is your... punishment.\"</i>"
                                 + "While sitting motionlessly on top of you, Airi flexes her counterfeit vaginal muscles and starts milking your cock in a wave like motion. "
@@ -524,14 +525,14 @@ public class Airi extends BasePersonality {
                                 + "She nods happily and leans close to give you a peck on the lips, <i>\"Good... And don't forget it...\"</i>.", character, opponent));
             } else if (opponent.hasPussy()) {
                 if (character.hasDick()) {
-                    sb.append(Global.format("You almost lose it right there as Airi penetrates you. Her mimicked {self:body-part:cock} pierces your {other:body-part:pussy} with ease, ",
+                    sb.append(Formatter.format("You almost lose it right there as Airi penetrates you. Her mimicked {self:body-part:cock} pierces your {other:body-part:pussy} with ease, ",
                                     character, opponent));
                 } else {
-                    sb.append(Global.format("Airi furrows her faux-eyebrows in a look of intense concentration. A split second later, an huge slime-dong erupts from her crotch. "
+                    sb.append(Formatter.format("Airi furrows her faux-eyebrows in a look of intense concentration. A split second later, an huge slime-dong erupts from her crotch. "
                                     + "Grinning with a barely concealed malicious glee, Airi pulls your legs apart and penetrates your soaked depths with her turgid penis. "
                                     + "Her new cock pierces your {other:body-part:pussy} with ease, ", character, opponent));
                 }
-                sb.append(Global.format("and immediately <i>expands</i> inside your drenched love canal. You gasp as her transformed cock completely fills your pussy, "
+                sb.append(Formatter.format("and immediately <i>expands</i> inside your drenched love canal. You gasp as her transformed cock completely fills your pussy, "
                                 + "grinding against every bit of you. You beg her to stop, but the smug asian girl just shakes her head and replies <i>\"No... this is your... punishment.\"</i>"
                                 + "Slowly at first, but with increasing tempo, Airi fucks you with her oversized penis. It's rather painful, but you can't deny that it's turning you on immensely. "
                                 + "However, every time you are just about to reach your climax, her cock seems to disappear inside you like a punctured balloon, leaving you with an acute sense of loss. "
@@ -564,7 +565,7 @@ public class Airi extends BasePersonality {
         } else {
             message = "Airi looks triumphant as your pussy convulses around her slim fingers. ";
         }
-        return message + Global.format("<i>\"You know, before college I haven't even held another {other:boy}'s hand. "
+        return message + Formatter.format("<i>\"You know, before college I haven't even held another {other:boy}'s hand. "
                         + "My parents were really strict with me. Once I moved out and started school here, I jumped at joining the games when offered the chance. I lost a lot at first, "
                         + "but look at me now!\"</i> She gives your shrinking dick a little squeeze making you yelp. Smiling with satisfaction, Airi pulls your wrist with both hands and places it between her legs. "
                         + "<i>\"Now please... a little help here?\"</i>"
@@ -636,12 +637,12 @@ public class Airi extends BasePersonality {
     @Override
     public String intervene3p(Combat c, Character target, Character assist) {
         if (target.human()) {
-            return Global.format(
+            return Formatter.format(
                             "Your fight with {other:name} seemed to have ran into a stalemate. Neither of you is willing to get close enough to each other for anything substantial to happen. You just continue to trade taunts whilst waiting for an opportunity.<br/><br/>"
                                             + "Suddenly, you feel something grasp your ankles and pull you off balance. You brace yourself for the fall, but after a second, you only feel softness on your back. It’s Airi. She somehow snuck up on you and tripped you into falling on top of her. She quickly engulfs your hands and legs in her slime and presents your helpless body to {other:name}’s ministrations.",
                             character, assist);
         } else {
-            return Global.format(
+            return Formatter.format(
                             "Your fight with {other:name} seemed to have ran into a stalemate. Neither of you is willing to get close enough to each other for anything substantial to happen. You just continue to trade taunts whilst waiting for an opportunity.<br/><br/>"
                                             + "Suddenly, a blue blob appears in your line of sight. It’s Airi! More swiftly than you would expect, Airi moves to {other:name}’s side and engulfs her body in her own. After dissolving her clothing with her slime, Airi surfaces only {other:name-possessive} torso and sex, presenting her to you. Well, presented with a gift on a silver platter, you’re not going to refuse!",
                             character, target);

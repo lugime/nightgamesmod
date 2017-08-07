@@ -12,6 +12,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.CombatScene;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
@@ -191,7 +192,7 @@ public class Mara extends BasePersonality {
         character.addCombatScene(new CombatScene(
                         (c, self, other) -> self.getLevel() >= 10 && !Global.checkFlag(MARA_GENERAL_TECH_FOCUS)
                                         && !Global.checkFlag(MARA_HARPOON_FOCUS),
-                        (c, self, other) -> Global.format(
+                        (c, self, other) -> Formatter.format(
                                         "You see {self:name} fiddling with the device on her arm"
                                                         + " as you both recover from your match. <i>\"Damn thing is on the fritz"
                                                         + " again... Let me just...\"</i> A shrill beep sounds, and something"
@@ -201,7 +202,7 @@ public class Mara extends BasePersonality {
                                                         + " one really fancy toy, or should I divide my time over several simpeler ones?",
                                         self, other),
                         Arrays.asList(new CombatSceneChoice("Quality", (c, self, other) -> {
-                            c.write(Global.format(
+                            c.write(Formatter.format(
                                             "You tell {self:direct-object} there would be no point to slavering"
                                                             + " away on mediocre devices. Instead, {self:pronoun} should devote {self:reflective}"
                                                             + " to one, truly inspired invention to show {self:possessive} true prowess."
@@ -219,7 +220,7 @@ public class Mara extends BasePersonality {
                             useHarpoon();
                             return true;
                         }), new CombatSceneChoice("Quantity", (c, self, other) -> {
-                            c.write(Global.format(
+                            c.write(Formatter.format(
                                             "You weigh in that one toy, no matter how good it is,"
                                                             + " is bound to get boring eventually. Instead, {self:pronoun}"
                                                             + " should create a more diverse arsenal. \"<i>Interesting... I"
@@ -231,7 +232,7 @@ public class Mara extends BasePersonality {
                             useGeneralTech();
                             return true;
                         }), new CombatSceneChoice("You have faith she can do both [Hard Mode]", (c, self, other) -> {
-                            c.write(Global.format(
+                            c.write(Formatter.format(
                                             "{self:name} is a genius. Surely, if anyone"
                                                             + " could create a true masterpiece and still have time"
                                                             + " left for side projects, it would be {self:possessive}. <i>\"Aww, flatterer!"
@@ -256,14 +257,14 @@ public class Mara extends BasePersonality {
         character.addCombatScene(new CombatScene(
                         (c, self, other) -> self.getLevel() >= 20 && !Global.checkFlag(MARA_OCTO_FOCUS)
                                         && !Global.checkFlag(MARA_MIND_CONTROL_FOCUS),
-                        (c, self, other) -> Global.format(
+                        (c, self, other) -> Formatter.format(
                                         "You and {self:name} are both getting back up after your match,"
                                                         + " cleaning yourselves as much as possible before moving on. <i>\"Hey, {other:name}."
                                                         + " Perhaps you can help settle a little dispute I've been having with a friend."
                                                         + " Who's better: Mesmero, or Doctor Octopus?\"</i>",
                                         self, other),
                         Arrays.asList(new CombatSceneChoice("Mesmero", (c, self, other) -> {
-                            c.write(Global.format(
+                            c.write(Formatter.format(
                                             "You don't know why, but the idea of mind control has always"
                                                             + " turned you on. You answer {self:name} confidently, and are met"
                                                             + " with a wide grin. <i>\"Ohhh, just what I thought. You want someone"
@@ -276,7 +277,7 @@ public class Mara extends BasePersonality {
                             useMindControl();
                             return true;
                         }), new CombatSceneChoice("Doctor Octopus", (c, self, other) -> {
-                            c.write(Global.format(
+                            c.write(Formatter.format(
                                             "Oh, that's no contest! The good doctor could probably engineer"
                                                             + " one of his arms to block mind control, and then still have more"
                                                             + " left to deal with his enemies. <i>\"Interesting. Yes, I can see"
@@ -291,7 +292,7 @@ public class Mara extends BasePersonality {
                             return true;
                         }), new CombatSceneChoice("What are these strange things you speak of? [Hard Mode]",
                                         (c, self, other) -> {
-                                            c.write(Global.format(
+                                            c.write(Formatter.format(
                                                             "<i>\"{other:name}. Seriously. You are going to need a crash course"
                                                                             + " in comic books, my friend. This cannot stand. But since your feeble"
                                                                             + " mind obviously cannot comprehend this most fascinating art form, I'm"
@@ -720,9 +721,9 @@ public class Mara extends BasePersonality {
                             target.getName(), target.getName(), target.getName(), target.possessiveAdjective(),
                             target.possessiveAdjective(), target.possessiveAdjective(), target.getName(), target.pronoun(),
                             target.possessiveAdjective(), target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(target.possessiveAdjective()), target.getName(),
+                            Formatter.capitalizeFirstLetter(target.possessiveAdjective()), target.getName(),
                             target.possessiveAdjective(), target.directObject(), target.pronoun(),
-                            Global.capitalizeFirstLetter(target.possessiveAdjective()));
+                            Formatter.capitalizeFirstLetter(target.possessiveAdjective()));
         }
         return "Mara approaches " + target.getName()
                         + " like a panther claiming its prey. She runs her fingers down the length of " + target.getName()

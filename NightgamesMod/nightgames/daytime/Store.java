@@ -3,6 +3,7 @@ package nightgames.daytime;
 import java.util.HashMap;
 
 import nightgames.characters.Character;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
@@ -105,7 +106,7 @@ public abstract class Store extends Activity {
     }
 
     public void sale(Loot i, GUI gui) {
-        RunnableButton button = new RunnableButton(Global.capitalizeFirstLetter(i.getName()), () -> {
+        RunnableButton button = new RunnableButton(Formatter.capitalizeFirstLetter(i.getName()), () -> {
             visit(i.getName());
         });
         button.getButton().setToolTipText(i.getDesc());

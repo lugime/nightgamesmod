@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.damage.Staleness;
@@ -158,7 +158,7 @@ public class Thrust extends Skill {
         if (modifier == Result.anal) {
             return "You thrust steadily into " + target.getName() + "'s ass, eliciting soft groans of pleasure.";
         } else if (modifier == Result.reverse) {
-            return Global.format(
+            return Formatter.format(
                             "You rock your hips against {other:direct-object}, riding {other:direct-object} smoothly. "
                                             + "Despite the slow pace, {other:subject} soon starts gasping and mewing with pleasure.",
                             getSelf(), target);
@@ -201,7 +201,7 @@ public class Thrust extends Skill {
                             target.nameOrPossessivePronoun(), target.directObject(),
                             target.possessiveAdjective());
         } else {
-            return Global.format(
+            return Formatter.format(
                             "{self:subject} thrusts into {other:name-possessive} {other:body-part:pussy} in a slow steady rhythm, leaving {other:direct-object} gasping.",
                             getSelf(), target);
         }

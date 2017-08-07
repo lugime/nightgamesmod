@@ -3,7 +3,7 @@ package nightgames.characters.body.mods;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Trance;
 
@@ -28,7 +28,7 @@ public class PlantMod extends PartMod {
     public void tickHolding(Combat c, Character self, Character opponent, BodyPart part, BodyPart otherOrgan) {
         if (c.getStance().isPartFuckingPartInserted(c, opponent, otherOrgan, self, part)) {
             String partType = part.getType();
-            c.write(self, Global.format(
+            c.write(self, Formatter.format(
                             "The small rough fibery filaments inside {self:name-possessive} flower %s wrap around {other:name-possessive} cock. "
                                             + "A profound exhaustion settles on {other:direct-object}, as {other:subject-action:feel|feels} {self:name-possessive} insidious flower leeching {other:possessive} strength.",
                             self, opponent, partType));

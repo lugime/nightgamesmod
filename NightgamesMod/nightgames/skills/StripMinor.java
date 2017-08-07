@@ -11,7 +11,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -72,7 +72,7 @@ public class StripMinor extends Skill {
 
     @Override
     public Collection<String> subChoices(Combat c) {
-        return getStrippableArticles(c).stream().map(Clothing::getName).map(Global::capitalizeFirstLetter).collect(Collectors.toList());
+        return getStrippableArticles(c).stream().map(Clothing::getName).map(Formatter::capitalizeFirstLetter).collect(Collectors.toList());
     }
 
     @Override
@@ -93,7 +93,7 @@ public class StripMinor extends Skill {
             articleToStrip = Random.pickRandom(getStrippableArticles(c));
         }
         if (!articleToStrip.isPresent()) {
-            c.write(getSelf(), Global.format("{self:SUBJECT} tried to go after {other:name-possessive} clothing, "
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} tried to go after {other:name-possessive} clothing, "
                             + "but found that the intended piece is already gone.", getSelf(), target));
             return false;
         }
@@ -106,14 +106,14 @@ public class StripMinor extends Skill {
         difficulty -= 15;
         if (getSelf().check(Attribute.Cunning, difficulty) || !target.canAct()) {
             c.write(getSelf(),
-                            Global.format("{self:SUBJECT-ACTION:reach|reaches} for"
+                            Formatter.format("{self:SUBJECT-ACTION:reach|reaches} for"
                                             + " {other:name-possessive} %s and {self:action:pull|pulls} "
                                             + "it away from {other:direct-object}.", getSelf(), target,
                                             clothing.getName()));
             target.strip(clothing, c);
         } else {
             c.write(getSelf(),
-                            Global.format("{self:SUBJECT-ACTION:try|tries} to remove"
+                            Formatter.format("{self:SUBJECT-ACTION:try|tries} to remove"
                                             + " {other:name-possessive} %s, but {other:pronoun-action:keep|keeps}"
                                             + " it in place.", getSelf(), target, clothing.getName()));
             return false;

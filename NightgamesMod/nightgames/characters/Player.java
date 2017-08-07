@@ -23,10 +23,7 @@ import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
 import nightgames.combat.Result;
 import nightgames.ftc.FTCMatch;
-import nightgames.global.Flag;
-import nightgames.global.Global;
-import nightgames.global.Prematch;
-import nightgames.global.Random;
+import nightgames.global.*;
 import nightgames.gui.ActionButton;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
@@ -77,7 +74,7 @@ public class Player extends Character {
         }
         Player player = Global.human;
         if (player.availableAttributePoints > 0) {
-            Global.writeIfCombatUpdateImmediately(gui.combat, player, player.availableAttributePoints + " Attribute Points remain.\n");
+            Formatter.writeIfCombatUpdateImmediately(gui.combat, player, player.availableAttributePoints + " Attribute Points remain.\n");
             gui.clearCommand();
             for (Attribute att : player.att.keySet()) {
                 if (Attribute.isTrainable(player, att) && player.getPure(att) > 0) {
@@ -91,7 +88,7 @@ public class Player extends Character {
             gui.commandPanel.refresh();
         } else if (player.traitPoints > 0 && !gui.skippedFeat) {
             gui.clearCommand();
-            Global.writeIfCombatUpdateImmediately(gui.combat, player, "You've earned a new perk. Select one below.");
+            Formatter.writeIfCombatUpdateImmediately(gui.combat, player, "You've earned a new perk. Select one below.");
             for (Trait feat : Global.getFeats(player)) {
                 if (!player.has(feat)) {
                     RunnableButton button = new RunnableButton(feat.toString(), () -> {
@@ -119,7 +116,7 @@ public class Player extends Character {
         } else {
             gui.skippedFeat = false;
             gui.clearCommand();
-            Global.writeIfCombatUpdateImmediately(gui.combat, player, Global.gainSkills(player));
+            Formatter.writeIfCombatUpdateImmediately(gui.combat, player, Global.gainSkills(player));
             player.finishDing();
             if (player.getLevelsToGain() > 0) {
                 player.actuallyDing(gui.combat);
@@ -478,7 +475,7 @@ public class Player extends Character {
         getStamina().gain(getGrowth().stamina);
         getArousal().gain(getGrowth().arousal);
         availableAttributePoints += getGrowth().attributes[Math.min(rank, getGrowth().attributes.length-1)];
-        Global.writeIfCombatUpdateImmediately(c, this, "You've gained a Level!<br/>Select which attributes to increase.");
+        Formatter.writeIfCombatUpdateImmediately(c, this, "You've gained a Level!<br/>Select which attributes to increase.");
         if (getLevel() % 3 == 0 && level < 10 || (getLevel() + 1) % 2 == 0 && level > 10) {
             traitPoints += 1;
         }
@@ -666,8 +663,8 @@ public class Player extends Character {
                                             + "moan, <i>\"I'm gonna cum!\"</i> You hastily remove %s dick out of "
                                             + "your mouth and pump it rapidly. %s shoots %s load into the air, barely "
                                             + "missing you.", target.getName(),
-                            Global.capitalizeFirstLetter(target.possessiveAdjective()), target.getName(),
-                            Global.capitalizeFirstLetter(target.pronoun()), target.possessiveAdjective(), target.getName(),
+                            Formatter.capitalizeFirstLetter(target.possessiveAdjective()), target.getName(),
+                            Formatter.capitalizeFirstLetter(target.pronoun()), target.possessiveAdjective(), target.getName(),
                             target.possessiveAdjective()));
         } else {
             c.write(target.nameOrPossessivePronoun()
@@ -734,7 +731,7 @@ public class Player extends Character {
                     if (reverse != c.getStance() && !BodyPart.hasOnlyType(reverse.bottomParts(), "strapon")) {
                         c.setStance(reverse, this, false);
                     } else {
-                        c.write(this, Global.format(
+                        c.write(this, Formatter.format(
                                         "{self:NAME-POSSESSIVE} quick wits find a gap in {other:name-possessive} hold and {self:action:slip|slips} away.",
                                         this, target));
                         c.setStance(new Neutral(this, c.getOpponent(this)), this, true);
@@ -742,7 +739,7 @@ public class Player extends Character {
                 } else {
                     target.body.pleasure(this, body.getRandom("hands"), target.body.getRandomBreasts(),
                                     4 + Math.min(Random.random(get(Attribute.Seduction)), 20), c);
-                    c.write(this, Global.format(
+                    c.write(this, Formatter.format(
                                     "{self:SUBJECT-ACTION:pinch|pinches} {other:possessive} nipples with {self:possessive} hands as {other:subject-action:try|tries} to fuck {self:direct-object}. "
                                                     + "While {other:subject-action:yelp|yelps} with surprise, {self:subject-action:take|takes} the chance to pleasure {other:possessive} body.",
                                     this, target));
@@ -789,12 +786,12 @@ public class Player extends Character {
             add(c, Pheromones.getWith(opponent, this, opponent.getPheromonePower(), 10));
         }
         if (opponent.has(Trait.sadist) && !is(Stsflag.masochism)) {
-            c.write("<br/>"+Global.capitalizeFirstLetter(
+            c.write("<br/>"+ Formatter.capitalizeFirstLetter(
                             String.format("%s seem to shudder in arousal at the thought of pain.", subject())));
             add(c, new Masochistic(this));
         }
         if (has(Trait.RawSexuality)) {
-            c.write(this, Global.format("{self:NAME-POSSESSIVE} raw sexuality turns both of you on.", this, opponent));
+            c.write(this, Formatter.format("{self:NAME-POSSESSIVE} raw sexuality turns both of you on.", this, opponent));
             temptNoSkillNoSource(c, opponent, arousal.max() / 25);
             opponent.temptNoSkillNoSource(c, this, opponent.arousal.max() / 25);
         }
@@ -802,13 +799,13 @@ public class Player extends Character {
             if (hasPussy() && !body.getRandomPussy().moddedPartCountsAs(this, GooeyMod.INSTANCE)) {
                 body.temporaryAddOrReplacePartWithType(body.getRandomPussy().applyMod(GooeyMod.INSTANCE), 999);
                 c.write(this, 
-                                Global.format("{self:NAME-POSSESSIVE} %s turned back into a gooey pussy.",
+                                Formatter.format("{self:NAME-POSSESSIVE} %s turned back into a gooey pussy.",
                                                 this, opponent, body.getRandomPussy()));
             }
             if (hasDick() && !body.getRandomCock().moddedPartCountsAs(this, CockMod.slimy)) {
                 body.temporaryAddOrReplacePartWithType(body.getRandomCock().applyMod(CockMod.slimy), 999);
                 c.write(this, 
-                                Global.format("{self:NAME-POSSESSIVE} %s turned back into a gooey pussy.",
+                                Formatter.format("{self:NAME-POSSESSIVE} %s turned back into a gooey pussy.",
                                                 this, opponent, body.getRandomPussy()));
             }
         }
@@ -899,7 +896,7 @@ public class Player extends Character {
                     int totalTimes) {
         super.resolveOrgasm(c, opponent, selfPart, opponentPart, times, totalTimes);
         if (has(Trait.slimification) && times == totalTimes && getWillpower().percent() < 60 && !has(Trait.slime)) {
-            c.write(this, Global.format("A powerful shiver runs through your entire body. Oh boy, you know where this"
+            c.write(this, Formatter.format("A powerful shiver runs through your entire body. Oh boy, you know where this"
                             + " is headed... Sure enough, you look down to see your skin seemingly <i>melt</i>,"
                             + " turning a translucent blue. You legs fuse together and collapse into a puddle."
                             + " It only takes a few seconds for you to regain some semblance of control over"

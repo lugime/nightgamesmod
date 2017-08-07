@@ -1,12 +1,21 @@
 package nightgames.global;
 
+import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.StraponPart;
+import nightgames.combat.Combat;
+import nightgames.pet.PetCharacter;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Formatter {
+    private static DecimalFormat formatter = new DecimalFormat("#.##");
+    private static String DISABLED_FORMAT = "%sDisabled";
+
     public static void buildParser() {
         Global.matchActions = new HashMap<String, Match.MatchAction>();
         Global.matchActions.put("possessive", (self, first, second, third) -> {
@@ -192,5 +201,99 @@ public class Formatter {
             }
             return "";
         });
+    }
+
+    public static String capitalizeFirstLetter(String original) {
+        if (original == null) {
+            return "";
+        }
+        if (original.length() == 0) {
+            return original;
+        }
+        return original.substring(0, 1).toUpperCase() + original.substring(1);
+    }
+
+    public static String format(String format, Character self, Character target, Object... strings) {
+        // pattern to find stuff like {word:otherword:finalword} in strings
+        Pattern p = Pattern.compile("\\{((?:self)|(?:other)|(?:master))(?::([^:}]+))?(?::([^:}]+))?\\}");
+        format = String.format(format, strings);
+
+        Matcher matcher = p.matcher(format);
+        StringBuffer b = new StringBuffer();
+        while (matcher.find()) {
+            String first = matcher.group(1);
+            String second = matcher.group(2);
+            if (second == null) {
+                second = "";
+            }
+            String third = matcher.group(3);
+            Character character = null;
+            if (first.equals("self")) {
+                character = self;
+            } else if (first.equals("other")) {
+                character = target;
+            } else if (first.equals("master") && self instanceof PetCharacter) {
+                character = ((PetCharacter)self).getSelf().owner();
+            }
+            String replacement = matcher.group(0);
+            boolean caps = false;
+            if (second.toUpperCase().equals(second)) {
+                second = second.toLowerCase();
+                caps = true;
+            }
+            Match.MatchAction action = Global.matchActions.get(second);
+
+            if (action == null) {
+                System.out.println(second);
+            }
+            if (action != null) {
+                replacement = action.replace(character, first, second, third);
+                if (caps) {
+                    replacement = capitalizeFirstLetter(replacement);
+                }
+            }
+            matcher.appendReplacement(b, replacement);
+        }
+        matcher.appendTail(b);
+        return b.toString();
+    }
+
+    public static String formatDecimal(double val) {
+        return formatter.format(val);
+    }
+
+    public static void writeIfCombatUpdateImmediately(Combat c, Character self, String string) {
+        writeIfCombat(c, self, string);
+        if (c != null) {
+            c.updateMessage();
+        }
+    }
+
+    public static void writeIfCombat(Combat c, Character self, String string) {
+	    if (c != null) {
+	        c.write(self, string);
+	    } else if (self.human()) {
+			Global.gui().message(string);
+		}
+	}
+
+    public static void writeFormattedIfCombat(Combat c, String string, Character self, Character other, Object ...args) {
+		if (c == null) {
+			Global.gui().message(format(string, self, other, args));
+		} else {
+			c.write(self, format(string, self, other, args));
+		}
+	}
+
+    public static boolean checkCharacterDisabledFlag(Character self) {
+        return Global.checkFlag(String.format(DISABLED_FORMAT, self.getTrueName()));
+    }
+
+    public static void setCharacterDisabledFlag(Character self) {
+        Global.flag(String.format(DISABLED_FORMAT, self.getTrueName()));
+    }
+
+    public static void unsetCharacterDisabledFlag(Character self) {
+        Global.unflag(String.format(DISABLED_FORMAT, self.getTrueName()));
     }
 }

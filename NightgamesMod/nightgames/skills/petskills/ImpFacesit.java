@@ -2,7 +2,7 @@ package nightgames.skills.petskills;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
@@ -31,7 +31,7 @@ public class ImpFacesit extends SimpleEnemySkill {
     @Override
     public boolean resolve(Combat c, Character target) {
         int m = Random.random(3,6) + getSelf().getLevel() / 5;
-        c.write(getSelf(), Global.format("{self:SUBJECT} straddles {other:name-possessive} face, forcing {self:possessive} wet pussy onto {other:possessive} nose and mouth. "
+        c.write(getSelf(), Formatter.format("{self:SUBJECT} straddles {other:name-possessive} face, forcing {self:possessive} wet pussy onto {other:possessive} nose and mouth. "
                         + "{self:POSSESSIVE} scent is unnaturally intoxicating and fires up {other:possessive} libido.", getSelf(), target));
         getSelf().body.pleasure(target, target.body.getRandom("mouth"), getSelf().body.getRandomPussy(), 10, c);
         target.add(c, new Horny(target, m, 5, "imp juices"));

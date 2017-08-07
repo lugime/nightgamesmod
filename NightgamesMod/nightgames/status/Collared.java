@@ -8,7 +8,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Collared extends Status implements Compulsive {
 
@@ -42,13 +42,13 @@ public class Collared extends Status implements Compulsive {
     
     @Override
     public String initialMessage(Combat c, Optional<Status> replacement) {
-        return Global.format("{self:SUBJECT} now {self:action:have|has} a metallic collar around"
+        return Formatter.format("{self:SUBJECT} now {self:action:have|has} a metallic collar around"
                         + " {self:possessive} neck!", affected, c.getOpponent(affected));
     }
 
     @Override
     public String describe(Combat c) {
-        return Global.format("{self:SUBJECT-ACTION:are|is} wearing a training collar, which"
+        return Formatter.format("{self:SUBJECT-ACTION:are|is} wearing a training collar, which"
                         + " is hampering {self:possessive} ability to fight.", affected, c.getOpponent(affected));
     }
 
@@ -136,37 +136,37 @@ public class Collared extends Status implements Compulsive {
     public String describe(Combat c, Situation sit) {
         switch (sit) {
             case PREVENT_ESCAPE:
-                return Global.format("{self:SUBJECT-ACTION:try|tries} to struggle, but"
+                return Formatter.format("{self:SUBJECT-ACTION:try|tries} to struggle, but"
                                 + " the collar is having none of it and shocks {self:direct-object}"
                                 + " into submission.", affected, owner);
             case PUNISH_PAIN:
-                return Global.format("The training collar around {self:name-possessive}"
+                return Formatter.format("The training collar around {self:name-possessive}"
                                 + "neck reacts to {self:possessive} aggression by sending"
                                 + " a powerful shock down {self:possessive} spine.", 
                                 affected, owner);
             case PREVENT_REMOVE_BOMB:
-                return Global.format("{self:SUBJECT-ACTION:reach|reaches} up to grab the sphere on "
+                return Formatter.format("{self:SUBJECT-ACTION:reach|reaches} up to grab the sphere on "
                                 + "{self:possessive} chest, but the collar around {self:possessive} neck"
                 + " does not appreciate the sentiment and shocks {self:direct-object} to keep your arms down.",
                     affected, owner);
             case PREVENT_STRUGGLE:
-                return Global.format("{self:SUBJECT-ACTION:try|tries} to struggle, but"
+                return Formatter.format("{self:SUBJECT-ACTION:try|tries} to struggle, but"
                                 + " the collar is having none of it and shocks {self:direct-object}"
                                 + " into submission.", affected, owner);
             case STANCE_FLIP:
                 return c.getStance().reverse(c, false).equals(c.getStance()) ?
-                                Global.format("Distracted by a shock from the collar around {self:possessive}"
+                                Formatter.format("Distracted by a shock from the collar around {self:possessive}"
                                 + " neck, {self:subject-action:have|has} no chance to resist as"
                                 + " {other:subject-action:put|puts} {self:direct-object}"
                                 + " in a pin.", affected, owner)
                             :
-                                Global.format("Appearantly punishing {self:name-do} for being dominant, the collar"
+                                Formatter.format("Appearantly punishing {self:name-do} for being dominant, the collar"
                                                 + " around {self:possessive} neck gives {self:direct-object} a painful"
                                                 + " shock. At the same time, {other:subject-action:grab|grabs}"
                                                 + " hold of {self:possessive} body and gets {other:reflective}"
                                                 + " into a more advantegeous position.", affected, owner);
             case PREVENT_REVERSAL:
-                return Global.format("{self:SUBJECT-ACTION:try|tries} to get the"
+                return Formatter.format("{self:SUBJECT-ACTION:try|tries} to get the"
                             + " upper hand, but the collar adamantly refuses by"
                             + " shocking {self:direct-object}.", affected, owner);
             default:

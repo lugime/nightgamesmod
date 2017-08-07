@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Cowgirl;
@@ -13,7 +13,7 @@ import nightgames.stance.Missionary;
 public class CounterDrain extends CounterBase {
     public CounterDrain(Character self) {
         super("Counter Vortex", self, 6,
-                        Global.format("{self:SUBJECT-ACTION:glow|glows} with a purple light.", self, self));
+                        Formatter.format("{self:SUBJECT-ACTION:glow|glows} with a purple light.", self, self));
         addTag(SkillTag.drain);
         addTag(SkillTag.fucking);
         addTag(SkillTag.staminaDamage);
@@ -77,11 +77,11 @@ public class CounterDrain extends CounterBase {
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.setup) {
-            return Global.format(
+            return Formatter.format(
                             "You drop your stance, take a deep breath and close your eyes. A purple glow starts radiating from your core.",
                             getSelf(), target);
         } else {
-            return Global.format(
+            return Formatter.format(
                             "You suddenly open your eyes as you sense {other:name} approaching. "
                                             + "The purple light that surrounds you suddenly flies into {other:direct-object}, "
                                             + "eliciting a cry out of her. She collapses like a puppet with her strings cut and falls to the ground. "
@@ -93,12 +93,12 @@ public class CounterDrain extends CounterBase {
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.setup) {
-            return Global.format(
+            return Formatter.format(
                             "She drops her stance, takes a deep breath and closes her eyes. {other:SUBJECT-ACTION:notice|notices}"
                             + " a purple glow begin to radiate from her core.",
                             getSelf(), target);
         } else {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT} suddenly opens her eyes as {other:subject-action:approach|approaches}. "
                                             + "The purple light that was orbiting around {self:direct-object} suddenly reverses directions and flies into {other:direct-object}. "
                                             + "The purple energy seems to paralyze {other:possessive} muscles and {other:pronoun-action:collapse|collapses}"

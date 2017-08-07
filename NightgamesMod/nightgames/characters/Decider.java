@@ -12,10 +12,7 @@ import nightgames.actions.Movement;
 import nightgames.characters.custom.effect.CustomEffect;
 import nightgames.combat.Combat;
 import nightgames.daytime.Daytime;
-import nightgames.global.DebugFlags;
-import nightgames.global.Flag;
-import nightgames.global.Global;
-import nightgames.global.Random;
+import nightgames.global.*;
 import nightgames.items.Item;
 import nightgames.pet.PetCharacter;
 import nightgames.skills.Skill;
@@ -213,7 +210,7 @@ public class Decider {
     }
 
     public static void visit(Character self) {
-        if (Global.checkCharacterDisabledFlag(self)) {
+        if (Formatter.checkCharacterDisabledFlag(self)) {
             return;
         }
         int max = 0;

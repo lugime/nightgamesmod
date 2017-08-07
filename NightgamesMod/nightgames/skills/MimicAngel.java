@@ -9,6 +9,7 @@ import nightgames.characters.body.WingsPart;
 import nightgames.characters.body.mods.DivineMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.status.Abuff;
 import nightgames.status.SlimeMimicry;
@@ -99,7 +100,7 @@ public class MimicAngel extends Skill {
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("{self:NAME-POSSESSIVE} amorphous body jiggles violently and she shrinks her body into a sphere. "
+        return Formatter.format("{self:NAME-POSSESSIVE} amorphous body jiggles violently and she shrinks her body into a sphere. "
                         + "{other:SUBJECT} cautiously {other:action:approach|approaches} the unknown object, but hesistate when {other:pronoun-action:see|sees} it suddenly turns pure white "
                         + "as if someone dumped a bucket of bleach on it. "
                         + "The sphere unwraps itself in layers, with each layer forming a pair of pristine translucent gelatinous feathered wings. "

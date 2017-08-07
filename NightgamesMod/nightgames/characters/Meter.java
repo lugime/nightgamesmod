@@ -2,7 +2,7 @@ package nightgames.characters;
 
 import java.io.Serializable;
 
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Meter implements Serializable, Cloneable {
     /**
@@ -120,7 +120,7 @@ public class Meter implements Serializable, Cloneable {
 
     @Override
     public String toString() {
-        return String.format("current: %s / max: %s", Global.formatDecimal(current), Global.formatDecimal(max()));
+        return String.format("current: %s / max: %s", Formatter.formatDecimal(current), Formatter.formatDecimal(max()));
     }
 
     public double remaining() {

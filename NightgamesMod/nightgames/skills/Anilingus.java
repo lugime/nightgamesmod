@@ -10,7 +10,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.AssPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
@@ -95,7 +95,7 @@ public class Anilingus extends Skill {
             getSelf().temptWithSkill(c, target, target.body.getRandom("ass"), selfm, this);
         }
         if (target.has(Trait.temptingass) && !getSelf().bound()) {
-            c.write(target, Global.format("Servicing {other:possessive} perfect behind makes {self:direct-object} almost unconsciously touch {self:reflective}.", getSelf(), target));
+            c.write(target, Formatter.format("Servicing {other:possessive} perfect behind makes {self:direct-object} almost unconsciously touch {self:reflective}.", getSelf(), target));
             (new Masturbate(getSelf())).resolve(c, target);
         }
         return result != Result.miss;

@@ -3,6 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
@@ -32,7 +33,7 @@ public class Pray extends Skill {
     @Override
     public boolean resolve(Combat c, Character target) {
         c.write(getSelf(),
-                        Global.format("{self:SUBJECT-ACTION:bow} {self:possessive} head and close {self:possessive} eyes,"
+                        Formatter.format("{self:SUBJECT-ACTION:bow} {self:possessive} head and close {self:possessive} eyes,"
                                         + " whispering a quick prayer to Angel for guidance. {other:SUBJECT-ACTION:look} at {self:direct-object} strangely, but "
                                         + " the knowledge that Angel is there for {self:direct-object} reinvigorates {self:possessive} spirit"
                                         + " and strengthens {self:possessive} faith.", getSelf(), target));

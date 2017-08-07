@@ -7,7 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.addiction.Addiction;
 import nightgames.status.addiction.AddictionType;
@@ -36,13 +36,13 @@ public class WildThrust extends Thrust {
     public boolean resolve(Combat c, Character target) {
         boolean effective = super.resolve(c, target);
         if (effective && c.getStance().sub(getSelf()) && getSelf().has(Trait.Untamed) && Random.random(4) == 0 ) {
-            c.write(getSelf(), Global.format("{self:SUBJECT-ACTION:fuck|fucks} {other:name-do} with such abandon that it leaves {other:direct-object} "
+            c.write(getSelf(), Formatter.format("{self:SUBJECT-ACTION:fuck|fucks} {other:name-do} with such abandon that it leaves {other:direct-object} "
                             + "momentarily dazed. {self:SUBJECT-ACTION:do|does} not let this chance slip and {self:action:rotate|rotates} {self:possessive} body so that {self:pronoun-action:are|is} on top!", getSelf(), target));
             c.setStance(c.getStance().reverse(c, false));
         }
         if (effective && getSelf().has(Trait.breeder) && c.getStance().vaginallyPenetratedBy(c, getSelf(), target)
                          && target.human()) {
-            c.write(getSelf(), Global.format("The sheer ferocity of {self:name-possessive} movements"
+            c.write(getSelf(), Formatter.format("The sheer ferocity of {self:name-possessive} movements"
                             + " fill you with an unnatural desire to sate {self:possessive} thirst with"
                             + " your cum.", getSelf(), target));
             target.addict(c, AddictionType.BREEDER, getSelf(), Addiction.LOW_INCREASE);
@@ -94,7 +94,7 @@ public class WildThrust extends Thrust {
             return "You wildly pound " + target.getName()
                             + " in the ass with no regard to technique. She whimpers in pleasure and can barely summon the strength to hold herself off the floor.";
         } else if (modifier == Result.reverse) {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:%s {other:name-possessive} cock with no regard to technique, relentlessly driving you both towards orgasm.",
                             getSelf(), target, c.getStance().sub(getSelf()) ? "grind} against" : "bounce} on");
         } else {
@@ -114,14 +114,14 @@ public class WildThrust extends Thrust {
             return String.format("%s pistons wildly into %s while pushing %s shoulders on the ground; %s tits "
                             + "are shaking above %s head while %s strapon stimulates %s %s.", getSelf().subject(),
                             target.nameDirectObject(), target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(getSelf().possessiveAdjective()), target.possessiveAdjective(),
+                            Formatter.capitalizeFirstLetter(getSelf().possessiveAdjective()), target.possessiveAdjective(),
                             getSelf().possessiveAdjective(), target.possessiveAdjective(),
                             target.hasBalls() ? "prostate" : "insides");
         } else if (modifier == Result.reverse) {
             return String.format("%s frenziedly %s %s cock, relentlessly driving %s both toward orgasm.",
                             getSelf().subject(), target.nameOrPossessivePronoun(), c.bothDirectObject(target), c.getStance().sub(getSelf()) ? "grinds against" : "bounces on");
         } else {
-            return Global.format(
+            return Formatter.format(
                             "{self:SUBJECT-ACTION:rapidly pound|rapidly pounds} {self:possessive} {self:body-part:cock} into {other:possessive} {other:body-part:pussy}, "
                                             + "relentlessly driving %s both toward orgasm",
                             getSelf(), target, c.bothDirectObject(target));

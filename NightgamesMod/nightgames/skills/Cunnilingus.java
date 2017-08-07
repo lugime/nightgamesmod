@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.ReverseMount;
@@ -193,7 +193,7 @@ public class Cunnilingus extends Skill {
             return String.format("%s skilled tongue explores %s pussy, finding and pleasuring %s more sensitive areas. "
                             + "%s repeatedly attacks %s clitoris until %s can't suppress %s pleasured moans.%s",
                             getSelf().nameOrPossessivePronoun(), target.nameOrPossessivePronoun(), target.possessiveAdjective(),
-                            Global.capitalizeFirstLetter(getSelf().pronoun()), target.nameOrPossessivePronoun(),
+                            Formatter.capitalizeFirstLetter(getSelf().pronoun()), target.nameOrPossessivePronoun(),
                             target.pronoun(), target.possessiveAdjective(), special);
         } else if (modifier == Result.reverse) {
             return String.format("%s obediently laps at %s pussy as %s %s on %s face.%s",

@@ -2,7 +2,7 @@ package nightgames.skills.petskills;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
@@ -30,7 +30,7 @@ public class ImpSemenSquirt extends SimpleEnemySkill {
     @Override
     public boolean resolve(Combat c, Character target) {
         int m = Random.random(3,6) + getSelf().getLevel() / 5;
-        c.write(getSelf(), Global.format("{self:SUBJECT} masturbates frantically until {self:pronoun} cums intensely. "
+        c.write(getSelf(), Formatter.format("{self:SUBJECT} masturbates frantically until {self:pronoun} cums intensely. "
                         + "{self:PRONOUN} aims {self:possessive} spurting cock at {other:name-do}, "
                         + "hitting {other:direct-object} in the face with a thick load of semen. "
                         + "{other:SUBJECT-ACTION:flush|flushes} bright red and {other:action:look|looks} stunned "

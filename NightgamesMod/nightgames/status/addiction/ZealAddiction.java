@@ -10,7 +10,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.stance.Behind;
 import nightgames.stance.Mount;
@@ -151,7 +151,7 @@ public class ZealAddiction extends Addiction {
     @Override
     protected String describeCombatIncrease() {
         return "You feel an increasingly strong desire to do whatever " + cause.getName()
-                        + " wants. " + Global.capitalizeFirstLetter(cause.pronoun()) + "'s a goddess, after all!";
+                        + " wants. " + Formatter.capitalizeFirstLetter(cause.pronoun()) + "'s a goddess, after all!";
     }
 
     @Override

@@ -6,7 +6,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Charmed;
 import nightgames.status.Stsflag;
@@ -141,7 +141,7 @@ public class Charm extends Skill {
                                 + "face and ragged breathing makes the act a lot more erotic than "
                                 + "you would expect. %s to contain %s need to fuck the little kitty in heat.",
                                 getSelf().nameOrPossessivePronoun(), 
-                                Global.capitalizeFirstLetter(target.subjectAction("try", "tries")),
+                                Formatter.capitalizeFirstLetter(target.subjectAction("try", "tries")),
                                 target.possessiveAdjective());
             }
             return message;

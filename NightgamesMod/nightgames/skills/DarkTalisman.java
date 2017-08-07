@@ -3,7 +3,7 @@ package nightgames.skills;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.nskills.tags.SkillTag;
@@ -83,14 +83,14 @@ public class DarkTalisman extends Skill {
     public String receive(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.normal) {
             return String.format("%s holds up a strange talisman. %s compelled to look at the thing, captivated by its unholy nature.",
-                            getSelf().getName(), Global.capitalizeFirstLetter(target.subjectAction("feel")));
+                            getSelf().getName(), Formatter.capitalizeFirstLetter(target.subjectAction("feel")));
         } else if (modifier == Result.special) {
             return String.format("%s something which sounds like sand spilling onto the floor and a cry of annoyed "
                             + "frustration from %s. What could it have been?", getSelf().subjectAction("hear"),
                             target.nameDirectObject());
         } else {
             return String.format("%s holds up a strange talisman. %s a tiny tug on %s consciousness, but it doesn't really affect %s much.",
-                            getSelf().getName(), Global.capitalizeFirstLetter(target.subjectAction("feel")), target.possessiveAdjective(),
+                            getSelf().getName(), Formatter.capitalizeFirstLetter(target.subjectAction("feel")), target.possessiveAdjective(),
                             target.directObject());
         }
     }

@@ -10,7 +10,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.skills.damage.DamageType;
 
@@ -240,7 +240,7 @@ public class Engulfed extends Position {
     @Override
     public void struggle(Combat c, Character struggler) {
         Character opponent = getPartner(c, struggler);
-        c.write(struggler, Global.format("{self:SUBJECT-ACTION:attempt} to find {self:possessive} way out of "
+        c.write(struggler, Formatter.format("{self:SUBJECT-ACTION:attempt} to find {self:possessive} way out of "
                         + "the endless slimey hell {self:pronoun-action:have} found {self:reflective} in. "
                         + "However, none of {self:possessive} attempts make any purchase, as {other:possessive} formless body merely swallows "
                         + "{self:direct-object} back up when {self:pronoun-action:try}. "
@@ -252,7 +252,7 @@ public class Engulfed extends Position {
     @Override
     public void escape(Combat c, Character escapee) {
         Character opponent = getPartner(c, escapee);
-        c.write(escapee, Global.format("{self:SUBJECT-ACTION:attempt} to talk {self:possessive} way out of "
+        c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:attempt} to talk {self:possessive} way out of "
                         + "the endless slimey hell {self:pronoun-action:have} found {self:reflective} in. "
                         + "However, none of {self:possessive} attempts to have {other:name-do} release {self:direct-object} does any good, "
                         + "as {other:pronoun} just stares at {self:direct-object} emotionlessly while teasing {self:possessive} lower half encased in {other:possessive} slime.", escapee, opponent));

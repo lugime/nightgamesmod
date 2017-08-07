@@ -2,7 +2,7 @@ package nightgames.skills.petskills;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
@@ -27,12 +27,12 @@ public class GoblinDenial extends SimpleMasterSkill {
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             int m = Random.random(17, 24) + getSelf().getLevel() / 2;
-            c.write(getSelf(), Global.format("{self:SUBJECT} suddenly appears to turn against {other:name-do} and slaps {other:direct-object} sensitive testicles. "
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} suddenly appears to turn against {other:name-do} and slaps {other:direct-object} sensitive testicles. "
                             + "You're momentarily confused, but you realize the shock probably lessened some of {other:possessive} pent up desires.", getSelf(), target));
             target.pain(c, getSelf(), Random.random(15, 25));
             target.calm(c, m * 2);
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT} stays at the edge of battle and touches herself absentmindedly.", getSelf(), target));
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} stays at the edge of battle and touches herself absentmindedly.", getSelf(), target));
             return false;
         }
         return true;

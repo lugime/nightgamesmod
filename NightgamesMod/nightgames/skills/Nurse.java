@@ -7,7 +7,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.NursingHold;
@@ -51,7 +51,7 @@ public class Nurse extends Skill {
         boolean special = c.getStance().en != Stance.nursing && !c.getStance().havingSex(c);
         writeOutput(c, special ? Result.special : Result.normal, target);
         if (getSelf().has(Trait.lactating) && !target.is(Stsflag.suckling) && !target.is(Stsflag.wary)) {
-            c.write(target, Global.format(
+            c.write(target, Formatter.format(
                             "{other:SUBJECT-ACTION:are|is} a little confused at the sudden turn of events, but after milk starts flowing into {other:possessive} mouth, {other:pronoun} can't help but continue to suck on {self:possessive} teats.",
                             getSelf(), target));
             target.add(c, new Suckling(target, getSelf(), 4));
@@ -124,7 +124,7 @@ public class Nurse extends Skill {
                             + " swaying titflesh. Giggling a bit, %s pokes %s sides and slides %s nipples in"
                             + " %s mouth when %s %s out a yelp.", getSelf().subject(),
                             getSelf().possessiveAdjective(), getSelf().body.getRandomBreasts().fullDescribe(getSelf()),
-                            target.nameOrPossessivePronoun(), Global.capitalizeFirstLetter(target.possessiveAdjective()),
+                            target.nameOrPossessivePronoun(), Formatter.capitalizeFirstLetter(target.possessiveAdjective()),
                             getSelf().subject(), target.nameOrPossessivePronoun(), getSelf().possessiveAdjective(),
                             target.possessiveAdjective(), target.pronoun(), target.action("let"));
         } else {

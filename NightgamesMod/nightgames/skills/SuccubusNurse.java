@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BreastsPart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
@@ -57,7 +57,7 @@ public class SuccubusNurse extends Skill {
     
     @Override
     public boolean resolve(Combat c, Character target) {
-        c.write(getSelf(), Global.format(
+        c.write(getSelf(), Formatter.format(
                         "{self:SUBJECT-ACTION:shift|shifts}, pulling {other:name-possessive} head down "
                                         + "towards one of {self:possessive} puffy nipples. %s. {self:POSSESSIVE} milk"
                                         + " slides smoothly down {other:possessive} throat, %s.",

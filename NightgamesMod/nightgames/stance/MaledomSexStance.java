@@ -8,7 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Stsflag;
 
@@ -102,12 +102,12 @@ public abstract class MaledomSexStance extends Position {
         int targM = Random.random(6, 11);
         if (knotted) {
             c.write(struggler,
-                            Global.format("{self:SUBJECT-ACTION:struggle} fruitlessly against the lump of {other:name-possessive} knotted cock, "
+                            Formatter.format("{self:SUBJECT-ACTION:struggle} fruitlessly against the lump of {other:name-possessive} knotted cock, "
                                             + "arousing the hell out of both of %s in the process.",
                             struggler, opponent, c.bothDirectObject(opponent)));
             selfM += 5;
         } else {
-            c.write(struggler, Global.format("{self:SUBJECT-ACTION:try} to tip {other:name-do} off balance, but {other:pronoun-action:grip} {other:possessive} hips firmly, "
+            c.write(struggler, Formatter.format("{self:SUBJECT-ACTION:try} to tip {other:name-do} off balance, but {other:pronoun-action:grip} {other:possessive} hips firmly, "
                             + "pushing {other:possessive} cock deep inside {self:direct-object} and pinning {self:direct-object} to the floor. "
                             + "The sensations from wrestling with {other:possessive} cock buried inside {self:direct-object} almost make {self:direct-object} cum.", struggler, opponent));
         }
@@ -128,12 +128,12 @@ public abstract class MaledomSexStance extends Position {
         int targM = Random.random(6, 11);
         if (knotted) {
             c.write(escapee,
-                            Global.format("{self:SUBJECT-ACTION:tickle} {other:name-do} and {self:action:try} to escape with {other:direct-object} distracted. "
+                            Formatter.format("{self:SUBJECT-ACTION:tickle} {other:name-do} and {self:action:try} to escape with {other:direct-object} distracted. "
                                             + "Problem is, the knot in {other:possessive} {other:body-part:cock} makes trying to pull out a arousing yet futile task.",
                             escapee, opponent));
             selfM += 5;
         } else {
-            c.write(escapee, Global.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} relentless pounding, "
+            c.write(escapee, Formatter.format("{self:SUBJECT-ACTION:try} to escape {other:name-possessive} relentless pounding, "
                             + "but {other:pronoun-action:grip} {other:possessive} hips firmly, pushing {other:possessive} cock deep inside {self:direct-object} once again "
                             + "and pinning {self:direct-object} to the floor. "
                             + "The sensations from moving around so much with {other:possessive} cock buried inside {self:direct-object} almost make {self:direct-object} cum.", escapee, opponent));

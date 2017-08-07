@@ -4,6 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.NPC;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.pet.CharacterPet;
 
@@ -64,7 +65,7 @@ public class SummonYui extends Skill {
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("{self:SUBJECT-ACTION:pull|pulls} out a tattered scroll and {self:action:unroll|unrolls} it. "
+        return Formatter.format("{self:SUBJECT-ACTION:pull|pulls} out a tattered scroll and {self:action:unroll|unrolls} it. "
                         + "{self:PRONOUN} smears the ink circle drawn on the page with {self:possessive} thumb and drops it onto the ground. "
                         + "A split second later the ink on the page seems to twist and blur until it finally coalesces into the familiar ninja's form", getSelf(), target);
     }

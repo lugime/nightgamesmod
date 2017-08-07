@@ -2,7 +2,7 @@ package nightgames.pet.arms.skills;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.pet.PetCharacter;
 import nightgames.pet.arms.Arm;
@@ -37,7 +37,7 @@ public class HealRay extends ArmSkill {
             msg += "but it soon sputters and dies out. {self:PRONOUN-ACTION:are not|does not seem} pleased.";
         }
 
-        c.write(PetCharacter.DUMMY, Global.format(msg, owner, target, arm.getType()
+        c.write(PetCharacter.DUMMY, Formatter.format(msg, owner, target, arm.getType()
                                                                          .getDesc(),
                         arm.getName()));
 

@@ -2,7 +2,7 @@ package nightgames.skills.petskills;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.skills.Skill;
 import nightgames.status.Shield;
@@ -27,10 +27,11 @@ public class FairyShield extends SimpleMasterSkill {
     public boolean resolve(Combat c, Character target) {
         if (target.roll(getSelf(), c, accuracy(c, target))) {
             int duration = 3 + getSelf().getLevel() / 10;
-            c.write(getSelf(), Global.format("{self:SUBJECT} raises a shield around {other:name-do}, preventing attacks!", getSelf(), target));
+            c.write(getSelf(), Formatter.format("{self:SUBJECT} raises a shield around {other:name-do}, preventing attacks!", getSelf(), target));
             target.add(c, new Shield(target, .5, duration));
         } else {
-            c.write(getSelf(), Global.format("{self:SUBJECT} flies around the edge of the fight looking for an opening.", getSelf(), target));
+            c.write(getSelf(), Formatter
+                            .format("{self:SUBJECT} flies around the edge of the fight looking for an opening.", getSelf(), target));
             return false;
         }
         return true;

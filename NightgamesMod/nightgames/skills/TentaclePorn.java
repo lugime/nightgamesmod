@@ -7,7 +7,7 @@ import nightgames.characters.body.BreastsPart;
 import nightgames.characters.body.TentaclePart;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Bound;
 import nightgames.status.Oiled;
@@ -112,7 +112,7 @@ public class TentaclePorn extends Skill {
         if (modifier == Result.miss) {
             return String.format("%s stomps on the ground and a bundle of tentacles erupt from the "
                             + "ground. %s barely able to avoid them.", getSelf().subject(),
-                            Global.capitalizeFirstLetter(target.subjectAction("are", "is")));
+                            Formatter.capitalizeFirstLetter(target.subjectAction("are", "is")));
         } else if (modifier == Result.weak) {
             return String.format("%s stomps on the ground and a bundle of tentacles erupt from the "
                             + "ground around %s, entangling %s arms and legs.", getSelf().subject(),

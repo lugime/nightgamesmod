@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.status.Enthralled;
 import nightgames.status.Stsflag;
 
@@ -67,21 +67,21 @@ public class EyesOfTemptation extends Skill {
     @Override
     public String deal(Combat c, int damage, Result modifier, Character target) {
         if (modifier == Result.normal) {
-            return Global.format(
+            return Formatter.format(
                             "As {other:subject-action:gaze|gazes} into {self:name-possessive} eyes, {other:subject-action:feel|feels} {other:possessive} will slipping into the abyss.",
                             getSelf(), target);
         } else if (modifier == Result.special) {
             if (getSelf().human()) {
-                return Global.format(
+                return Formatter.format(
                                 "You focus your eyes on {other:name}, but with {other:possessive} eyesight blocked the power just seeps away uselessly.",
                                 getSelf(), target);
             } else {
-                return Global.format(
+                return Formatter.format(
                                 "There seems to be a bit of a lull in the fight. {self:SUBJECT-ACTION:are|is} not sure what {other:name} is doing, but it isn't having any effect on {self:direct-object}.",
                                 getSelf(), target);
             }
         } else {
-            return Global.format(
+            return Formatter.format(
                             "{other:SUBJECT-ACTION:look|looks} away as soon as {self:subject-action:focus|focuses} {self:possessive} eyes on {other:direct-object}.",
                             getSelf(), target);
         }

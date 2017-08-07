@@ -12,6 +12,7 @@ import nightgames.characters.body.WingsPart;
 import nightgames.characters.body.mods.DemonicMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.status.Abuff;
 import nightgames.status.SlimeMimicry;
@@ -115,7 +116,7 @@ public class MimicSuccubus extends Skill {
 
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
-        return Global.format("{self:NAME-POSSESSIVE} mercurial form seems to suddenly expand, then collapse onto itself. "
+        return Formatter.format("{self:NAME-POSSESSIVE} mercurial form seems to suddenly expand, then collapse onto itself. "
                         + "Her crystal blue goo glimmers and shifts into a deep obsidian. After reforming her features out of "
                         + "her eratically flowing slime, {other:subject-action:see|sees} that she has taken on an appearance reminiscent of Reyka's succubus form, "
                         + "complete with large translucent gel wings, a thick tail and her characteristic laviscious grin.", getSelf(), target);

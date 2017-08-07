@@ -7,6 +7,7 @@ import nightgames.characters.State;
 import nightgames.combat.Combat;
 import nightgames.combat.Encounter;
 import nightgames.global.Encs;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.global.Random;
 import nightgames.items.Item;
@@ -84,7 +85,7 @@ public class FTCEncounter extends Encounter {
                 }
                 message += " you bind {other:possessive} hands together. There are worse" + " ways to start a match.";
             }
-            Global.gui().message(Global.format(message, attacker, victim));
+            Global.gui().message(Formatter.format(message, attacker, victim));
         } else {
             Global.gui().refresh();
             fight = new Combat(attacker, victim, location, ambushRegular);
@@ -120,7 +121,7 @@ public class FTCEncounter extends Encounter {
                                 + " Immediately you jump on {other:possessive} back and tie "
                                 + "{other:possessive} hands together.";
             }
-            Global.gui().message(Global.format(message, attacker, victim));
+            Global.gui().message(Formatter.format(message, attacker, victim));
         } else {
             Global.gui().refresh();
             fight = new Combat(attacker, victim, location, ambushRegular);
@@ -171,7 +172,7 @@ public class FTCEncounter extends Encounter {
             attacker.addNonCombat(new Flatfooted(attacker, 3));
         }
         if (attacker.human() || victim.human()) {
-            Global.gui().message(Global.format(message, attacker, victim));
+            Global.gui().message(Formatter.format(message, attacker, victim));
         } else {
 
         }

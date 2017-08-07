@@ -3,7 +3,7 @@ package nightgames.stance;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 
 public class Doggy extends MaledomSexStance {
 
@@ -18,7 +18,7 @@ public class Doggy extends MaledomSexStance {
         } else {
             return String.format("Things aren't going well for %s. %s %s down on %s hands and knees, while %s"
                             + " is fucking %s from behind.", bottom.subject(),
-                            Global.capitalizeFirstLetter(bottom.pronoun()), bottom.action("are", "is"),
+                            Formatter.capitalizeFirstLetter(bottom.pronoun()), bottom.action("are", "is"),
                             bottom.possessiveAdjective(), top.subject(), bottom.directObject());
         }
     }
@@ -85,7 +85,7 @@ public class Doggy extends MaledomSexStance {
     @Override
     public Position reverse(Combat c, boolean writeMessage) {
         if (writeMessage) {
-            c.write(bottom, Global.format(
+            c.write(bottom, Formatter.format(
                             "{self:SUBJECT-ACTION:manage|manages} to reach between {self:possessive} legs and grab hold of {other:possessive} "
                                             + (top.hasBalls() ? "ballsack" : "cock")
                                             + ", stopping {other:direct-object} in mid thrust. {self:SUBJECT-ACTION:smirk|smirks} at {other:direct-object} over {self:possessive} shoulder "

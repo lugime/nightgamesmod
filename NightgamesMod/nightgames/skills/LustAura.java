@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Emotion;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.status.Horny;
 import nightgames.status.Stsflag;
@@ -67,7 +67,7 @@ public class LustAura extends Skill {
     @Override
     public String receive(Combat c, int damage, Result modifier, Character target) {
         return String.format("%s releases an aura of pure sex. %s %s body becoming hot just being near %s.",
-                        getSelf().subject(), Global.capitalizeFirstLetter(target.subjectAction("feel")),
+                        getSelf().subject(), Formatter.capitalizeFirstLetter(target.subjectAction("feel")),
                         target.possessiveAdjective(), getSelf().directObject());
     }
 

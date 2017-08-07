@@ -10,6 +10,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
+import nightgames.global.Formatter;
 import nightgames.global.Global;
 import nightgames.trap.Trap;
 
@@ -142,7 +143,7 @@ public class Bound extends Status {
     public void tick(Combat c) {
         if (c == null && trap.isPresent()) {
             if (affected.human()) {
-                Global.gui().message(Global.format("{self:SUBJECT-ACTION:are|is} still trapped by the %s.", affected, Global.noneCharacter(), trap.get().getName().toLowerCase()));
+                Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:are|is} still trapped by the %s.", affected, Global.noneCharacter(), trap.get().getName().toLowerCase()));
             }
             affected.location().opportunity(affected, trap.get());
         }

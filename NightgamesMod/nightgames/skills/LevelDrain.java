@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
+import nightgames.global.Formatter;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.status.Satiated;
@@ -195,7 +195,7 @@ public class LevelDrain extends Drain {
                                 target.possessiveAdjective(), target.directObject(), target.possessiveAdjective(),
                                 getSelf().subject(), target.subjectAction("feel"), getSelf().subject(),
                                 getSelf().pronoun(), target.subjectAction("are", "is"), 
-                                Global.capitalizeFirstLetter(target.possessiveAdjective()),
+                                Formatter.capitalizeFirstLetter(target.possessiveAdjective()),
                                 target.pronoun(), target.action("have", "has"));
             default:
                 // Should never happen
