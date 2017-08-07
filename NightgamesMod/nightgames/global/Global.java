@@ -202,15 +202,6 @@ public class Global {
         return a;
     }
 
-    public static Character lookup(String name) {
-        for (Character player : players) {
-            if (player.getTrueName().equalsIgnoreCase(name)) {
-                return player;
-            }
-        }
-        return null;
-    }
-
     public static Time getTime() {
         return time;
     }
@@ -901,14 +892,6 @@ public class Global {
         return players.stream().anyMatch(c -> type.equals(c.getType()));
     }
 
-    public static String maybeString(String string) {
-        if (nightgames.global.Random.random(2) == 0) {
-            return string;
-        } else {
-            return "";
-        }
-    }
-
     public static int getDate() {
         return date;
     }
@@ -992,12 +975,6 @@ public class Global {
 
     public static Set<Modifier> getModifierPool() {
         return modifierPool;
-    }
-
-    public static HashSet<Skill> getByTactics(Combat c, Tactics tact) {
-        HashSet<Skill> result = new HashSet<>(skillPool);
-        result.removeIf(skill -> skill.type(c) != tact);
-        return result;
     }
 
     public static MatchType decideMatchType() {
