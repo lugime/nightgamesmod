@@ -2,7 +2,9 @@ package nightgames.requirements;
 
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
+import nightgames.characters.TraitTree;
 import nightgames.combat.Combat;
+import nightgames.global.Global;
 
 public class TraitRequirement extends BaseRequirement {
     private final Trait trait;
@@ -13,6 +15,10 @@ public class TraitRequirement extends BaseRequirement {
 
     public TraitRequirement(String trait) {
         this.trait = Trait.valueOf(trait);
+    }
+
+    public static void setTraitRequirements(TraitTree traitRequirements) {
+        Global.traitRequirements = traitRequirements;
     }
 
     @Override public boolean meets(Combat c, Character self, Character other) {

@@ -37,6 +37,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import nightgames.requirements.TraitRequirement;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.ContextFactory;
 
@@ -124,7 +125,7 @@ public class Global {
     protected static int date;
     private static Time time;
     private Date jdate;
-    private static TraitTree traitRequirements;
+    public static TraitTree traitRequirements;
     public static Scene current;
     public static boolean debug[] = new boolean[DebugFlags.values().length];
     public static int debugSimulation = 0;
@@ -176,7 +177,7 @@ public class Global {
 		}
 
 
-        setTraitRequirements(new TraitTree(ResourceLoader.getFileResourceAsStream("data/TraitRequirements.xml")));
+        TraitRequirement.setTraitRequirements(new TraitTree(ResourceLoader.getFileResourceAsStream("data/TraitRequirements.xml")));
         current = null;
         factory = new ContextFactory();
         cx = factory.enterContext();
@@ -1667,9 +1668,6 @@ public class Global {
         return traitRequirements;
     }
 
-    public static void setTraitRequirements(TraitTree traitRequirements) {
-        Global.traitRequirements = traitRequirements;
-    }
     public static void writeIfCombatUpdateImmediately(Combat c, Character self, String string) {
         writeIfCombat(c, self, string);
         if (c != null) {
