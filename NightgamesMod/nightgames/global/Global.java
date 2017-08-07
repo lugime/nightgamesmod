@@ -73,7 +73,6 @@ import nightgames.start.StartConfiguration;
 import nightgames.trap.Trap;
 
 public class Global {
-    public static Random rng;
     private static GUI gui;
     static HashMap<String, Match.MatchAction> matchActions = null;
     private static Set<Skill> skillPool = new HashSet<>();
@@ -103,7 +102,7 @@ public class Global {
     public static final Path COMBAT_LOG_DIR = new File("combatlogs").toPath();
 
     public Global(boolean headless) {
-        rng = new Random();
+        nightgames.global.Random.rng = new Random();
         Flag.flags = new HashSet<>();
         players = new HashSet<>();
         debugChars = new HashSet<>();
@@ -592,8 +591,6 @@ public class Global {
     public static Character getParticipantsByName(String name) {
         return players.stream().filter(c -> c.getTrueName().equals(name)).findAny().get();
     }
-
-    public static Random FROZEN_RNG = new Random();
 
     public static TraitTree getTraitRequirements() {
         return traitRequirements;

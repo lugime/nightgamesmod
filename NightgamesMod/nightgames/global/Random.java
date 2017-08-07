@@ -4,22 +4,25 @@ import java.util.List;
 import java.util.Optional;
 
 public class Random {
+    public static java.util.Random rng;
+    private static java.util.Random FROZEN_RNG = new java.util.Random();
+
     public static int random(int start, int end) {
-        return Global.rng.nextInt(end - start) + start;
+        return rng.nextInt(end - start) + start;
     }
 
     public static int random(int d) {
         if (d <= 0) {
             return 0;
         }
-        return Global.rng.nextInt(d);
+        return rng.nextInt(d);
     }// finds a centered random number from [0, d] (inclusive)
 
     public static int centeredrandom(int d, double center, double sigma) {
         int val = 0;
         center = Math.max(0, Math.min(d, center));
         for (int i = 0; i < 10; i++) {
-            double f = Global.rng.nextGaussian() * sigma + center;
+            double f = rng.nextGaussian() * sigma + center;
             val = (int) Math.round(f);
             if (val >= 0 && val <= d) {
                 return val;
@@ -29,7 +32,7 @@ public class Random {
     }
 
     public static float randomfloat() {
-        return (float) Global.rng.nextDouble();
+        return (float) rng.nextDouble();
     }
 
     @SafeVarargs public static <T> Optional<T> pickRandom(T... arr) {
@@ -47,30 +50,30 @@ public class Random {
     }
 
     public static double randomdouble() {
-        return Global.rng.nextDouble();
+        return rng.nextDouble();
     }
 
     public static double randomdouble(double to) {
-        return Global.rng.nextDouble() * to;
+        return rng.nextDouble() * to;
     }
 
     public static long randomlong() {
-        return Global.rng.nextLong();
+        return rng.nextLong();
     }
 
     /**
      * TODO Huge hack to freeze status descriptions.
      */
     public static void freezeRNG() {
-        Global.FROZEN_RNG = Global.rng;
-        Global.rng = new java.util.Random(0);
+        FROZEN_RNG = rng;
+        rng = new java.util.Random(0);
     }
 
     /**
      * TODO Huge hack to freeze status descriptions.
      */
     public static void unfreezeRNG() {
-        Global.FROZEN_RNG = new java.util.Random();
-        Global.rng = Global.FROZEN_RNG;
+        FROZEN_RNG = new java.util.Random();
+        rng = FROZEN_RNG;
     }
 }
