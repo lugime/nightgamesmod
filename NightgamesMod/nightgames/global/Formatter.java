@@ -13,6 +13,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Formatter {
+    static {
+        buildParser();
+    }
     private static DecimalFormat formatter = new DecimalFormat("#.##");
     private static String DISABLED_FORMAT = "%sDisabled";
 

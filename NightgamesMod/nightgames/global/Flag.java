@@ -1,8 +1,6 @@
 package nightgames.global;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public enum Flag {
     metBroker,
@@ -84,8 +82,13 @@ public enum Flag {
     NoFTC
     ;
 
-    static Set<String> flags;
+    static Set<String> flags = new HashSet<>();
     static Map<String, Float> counters;
+
+    static {
+        counters = new HashMap<>();
+        counters.put(malePref.name(), 0.f);
+    }
 
     public static boolean exists(String flag) {
         return Arrays.stream(values()).anyMatch(f -> f.name().equals(flag));

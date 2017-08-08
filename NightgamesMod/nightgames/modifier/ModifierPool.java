@@ -18,6 +18,9 @@ import java.util.Set;
  */
 public class ModifierPool {
     public static Set<Modifier> modifierPool;
+    static {
+        buildModifierPool();
+    }
 
     public static void buildModifierPool() {
         modifierPool = new HashSet<>();

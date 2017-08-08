@@ -24,7 +24,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Match {
-    public static Set<Character> resting;
+    public static Set<Character> resting = new HashSet<>();
     public static Match match;
     static HashMap<String, MatchAction> matchActions = null;
     protected int time;

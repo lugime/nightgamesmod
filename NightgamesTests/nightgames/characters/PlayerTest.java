@@ -1,5 +1,6 @@
 package nightgames.characters;
 
+import nightgames.global.Main;
 import nightgames.global.TestGameState;
 import org.junit.BeforeClass;
 import org.junit.Test;

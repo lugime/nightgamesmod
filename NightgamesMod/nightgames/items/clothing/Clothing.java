@@ -24,6 +24,9 @@ import nightgames.json.JsonUtils;
 public class Clothing implements Loot {
     public static final int N_LAYERS = 5;
     public static Map<String, Clothing> clothingTable;
+    static {
+        buildClothingTable();
+    }
 
     public static void buildClothingTable() {
         clothingTable = new HashMap<>();

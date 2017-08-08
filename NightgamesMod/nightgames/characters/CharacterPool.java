@@ -20,8 +20,8 @@ import java.util.*;
  */
 public class CharacterPool {
     public static Map<String, NPC> characterPool;   // All starting and unlockable characters
-    public static Set<Character> players;           // All unlocked characters
-    public static Set<Character> debugChars;
+    public static Set<Character> players = new HashSet<>();           // All currently unlocked characters
+    public static Set<Character> debugChars = new HashSet<>();
     public static Player human;
 
     /**

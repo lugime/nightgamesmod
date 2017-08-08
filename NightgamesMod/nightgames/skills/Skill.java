@@ -7,6 +7,7 @@ import java.util.Set;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
+import nightgames.characters.NPC;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
@@ -20,6 +21,9 @@ import nightgames.status.Stsflag;
 
 public abstract class Skill {
     public static Set<Skill> skillPool = new HashSet<>();
+    static {
+        buildSkillPool(NPC.noneCharacter());
+    }
     /**
      *
      */

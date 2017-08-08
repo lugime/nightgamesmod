@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Random {
-    public static java.util.Random rng;
+    public static java.util.Random rng = new java.util.Random();
     private static java.util.Random FROZEN_RNG = new java.util.Random();
 
     public static int random(int start, int end) {

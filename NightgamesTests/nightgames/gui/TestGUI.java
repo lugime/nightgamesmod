@@ -1,13 +1,7 @@
 package nightgames.gui;
 
 import java.io.File;
-import java.util.Observable;
 import java.util.Optional;
-
-import nightgames.characters.Character;
-import nightgames.combat.Combat;
-import nightgames.combat.IEncounter;
-import nightgames.skills.Skill;
 
 public class TestGUI extends GUI {
     /**

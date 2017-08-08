@@ -16,6 +16,9 @@ public abstract class Action implements Serializable {
      */
     private static final long serialVersionUID = 4981682001213276175L;
     public static Set<Action> actionPool;
+    static {
+        buildActionPool();
+    }
     protected String name;
 
     public Action(String name) {

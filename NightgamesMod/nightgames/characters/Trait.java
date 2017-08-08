@@ -668,6 +668,8 @@ public enum Trait {
         override(o, analTraining1, analTraining2, analTraining3);
         override(o, analTraining2, analTraining3);
         OVERRIDES = Collections.unmodifiableMap(o);
+
+        buildFeatPool();
     }
 
     public static Resistance getResistance(Trait t) {
