@@ -16,7 +16,7 @@ public class CounterPin extends CounterBase {
 
     @Override
     public float priorityMod(Combat c) {
-        return Random.randomfloat();
+        return (float) Random.randomdouble();
     }
 
     @Override

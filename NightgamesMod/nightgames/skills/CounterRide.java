@@ -21,7 +21,7 @@ public class CounterRide extends CounterBase {
 
     @Override
     public float priorityMod(Combat c) {
-        return Random.randomfloat() * 2;
+        return (float) Random.randomdouble() * 2;
     }
 
     @Override

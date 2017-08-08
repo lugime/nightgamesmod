@@ -21,7 +21,7 @@ public class RandomRequirement extends BaseRequirement {
     }
 
     @Override public boolean meets(Combat c, Character self, Character other) {
-        return Random.randomfloat() < threshold;
+        return Random.randomdouble() < threshold;
     }
 
     @Override public boolean equals(Object o) {

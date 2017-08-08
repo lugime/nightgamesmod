@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Random {
-    public static java.util.Random rng = new java.util.Random();
+    private static java.util.Random rng = new java.util.Random();
     private static java.util.Random FROZEN_RNG = new java.util.Random();
 
     public static int random(int start, int end) {
@@ -31,10 +31,6 @@ public class Random {
         return Math.max(0, Math.min(d, val));
     }
 
-    public static float randomfloat() {
-        return (float) rng.nextDouble();
-    }
-
     @SafeVarargs public static <T> Optional<T> pickRandom(T... arr) {
         if (arr == null || arr.length == 0)
             return Optional.empty();
@@ -54,7 +50,7 @@ public class Random {
     }
 
     public static double randomdouble(double to) {
-        return rng.nextDouble() * to;
+        return randomdouble() * to;
     }
 
     public static long randomlong() {

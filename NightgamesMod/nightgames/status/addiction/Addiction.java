@@ -142,7 +142,7 @@ public abstract class Addiction extends Status {
     public Optional<Status> startNight() {
         if (!didDaytime || overloading) {
             if (!overloading) {
-                float amount = Random.randomfloat() / 4.f;
+                float amount = (float) Random.randomdouble() / 4.f;
                 if (DebugFlags.isDebugOn(DebugFlags.DEBUG_ADDICTION)) {
                     System.out.println("Alleviating addiction " + this.getType() + " by " + amount);
                 }

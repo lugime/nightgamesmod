@@ -79,8 +79,8 @@ public class TechStrategy extends AbstractStrategy {
         if (!preferred.isEmpty()) {
             return preferred;
         }
-        
-        if (!secondary.isEmpty() && Random.randomfloat() < .7) {
+
+        if (!secondary.isEmpty() && Random.randomdouble() < .7) {
             return secondary;
         }
         

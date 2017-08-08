@@ -23,7 +23,7 @@ public class CounterDrain extends CounterBase {
 
     @Override
     public float priorityMod(Combat c) {
-        return Random.randomfloat() * 3;
+        return (float) Random.randomdouble() * 3;
     }
 
     @Override
