@@ -1,15 +1,14 @@
 package nightgames.gui;
 
-import java.awt.Font;
-
-import javax.swing.JButton;
-
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.combat.IEncounter;
 import nightgames.global.Encs;
 import nightgames.global.Match;
 import nightgames.trap.Trap;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class EncounterButton extends JButton {
     /**

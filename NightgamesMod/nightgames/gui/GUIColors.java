@@ -1,6 +1,6 @@
 package nightgames.gui;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class GUIColors {
     public static final Color bgDark = new Color(0, 10, 30);

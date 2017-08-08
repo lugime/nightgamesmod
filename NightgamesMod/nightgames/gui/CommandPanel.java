@@ -1,21 +1,10 @@
 package nightgames.gui;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.CompoundBorder;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class CommandPanel {
     private static final List<Character> POSSIBLE_HOTKEYS = Arrays.asList(

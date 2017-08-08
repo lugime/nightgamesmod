@@ -1,8 +1,8 @@
 package nightgames.gui;
 
-import java.awt.Font;
-
 import org.apache.commons.lang3.text.WordUtils;
+
+import java.awt.*;
 
 public class RunnableButton extends KeyableButton {
     private static final long serialVersionUID = 5435929681634872672L;

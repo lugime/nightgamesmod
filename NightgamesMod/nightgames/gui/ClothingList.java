@@ -1,9 +1,8 @@
 package nightgames.gui;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
-
 import nightgames.items.clothing.Clothing;
+
+import javax.swing.*;
 
 public class ClothingList extends JList<Clothing> {
     /**

@@ -1,12 +1,11 @@
 package nightgames.gui;
 
-import java.awt.Font;
-
-import javax.swing.JButton;
-
 import nightgames.combat.Combat;
 import nightgames.combat.CombatSceneChoice;
 import nightgames.global.GameState;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class CombatSceneButton extends JButton {
     /**

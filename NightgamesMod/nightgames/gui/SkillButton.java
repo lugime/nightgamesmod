@@ -1,17 +1,13 @@
 package nightgames.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.border.LineBorder;
-
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.GameState;
 import nightgames.skills.Skill;
 import nightgames.skills.Stage;
+
+import javax.swing.border.LineBorder;
+import java.awt.*;
 
 public class SkillButton extends KeyableButton {
     private static final long serialVersionUID = -1253735466299929203L;

@@ -1,10 +1,9 @@
 package nightgames.gui;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import nightgames.combat.Combat;
 import nightgames.skills.Skill;
+
+import java.awt.*;
 
 public class SubSkillButton extends KeyableButton {
     private static final long serialVersionUID = -3177604366435328960L;

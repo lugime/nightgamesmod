@@ -1,16 +1,12 @@
 package nightgames.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.border.LineBorder;
-
 import nightgames.global.Formatter;
 import nightgames.global.GameState;
 import nightgames.skills.TacticGroup;
 import nightgames.skills.Tactics;
+
+import javax.swing.border.LineBorder;
+import java.awt.*;
 
 public class SwitchTacticsButton extends KeyableButton {
     private static final long serialVersionUID = -3949203523669294068L;

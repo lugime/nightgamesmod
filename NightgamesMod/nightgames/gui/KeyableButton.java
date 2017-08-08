@@ -1,10 +1,7 @@
 package nightgames.gui;
 
-import java.awt.BorderLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public abstract class KeyableButton extends JPanel {
     private static final long serialVersionUID = -2379908542190189603L;

@@ -1,29 +1,19 @@
 package nightgames.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.swing.Box;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.daytime.Activity;
 import nightgames.global.GameState;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSorter;
+
+import javax.swing.*;
+import java.awt.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ClothesChangeGUI extends JPanel {
     /**
