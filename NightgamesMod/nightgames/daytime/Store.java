@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import nightgames.characters.Character;
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
 import nightgames.items.Item;
@@ -48,14 +47,14 @@ public abstract class Store extends Activity {
     protected void displayClothes() {
         for (Clothing i : clothingstock.keySet()) {
             if (!player.has(i)) {
-                sale(i, GameState.gui());
+                sale(i, GUI.gui);
             }
         }
     }
 
     protected void displayItems() {
         for (Item i : stock.keySet()) {
-            sale(i, GameState.gui());
+            sale(i, GUI.gui);
         }
     }
 
@@ -86,9 +85,9 @@ public abstract class Store extends Activity {
             player.modMoney(-price);
             player.gain(item);
             acted = true;
-            GameState.gui().refresh();
+            GUI.gui.refresh();
         } else {
-            GameState.gui().message("You don't have enough money to purchase that.");
+            GUI.gui.message("You don't have enough money to purchase that.");
         }
     }
 
@@ -98,9 +97,9 @@ public abstract class Store extends Activity {
             player.modMoney(-price);
             player.gain(item);
             acted = true;
-            GameState.gui().refresh();
+            GUI.gui.refresh();
         } else {
-            GameState.gui().message("You don't have enough money to purchase that.");
+            GUI.gui.message("You don't have enough money to purchase that.");
         }
 
     }

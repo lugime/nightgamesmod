@@ -12,7 +12,7 @@ import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.trap.Trap;
 
 public class Bound extends Status {
@@ -144,7 +144,7 @@ public class Bound extends Status {
     public void tick(Combat c) {
         if (c == null && trap.isPresent()) {
             if (affected.human()) {
-                GameState.gui().message(Formatter.format("{self:SUBJECT-ACTION:are|is} still trapped by the %s.", affected, NPC
+                GUI.gui.message(Formatter.format("{self:SUBJECT-ACTION:are|is} still trapped by the %s.", affected, NPC
                                 .noneCharacter(), trap.get().getName().toLowerCase()));
             }
             affected.location().opportunity(affected, trap.get());

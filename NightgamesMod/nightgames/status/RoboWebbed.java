@@ -8,7 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.NPC;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.trap.Trap;
 
 public class RoboWebbed extends Bound {
@@ -34,7 +34,7 @@ public class RoboWebbed extends Bound {
         // Message handled in describe
         if (c == null && trap.isPresent()) {
             if (affected.human()) {
-                GameState.gui().message(Formatter.format("{self:SUBJECT-ACTION:are|is} hopelessly tangled up in"
+                GUI.gui.message(Formatter.format("{self:SUBJECT-ACTION:are|is} hopelessly tangled up in"
                                 + " synthetic webbing, which is sending pleasurable sensations"
                                 + " through {self:possessive} entire body.", affected, NPC.noneCharacter()));
             }

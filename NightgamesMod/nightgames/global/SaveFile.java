@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
 import nightgames.characters.CharacterPool;
 import nightgames.characters.NPC;
+import nightgames.gui.GUI;
 import nightgames.json.JsonUtils;
 
 import javax.swing.*;
@@ -23,7 +24,7 @@ public class SaveFile {
     }
 
     public static void saveWithDialog() {
-        Optional<File> file = GameState.gui().askForSaveFile();
+        Optional<File> file = GUI.gui.askForSaveFile();
         if (file.isPresent()) {
             save(file.get());
         }
@@ -48,7 +49,7 @@ public class SaveFile {
         dialog.addChoosableFileFilter(savesFilter);
         dialog.setFileFilter(savesFilter);
         dialog.setMultiSelectionEnabled(false);
-        int rv = dialog.showOpenDialog(GameState.gui());
+        int rv = dialog.showOpenDialog(GUI.gui);
         if (rv != JFileChooser.APPROVE_OPTION) {
             return;
         }
@@ -57,7 +58,7 @@ public class SaveFile {
             file = new File(dialog.getSelectedFile().getAbsolutePath() + ".ngs");
             if (!file.isFile()) {
                 // not a valid save, abort
-                JOptionPane.showMessageDialog(GameState.gui(), "Nightgames save file not found", "File not found",
+                JOptionPane.showMessageDialog(GUI.gui, "Nightgames save file not found", "File not found",
                                 JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -79,7 +80,7 @@ public class SaveFile {
         }
         SaveData data = new SaveData(object);
         loadData(data);
-        GameState.gui().populatePlayer(CharacterPool.human);
+        GUI.gui.populatePlayer(CharacterPool.human);
         if (Time.time == Time.DAY) {
             GameState.startDay();
         } else {
@@ -100,6 +101,6 @@ public class SaveFile {
         Flag.counters.putAll(data.counters);
         Time.date = data.date;
         Time.time = data.time;
-        GameState.gui().fontsize = data.fontsize;
+        GUI.gui.fontsize = data.fontsize;
     }
 }

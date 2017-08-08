@@ -10,7 +10,7 @@ import nightgames.characters.NPC;
 import nightgames.characters.Trait;
 import nightgames.global.Flag;
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.items.Loot;
 import nightgames.items.clothing.Clothing;
@@ -67,8 +67,8 @@ public abstract class BaseNPCTime extends Activity {
     }
     @Override
     public void visit(String choice) {
-        GameState.gui().clearText();
-        GameState.gui().clearCommand();
+        GUI.gui.clearText();
+        GUI.gui.clearCommand();
         List<Loot> giftables = getGiftables();
         Optional<TransformationOption> optionalOption =
                         options.stream().filter(opt -> choice.equals(opt.option)).findFirst();
@@ -81,22 +81,22 @@ public abstract class BaseNPCTime extends Activity {
                             .allMatch(entry -> player.has(entry.getKey(), entry.getValue()));
             int moneyCost = option.moneyCost.apply(this.player);
             if (!hasAll) {
-                GameState.gui().message(Formatter.format(noRequestedItems, npc, player));
-                choose("Back", GameState.gui());
+                GUI.gui.message(Formatter.format(noRequestedItems, npc, player));
+                choose("Back", GUI.gui);
             } else if (player.money < moneyCost) {
-                GameState.gui().message(Formatter.format(notEnoughMoney, npc, player));
-                choose("Back", GameState.gui());
+                GUI.gui.message(Formatter.format(notEnoughMoney, npc, player));
+                choose("Back", GUI.gui);
             } else {
-                GameState.gui().message(Formatter.format(option.scene, npc, player));
+                GUI.gui.message(Formatter.format(option.scene, npc, player));
                 option.ingredients.entrySet().stream().forEach(entry -> player.consume(entry.getKey(), entry.getValue(), false));
                 option.effect.execute(null, player, npc);
                 if (moneyCost > 0) {
                     player.modMoney(- moneyCost);
                 }
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
             }
         } else if (optionalGiftOption.isPresent()) {
-            GameState.gui().message(Formatter.format(giftedString, npc, player));
+            GUI.gui.message(Formatter.format(giftedString, npc, player));
             if (optionalGiftOption.get() instanceof Clothing) {
                 if (player.closet.contains(optionalGiftOption.get())) {
                     player.closet.remove(optionalGiftOption.get());
@@ -105,65 +105,65 @@ public abstract class BaseNPCTime extends Activity {
             }
             player.gainAffection(npc, 2);
             npc.gainAffection(player, 2);
-            choose("Back", GameState.gui());
+            choose("Back", GUI.gui);
         } else if (choice.equals("Gift")) {
-            GameState.gui().message(Formatter.format(giftString, npc, player));
-            giftables.stream().forEach(loot -> choose(Formatter.capitalizeFirstLetter(loot.getName()), GameState.gui()));
-            choose("Back", GameState.gui());
+            GUI.gui.message(Formatter.format(giftString, npc, player));
+            giftables.stream().forEach(loot -> choose(Formatter.capitalizeFirstLetter(loot.getName()), GUI.gui));
+            choose("Back", GUI.gui);
         } else if (choice.equals("Change Outfit")) {
-            GameState.gui().changeClothes(npc, this, "Back");
+            GUI.gui.changeClothes(npc, this, "Back");
         } else if (choice.equals(transformationOptionString)) {
-            GameState.gui().message(Formatter.format(transformationIntro, npc, player));
+            GUI.gui.message(Formatter.format(transformationIntro, npc, player));
             if (!transformationFlag.equals("")) {
                 Flag.flag(transformationFlag);
             }
             options.stream()
                    .forEach(opt -> {
                 boolean allowed = true;
-                GameState.gui().message(opt.option + ":");
+                       GUI.gui.message(opt.option + ":");
                 for (Map.Entry<Item, Integer> entry : opt.ingredients.entrySet()) {
                     String message = entry.getValue() + " " + entry.getKey().getName();
                     boolean meets = player.has(entry.getKey(), entry.getValue());
-                    GameState.gui().message(formatRequirementString(message, meets));
+                    GUI.gui.message(formatRequirementString(message, meets));
                     allowed &= meets;
                 }
                 for (RequirementWithDescription req : opt.requirements) {
                     boolean meets = req.getRequirement().meets(null, player, npc);
-                    GameState.gui().message(formatRequirementString(req.getDescription(), meets));
+                    GUI.gui.message(formatRequirementString(req.getDescription(), meets));
                     allowed &= meets;
                 }
                 int moneyCost = opt.moneyCost.apply(this.player);
                 if (moneyCost > 0) {
                     boolean meets = player.money >= moneyCost;
-                    GameState.gui().message(formatRequirementString(moneyCost + "$", meets));
+                    GUI.gui.message(formatRequirementString(moneyCost + "$", meets));
                     allowed &= meets;
                 }
                 if (allowed) {
-                    choose(opt.option, GameState.gui());
+                    choose(opt.option, GUI.gui);
                 }
-                GameState.gui().message("<br/>");
+                       GUI.gui.message("<br/>");
             });
-            choose("Back", GameState.gui());
+            choose("Back", GUI.gui);
         } else if (choice.equals("Start") || choice.equals("Back")) {
             if (npc.getAffection(player) > 25 && (advTrait == null || npc.has(advTrait))) {
-                GameState.gui().message(Formatter.format(loveIntro, npc, player));
-                choose("Games", GameState.gui());
-                choose("Sparring", GameState.gui());
-                choose("Sex", GameState.gui());
+                GUI.gui.message(Formatter.format(loveIntro, npc, player));
+                choose("Games", GUI.gui);
+                choose("Sparring", GUI.gui);
+                choose("Sex", GUI.gui);
                 if (!options.isEmpty()) {
-                    choose(transformationOptionString, GameState.gui());
+                    choose(transformationOptionString, GUI.gui);
                 }
                 if (npc.getAffection(player) > 30) {
-                    choose("Gift", GameState.gui());
+                    choose("Gift", GUI.gui);
                 }
                 if (npc.getAffection(player) > 35) {
-                    choose("Change Outfit", GameState.gui());
+                    choose("Change Outfit", GUI.gui);
                 }
                 Optional<String> addictionOpt = getAddictionOption();
                 if (addictionOpt.isPresent()) {
-                    choose(addictionOpt.get(), GameState.gui());
+                    choose(addictionOpt.get(), GUI.gui);
                 }
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
             } else {
                 subVisitIntro(choice);
             }

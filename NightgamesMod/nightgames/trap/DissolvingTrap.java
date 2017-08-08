@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.status.Flatfooted;
 
@@ -23,7 +23,7 @@ public class DissolvingTrap extends Trap {
     public void trigger(Character target) {
         if (!target.check(Attribute.Perception, 25 + target.baseDisarm())) {
             if (target.human()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You spot a liquid spray trap in time to avoid setting it off. You carefully manage to disarm the trap and pocket the potion.");
                 target.gain(Item.DisSol);
                 target.location().remove(this);
@@ -31,20 +31,20 @@ public class DissolvingTrap extends Trap {
         } else {
             if (target.human()) {
                 if (target.reallyNude()) {
-                    GameState.gui().message(
+                    GUI.gui.message(
                                     "Your bare foot hits a tripwire and you brace yourself as liquid rains down on you. You hastely do your best to brush the liquid off, "
                                                     + "but after about a minute you realize nothing has happened. Maybe the trap was a dud.");
                 } else {
-                    GameState.gui().message(
+                    GUI.gui.message(
                                     "You are sprayed with a clear liquid. Everywhere it lands on clothing, it immediately dissolves it, but it does nothing to your skin. "
                                                     + "You try valiantly to save enough clothes to preserve your modesty, but you quickly end up naked.");
                 }
             } else if (target.location().humanPresent()) {
                 if (target.reallyNude()) {
-                    GameState.gui().message(target.getName()
+                    GUI.gui.message(target.getName()
                                     + " is caught in your clothes dissolving trap, but she was already naked. Oh well.");
                 } else {
-                    GameState.gui().message(
+                    GUI.gui.message(
                                     target.getName() + " is caught in your trap and is showered in dissolving solution. In seconds, her clothes vanish off her body, leaving her "
                                                     + "completely nude.");
                 }

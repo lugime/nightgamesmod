@@ -1,6 +1,7 @@
 package nightgames.global;
 
 import nightgames.characters.Character;
+import nightgames.gui.GUI;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SceneButton;
 
@@ -51,7 +52,7 @@ public class Postmatch implements Scene {
             choice.add(new SceneButton("Next"));
         }
         if (!message.equals("")) {
-            GameState.gui().prompt(message, choice);
+            GUI.gui.prompt(message, choice);
         }
     }
 
@@ -68,7 +69,7 @@ public class Postmatch implements Scene {
         if (maxaffection >= 15 && closest != null) {
             closest.afterParty();
         } else {
-            GameState.gui().message("You walk back to your dorm and get yourself cleaned up.");
+            GUI.gui.message("You walk back to your dorm and get yourself cleaned up.");
         }
     }
 }

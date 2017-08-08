@@ -3,7 +3,7 @@ package nightgames.actions;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.State;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 
 public class BushAmbush extends Action {
 
@@ -24,9 +24,9 @@ public class BushAmbush extends Action {
     public Movement execute(Character user) {
         if (user.human()) {
             if (user.get(Attribute.Animism) >= 10) {
-                GameState.gui().message("You crouch down in some dense bushes, ready" + " to pounce on passing prey.");
+                GUI.gui.message("You crouch down in some dense bushes, ready" + " to pounce on passing prey.");
             } else {
-                GameState.gui().message("You spot some particularly dense bushes, and figure"
+                GUI.gui.message("You spot some particularly dense bushes, and figure"
                                 + " they'll make for a decent hiding place. You lie down in them,"
                                 + " and wait for someone to walk past.");
             }

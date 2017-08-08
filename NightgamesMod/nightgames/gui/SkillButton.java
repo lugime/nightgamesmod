@@ -2,7 +2,6 @@ package nightgames.gui;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.GameState;
 import nightgames.skills.Skill;
 import nightgames.skills.Stage;
 
@@ -53,11 +52,11 @@ public class SkillButton extends KeyableButton {
                 combat.act(SkillButton.this.action.user(), SkillButton.this.action, "");
                 combat.resume();
             } else {
-                GameState.gui().commandPanel.reset();
+                GUI.gui.commandPanel.reset();
                 for (String choice : action.subChoices(c)) {
-                    GameState.gui().commandPanel.add(new SubSkillButton(action, choice, combat));
+                    GUI.gui.commandPanel.add(new SubSkillButton(action, choice, combat));
                 }
-                GameState.gui().commandPanel.refresh();
+                GUI.gui.commandPanel.refresh();
             }
         });
         setLayout(new BorderLayout());

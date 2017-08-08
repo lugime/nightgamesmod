@@ -6,6 +6,7 @@ import nightgames.characters.Character;
 import nightgames.characters.State;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 
 import java.util.ArrayList;
@@ -139,7 +140,7 @@ public class Challenge implements Deployable {
             }
             goal = pick();
             if (active.human()) {
-                GameState.gui().message("You find a gold envelope sitting conspicously in the middle of the "
+                GUI.gui.message("You find a gold envelope sitting conspicously in the middle of the "
                                 + Match.getMatch().genericRoomDescription()
                                 + ". You open it up and read the note inside.\n'" + message() + "'\n");
             }

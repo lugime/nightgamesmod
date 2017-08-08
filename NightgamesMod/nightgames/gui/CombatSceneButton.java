@@ -2,7 +2,6 @@ package nightgames.gui;
 
 import nightgames.combat.Combat;
 import nightgames.combat.CombatSceneChoice;
-import nightgames.global.GameState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +19,7 @@ public class CombatSceneButton extends JButton {
             c.write("<br/>");
             choice.choose(c, npc);
             c.updateMessage();
-            c.promptNext(GameState.gui());
+            c.promptNext(GUI.gui);
         });
     }
 }

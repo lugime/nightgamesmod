@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.*;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.modifier.BaseModifier;
 
@@ -71,7 +72,7 @@ public class LevelDrainModifier extends BaseModifier {
     @Override
     public void extraWinnings(Character player, int score) {
         if (score > 0) {
-            GameState.gui().message("Additionally, you get a few bottles from Lilly as extras prizes.");
+            GUI.gui.message("Additionally, you get a few bottles from Lilly as extras prizes.");
             for (int i = 0; i < score; i++) {
                 player.gain(Random.pickRandom(EXTRA_LOOT).get());
             }

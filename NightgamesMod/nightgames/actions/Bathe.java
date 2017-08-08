@@ -2,7 +2,7 @@ package nightgames.actions;
 
 import nightgames.characters.Character;
 import nightgames.characters.State;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 
 public class Bathe extends Action {
 
@@ -24,9 +24,9 @@ public class Bathe extends Action {
     public Movement execute(Character user) {
         if (user.human()) {
             if (user.location().name.equals("Showers")) {
-                GameState.gui().message("It's a bit dangerous, but a shower sounds especially inviting right now.");
+                GUI.gui.message("It's a bit dangerous, but a shower sounds especially inviting right now.");
             } else if (user.location().name.equals("Pool")) {
-                GameState.gui().message("There's a jacuzzi in the pool area and you decide to risk a quick soak.");
+                GUI.gui.message("There's a jacuzzi in the pool area and you decide to risk a quick soak.");
             }
         }
         user.state = State.shower;

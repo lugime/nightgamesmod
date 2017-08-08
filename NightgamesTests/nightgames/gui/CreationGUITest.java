@@ -3,7 +3,6 @@ package nightgames.gui;
 import nightgames.characters.Attribute;
 import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
-import nightgames.global.GameState;
 import nightgames.global.TestGameState;
 import org.hamcrest.core.IsCollectionContaining;
 import org.junit.Before;
@@ -24,7 +23,7 @@ public class CreationGUITest {
     }
 
     @Test public void testSelectPlayerStats() throws Exception {
-        CreationGUI creationGUI = GameState.gui().creation;
+        CreationGUI creationGUI = GUI.gui.creation;
         creationGUI.namefield.setText("TestPlayer");
         creationGUI.StrengthBox.setSelectedItem(Trait.romantic);
         creationGUI.WeaknessBox.setSelectedItem(Trait.insatiable);

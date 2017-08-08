@@ -5,6 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.characters.body.BodyPart;
 import nightgames.characters.body.StraponPart;
 import nightgames.combat.Combat;
+import nightgames.gui.GUI;
 import nightgames.pet.PetCharacter;
 
 import java.text.DecimalFormat;
@@ -276,13 +277,13 @@ public class Formatter {
 	    if (c != null) {
 	        c.write(self, string);
 	    } else if (self.human()) {
-			GameState.gui().message(string);
+            GUI.gui.message(string);
 		}
 	}
 
     public static void writeFormattedIfCombat(Combat c, String string, Character self, Character other, Object ...args) {
 		if (c == null) {
-			GameState.gui().message(format(string, self, other, args));
+            GUI.gui.message(format(string, self, other, args));
 		} else {
 			c.write(self, format(string, self, other, args));
 		}

@@ -8,8 +8,8 @@ import nightgames.combat.Combat;
 import nightgames.combat.Encounter;
 import nightgames.global.Encs;
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
 import nightgames.global.Random;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.stance.Mount;
 import nightgames.stance.Pin;
@@ -57,7 +57,7 @@ public class FTCEncounter extends Encounter {
         else
             victim.addNonCombat(new Bound(victim, 50, "zip-tie"));
         if (p1.human() || p2.human()) {
-            fight = Combat.beginCombat(attacker, victim, ambushRegular, GameState.gui());
+            fight = Combat.beginCombat(attacker, victim, ambushRegular, GUI.gui);
             fight.setStance(new Pin(attacker, victim));
             String message = "";
             if (victim.human()) {
@@ -85,9 +85,9 @@ public class FTCEncounter extends Encounter {
                 }
                 message += " you bind {other:possessive} hands together. There are worse" + " ways to start a match.";
             }
-            GameState.gui().message(Formatter.format(message, attacker, victim));
+            GUI.gui.message(Formatter.format(message, attacker, victim));
         } else {
-            GameState.gui().refresh();
+            GUI.gui.refresh();
             fight = new Combat(attacker, victim, location, ambushRegular);
             fight.setStance(new Pin(attacker, victim));
         }
@@ -101,7 +101,7 @@ public class FTCEncounter extends Encounter {
         else
             victim.addNonCombat(new Bound(victim, 50, "zip-tie"));
         if (p1.human() || p2.human()) {
-            fight = Combat.beginCombat(attacker, victim, ambushRegular, GameState.gui());
+            fight = Combat.beginCombat(attacker, victim, ambushRegular, GUI.gui);
             fight.setStance(new Mount(attacker, victim));
             String message = "";
             if (victim.human()) {
@@ -121,9 +121,9 @@ public class FTCEncounter extends Encounter {
                                 + " Immediately you jump on {other:possessive} back and tie "
                                 + "{other:possessive} hands together.";
             }
-            GameState.gui().message(Formatter.format(message, attacker, victim));
+            GUI.gui.message(Formatter.format(message, attacker, victim));
         } else {
-            GameState.gui().refresh();
+            GUI.gui.refresh();
             fight = new Combat(attacker, victim, location, ambushRegular);
             fight.setStance(new Pin(attacker, victim));
         }
@@ -148,7 +148,7 @@ public class FTCEncounter extends Encounter {
                                 + " other side. The impact knocks the wind out of you, putting you"
                                 + " at a disadvantage.";
             }
-            fight = Combat.beginCombat(attacker, victim, GameState.gui());
+            fight = Combat.beginCombat(attacker, victim, GUI.gui);
             victim.addNonCombat(new Flatfooted(victim, 3));
         } else {
             if (attacker.human()) {
@@ -168,11 +168,11 @@ public class FTCEncounter extends Encounter {
                                 + " Then, you throw {self:direct-object} to the side, causing"
                                 + " {self:direct-object} to fall to the ground.";
             }
-            fight = Combat.beginCombat(attacker, victim, GameState.gui());
+            fight = Combat.beginCombat(attacker, victim, GUI.gui);
             attacker.addNonCombat(new Flatfooted(attacker, 3));
         }
         if (attacker.human() || victim.human()) {
-            GameState.gui().message(Formatter.format(message, attacker, victim));
+            GUI.gui.message(Formatter.format(message, attacker, victim));
         } else {
 
         }

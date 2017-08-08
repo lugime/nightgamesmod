@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.stance.StandingOver;
 import nightgames.status.Flatfooted;
@@ -24,24 +24,24 @@ public class Tripline extends Trap {
         int m = 30 + target.getLevel() * 5;
         if (target.human()) {
             if (!target.check(Attribute.Perception, 20 + target.baseDisarm())) {
-                GameState.gui().message("You trip over a line of cord and fall on your face.");
+                GUI.gui.message("You trip over a line of cord and fall on your face.");
                 target.pain(null, null, m);
                 target.location().opportunity(target, this);
             } else {
-                GameState.gui().message("You spot a line strung across the corridor and carefully step over it.");
+                GUI.gui.message("You spot a line strung across the corridor and carefully step over it.");
                 target.location().remove(this);
             }
         } else {
             if (!target.check(Attribute.Perception, 20 + target.baseDisarm())) {
                 if (target.location().humanPresent()) {
-                    GameState.gui().message(target.getName()
+                    GUI.gui.message(target.getName()
                                     + " carelessly stumbles over the tripwire and lands with an audible thud.");
                 }
                 target.pain(null, null, m);
                 target.location().opportunity(target, this);
             } else {
                 if (target.location().humanPresent()) {
-                    GameState.gui().message("You see " + target.getName() + " carefully step over the carefully placed tripline." );
+                    GUI.gui.message("You see " + target.getName() + " carefully step over the carefully placed tripline." );
                 }
             }
         }

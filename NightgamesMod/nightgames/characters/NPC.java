@@ -29,6 +29,7 @@ import nightgames.combat.IEncounter;
 import nightgames.combat.Result;
 import nightgames.ftc.FTCMatch;
 import nightgames.global.*;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -260,7 +261,7 @@ public class NPC extends Character {
     @Override
     public boolean resist3p(Combat combat, Character intruder, Character assist) {
         if (has(Trait.cursed)) {
-            GameState.gui().message(ai.resist3p(combat, intruder, assist));
+            GUI.gui.message(ai.resist3p(combat, intruder, assist));
             return true;
         }
         return false;
@@ -560,7 +561,7 @@ public class NPC extends Character {
         }
         available.removeIf(a -> a == null || !a.usable(this));
         if (location.humanPresent()) {
-            GameState.gui().message("You notice " + getName() + ai.move(available, radar).execute(this).describe());
+            GUI.gui.message("You notice " + getName() + ai.move(available, radar).execute(this).describe());
         } else {
             ai.move(available, radar).execute(this);
         }
@@ -641,7 +642,7 @@ public class NPC extends Character {
 
     @Override
     public void afterParty() {
-        GameState.gui().message(getRandomLineFor(CharacterLine.NIGHT_LINER, null, CharacterPool.getPlayer()));
+        GUI.gui.message(getRandomLineFor(CharacterLine.NIGHT_LINER, null, CharacterPool.getPlayer()));
     }
 
     public void daytime(int time) {
@@ -783,7 +784,7 @@ public class NPC extends Character {
                     System.out.printf("Moodswing: %s is now %s\n", getTrueName(), mood.name());
                 }
                 if (c.p1.human() || c.p2.human()) {
-                    GameState.gui().loadPortrait(c, c.p1, c.p2);
+                    GUI.gui.loadPortrait(c, c.p1, c.p2);
                 }
                 return e;
             }

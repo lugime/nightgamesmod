@@ -48,7 +48,7 @@ public class Match {
         map = MapSchool.buildMap();
         for (Character combatant : combatants) {
             score.put(combatant, 0);
-            GameState.gui().message(Skill.gainSkills(combatant));
+            GUI.gui.message(Skill.gainSkills(combatant));
             Skill.learnSkills(combatant);
             combatant.matchPrep(this);
         }
@@ -191,7 +191,7 @@ public class Match {
             Optional<Status> withEffect = a.startNight();
             withEffect.ifPresent(s -> CharacterPool.getPlayer().addNonCombat(s));
         });
-        startMatchGui(GameState.gui());
+        startMatchGui(GUI.gui);
         match.round();
     }
 
@@ -270,7 +270,7 @@ public class Match {
             }
             getAreas().forEach(area -> area.setPinged(false));
             while (index < combatants.size()) {
-                GameState.gui().refresh();
+                GUI.gui.refresh();
                 if (combatants.get(index).state != State.quit) {
                     Character self = combatants.get(index);
                     self.upkeep();
@@ -303,14 +303,14 @@ public class Match {
         for (Character next : combatants) {
             next.finishMatch();
         }
-        GameState.gui().clearText();
-        GameState.gui().message("Tonight's match is over.");
+        GUI.gui.clearText();
+        GUI.gui.message("Tonight's match is over.");
         int cloth = 0;
         int creward = 0;
         Character player = null;
         Character winner = null;
         for (Character combatant : score.keySet()) {
-            GameState.gui().message(combatant.getTrueName() + " scored " + score.get(combatant) + " victories.");
+            GUI.gui.message(combatant.getTrueName() + " scored " + score.get(combatant) + " victories.");
             combatant.modMoney(score.get(combatant) * combatant.prize());
             if (winner == null || score.get(combatant) >= score.get(winner)) {
                 winner = combatant;
@@ -340,22 +340,22 @@ public class Match {
             condition.undoItems(combatant);
             combatant.change();
         }
-        GameState.gui().message("You made $" + score.get(player) * player.prize() + " for defeating opponents.");
+        GUI.gui.message("You made $" + score.get(player) * player.prize() + " for defeating opponents.");
         int bonus = score.get(player) * condition.bonus();
         winner.modMoney(bonus);
         if (bonus > 0) {
-            GameState.gui().message("You earned an additional $" + bonus + " for accepting the handicap.");
+            GUI.gui.message("You earned an additional $" + bonus + " for accepting the handicap.");
         }
         condition.extraWinnings(player, score.get(player));
         if (winner == player) {
-            GameState.gui().message("You also earned a bonus of $" + 5 * player.prize() + " for placing first.");
+            GUI.gui.message("You also earned a bonus of $" + 5 * player.prize() + " for placing first.");
             Flag.flag(Flag.victory);
         }
         winner.modMoney(5 * winner.prize());
-        GameState.gui().message("You traded in " + cloth + " sets of clothes for a total of $" + cloth * player.prize()
+        GUI.gui.message("You traded in " + cloth + " sets of clothes for a total of $" + cloth * player.prize()
                         + ".<br/>");
         if (creward > 0) {
-            GameState.gui().message("You also discover an envelope with $" + creward
+            GUI.gui.message("You also discover an envelope with $" + creward
                             + " slipped under the door to your room. Presumably it's payment for completed challenges.<br/>");
         }
         int maxaffection = 0;
@@ -365,7 +365,7 @@ public class Match {
             }
         }
         if (Flag.checkFlag(Flag.metLilly) && !Flag.checkFlag(Flag.challengeAccepted) && Random.random(10) >= 7) {
-            GameState.gui().message(
+            GUI.gui.message(
                             "\nWhen you gather after the match to collect your reward money, you notice Jewel is holding a crumpled up piece of paper and ask about it. "
                                             + "<i>\"This? I found it lying on the ground during the match. It seems to be a worthless piece of trash, but I didn't want to litter.\"</i> Jewel's face is expressionless, "
                                             + "but there's a bitter edge to her words that makes you curious. You uncrumple the note and read it.<br/><br/>'Jewel always acts like the dominant, always-on-top tomboy, "
@@ -384,14 +384,14 @@ public class Match {
         for (Character character : combatants) {
             if (character.getFlag("heelsTraining") >= 50 && !character.hasPure(Trait.proheels)) {
                 if (character.human()) {
-                    GameState.gui().message(
+                    GUI.gui.message(
                                     "<br/>You've gotten comfortable at fighting in heels.<br/><b>Gained Trait: Heels Pro</b>");
                 }
                 character.add(Trait.proheels);
             }
             if (character.getFlag("heelsTraining") >= 100 && !character.hasPure(Trait.masterheels)) {
                 if (character.human()) {
-                    GameState.gui().message("<br/>You've mastered fighting in heels.<br/><b>Gained Trait: Heels Master</b>");
+                    GUI.gui.message("<br/>You've mastered fighting in heels.<br/><b>Gained Trait: Heels Master</b>");
                 }
                 character.add(Trait.masterheels);
             }
@@ -450,7 +450,7 @@ public class Match {
             Area target = areas.get(Random.random(areas.size()));
             if (!target.corridor() && !target.open() && target.env.size() < 5) {
                 target.place(new Cache(meanLvl() + Random.random(11) - 4));
-                GameState.gui().message("<br/><b>A new cache has been dropped off at " + target.name + "!</b>");
+                GUI.gui.message("<br/><b>A new cache has been dropped off at " + target.name + "!</b>");
                 break;
             }
         }

@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.status.Flatfooted;
 
 public class IllusionTrap extends Trap {
@@ -25,12 +25,12 @@ public class IllusionTrap extends Trap {
     @Override
     public void trigger(Character target) {
         if (target.human()) {
-            GameState.gui().message(
+            GUI.gui.message(
                             "You run into a girl you don't recognize, but she's beautiful and completely naked. You don't have a chance to wonder where she came from, because "
                                             + "she immediately presses her warm, soft body against you and kisses you passionately. She slips down a hand to grope your crotch, and suddenly vanishes after a few strokes. "
                                             + "She was just an illusion, but your arousal is very real.");
         } else if (target.location().humanPresent()) {
-            GameState.gui().message("There's a flash of pink light and " + target.getName() + " flushes with arousal.");
+            GUI.gui.message("There's a flash of pink light and " + target.getName() + " flushes with arousal.");
         }
         if (target.has(Trait.imagination)) {
             target.tempt(25 + getStrength());

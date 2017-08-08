@@ -5,7 +5,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingTrait;
 import nightgames.stance.StandingOver;
@@ -27,11 +27,11 @@ public class SpringTrap extends Trap {
     public void trigger(Character target) {
         if (!target.check(Attribute.Perception, 24 - target.get(Attribute.Perception) + target.baseDisarm())) {
             if (target.human()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "As you're walking, your foot hits something and there's a sudden debilitating pain in your groin. Someone has set up a spring-loaded rope designed "
                                                 + "to shoot up into your nuts, which is what just happened. You collapse into the fetal position and pray that there's no one nearby.");
             } else if (target.location().humanPresent()) {
-                GameState.gui().message("You hear a sudden yelp as your trap catches " + target.getName()
+                GUI.gui.message("You hear a sudden yelp as your trap catches " + target.getName()
                                 + " right in the cooch. She eventually manages to extract the rope from between her legs "
                                 + "and collapses to the floor in pain.");
             }
@@ -48,7 +48,7 @@ public class SpringTrap extends Trap {
             }
             target.location().opportunity(target, this);
         } else if (target.human()) {
-            GameState.gui().message(
+            GUI.gui.message(
                             "You spot a suspicious mechanism on the floor and prod it from a safe distance. A spring loaded line shoots up to groin height, which would have been "
                                             + "very unpleasant if you had kept walking.");
             target.location().remove(this);

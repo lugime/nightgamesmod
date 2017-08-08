@@ -22,8 +22,8 @@ import nightgames.characters.Attribute;
 import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.DebugFlags;
-import nightgames.global.GameState;
 import nightgames.global.Match;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 
 @SuppressWarnings("unused")
@@ -160,7 +160,7 @@ public class DebugGUIPanel extends JPanel {
                 } catch (NumberFormatException e) {
                 }
             }
-            IntStream.range(0, times).forEach(i -> target.ding(GameState.gui().combat));
+            IntStream.range(0, times).forEach(i -> target.ding(GUI.gui.combat));
         }));
         consoleCommands.add(new DebugCommand("(\\w+)\\.list", (output, list) -> {
             try {

@@ -2,7 +2,7 @@ package nightgames.actions;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 
 public class Recharge extends Action {
@@ -24,7 +24,7 @@ public class Recharge extends Action {
     @Override
     public Movement execute(Character user) {
         if (user.human()) {
-            GameState.gui().message("You find a power supply and restore your batteries to full.");
+            GUI.gui.message("You find a power supply and restore your batteries to full.");
         }
         user.chargeBattery();
         return Movement.recharge;

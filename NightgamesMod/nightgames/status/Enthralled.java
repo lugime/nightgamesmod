@@ -10,7 +10,7 @@ import nightgames.characters.Emotion;
 import nightgames.characters.body.BodyPart;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.pet.PetCharacter;
 
 public class Enthralled extends DurationStatus {
@@ -99,7 +99,7 @@ public class Enthralled extends DurationStatus {
                                             + " like a lens snapped into focus. You don't really remember why"
                                             + " you were heading in the direction you were...");
         } else if (affected.human()) {
-            GameState.gui().message("Everything around you suddenly seems much clearer,"
+            GUI.gui.message("Everything around you suddenly seems much clearer,"
                             + " like a lens snapped into focus. You don't really remember why"
                             + " you were heading in the direction you were...");
         }

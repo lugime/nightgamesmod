@@ -48,6 +48,7 @@ import nightgames.combat.CombatantData;
 import nightgames.combat.IEncounter;
 import nightgames.combat.Result;
 import nightgames.ftc.FTCMatch;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSlot;
@@ -1174,7 +1175,7 @@ public abstract class Character extends Observable implements Cloneable {
     public void modAttributeDontSaveData(Attribute a, int i, boolean silent) {
         if (human() && i != 0 && !silent && cloned == 0) {
             Formatter.writeIfCombatUpdateImmediately(
-                            GameState.gui().combat, this, "You have " + (i > 0 ? "gained" : "lost") + " " + Math.abs(i) + " " + a.name());
+                            GUI.gui.combat, this, "You have " + (i > 0 ? "gained" : "lost") + " " + Math.abs(i) + " " + a.name());
         }
         if (a.equals(Attribute.Willpower)) {
             getWillpower().gain(i * 2);
@@ -1381,7 +1382,7 @@ public abstract class Character extends Observable implements Cloneable {
                     }
                     effectiveStatus.onApply(c, c.getOpponent(this));
                 } else if (human() || location() != null && location().humanPresent()) {
-                    GameState.gui().message("<b>" + message + "</b>");
+                    GUI.gui.message("<b>" + message + "</b>");
                     effectiveStatus.onApply(null, null);
                 }
             }
@@ -2087,7 +2088,7 @@ public abstract class Character extends Observable implements Cloneable {
                             Formatter.capitalizeFirstLetter(subject()), extra == 0 ? Integer.toString(amt) : i + "+" + extra + " (" + amt + ")",
                             source));
         } else if (human()) {
-            GameState.gui().systemMessage(String
+            GUI.gui.systemMessage(String
                             .format("%s lost <font color='rgb(220,130,40)'>%d<font color='white'> willpower" + reduced
                                             + "%s.", subject(), amt, source));
         }
@@ -2483,13 +2484,13 @@ public abstract class Character extends Observable implements Cloneable {
             if (location().id() == Movement.dorm) {
                 if (Match.getMatch().gps("Quad").present.isEmpty()) {
                     if (human()) {
-                        GameState.gui()
+                        GUI.gui
                                         .message("You hear your opponents searching around the dorm, so once you finish changing, you hop out the window and head to the quad.");
                     }
                     travel(Match.getMatch().gps("Quad"));
                 } else {
                     if (human()) {
-                        GameState.gui()
+                        GUI.gui
                                         .message("You hear your opponents searching around the dorm, so once you finish changing, you quietly move downstairs to the laundry room.");
                     }
                     travel(Match.getMatch().gps("Laundry"));
@@ -2498,13 +2499,13 @@ public abstract class Character extends Observable implements Cloneable {
             if (location().id() == Movement.union) {
                 if (Match.getMatch().gps("Quad").present.isEmpty()) {
                     if (human()) {
-                        GameState.gui()
+                        GUI.gui
                                         .message("You don't want to be ambushed leaving the student union, so once you finish changing, you hop out the window and head to the quad.");
                     }
                     travel(Match.getMatch().gps("Quad"));
                 } else {
                     if (human()) {
-                        GameState.gui()
+                        GUI.gui
                                         .message("You don't want to be ambushed leaving the student union, so once you finish changing, you sneak out the back door and head to the pool.");
                     }
                     travel(Match.getMatch().gps("Pool"));
@@ -2518,7 +2519,7 @@ public abstract class Character extends Observable implements Cloneable {
             Character victor = CharacterPool.getCharacterByType(victorType);
             victor.bounty(has(Trait.event) ? 5 : 1, victor);
         }
-        GameState.gui().clearImage();
+        GUI.gui.clearImage();
         mercy.clear();
         change();
         clearStatus();
@@ -3070,7 +3071,7 @@ public abstract class Character extends Observable implements Cloneable {
             available.add(new Nothing(this));
         }
         available.addAll(cds);
-        GameState.gui().clearCommand();
+        GUI.gui.clearCommand();
         Skill lastUsed = null;
         for (Skill a : available) {
             if (a.getName().equals(c.getCombatantData(this).getLastUsedSkillName())) {
@@ -3096,36 +3097,36 @@ public abstract class Character extends Observable implements Cloneable {
             }
         }
         if (lastUsed != null) {
-            GameState.gui().addSkill(c, lastUsed, target);
+            GUI.gui.addSkill(c, lastUsed, target);
         }
         for (Skill a : stripping) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : position) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : fucking) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : pleasure) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : damage) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : debuff) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : summoning) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : recovery) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
         for (Skill a : misc) {
-            GameState.gui().addSkill(c, a, target);
+            GUI.gui.addSkill(c, a, target);
         }
-        GameState.gui().showSkills();
+        GUI.gui.showSkills();
     }
 
     public float getOtherFitness(Combat c, Character other) {
@@ -3769,7 +3770,7 @@ public abstract class Character extends Observable implements Cloneable {
         }
         m.gps(location).place(new NinjaStash(this));
         if(human()){
-            GameState.gui().message("<b>You've arranged for a hidden stash to be placed in the "+m.gps(location).name+".</b>");
+            GUI.gui.message("<b>You've arranged for a hidden stash to be placed in the "+m.gps(location).name+".</b>");
         }
     }
 

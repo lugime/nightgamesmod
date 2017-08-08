@@ -1,8 +1,8 @@
 package nightgames.actions;
 
 import nightgames.characters.Character;
-import nightgames.global.GameState;
 import nightgames.global.Random;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.status.Buzzed;
 import nightgames.status.Oiled;
@@ -32,7 +32,7 @@ public class Use extends Action {
     public Movement execute(Character user) {
         if (item == Item.Lubricant) {
             if (user.human()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You cover yourself in slick oil. It's a weird feeling, but it should make it easier to escape from a hold.");
             }
             user.addNonCombat(new Oiled(user));
@@ -40,7 +40,7 @@ public class Use extends Action {
             return Movement.oil;
         } else if (item == Item.EnergyDrink) {
             if (user.human()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You chug down the unpleasant drink. Your tiredness immediately starts to recede.");
             }
             user.heal(null, 10 + Random.random(10));
@@ -48,7 +48,7 @@ public class Use extends Action {
             return Movement.enerydrink;
         } else if (item == Item.Beer) {
             if (user.human()) {
-                GameState.gui().message("You pop open a beer and chug it down, feeling buzzed and a bit slugish.");
+                GUI.gui.message("You pop open a beer and chug it down, feeling buzzed and a bit slugish.");
             }
             user.addNonCombat(new Buzzed(user));
             user.consume(Item.Beer, 1);

@@ -7,6 +7,7 @@ import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.characters.Player;
 import nightgames.global.*;
+import nightgames.gui.GUI;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
 import nightgames.gui.SceneButton;
@@ -53,7 +54,7 @@ public class FTCPrematch implements Scene {
         choice.add(new SceneButton("Volunteer"));
         choice.add(new SceneButton("Keep Silent"));
         choice.add(new SaveButton());
-        GameState.gui().prompt(message, choice);
+        GUI.gui.prompt(message, choice);
     }
 
     @Override
@@ -108,7 +109,7 @@ public class FTCPrematch implements Scene {
             }
             List<KeyableButton> choices = new ArrayList<>();
             choices.add(new SceneButton("Start the Match"));
-            GameState.gui().prompt(message, choices);
+            GUI.gui.prompt(message, choices);
         }
     }
 }

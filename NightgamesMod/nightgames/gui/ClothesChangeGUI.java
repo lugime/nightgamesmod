@@ -3,7 +3,6 @@ package nightgames.gui;
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.daytime.Activity;
-import nightgames.global.GameState;
 import nightgames.items.clothing.Clothing;
 import nightgames.items.clothing.ClothingSorter;
 
@@ -98,7 +97,7 @@ public class ClothesChangeGUI extends JPanel {
         DecimalFormat format = new DecimalFormat("#.##");
         appearanceLabel.setText("Attractiveness: " + format.format(character.body.getHotness(CharacterPool.getCharacterByType("Angel"))));
         exposureLabel.setText("Exposure: " + format.format(character.outfit.getExposure()));
-        GameState.gui().refresh();
+        GUI.gui.refresh();
     }
 
     private void styleButton(JButton button) {
@@ -114,8 +113,8 @@ public class ClothesChangeGUI extends JPanel {
         setForeground(GUIColors.textColorLight);
         setLayout(new BorderLayout());
 
-        int width = GameState.gui().getWidth();
-        int height = GameState.gui().getHeight();
+        int width = GUI.gui.getWidth();
+        int height = GUI.gui.getHeight();
         int strutSize = (height - 500) / 3;
         int listWidth = (width - 400) / 3;
 
@@ -170,7 +169,7 @@ public class ClothesChangeGUI extends JPanel {
         JButton btnOk = new JButton("OK");
         btnOk.addActionListener(arg0 -> {
             ClothesChangeGUI.this.character.change();
-            GameState.gui().removeClosetGUI();
+            GUI.gui.removeClosetGUI();
             resume.visit(doneOption);
         });
         styleButton(btnOk);

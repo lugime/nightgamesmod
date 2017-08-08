@@ -21,14 +21,13 @@ import java.util.stream.Collectors;
  * Creates, destroys, and maintains the state of a running game.
  */
 public class GameState {
-    private static GUI gui;
     public static Scene current;
     public static double moneyRate = 1.0;
     public static double xpRate = 1.0;
 
     public GameState(boolean headless) {
         current = null;
-        gui = makeGUI(headless);
+        GUI.gui = makeGUI(headless);
     }
 
     protected GUI makeGUI(boolean headless) {
@@ -44,8 +43,8 @@ public class GameState {
             CharacterPool.human.getWillpower().gain(20);
         }
         CharacterPool.players.add(CharacterPool.human);
-        if (gui != null) {
-            gui.populatePlayer(CharacterPool.human);
+        if (GUI.gui != null) {
+            GUI.gui.populatePlayer(CharacterPool.human);
         }
         Skill.buildSkillPool(CharacterPool.human);
         Clothing.buildClothingTable();
@@ -63,10 +62,6 @@ public class GameState {
         Formatter.setCharacterDisabledFlag(CharacterPool.getNPCByType("Yui"));
         Flag.setFlag(Flag.systemMessages, true);
         Match.setUpMatch(new NoModifier());
-    }
-
-    public static GUI gui() {
-        return gui;
     }
 
     public static void startDay() {
@@ -120,7 +115,7 @@ public class GameState {
         if (Flag.checkFlag(Flag.autosave)) {
             SaveFile.autoSave();
         }
-        Match.endMatch(GameState.gui());
+        Match.endMatch(GUI.gui);
     }
 
     public static void endDay() {
@@ -143,16 +138,16 @@ public class GameState {
         data.counters.putAll(Flag.counters);
         data.time = Time.time;
         data.date = Time.date;
-        data.fontsize = gui.fontsize;
+        data.fontsize = GUI.gui.fontsize;
         return data;
     }
 
     protected static void resetForLoad() {
         CharacterPool.players.clear();
         Flag.flags.clear();
-        gui.clearText();
+        GUI.gui.clearText();
         CharacterPool.human = new Player("Dummy");
-        gui.purgePlayer();
+        GUI.gui.purgePlayer();
         Skill.buildSkillPool(CharacterPool.human);
         Clothing.buildClothingTable();
         CharacterPool.rebuildCharacterPool(Optional.empty());
@@ -193,9 +188,9 @@ public class GameState {
         Daytime.day = null;
         Match.match = null;
         CharacterPool.human = new Player("Dummy");
-        gui.purgePlayer();
+        GUI.gui.purgePlayer();
         xpRate = 1.0;
-        gui.createCharacter();
+        GUI.gui.createCharacter();
     }
 
     public static boolean inGame() {

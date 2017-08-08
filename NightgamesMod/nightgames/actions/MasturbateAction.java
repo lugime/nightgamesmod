@@ -3,7 +3,7 @@ package nightgames.actions;
 import nightgames.characters.Character;
 import nightgames.characters.State;
 import nightgames.global.Flag;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 
 public class MasturbateAction extends Action {
@@ -25,24 +25,24 @@ public class MasturbateAction extends Action {
     public Movement execute(Character user) {
         if (user.human()) {
             if (user.hasDick()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You desperately need to deal with your erection before you run into an opponent. You find an isolated corner and quickly jerk off.");
                 if (user.human() && Flag.checkFlag(Flag.masturbationSemen)) {
                     if (user.getArousal().percent() > 50) {
-                        GameState.gui().message(
+                        GUI.gui.message(
                                         "You remember that Reyka asked you to bring back some semen for her transformation rituals, and you catch your semen with one of her magic bottles.");
                         user.gain(Item.semen);
                     } else {
-                        GameState.gui().message(
+                        GUI.gui.message(
                                         "You remember that Reyka asked you to bring back some semen for her transformation rituals, and you catch your semen with one of her magic bottles. "
                                                         + "However it seems like you aren't quite aroused enough to provide the thick cum that she needs as the bottles seem to vomit back the cum you put in it.");
                     }
                 }
             } else if (user.hasPussy()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You desperately need to deal with your throbbing pussy before you run into an opponent. You find an isolated corner and quickly finger yourself to a quick orgasm.");
             } else {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You desperately need to deal with your throbbing body before you run into an opponent. You find an isolated corner and quickly finger your ass to a quick orgasm.");
             }
         }

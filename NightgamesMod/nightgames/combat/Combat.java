@@ -450,10 +450,10 @@ public class Combat extends Observable implements Cloneable {
         }
         message = describe(player, other);
         if (!shouldAutoresolve() && !Flag.checkFlag(Flag.noimage)) {
-            GameState.gui()
+            GUI.gui
                   .clearImage();
             if (!imagePath.isEmpty()) {
-                GameState.gui()
+                GUI.gui
                       .displayImage(imagePath, images.get(imagePath));
             }
         }
@@ -775,7 +775,7 @@ public class Combat extends Observable implements Cloneable {
 
     private boolean turn() {
         if (!cloned && isBeingObserved()) {
-            GameState.gui().loadPortrait(this, p1, p2);
+            GUI.gui.loadPortrait(this, p1, p2);
         }
         if (DebugFlags.isDebugOn(DebugFlags.DEBUG_SCENE)) {
             System.out.println("Current phase = " + phase);
@@ -1227,7 +1227,7 @@ public class Combat extends Observable implements Cloneable {
     }
 
     public void updateAndClearMessage() {
-        GameState.gui().clearText();
+        GUI.gui.clearText();
         updateMessage();
     }
 
@@ -1324,7 +1324,7 @@ public class Combat extends Observable implements Cloneable {
                 return false;
             } else {
                 if (!paused) {
-                    this.promptNext(GameState.gui());
+                    this.promptNext(GUI.gui);
                 }
                 return true;
             }
@@ -1363,7 +1363,7 @@ public class Combat extends Observable implements Cloneable {
         if (!(p1.human() || p2.human() || intruder.human())) {
             end();
         } else {
-            watchCombat(GameState.gui());
+            watchCombat(GUI.gui);
             resumeNoClearFlag();
         }
     }
@@ -1378,7 +1378,7 @@ public class Combat extends Observable implements Cloneable {
             p1.state = State.ready;
             p2.state = State.ready;
             if (beingObserved) {
-                endCombat(GameState.gui());
+                endCombat(GUI.gui);
             }
             return;
         }
@@ -1395,7 +1395,7 @@ public class Combat extends Observable implements Cloneable {
                     return;
                 }
             } else {
-                this.promptNext(GameState.gui());
+                this.promptNext(GUI.gui);
             }
         }
         processedEnding = true;
@@ -1417,7 +1417,7 @@ public class Combat extends Observable implements Cloneable {
             Match.getMatch().getMatchData().getDataFor(p2).setArmManager(getCombatantData(p2).getManager());
         }
         if (!ding && beingObserved) {
-            endCombat(GameState.gui());
+            endCombat(GUI.gui);
         }
     }
 
@@ -1428,8 +1428,8 @@ public class Combat extends Observable implements Cloneable {
                         .collect(Collectors.toList());
         Optional<CombatScene> possibleScene = Random.pickRandom(availableScenes);
         if (possibleScene.isPresent()) {
-            GameState.gui().clearText();
-            GameState.gui().clearCommand();
+            GUI.gui.clearText();
+            GUI.gui.clearCommand();
             possibleScene.get().visit(this, npc);
             return true;
         } else {
@@ -1509,7 +1509,7 @@ public class Combat extends Observable implements Cloneable {
             return;
         }
         if (!imagePath.isEmpty() && !cloned && isBeingObserved()) {
-            GameState.gui()
+            GUI.gui
                   .displayImage(imagePath, images.get(imagePath));
         }
     }
@@ -1791,7 +1791,7 @@ public class Combat extends Observable implements Cloneable {
             write("<br/>");
             choice.choose(this, npc);
             updateMessage();
-            this.promptNext(GameState.gui());
+            this.promptNext(GUI.gui);
         });
         gui.commandPanel.add(button);
         gui.commandPanel.refresh();

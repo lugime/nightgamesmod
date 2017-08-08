@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 public class GUI extends JFrame implements Observer {
     private static final long serialVersionUID = 451431916952047183L;
+    public static GUI gui;
     public Combat combat;
     private Map<TacticGroup, List<SkillButton>> skills;
     private TacticGroup currentTactics;
@@ -282,12 +283,12 @@ public class GUI extends JFrame implements Observer {
         rdfntnorm = new JButton("Smaller");
         rdfntnorm.addActionListener(a -> {
             fontsize = MathUtils.clamp(fontsize - 1, 1, 7);
-            GameState.gui().message("Text Size changed to " + fontsize);
+            gui.message("Text Size changed to " + fontsize);
         });
         rdnfntlrg = new JButton("Larger");
         rdnfntlrg.addActionListener(a -> {
             fontsize = MathUtils.clamp(fontsize + 1, 1, 7);
-            GameState.gui().message("Text Size changed to " + fontsize);
+            gui.message("Text Size changed to " + fontsize);
         });
         size.add(rdfntnorm);
         size.add(rdnfntlrg);
@@ -1262,6 +1263,6 @@ public class GUI extends JFrame implements Observer {
     public void switchTactics(TacticGroup group) {
         groupBox.removeAll();
         currentTactics = group;
-        GameState.gui().showSkills();
+        gui.showSkills();
     }
 }

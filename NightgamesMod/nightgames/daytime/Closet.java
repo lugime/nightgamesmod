@@ -1,7 +1,7 @@
 package nightgames.daytime;
 
 import nightgames.characters.Character;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 
 public class Closet extends Activity {
 
@@ -16,10 +16,10 @@ public class Closet extends Activity {
 
     @Override
     public void visit(String choice) {
-        GameState.gui().clearText();
-        GameState.gui().clearCommand();
+        GUI.gui.clearText();
+        GUI.gui.clearCommand();
         if (choice.equals("Start")) {
-            GameState.gui().changeClothes(player, this, "Back");
+            GUI.gui.changeClothes(player, this, "Back");
         } else {
             done(false);
         }

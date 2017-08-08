@@ -1,7 +1,6 @@
 package nightgames.gui;
 
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
 import nightgames.skills.TacticGroup;
 import nightgames.skills.Tactics;
 
@@ -29,7 +28,7 @@ public class SwitchTacticsButton extends KeyableButton {
         getButton().setMinimumSize(new Dimension(0, 20));
         getButton().setForeground(foregroundColor(bgColor));
         setBorder(new LineBorder(getButton().getBackground(), 3));
-        int nSkills = GameState.gui().nSkillsForGroup(group);
+        int nSkills = GUI.gui.nSkillsForGroup(group);
         getButton().setText(Formatter.capitalizeFirstLetter(group.name()) + " [" + nSkills + "]");
         if (nSkills == 0 && group != TacticGroup.all) {
             getButton().setEnabled(false);
@@ -38,7 +37,7 @@ public class SwitchTacticsButton extends KeyableButton {
         }
 
         getButton().addActionListener(arg0 -> {
-            GameState.gui().switchTactics(group);
+            GUI.gui.switchTactics(group);
         });
         setLayout(new BorderLayout());
         add(getButton());

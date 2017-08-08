@@ -3,7 +3,7 @@ package nightgames.items;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 
 public class AddTraitEffect extends ItemEffect {
     private Trait trait;
@@ -27,7 +27,7 @@ public class AddTraitEffect extends ItemEffect {
                 c.write(user, user.subjectAction("temporarily gained", "temporarily gained") + " the trait "
                                 + trait.toString() + ".");
             } else if (user.human()) {
-                GameState.gui().message(user.subjectAction("temporarily gained", "temporarily gained") + " the trait "
+                GUI.gui.message(user.subjectAction("temporarily gained", "temporarily gained") + " the trait "
                                 + trait.toString() + ".");
             }
             return true;

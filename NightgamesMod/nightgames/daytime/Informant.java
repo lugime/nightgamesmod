@@ -8,7 +8,7 @@ import nightgames.characters.Character;
 import nightgames.characters.custom.RecruitmentData;
 import nightgames.global.Flag;
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.status.addiction.Addiction;
 
 public class Informant extends Activity {
@@ -28,12 +28,12 @@ public class Informant extends Activity {
 
     @Override
     public void visit(String choice) {
-        GameState.gui()
+        GUI.gui
               .clearText();
-        GameState.gui()
+        GUI.gui
               .clearCommand();
         if (!Flag.checkFlag(Flag.metBroker)) {
-            GameState.gui()
+            GUI.gui
                   .message("It's almost strange seeing the Quad bustling with people knowing how completely deserted it is at night. Of course, you've been here more "
                                   + "during the day than at night, so the unsettling feeling you have is probably just a delayed reaction to the eerie atmosphere last night. You're here to "
                                   + "meet an upperclassman who will apparently provide valuable information and possibly advice. At least that's what you were led to believe last night. Well, "
@@ -55,11 +55,11 @@ public class Informant extends Activity {
                                   + "underestimate the effect of confidence in a fight. If you can consistently dish out a good fucking, you may find things going your way more often.\"</i><br/>"
                                   + "Aesop suddenly looks at his phone and stands up. <i>\"Sorry, I need to run for now. Shoot me a text when you're interested in some more advice. I'll meet you here again.\"</i>");
             Flag.flag(Flag.metBroker);
-            choose("Leave", GameState.gui());
+            choose("Leave", GUI.gui);
             acted = true;
             return;
         } else if (player.getRank() >= 1 && !Flag.checkFlag(Flag.rank1)) {
-            GameState.gui()
+            GUI.gui
                   .message("You go to meet Aesop at the usual spot, but today he's not alone. The woman who initially recruited you - named Maya, if you remember correctly - is waiting "
                                   + "for you. Looking at her next to Aesop, she's probably not much older than he is, but something about her makes her seem more mature. She has modest clothes, glasses and long "
                                   + "black hair tied in a braid that runs down her back. She smiles gently as you approach. <i>\"Congratulations on your new rank. You probably won't realize what an honor it is yet, "
@@ -77,7 +77,7 @@ public class Informant extends Activity {
                                   + "Game for various reasons. For a nominal fee, I could probably convince them to return. Let me know if you're interested in hearing their stories.\"</i>");
             Flag.flag(Flag.rank1);
         } else if (choice.equals("Start") || choice.equals("Back")) {
-            GameState.gui()
+            GUI.gui
                   .message("The spot where you're suppose to meet Aesop is quiet again. Given the number of people in the Quad during the day, you're starting to feel like people "
                                   + "are intentionally avoiding this bench. You don't have too long to think about it though, Aesop shows up shortly after you do.<br/><i>\"It's good to see my favorite client "
                                   + "as always. What kind of tale are you looking for today?\"</i>");
@@ -88,7 +88,7 @@ public class Informant extends Activity {
             return;
         }
         if (choice.equals("Purchasing supplies")) {
-            GameState.gui()
+            GUI.gui
                   .message("<i>\"As you were probably told when you entered, there are rules restricting the clothes you can wear to a match. If everyone wore a bunch of hard to remove layers, "
                                   + "it would bog the matches down. Other than that, you're allowed to bring just about any tools and toys you want. Most of the higher rank players carry an arsenal of various useful items.\"</i> "
                                   + "There can't be a lot of stores that sell sexfight supplies, unless there's more demand for it than you thought.<br/><i>\"I can give you the address of a nearby sex shop, of course. "
@@ -98,12 +98,12 @@ public class Informant extends Activity {
                                   + "random crap disappears from there during the night.\"</i><br/>This is all kinda mundane advice. You were half expecting the address of an abandoned building and a password.<br/><i>\"Oh there's "
                                   + "that too, but it'll cost you. If you ever need some more illicit goods, I can sell you a location later.\"</i>");
             Flag.flag(Flag.basicStores);
-            choose("Leave", GameState.gui());
+            choose("Leave", GUI.gui);
             acted = true;
             return;
         }
         if (choice.equals("The Competition")) {
-            GameState.gui()
+            GUI.gui
                   .message("<i>\"Looking for advice about girls? If you don't have any older brothers to ask, I might be able to help.\"</i><br/>Aesop laughs a bit at his own crappy joke.<br/><i>\"In all seriousness, you should definitely "
                                   + "get to know your enemies. This isn't a zero-sum game, everyone who participates can make some money. Obviously there would be issues if you tried to doctor the "
                                   + "results of a match, but it's not uncommon for players to collaborate during their free time. You can swap strategies, do some training together or do some "
@@ -114,13 +114,13 @@ public class Informant extends Activity {
                                   + "seem interested in you at first, you can try again after a few matches. In my experience, after you have sex with a girl a few times, she starts to remember your name. Who "
                                   + "knows, you might get a girlfriend out of this. It's not entirely unprecedented.\"</i>");
             Flag.flag(Flag.girlAdvice);
-            choose("Leave", GameState.gui());
+            choose("Leave", GUI.gui);
             acted = true;
             return;
         }
         if (choice.equals("Meditation: $200")) {
             if (player.money >= 200) {
-                GameState.gui()
+                GUI.gui
                       .message("You ask if Aesop has any advice on how to condition yourself mentally. Picking up details in the environment and your opponents' behavior seems to be an important "
                                       + "element of winning the matches. Also, since you can only be defeated by orgasming, learning techniques to control your arousal would be valuable.<br/>Aesop hesitates for a few seconds "
                                       + "before speaking. <i>\"I can point you in the right direction, but I should warn you that there's a tradeoff that every player who pursues this path has to face. The two aspects of "
@@ -129,34 +129,34 @@ public class Informant extends Activity {
                                       + "<i>\"If you're still interested, there's a girl named Suzume who leads guided meditation on campus. If you ask nicely, she may give you a private lesson to push you in either direction.\"</i>");
                 Flag.flag(Flag.meditation);
                 player.money -= 200;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Black Market: $400")) {
             if (player.money >= 400) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"If you're looking for something you can't purchase at a reputable store - say, for example, powerful aphrodisiacs or chemicals that "
                                       + "can rapidly dissolve synthetic clothing without harming skin - I know a guy on campus.\"</i><br/>You hand over a considerable sum of cash and Aesop slides you "
                                       + "a piece of paper.<br/><i>\"The dude's name is Mike Ridley, definitely an asshole, but he can get you want you want. He probably won't ask what you want it "
                                       + "for and you shouldn't volunteer the information. He mostly sells pot to normal students. He's not in the loop, so to speak.\"</i>");
                 Flag.flag(Flag.blackMarket);
                 player.money -= 400;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Cassie: $300")) {
             if (player.money >= 300) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Cassie Brooke, huh? Sweet girl, a little shy, a little geeky, never been in trouble in her life. She's not the type of girl who usually "
                                       + "enters sexfights, but she's adapting to it pretty well, all things considered. This is apparently a matter of necessity for her, her family doesn't "
                                       + "have a whole lot of money, doesn't get enough financial aid, and they don't want her getting a job until she graduates. Of course, I seriously doubt "
@@ -168,17 +168,17 @@ public class Informant extends Activity {
                                       + "place to talk to her privately.\"</i>");
                 Flag.flag(Flag.CassieKnown);
                 player.money -= 300;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Angel: $300")) {
             if (player.money >= 300) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Angel Hart, there's a hell of a name. Three words for you: Beautiful Blonde Nymphomaniac. Oh baby, that's a delicious combination. None of that "
                                       + "is news to you, of course, because it's obvious within ten seconds of meeting her, but I just had to say it out loud. mmmm...<br/>Anyway, back on topic. He legal name "
                                       + "is Angelina, but she never uses it. Her father is rich and influential, the vice president of a company you probably haven't heard of, but is a bit of a heavyweight "
@@ -189,17 +189,17 @@ public class Informant extends Activity {
                                       + "hell of a time catching her alone.\"</i>");
                 Flag.flag(Flag.AngelKnown);
                 player.money -= 300;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Mara: $300")) {
             if (player.money >= 300) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"There's a bit of a mystery surrounding Mara Cyr, to be honest. I can't figure out when, or even if, she sleeps. She's a freshman Computer Engineering "
                                       + "student, but her classload looks more like something I'd expect from a junior or senior in that major. Most students in that situation would be working late into the "
                                       + "night, but she's spending her nights sexfighting. I can totally understand why she'd need something to relieve the stress, but again it doesn't leave a lot of time "
@@ -209,17 +209,17 @@ public class Informant extends Activity {
                                       + "or the electrical engineering workshop.\"</i>");
                 Flag.flag(Flag.MaraKnown);
                 player.money -= 300;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Jewel: $300")) {
             if (player.money >= 300) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Jewel Silvers... Her parents must like jewelry. Not really; her family has a long military tradition going back generations. I'm surprised she hasn't "
                                       + "joined the army, but she probably doesn't have the right temperament for it. She spent most of her youth bouncing between military bases, getting in fights with all "
                                       + "the local kids, mostly boys. Seems like she mastered the male anatomy pretty quickly, which probably won her a few fights growing up. I wonder what those kids would "
@@ -230,17 +230,17 @@ public class Informant extends Activity {
                                       + "personality, I suspect you're going to need to prove yourself a worthy rival before she'll show any interest in you.\"</i>");
                 Flag.flag(Flag.JewelKnown);
                 player.money -= 300;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Exotic Artifacts: $2500")) {
             if (player.money >= 2500) {
-                GameState.gui()
+                GUI.gui
                       .message("Rare artifacts sound more like something you should be smuggling than something that will help you in a sexfight. Still, curiosity compels "
                                       + "you to hand over an unreasonable amount of money for Aesop's information. <i>\"You once asked me about an address and a password for the black market. I "
                                       + "gave you the address. Now I think you're ready for the password. The black market stocks some rare and unusual items for their prefered customers. Tell "
@@ -248,31 +248,31 @@ public class Informant extends Activity {
                                       + "I don't mean your life is at risk, nothing that serious, but be careful not to lose your humanity. Sometimes power really can change a person.\"</i>");
                 Flag.flag(Flag.blackMarketPlus);
                 player.money -= 2500;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Body Shop: $2500")) {
             if (player.money >= 2500) {
-                GameState.gui()
+                GUI.gui
                       .message("Aesop looks at you strangely then slips you a piece of paper.");
                 Flag.flag(Flag.bodyShop);
                 player.money -= 2500;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Martial Arts: $2500")) {
             if (player.money >= 2500) {
-                GameState.gui()
+                GUI.gui
                       .message("You're interested in improving your martial arts skill, but Jewel is probably the best martial artist on campus. Even if she agrees to train you, "
                                       + "becoming your rival's student probably won't get you to the top. Aesop smirks at you. <i>\"Jewel is not the best martial artist on campus. Suzuki Suzume, in addition "
                                       + "to her skill with guided meditation, is the successor to a long japanese martial arts legacy. During her participation in the Games, she adapted the karate "
@@ -283,17 +283,17 @@ public class Informant extends Activity {
                                       + "Fucking hell. If nothing else, at least Aesop is giving you a lesson in economics 101.");
                 Flag.flag(Flag.dojo);
                 player.money -= 2500;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Magic?: $2500")) {
             if (player.money >= 2500) {
-                GameState.gui()
+                GUI.gui
                       .message("What exactly did Aesop mean when we said magic? Presumably you haven't actually stepped into a fantasy novel. If he means the art of misdirection "
                                       + "and sleight of hand, you can see how that would be useful, but it's not likely to blow your mind. Aesop just shakes his head as he gives you a phone number. "
                                       + "<i>\"I'm not going to try to convince you. You're better off seeing it yourself. That number belongs to an old friend of mine named Aisha. She's spent the last "
@@ -303,17 +303,17 @@ public class Informant extends Activity {
                                       + "friend, and I have a lot of respect for her, so don't make judgments before you've met her.\"</i>");
                 Flag.flag(Flag.magicstore);
                 player.money -= 2500;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Tech: $2500")) {
             if (player.money >= 2500) {
-                GameState.gui()
+                GUI.gui
                       .message("You're interested in the technology Aesop mentioned. A handful of zipties and a rubber dildo will only get you so far. <i>\"You're going to want to meet "
                                       + "Jett. He's not much of a people person, but he's a mechanical genius. Last year, he was the only male competitor and he started out as a bit of a pushover. He wasn't "
                                       + "in great shape and didn't have much sexual experience. There was only one girl he even had a chance against, and she was a virgin when she started. After only a week "
@@ -322,71 +322,71 @@ public class Informant extends Activity {
                                       + "some of his secrets.\"</i>");
                 Flag.flag(Flag.workshop);
                 player.money -= 2500;
-                choose("Leave", GameState.gui());
+                choose("Leave", GUI.gui);
                 acted = true;
                 return;
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         final String REMOVE_PREFIX = "Remove: ";
         final String RETURN_PREFIX = "Bring Back: ";
         if (choice.equals("Select Competitors")) {
-            GameState.gui()
+            GUI.gui
             .message("Haha, feeling the heat? That's okay, I can talk to the organizers about redirecting some of the competitors to other sessions. Just let me know who is becoming too much for you.");
             CharacterPool.everyone().stream()
                   .filter(c -> !c.human())
                   .filter(c -> !Formatter.checkCharacterDisabledFlag(c))
                   .forEach(character -> choose(String.format(REMOVE_PREFIX + "%s", character.getTrueName()),
-                                  GameState.gui()));
+                                  GUI.gui));
             CharacterPool.everyone().stream()
                   .filter(c -> !c.human())
                   .filter(c -> Formatter.checkCharacterDisabledFlag(c) && !c.getType().equals("Yui"))
                   .forEach(character -> choose(String.format(RETURN_PREFIX + "%s", character.getTrueName()),
-                                  GameState.gui()));
-            choose("Back", GameState.gui());
+                                  GUI.gui));
+            choose("Back", GUI.gui);
             return;
         }
         if (choice.startsWith(REMOVE_PREFIX)) {
             String name = choice.substring(REMOVE_PREFIX.length());
-            GameState.gui()
+            GUI.gui
                   .message("Got it, I'll see about sending " + name+ " to another session.");
             Formatter.setCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
-            choose("Select Competitors", GameState.gui());
+            choose("Select Competitors", GUI.gui);
             return;
         }
         if (choice.startsWith(RETURN_PREFIX)) {
             String name = choice.substring(RETURN_PREFIX.length());
-            GameState.gui()
+            GUI.gui
                   .message("Missing " + name+ " already? I'll see what I can do.");
             Formatter.unsetCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
-            choose("Select Competitors", GameState.gui());
+            choose("Select Competitors", GUI.gui);
             return;
         }
         if (choice.equals("More Competitors")) {
             if (!Flag.checkFlag(Flag.Reyka) && Flag.checkFlag(Flag.blackMarketPlus)) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Let me tell you the story of a succubus named Reyka. So a while back a competitor decides it's a good idea to save up a bunch of money and buy the most "
                                       + "powerful summoning scroll on the black market and feed the demon enough mana to keep her fighting for several matches. You can imagine how well that worked. He summoned "
                                       + "a succubus, Reyka, but after he gave her all his energy, she became way too powerful for him to control. She went on a bit of a rampage, draining men until she was strong "
                                       + "enough to sever the link between her and the summoner. No one was seriously hurt, but it did cause a major fuss. Rin isn't allowed to sell such strong items anymore without "
                                       + "special permission. The summoner was suspended from matches for a couple weeks. Someone with some pull must have taken a liking to Reyka though, since no one has tried to "
                                       + "banish her and someone's paying her living expenses. She's pretty aggressive, but probably not actually dangerous... probably.\"</i><br/><br/>");
-                choose("Reyka: $1000", GameState.gui());
+                choose("Reyka: $1000", GUI.gui);
             }
             if (!Flag.checkFlag(Flag.Airi) && Flag.checkFlag(Flag.workshop)) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"So there's a second year bio student that was involved with a bit of an accident last year. Aya? No... Arin? No... Oh yes, her name was Airi! "
                              + "She's a pretty moussy little Japanese girl, but she got along well enough. Anyways, back to her accident. I think her experiement was supposed to to "
                              + "give her an edge in the games with some new powerful versions of the body warping decoctions you can find at the black market. I can't say that it completely failed, "
                              + "but she's definitely came out a bit... stranger than before. I think she was worried about her lack of presence, but I'd say she's even more... formless than before. "
                              + "\"</i> Aesop guffaws at his own joke that you don't understand. <i>\""
                              + "She's definitely still a cutie though. So whaddaya say, want me to try and talk to her for you?\"</i><br/><br/>");
-                choose("Airi: $1000", GameState.gui());
+                choose("Airi: $1000", GUI.gui);
             }
             if (!Flag.checkFlag(Flag.Kat) && Flag.checkFlag(Flag.magicstore)) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"So last year Kat (funny name, you'll see why later) was responsible for a couple of all time firsts. The first 'first'.... The first unprecedented event "
                                       + "was an actual virgin joining in a match. She had never had sex before and may not have even masturbated before if the rumors are true. Her first match, she became everyone's toy. Absolutely everyone "
                                       + "could dominate her and she came so many times she couldn't think straight. She was so out of it that her opponents paused the match to make sure she got back to her room safely. "
@@ -395,7 +395,7 @@ public class Informant extends Activity {
                                       + "by channelling an animal spirit. She's got cat ears, a tail, a kinda cute verbal tic, the whole deal. The cat instincts have made her a lot more capable of holding her own "
                                       + "in a match. She never became the strongest in her year, but she'd be a good match for yours. Just don't dismiss her because she looks young. She is actually a year older "
                                       + "than you.\"</i><br/><br/>");
-                choose("Kat: $1000", GameState.gui());
+                choose("Kat: $1000", GUI.gui);
             }
             for (Character c : CharacterPool.allNPCs()) {
                 if (c.isCustomNPC() && !CharacterPool.everyone()
@@ -404,15 +404,15 @@ public class Informant extends Activity {
                     RecruitmentData data = npc.getRecruitmentData();
                     if (data.requirement.stream()
                                         .allMatch((req) -> req.meets(null, player, null))) {
-                        GameState.gui()
+                        GUI.gui
                               .message("<i>\"" + data.introduction + "\"</i><br/><br/>");
                         customNPCChoices.put(data.action, npc);
-                        choose(data.action, GameState.gui());
+                        choose(data.action, GUI.gui);
                     }
                 }
             }
             if (!Flag.checkFlag(Flag.Eve) && Flag.checkFlag(Flag.blackMarketPlus) && player.getRank() >= 2) {
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Eve Ranger is... a lot of things, but mostly a cautionary tale. "
                                       + "She started the same year I did. From the beginning, it was obvious"
                                       + " she had more potential than any of us, She could have become a "
@@ -429,9 +429,9 @@ public class Informant extends Activity {
                                       + "To be honest though, I'd be perfectly happy to never deal with her "
                                       + "again.\"</i><br/><br/>");
 
-                choose("Eve: $1000", GameState.gui());
+                choose("Eve: $1000", GUI.gui);
             }
-            choose("Back", GameState.gui());
+            choose("Back", GUI.gui);
             return;
         }
         if (customNPCChoices.containsKey(choice)) {
@@ -444,12 +444,12 @@ public class Informant extends Activity {
                                 .allMatch((effect) -> effect.execute(null, copy, null))) {
                     data.effects.stream()
                                 .forEach((effect) -> effect.execute(null, player, null));
-                    GameState.gui()
+                    GUI.gui
                           .message("<i>\"" + data.confirm + "\"</i>");
                     acted = true;
                     CharacterPool.newChallenger(npc.ai);
                 } else {
-                    GameState.gui()
+                    GUI.gui
                           .message("You cannot pay the cost.<br/><br/>");
                 }
             } catch (CloneNotSupportedException e) {
@@ -459,20 +459,20 @@ public class Informant extends Activity {
         if (choice.equals("Reyka: $1000")) {
             if (player.money >= 1000) {
                 player.money -= 1000;
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Ok, I'll talk to Reyka. She spends a lot of nights surfing the internet, but I'm sure she wouldn't mind an opportunity for some free prey.\"</i>");
                 acted = true;
                 CharacterPool.newChallenger(CharacterPool.getNPCByType(new Reyka().getType()).ai);
                 Flag.flag(Flag.Reyka);
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Airi: $1000")) {
             if (player.money >= 1000) {
                 player.money -= 1000;
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Sounds good, I'll try finding her. She's probably holed up in some lab again. Ahh I should have charged you double for that. "
                                       + "Word of advice, Airi's isn't all that personable to begin with, but her entire uh \"personality\" changes when she cums. "
                                       + "Don't let it catch you off guard.\"</i>");
@@ -480,28 +480,28 @@ public class Informant extends Activity {
                 CharacterPool.newChallenger(CharacterPool.getNPCByType(new Airi().getType()).ai);
                 Flag.flag(Flag.Airi);
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Kat: $1000")) {
             if (player.money >= 1000) {
                 player.money -= 1000;
-                GameState.gui()
+                GUI.gui
                       .message("<i>\"Pleasure doing business with you. Just be nice to Kat. She's very catlike and confident when she's turned on, but during the day or after climax, she's "
                                       + "just an ordinary girl. Besides, if her fans hear that you've been mean to her, they'll probably kick your ass. That includes me, by the way.\"</i>");
                 acted = true;
                 CharacterPool.newChallenger(CharacterPool.getNPCByType(new Kat().getType()).ai);
                 Flag.flag(Flag.Kat);
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
         if (choice.equals("Eve: $1000")) {
             if (player.money >= 1000) {
                 player.money -= 1000;
-                GameState.gui()
+                GUI.gui
                       .message("You think you see Aesop flinch slightly, but he does a "
                                       + "decent job hiding it. <i>\"I was kinda hoping not to have to talk to"
                                       + " her anytime soon. Nah, don't worry about it. It's what you're paying"
@@ -511,7 +511,7 @@ public class Informant extends Activity {
                 CharacterPool.newChallenger(CharacterPool.getNPCByType(new Eve().getType()).ai);
                 Flag.flag(Flag.Eve);
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("You don't have enough money<br/><br/>");
             }
         }
@@ -522,7 +522,7 @@ public class Informant extends Activity {
                     message = message + npc.dumpstats(false) + "<br/><br/>";
                 }
             }
-            GameState.gui()
+            GUI.gui
                   .message(message);
         }
         if (choice.equals("Help with Addiction")) {
@@ -538,61 +538,61 @@ public class Informant extends Activity {
                                 + " a pal in need and all. That's not to say it isn't going to cost you, though.</i>";
                 Flag.flag(Flag.AddictionAdvice);
             }
-            GameState.gui().message(message);
+            GUI.gui.message(message);
         }
         if (!Flag.checkFlag(Flag.basicStores)) {
-            choose("Purchasing supplies", GameState.gui());
+            choose("Purchasing supplies", GUI.gui);
         }
         if (!Flag.checkFlag(Flag.girlAdvice)) {
-            choose("The Competition", GameState.gui());
+            choose("The Competition", GUI.gui);
         }
         if (!Flag.checkFlag(Flag.meditation)) {
-            choose("Meditation: $200", GameState.gui());
+            choose("Meditation: $200", GUI.gui);
         }
         if (Flag.checkFlag(Flag.basicStores) && !Flag.checkFlag(Flag.blackMarket)) {
-            choose("Black Market: $400", GameState.gui());
+            choose("Black Market: $400", GUI.gui);
         }
         if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.CassieKnown)) {
-            choose("Cassie: $300", GameState.gui());
+            choose("Cassie: $300", GUI.gui);
         }
         if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.AngelKnown)) {
-            choose("Angel: $300", GameState.gui());
+            choose("Angel: $300", GUI.gui);
         }
         if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.MaraKnown)) {
-            choose("Mara: $300", GameState.gui());
+            choose("Mara: $300", GUI.gui);
         }
         if (Flag.checkFlag(Flag.girlAdvice) && !Flag.checkFlag(Flag.JewelKnown)) {
-            choose("Jewel: $300", GameState.gui());
+            choose("Jewel: $300", GUI.gui);
         }
         if (Flag.checkFlag(Flag.rank1)) {
             if (Flag.checkFlag(Flag.blackMarket) && !Flag.checkFlag(Flag.blackMarketPlus)) {
-                choose("Exotic Artifacts: $2500", GameState.gui());
+                choose("Exotic Artifacts: $2500", GUI.gui);
             }
             if (!Flag.checkFlag(Flag.bodyShop)) {
-                choose("Body Shop: $2500", GameState.gui());
+                choose("Body Shop: $2500", GUI.gui);
             }
             if (Flag.checkFlag(Flag.meditation) && !Flag.checkFlag(Flag.dojo)) {
-                choose("Martial Arts: $2500", GameState.gui());
+                choose("Martial Arts: $2500", GUI.gui);
             }
             if (!Flag.checkFlag(Flag.workshop)) {
-                choose("Tech: $2500", GameState.gui());
+                choose("Tech: $2500", GUI.gui);
             }
             if (!Flag.checkFlag(Flag.magicstore)) {
-                choose("Magic?: $2500", GameState.gui());
+                choose("Magic?: $2500", GUI.gui);
             }
             if (newCharacters()) {
-                choose("More Competitors", GameState.gui());
+                choose("More Competitors", GUI.gui);
             }
         }
         if (Flag.checkFlag(Flag.girlAdvice)) {
-            choose("Competition Info", GameState.gui());
-            choose("Select Competitors", GameState.gui());
+            choose("Competition Info", GUI.gui);
+            choose("Select Competitors", GUI.gui);
         }
         if (CharacterPool.getPlayer()
                   .checkAddiction()) {
-            choose("Help with Addiction", GameState.gui());
+            choose("Help with Addiction", GUI.gui);
         }
-        choose("Leave", GameState.gui());
+        choose("Leave", GUI.gui);
     }
 
     @Override

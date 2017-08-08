@@ -3,7 +3,7 @@ package nightgames.daytime;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.global.Flag;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 
@@ -22,10 +22,10 @@ public class Workshop extends Activity {
 
     @Override
     public void visit(String choice) {
-        GameState.gui().clearText();
-        GameState.gui().clearCommand();
+        GUI.gui.clearText();
+        GUI.gui.clearCommand();
         if (!Flag.checkFlag(Flag.metJett)) {
-            GameState.gui().message(
+            GUI.gui.message(
                             "You head to Jett's workshop. Apparently he has an implicit claim on this workshop in the same way that Mara does on her computer room. "
                                             + "When you enter the room, he's busy machining an unidentifiable metal component. When he finishes the part, he walks over to greet you, but doesn't "
                                             + "bother removing his safety glasses. He's a bit short and skinny. You can't help thinking of him as a stereotypical science nerd. <i>\"You're "
@@ -38,16 +38,16 @@ public class Workshop extends Activity {
                                             + "and I'm not helping you for free. No offence, but I'm rooting for your opponents. Male solidarity is fine and well, but they're a lot more attractive than you.\"</i>");
             Flag.flag(Flag.metJett);
             acted = true;
-            choose("Lecture: $" + 1000 * (player.getPure(Attribute.Science) + 1), GameState.gui());
+            choose("Lecture: $" + 1000 * (player.getPure(Attribute.Science) + 1), GUI.gui);
         } else if (choice.equals("Start")) {
-            GameState.gui().message(
+            GUI.gui.message(
                             "You head to Jett's workshop. He sets down the parts he was working on and turns to face you. <i>\"You need something? I hope you brought your "
                                             + "wallet.\"</i>");
-            choose("Lecture: $" + 1000 * (player.getPure(Attribute.Science) + 1), GameState.gui());
+            choose("Lecture: $" + 1000 * (player.getPure(Attribute.Science) + 1), GUI.gui);
             acted = false;
         } else if (choice.equals("Upgrade Dildo: $2000")) {
             if (player.money >= Item.Dildo2.getPrice()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You hand over the dildo and ask Jett how he plans to upgrade it. <i>\"If I hollow out a small space inside it, there will be enough "
                                                 + "room for a compact oscillating motor.\"</i> That's it? He's just going to put a motor in it? You could have just bought a vibrating dildo at the sex "
                                                 + "shop. <i>\"No. Nonono... no, you don't want to do that. That's a classic beginner's mistake. Crude store bought vibrators just overstimulate nerve "
@@ -61,11 +61,11 @@ public class Workshop extends Activity {
                 player.gain(Item.Dildo2);
                 acted = true;
             } else {
-                GameState.gui().message("You can't afford that upgrade");
+                GUI.gui.message("You can't afford that upgrade");
             }
         } else if (choice.equals("Upgrade Tickler: $3000")) {
             if (player.money >= Item.Tickler2.getPrice()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "Jett rummages around in the back of his workshop for awhile before returning with a small box of feathers. <i>\"Arm,\"</i> he demands bluntly. "
                                                 + "You extend your arm and he touches it with one of the feathers. It feels like a normal feather, but goosebumps appear where it touched. Your skin feels "
                                                 + "more sensitive where it touched. <i>\"The feathers come from a bird which secretes an oil that can increase sensitivity in primates. There's no evolutionary "
@@ -76,11 +76,11 @@ public class Workshop extends Activity {
                 player.gain(Item.Tickler2);
                 acted = true;
             } else {
-                GameState.gui().message("You can't afford that upgrade");
+                GUI.gui.message("You can't afford that upgrade");
             }
         } else if (choice.equals("Upgrade Riding Crop: $1500")) {
             if (player.money >= Item.Crop2.getPrice()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "Jett works on the riding crop for a few minutes and when he returns it, there's a short length of cord attached to the end. you feel the "
                                                 + "cord. It's flexible and softer than leather, but still has some resilience. <i>\"I call it the 'Treasure Hunter.' It's a painful, yet elegant attachment that's "
                                                 + "the right length and size to hit extremely sensitive areas. It's effective against both male and female anatomy. Simple enough to accomplish, but the real "
@@ -91,11 +91,11 @@ public class Workshop extends Activity {
                 player.gain(Item.Crop2);
                 acted = true;
             } else {
-                GameState.gui().message("You can't afford that upgrade");
+                GUI.gui.message("You can't afford that upgrade");
             }
         } else if (choice.equals("Upgrade Onahole: $3000")) {
             if (player.money >= Item.Onahole2.getPrice()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "Jett reluctantly takes the Onahole from you. <i>\"You wash this, right?\"</i> He takes it to the back room and is gone for a while. He returns "
                                                 + "and hands you the cock sleeve which is not visibly different. <i>\"Put your finger inside.\"</i> It's hot and wet, almost indistinguishable from the real thing. "
                                                 + "<i>\"It's self lubricating and maintains a temperature slightly above a normal human body.\"</i> Quite impressive, and there's no obvious heating mechanism or "
@@ -105,25 +105,25 @@ public class Workshop extends Activity {
                 player.gain(Item.Onahole2);
                 acted = true;
             } else {
-                GameState.gui().message("You can't afford that upgrade");
+                GUI.gui.message("You can't afford that upgrade");
             }
         } else if (choice.equals("Upgrade Strapon: $2500")) {
             if (player.money >= Item.Strapon2.getPrice()) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "[Placeholder]<br/>Jett upgrades your strapon with a more flexible body and a vibration feature.");
                 player.money -= Item.Strapon2.getPrice();
                 player.consume(Item.Strapon, 1, false);
                 player.gain(Item.Strapon2);
                 acted = true;
             } else {
-                GameState.gui().message("You can't afford that upgrade");
+                GUI.gui.message("You can't afford that upgrade");
             }
         } else if (choice.equals("Leave")) {
             done(acted);
             return;
         } else if (choice.startsWith("Lecture")) {
             if (player.money >= 1000 * (player.getPure(Attribute.Science) + 1)) {
-                GameState.gui().message(
+                GUI.gui.message(
                                 "They say that geniuses make poor teachers, but Jett disproves that theory. He explains the principles behind his work in a way that you "
                                                 + "can easily follow. Despite his unfriendly demeanor, he answers any questions you have without complaint. After about an hour of intense lecture, you "
                                                 + "feel like you've gotten the benefits of a week of classes.<br/><br/><i>\"Some of this equipment is likely to consume battery power rapidly. If you need to "
@@ -142,26 +142,26 @@ public class Workshop extends Activity {
                 }
                 acted = true;
             } else {
-                GameState.gui().message("You don't have enough money for Jett's lecture.");
+                GUI.gui.message("You don't have enough money for Jett's lecture.");
             }
             acted = true;
         }
         if (player.has(Item.Dildo)) {
-            choose("Upgrade Dildo: $2000", GameState.gui());
+            choose("Upgrade Dildo: $2000", GUI.gui);
         }
         if (player.has(Item.Tickler)) {
-            choose("Upgrade Tickler: $3000", GameState.gui());
+            choose("Upgrade Tickler: $3000", GUI.gui);
         }
         if (player.has(Item.Crop)) {
-            choose("Upgrade Riding Crop: $1500", GameState.gui());
+            choose("Upgrade Riding Crop: $1500", GUI.gui);
         }
         if (player.has(Item.Onahole)) {
-            choose("Upgrade Onahole: $3000", GameState.gui());
+            choose("Upgrade Onahole: $3000", GUI.gui);
         }
         if (player.has(Item.Strapon)) {
-            choose("Upgrade Strapon: $2500", GameState.gui());
+            choose("Upgrade Strapon: $2500", GUI.gui);
         }
-        choose("Leave", GameState.gui());
+        choose("Leave", GUI.gui);
 
     }
 

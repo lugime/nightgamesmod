@@ -1,6 +1,7 @@
 package nightgames.global;
 
 import nightgames.characters.Player;
+import nightgames.gui.GUI;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
 import nightgames.gui.SceneButton;
@@ -93,7 +94,7 @@ public class Prematch implements Scene {
         }
 
         choice.add(new SaveButton());
-        GameState.gui().prompt(message, choice);
+        GUI.gui.prompt(message, choice);
     }
 
     private Modifier offer(Player player) {
@@ -117,7 +118,7 @@ public class Prematch implements Scene {
         } else if (response.startsWith("Do")) {
             message += type.acceptance();
             choice.add(new SceneButton("Start The Match"));
-            GameState.gui().prompt(message, choice);
+            GUI.gui.prompt(message, choice);
         }
     }
 }

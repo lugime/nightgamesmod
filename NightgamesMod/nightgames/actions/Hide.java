@@ -2,7 +2,7 @@ package nightgames.actions;
 
 import nightgames.characters.Character;
 import nightgames.characters.State;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 
 public class Hide extends Action {
 
@@ -24,7 +24,7 @@ public class Hide extends Action {
     @Override
     public Movement execute(Character user) {
         if (user.human()) {
-            GameState.gui().message("You find a decent hiding place and wait for unwary opponents.");
+            GUI.gui.message("You find a decent hiding place and wait for unwary opponents.");
         }
         user.state = State.hidden;
         return Movement.hide;

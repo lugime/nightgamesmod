@@ -19,8 +19,8 @@ import nightgames.characters.body.mods.SecondPussyMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.global.DebugFlags;
 import nightgames.global.Flag;
-import nightgames.global.GameState;
 import nightgames.global.Random;
+import nightgames.gui.GUI;
 
 public class BodyShop extends Activity {
     List<ShopSelection> selection;
@@ -549,29 +549,29 @@ public class BodyShop extends Activity {
     }
 
     private void displaySelection() {
-        GameState.gui().message("You have :$" + player.money + " to spend.");
+        GUI.gui.message("You have :$" + player.money + " to spend.");
         for (ShopSelection s : selection) {
             if (s.available(player) && player.money >= s.price) {
-                choose(s.choice, "Price: $" + s.price, GameState.gui());
-                GameState.gui().message(s.choice + ": $" + s.price);
+                choose(s.choice, "Price: $" + s.price, GUI.gui);
+                GUI.gui.message(s.choice + ": $" + s.price);
             }
         }
-        choose("Leave", GameState.gui());
+        choose("Leave", GUI.gui);
     }
 
     @Override
     public void visit(String choice) {
         if (choice.equals("Start")) {
-            GameState.gui().clearText();
-            GameState.gui().clearCommand();
-            GameState.gui().message(
+            GUI.gui.clearText();
+            GUI.gui.clearCommand();
+            GUI.gui.message(
                             "While wondering why you're even here, you walk into the rundown shack named \"The Body Shop\". The proprietor looks at you strangely then mutely points to the sign.");
             displaySelection();
             return;
         }
         for (ShopSelection s : selection) {
             if (s.choice.equals(choice)) {
-                GameState.gui().message("<br/>You've selected " + s.choice
+                GUI.gui.message("<br/>You've selected " + s.choice
                                 + ". While wondering if this was such a great idea, you follow the proprietor into the back room...");
                 s.buy(player);
                 player.money -= s.price;
@@ -579,7 +579,7 @@ public class BodyShop extends Activity {
                 return;
             }
         }
-        GameState.gui().message(
+        GUI.gui.message(
                         "<br/>You have some second thoughts about letting some stranger play with your body. You think up some excuse and quickly leave the shack.");
         done(false);
     }

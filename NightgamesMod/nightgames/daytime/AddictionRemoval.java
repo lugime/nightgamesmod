@@ -3,7 +3,7 @@ package nightgames.daytime;
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.global.Flag;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 
 public class AddictionRemoval extends Activity {
 
@@ -22,12 +22,12 @@ public class AddictionRemoval extends Activity {
 
     @Override
     public void visit(String choice) {
-        GameState.gui()
+        GUI.gui
               .clearText();
-        GameState.gui()
+        GUI.gui
               .clearCommand();
         if (choice.equals("Start")) {
-            GameState.gui()
+            GUI.gui
                   .message("You walk to the place Aesop told you about "
                                   + "where you're supposed to be able to get rid of your addictions."
                                   + " An imperious-looking woman in a lab coat is there to meet you, and explains"
@@ -38,34 +38,34 @@ public class AddictionRemoval extends Activity {
                                   + "\n\n(this is a placeholder -- note that these treatments only affect your current"
                                   + " strongest addiction)");
             if (player.money >= 5000) {
-                choose(UNSAFE_OPT, GameState.gui());
+                choose(UNSAFE_OPT, GUI.gui);
                 if (player.money >= 15000) {
-                    choose(SAFE_OPT, GameState.gui());
+                    choose(SAFE_OPT, GUI.gui);
                 } else {
-                    GameState.gui()
+                    GUI.gui
                           .message("\n\nA quick look at your finances reveal that only the risky option is"
                                           + " affordable for you right now. That may be a problem.");
                 }
             } else {
-                GameState.gui()
+                GUI.gui
                       .message("\n\nUnfortunately, you don't have the cash for either option right now.");
             }
         } else if (choice.equals(UNSAFE_OPT)) {
             player.money -= 5000;
-            GameState.gui().message("Nervously, you handed over the money for the overload treatment. You don't"
+            GUI.gui.message("Nervously, you handed over the money for the overload treatment. You don't"
                             + " remember what happened next, but you do know that now your addiction is far"
                             + " stronger than before. Let's hope this works.");
             CharacterPool.getPlayer().getStrongestAddiction().get().overload();
         } else if (choice.equals(SAFE_OPT)) {
             player.money -= 15000;
-            GameState.gui().message("You dole out the mountain of cash and are taken to the back for your treatment."
+            GUI.gui.message("You dole out the mountain of cash and are taken to the back for your treatment."
                             + " When you emerge, you are completely free of your addiction.");
             CharacterPool.getPlayer().removeStatusImmediately(CharacterPool.getPlayer().getStrongestAddiction().get());
         } else if (choice.equals("Leave")) {
             done(true);
             return;
         }
-        choose("Leave", GameState.gui());
+        choose("Leave", GUI.gui);
 
     }
 

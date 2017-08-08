@@ -2,7 +2,7 @@ package nightgames.trap;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 
 public class Alarm extends Trap {
@@ -18,11 +18,11 @@ public class Alarm extends Trap {
     @Override
     public void trigger(Character target) {
         if (target.human()) {
-            GameState.gui().message(
+            GUI.gui.message(
                             "You're walking through the eerily quiet campus, when a loud beeping almost makes you jump out of your skin. You realize the beeping is "
                                             + "coming from a cell phone on the floor. You shut it off as quickly as you can, but it's likely everyone nearby heard it already.");
         } else if (target.location().humanPresent()) {
-            GameState.gui().message(target.getName() + " Sets off your alarm, giving away her presence.");
+            GUI.gui.message(target.getName() + " Sets off your alarm, giving away her presence.");
         }
         target.location().alarm = true;
         target.location().remove(this);

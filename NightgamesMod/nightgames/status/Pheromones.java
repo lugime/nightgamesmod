@@ -11,8 +11,8 @@ import nightgames.characters.*;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.global.Formatter;
-import nightgames.global.GameState;
 import nightgames.global.Random;
+import nightgames.gui.GUI;
 import nightgames.skills.damage.DamageType;
 
 public class Pheromones extends Horny {
@@ -66,7 +66,7 @@ public class Pheromones extends Horny {
                 if (c != null && att.isPresent()) {
                     c.write(affected, message);
                 } else {
-                    GameState.gui().message(message);
+                    GUI.gui.message(message);
                 }
                 affected.add(c, new Abuff(affected, att.get(), -1, 10));
             }

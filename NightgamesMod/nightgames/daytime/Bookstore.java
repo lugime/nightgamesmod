@@ -4,7 +4,7 @@ import java.util.Map;
 
 import nightgames.characters.Character;
 import nightgames.global.Flag;
-import nightgames.global.GameState;
+import nightgames.gui.GUI;
 import nightgames.items.Item;
 
 public class Bookstore extends Store {
@@ -22,8 +22,8 @@ public class Bookstore extends Store {
 
     @Override
     public void visit(String choice) {
-        GameState.gui().clearText();
-        GameState.gui().clearCommand();
+        GUI.gui.clearText();
+        GUI.gui.clearCommand();
         if (choice.equals("Start")) {
             acted = false;
         }
@@ -33,21 +33,21 @@ public class Bookstore extends Store {
         }
         checkSale(choice);
         if (player.human()) {
-            GameState.gui().message(
+            GUI.gui.message(
                             "In addition to textbooks, the campus bookstore sells assorted items for everyday use.");
             Map<Item, Integer> MyInventory = this.player.getInventory();
             for (Item i : stock.keySet()) {
                 if (MyInventory.get(i) == null || MyInventory.get(i) == 0) {
-                    GameState.gui().message(i.getName() + ": $" + i.getPrice());
+                    GUI.gui.message(i.getName() + ": $" + i.getPrice());
                 } else {
-                    GameState.gui().message(
+                    GUI.gui.message(
                                     i.getName() + ": $" + i.getPrice() + " (you have: " + MyInventory.get(i) + ")");
                 }
             }
-            GameState.gui().message("You have : $" + player.money + " to spend.");
+            GUI.gui.message("You have : $" + player.money + " to spend.");
 
             displayGoods();
-            choose("Leave", GameState.gui());
+            choose("Leave", GUI.gui);
         }
     }
 

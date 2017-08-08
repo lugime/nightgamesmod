@@ -7,8 +7,8 @@ import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
 import nightgames.global.Configuration;
 import nightgames.global.Flag;
-import nightgames.global.GameState;
 import nightgames.global.Random;
+import nightgames.gui.GUI;
 
 public class Exercise extends Activity {
 
@@ -23,13 +23,13 @@ public class Exercise extends Activity {
 
     @Override
     public void visit(String choice) {
-        GameState.gui().clearText();
+        GUI.gui.clearText();
         if (page == 0) {
-            next(GameState.gui());
+            next(GUI.gui);
             int gain = gainStamina(player);
             showScene(pickScene(gain));
             if (gain > 0) {
-                GameState.gui().message("<b>Your maximum stamina has increased by " + gain + ".</b>");
+                GUI.gui.message("<b>Your maximum stamina has increased by " + gain + ".</b>");
             }
         } else {
             done(true);
@@ -55,40 +55,40 @@ public class Exercise extends Activity {
     private void showScene(Scene chosen) {
         switch (chosen) {
             case restricted:
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You try exercising for a while, but you don't have too much to show for it. Maybe you need to gain some more real world experience?");
                 break;
             case basic1:
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You're about halfway through your jog when a sudden downpour leaves you completely soaked. You squelch your way back to the dorm, looking like a drowned rat.");
                 break;
             case basic2:
-                GameState.gui().message("You head to the campus gym and spend some time in a variety of exercises.");
+                GUI.gui.message("You head to the campus gym and spend some time in a variety of exercises.");
                 break;
             case basic3:
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You decide to take a brief jog around campus to improve your strength and stamina.");
                 break;
             case fail1:
-                GameState.gui().message(
+                GUI.gui.message(
                                 "Maybe you didn't stretch well enough before you started, but a few minutes into your run you feel like you've pulled a muscle in your leg. Better take a break rather than injure yourself before the match.");
                 break;
             case cassie1:
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You head over to the campus gym and coincidentally run into Cassie there. <i>\"Hi. I'm not really much of a fitness enthusiast, but I need to get into better shape if I'm going to stay competitive.\"</i><br/>The two of you spend some time doing light exercise and chatting.");
 
                 CharacterPool.getNPC("Cassie").gainAffection(player, 1);
                 player.gainAffection(CharacterPool.getNPC("Cassie"), 1);
                 break;
             case jewel1:
-                GameState.gui().message(
+                GUI.gui.message(
                                 "You're going for a run around the campus and run into Jewel doing the same. She makes an immediate beeline towards you. <i>\"You're not getting out of running today, no matter how tempting the alternative is. We're going to get some real exercise.\"</i> She pushes you a lot harder than you had planned and you're exhausted by the end of it, but you did manage to keep up with her.");
 
                 CharacterPool.getNPC("Jewel").gainAffection(player, 1);
                 player.gainAffection(CharacterPool.getNPC("Jewel"), 1);
                 break;
             case yuiintro1:
-                GameState.gui().message("For a change of pace, you decide to try a different jogging route today that takes you outside the campus. There's less foot traffic to worry about here, "
+                GUI.gui.message("For a change of pace, you decide to try a different jogging route today that takes you outside the campus. There's less foot traffic to worry about here, "
                         + "which gives you more opportunity to just take in your surroundings. It's a fairly nice area. There are lots of small shops around, but at this time of day, "
                         + "it's pretty quiet... at first.<br/><br/>"
                         + "You notice raised voices and, despite your better judgement, you take a detour to check it out. You notice a guy in his early twenties arguing with "
@@ -113,7 +113,7 @@ public class Exercise extends Activity {
                 CharacterPool.getNPC("Yui").gainAffection(player, 1);
                 break;
             case yuiintro2:
-                GameState.gui().message("As you jog around the campus, you stumble onto a wallet sitting on the ground. It's right next to a bench, so it probably fell out of the owner's pocket "
+                GUI.gui.message("As you jog around the campus, you stumble onto a wallet sitting on the ground. It's right next to a bench, so it probably fell out of the owner's pocket "
                         + "when he or she stood up. There's no one nearby who might have dropped it, but you're not "
                         + "particularly busy right now. Maybe you can figure out who the owner is and return it.<br/><br/>"
                         + "You look inside the wallet, which doesn't contain much. There's some cash, but you're not really tempted to take it. You're making plenty off the Games. There's a "
@@ -136,7 +136,7 @@ public class Exercise extends Activity {
                 Flag.flag(Flag.YuiUnlocking);
                 break;
             case yuiintro3:
-                GameState.gui().message("You take a jog around the campus. You find yourself thinking about the girl you encountered on a couple previous jogs, Yui. You haven't had any way to contact "
+                GUI.gui.message("You take a jog around the campus. You find yourself thinking about the girl you encountered on a couple previous jogs, Yui. You haven't had any way to contact "
                         + "her other than hoping to run into her by chance. Does she really not own a cell phone? She didn't seem to be lying. Aesop, being an information broker, could probably find "
                         + "out more about her, but it feels wrong to ask him to investigate someone unrelated to the Games just to satisfy your curiosity. That would be like hiring a private detective "
                         + "to look into a girl you barely know. Oh well, maybe you'll get lucky and run into her again.<br/><br/>"
