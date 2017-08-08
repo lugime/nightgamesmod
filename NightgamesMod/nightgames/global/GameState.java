@@ -1,7 +1,6 @@
 package nightgames.global;
 
 import nightgames.Resources.ResourceLoader;
-import nightgames.actions.Action;
 import nightgames.characters.*;
 import nightgames.characters.Character;
 import nightgames.daytime.Daytime;
@@ -9,16 +8,13 @@ import nightgames.gui.GUI;
 import nightgames.gui.HeadlessGui;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
-import nightgames.modifier.ModifierPool;
 import nightgames.modifier.standard.NoModifier;
-import nightgames.requirements.TraitRequirement;
 import nightgames.skills.Skill;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
 
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -31,22 +27,7 @@ public class GameState {
     public static double xpRate = 1.0;
 
     public GameState(boolean headless) {
-        nightgames.global.Random.rng = new Random();
-        Flag.flags = new HashSet<>();
-        CharacterPool.players = new HashSet<>();
-        CharacterPool.debugChars = new HashSet<>();
-        Match.resting = new HashSet<>();
-        Flag.counters = new HashMap<>();
-        Flag.counters.put(Flag.malePref.name(), 0.f);
-        Clothing.buildClothingTable();
-        Logwriter.makeLogger(new Date());
-        TraitRequirement.setTraitRequirements(new TraitTree(ResourceLoader.getFileResourceAsStream("data/TraitRequirements.xml")));
         current = null;
-        Formatter.buildParser();
-        Action.buildActionPool();
-        Trait.buildFeatPool();
-        Skill.buildSkillPool(NPC.noneCharacter);
-        ModifierPool.buildModifierPool();
         gui = makeGUI(headless);
     }
 
@@ -222,16 +203,4 @@ public class GameState {
     }
 
 
-    public static void main(String[] args) {
-        new Logwriter();
-        for (String arg : args) {
-            try {
-                DebugFlags flag = DebugFlags.valueOf(arg);
-                DebugFlags.debug[flag.ordinal()] = true;
-            } catch (IllegalArgumentException e) {
-                // pass
-            }
-        }
-        new GameState(false);
-    }
 }
