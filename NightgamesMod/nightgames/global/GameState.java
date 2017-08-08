@@ -142,6 +142,28 @@ public class GameState {
         return data;
     }
 
+    /**
+     * Loads game state data into static fields from SaveData object.
+     *
+     * @param data A SaveData object, as loaded from save files.
+     */
+    protected static void loadData(SaveData data) {
+        CharacterPool.players.addAll(data.players);
+        CharacterPool.players.stream().filter(c -> c instanceof NPC).forEach(
+                        c -> CharacterPool.characterPool.put(c.getType(), (NPC) c));
+        Flag.flags.addAll(data.flags);
+        Flag.counters.putAll(data.counters);
+        Time.date = data.date;
+        Time.time = data.time;
+        GUI.gui.fontsize = data.fontsize;
+        GUI.gui.populatePlayer(CharacterPool.human);
+        if (Time.time == Time.DAY) {
+            GameState.startDay();
+        } else {
+            GameState.startNight();
+        }
+    }
+
     protected static void resetForLoad() {
         CharacterPool.players.clear();
         Flag.flags.clear();
@@ -196,6 +218,5 @@ public class GameState {
     public static boolean inGame() {
         return !CharacterPool.players.isEmpty();
     }
-
 
 }

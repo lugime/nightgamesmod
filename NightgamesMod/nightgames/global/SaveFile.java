@@ -4,8 +4,6 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
-import nightgames.characters.CharacterPool;
-import nightgames.characters.NPC;
 import nightgames.gui.GUI;
 import nightgames.json.JsonUtils;
 
@@ -79,28 +77,7 @@ public class SaveFile {
             return;
         }
         SaveData data = new SaveData(object);
-        loadData(data);
-        GUI.gui.populatePlayer(CharacterPool.human);
-        if (Time.time == Time.DAY) {
-            GameState.startDay();
-        } else {
-            GameState.startNight();
-        }
+        GameState.loadData(data);
     }
 
-    /**
-     * Loads game state data into static fields from SaveData object.
-     *
-     * @param data A SaveData object, as loaded from save files.
-     */
-    protected static void loadData(SaveData data) {
-        CharacterPool.players.addAll(data.players);
-        CharacterPool.players.stream().filter(c -> c instanceof NPC).forEach(
-                        c -> CharacterPool.characterPool.put(c.getType(), (NPC) c));
-        Flag.flags.addAll(data.flags);
-        Flag.counters.putAll(data.counters);
-        Time.date = data.date;
-        Time.time = data.time;
-        GUI.gui.fontsize = data.fontsize;
-    }
 }
