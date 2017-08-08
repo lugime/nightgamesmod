@@ -1,33 +1,25 @@
 package nightgames.global;
 
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-import java.util.stream.Collectors;
-
-import nightgames.characters.*;
-import nightgames.characters.Character;
-import nightgames.modifier.ModifierPool;
-import nightgames.requirements.TraitRequirement;
-
 import nightgames.Resources.ResourceLoader;
 import nightgames.actions.Action;
+import nightgames.characters.*;
+import nightgames.characters.Character;
 import nightgames.daytime.Daytime;
 import nightgames.gui.GUI;
 import nightgames.gui.HeadlessGui;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
+import nightgames.modifier.ModifierPool;
 import nightgames.modifier.standard.NoModifier;
-import nightgames.skills.*;
+import nightgames.requirements.TraitRequirement;
+import nightgames.skills.Skill;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
+
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Creates, destroys, and maintains the state of a running game.

@@ -1,10 +1,5 @@
 package nightgames.global;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import nightgames.characters.Player;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
@@ -14,6 +9,11 @@ import nightgames.modifier.ModifierPool;
 import nightgames.modifier.standard.MayaModifier;
 import nightgames.modifier.standard.NoModifier;
 import nightgames.modifier.standard.UnderwearOnlyModifier;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Prematch implements Scene {
     private Modifier type;

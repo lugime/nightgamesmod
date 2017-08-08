@@ -1,10 +1,10 @@
 package nightgames.global;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import nightgames.characters.Character;
 import nightgames.pet.arms.ArmManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Match data that will be instantiated/cleared on every new match.

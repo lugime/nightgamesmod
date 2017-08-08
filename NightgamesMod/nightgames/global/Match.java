@@ -1,8 +1,5 @@
 package nightgames.global;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 import nightgames.actions.Movement;
 import nightgames.areas.Area;
 import nightgames.areas.Cache;
@@ -22,6 +19,9 @@ import nightgames.skills.Skill;
 import nightgames.status.Status;
 import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Match {
     public static Set<Character> resting;
