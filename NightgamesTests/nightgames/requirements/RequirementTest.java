@@ -9,20 +9,12 @@ import nightgames.characters.body.mods.FieryMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.GameState;
-import nightgames.global.TestGameState;
 import nightgames.items.Item;
-import nightgames.items.clothing.Clothing;
 import nightgames.stance.*;
 import nightgames.status.Alert;
 import nightgames.status.Stsflag;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Optional;
 
 import static nightgames.requirements.RequirementShortcuts.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -44,12 +36,6 @@ public class RequirementTest {
     private NPC self;
     private NPC other;
     private Combat combat;
-
-    @BeforeClass public static void setUpClass() throws Exception {
-        Clothing.buildClothingTable();
-        new TestGameState();
-        GameState.newGame("TestPlayer", Optional.empty(), new ArrayList<>(), CharacterSex.asexual, new HashMap<>());
-    }
 
     @Before public void setUp() throws Exception {
         self = new BlankPersonality("SelfTestNPC").character;

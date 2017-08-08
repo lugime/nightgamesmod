@@ -1,8 +1,5 @@
 package nightgames.characters;
 
-import nightgames.global.Main;
-import nightgames.global.TestGameState;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,10 +15,6 @@ import static org.junit.Assert.*;
  *
  */
 public class PlayerTest {
-    @BeforeClass public static void setUpPlayerTest() {
-        new TestGameState();
-    }
-
     @Test public void testStartGenitals() throws Exception {
         Map<Attribute, Integer> selectedAttributes = new HashMap<>();
         selectedAttributes.put(Attribute.Power, 5);

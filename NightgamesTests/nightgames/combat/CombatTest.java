@@ -3,20 +3,19 @@ package nightgames.combat;
 import nightgames.actions.Movement;
 import nightgames.areas.Area;
 import nightgames.characters.BlankPersonality;
-import nightgames.characters.CharacterSex;
 import nightgames.characters.NPC;
 import nightgames.characters.Trait;
-import nightgames.global.GameState;
-import nightgames.global.TestGameState;
+import nightgames.global.Match;
+import nightgames.gui.TestGUI;
+import nightgames.modifier.Modifier;
+import nightgames.modifier.standard.NoModifier;
 import nightgames.stance.Stance;
 import nightgames.stance.TestPosition;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.Arrays;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.*;
@@ -25,18 +24,18 @@ import static org.junit.Assert.*;
  * TODO: Write class-level documentation.
  */
 public class CombatTest {
-    @BeforeClass public static void setUpClass() throws Exception {
-        new TestGameState();
-        GameState.newGame("TestPlayer", Optional.empty(), new ArrayList<>(), CharacterSex.asexual, new HashMap<>());
-    }
-
     private NPC self;
     private NPC other;
     private Combat combat;
 
+    @BeforeClass public static void setUpCombatTest() throws Exception {
+        new TestGUI();
+    }
+
     @Before public void setUp() throws Exception {
         self = new BlankPersonality("SelfTestNPC").character;
         other = new BlankPersonality("OtherTestNPC").character;
+        Match.match = new Match(Arrays.asList(self, other), new NoModifier());
         Area area = new Area("TestArea", "TestArea description", Movement.beer);
         combat = new Combat(self, other, area);
     }

@@ -25,10 +25,6 @@ public class PlayerConfigurationTest {
     StartConfiguration startConfig;
     PlayerConfiguration playerConfig;
 
-    @BeforeClass public static void setUpClass() {
-        Clothing.buildClothingTable();
-    }
-
     @Before public void setUp() throws Exception {
         Path file = new File("NightgamesTests/nightgames/start/TestStartConfig.json").toPath();
         startConfig = StartConfiguration.parse(JsonUtils.rootJson(file).getAsJsonObject());

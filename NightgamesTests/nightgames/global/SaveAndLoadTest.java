@@ -3,8 +3,10 @@ package nightgames.global;
 import com.google.gson.JsonObject;
 import nightgames.characters.*;
 import nightgames.characters.Character;
+import nightgames.gui.TestGUI;
 import org.hamcrest.*;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
@@ -20,8 +22,13 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class SaveAndLoadTest {
     private Path savePath = new File("NightGamesTests/nightgames/global/test_save.ngs").toPath();
 
+    @BeforeClass public static void setUpSaveAndLoadTest() throws Exception {
+        Main.initialize();
+        new TestGUI();
+    }
+
     @Before public void setUp() throws Exception {
-        new TestGameState();
+        GameState.reset();
     }
 
     @Test public void testLoadAndSave() throws Exception {

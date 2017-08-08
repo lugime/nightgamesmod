@@ -10,6 +10,7 @@ public class TestGUI extends GUI {
     private static final long serialVersionUID = 1739250786661411957L;
 
     public TestGUI() {
+        GUI.gui = this;
     }
 
     @Override public void setVisible(boolean visible) {

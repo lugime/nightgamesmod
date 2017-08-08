@@ -5,7 +5,6 @@ import nightgames.characters.*;
 import nightgames.characters.Character;
 import nightgames.daytime.Daytime;
 import nightgames.gui.GUI;
-import nightgames.gui.HeadlessGui;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
 import nightgames.modifier.standard.NoModifier;
@@ -25,13 +24,8 @@ public class GameState {
     public static double moneyRate = 1.0;
     public static double xpRate = 1.0;
 
-    public GameState(boolean headless) {
+    public GameState() {
         current = null;
-        GUI.gui = makeGUI(headless);
-    }
-
-    protected GUI makeGUI(boolean headless) {
-        return headless ? new HeadlessGui() : new GUI();
     }
 
     public static void newGame(String playerName, Optional<StartConfiguration> config, List<Trait> pickedTraits,

@@ -2,12 +2,10 @@ package nightgames.start;
 
 import nightgames.characters.Attribute;
 import nightgames.characters.CharacterSex;
-import nightgames.global.TestGameState;
 import nightgames.json.JsonUtils;
 import nightgames.items.clothing.Clothing;
 import org.hamcrest.collection.IsMapContaining;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -27,17 +25,12 @@ public class NpcConfigurationTest {
     StartConfiguration startConfig;
     NpcConfiguration angelConfig;
 
-    @BeforeClass
-    public static void setUpNpcConfigurationTest() {
-        Clothing.buildClothingTable();
-    }
-
     @Before public void setUp() throws Exception {
         Path file = new File("NightgamesTests/nightgames/start/TestStartConfig.json").toPath();
         startConfig = StartConfiguration.parse(JsonUtils.rootJson(file).getAsJsonObject());
         angelConfig = startConfig.findNpcConfig("TestAngel")
                         .orElseThrow(() -> new NoSuchElementException("TestAngel not found in test config."));
-        new TestGameState();
+        GameState.reset();
         GameState.newGame("Dummy", Optional.empty(), Collections.emptyList(), CharacterSex.asexual, Collections.emptyMap());
     }
 

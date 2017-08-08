@@ -3,6 +3,7 @@ package nightgames.global;
 import nightgames.Resources.ResourceLoader;
 import nightgames.characters.TraitTree;
 import nightgames.gui.GUI;
+import nightgames.gui.HeadlessGui;
 import nightgames.requirements.TraitRequirement;
 
 import java.util.Date;
@@ -13,6 +14,21 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
         new Logwriter();
+        Logwriter.makeLogger(new Date());
+        parseDebugFlags(args);
+        initialize();
+        makeGUI();
+    }
+
+    private static void makeGUI() {
+        if (DebugFlags.isDebugOn(DebugFlags.NO_GUI)) {
+            new HeadlessGui();
+        } else {
+            new GUI();
+        }
+    }
+
+    public static void parseDebugFlags(String[] args) {
         for (String arg : args) {
             try {
                 DebugFlags flag = DebugFlags.valueOf(arg);
@@ -21,12 +37,9 @@ public class Main {
                 // pass
             }
         }
-        initialize();
-        new GUI();
     }
 
     public static void initialize() {
-        Logwriter.makeLogger(new Date());
         TraitRequirement.setTraitRequirements(new TraitTree(ResourceLoader.getFileResourceAsStream("data/TraitRequirements.xml")));
     }
 }
