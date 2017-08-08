@@ -21,7 +21,7 @@ public class ArcaneMod extends PartMod {
         /* TODO
         if (c.getStance().partsForStanceOnly(c, self, opponent).contains(part)) {
             if (c.getStance().partsForStanceOnly(c, opponent, self).stream().anyMatch(otherPart -> otherPart.isType("cock"))) {
-                c.write(self, Global.format(
+                c.write(self, GameState.format(
                                 "The intricate tattoos surrounding %s lights up as you pump your semen into into it. TODO",
                                 self, opponent, part.describe(self)));
                 

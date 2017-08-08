@@ -3,7 +3,7 @@ package nightgames.daytime;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.global.Flag;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Random;
 import nightgames.items.clothing.Clothing;
 
@@ -25,11 +25,11 @@ public class Meditation extends Activity {
         if (choice.equals("Start")) {
             acted = false;
         }
-        Global.gui().clearText();
-        Global.gui().clearCommand();
+        GameState.gui().clearText();
+        GameState.gui().clearCommand();
         if (Flag.checkFlag(Flag.dojo) && choice.equals("Start")) {
             if (!Flag.checkFlag(Flag.metSuzume)) {
-                Global.gui().message(
+                GameState.gui().message(
                                 "You go to the Suzuki dojo to meet Suzume. She looks like she's trying to looks like project the air of a dignified martial arts master, but "
                                                 + "you can tell she's excited at the prospect of getting a student. <i>\"Aesop tells me you're interested in becoming my apprentice. Sorry I didn't offer to "
                                                 + "train you earlier, but Aesop was very insistent that I wait.\"</i> She walks past you and locks the dojo door. <i>\"We have some privacy, so take off your clothes "
@@ -42,21 +42,21 @@ public class Meditation extends Activity {
                                                 + "session.\"</i> Her expression darkens as she bites her lip. <i>\"My father is not in good health and he can't take students. I need money to keep the dojo open, and "
                                                 + "I know you're making plenty in the games.\"</i>");
                 Flag.flag(Flag.metSuzume);
-                choose("Train: $" + 1000 * (player.get(Attribute.Ki) + 1), Global.gui());
-                choose("Sharpen Senses", Global.gui());
-                choose("Shut Out Sensation", Global.gui());
-                choose("Leave", Global.gui());
+                choose("Train: $" + 1000 * (player.get(Attribute.Ki) + 1), GameState.gui());
+                choose("Sharpen Senses", GameState.gui());
+                choose("Shut Out Sensation", GameState.gui());
+                choose("Leave", GameState.gui());
             } else {
-                Global.gui().message(
+                GameState.gui().message(
                                 "You go to the Suzuki dojo and remove your shoes out of respect. Suzume (or Suzuki-shisho as she's instructed you to call her) give you a friendly "
                                                 + "smile as you bow. <i>\"Welcome apprentice. Are you ready to continue your training or are you here to meditate?\"</i>");
-                choose("Train: $" + 1000 * (player.get(Attribute.Ki) + 1), Global.gui());
-                choose("Sharpen Senses", Global.gui());
-                choose("Shut Out Sensation", Global.gui());
-                choose("Leave", Global.gui());
+                choose("Train: $" + 1000 * (player.get(Attribute.Ki) + 1), GameState.gui());
+                choose("Sharpen Senses", GameState.gui());
+                choose("Shut Out Sensation", GameState.gui());
+                choose("Leave", GameState.gui());
             }
         } else if (choice.equals("Start")) {
-            Global.gui().message(
+            GameState.gui().message(
                             "You contact Suzume and schedule a private meditation session. Dropping Aesop's name saved a lot of time; she didn't ask many questions. Apparently "
                                             + "he refers people to her pretty regularly. The two of you meet at a martial arts dojo that her family runs, but there's no one else there currently. Suzume herself is "
                                             + "a thin asian girl with short brown hair and a subtle japanese accent. She looks you over with a pleased expression. <i>\"If Tyler sent you to me, I'm guessing you want "
@@ -64,14 +64,14 @@ public class Meditation extends Activity {
                                             + "<i>\"Now I need to be clear that hypnotic suggestion is not an exact science and there's no guarantee there will be any noticeable change in your sensitivity. If we are "
                                             + "successful, there will still be a drawback. Making yourself less sensitive can also cause you to miss fine details, and making yourself more perceptive can turn you into "
                                             + "a quick shot in bed. So knowing all that, do you still want to go through with this?\"</i>");
-            choose("Sharpen Senses", Global.gui());
-            choose("Shut Out Sensation", Global.gui());
-            choose("Leave", Global.gui());
+            choose("Sharpen Senses", GameState.gui());
+            choose("Shut Out Sensation", GameState.gui());
+            choose("Leave", GameState.gui());
         } else if (choice.equals("Leave")) {
             done(acted);
         } else if (choice.startsWith("Train")) {
             if (player.money >= 1000 * (player.getPure(Attribute.Ki) + 1)) {
-                Global.gui().message(
+                GameState.gui().message(
                                 "Suzuki-shisho insists that you train in the nude. She claims it's a tribute to an old Japanese grappling tradition. You're about 95% certain she's "
                                                 + "lying. Fortunately the dojo doesn't appear to have any other students, so the two of you have plenty of privacy. It's also closer to the circumstances you're "
                                                 + "normally fighting in.<br/><br/><i>\"Your Ki skills can be very useful, but be careful to pace yourself or you may run out of stamina.\"</i>");
@@ -82,16 +82,16 @@ public class Meditation extends Activity {
                 if (!player.has(Clothing.getByID("gi"))) {
                     player.gain(Clothing.getByID("gi"));
                 }
-                choose("Leave", Global.gui());
+                choose("Leave", GameState.gui());
             } else {
-                Global.gui().message("You don't have enough money for training.");
-                choose("Sharpen Senses", Global.gui());
-                choose("Shut Out Sensation", Global.gui());
-                choose("Leave", Global.gui());
+                GameState.gui().message("You don't have enough money for training.");
+                choose("Sharpen Senses", GameState.gui());
+                choose("Shut Out Sensation", GameState.gui());
+                choose("Leave", GameState.gui());
             }
         } else if (choice.equals("Sharpen Senses")) {
             if (Random.random(100) >= 50) {
-                Global.gui().message(
+                GameState.gui().message(
                                 "Suzume instructs you to sit in the middle of the dojo and close your eyes. <i>\"I'm going to count down from ten. With each number, you will feel your "
                                                 + "mind openning and you will be more receptive to my words. When I reach zero, imagine your mind as an empty vessel, ready to take in everything around you.\"</i> As she "
                                                 + "counts down, you can feel yourself slipping into a trance. You know you could pull back at any time, but that would defeat the entire purpose of this, so instead you "
@@ -114,7 +114,7 @@ public class Meditation extends Activity {
                     player.modAttributeDontSaveData(Attribute.Perception, 1);
                 }
             } else {
-                Global.gui().message(
+                GameState.gui().message(
                                 "Suzume instructs you to sit in the middle of the dojo and close your eyes. <i>\"I'm going to count down from ten. With each number, you will feel your "
                                                 + "mind opening and you will be more receptive to my words. When I reach zero, imagine your mind as an empty vessel, ready to take in everything around you.\"</i> As she "
                                                 + "counts down, you can feel yourself slipping into a trance. You know you could pull back at any time, but that would defeat the entire purpose of this, so instead you "
@@ -128,10 +128,10 @@ public class Meditation extends Activity {
                                                 + "If you want, we can try again another time, but for now you need some time to recover.\"</i>");
             }
             acted = true;
-            choose("Leave", Global.gui());
+            choose("Leave", GameState.gui());
         } else if (choice.equals("Shut Out Sensation")) {
             if (Random.random(100) >= 50) {
-                Global.gui().message(
+                GameState.gui().message(
                                 "Suzume has you lie down on the cold, somewhat uncomfortable floor. <i>\"Now please close your eyes while I count down from ten. I want you to imagine a set of stairs and "
                                                 + "with at each count I want you to take one step down. As you descend, everything in the world will fade away except my voice.\"</i> She begins to count down and you imagine yourself "
                                                 + "walking down the stairs. By the time she finishes counting, you no longer feel the hard floor beneath you. There's no sensation and no ambient noise. The only thing that matters "
@@ -146,7 +146,7 @@ public class Meditation extends Activity {
                     player.modAttributeDontSaveData(Attribute.Perception, -1);
                 }
             } else {
-                Global.gui().message(
+                GameState.gui().message(
                                 "Suzume has you lie down on the cold, somewhat uncomfortable floor. <i>\"Now please close your eyes while I count down from ten. I want you to imagine a set of stairs and "
                                                 + "with at each count I want you to take one step down. As you descend, everything in the world will fade away except my voice.\"</i> She begins to count down and you imagine yourself "
                                                 + "walking down the stairs. By the time she finishes counting, you no longer feel the hard floor beneath you. There's no sensation and no sound.<br/><br/>There's nothing. You feel completely "
@@ -156,7 +156,7 @@ public class Meditation extends Activity {
                                                 + "don't think we can salvage this session. Give me a call if you want to try again.\"</i>");
             }
             acted = true;
-            choose("Leave", Global.gui());
+            choose("Leave", GameState.gui());
         }
     }
 

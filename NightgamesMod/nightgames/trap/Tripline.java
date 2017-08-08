@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.Item;
 import nightgames.stance.StandingOver;
 import nightgames.status.Flatfooted;
@@ -24,24 +24,24 @@ public class Tripline extends Trap {
         int m = 30 + target.getLevel() * 5;
         if (target.human()) {
             if (!target.check(Attribute.Perception, 20 + target.baseDisarm())) {
-                Global.gui().message("You trip over a line of cord and fall on your face.");
+                GameState.gui().message("You trip over a line of cord and fall on your face.");
                 target.pain(null, null, m);
                 target.location().opportunity(target, this);
             } else {
-                Global.gui().message("You spot a line strung across the corridor and carefully step over it.");
+                GameState.gui().message("You spot a line strung across the corridor and carefully step over it.");
                 target.location().remove(this);
             }
         } else {
             if (!target.check(Attribute.Perception, 20 + target.baseDisarm())) {
                 if (target.location().humanPresent()) {
-                    Global.gui().message(target.getName()
+                    GameState.gui().message(target.getName()
                                     + " carelessly stumbles over the tripwire and lands with an audible thud.");
                 }
                 target.pain(null, null, m);
                 target.location().opportunity(target, this);
             } else {
                 if (target.location().humanPresent()) {
-                    Global.gui().message("You see " + target.getName() + " carefully step over the carefully placed tripline." );
+                    GameState.gui().message("You see " + target.getName() + " carefully step over the carefully placed tripline." );
                 }
             }
         }

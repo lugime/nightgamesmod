@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import nightgames.characters.*;
 import nightgames.characters.Character;
 import nightgames.global.Flag;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Random;
 import nightgames.global.Time;
 import nightgames.status.addiction.Addiction;
@@ -51,15 +51,15 @@ public class Daytime {
     }
 
     private boolean morning() {
-        Global.gui()
+        GameState.gui()
               .clearText();
         CharacterPool.getPlayer().getAddictions().forEach(Addiction::clearDaytime);
-        CharacterPool.getPlayer().getAddictions().stream().map(a -> a.describeMorning()).forEach(s -> Global.gui().message(s));
+        CharacterPool.getPlayer().getAddictions().stream().map(a -> a.describeMorning()).forEach(s -> GameState.gui().message(s));
         if (eventMgr.playMorningScene()) {
             time = 12;
             return true;
         } else if (player.getLevel() >= 10 && player.getRank() == 0) {
-            Global.gui()
+            GameState.gui()
                   .message("The next day, just after getting out of class you receive call from a restricted number. Normally you'd just ignore it, "
                                   + "but for some reason you feel compelled to answer this one. You're greeted by a man with a clear deep voice. <i>\"Hello "
                                   + player.getTrueName() + ", and "
@@ -70,7 +70,7 @@ public class Daytime {
                                   + "know someone who sells it.\"</i> There's a click and the call ends.");
             player.rankup();
         } else if (player.getLevel() >= 20 && player.getRank() == 1) {
-            Global.gui()
+            GameState.gui()
                   .message("In the morning, you receive a call from a restricted number. You have a pretty decent guess who it might be. Hopefully it is good news. <i>\"Hello again "
                                   + player.getTrueName()
                                   + ".\"</i> You were right, that voice is pretty hard to forget. <i>\"I am impressed. You and your opponents are "
@@ -81,7 +81,7 @@ public class Daytime {
             player.rankup();
             time = 15;
         } else if (player.getLevel() >= 30 && player.getRank() == 2) {
-            Global.gui()
+            GameState.gui()
                   .message("In the morning, you receive a call from a restricted number. You are not at all surprised to hear the voice of your anonymous Benefactor again. It did seem about time for him to call again. <i>\"Hello "
                                   + player.getTrueName() + ". Have you been keeping busy? You've been putting "
                                   + "on a good show in your matches, but when we last spoke, you had many questions. Are you any closer to finding your answers?\"</i><br/><br/>"
@@ -96,14 +96,14 @@ public class Daytime {
             player.rankup();
             time = 15;
         } else if (player.getLevel() / 10 > player.getRank()) {
-            Global.gui().message("You have advanced to rank " + ++player.rank + "!");
+            GameState.gui().message("You have advanced to rank " + ++player.rank + "!");
             time = 15;
         } else if (Time.getDate() % 7 == 6 || Time.getDate() % 7 == 0) {
-            Global.gui()
+            GameState.gui()
                   .message("You don't have any classes today, but you try to get up at a reasonable hour so you can make full use of your weekend.");
             time = 12;
         } else {
-            Global.gui()
+            GameState.gui()
                   .message("You try to get as much sleep as you can before your morning classes.<br/><br/>You're done with classes by mid-afternoon and have the rest of the day free.");
             time = 15;
         }
@@ -119,18 +119,18 @@ public class Daytime {
             }
         }
         if (time < 22) {
-            Global.gui()
+            GameState.gui()
                   .message("It is currently " + displayTime() + ". Your next match starts at 10:00pm.");
-            Global.gui()
+            GameState.gui()
                   .refresh();
-            Global.gui()
+            GameState.gui()
                   .clearCommand();
             if (eventMgr.playRegularScene())
                 return;
             for (Activity act : activities) {
                 if (act.known() && act.time() + time <= 22) {
 
-                    act.addActivity(Global.gui());
+                    act.addActivity(GameState.gui());
                 }
             }
         } else {
@@ -142,13 +142,13 @@ public class Daytime {
                     ((NPC) npc).daytime(daylength);
                 }
             }
-            Global.endDay();
+            GameState.endDay();
 
             /*
-            if (Global.checkFlag(Flag.autosave)) {
-                Global.autoSave();
+            if (GameState.checkFlag(Flag.autosave)) {
+                GameState.autoSave();
             }
-            Global.decideMatchType()
+            GameState.decideMatchType()
                   .buildPrematch(player);
             */
         }
@@ -217,14 +217,14 @@ public class Daytime {
         if (Random.random(100) >= a) {
             one.modAttributeDontSaveData(att, 1);
             if (one.human()) {
-                Global.gui()
+                GameState.gui()
                       .message("<b>Your " + att + " has improved.</b>");
             }
         }
         if (Random.random(100) >= b) {
             two.modAttributeDontSaveData(att, 1);
             if (two.human()) {
-                Global.gui()
+                GameState.gui()
                       .message("<b>Your " + att + " has improved.</b>");
             }
         }

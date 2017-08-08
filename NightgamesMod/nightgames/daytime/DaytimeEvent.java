@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Random;
 import nightgames.global.Scene;
 
@@ -60,8 +60,8 @@ abstract class DaytimeEvent implements Scene {
     
     private void runScene(String scene) {
         play(scene);
-        Global.current = this;
-        Global.gui().choose("Next");
+        GameState.current = this;
+        GameState.gui().choose("Next");
     }
     
     abstract boolean available();

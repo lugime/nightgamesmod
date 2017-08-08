@@ -5,7 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.Item;
 import nightgames.status.RoboWebbed;
 
@@ -45,9 +45,9 @@ public class RoboWeb extends Trap {
                 msg += "sensitive nipples";
             }
             msg += " are especially distracting, as they drive you right to the edge of orgasm.";
-            Global.gui().message(msg);
+            GameState.gui().message(msg);
         } else {
-            Global.gui().message(String.format("You hear a loud <i>SNAP</i> coming from nearby. Looking around, you"
+            GameState.gui().message(String.format("You hear a loud <i>SNAP</i> coming from nearby. Looking around, you"
                             + " see a mess of rope-like cords flying towards you. You duck out of the way,"
                             + " but it seems the cords were not meant to hit you in the first place."
                             + " Instead, they and many others like them have ensnared %s, hoisting"

@@ -6,7 +6,7 @@ import java.util.List;
 
 import nightgames.characters.Character;
 import nightgames.characters.NPC;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.requirements.Requirement;
 
 public class CombatScene {
@@ -27,7 +27,7 @@ public class CombatScene {
         c.write("<br/>");
         c.write(message.provide(c, npc, c.getOpponent(npc)));
         c.updateAndClearMessage();
-        choices.forEach(choice -> c.choose(npc, choice.getChoice(), choice, Global.gui()));
+        choices.forEach(choice -> c.choose(npc, choice.getChoice(), choice, GameState.gui()));
     }
 
     public boolean meetsRequirements(Combat c, NPC npc) {

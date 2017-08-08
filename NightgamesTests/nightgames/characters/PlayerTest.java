@@ -1,9 +1,6 @@
 package nightgames.characters;
 
-import nightgames.global.Global;
-import nightgames.global.TestGlobal;
-import nightgames.items.clothing.Clothing;
-import org.junit.AfterClass;
+import nightgames.global.TestGameState;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class PlayerTest {
     @BeforeClass public static void setUpPlayerTest() {
-        new TestGlobal();
+        new TestGameState();
     }
 
     @Test public void testStartGenitals() throws Exception {

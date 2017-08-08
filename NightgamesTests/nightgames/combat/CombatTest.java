@@ -6,8 +6,8 @@ import nightgames.characters.BlankPersonality;
 import nightgames.characters.CharacterSex;
 import nightgames.characters.NPC;
 import nightgames.characters.Trait;
-import nightgames.global.Global;
-import nightgames.global.TestGlobal;
+import nightgames.global.GameState;
+import nightgames.global.TestGameState;
 import nightgames.stance.Stance;
 import nightgames.stance.TestPosition;
 import org.junit.Before;
@@ -26,8 +26,8 @@ import static org.junit.Assert.*;
  */
 public class CombatTest {
     @BeforeClass public static void setUpClass() throws Exception {
-        new TestGlobal();
-        Global.newGame("TestPlayer", Optional.empty(), new ArrayList<>(), CharacterSex.asexual, new HashMap<>());
+        new TestGameState();
+        GameState.newGame("TestPlayer", Optional.empty(), new ArrayList<>(), CharacterSex.asexual, new HashMap<>());
     }
 
     private NPC self;

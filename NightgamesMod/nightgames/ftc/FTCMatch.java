@@ -84,7 +84,7 @@ public class FTCMatch extends Match {
             if (ch.has(Item.Flag) && gracePeriod == 0 && (++flagCounter % 3) == 0) {
                 score(ch, 1);
                 if (ch.human()) {
-                    Global.gui().message("You scored one point for holding the flag.");
+                    GameState.gui().message("You scored one point for holding the flag.");
                 }
             }
         }
@@ -217,7 +217,7 @@ public class FTCMatch extends Match {
     public void turnInFlag(Character ch) {
         flagInCenter = true;
         score(ch, 5);
-        Global.gui().message(Formatter.format("<b>{self:SUBJECT-ACTION:turn|turns} in the flag and "
+        GameState.gui().message(Formatter.format("<b>{self:SUBJECT-ACTION:turn|turns} in the flag and "
                         + "{self:action:gain|gains} five points.</b>", ch, NPC.noneCharacter()));
         ch.remove(Item.Flag);
     }
@@ -230,7 +230,7 @@ public class FTCMatch extends Match {
         flagInCenter = false;
         gracePeriod = 3;
         flagCounter = 0;
-        Global.gui().message(Formatter.format("{self:SUBJECT-ACTION:grab|grabs} a new flag from the stash. That means"
+        GameState.gui().message(Formatter.format("{self:SUBJECT-ACTION:grab|grabs} a new flag from the stash. That means"
                         + " {self:pronoun} cannot be attacked for two turns, so {self:pronoun}"
                         + " {self:action:have|has} a chance to hide.", prey, NPC.noneCharacter()));
         prey.gain(Item.Flag);

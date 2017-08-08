@@ -3,7 +3,7 @@ package nightgames.items;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 
 public class RemoveTraitEffect extends ItemEffect {
     private Trait trait;
@@ -27,7 +27,7 @@ public class RemoveTraitEffect extends ItemEffect {
                 c.write(user, user.subjectAction("temporarily lost", "temporarily lost") + " the trait "
                                 + trait.toString() + ".");
             } else if (user.human()) {
-                Global.gui().message(user.subjectAction("temporarily lost", "temporarily lost") + " the trait "
+                GameState.gui().message(user.subjectAction("temporarily lost", "temporarily lost") + " the trait "
                                 + trait.toString() + ".");
             }
             return true;

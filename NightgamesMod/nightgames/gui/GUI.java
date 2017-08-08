@@ -193,12 +193,12 @@ public class GUI extends JFrame implements Observer {
         mntmNewgame.setHorizontalAlignment(SwingConstants.CENTER);
 
         mntmNewgame.addActionListener(arg0 -> {
-            if (Global.inGame()) {
+            if (GameState.inGame()) {
                 int result = JOptionPane.showConfirmDialog(GUI.this,
                                 "Do you want to restart the game? You'll lose any unsaved progress.", "Start new game?",
                                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (result == JOptionPane.OK_OPTION) {
-                    Global.reset();
+                    GameState.reset();
                 }
             }
         });
@@ -324,12 +324,12 @@ public class GUI extends JFrame implements Observer {
         rdfntnorm = new JButton("Smaller");
         rdfntnorm.addActionListener(a -> {
             fontsize = MathUtils.clamp(fontsize - 1, 1, 7);
-            Global.gui().message("Text Size changed to " + fontsize);
+            GameState.gui().message("Text Size changed to " + fontsize);
         });
         rdnfntlrg = new JButton("Larger");
         rdnfntlrg.addActionListener(a -> {
             fontsize = MathUtils.clamp(fontsize + 1, 1, 7);
-            Global.gui().message("Text Size changed to " + fontsize);
+            GameState.gui().message("Text Size changed to " + fontsize);
         });
         size.add(rdfntnorm);
         size.add(rdnfntlrg);
@@ -507,7 +507,7 @@ public class GUI extends JFrame implements Observer {
             Object[] okOnly = {"OK"};
             int results = JOptionPane.showOptionDialog(GUI.this, panel, "Credits", JOptionPane.DEFAULT_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-            if (results == 1 && Global.inGame()) {
+            if (results == 1 && GameState.inGame()) {
                 JPanel debugPanel = new DebugGUIPanel();
                 JOptionPane.showOptionDialog(GUI.this, debugPanel, "Debug", JOptionPane.PLAIN_MESSAGE,
                                 JOptionPane.INFORMATION_MESSAGE, null, okOnly, okOnly[0]);
@@ -1304,6 +1304,6 @@ public class GUI extends JFrame implements Observer {
     public void switchTactics(TacticGroup group) {
         groupBox.removeAll();
         currentTactics = group;
-        Global.gui().showSkills();
+        GameState.gui().showSkills();
     }
 }

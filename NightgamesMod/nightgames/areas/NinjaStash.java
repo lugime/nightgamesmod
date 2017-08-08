@@ -3,7 +3,7 @@ package nightgames.areas;
 import java.util.ArrayList;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Random;
 import nightgames.items.Item;
 
@@ -30,7 +30,7 @@ public class NinjaStash implements Deployable {
     @Override
     public boolean resolve(Character active) {
         if(owner==active&&active.human()){
-            Global.gui().message("You have a carefully hidden stash of emergency supplies here. You can replace your clothes and collect the items if you need to.");
+            GameState.gui().message("You have a carefully hidden stash of emergency supplies here. You can replace your clothes and collect the items if you need to.");
         }
         return false;
     }

@@ -1,7 +1,7 @@
 package nightgames.actions;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.trap.Trap;
 
 public class SetTrap extends Action {
@@ -30,7 +30,7 @@ public class SetTrap extends Action {
             user.location().place(newTrap);
             String message = newTrap.setup(user);
             if (user.human()) {
-                Global.gui().message(message);
+                GameState.gui().message(message);
             }
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();

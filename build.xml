@@ -78,7 +78,7 @@
 	<target name="create_run_jar">
 		<jar destfile="${stage}/NightgamesMod.jar" filesetmanifest="mergewithoutmain">
 			<manifest>
-				<attribute name="Main-Class" value="nightgames.global.Global" />
+				<attribute name="Main-Class" value="nightgames.global.GameState" />
 				<attribute name="Class-Path" value="." />
 			</manifest>
 			<fileset dir="${classes}" />

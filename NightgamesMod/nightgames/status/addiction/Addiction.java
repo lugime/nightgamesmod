@@ -9,7 +9,7 @@ import nightgames.characters.CharacterPool;
 import nightgames.combat.Combat;
 import nightgames.global.DebugFlags;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Random;
 import nightgames.status.Status;
 import nightgames.status.Stsflag;
@@ -151,7 +151,7 @@ public abstract class Addiction extends Status {
             if (isActive()) {
                 inWithdrawal = true;
                 if (affected.human()) {
-                    Global.gui().message(describeWithdrawal());
+                    GameState.gui().message(describeWithdrawal());
                 }
                 return withdrawalEffects();
             }
@@ -173,7 +173,7 @@ public abstract class Addiction extends Status {
         if (overloading) {
             magnitude = 0.f;
             overloading = false;
-            Global.gui()
+            GameState.gui()
                   .message("<b>The overload treatment seems to have worked, and you are now rid of all traces of"
                                   + " your " + name + ".\n</b>");
             affected.removeStatusImmediately(this);
@@ -253,7 +253,7 @@ public abstract class Addiction extends Status {
     }
 
     public void describeInitial() {
-        Global.gui().message(describeIncrease());
+        GameState.gui().message(describeIncrease());
     }
 
     public static Addiction load(Character self, JsonObject object) {

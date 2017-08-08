@@ -3,7 +3,7 @@ package nightgames.trap;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.Item;
 
 public class Decoy extends Trap {
@@ -19,11 +19,11 @@ public class Decoy extends Trap {
     @Override
     public void trigger(Character target) {
         if (target.human()) {
-            Global.gui().message(
+            GameState.gui().message(
                             "You follow the noise you've been hearing for a while, which turns out to be coming from a disposable cell phone. Seems like someone "
                                             + "is playing a trick and you fell for it. You shut off the phone and toss it aside.");
         } else if (target.location().humanPresent()) {
-            Global.gui().message(target.getName() + " finds the decoy phone and deactivates it.");
+            GameState.gui().message(target.getName() + " finds the decoy phone and deactivates it.");
         }
         target.location().remove(this);
     }

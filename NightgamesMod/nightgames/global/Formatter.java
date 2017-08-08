@@ -273,13 +273,13 @@ public class Formatter {
 	    if (c != null) {
 	        c.write(self, string);
 	    } else if (self.human()) {
-			Global.gui().message(string);
+			GameState.gui().message(string);
 		}
 	}
 
     public static void writeFormattedIfCombat(Combat c, String string, Character self, Character other, Object ...args) {
 		if (c == null) {
-			Global.gui().message(format(string, self, other, args));
+			GameState.gui().message(format(string, self, other, args));
 		} else {
 			c.write(self, format(string, self, other, args));
 		}

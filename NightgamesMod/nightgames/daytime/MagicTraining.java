@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.characters.Player;
 import nightgames.global.Flag;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Random;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
@@ -23,10 +23,10 @@ public class MagicTraining extends Activity {
 
     @Override
     public void visit(String choice) {
-        Global.gui().clearText();
-        Global.gui().clearCommand();
+        GameState.gui().clearText();
+        GameState.gui().clearCommand();
         if (!Flag.checkFlag(Flag.metAisha)) {
-            Global.gui().message(
+            GameState.gui().message(
                             "Aisha apparently spends most of her time in a mostly abandoned creative writing reference room in the back of the liberal arts building. On paper, she "
                                             + "apparently runs a fantasy writing workshop. You're not sure if she is serious about writing, but it makes a good cover.<br/><br/>When you get to the reference room, she's the "
                                             + "only one there. She's slightly taller than you with large, soft breasts. She has coffee colored skin and dark brown, long, wavy hair. When you introduce yourself she "
@@ -51,8 +51,8 @@ public class MagicTraining extends Activity {
                                             + "we go. I've tasted some of your essence and you've tasted some of mine.\"</i> What was that about? <i>\"Oh this wasn't just a demonstration. I also took the liberty of creating a magic "
                                             + "link between us. It'll make your training easier.\"</i>");
             Flag.flag(Flag.metAisha);
-            choose("Lesson: $" + 1000 * (player.getPure(Attribute.Arcane) + 1), Global.gui());
-            choose("Leave", Global.gui());
+            choose("Lesson: $" + 1000 * (player.getPure(Attribute.Arcane) + 1), GameState.gui());
+            choose("Leave", GameState.gui());
             acted = true;
         } else if (choice.equals("Start")) {
             presentOptions();
@@ -85,7 +85,7 @@ public class MagicTraining extends Activity {
                 }
                 switch (scene) {
                     case 0:
-                        Global.gui().message(
+                        GameState.gui().message(
                                         "Aisha nods and waves her hand through the air. As she does so, you feel the world around you shift and a huge wave of nausea "
                                                         + "catches you off guard. The sensation worsens to the point where you sink to your knees and clench your eyes shut in an attempt to stop the "
                                                         + "world spinning around you. Then all of a sudden the sensation stops and you open your eyes. You found yourself not in the small room you "
@@ -113,7 +113,7 @@ public class MagicTraining extends Activity {
                         }
                         break;
                     case 1:
-                        Global.gui().message(
+                        GameState.gui().message(
                                         "After you give Aisha the money she asked for she once again brings both of you to the same training room you were in before except "
                                                         + "this time there are no targets. In fact there is nothing in the room at all. You look to her confused and ask what she is going to be teaching "
                                                         + "you today. <i>\"Glad you asked.\"</i> She grins and reaches her hand out to the left; her arm disappearing to mid upper arm. A look of concentration "
@@ -145,7 +145,7 @@ public class MagicTraining extends Activity {
                                                         + "with a sound like zip being pulled up.<br/><br/>Moments later you are walking out of Aisha's room wondering if signing that contract will really be worth it in the long run.");
                         break;
                     case 2:
-                        Global.gui().message(
+                        GameState.gui().message(
                                         "Aisha grins and as per usual you find yourself in the training room, this time there's a bunch of mannequins with random assortments of "
                                                         + "clothes thrown on them. Not quite sure what to make of this you turn to Aisha with an expectant look on your face. <i>\"This spell is going a bit trickier,\"</i> "
                                                         + "Aisha smiles in a way that is not entirely reassuring. <i>\"But don't worry, I'm sure you'll be fine.\"</i> This feels the same as when doctors tell you that the "
@@ -178,7 +178,7 @@ public class MagicTraining extends Activity {
                                                         + "running back to your room.");
                         break;
                     default:
-                        Global.gui().message(
+                        GameState.gui().message(
                                         "Aisha pauses and closes her eyes briefly before grinning and bringing you both to the training room. This time Aisha arrives before you... All four of "
                                                         + "her... Wait, what!? <i>\"Are you impressed yet?\"</i> You see the four Aishas' mouths moving in unison, but only hear one voice. <i>\"Look carefully.\"</i> When you focus, you notice "
                                                         + "that one of the four is subtlely different from the others. It's hard to articulate the difference, it's almost like the others aren't in quite as high resolution. "
@@ -226,13 +226,13 @@ public class MagicTraining extends Activity {
                 Flag.flag("Trained" + Attribute.Arcane.name());
                 acted = true;
             } else {
-                Global.gui().message("You don't have enough money for training.");
+                GameState.gui().message("You don't have enough money for training.");
             }
-            choose("Leave", Global.gui());
+            choose("Leave", GameState.gui());
         } else if (choice.startsWith("Animism")) {
             if (player.money >= 500 + 500 * (player.getPure(Attribute.Animism) + 1)) {
                 player.money -= 500 + 500 * (player.getPure(Attribute.Animism) + 1);
-                Global.gui().message("Kat comes in again to help you practice tapping "
+                GameState.gui().message("Kat comes in again to help you practice tapping "
                                 + "into your animal side. As per Kat's suggestion, you both spend "
                                 + "the entire training session naked, so as to distance yourselves "
                                 + "from civilized habits. Aisha volunteers to help out by teasing"
@@ -241,12 +241,12 @@ public class MagicTraining extends Activity {
                 player.modAttributeDontSaveData(Attribute.Animism, 1);
                 acted = true;
             } else {
-                Global.gui().message("You don't have enough money for training.");
+                GameState.gui().message("You don't have enough money for training.");
             }
-            choose("Leave", Global.gui());
+            choose("Leave", GameState.gui());
         } else if (choice.startsWith("Ask about Animal Spirit")) {
             Flag.flag(Flag.furry);
-            Global.gui().message("You bring up the topic of Kat's animal spirit and "
+            GameState.gui().message("You bring up the topic of Kat's animal spirit and "
                             + "how she mentioned Aisha's involvement. Aisha's smile fades and "
                             + "she nods somberly.<br/><i>\"Yes. I told Kat that I was studying "
                             + "ways to harness and use spirit magic. She became interested in "
@@ -276,11 +276,11 @@ public class MagicTraining extends Activity {
                             + " even ask such a thing?!\"</i> She doesn't appear likely to budge"
                             + " to you alone. If you really want this power, you'll probably "
                             + "need to rely on Kat's help.");
-            choose("Get Animal Spirit", Global.gui());
-            choose("Lesson: $" + (500 + 500 * (player.getPure(Attribute.Arcane) + 1)), Global.gui());
-            choose("Leave", Global.gui());
+            choose("Get Animal Spirit", GameState.gui());
+            choose("Lesson: $" + (500 + 500 * (player.getPure(Attribute.Arcane) + 1)), GameState.gui());
+            choose("Leave", GameState.gui());
         } else if (choice.startsWith("Get Animal Spirit")) {
-            Global.gui().message("Kat agrees to come to the creative writing reference"
+            GameState.gui().message("Kat agrees to come to the creative writing reference"
                             + " room to try to convince Aisha. Aisha is delighted to see her and "
                             + "immediately pulls the shorter girl into a hug before she can say "
                             + "anything. <i>\"Oh my adorable little kitty Kat, you should come visit"
@@ -349,9 +349,9 @@ public class MagicTraining extends Activity {
             player.modAttributeDontSaveData(Attribute.Animism, 1);
             Flag.flag("Trained" + Attribute.Animism.name());
             acted = true;
-            choose("Leave", Global.gui());
+            choose("Leave", GameState.gui());
         } else if (choice.startsWith("Buy a minor scroll: $200")) {
-            Global.gui().message("You purchase a minor scroll. With the correct spell, "
+            GameState.gui().message("You purchase a minor scroll. With the correct spell, "
                             + "you can use it to summon a team of fairies.");
             player.money -= 200;
             assert player.money >= 0;
@@ -376,20 +376,20 @@ public class MagicTraining extends Activity {
     }
 
     private void presentOptions() {
-        choose("Lesson: $" + 1000 * (player.getPure(Attribute.Arcane) + 1), Global.gui());
+        choose("Lesson: $" + 1000 * (player.getPure(Attribute.Arcane) + 1), GameState.gui());
         if (player.getPure(Attribute.Animism) >= 1) {
-            choose("Animism training: $" + (500 + 500 * (player.getPure(Attribute.Animism) + 1)), Global.gui());
+            choose("Animism training: $" + (500 + 500 * (player.getPure(Attribute.Animism) + 1)), GameState.gui());
         }
         if (Flag.checkFlag(Flag.catspirit) && !Flag.checkFlag(Flag.furry)) {
-            choose("Ask about Animal Spirit", Global.gui());
+            choose("Ask about Animal Spirit", GameState.gui());
         }
         if (Flag.checkFlag(Flag.furry) && player.getPure(Attribute.Animism) == 0) {
-            choose("Get Animal Spirit", Global.gui());
+            choose("Get Animal Spirit", GameState.gui());
         }
         if (player.getPure(Attribute.Arcane) >= 2 && player.money >= 200) {
-            choose("Buy a minor scroll: $200", Global.gui());
+            choose("Buy a minor scroll: $200", GameState.gui());
         }
-        choose("Leave", Global.gui());
+        choose("Leave", GameState.gui());
     }
 
 }

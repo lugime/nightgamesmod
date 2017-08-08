@@ -6,7 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
 import nightgames.global.Formatter;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Random;
 import nightgames.nskills.tags.SkillTag;
 import nightgames.stance.Stance;
@@ -140,7 +140,7 @@ public class ThrowSlime extends Skill {
                 case TRANCE:
                     return new Trance(target, 3);
                 default: // NONE or a stupid mistake
-                    Global.gui()
+                    GameState.gui()
                           .message("ERROR: Half-implemented HitType for ThrowSlime; "
                                           + "applying 1-turn Wary instead. Please report this."
                                           + " And be sure to laugh at my stupidity. (DNDW)");

@@ -5,7 +5,7 @@ import java.util.Map;
 import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.global.Flag;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.Item;
 
 public class HWStore extends Store {
@@ -25,8 +25,8 @@ public class HWStore extends Store {
 
     @Override
     public void visit(String choice) {
-        Global.gui().clearText();
-        Global.gui().clearCommand();
+        GameState.gui().clearText();
+        GameState.gui().clearCommand();
         if (choice.equals("Start")) {
             acted = false;
         }
@@ -36,21 +36,21 @@ public class HWStore extends Store {
         }
         checkSale(choice);
         if (player.human()) {
-            Global.gui().message(
+            GameState.gui().message(
                             "Nothing at the hardware store is designed for the sort of activities you have in mind, but there are components you could use to make some "
                                             + "effective traps.");
             Map<Item, Integer> MyInventory = this.player.getInventory();
             for (Item i : stock.keySet()) {
                 if (MyInventory.get(i) == null || MyInventory.get(i) == 0) {
-                    Global.gui().message(i.getName() + ": $" + i.getPrice());
+                    GameState.gui().message(i.getName() + ": $" + i.getPrice());
                 } else {
-                    Global.gui().message(
+                    GameState.gui().message(
                                     i.getName() + ": $" + i.getPrice() + " (you have: " + MyInventory.get(i) + ")");
                 }
             }
-            Global.gui().message("You have : $" + player.money + " to spend.");
+            GameState.gui().message("You have : $" + player.money + " to spend.");
             displayGoods();
-            choose("Leave", Global.gui());
+            choose("Leave", GameState.gui());
         }
     }
 
@@ -58,7 +58,7 @@ public class HWStore extends Store {
     protected void displayItems() {
         for (Item i : stock.keySet()) {
             if (i != Item.EmptyBottle || player.getRank() > 0) {
-                sale(i, Global.gui());
+                sale(i, GameState.gui());
             }
         }
     }

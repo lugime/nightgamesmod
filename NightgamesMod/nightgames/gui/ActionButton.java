@@ -2,7 +2,7 @@ package nightgames.gui;
 
 import nightgames.actions.Action;
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Match;
 
 public class ActionButton extends RunnableButton {
@@ -13,7 +13,7 @@ public class ActionButton extends RunnableButton {
 
     public ActionButton(Action action, Character user) {
         super(action.toString(), () -> {
-            Global.gui().clearText();
+            GameState.gui().clearText();
             action.execute(user);
             if (!action.freeAction()) {
                 Match.getMatch().resume();

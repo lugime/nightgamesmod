@@ -2,7 +2,7 @@ package nightgames.daytime;
 
 import nightgames.characters.Character;
 import nightgames.global.Flag;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.clothing.Clothing;
 
 public class ClothingStore extends Store {
@@ -19,8 +19,8 @@ public class ClothingStore extends Store {
 
     @Override
     public void visit(String choice) {
-        Global.gui().clearText();
-        Global.gui().clearCommand();
+        GameState.gui().clearText();
+        GameState.gui().clearCommand();
         if (choice.equals("Start")) {
             acted = false;
         }
@@ -30,14 +30,14 @@ public class ClothingStore extends Store {
         }
         checkSale(choice);
         if (player.human()) {
-            Global.gui().message(
+            GameState.gui().message(
                             "This is a normal retail clothing outlet. For obvious reasons, you'll need to buy anything you want to wear at night in bulk.");
             for (Clothing i : clothing().keySet()) {
-                Global.gui().message(i.getName() + ": " + i.getPrice() + (player.has(i) ? " (Owned)" : ""));
+                GameState.gui().message(i.getName() + ": " + i.getPrice() + (player.has(i) ? " (Owned)" : ""));
             }
-            Global.gui().message("You have: $" + player.money + " available to spend.");
+            GameState.gui().message("You have: $" + player.money + " available to spend.");
             displayGoods();
-            choose("Leave", Global.gui());
+            choose("Leave", GameState.gui());
         }
     }
 

@@ -29,13 +29,16 @@ import nightgames.skills.*;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
 
-public class Global {
+/**
+ * Creates, destroys, and maintains the state of a running game.
+ */
+public class GameState {
     private static GUI gui;
     public static Scene current;
     public static double moneyRate = 1.0;
     public static double xpRate = 1.0;
 
-    public Global(boolean headless) {
+    public GameState(boolean headless) {
         nightgames.global.Random.rng = new Random();
         Flag.flags = new HashSet<>();
         CharacterPool.players = new HashSet<>();
@@ -144,7 +147,7 @@ public class Global {
         if (Flag.checkFlag(Flag.autosave)) {
             SaveFile.autoSave();
         }
-        Match.endMatch(Global.gui());
+        Match.endMatch(GameState.gui());
     }
 
     public static void endDay() {
@@ -237,6 +240,6 @@ public class Global {
                 // pass
             }
         }
-        new Global(false);
+        new GameState(false);
     }
 }

@@ -23,14 +23,14 @@ public class SaveFile {
     }
 
     public static void saveWithDialog() {
-        Optional<File> file = Global.gui().askForSaveFile();
+        Optional<File> file = GameState.gui().askForSaveFile();
         if (file.isPresent()) {
             save(file.get());
         }
     }
 
     public static void save(File file) {
-        SaveData data = Global.saveData();
+        SaveData data = GameState.saveData();
         JsonObject saveJson = data.toJson();
 
         try (JsonWriter saver = new JsonWriter(new FileWriter(file))) {
@@ -48,7 +48,7 @@ public class SaveFile {
         dialog.addChoosableFileFilter(savesFilter);
         dialog.setFileFilter(savesFilter);
         dialog.setMultiSelectionEnabled(false);
-        int rv = dialog.showOpenDialog(Global.gui());
+        int rv = dialog.showOpenDialog(GameState.gui());
         if (rv != JFileChooser.APPROVE_OPTION) {
             return;
         }
@@ -57,7 +57,7 @@ public class SaveFile {
             file = new File(dialog.getSelectedFile().getAbsolutePath() + ".ngs");
             if (!file.isFile()) {
                 // not a valid save, abort
-                JOptionPane.showMessageDialog(Global.gui(), "Nightgames save file not found", "File not found",
+                JOptionPane.showMessageDialog(GameState.gui(), "Nightgames save file not found", "File not found",
                                 JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -66,7 +66,7 @@ public class SaveFile {
     }
 
     public static void load(File file) {
-        Global.resetForLoad();
+        GameState.resetForLoad();
 
         JsonObject object;
         try (Reader loader = new InputStreamReader(new FileInputStream(file))) {
@@ -79,11 +79,11 @@ public class SaveFile {
         }
         SaveData data = new SaveData(object);
         loadData(data);
-        Global.gui().populatePlayer(CharacterPool.human);
+        GameState.gui().populatePlayer(CharacterPool.human);
         if (Time.time == Time.DAY) {
-            Global.startDay();
+            GameState.startDay();
         } else {
-            Global.startNight();
+            GameState.startNight();
         }
     }
 
@@ -100,6 +100,6 @@ public class SaveFile {
         Flag.counters.putAll(data.counters);
         Time.date = data.date;
         Time.time = data.time;
-        Global.gui().fontsize = data.fontsize;
+        GameState.gui().fontsize = data.fontsize;
     }
 }

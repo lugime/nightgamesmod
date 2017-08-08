@@ -19,7 +19,7 @@ public class Prematch implements Scene {
     private Modifier type;
 
     public Prematch(Player player) {
-        Global.current = this;
+        GameState.current = this;
         Flag.unflag(Flag.victory);
         List<KeyableButton> choice = new ArrayList<KeyableButton>();
         String message = "";
@@ -93,7 +93,7 @@ public class Prematch implements Scene {
         }
 
         choice.add(new SaveButton());
-        Global.gui().prompt(message, choice);
+        GameState.gui().prompt(message, choice);
     }
 
     private Modifier offer(Player player) {
@@ -117,7 +117,7 @@ public class Prematch implements Scene {
         } else if (response.startsWith("Do")) {
             message += type.acceptance();
             choice.add(new SceneButton("Start The Match"));
-            Global.gui().prompt(message, choice);
+            GameState.gui().prompt(message, choice);
         }
     }
 }

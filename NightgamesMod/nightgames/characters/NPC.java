@@ -260,7 +260,7 @@ public class NPC extends Character {
     @Override
     public boolean resist3p(Combat combat, Character intruder, Character assist) {
         if (has(Trait.cursed)) {
-            Global.gui().message(ai.resist3p(combat, intruder, assist));
+            GameState.gui().message(ai.resist3p(combat, intruder, assist));
             return true;
         }
         return false;
@@ -560,7 +560,7 @@ public class NPC extends Character {
         }
         available.removeIf(a -> a == null || !a.usable(this));
         if (location.humanPresent()) {
-            Global.gui().message("You notice " + getName() + ai.move(available, radar).execute(this).describe());
+            GameState.gui().message("You notice " + getName() + ai.move(available, radar).execute(this).describe());
         } else {
             ai.move(available, radar).execute(this);
         }
@@ -641,7 +641,7 @@ public class NPC extends Character {
 
     @Override
     public void afterParty() {
-        Global.gui().message(getRandomLineFor(CharacterLine.NIGHT_LINER, null, CharacterPool.getPlayer()));
+        GameState.gui().message(getRandomLineFor(CharacterLine.NIGHT_LINER, null, CharacterPool.getPlayer()));
     }
 
     public void daytime(int time) {
@@ -783,7 +783,7 @@ public class NPC extends Character {
                     System.out.printf("Moodswing: %s is now %s\n", getTrueName(), mood.name());
                 }
                 if (c.p1.human() || c.p2.human()) {
-                    Global.gui().loadPortrait(c, c.p1, c.p2);
+                    GameState.gui().loadPortrait(c, c.p1, c.p2);
                 }
                 return e;
             }

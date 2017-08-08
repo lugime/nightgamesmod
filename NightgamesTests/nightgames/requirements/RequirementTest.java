@@ -9,8 +9,8 @@ import nightgames.characters.body.mods.FieryMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
-import nightgames.global.Global;
-import nightgames.global.TestGlobal;
+import nightgames.global.GameState;
+import nightgames.global.TestGameState;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
 import nightgames.stance.*;
@@ -47,8 +47,8 @@ public class RequirementTest {
 
     @BeforeClass public static void setUpClass() throws Exception {
         Clothing.buildClothingTable();
-        new TestGlobal();
-        Global.newGame("TestPlayer", Optional.empty(), new ArrayList<>(), CharacterSex.asexual, new HashMap<>());
+        new TestGameState();
+        GameState.newGame("TestPlayer", Optional.empty(), new ArrayList<>(), CharacterSex.asexual, new HashMap<>());
     }
 
     @Before public void setUp() throws Exception {

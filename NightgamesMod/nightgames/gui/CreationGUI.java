@@ -33,7 +33,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.CharacterSex;
 import nightgames.characters.Trait;
 import nightgames.global.Flag;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.start.StartConfiguration;
 
 public class CreationGUI extends JPanel {
@@ -139,7 +139,7 @@ public class CreationGUI extends JPanel {
         textPane.setBackground(new Color(18, 30, 49));
         textPane.setFont(new Font("Baskerville Old Face", Font.PLAIN, 22));
         textPane.setEditable(false);
-        textPane.setText(Global.getIntro());
+        textPane.setText(GameState.getIntro());
 
         JPanel panel_2 = new JPanel();
         add(panel_2, BorderLayout.SOUTH);
@@ -437,16 +437,16 @@ public class CreationGUI extends JPanel {
             String rate = (String) ExpBox.getSelectedItem();
             ExpDescription.setText(rate);
             if ("Slow".equals(rate)) {
-                Global.xpRate = .5;
+                GameState.xpRate = .5;
             }
             if ("Normal".equals(rate)) {
-                Global.xpRate = 1;
+                GameState.xpRate = 1;
             }
             if ("Fast".equals(rate)) {
-                Global.xpRate = 1.5;
+                GameState.xpRate = 1.5;
             }
             if ("Very Fast".equals(rate)) {
-                Global.xpRate = 3;
+                GameState.xpRate = 3;
             }
         });
         verticalBox.add(ExpDescription);
@@ -529,7 +529,7 @@ public class CreationGUI extends JPanel {
             selectedAttributes.put(Attribute.Power, power);
             selectedAttributes.put(Attribute.Seduction, seduction);
             selectedAttributes.put(Attribute.Cunning, cunning);
-            Global.newGame(name, startConfig, traits, sex, selectedAttributes);
+            GameState.newGame(name, startConfig, traits, sex, selectedAttributes);
         }
     }
 

@@ -9,7 +9,7 @@ import javax.swing.border.LineBorder;
 
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.skills.Skill;
 import nightgames.skills.Stage;
 
@@ -57,11 +57,11 @@ public class SkillButton extends KeyableButton {
                 combat.act(SkillButton.this.action.user(), SkillButton.this.action, "");
                 combat.resume();
             } else {
-                Global.gui().commandPanel.reset();
+                GameState.gui().commandPanel.reset();
                 for (String choice : action.subChoices(c)) {
-                    Global.gui().commandPanel.add(new SubSkillButton(action, choice, combat));
+                    GameState.gui().commandPanel.add(new SubSkillButton(action, choice, combat));
                 }
-                Global.gui().commandPanel.refresh();
+                GameState.gui().commandPanel.refresh();
             }
         });
         setLayout(new BorderLayout());

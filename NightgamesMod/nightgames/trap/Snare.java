@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.Item;
 import nightgames.status.Bound;
 
@@ -25,16 +25,16 @@ public class Snare extends Trap {
     public void trigger(Character target) {
         if (target.check(Attribute.Perception, 25 + getStrength() + target.baseDisarm())) {
             if (target.human()) {
-                Global.gui().message("You notice a snare on the floor in front of you and manage to disarm it safely");
+                GameState.gui().message("You notice a snare on the floor in front of you and manage to disarm it safely");
             }
             target.location().remove(this);
         } else {
             target.addNonCombat(new Bound(target, 30 + getStrength() / 2, "snare"));
             if (target.human()) {
-                Global.gui().message(
+                GameState.gui().message(
                                 "You hear a sudden snap and you're suddenly overwhelmed by a blur of ropes. The tangle of ropes trip you up and firmly bind your arms.");
             } else if (target.location().humanPresent()) {
-                Global.gui().message(target.getName()
+                GameState.gui().message(target.getName()
                                 + " enters the room, sets off your snare, and ends up thoroughly tangled in rope.");
             }
             target.location().opportunity(target, this);

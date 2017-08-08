@@ -95,9 +95,9 @@ public class Player extends Character {
                 if (!player.has(feat)) {
                     RunnableButton button = new RunnableButton(feat.toString(), () -> {
                         gui.clearTextIfNeeded();
-                        Global.gui().message("Gained feat: " + feat.toString());
+                        GameState.gui().message("Gained feat: " + feat.toString());
                         CharacterPool.getPlayer().add(feat);
-                        Global.gui().message(Skill.gainSkills(CharacterPool.getPlayer()));
+                        GameState.gui().message(Skill.gainSkills(CharacterPool.getPlayer()));
                         CharacterPool.getPlayer().traitPoints -= 1;
                         gui.refresh();
                         ding(gui);
@@ -183,8 +183,8 @@ public class Player extends Character {
 
     public String describeStatus() {
         StringBuilder b = new StringBuilder();
-        if (Global.gui().combat != null && (Global.gui().combat.p1.human() || Global.gui().combat.p2.human())) {
-            body.describeBodyText(b, Global.gui().combat.getOpponent(this), false);
+        if (GameState.gui().combat != null && (GameState.gui().combat.p1.human() || GameState.gui().combat.p2.human())) {
+            body.describeBodyText(b, GameState.gui().combat.getOpponent(this), false);
         } else {
             body.describeBodyText(b, CharacterPool.getCharacterByType("Angel"), false);
         }
@@ -300,7 +300,7 @@ public class Player extends Character {
     public void detect() {
         for (Area adjacent : location.adjacent) {
             if (adjacent.ping(get(Attribute.Perception))) {
-                Global.gui()
+                GameState.gui()
                       .message("You hear something in the <b>" + adjacent.name + "</b>.");
                 adjacent.setPinged(true);
             }
@@ -516,7 +516,7 @@ public class Player extends Character {
     @Override
     public void craft() {
         int roll = Random.random(10);
-        Global.gui().message("You spend some time crafting some potions with the equipment.");
+        GameState.gui().message("You spend some time crafting some potions with the equipment.");
         if (check(Attribute.Cunning, 25)) {
             if (roll == 9) {
                 gain(Item.Aphrodisiac);
@@ -681,7 +681,7 @@ public class Player extends Character {
 
     @Override
     public void gain(Item item) {
-        Global.gui()
+        GameState.gui()
               .message("<b>You've gained " + item.pre() + item.getName() + ".</b>");
         super.gain(item);
     }
@@ -693,7 +693,7 @@ public class Player extends Character {
 
     @Override
     public void promptTrap(IEncounter enc, Character target, Trap trap) {
-        Global.gui()
+        GameState.gui()
               .message("Do you want to take the opportunity to ambush <b>" + target.getName() + "</b>?");
         assessOpponent(target);
         gui.message("<br/>");

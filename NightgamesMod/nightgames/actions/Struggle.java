@@ -3,7 +3,7 @@ package nightgames.actions;
 import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.global.DebugFlags;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.status.Bound;
 import nightgames.status.Stsflag;
 
@@ -28,18 +28,18 @@ public class Struggle extends Action {
         if (user.check(Attribute.Power, difficulty)) {
             if (user.human()) {
                 if (status != null) {
-                    Global.gui().message("You manage to break free from the " + status.getVariant() + ".");
+                    GameState.gui().message("You manage to break free from the " + status.getVariant() + ".");
                 } else {
-                    Global.gui().message("You manage to snap the restraints that are binding your hands.");
+                    GameState.gui().message("You manage to snap the restraints that are binding your hands.");
                 }
             }
             user.free();
         } else {
             if (user.human()) {
                 if (status != null) {
-                    Global.gui().message("You struggle against the " + status.getVariant() + ", but can't get free.");
+                    GameState.gui().message("You struggle against the " + status.getVariant() + ", but can't get free.");
                 } else {
-                    Global.gui().message("You struggle against your restraints, but can't get free.");
+                    GameState.gui().message("You struggle against your restraints, but can't get free.");
                 }
             }
             user.struggle();

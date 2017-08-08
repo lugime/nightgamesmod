@@ -71,7 +71,7 @@ public class LevelDrainModifier extends BaseModifier {
     @Override
     public void extraWinnings(Character player, int score) {
         if (score > 0) {
-            Global.gui().message("Additionally, you get a few bottles from Lilly as extras prizes.");
+            GameState.gui().message("Additionally, you get a few bottles from Lilly as extras prizes.");
             for (int i = 0; i < score; i++) {
                 player.gain(Random.pickRandom(EXTRA_LOOT).get());
             }

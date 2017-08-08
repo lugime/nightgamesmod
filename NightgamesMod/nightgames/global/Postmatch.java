@@ -30,7 +30,7 @@ public class Postmatch implements Scene {
         if (normal) {
             normal();
         }
-        Global.endNight();
+        GameState.endNight();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Postmatch implements Scene {
             choice.add(new SceneButton("Next"));
         }
         if (!message.equals("")) {
-            Global.gui().prompt(message, choice);
+            GameState.gui().prompt(message, choice);
         }
     }
 
@@ -68,7 +68,7 @@ public class Postmatch implements Scene {
         if (maxaffection >= 15 && closest != null) {
             closest.afterParty();
         } else {
-            Global.gui().message("You walk back to your dorm and get yourself cleaned up.");
+            GameState.gui().message("You walk back to your dorm and get yourself cleaned up.");
         }
     }
 }

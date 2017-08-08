@@ -4,7 +4,7 @@ import nightgames.characters.Character;
 import nightgames.characters.Trait;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.Item;
 import nightgames.items.clothing.ClothingSlot;
 import nightgames.status.RemoteMasturbation;
@@ -63,7 +63,7 @@ public class RemoteControl extends Trap {
                             + " Your mind goes silent again, but your body is still out of your control,"
                             + " one hand holding the 'Remote Control', as it is appearantly called,"
                             + " the other " + otherHand;
-            Global.gui().message(msg);
+            GameState.gui().message(msg);
         } else {
 
         }

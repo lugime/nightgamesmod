@@ -45,7 +45,7 @@ public class SaveData {
     public SaveData(JsonObject rootJSON) {
         this();
         if (rootJSON.has("xpRate")) {
-            Global.xpRate = rootJSON.get("xpRate").getAsDouble();
+            GameState.xpRate = rootJSON.get("xpRate").getAsDouble();
         }
 
         JsonArray charactersJSON = rootJSON.getAsJsonArray(JSONKey.PLAYERS.key);
@@ -78,7 +78,7 @@ public class SaveData {
 
     public JsonObject toJson() {
         JsonObject rootJSON = new JsonObject();
-        rootJSON.add("xpRate", new JsonPrimitive(Global.xpRate));
+        rootJSON.add("xpRate", new JsonPrimitive(GameState.xpRate));
 
         JsonArray characterJSON = new JsonArray();
         players.stream().map(Character::save).forEach(characterJSON::add);

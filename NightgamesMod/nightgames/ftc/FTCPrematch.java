@@ -17,7 +17,7 @@ public class FTCPrematch implements Scene {
     private Character prey;
 
     public FTCPrematch(Player player) {        
-        Global.current = this;
+        GameState.current = this;
         Flag.unflag(Flag.victory);
         List<KeyableButton> choice = new ArrayList<>();
         String message = "";
@@ -53,7 +53,7 @@ public class FTCPrematch implements Scene {
         choice.add(new SceneButton("Volunteer"));
         choice.add(new SceneButton("Keep Silent"));
         choice.add(new SaveButton());
-        Global.gui().prompt(message, choice);
+        GameState.gui().prompt(message, choice);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class FTCPrematch implements Scene {
             }
             List<KeyableButton> choices = new ArrayList<>();
             choices.add(new SceneButton("Start the Match"));
-            Global.gui().prompt(message, choices);
+            GameState.gui().prompt(message, choices);
         }
     }
 }

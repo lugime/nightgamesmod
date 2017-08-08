@@ -21,16 +21,16 @@ public class SaveAndLoadTest {
     private Path savePath = new File("NightGamesTests/nightgames/global/test_save.ngs").toPath();
 
     @Before public void setUp() throws Exception {
-        new TestGlobal();
+        new TestGameState();
     }
 
     @Test public void testLoadAndSave() throws Exception {
         SaveFile.load(savePath.toFile());
-        SaveData firstLoadData = Global.saveData();
+        SaveData firstLoadData = GameState.saveData();
         Path tempSave = Files.createTempFile("", "");
         SaveFile.save(tempSave.toFile());
         SaveFile.load(tempSave.toFile());
-        SaveData reloadedData = Global.saveData();
+        SaveData reloadedData = GameState.saveData();
         assertThat(reloadedData.players, equalTo(firstLoadData.players));
         for (Character player : firstLoadData.players) {
             Character reloaded = reloadedData.players.stream().filter(p -> p.equals(player)).findFirst()

@@ -7,7 +7,7 @@ import nightgames.areas.Area;
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
 import nightgames.characters.Trait;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.global.Match;
 import nightgames.gui.GUI;
 import nightgames.items.Item;
@@ -36,7 +36,7 @@ public class Locate extends Action {
 
     @Override
     public Movement execute(Character self) {
-        GUI gui = Global.gui();
+        GUI gui = GameState.gui();
         gui.clearCommand();
         gui.clearText();
         gui.validate();
@@ -49,7 +49,7 @@ public class Locate extends Action {
 
     public void handleEvent(Character self, String choice) {
         Character target;
-        GUI gui = Global.gui();
+        GUI gui = GameState.gui();
         if (choice.equals("Start")) {
             Match.getMatch().combatants.stream().filter(c -> self.getAffection(c) >= MINIMUM_SCRYING_REQUIREMENT)
                             .forEach((character) -> {

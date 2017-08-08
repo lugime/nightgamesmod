@@ -4,7 +4,7 @@ import nightgames.characters.Attribute;
 import nightgames.characters.Character;
 import nightgames.combat.Combat;
 import nightgames.combat.IEncounter;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.items.Item;
 import nightgames.status.Enthralled;
 import nightgames.status.Flatfooted;
@@ -28,12 +28,12 @@ public class EnthrallingTrap extends Trap {
         if (target.human()) {
             if (target.check(Attribute.Perception, 25 + target.baseDisarm())
                             || !target.eligible(owner) || !owner.eligible(target)) {
-                Global.gui().message("As you step across the " + target.location().name
+                GameState.gui().message("As you step across the " + target.location().name
                                 + ", you notice a pentagram drawn on the floor,"
                                 + " appearing to have been drawn in cum. Wisely," + " you avoid stepping into it.");
             } else {
                 target.location().opportunity(target, this);
-                Global.gui().message("As you step across the " + target.location().name
+                GameState.gui().message("As you step across the " + target.location().name
                                 + ", you are suddenly surrounded by purple flames. Your mind "
                                 + "goes blank for a moment, leaving you staring into the distance."
                                 + " When you come back to your senses, you shake your head a few"
@@ -44,7 +44,7 @@ public class EnthrallingTrap extends Trap {
             }
         } else if (target.check(Attribute.Perception, 25 + target.baseDisarm()) || !target.eligible(owner) || !owner.eligible(target)) {
             if (target.location().humanPresent()) {
-                Global.gui().message("You catch a bout of purple fire in your peripheral vision,"
+                GameState.gui().message("You catch a bout of purple fire in your peripheral vision,"
                                 + "but once you have turned to look the flames are gone. All that is left"
                                 + " to see is " + target.getName() + ", standing still and staring blankly ahead."
                                 + " It would seem to be very easy to have your way with her now, but"

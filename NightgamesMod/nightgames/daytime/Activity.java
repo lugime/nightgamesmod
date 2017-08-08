@@ -1,7 +1,7 @@
 package nightgames.daytime;
 
 import nightgames.characters.Character;
-import nightgames.global.Global;
+import nightgames.global.GameState;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
 
@@ -35,8 +35,8 @@ public abstract class Activity {
             Daytime.getDay().advance(time);
         }
         page = 0;
-        Global.gui().clearImage();
-        Global.gui().clearPortrait();
+        GameState.gui().clearImage();
+        GameState.gui().clearPortrait();
         Daytime.getDay().plan();
     }
 
