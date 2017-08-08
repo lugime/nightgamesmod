@@ -49,7 +49,6 @@ public class JsonRequirementLoaderTest {
         assertThat(requirements, hasItem(none()));
         assertThat(requirements, hasItem(or(mood(Emotion.horny), orgasms(0))));
         assertThat(requirements, hasItem(prone()));
-        assertThat(requirements, hasItem(random(0.75f)));
         assertThat(requirements, hasItem(result(Result.upgrade)));
         assertThat(requirements, hasItem(position("FlyingCarry")));
         assertThat(requirements, hasItem(status("wary")));

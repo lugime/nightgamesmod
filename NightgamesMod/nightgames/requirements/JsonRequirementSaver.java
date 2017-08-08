@@ -87,9 +87,6 @@ public class JsonRequirementSaver implements RequirementSaver<JsonElement> {
             case "orgasm":
                 element = new JsonPrimitive(((OrgasmRequirement) req).getCount());
                 break;
-            case "random":
-                element = new JsonPrimitive(((RandomRequirement) req).getThreshold());
-                break;
             case "result":
                 element = new JsonPrimitive(((ResultRequirement) req).getResult()
                                                                      .name());

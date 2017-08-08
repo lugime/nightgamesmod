@@ -214,12 +214,6 @@ public class RequirementTest {
         assertThat(prone().meets(combat, other, self), is(true));
     }
 
-    @Test public void randomTest() throws Exception {
-        assertThat(random(0f).meets(combat, self, other), is(false));
-        assertThat(random(1f).meets(combat, self, other), is(true));
-        assertThat(random(0.5f).meets(combat, self, other), notNullValue());
-    }
-
     @Test public void resultTest() throws Exception {
         ResultRequirement strappedOn = result(Result.strapon);
         assertThat(strappedOn.meets(combat, self, other), is(false));

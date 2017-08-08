@@ -49,8 +49,6 @@ public class JsonRequirementLoader implements RequirementLoader<JsonElement> {
                 return loadOr(reqData);
             case "prone":
                 return loadProne(reqData);
-            case "random":
-                return loadRandom(reqData);
             case "result":
                 return loadResult(reqData);
             case "reverse":
@@ -147,10 +145,6 @@ public class JsonRequirementLoader implements RequirementLoader<JsonElement> {
 
     @Override public ProneRequirement loadProne(JsonElement reqData) {
         return new ProneRequirement();
-    }
-
-    @Override public RandomRequirement loadRandom(JsonElement reqData) {
-        return new RandomRequirement(reqData.getAsFloat());
     }
 
     @Override public ResultRequirement loadResult(JsonElement reqData) {

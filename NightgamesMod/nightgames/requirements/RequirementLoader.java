@@ -36,8 +36,6 @@ public interface RequirementLoader<T> {
 
     ProneRequirement loadProne(T reqData);
 
-    RandomRequirement loadRandom(T reqData);
-
     ResultRequirement loadResult(T reqData);
 
     ReverseRequirement loadReverse(T reqData);

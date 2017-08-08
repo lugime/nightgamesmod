@@ -40,7 +40,6 @@
     },
     "position": "FlyingCarry",
     "prone": "",
-    "random": 0.75,
     "result": "upgrade",
     "status": "wary",
     "sub": "",

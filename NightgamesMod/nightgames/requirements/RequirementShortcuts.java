@@ -100,10 +100,6 @@ public class RequirementShortcuts {
         return new ProneRequirement();
     }
 
-    public static RandomRequirement random(float threshold) {
-        return new RandomRequirement(threshold);
-    }
-
     public static ResultRequirement result(Result result) {
         return new ResultRequirement(result);
     }
