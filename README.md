@@ -10,7 +10,9 @@ This stable branch is feature-frozen at v2.5.1.2 of nergantre's master branch. C
 
 2. **DONE** Move game logic out of GUI. For this step, code reaching into the gui package is fine; code reaching out is not. Might look uglier than before.
 
-3. Break up the Global monstrosity. Find similar parts and move them to their own classes/packages.
+3. **DONE** Break up the Global monstrosity. Find similar parts and move them to their own classes/packages.
+
+    This looks like a good time to do some post-move cleanup.
 
 4. Make the game loop explicit, or at least document it.
 
