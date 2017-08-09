@@ -127,6 +127,8 @@ public class Player extends Character {
                 if (gui.combat != null) {
                     gui.combat.resume();
                 } else if (Match.getMatch() != null) {
+                    gui.clearPortrait();
+                    gui.clearImage();
                     gui.showMap();
                     Match.getMatch().resume();
                 } else if (Daytime.day != null) {
