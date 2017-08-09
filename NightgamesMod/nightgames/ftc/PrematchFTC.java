@@ -11,15 +11,16 @@ import nightgames.gui.GUI;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
 import nightgames.gui.SceneButton;
+import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.FTCModifier;
 
-public class FTCPrematch implements Scene {
-
+/**
+ * Setup for FTC matches.
+ */
+public class PrematchFTC extends Prematch {
     private Character prey;
 
-    public FTCPrematch(Player player) {        
-        GameState.current = this;
-        Flag.unflag(Flag.victory);
+    public void prompt(Player player) {
         List<KeyableButton> choice = new ArrayList<>();
         String message = "";
         if (!Flag.checkFlag(Flag.didFTC)) {
@@ -112,4 +113,5 @@ public class FTCPrematch implements Scene {
             GUI.gui.prompt(message, choices);
         }
     }
+
 }

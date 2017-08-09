@@ -2,11 +2,10 @@ package nightgames.global;
 
 import nightgames.areas.Area;
 import nightgames.characters.Character;
-import nightgames.characters.Player;
 import nightgames.combat.Encounter;
 import nightgames.combat.IEncounter;
 import nightgames.ftc.FTCEncounter;
-import nightgames.ftc.FTCPrematch;
+import nightgames.ftc.PrematchFTC;
 
 public enum MatchType {
     NORMAL,
@@ -23,12 +22,12 @@ public enum MatchType {
         }
     }
 
-    public Scene buildPrematch(Player player) {
+    public Prematch buildPrematch() {
         switch (this) {
             case FTC:
-                return new FTCPrematch(player);
+                return new PrematchFTC();
             case NORMAL:
-                return new Prematch(player);
+                return new PreMatchSchool();
             default:
                 throw new Error();
         }

@@ -195,19 +195,22 @@ public class Match {
         match.round();
     }
 
-    public static MatchType decideMatchType() {
-        return MatchType.NORMAL;
+    public static Prematch decideMatchType() {
+        return new PreMatchSchool();
         /*
          * TODO Lots of FTC bugs right now, will disable it for the time being.
          * Enable again once some of the bugs are sorted out.
-
-        if (checkFlag(Flag.NoFTC)) return MatchType.NORMAL;
-
-        if (human.getLevel() < 15)
-            return MatchType.NORMAL;
-        if (!checkFlag(Flag.didFTC))
-            return MatchType.FTC;
-        return isDebugOn(DebugFlags.DEBUG_FTC) || GameState.random(10) == 0 ? MatchType.FTC : MatchType.NORMAL;
+        MatchType type;
+        if (Flag.checkFlag(Flag.NoFTC) || CharacterPool.human.getLevel() < 15) {
+            type = MatchType.NORMAL;
+        } else if (!Flag.checkFlag(Flag.didFTC) || DebugFlags.isDebugOn(DebugFlags.DEBUG_FTC)) {
+            type = MatchType.FTC;
+        } else {
+            type = DebugFlags.isDebugOn(DebugFlags.DEBUG_FTC) || Random.random(10) == 0 ?
+                            MatchType.FTC :
+                            MatchType.NORMAL;
+        }
+        return type.buildPrematch();
         */
     }
 
