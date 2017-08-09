@@ -11,7 +11,6 @@ import nightgames.gui.GUI;
 import nightgames.gui.KeyableButton;
 import nightgames.gui.SaveButton;
 import nightgames.gui.SceneButton;
-import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.FTCModifier;
 
 /**
@@ -63,7 +62,7 @@ public class PrematchFTC extends Prematch {
         if (response.equals("Start the Match")) {
             FTCModifier mod = new FTCModifier(prey);
             Flag.flag(Flag.didFTC);
-            Match.setUpMatch(mod);
+            new Prematch().setUpMatch(mod);
         } else {
             String message = "";
             if (response.equals("Volunteer")) {

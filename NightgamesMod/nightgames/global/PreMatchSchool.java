@@ -113,10 +113,10 @@ public class PreMatchSchool extends Prematch {
         String message = "";
         List<KeyableButton> choice = new ArrayList<KeyableButton>();
         if (response.startsWith("Start")) {
-            Match.setUpMatch(type);
+            new Prematch().setUpMatch(type);
         } else if (response.startsWith("Not")) {
             type = new NoModifier();
-            Match.setUpMatch(type);
+            new Prematch().setUpMatch(type);
         } else if (response.startsWith("Do")) {
             message += type.acceptance();
             choice.add(new SceneButton("Start The Match"));
