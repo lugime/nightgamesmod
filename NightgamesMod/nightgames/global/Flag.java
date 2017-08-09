@@ -1,5 +1,7 @@
 package nightgames.global;
 
+import nightgames.characters.Character;
+
 import java.util.*;
 
 public enum Flag {
@@ -84,6 +86,7 @@ public enum Flag {
 
     static Set<String> flags = new HashSet<>();
     static Map<String, Float> counters;
+    private static String DISABLED_FORMAT = "%sDisabled";
 
     static {
         counters = new HashMap<>();
@@ -148,5 +151,17 @@ public enum Flag {
 
     public static void setCounter(Flag f, float val) {
         counters.put(f.name(), val);
+    }
+
+    public static boolean checkCharacterDisabledFlag(Character self) {
+        return checkFlag(String.format(DISABLED_FORMAT, self.getTrueName()));
+    }
+
+    public static void setCharacterDisabledFlag(Character self) {
+        flag(String.format(DISABLED_FORMAT, self.getTrueName()));
+    }
+
+    public static void unsetCharacterDisabledFlag(Character self) {
+        unflag(String.format(DISABLED_FORMAT, self.getTrueName()));
     }
 }

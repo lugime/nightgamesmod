@@ -122,7 +122,7 @@ public class Match {
             if (player.getPure(Attribute.Science) > 0) {
                 player.chargeBattery();
             }
-            if (CharacterPool.human.getAffection(player) > maxaffection && !player.has(Trait.event) && !Formatter
+            if (CharacterPool.human.getAffection(player) > maxaffection && !player.has(Trait.event) && !Flag
                             .checkCharacterDisabledFlag(player)) {
                 maxaffection = CharacterPool.human.getAffection(player);
                 lover = player;
@@ -132,7 +132,7 @@ public class Match {
         // Disable characters flagged as disabled
         for (Character c : CharacterPool.players) {
             // Disabling the player wouldn't make much sense, and there's no PlayerDisabled flag.
-            if (c.getType().equals("Player") || !Formatter.checkCharacterDisabledFlag(c)) {
+            if (c.getType().equals("Player") || !Flag.checkCharacterDisabledFlag(c)) {
                 participants.add(c);
             }
         }

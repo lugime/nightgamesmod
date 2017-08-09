@@ -18,7 +18,6 @@ public class Formatter {
         buildParser();
     }
     private static DecimalFormat formatter = new DecimalFormat("#.##");
-    private static String DISABLED_FORMAT = "%sDisabled";
 
     public static void buildParser() {
         Match.matchActions = new HashMap<String, Match.MatchAction>();
@@ -288,18 +287,6 @@ public class Formatter {
 			c.write(self, format(string, self, other, args));
 		}
 	}
-
-    public static boolean checkCharacterDisabledFlag(Character self) {
-        return Flag.checkFlag(String.format(DISABLED_FORMAT, self.getTrueName()));
-    }
-
-    public static void setCharacterDisabledFlag(Character self) {
-        Flag.flag(String.format(DISABLED_FORMAT, self.getTrueName()));
-    }
-
-    public static void unsetCharacterDisabledFlag(Character self) {
-        Flag.unflag(String.format(DISABLED_FORMAT, self.getTrueName()));
-    }
 
     public static String prependPrefix(String prefix, String fullDescribe) {
         if (prefix.equals("a ") && "aeiou".contains(fullDescribe.substring(0, 1).toLowerCase())) {

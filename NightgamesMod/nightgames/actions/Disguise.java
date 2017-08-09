@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import nightgames.characters.Character;
 import nightgames.characters.NPC;
 import nightgames.characters.Trait;
-import nightgames.global.Formatter;
+import nightgames.global.Flag;
 import nightgames.global.Match;
 import nightgames.global.Random;
 import nightgames.status.Stsflag;
@@ -28,7 +28,7 @@ public class Disguise extends Action {
                         .stream().filter(other -> !other.human() 
                                         && user != other 
                                         && !other.has(Trait.cursed)
-                                        && !Formatter.checkCharacterDisabledFlag(other))
+                                        && !Flag.checkCharacterDisabledFlag(other))
                         .collect(Collectors.toList())).orElse(null);
         return target;
     }

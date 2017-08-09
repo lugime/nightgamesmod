@@ -210,7 +210,7 @@ public class Decider {
     }
 
     public static void visit(Character self) {
-        if (Formatter.checkCharacterDisabledFlag(self)) {
+        if (Flag.checkCharacterDisabledFlag(self)) {
             return;
         }
         int max = 0;

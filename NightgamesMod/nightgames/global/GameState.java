@@ -53,7 +53,7 @@ public class GameState {
         configurationFlags.forEach((flag, val) -> Flag.setFlag(flag, val));
         Time.time = Time.NIGHT;
         Time.date = 1;
-        Formatter.setCharacterDisabledFlag(CharacterPool.getNPCByType("Yui"));
+        Flag.setCharacterDisabledFlag(CharacterPool.getNPCByType("Yui"));
         Flag.setFlag(Flag.systemMessages, true);
         Match.setUpMatch(new NoModifier());
     }

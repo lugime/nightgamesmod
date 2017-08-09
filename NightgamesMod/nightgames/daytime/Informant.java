@@ -337,12 +337,12 @@ public class Informant extends Activity {
             .message("Haha, feeling the heat? That's okay, I can talk to the organizers about redirecting some of the competitors to other sessions. Just let me know who is becoming too much for you.");
             CharacterPool.everyone().stream()
                   .filter(c -> !c.human())
-                  .filter(c -> !Formatter.checkCharacterDisabledFlag(c))
+                  .filter(c -> !Flag.checkCharacterDisabledFlag(c))
                   .forEach(character -> choose(String.format(REMOVE_PREFIX + "%s", character.getTrueName()),
                                   GUI.gui));
             CharacterPool.everyone().stream()
                   .filter(c -> !c.human())
-                  .filter(c -> Formatter.checkCharacterDisabledFlag(c) && !c.getType().equals("Yui"))
+                  .filter(c -> Flag.checkCharacterDisabledFlag(c) && !c.getType().equals("Yui"))
                   .forEach(character -> choose(String.format(RETURN_PREFIX + "%s", character.getTrueName()),
                                   GUI.gui));
             choose("Back", GUI.gui);
@@ -352,7 +352,7 @@ public class Informant extends Activity {
             String name = choice.substring(REMOVE_PREFIX.length());
             GUI.gui
                   .message("Got it, I'll see about sending " + name+ " to another session.");
-            Formatter.setCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
+            Flag.setCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
             choose("Select Competitors", GUI.gui);
             return;
         }
@@ -360,7 +360,7 @@ public class Informant extends Activity {
             String name = choice.substring(RETURN_PREFIX.length());
             GUI.gui
                   .message("Missing " + name+ " already? I'll see what I can do.");
-            Formatter.unsetCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
+            Flag.unsetCharacterDisabledFlag(CharacterPool.getParticipantsByName(name));
             choose("Select Competitors", GUI.gui);
             return;
         }
@@ -518,7 +518,7 @@ public class Informant extends Activity {
         if (choice.equals("Competition Info")) {
             String message = "<i>\"You want to know how the competition is doing? I can give you a breakdown on each of your opponents:\"</i><br/><br/>";
             for (Character npc : CharacterPool.everyone()) {
-                if (!npc.human() && !Formatter.checkCharacterDisabledFlag(npc)) {
+                if (!npc.human() && !Flag.checkCharacterDisabledFlag(npc)) {
                     message = message + npc.dumpstats(false) + "<br/><br/>";
                 }
             }

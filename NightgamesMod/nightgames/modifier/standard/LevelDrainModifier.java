@@ -62,7 +62,7 @@ public class LevelDrainModifier extends BaseModifier {
     @Override
     public boolean isApplicable() {
         int playerLevel = CharacterPool.getPlayer().getLevel();
-        double averageLevel = Match.getParticipants().stream().filter(p -> !p.human()).filter(p -> !Formatter.checkCharacterDisabledFlag(p)).mapToInt(Character::getLevel).average().orElse(0);
+        double averageLevel = Match.getParticipants().stream().filter(p -> !p.human()).filter(p -> !Flag.checkCharacterDisabledFlag(p)).mapToInt(Character::getLevel).average().orElse(0);
         return playerLevel > averageLevel + 5
                         && (Flag.checkFlag(Flag.darkness) || CharacterPool.getPlayer().getRank() >= 2)
                         && Match.getParticipants().stream().noneMatch(p -> p.has(Trait.leveldrainer));
