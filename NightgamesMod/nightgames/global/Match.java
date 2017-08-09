@@ -230,18 +230,6 @@ public class Match {
         return new HashSet<>(CharacterPool.players);
     }
 
-    public static Set<Character> pickCharacters(Collection<Character> avail, Collection<Character> added, int size) {
-        List<Character> randomizer = avail.stream()
-                        .filter(c -> !c.human())
-                        .filter(c -> !c.has(Trait.event))
-                        .filter(c -> !added.contains(c))
-                        .collect(Collectors.toList());
-        Collections.shuffle(randomizer);
-        Set<Character> results = new HashSet<>(added);
-        results.addAll(randomizer.subList(0, Math.min(Math.max(0, size - results.size())+1, randomizer.size())));
-        return results;
-    }
-
     public static List<Character> getMatchParticipantsInAffectionOrder() {
         if (match == null) {
             return Collections.emptyList();

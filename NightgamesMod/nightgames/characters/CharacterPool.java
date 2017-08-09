@@ -14,6 +14,7 @@ import nightgames.start.StartConfiguration;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Tracks Characters in current game.
@@ -151,5 +152,17 @@ public class CharacterPool {
 
     public static Character getParticipantsByName(String name) {
         return players.stream().filter(c -> c.getTrueName().equals(name)).findAny().get();
+    }
+
+    public static Set<Character> pickCharacters(Collection<Character> avail, Collection<Character> added, int size) {
+        List<Character> randomizer = avail.stream()
+                        .filter(c -> !c.human())
+                        .filter(c -> !c.has(Trait.event))
+                        .filter(c -> !added.contains(c))
+                        .collect(Collectors.toList());
+        Collections.shuffle(randomizer);
+        Set<Character> results = new HashSet<>(added);
+        results.addAll(randomizer.subList(0, Math.min(Math.max(0, size - results.size())+1, randomizer.size())));
+        return results;
     }
 }
