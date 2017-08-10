@@ -12,9 +12,9 @@ This stable branch is feature-frozen at v2.5.1.2 of nergantre's master branch. C
 
 3. **DONE** Break up the Global monstrosity. Find similar parts and move them to their own classes/packages.
 
-    This looks like a good time to do some post-move cleanup.
+   **ENOUGH** This looks like a good time to do some post-move cleanup.
 
-4. Make the game loop explicit, or at least document it.
+4. **DONE** Make the game loop explicit, or at least document it. (holy balls that was way easier than last time! amazing what focusing on one thing at a time will do)
 
 5. Separate display and game logic. There will need to be a layer between display logic and game logic, although exactly where that code lives is less important than the conceptual structure.
 
