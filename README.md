@@ -16,12 +16,14 @@ This stable branch is feature-frozen at v2.5.1.2 of nergantre's master branch. C
 
 4. **DONE** Make the game loop explicit, or at least document it. (holy balls that was way easier than last time! amazing what focusing on one thing at a time will do)
 
-5. Separate display and game logic. There will need to be a layer between display logic and game logic, although exactly where that code lives is less important than the conceptual structure.
+5. Concurrency is hard! Build infrastructure to make it easy to do things like wait for user input.
 
-6. Migrate combat to an event-based system, or at least some sort of system. Will enable step 7.
+6. Separate display and game logic. There will need to be a layer between display logic and game logic, although exactly where that code lives is less important than the conceptual structure.
 
-7. Make the effects of a trait or status viewable in a single location.
+7. Migrate combat to an event-based system, or at least some sort of system. Will enable step 7.
 
-8. man who even knows
+8. Make the effects of a trait or status viewable in a single location.
 
-9. anything that isn't done yet will probably change
+9. man who even knows
+
+10. anything that isn't done yet will probably change
