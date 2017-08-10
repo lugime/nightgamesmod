@@ -7,7 +7,6 @@ import nightgames.characters.NPC;
 import nightgames.characters.Trait;
 import nightgames.global.Match;
 import nightgames.gui.TestGUI;
-import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.NoModifier;
 import nightgames.stance.Stance;
 import nightgames.stance.TestPosition;

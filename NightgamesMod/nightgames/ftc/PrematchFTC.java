@@ -2,6 +2,7 @@ package nightgames.ftc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import nightgames.characters.Character;
 import nightgames.characters.CharacterPool;
@@ -19,6 +20,9 @@ import nightgames.modifier.standard.FTCModifier;
 public class PrematchFTC extends Prematch {
     private Character prey;
 
+    PrematchFTC(CompletableFuture<Match> match) {
+        super(match);
+    }
     public void prompt(Player player) {
         List<KeyableButton> choice = new ArrayList<>();
         String message = "";
@@ -62,7 +66,7 @@ public class PrematchFTC extends Prematch {
         if (response.equals("Start the Match")) {
             FTCModifier mod = new FTCModifier(prey);
             Flag.flag(Flag.didFTC);
-            new Prematch().setUpMatch(mod);
+            setUpMatch(mod);
         } else {
             String message = "";
             if (response.equals("Volunteer")) {

@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
@@ -103,8 +104,10 @@ public class GUI extends JFrame implements Observer {
     private final static String USE_NONE = "NONE";
     private static final String USE_MAIN_TEXT_UI = "MAIN_TEXT";
     private static final String USE_CLOSET_UI = "CLOSET";
+    CompletableFuture<GameState> stateFuture;
 
-    public GUI() {
+    public GUI(CompletableFuture<GameState> stateFuture) {
+        this.stateFuture = stateFuture;
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
@@ -173,7 +176,7 @@ public class GUI extends JFrame implements Observer {
         //mntmLoad.setBackground(GUIColors.bgGrey);
         mntmLoad.setHorizontalAlignment(SwingConstants.CENTER);
 
-        mntmLoad.addActionListener(arg0 -> SaveFile.loadWithDialog());
+        mntmLoad.addActionListener(arg0 -> SaveFile.loadWithDialog(stateFuture));
 
         menuBar.add(mntmLoad);
 

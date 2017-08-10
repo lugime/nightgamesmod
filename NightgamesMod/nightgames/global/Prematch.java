@@ -10,12 +10,16 @@ import nightgames.modifier.standard.FTCModifier;
 import nightgames.modifier.standard.NoModifier;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Base class for match setup.
  */
 public abstract class Prematch implements Scene {
-    protected Prematch() {
+    public CompletableFuture<Match> preparedMatch;  // Completes when match is ready to play
+
+    protected Prematch(CompletableFuture<Match> preparedMatch) {
+        this.preparedMatch = preparedMatch;
         GameState.current = this;
         Flag.unflag(Flag.victory);
     }
@@ -24,8 +28,8 @@ public abstract class Prematch implements Scene {
      * Chooses and creates an instance of the Prematch of one of the available Match types.
      * @return A new Prematch of the chosen Match type.
      */
-    public static Prematch decideMatchType() {
-        return new PreMatchSchool();
+    public static Prematch decideMatchType(CompletableFuture<Match> match) {
+        return new PreMatchSchool(match);
         /*
          * TODO Lots of FTC bugs right now, will disable it for the time being.
          * Enable again once some of the bugs are sorted out.
@@ -43,16 +47,19 @@ public abstract class Prematch implements Scene {
         */
     }
 
-    private Match buildMatch(Collection<Character> combatants, Modifier mod) {
+    private void buildMatch(Collection<Character> combatants, Modifier mod) {
+        Match match;
         if (mod.name().equals("ftc")) {
             if (combatants.size() < 5) {
-                return new Match(combatants, new NoModifier());
+                match = new Match(combatants, new NoModifier());
+            } else {
+                Flag.flag(Flag.FTC);
+                match = new FTCMatch(combatants, ((FTCModifier) mod).getPrey());
             }
-            Flag.flag(Flag.FTC);
-            return new FTCMatch(combatants, ((FTCModifier) mod).getPrey());
         } else {
-            return new Match(combatants, mod);
+            match = new Match(combatants, mod);
         }
+        preparedMatch.complete(match);
     }
 
     public void setUpMatch(Modifier matchmod) {
@@ -112,7 +119,7 @@ public abstract class Prematch implements Scene {
             maya.gain(Item.Onahole2);
             maya.gain(Item.Dildo2);
             maya.gain(Item.Strapon2);
-            Match.match = new Match(lineup, matchmod);
+            buildMatch(lineup, matchmod);
         } else if (matchmod.name().equals("ftc")) {
             Character prey = ((FTCModifier) matchmod).getPrey();
             if (!prey.human()) {
@@ -121,16 +128,15 @@ public abstract class Prematch implements Scene {
             lineup = CharacterPool.pickCharacters(participants, lineup, 5);
             Match.resting = new HashSet<>(CharacterPool.players);
             Match.resting.removeAll(lineup);
-            Match.match = buildMatch(lineup, matchmod);
+            buildMatch(lineup, matchmod);
         } else if (participants.size() > 5) {
             lineup = CharacterPool.pickCharacters(participants, lineup, 5);
             Match.resting = new HashSet<>(CharacterPool.players);
             Match.resting.removeAll(lineup);
-            Match.match = buildMatch(lineup, matchmod);
+            buildMatch(lineup, matchmod);
         } else {
-            Match.match = buildMatch(participants, matchmod);
+            buildMatch(participants, matchmod);
         }
-        Match.startMatch();
     }
 
     public abstract void prompt(Player player);

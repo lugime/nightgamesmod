@@ -9,12 +9,16 @@ import nightgames.characters.body.mods.FieryMod;
 import nightgames.characters.body.mods.SizeMod;
 import nightgames.combat.Combat;
 import nightgames.combat.Result;
+import nightgames.global.Match;
 import nightgames.items.Item;
+import nightgames.modifier.standard.NoModifier;
 import nightgames.stance.*;
 import nightgames.status.Alert;
 import nightgames.status.Stsflag;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import static nightgames.requirements.RequirementShortcuts.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -41,6 +45,7 @@ public class RequirementTest {
         self = new BlankPersonality("SelfTestNPC").character;
         other = new BlankPersonality("OtherTestNPC").character;
         Area area = new Area("TestArea", "TestArea description", Movement.beer);
+        new Match(Arrays.asList(self, other), new NoModifier());
         combat = new Combat(self, other, area);
     }
 

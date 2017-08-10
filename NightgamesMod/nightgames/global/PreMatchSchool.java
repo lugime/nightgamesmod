@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Setup for the standard match type.
@@ -22,6 +23,10 @@ import java.util.Set;
 public class PreMatchSchool extends Prematch {
     public final MatchType matchType = MatchType.NORMAL;
     private Modifier type;
+
+    PreMatchSchool(CompletableFuture<Match> match) {
+        super(match);
+    }
 
     public void prompt(Player player) {
         List<KeyableButton> choice = new ArrayList<KeyableButton>();
@@ -59,7 +64,6 @@ public class PreMatchSchool extends Prematch {
         } else if (player.getRank() > 0 && Time.getDate() % 30 == 0) {
             type = new MayaModifier();
             message += type.intro();
-
             choice.add(new SceneButton("Start The Match"));
         } else {
             message += "You arrive at the student union with about 10 minutes to spare before the start of the match. You greet each of the girls and make some idle chatter with "
@@ -92,10 +96,10 @@ public class PreMatchSchool extends Prematch {
         String message = "";
         List<KeyableButton> choice = new ArrayList<KeyableButton>();
         if (response.startsWith("Start")) {
-            new Prematch().setUpMatch(type);
+            setUpMatch(type);
         } else if (response.startsWith("Not")) {
             type = new NoModifier();
-            new Prematch().setUpMatch(type);
+            setUpMatch(type);
         } else if (response.startsWith("Do")) {
             message += type.acceptance();
             choice.add(new SceneButton("Start The Match"));

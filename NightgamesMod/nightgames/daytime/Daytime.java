@@ -1,6 +1,7 @@
 package nightgames.daytime;
 
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 import nightgames.characters.*;
 import nightgames.characters.Character;
@@ -13,6 +14,7 @@ import nightgames.status.addiction.Addiction;
 
 public class Daytime {
     public static Daytime day;
+    public final CountDownLatch readyForNight;
     private ArrayList<Activity> activities;
     private Player player;
     int time;
@@ -20,6 +22,7 @@ public class Daytime {
     private DaytimeEventManager eventMgr;
 
     public Daytime(Player player) {
+        readyForNight = new CountDownLatch(1);
         this.player = player;
         this.eventMgr = new DaytimeEventManager(player);
         buildActivities();
@@ -144,15 +147,7 @@ public class Daytime {
                     ((NPC) npc).daytime(daylength);
                 }
             }
-            GameState.endDay();
-
-            /*
-            if (GameState.checkFlag(Flag.autosave)) {
-                GameState.autoSave();
-            }
-            GameState.decideMatchType()
-                  .buildPrematch(player);
-            */
+            readyForNight.countDown();
         }
     }
 

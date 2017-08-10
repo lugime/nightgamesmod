@@ -12,13 +12,16 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Read and write SaveData to and from save files.
  */
 public class SaveFile {
     public static void autoSave() {
-        save(new File("./auto.ngs"));
+        if (Flag.checkFlag(Flag.autosave)) {
+            save(new File("./auto.ngs"));
+        }
     }
 
     public static void saveWithDialog() {
@@ -41,7 +44,7 @@ public class SaveFile {
         }
     }
 
-    public static void loadWithDialog() {
+    public static void loadWithDialog(CompletableFuture<GameState> stateFuture) {
         JFileChooser dialog = new JFileChooser("./");
         FileFilter savesFilter = new FileNameExtensionFilter("Nightgame Saves", "ngs");
         dialog.addChoosableFileFilter(savesFilter);
@@ -61,23 +64,27 @@ public class SaveFile {
                 return;
             }
         }
-        load(file);
+        try {
+            stateFuture.complete(load(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void load(File file) {
+    public static GameState load(File file) throws IOException {
         GameState.resetForLoad();
+        GameState loadedGame = new GameState();
 
         JsonObject object;
         try (Reader loader = new InputStreamReader(new FileInputStream(file))) {
             object = new JsonParser().parse(loader).getAsJsonObject();
 
         } catch (IOException e) {
-            e.printStackTrace();
             // Couldn't load data; just get out
-            return;
+            throw e;
         }
         SaveData data = new SaveData(object);
-        GameState.loadData(data);
+        return loadedGame.loadData(data);
     }
 
 }

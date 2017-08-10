@@ -2,33 +2,38 @@ package nightgames.global;
 
 import nightgames.Resources.ResourceLoader;
 import nightgames.characters.*;
-import nightgames.characters.Character;
 import nightgames.daytime.Daytime;
 import nightgames.gui.GUI;
 import nightgames.items.clothing.Clothing;
 import nightgames.json.JsonUtils;
-import nightgames.modifier.standard.NoModifier;
 import nightgames.skills.Skill;
 import nightgames.start.PlayerConfiguration;
 import nightgames.start.StartConfiguration;
 
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 /**
  * Creates, destroys, and maintains the state of a running game.
  */
 public class GameState {
+    private volatile static GameState gameState;
     public static Scene current;
     public static double moneyRate = 1.0;
     public static double xpRate = 1.0;
+    private static boolean ingame = false;
+    private volatile boolean run;
 
     public GameState() {
         current = null;
+        gameState = this;
     }
 
-    public static void newGame(String playerName, Optional<StartConfiguration> config, List<Trait> pickedTraits,
+    public void newGame(String playerName, Optional<StartConfiguration> config, List<Trait> pickedTraits,
                     CharacterSex pickedGender, Map<Attribute, Integer> selectedAttributes) {
         Optional<PlayerConfiguration> playerConfig = config.map(c -> c.player);
         Collection<String> cfgFlags = config.map(StartConfiguration::getFlags).orElse(new ArrayList<>());
@@ -55,74 +60,28 @@ public class GameState {
         Time.date = 1;
         Flag.setCharacterDisabledFlag(CharacterPool.getNPCByType("Yui"));
         Flag.setFlag(Flag.systemMessages, true);
-        Match.setUpMatch(new NoModifier());
-    }
-
-    public static void startDay() {
-        Match.match = null;
-        Daytime.day = new Daytime(CharacterPool.human);
-        Daytime.day.plan();
     }
 
     /**
-     * Sets the time to DAY, since the order of operations changed and manual end-of-match
-     * saves got flagged as NIGHT instead.
+     * Loads game state data into static fields from SaveData object.
+     *
+     * @param data A SaveData object, as loaded from save files.
      */
-    public static void endNightForSave() {
-        Time.time = Time.DAY;
-    }
-    
-    public static void endNight() {
-        double level = 0;
-        int maxLevelTracker = 0;
-
-        for (Character player : CharacterPool.players) {
-            player.getStamina().fill();
-            player.getArousal().empty();
-            player.getMojo().empty();
-            player.change();
-            level += player.getLevel();
-            if (!player.has(Trait.unnaturalgrowth) && !player.has(Trait.naturalgrowth)) {
-                maxLevelTracker = Math.max(player.getLevel(), maxLevelTracker);
-            }
-        }
-        final int maxLevel = maxLevelTracker / CharacterPool.players.size();
-        CharacterPool.players.stream().filter(c -> c.has(Trait.naturalgrowth)).filter(c -> c.getLevel() < maxLevel + 2).forEach(c -> {
-            while (c.getLevel() < maxLevel + 2) {
-                c.ding(null);
-            }
-        });
-        CharacterPool.players.stream().filter(c -> c.has(Trait.unnaturalgrowth)).filter(c -> c.getLevel() < maxLevel + 5)
-                        .forEach(c -> {
-                            while (c.getLevel() < maxLevel + 5) {
-                                c.ding(null);
-                            }
-                        });
-
-        level /= CharacterPool.players.size();
-
-        for (Character rested : Match.resting) {
-            rested.gainXP(100 + Math.max(0, (int) Math.round(10 * (level - rested.getLevel()))));
-        }
-        Time.date++;
-        Time.time = Time.DAY;
-        if (Flag.checkFlag(Flag.autosave)) {
-            SaveFile.autoSave();
-        }
-        Match.endMatch(GUI.gui);
+    protected GameState loadData(SaveData data) {
+        CharacterPool.players.addAll(data.players);
+        CharacterPool.players.stream().filter(c -> c instanceof NPC).forEach(
+                        c -> CharacterPool.characterPool.put(c.getType(), (NPC) c));
+        Flag.flags.addAll(data.flags);
+        Flag.counters.putAll(data.counters);
+        Time.date = data.date;
+        Time.time = data.time;
+        GUI.gui.fontsize = data.fontsize;
+        GUI.gui.populatePlayer(CharacterPool.human);
+        return this;
     }
 
-    public static void endDay() {
-        Daytime.day = null;
-        Time.time = Time.NIGHT;
-        if (Flag.checkFlag(Flag.autosave)) {
-            SaveFile.autoSave();
-        }
-        startNight();
-    }
-
-    public static void startNight() {
-        Match.decideMatchType().buildPrematch(CharacterPool.human);
+    public static GameState state() {
+        return gameState;
     }
 
     protected static SaveData saveData() {
@@ -134,28 +93,6 @@ public class GameState {
         data.date = Time.date;
         data.fontsize = GUI.gui.fontsize;
         return data;
-    }
-
-    /**
-     * Loads game state data into static fields from SaveData object.
-     *
-     * @param data A SaveData object, as loaded from save files.
-     */
-    protected static void loadData(SaveData data) {
-        CharacterPool.players.addAll(data.players);
-        CharacterPool.players.stream().filter(c -> c instanceof NPC).forEach(
-                        c -> CharacterPool.characterPool.put(c.getType(), (NPC) c));
-        Flag.flags.addAll(data.flags);
-        Flag.counters.putAll(data.counters);
-        Time.date = data.date;
-        Time.time = data.time;
-        GUI.gui.fontsize = data.fontsize;
-        GUI.gui.populatePlayer(CharacterPool.human);
-        if (Time.time == Time.DAY) {
-            GameState.startDay();
-        } else {
-            GameState.startNight();
-        }
     }
 
     protected static void resetForLoad() {
@@ -210,7 +147,61 @@ public class GameState {
     }
 
     public static boolean inGame() {
-        return !CharacterPool.players.isEmpty();
+        return ingame;
     }
 
+    public synchronized void gameLoop() {
+        ingame = true;
+        run = true;
+        while (run) {
+            try {
+                if (Time.getTime() == Time.NIGHT) {
+                    CompletableFuture<Match> preparedMatch = new CompletableFuture<>();
+                    // do nighttime stuff
+                    // choose match
+                    Prematch prematch = Prematch.decideMatchType(preparedMatch);
+                    // set up match
+                    prematch.prompt(CharacterPool.human);
+                    Match match = preparedMatch.get();
+                    // start match
+                    CountDownLatch matchComplete = match.matchComplete;
+                    match.startMatch();
+                    // end match
+                    matchComplete.await();
+                    Postmatch postmatch = new Postmatch(CharacterPool.getPlayer(), match.combatants);
+                    postmatch.endMatch();
+                    // set time to next day
+                    Time.date++;
+                    Time.time = Time.DAY;
+                    postmatch.EndMatchGui();
+                    postmatch.readyForBed.await();
+                    // autosave
+                    SaveFile.autoSave();
+                    // sleep
+                }
+                if (Time.getTime() == Time.DAY) {
+                    Match.match = null;
+                    Daytime.day = new Daytime(CharacterPool.human);
+                    // do daytime stuff
+                    Daytime.day.plan();
+                    Daytime.day.readyForNight.await();
+                    // set time to night
+                    Daytime.day = null;
+                    Time.time = Time.NIGHT;
+                    // autosave
+                    SaveFile.autoSave();
+                }
+            } catch (InterruptedException e) {
+                run = false;
+            } catch (ExecutionException e) {
+                run = false;
+                e.printStackTrace();
+            }
+        }
+        ingame = false;
+    }
+
+    public void wake() {
+        this.notifyAll();
+    }
 }

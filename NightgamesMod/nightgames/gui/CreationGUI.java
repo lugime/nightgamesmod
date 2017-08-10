@@ -505,7 +505,9 @@ public class CreationGUI extends JPanel {
             selectedAttributes.put(Attribute.Power, power);
             selectedAttributes.put(Attribute.Seduction, seduction);
             selectedAttributes.put(Attribute.Cunning, cunning);
-            GameState.newGame(name, startConfig, traits, sex, selectedAttributes);
+            GameState state = new GameState();
+            state.newGame(name, startConfig, traits, sex, selectedAttributes);
+            GUI.gui.stateFuture.complete(state);
         }
     }
 

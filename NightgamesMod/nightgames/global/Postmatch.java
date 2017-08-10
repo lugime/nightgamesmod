@@ -1,20 +1,23 @@
 package nightgames.global;
 
 import nightgames.characters.Character;
-import nightgames.gui.GUI;
-import nightgames.gui.KeyableButton;
-import nightgames.gui.SceneButton;
+import nightgames.characters.CharacterPool;
+import nightgames.characters.Trait;
+import nightgames.gui.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class Postmatch implements Scene {
+    public final CountDownLatch readyForBed;
 
     private Character player;
     private ArrayList<Character> combatants;
     private boolean normal;
 
     public Postmatch(Character player, ArrayList<Character> combatants) {
+        readyForBed = new CountDownLatch(1);
         this.player = player;
         this.combatants = combatants;
         normal = true;
@@ -31,7 +34,54 @@ public class Postmatch implements Scene {
         if (normal) {
             normal();
         }
-        GameState.endNight();
+    }
+
+    public void EndMatchGui() {
+        GUI.gui.combat = null;
+        GUI.gui.clearCommand();
+        GUI.gui.showNone();
+        GUI.gui.mntmQuitMatch.setEnabled(false);
+        RunnableButton button = new RunnableButton("Go to sleep", readyForBed::countDown);  // unblock main loop
+        GUI.gui.commandPanel.add(button);
+        GUI.gui.commandPanel.add(new SaveButton());
+        GUI.gui.commandPanel.refresh();
+    }
+
+    public void endMatch() {
+        double level = 0;
+        int maxLevelTracker = 0;
+
+        for (Character player : CharacterPool.players) {
+            player.getStamina().fill();
+            player.getArousal().empty();
+            player.getMojo().empty();
+            player.change();
+            level += player.getLevel();
+            if (!player.has(Trait.unnaturalgrowth) && !player.has(Trait.naturalgrowth)) {
+                maxLevelTracker = Math.max(player.getLevel(), maxLevelTracker);
+            }
+        }
+        final int maxLevel = maxLevelTracker / CharacterPool.players.size();
+        CharacterPool.players.stream().filter(c -> c.has(Trait.naturalgrowth)).filter(c -> c.getLevel() < maxLevel + 2).forEach(c -> {
+            while (c.getLevel() < maxLevel + 2) {
+                c.ding(null);
+            }
+        });
+        CharacterPool.players.stream().filter(c -> c.has(Trait.unnaturalgrowth)).filter(c -> c.getLevel() < maxLevel + 5)
+                        .forEach(c -> {
+                            while (c.getLevel() < maxLevel + 5) {
+                                c.ding(null);
+                            }
+                        });
+
+        level /= CharacterPool.players.size();
+
+        for (Character rested : Match.resting) {
+            rested.gainXP(100 + Math.max(0, (int) Math.round(10 * (level - rested.getLevel()))));
+        }
+        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
+            System.out.println("Match end");
+        }
     }
 
     @Override

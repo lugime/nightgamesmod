@@ -6,24 +6,22 @@ import nightgames.areas.Cache;
 import nightgames.areas.MapSchool;
 import nightgames.characters.*;
 import nightgames.characters.Character;
-import nightgames.daytime.Daytime;
-import nightgames.ftc.FTCMatch;
 import nightgames.gui.GUI;
 import nightgames.gui.RunnableButton;
 import nightgames.gui.SaveButton;
-import nightgames.items.Item;
 import nightgames.modifier.Modifier;
-import nightgames.modifier.standard.FTCModifier;
-import nightgames.modifier.standard.NoModifier;
 import nightgames.skills.Skill;
 import nightgames.status.Status;
 import nightgames.status.Stsflag;
 import nightgames.status.addiction.Addiction;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 
 public class Match {
+    public final CountDownLatch matchComplete; // Counts down when match is over
     public static Set<Character> resting = new HashSet<>();
     public static Match match;
     static HashMap<String, MatchAction> matchActions = null;
@@ -38,6 +36,7 @@ public class Match {
     public MatchData matchData;
 
     public Match(Collection<Character> combatants, Modifier condition) {
+        matchComplete = new CountDownLatch(1);
         this.combatants = new ArrayList<Character>();
         for (Character c : combatants) {
             this.combatants.add(c);
@@ -84,23 +83,7 @@ public class Match {
             }
             manageConditions(player);
         }
-    }
-
-    public static void endMatch(GUI gui) {
-        if (DebugFlags.isDebugOn(DebugFlags.DEBUG_GUI)) {
-            System.out.println("Match end");
-        }
-        gui.combat = null;
-        gui.clearCommand();
-        gui.showNone();
-        gui.mntmQuitMatch.setEnabled(false);
-        GameState.endNightForSave();
-        RunnableButton button = new RunnableButton("Go to sleep", () -> {
-            GameState.startDay();
-        });
-        gui.commandPanel.add(button);
-        gui.commandPanel.add(new SaveButton());
-        gui.commandPanel.refresh();
+        match = this;
     }
 
     public static void startMatchGui(GUI gui) {
@@ -108,7 +91,7 @@ public class Match {
         gui.showMap();
     }
 
-    public static void startMatch() {
+    public void startMatch() {
         CharacterPool.getPlayer().getAddictions().forEach(a -> {
             Optional<Status> withEffect = a.startNight();
             withEffect.ifPresent(s -> CharacterPool.getPlayer().addNonCombat(s));
@@ -279,7 +262,7 @@ public class Match {
             }
         }
         CharacterPool.getPlayer().getAddictions().forEach(Addiction::endNight);
-        new Postmatch(CharacterPool.getPlayer(), combatants);
+        matchComplete.countDown();
     }
 
     public int getHour() {

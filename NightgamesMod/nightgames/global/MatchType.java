@@ -21,15 +21,4 @@ public enum MatchType {
                 throw new Error();
         }
     }
-
-    public Prematch buildPrematch() {
-        switch (this) {
-            case FTC:
-                return new PrematchFTC();
-            case NORMAL:
-                return new PreMatchSchool();
-            default:
-                throw new Error();
-        }
-    }
 }

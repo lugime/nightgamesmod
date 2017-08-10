@@ -133,8 +133,6 @@ public class Player extends Character {
                     Match.getMatch().resume();
                 } else if (Daytime.day != null) {
                     Daytime.getDay().plan();
-                } else {
-                    new PreMatchSchool(CharacterPool.human);
                 }
             }
         }
