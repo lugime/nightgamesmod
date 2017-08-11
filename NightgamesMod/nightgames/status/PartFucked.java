@@ -22,12 +22,7 @@ public class PartFucked extends Status implements InsertedStatus {
         target = hole;
         this.penetrator = stick;
         this.other = other;
-        requirements.add((c, self, opponent) -> {
-            if (c.getStance().distance() > 1) {
-                return false;
-            }
-            return false;
-        });
+        requirements.add((c, self, opponent) -> c != null && c.getStance().distance() <= 1);
         flag(Stsflag.debuff);
     }
 
