@@ -442,7 +442,7 @@ public class Eve extends BasePersonality {
                                         "[Placeholder] You see {self:name} in some sort of setup scenario. She asks you a question relevant to her advancement."
                                         + "\n\n \"<i>Hey, fuccboi. You know what? I was thinking - What do you like more, I could focus on THIS or THAT. What do you think?</i>\"",
                                         self, other),
-                        Arrays.asList(new CombatSceneChoice("Hypnotic Powers", (c, self, other) -> {
+                        Arrays.asList(new CombatSceneChoice("DO TYPE1", (c, self, other) -> {
                             c.write(Global.format(
                                             "[Placeholder] You tell {self:direct-object} that you'd prefer the first thing. She responds in a manner befitting such a choice.",
                                             self, other,
@@ -451,7 +451,7 @@ public class Eve extends BasePersonality {
                                                                             + " in response to choosing the first choice."));
                             useFirstType1();
                             return true;
-                        }), new CombatSceneChoice("TYPE2", (c, self, other) -> {
+                        }), new CombatSceneChoice("DO TYPE2", (c, self, other) -> {
                             c.write(Global.format(
                                             "[Placeholder] You tell {self:direct-object} that you'd prefer the second thing. She responds in a manner befitting such a choice.", self, other));
                             useFirstType2();
@@ -514,8 +514,7 @@ public class Eve extends BasePersonality {
      *    
      *    <i>\"Hoooohhhh shit. Ha ha! Well, {other:name}, I can see you staring. You like this shit, don't ya? What do you like more about me, huh?\"</i>
      * 
-     * 
-     *    
+     *      <i>\"Hooo shit...That's fucking hot, {other:name}. Hey. You sound like you like some fucked up stuff, too. Want me to show you some slutty shit that you might like?\"</i>
      * 
      * */
     
