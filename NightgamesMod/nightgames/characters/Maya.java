@@ -484,7 +484,7 @@ public class Maya extends BasePersonality {
      * */
     private void addSecondFocusScene(){
         character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 50 && !Global.checkFlag(MAYA_FIRSTTYPE1_FOCUS) && !Global.checkFlag(MAYA_FIRSTTYPE2_FOCUS),
+                        (c, self, other) -> self.getLevel() >= 50 && !Global.checkFlag(MAYA_SECONDTYPE1_FOCUS) && !Global.checkFlag(MAYA_SECONDTYPE2_FOCUS),
                         (c, self, other) -> Global.format(
                                         "[Placeholder] You see {self:name} consider how strong the competition is now. She wonders if she should really cut loose and go full power, but how?",
                                         self, other),
@@ -515,16 +515,16 @@ public class Maya extends BasePersonality {
     }
     
     private void useFirstType1(){
-        
+        Global.flag(MAYA_FIRSTTYPE1_FOCUS);
     }
     private void useFirstType2(){
-        
+        Global.flag(MAYA_FIRSTTYPE2_FOCUS);
     }
     
     private void useSecondType1(){
-        
+        Global.flag(MAYA_SECONDTYPE1_FOCUS);
     }
     private void useSecondType2(){
-        
+        Global.flag(MAYA_SECONDTYPE1_FOCUS);
     }
 }
