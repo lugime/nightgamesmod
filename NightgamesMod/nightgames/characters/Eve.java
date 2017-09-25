@@ -29,8 +29,10 @@ public class Eve extends BasePersonality {
     
     public static final String EVE_FIRSTTYPE1_FOCUS = "EveFirst1Focus";
     public static final String EVE_FIRSTTYPE2_FOCUS = "EveFirst2Focus";
+    public static final String EVE_FIRSTTYPE_DONE = "EveFirstFocusDone";
     public static final String EVE_SECONDTYPE1_FOCUS = "EveSecond1Focus";
     public static final String EVE_SECONDTYPE2_FOCUS = "EveSecond2Focus";
+    public static final String EVE_SECONDTYPE_DONE = "EveFirstFocusDone";
     
     public Eve() {
         this(Optional.empty(), Optional.empty());
@@ -437,7 +439,7 @@ public class Eve extends BasePersonality {
      * */
     private void addFirstFocusScene(){
         character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 40 && !Global.checkFlag(EVE_FIRSTTYPE1_FOCUS) && !Global.checkFlag(EVE_FIRSTTYPE2_FOCUS),
+                        (c, self, other) -> self.getLevel() >= 40 && !Global.checkFlag(EVE_FIRSTTYPE1_FOCUS) && !Global.checkFlag(EVE_FIRSTTYPE2_FOCUS) && !Global.checkFlag(EVE_FIRSTTYPE_DONE),
                         (c, self, other) -> Global.format(
                                         "[Placeholder] You see {self:name} in some sort of setup scenario. She asks you a question relevant to her advancement."
                                         + "\n\n \"<i>Hey, fuccboi. You know what? I was thinking - What do you like more, I could focus on THIS or THAT. What do you think?</i>\"",
@@ -474,7 +476,7 @@ public class Eve extends BasePersonality {
      * */
     private void addSecondFocusScene(){
         character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 50 && !Global.checkFlag(EVE_SECONDTYPE1_FOCUS) && !Global.checkFlag(EVE_SECONDTYPE2_FOCUS),
+                        (c, self, other) -> self.getLevel() >= 50 && !Global.checkFlag(EVE_SECONDTYPE1_FOCUS) && !Global.checkFlag(EVE_SECONDTYPE2_FOCUS) && Global.checkFlag(EVE_FIRSTTYPE_DONE) && !Global.checkFlag(EVE_SECONDTYPE_DONE),
                         (c, self, other) -> Global.format(
                                         "[Placeholder] You see {self:name} consider how strong the competition is now. She wonders if she should really cut loose and go full power, but how?",
                                         self, other),
@@ -486,7 +488,7 @@ public class Eve extends BasePersonality {
                             return true;
                         }), new CombatSceneChoice("DO TYPE2", (c, self, other) -> {
                             c.write(Global.format(
-                                            "[Placeholder] You tell {self:name} that she should make full use of her Cursed nature. She agrees, and shows off a little.",
+                                            "[Placeholder] You tell {self:name} that she should make full use of her OTHERTHING. She agrees, and shows off a little.",
                                             self, other));
                             useSecondType2();
                             return true;
@@ -521,16 +523,20 @@ public class Eve extends BasePersonality {
     
     private void useFirstType1(){
         Global.flag(EVE_FIRSTTYPE1_FOCUS);
+        Global.flag(EVE_FIRSTTYPE_DONE);
     }
     private void useFirstType2(){
         Global.flag(EVE_FIRSTTYPE2_FOCUS);
+        Global.flag(EVE_FIRSTTYPE_DONE);
     }
     
     private void useSecondType1(){
         Global.flag(EVE_SECONDTYPE1_FOCUS);
+        Global.flag(EVE_SECONDTYPE_DONE);
     }
     private void useSecondType2(){
         Global.flag(EVE_SECONDTYPE1_FOCUS);
+        Global.flag(EVE_SECONDTYPE_DONE);
     }
     
 }

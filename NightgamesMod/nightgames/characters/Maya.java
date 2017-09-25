@@ -28,9 +28,10 @@ public class Maya extends BasePersonality {
     
     public static final String MAYA_FIRSTTYPE1_FOCUS = "MayaFirst1Focus";
     public static final String MAYA_FIRSTTYPE2_FOCUS = "MayaFirst2Focus";
+    public static final String MAYA_FIRSTTYPE_DONE = "MayaFirstFocusDone";
     public static final String MAYA_SECONDTYPE1_FOCUS = "MayaSecond1Focus";
     public static final String MAYA_SECONDTYPE2_FOCUS = "MayaSecond2Focus";
-    
+    public static final String MAYA_SECONDTYPE_DONE = "MayaSecondFocusDone";
     
     public Maya(int playerLevel) {
         this(playerLevel, Optional.empty(), Optional.empty());
@@ -444,7 +445,7 @@ public class Maya extends BasePersonality {
      * */
     private void addFirstFocusScene(){
         character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 40 && !Global.checkFlag(MAYA_FIRSTTYPE1_FOCUS) && !Global.checkFlag(MAYA_FIRSTTYPE2_FOCUS),
+                        (c, self, other) -> self.getLevel() >= 40 && !Global.checkFlag(MAYA_FIRSTTYPE1_FOCUS) && !Global.checkFlag(MAYA_FIRSTTYPE2_FOCUS) && !Global.checkFlag(MAYA_FIRSTTYPE_DONE),
                         (c, self, other) -> Global.format(
                                         "[Placeholder] You see {self:name} in some sort of setup scenario. She asks you a question relevant to her advancement."
                                         + "\n\n \"<i>You know what? I was thinking - Now that I'm playing again, I could focus on THIS or THAT. What do you think?</i>\"",
@@ -484,7 +485,7 @@ public class Maya extends BasePersonality {
      * */
     private void addSecondFocusScene(){
         character.addCombatScene(new CombatScene(
-                        (c, self, other) -> self.getLevel() >= 50 && !Global.checkFlag(MAYA_SECONDTYPE1_FOCUS) && !Global.checkFlag(MAYA_SECONDTYPE2_FOCUS),
+                        (c, self, other) -> self.getLevel() >= 50 && !Global.checkFlag(MAYA_SECONDTYPE1_FOCUS) && !Global.checkFlag(MAYA_SECONDTYPE2_FOCUS) && Global.checkFlag(MAYA_FIRSTTYPE_DONE) && !Global.checkFlag(MAYA_SECONDTYPE_DONE),
                         (c, self, other) -> Global.format(
                                         "[Placeholder] You see {self:name} consider how strong the competition is now. She wonders if she should really cut loose and go full power, but how?",
                                         self, other),
@@ -510,21 +511,26 @@ public class Maya extends BasePersonality {
                                             useSecondType2();
                                             character.getGrowth().extraAttributes += 1;
                                             Global.getPlayer().getGrowth().addTraitPoints(new int[] {21, 48}, Global.getPlayer());
+                                            
                                             return true;
                                         }))));
     }
     
     private void useFirstType1(){
         Global.flag(MAYA_FIRSTTYPE1_FOCUS);
+        Global.flag(MAYA_FIRSTTYPE_DONE);
     }
     private void useFirstType2(){
         Global.flag(MAYA_FIRSTTYPE2_FOCUS);
+        Global.flag(MAYA_FIRSTTYPE_DONE);
     }
     
     private void useSecondType1(){
         Global.flag(MAYA_SECONDTYPE1_FOCUS);
+        Global.flag(MAYA_SECONDTYPE_DONE);
     }
     private void useSecondType2(){
         Global.flag(MAYA_SECONDTYPE1_FOCUS);
+        Global.flag(MAYA_SECONDTYPE_DONE);
     }
 }
