@@ -157,6 +157,23 @@ public class Maya extends BasePersonality {
             return "<i>\"Oh.. SHIT! Did I just actually... Fuck! Come here and let me return the favor, stud!\"</i>";
         });
 
+        
+        character.addLine(CharacterLine.LEVEL_DRAIN_LINER, (c, self, other) -> {
+            String part = Global.pickRandom(c.getStance().getPartsFor(c, self, other)).map(bp -> bp.describe(self)).orElse("pussy");
+            if (other.getLevel() < self.getLevel() - 5) {
+                return "\"<i>Oh yeah! I can feel it! Go ahead and cum, stud! Cuuummmmmm!</i>\" "
+                                + "{self:SUBJECT} closes her eyes while giving you a hard squeeze with {self:possessive} " + part + " - setting you off. You feel the desperate and alarming sensation of your strength entering {self:possessive} as you hopelessly climax beneath {self:possessive}. "
+                                + "You attempt to move away, but {self:subject} holds you down effortlessly while riding you - they are definitely more powerful than you, now. You can't escape even if you tried. "
+                                + "\"<i>Oh, no {other:NAME}, you're not going anywhere! Taking your power, strength, and even memories while you cum yourself into weakness <b>really</b> scratches my itch...I think I understand why succubi enjoy themselves so much! Want give me more?</i>\"";
+            } else if (other.getLevel() >= self.getLevel()) {
+                return "{self:SUBJECT}'s eyes narrow while savoring the feeling of robbing you of your hard-earned power into {self:possessive} " + part + " as you hopelessly cum. "
+                                + "<i>\"Ohhhh~ I'm not sure how you got stronger than me in the first place, {other:boy}, but feel free to try again - sucking it out of you feels <b>really</b> good.\"</i>";
+            } else {
+                return "\"<i>Ha ha ha! You know, what, {other:NAME}? I don't know why you thought you'd take on a graduate, but I can't help but enjoy keeping you in your place.</i>\"";
+            }
+        });
+
+        
         character.addLine(CharacterLine.MAKE_ORGASM_LINER, (c, self, other) -> {
             return "<i>\"Aaaand there we are. Think you can go again?\"</i>";
         });
