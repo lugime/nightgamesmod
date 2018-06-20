@@ -495,8 +495,10 @@ private static HashMap<String, HashMap<String, List<Integer>>> resultTracker=new
             opponents.forEach(opponent -> opponent.weaken(this, opponent.getStamina().max() / 10));
         }
         String beguilingbreastCompletedFlag = Trait.beguilingbreasts.name() + "Completed";
-        if (character.has(Trait.beguilingbreasts) && !getCombatantData(character).getBooleanFlag(beguilingbreastCompletedFlag)
-                        && character.outfit.slotOpen(ClothingSlot.top)) {
+        //Fix for Beguiling Breasts being seen when it shouldn't.
+        if (character.has(Trait.beguilingbreasts) && !getCombatantData(character).getBooleanFlag(beguilingbreastCompletedFlag) && 
+                        character.outfit.slotOpen(ClothingSlot.top) && getStance().facing(character, getOpponent(character)) && 
+                        !getOpponent(character).is(Stsflag.blinded)) {
             Character mainOpponent = getOpponent(character);
             write(character, Global.format("The instant {self:subject-action:lay|lays} {self:possessive} eyes on {other:name-possessive} bare breasts, {self:possessive} consciousness flies out of {self:possessive} mind. " +
                             (character.canAct() ? "{other:SUBJECT-ACTION:giggle|giggles} a bit and {other:action:cup} {other:possessive} {other:body-part:breasts}"

@@ -328,6 +328,19 @@ public class Angel extends BasePersonality {
                                  .get();
             }
         });
+        
+        /*  //If Angel is a Corrupted demigoddess  
+             if (character.has(Trait.demigoddess) && character.isDemonic()) {
+          
+             //if Angel is a demigoddess
+            } else if (other.getLevel() >= self.getLevel()) {
+            
+            //When she's not any of those
+             } else {
+             
+             }
+         */
+        
         character.addLine(CharacterLine.NIGHT_LINER,
                         (c, self, other) -> "As you start to head back after the match, Angel grabs your hand and drags you in the other direction. <i>\"You're officially kidnapped, because I haven't had "
                                         + "enough sex yet tonight.\"</i> That makes sense... kinda? You did just finish three hours of intense sex-fighting. If she wants too much more than that, you're "
@@ -366,6 +379,29 @@ public class Angel extends BasePersonality {
                                 + "her, but you don't know it yet.";
             }
         });
+        
+        //This is an example of a new kind of Line - a Line to be said if this character gets 0 victories. 
+        character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
+            if (character.has(Trait.demigoddess) && character.isDemonic()) {
+                return "[PLACEHOLDER] Angel (Corrupted Goddess) says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
+            } else if (character.has(Trait.demigoddess)) {
+                return "[PLACEHOLDER] Angel (Goddess) says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
+            } else {
+                return "[PLACEHOLDER] Angel says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
+            }
+        });
+        
+        //This is an example of a new kind of Line - a Line to be said if this character wins the entire night. 
+        character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
+            if (character.has(Trait.demigoddess) && character.isDemonic()) {
+                return "[PLACEHOLDER] Angel (Corrupted Goddess) says, \"</i>That's right! Everyone on their knees!\"</i>";
+            } else if (character.has(Trait.demigoddess)) {
+                return "[PLACEHOLDER] Angel (Goddess) says, \"</i>How's that for some good religion? I could go for some more.\\\"</i>";
+            } else {
+                return "[PLACEHOLDER] Angel says, \"</i>MMm! That was nice. I could go for some more.\"</i>";
+            }
+        });
+        
     }
 
     @Override
@@ -871,6 +907,5 @@ public class Angel extends BasePersonality {
                             return true;
                         }))));
     }
-    
     
 }

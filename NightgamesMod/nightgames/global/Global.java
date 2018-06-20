@@ -792,7 +792,7 @@ public class Global {
     public static void endNight() {
         double level = 0;
         int maxLevelTracker = 0;
-
+        
         for (Character player : players) {
             player.getStamina().fill();
             player.getArousal().empty();
@@ -803,12 +803,23 @@ public class Global {
                 maxLevelTracker = Math.max(player.getLevel(), maxLevelTracker);
             }
         }
-        final int maxLevel = maxLevelTracker / players.size();
+        final int maxLevel = maxLevelTracker; // Was final int maxLevel = maxLevelTracker / players.size();
         players.stream().filter(c -> c.has(Trait.naturalgrowth)).filter(c -> c.getLevel() < maxLevel + 2).forEach(c -> {
             while (c.getLevel() < maxLevel + 2) {
                 c.ding(null);
             }
         });
+        /*  CONSIDER USING THIS INSTEAD
+         * players.stream().filter(c -> c.has(Trait.naturalgrowth)).filter(c -> c.getLevel() < maxLevel - 1).forEach(c -> {
+                while (c.getLevel() < maxLevel - 1) {
+                    c.ding(null);
+                }
+           });
+         * 
+         * 
+         * */
+        
+        
         players.stream().filter(c -> c.has(Trait.unnaturalgrowth)).filter(c -> c.getLevel() < maxLevel + 5)
                         .forEach(c -> {
                             while (c.getLevel() < maxLevel + 5) {
