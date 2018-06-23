@@ -90,22 +90,30 @@ public class MayaTime extends BaseNPCTime {
             }
             Global.gui().choose(this, "Get Hypnotized");
         } else if (npc.getAttraction(player) < 15) {
-            Global.gui().message("You eventually find Maya in one of the post-doctoral research offices, engrossed with work. Maya's office is perfectly arranged, and her face seems to be engrossed in reading and writing.<br/><br/><i>\"Oh, hello, "
-                                  + player.getTrueName() + ".\"</i> She doesn't bother looking at you, but continues typing "
-                                  + "while going through some kind of book. <i>\"What brings you here?\"</i>\nYou ask her if she'd like to take a break and hang out for a while.\n<i>\"No thanks. I have important work to do here, and I'm not leaving until it's done.\"</i> "
-                                  + "She picks up what looks like a piping hot cup of creamed coffee and sips it.\n<i>\"I'm sorry, but if you want me to play with you tonight, the answer is no. Go play with the others - that's why they are there. I am in here, working and helping to run the games.\"</i>"
-                                  + "<br/><br/>She doesn't say much more and you leave the room, wondering if it was something you said or if you overstepped your bounds.");
+            Global.gui().message("You eventually find Maya in one of the post-doctoral research offices, engrossed with work. Maya's office is perfectly arranged, and her face seems to be engrossed in reading and writing.<br/><br/>"
+                            + "<i>\"Oh, hello, " + player.getTrueName() + ".\"</i> She doesn't bother looking at you, but continues typing while going through some kind of book. "
+                            + "<i>\"What brings you here?\"</i><br/><br/>"
+                            + "You ask her if she'd like to take a break and hang out for a while.<br/><br/>"
+                            + "<i>\"No thanks. I have important work to do here, and I'm not leaving until it's done.\"</i><br/><br/> "
+                                  + "She picks up what looks like a piping hot cup of creamed coffee and sips it.<br/><br/>"
+                                  + "<i>\"I'm sorry, but if you want me to play with you tonight, the answer is no. Go play with the others - that's why they are there. I am in here, working and helping to run the games.\"</i>"
+                                  + "<br/><br/>She doesn't say much more and you leave the room, wondering if it was something you said or if you overstepped your bounds.<br/>");
             npc.gainAttraction(player, 1);
             player.gainAttraction(npc, 1);
         } else {
             Global.gui().message("You find Maya in one of the post-doctoral research offices, engrossed with work. "
-                            + "<i>\"Hello, " + player.getTrueName() + ". I'm working on something games-related, so if you sit down and stay quiet you can stay.\"</i>, says Maya while motioning to a nearby chair.\n\n"
+                            + "<i>\"Hello, " + player.getTrueName() + ". I'm working on something games-related, so if you sit down and stay quiet you can stay.\"</i>, says Maya while motioning to a nearby chair.<br/><br/>"
                             + " You grab a chair and sit down, occasionally chatting with Maya about various administrative tasks that she handles while recruiting. Observing her work, you notice that Maya is very smart and seems very committed "
-                            + "to doing a good job.<br/><br/>Eventually curiosity gets the better of you and you have to ask why she seems so dedicated to the games. <i>\"The games mean a lot to me. I owe everything to the games.\"</i> Well, considering there's all sorts of strange supernatural stuff going on, that makes sense, but you press her for more details: "
-                            + "<i>\"I used to compete, just like you. I almost died once, but I was thankfully saved.\"</i> "
-                            + "She glances over at you, her sharp eyes softening a bit before re-hardening before her face returns to her work. <i>\"So...We may be lucky enough to enjoy The Benefactor's protection, but I still expect you to take the games seriously.\"</i>"
-                            + "\n\nYou get the feeling there's more to this story, but you're pretty sure pressing further is a mistake. You assure Maya that you're on her side and won't cause trouble. <i>\"Good. I care a lot about the games, so don't make me have to discipline you myself for screwing up.\"</i>"
-                            + "\n\nIt seems Maya's harder to get to open up than the other girls, but she's definitely very interesting.");
+                            + "to doing a good job.<br/><br/>"
+                            + "Eventually curiosity gets the better of you and you have to ask why she seems so dedicated to the games.<br/> "
+                            + "<i>\"The games mean a lot to me. I owe everything to the games.\"</i><br/><br/>"
+                            + "Well, considering there's all sorts of strange supernatural stuff going on, that makes sense, but you press her for more details: "
+                            + "<i>\"I used to compete, just like you. I almost died once, but I was thankfully saved.\"</i><br/><br/>"
+                            + "She glances over at you, her sharp eyes softening a bit before re-hardening before her face returns to her work. "
+                            + "<i>\"So...We may be lucky enough to enjoy The Benefactor's protection, but I still expect you to take the games seriously.\"</i><br/><br/>"
+                            + "You get the feeling there's more to this story, but you're pretty sure pressing further is a mistake. You assure Maya that you're on her side and won't cause trouble.<br/><br/>"
+                            + "<i>\"Good. I care a lot about the games, so don't make me have to discipline you myself for screwing up.\"</i><br/><br/>"
+                            + "It seems Maya's harder to get to open up than the other girls, but she's definitely very interesting.<br/>");
             npc.gainAffection(player, 1);
             player.gainAffection(npc, 1);
             Global.gui().choose(this, "Games");
@@ -120,7 +128,7 @@ public class MayaTime extends BaseNPCTime {
     public void subVisit(String choice) {
         if (choice.equals("Get Hypnotized")) {
             if (npc.getAffection(player) == 0) {
-                Global.gui().message("[Placeholder]Maya has some fun making you do embarassing things in front of her. You feel like she enjoys being just a little cruel to you to amuse herself.");
+                Global.gui().message("[Placeholder] Maya has some fun making you do embarassing things in front of her. You feel like she enjoys being just a little cruel to you to amuse herself.");
             // The buttslut scene isn't fully written yet
             } else /* if (!player.hasStatus(Stsflag.buttsluttraining)) */ {
                 Global.gui().message("[Placeholder] Maya Addiction Sate Scene.");
@@ -134,7 +142,7 @@ public class MayaTime extends BaseNPCTime {
         if (choice.equals("Sex")) {
             if (npc.getAffection(player) >= 8 && (!player.has(Trait.ticklemonster) || Global.random(2) == 1)) {
                 Global.gui()
-                      .message("[Placeholder]Maya Sex Scene - If you even ever have the chance to get it - Gives Trait.");
+                      .message("[Placeholder] Maya Sex Scene - If you even ever have the chance to get it - Gives Trait.");
                 /*//GIVE TRAIT FOR SEX SCENE
                 if (!player.has(Trait.ticklemonster)) {
                     Global.gui().message("<br/><br/><b>You've gotten better at finding sensitive spots when tickling nude opponents.</b>");
@@ -143,7 +151,7 @@ public class MayaTime extends BaseNPCTime {
                 }
                 */
             } else {
-                Global.gui().message("[Placeholder]Maya Sex Scene - If you even ever have the chance to get it.");
+                Global.gui().message("[Placeholder] Maya Sex Scene - If you even ever have the chance to get it.");
 
             }
             Global.gui().choose(this, "Leave");

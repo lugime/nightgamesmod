@@ -50,10 +50,10 @@ public class ReykaTime extends BaseNPCTime {
             growCock.ingredients.put(Item.Talisman, 1);
             growCock.addRequirement(RequirementShortcuts.rev(new NotRequirement(new BodyPartRequirement("cock"))), "Has no penis");
             growCock.option = "Reyka: Grow a cock";
-            growCock.scene = "You ask Reyka if should could grow a cock. Just for you. You wave a Priapus Draft in front of her as a gift.<br/>" 
-                            + "<i>\"Ohhh, really? Do you know how hard it is to drain people when you have a penis? Ohhh, well, if it's for YOU, lover. Watch closely!\"</i><br/>"
+            growCock.scene = "You ask Reyka if should could grow a cock. Just for you. You wave a Priapus Draft in front of her as a gift.<br/><br/>" 
+                            + "<i>\"Ohhh, really? Do you know how hard it is to drain people when you have a penis? Ohhh, well, if it's for YOU, lover. Watch closely!\"</i><br/><br/>"
                             + "Reyka downs the bottle of the priapus draft after channeling her dark magic into the talisman and attaching it to her clitoris.<br/>"
-                            + "The two of you wait, and soon enough, a large demonic cock sprouts out under the talisman. She then rips the talisman off; her dark transformation complete.<br/>" 
+                            + "The two of you wait, and soon enough, a large demonic cock sprouts out under the talisman. She then rips the talisman off; her dark transformation complete.<br/><br/>" 
                             + "<i>\"Ohhh...Like what you see? I hope so. I plan on having as much fun as possible with this.\"</i><br/>";
             growCock.effect = (c, self, other) -> {
                 other.body.add(new CockPart().applyMod(new SizeMod(SizeMod.COCK_SIZE_BIG)).applyMod(CockMod.incubus));
