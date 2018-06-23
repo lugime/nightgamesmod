@@ -141,6 +141,7 @@ import nightgames.trap.StripMine;
 import nightgames.trap.TentacleTrap;
 import nightgames.trap.Trap;
 import nightgames.trap.Tripline;
+import nightgames.debug.MatchModifierPicker;
 
 public class Global {
     private static Random rng;                                      //Isn't the convention for static variables at this level is to put them in all caps? -DSM
@@ -861,15 +862,19 @@ public class Global {
         startNight();
     }
 
+    
     public static void startNight() {
         if (isDebugOn(DebugFlags.DEBUG_MATCHTYPES)) {
-            current = new MatchTypePicker();
-            current.respond("Start");
+        current = new MatchTypePicker();
+        current.respond("Start");
+        } else if (isDebugOn(DebugFlags.DEBUG_MATCHMODIFIERS)) {
+        current = new MatchModifierPicker();
+        current.respond("Start");
         } else {
-            currentMatchType = decideMatchType();
-            currentMatchType.runPrematch();
+        currentMatchType = decideMatchType();
+        currentMatchType.runPrematch();
         }
-    }
+        }
 
     public static List<Character> getMatchParticipantsInAffectionOrder() {
         if (match == null) {
