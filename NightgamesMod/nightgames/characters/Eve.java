@@ -231,6 +231,15 @@ public class Eve extends BasePersonality {
                             + "She has bright purple hair gathered in a messy ponytail, a variety of tattoos decorating her extremely shapely body, and of course it's "
                             + "impossible to miss the larger than average cock and balls hanging between between her legs.";
         });
+        
+        
+        character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
+            return "Eve shouts in victory, <i>\"Hah! See? Your asses are all MINE!\"</i>";
+        });
+        
+        character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
+            return "Eve says, <i>\"Tsk...Fucking hell...\"</i>";
+        });
     }
 
     @Override

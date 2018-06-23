@@ -308,6 +308,16 @@ public class Reyka extends BasePersonality {
                 return "Reyka gives off a rapturous air as bits and pieces of your soul is absorbed by her demonic " + part + "  <i>\"Mmmm that is <b>good</b>! This is usually the part where I turn on my summoner and do my demon thing, but I think I'll make an exception this time... for now.\"</i>";
             }
         });
+        
+        
+        character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
+            return "{self:SUBJECT} shouts in triumph, <i>\"Hah! Too easy! I had fun though, didn't you all?\"</i>";
+        });
+        
+        character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
+            return "{self:SUBJECT} mutters, <i>\"Oh well, maybe next time. I'll need to become more powerful, I think...\"</i>";
+        });
+        
     }
 
     @Override
