@@ -309,13 +309,13 @@ public class Reyka extends BasePersonality {
             }
         });
         
-        
+        //To be said when this character wins the entire night.
         character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
-            return "{self:SUBJECT} shouts in triumph, <i>\"Hah! Too easy! I had fun though, didn't you all?\"</i>";
+            return "{self:SUBJECT} smiles in satisfaction and says nothing, folding her arms while her tail swishes around. She seems pleased with the outcome.";
         });
-        
+        //To be said when they earn 0 points.
         character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
-            return "{self:SUBJECT} mutters, <i>\"Oh well, maybe next time. I'll need to become more powerful, I think...\"</i>";
+            return "{self:SUBJECT} mutters, <i>\"Well, that's a little boring...\"</i>";
         });
         
     }

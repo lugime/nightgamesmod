@@ -217,11 +217,11 @@ public class Maya extends BasePersonality {
         });
         
         character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
-            return "Maya shouts in triumph, <i>\"That was GREAT! I can do this ALL NIGHT!\"</i>";
+            return "Maya straightens herself out after hearing she's won and quietly says, <i>\"That was great. I should do this more.\"</i>";
         });
         
         character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
-            return "Maya mutters, <i>\"Damn...\"</i>";
+            return "Maya takes the news that she lost calmly and quietly says, <i>\"Well...next time.\"</i>";
         });
         
     }

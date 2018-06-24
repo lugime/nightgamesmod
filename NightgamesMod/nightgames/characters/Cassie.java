@@ -158,11 +158,11 @@ public class Cassie extends BasePersonality {
         
         
         character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
-            return "{self:SUBJECT} shouts in triumph, <i>\"Hooray! I did it! I won!\"</i>";
+            return "{self:SUBJECT} shouts in triumph, <i>\"I did it! I won!\"</i>";
         });
         
         character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
-            return "{self:SUBJECT} mutters, <i>\"Oh no...I didn't win at all...\"</i>";
+            return "{self:SUBJECT} looks a bit heartbroken as she says, <i>\"Not even one point...?\"</i>";
         });
         
     }

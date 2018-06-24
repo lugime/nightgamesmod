@@ -32,7 +32,7 @@ public class Eve extends BasePersonality {
     public static final String EVE_FIRSTTYPE_DONE = "EveFirstFocusDone";
     public static final String EVE_SECONDTYPE1_FOCUS = "EveSecond1Focus";
     public static final String EVE_SECONDTYPE2_FOCUS = "EveSecond2Focus";
-    public static final String EVE_SECONDTYPE_DONE = "EveFirstFocusDone";
+    public static final String EVE_SECONDTYPE_DONE = "EveSecondFocusDone";
     
     public Eve() {
         this(Optional.empty(), Optional.empty());
@@ -234,11 +234,11 @@ public class Eve extends BasePersonality {
         
         
         character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
-            return "Eve shouts in victory, <i>\"Hah! See? Your asses are all MINE!\"</i>";
+            return "Realzing she's won the night, Eve shouts in victory, <i>\"Hah! See? Your asses are ALL mine!\"</i>";
         });
         
         character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
-            return "Eve says, <i>\"Tsk...Fucking hell...\"</i>";
+            return "Eve doesn't bother seeing her lousy results and says, <i>\"Whatever, later.\"</i>";
         });
     }
 

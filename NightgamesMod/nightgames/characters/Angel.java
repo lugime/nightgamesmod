@@ -380,17 +380,7 @@ public class Angel extends BasePersonality {
             }
         });
         
-        //This is an example of a new kind of Line - a Line to be said if this character gets 0 victories. 
-        character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
-            if (character.has(Trait.demigoddess) && character.isDemonic()) {
-                return "[PLACEHOLDER] Angel (Corrupted Goddess) says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
-            } else if (character.has(Trait.demigoddess)) {
-                return "[PLACEHOLDER] Angel (Goddess) says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
-            } else {
-                return "[PLACEHOLDER] Angel says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
-            }
-        });
-        
+            
         //This is an example of a new kind of Line - a Line to be said if this character wins the entire night. 
         character.addLine(CharacterLine.VICTORY_LINER, (c, self, other) -> {
             if (character.has(Trait.demigoddess) && character.isDemonic()) {
@@ -402,6 +392,16 @@ public class Angel extends BasePersonality {
             }
         });
         
+          //This is an example of a new kind of Line - a Line to be said if this character gets 0 victories. 
+        character.addLine(CharacterLine.LOSER_LINER, (c, self, other) -> {
+            if (character.has(Trait.demigoddess) && character.isDemonic()) {
+                return "[PLACEHOLDER] Angel (Corrupted Goddess) says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
+            } else if (character.has(Trait.demigoddess)) {
+                return "[PLACEHOLDER] Angel (Goddess) says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
+            } else {
+                return "[PLACEHOLDER] Angel says, \"</i>Wow...I didn't win ANYTHING?\"</i>";
+            }
+        });
     }
 
     @Override
