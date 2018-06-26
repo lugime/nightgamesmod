@@ -386,7 +386,7 @@ public class Angel extends BasePersonality {
             if (character.has(Trait.demigoddess) && character.isDemonic()) {
                 return "[PLACEHOLDER] Angel (Corrupted Goddess) says, \"</i>That's right! Everyone on their knees!\"</i>";
             } else if (character.has(Trait.demigoddess)) {
-                return "[PLACEHOLDER] Angel (Goddess) says, \"</i>How's that for some good religion? I could go for some more.\\\"</i>";
+                return "[PLACEHOLDER] Angel (Goddess) says, \"</i>How's that for some good religion? I could go for some more.\"</i>";
             } else {
                 return "[PLACEHOLDER] Angel says, \"</i>MMm! That was nice. I could go for some more.\"</i>";
             }

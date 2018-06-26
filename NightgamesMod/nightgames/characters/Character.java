@@ -4706,4 +4706,12 @@ public abstract class Character extends Observable implements Cloneable {
     public BodyPart getLastOrgasmPart() {
         return lastOrgasmPart;
     }
+
+    public String loserLiner(Combat c, Character target) {
+        return Global.format("{self:SUBJECT-ACTION:try} seems dissatisfied with losing so badly.", this, target);
+    }
+
+    public String victoryLiner(Combat c, Character target) {
+        return Global.format("{self:SUBJECT-ACTION:try} smiles in satisfaction with their victory.", this, target);
+    }
 }

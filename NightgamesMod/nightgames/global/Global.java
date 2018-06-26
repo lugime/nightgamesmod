@@ -810,7 +810,8 @@ public class Global {
                 c.ding(null);
             }
         });
-        /*  CONSIDER USING THIS INSTEAD
+        /*  
+         * TODO: CONSIDER USING THIS INSTEAD - requires a accompanying trait naturalgrowth  to all regular characters or some similar marking
          * players.stream().filter(c -> c.has(Trait.naturalgrowth)).filter(c -> c.getLevel() < maxLevel - 1).forEach(c -> {
                 while (c.getLevel() < maxLevel - 1) {
                     c.ding(null);

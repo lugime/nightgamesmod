@@ -50,7 +50,7 @@ public class DefaultPostmatch extends Postmatch {
                 maxaffection = rival.getAffection(player);
             }
         }
-
+        //TODO: Fix Angel always being picked for the afterparty event. Given how often she can win, it's not a surprise she ends up with highest affection? - DSM
         if (maxaffection >= 15 && closest != null) {
             closest.afterParty();
         } else {

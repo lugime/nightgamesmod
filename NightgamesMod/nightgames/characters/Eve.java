@@ -183,9 +183,28 @@ public class Eve extends BasePersonality {
         });
 
         character.addLine(CharacterLine.NIGHT_LINER, (c, self, other) -> {
-            return "";
+            //If the player is functionally male
+            if (other.hasDick() == true && other.hasPussy() == false) {
+                return "[PLACEHOLDER] Eve grabs your ass as you are leaving the match before pressing herself into you from behind. <br/><br/>"
+                                + "<i>\"Hey! Let's go, my young ass-slut, COME ON! We're not done, yet! I'm still wound up and I don't end MY night until I pass out cumming. Don't you worry, "
+                                + "The Benefactor makes sure we can't get badly hurt, so let's have some fucking FUN!\"</i><br/><br/>"
+                                + "You spend the night having wild sex with Eve assaulting you cock without mercy - the rough sex with Eve is a bit overwhelming, but something about the blissed-out look on her face is really hot. After the rough fucking, you feel a physical sensation of relief wash over you as your bruises and scratches heal - apparently she's right.<br/>";
+            //If the player is functionally female
+            } else if (other.hasDick() == false && other.hasPussy() == true) {
+                return "[PLACEHOLDER] Eve grabs your ass as you are leaving the match before pressing herself into you from behind. <br/><br/>"
+                                + "<i>\"Hey! Let's go, my young ass-slut, COME ON! We're not done, yet! I'm still wound up and I don't end MY night until I pass out cumming. Don't you worry, "
+                                + "The Benefactor makes sure we can't get badly hurt, so let's have some fucking FUN!\"</i><br/><br/>"
+                                + "You spend the night having wild sex with Eve topping you without mercy - it's rough, but you feel a physical sensation of relief wash over you as your bruises and scratches heal - apparently she's right.<br/>";
+            //Whatever.
+            } else {
+                 return "[PLACEHOLDER] Eve grabs your ass as you are leaving the match before pressing herself into you from behind.<br/><br/>"
+                            + "<i>\"Hey! Let's go, my young ass-slut, COME ON! We're not done, yet! I'm still wound up and I don't end MY night until I pass out cumming. Don't you worry, "
+                            + "The Benefactor makes sure we can't get badly hurt, so let's have some fucking FUN!\"</i><br/><br/>"
+                            + "You spend the night having wild sex with Eve assaulting your ass without mercy. The entire time, she's very into it - her face is fixed in carnal bliss as she moans and sighs without restraint. It's rough, but by the end of the ordeal you feel a physical sensation of relief wash over you as your bruises and scratches heal - apparently she's right.<br/>";
+            }
             
-            //<i>\"Heeeey! Let's go, my young ass-slut, COME ON! The Benefactor makes sure we can't get badly hurt, so let's have some fucking FUN tonight! I'm still wound up and I don't end my night until I pass out cumming.\"</i>" 
+            
+   
         });
 
         character.addLine(CharacterLine.ORGASM_LINER, (c, self, other) -> {
