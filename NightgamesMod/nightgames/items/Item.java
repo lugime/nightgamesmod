@@ -165,7 +165,7 @@ public enum Item implements Loot {
                     ),
                     RequirementShortcuts.rev(RequirementShortcuts.noTrait(Trait.succubus)),
                     15),
-    OmnibusDraft("Omnibus Draft", 1300, "Temporarily turn into an demonic omnibus", "a ",
+    OmnibusDraft("Omnibus Draft", 1300, "Temporarily turn into a demonic omnibus", "a ",
                     Arrays.asList((ItemEffect) new BuffEffect("drink", "throw",
                                     new Abuff(Global.noneCharacter(), Attribute.Dark, 10, 15)),
                     new BuffEffect("drink", "throw", new Abuff(Global.noneCharacter(), Attribute.Seduction, 5, 15)),

@@ -47,7 +47,7 @@ public class LevelDrain extends Drain {
     }
 
     private int stealXP(Combat c, Character target) {
-        int xpStolen = target.getXP();
+        int xpStolen = target.getXP();      //Gets the target's current xp - this doesn't really reward the move.
         if (xpStolen <= 0) {
             return 0;
         }
