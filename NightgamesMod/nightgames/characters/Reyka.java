@@ -116,6 +116,7 @@ public class Reyka extends BasePersonality {
         character.getGrowth().addTrait(55, Trait.desensitized2);
         character.getGrowth().addTrait(58, Trait.carnalvirtuoso);
 
+        character.getGrowth().addTrait(80, Trait.archSuccubus);
         
         this.addFirstFocusScene();      
         this.addSecondFocusScene();     

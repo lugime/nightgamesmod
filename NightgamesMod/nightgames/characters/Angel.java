@@ -195,6 +195,8 @@ public class Angel extends BasePersonality {
         }
         character.getGrowth()
                  .addTrait(60, Trait.revered);
+        
+        character.getGrowth().addTrait(80, Trait.divineAssumption);
     }
 
     @Override
@@ -820,7 +822,7 @@ public class Angel extends BasePersonality {
                             c.write("You tell Angel that her insatiable sex drive and amazing sex technique are both part of what makes her unique and amazing(ly attractive). "
                                             + "There are people out there with one or the other, but no one but Angel is as good at both. Angel grins and licks her lips"
                                             + "<i>\"From most people, that would sound like a pathetic wishy-washy non-answer, but the way you put that made it sound like "
-                                            + "a challenge. I'll take that challenge, but think you've just doomed yourself to being my sex toy\"</i>"
+                                            + "a challenge. I'll take that challenge, but think you've just doomed yourself to being my sex toy.\"</i>"
                                             + "<br/><br/>"
                                             + "Angel looks like she's found a whole new level of resolve- you suddenly realize that you've made a terrible mistake. You resolve to step up training yourself, if that's possible.");
                             useNymphomania();
