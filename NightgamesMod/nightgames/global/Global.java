@@ -109,6 +109,7 @@ import nightgames.modifier.CustomModifierLoader;
 import nightgames.modifier.Modifier;
 import nightgames.modifier.standard.FTCModifier;
 import nightgames.modifier.standard.LevelDrainModifier;
+import nightgames.modifier.standard.MayaModifier;
 import nightgames.modifier.standard.NoItemsModifier;
 import nightgames.modifier.standard.NoModifier;
 import nightgames.modifier.standard.NoRecoveryModifier;
@@ -717,6 +718,7 @@ public class Global {
         modifierPool.add(new VibrationModifier());
         modifierPool.add(new VulnerableModifier());
         modifierPool.add(new LevelDrainModifier());
+        modifierPool.add(new MayaModifier());           //Checks its own condition, so it should be fine, here. - DSM
 
         File customModFile = new File("data/customModifiers.json");
         if (customModFile.canRead()) {
