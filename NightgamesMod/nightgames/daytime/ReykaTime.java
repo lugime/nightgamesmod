@@ -82,7 +82,7 @@ public class ReykaTime extends BaseNPCTime {
         {
             TransformationOption incubusCock = new ApplyPartModOption("cock", CockMod.incubus);
             incubusCock.ingredients.put(Item.PriapusDraft, 10);
-            incubusCock.ingredients.put(Item.SuccubusDraft, 5);
+            incubusCock.ingredients.put(Item.SuccubusDraft, 5); //TODO: Change to Incubus Draft
             incubusCock.ingredients.put(Item.semen, 5);
             incubusCock.option = "Incubus Cock";
             incubusCock.scene = "{self:subject} smiles when she sees that you have brought her the ingredients. "

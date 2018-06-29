@@ -348,7 +348,7 @@ public class Global {
         return rng.nextInt(d);
     }
 
-    // finds a centered random number from [0, d] (inclusive)
+    /**Finds a centered random number from [0, d] (inclusive) */
     public static int centeredrandom(int d, double center, double sigma) {
         int val = 0;
         center = Math.max(0, Math.min(d, center));
