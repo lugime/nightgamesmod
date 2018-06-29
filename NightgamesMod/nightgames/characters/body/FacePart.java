@@ -17,6 +17,10 @@ public class FacePart extends GenericBodyPart {
         this(0, 0);
     }
 
+    /**Long description of the face, based upon Femininity, which is a single axis variable.  
+     *  
+     * TODO: Implement Masculinty and reimplement femininity to accomodate two-axis builds and behavior.
+     * */
     @Override
     public void describeLong(StringBuilder b, Character c) {
         String desc;
