@@ -196,7 +196,7 @@ public class Cassie extends BasePersonality {
         self.getArousal().setMax(100);
         Global.gainSkills(self);
         self.setTrophy(Item.CassieTrophy);
-        self.body.add(BreastsPart.c);
+        self.body.add(BreastsPart.d);
         self.body.add(AssPart.generateGeneric().upgrade().upgrade().upgrade());
         self.initialGender = CharacterSex.female;
     }
@@ -205,7 +205,7 @@ public class Cassie extends BasePersonality {
         Global.flag(CASSIE_BREAST_FOCUS);
         character.body.addReplace(BreastsPart.f, 1);
         character.getGrowth().addTrait(11, Trait.lactating);
-        character.getGrowth().addTrait(25, Trait.magicmilk);
+        character.getGrowth().addTrait(25, Trait.hawkeye);
         character.getGrowth().addTrait(38, Trait.temptingtits);
         character.getGrowth().addTrait(57, Trait.sedativecream);
     }
