@@ -108,13 +108,14 @@ public class Frottage extends Skill {
              } else if (modifier == Result.special) {
             // Eve
             return String.format(
-                            "Firmly gripping your shoulders, Eve pushes her penis against yours. <i>\"I think your little cock should"
-                                            + " greet its senpai, %s. Play nice now.\"</i> She then proceed to mash her hipsagainst yours,"
-                                            + " grinding your shafts together. Completely outmatched by her %s, you try to disengage"
-                                            + " but it only makes you rub her harder. Finally, you manage to stumble away, your crotch quite a"
-                                            + " bbit wet from the precum you released. <i>\"Uh uh, seems like you'll be toasted soon, my little cumslut-to-be."
+                            "Firmly gripping %s shoulders, Eve pushes herself against %s. <i>\"I think your little cock should"
+                                            + " greet its senpai, %s. Play nice now.\"</i> She then proceeds to mash her hips against %s,"
+                                            + " grinding your shafts together. Completely outmatched by her %s, %s to disengage"
+                                            + " but it only makes %s rub her harder. Finally, %s to stumble away, %s crotch quite a"
+                                            + " bit wet from the precum %s released. <i>\"Uh uh, seems like you'll be toasted soon, my little cumslut-to-be."
                                             + " Now get ready to take it.\"</i>,
-target.getName(), getSelf().body.getRandomCock().describe(getSelf()));
+target.nameOrPossessivePronoun(), target.getName(), target.getName(), target.nameOrPossessivePronoun(), getSelf().body.getRandomCock().describe(getSelf(),
+target.subjectAction("try", "tries"), target.getName(), target.subjectAction("manage", "manages"), target.nameOrPossessivePronoun(), target.getName()));
         } else if (getSelf().hasDick() && target.hasDick()) {
             return String.format("%s pushes %s %s against the sensitive head of %s member, "
                             + "dominating %s manhood.", getSelf().subject(), getSelf().possessiveAdjective(),
