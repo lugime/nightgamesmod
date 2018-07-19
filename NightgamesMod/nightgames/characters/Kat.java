@@ -277,7 +277,7 @@ public class Kat extends BasePersonality {
         character.getGrowth().addTrait(0, Trait.petite);
         character.getGrowth().addTrait(10, Trait.sympathetic);
         character.getGrowth().addTrait(16, Trait.cute);
-        character.getGrowth().addTrait(20, Trait.breeder);
+        character.getGrowth().addTrait(20, Trait.sneaky);
         character.getGrowth().addTrait(25, Trait.nymphomania);
         character.getGrowth().addTrait(31, Trait.tight);
         character.getGrowth().addTrait(37, Trait.catstongue);
