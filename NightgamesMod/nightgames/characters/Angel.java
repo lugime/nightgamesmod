@@ -57,6 +57,7 @@ public class Angel extends BasePersonality {
         if (self instanceof NPC) {
         }
         self.body.add(BreastsPart.dd);
+        self.body.add(new CockPart().applyMod(new SizeMod(SizeMod.COCK_SIZE_LARGE)));
         // very feminine face
         self.body.add(new FacePart(0.3, 4.2));
         self.initialGender = CharacterSex.female;
@@ -129,7 +130,7 @@ public class Angel extends BasePersonality {
         character.getGrowth()
                  .addTrait(12, Trait.holecontrol);
         character.getGrowth()
-                 .addTrait(20, Trait.zealinspiring);
+                 .addTrait(20, Trait.confident);
         character.getGrowth()
                  .addTrait(25, Trait.powerfulhips);
         character.getGrowth()
