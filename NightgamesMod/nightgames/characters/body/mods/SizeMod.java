@@ -31,7 +31,7 @@ public class SizeMod extends PartMod {
     static {
         COCK_SIZE_DESCRIPTIONS.put(COCK_SIZE_TINY, "tiny ");
         COCK_SIZE_DESCRIPTIONS.put(COCK_SIZE_SMALL, "small ");
-        COCK_SIZE_DESCRIPTIONS.put(COCK_SIZE_LITTLE, "small ");
+        COCK_SIZE_DESCRIPTIONS.put(COCK_SIZE_LITTLE, "little ");
         COCK_SIZE_DESCRIPTIONS.put(COCK_SIZE_AVERAGE, "");
         COCK_SIZE_DESCRIPTIONS.put(COCK_SIZE_LARGE, "big ");
         COCK_SIZE_DESCRIPTIONS.put(COCK_SIZE_BIG, "huge ");
