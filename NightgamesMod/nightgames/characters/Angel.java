@@ -7,6 +7,7 @@ import nightgames.characters.body.BreastsPart;
 import nightgames.characters.body.CockMod;
 import nightgames.characters.body.FacePart;
 import nightgames.characters.body.WingsPart;
+import nightgames.characters.body.mods.SizeMod;
 import nightgames.characters.body.mods.DivineMod;
 import nightgames.characters.custom.CharacterLine;
 import nightgames.combat.Combat;
