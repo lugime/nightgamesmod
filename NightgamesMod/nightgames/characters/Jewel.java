@@ -76,6 +76,7 @@ public class Jewel extends BasePersonality {
             .setMax(80);
 
         self.setTrophy(Item.JewelTrophy);
+        self.body.add(AssPart.3);
         self.body.add(BreastsPart.c);
 
         // fairly feminine face
@@ -97,6 +98,7 @@ public class Jewel extends BasePersonality {
         Global.flag(JEWEL_ANAL_FOCUS);
         growth.addTrait(11, Trait.powerfulcheeks);
         growth.addBodyPartMod(25, "ass", FieryMod.INSTANCE);
+        self.body.add(AssPart.5);
         growth.addTrait(37, Trait.temptingass);
         growth.addTrait(47, Trait.autonomousAss);
         
